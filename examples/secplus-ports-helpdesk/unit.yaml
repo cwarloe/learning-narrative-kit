@@ -1,0 +1,33 @@
+unit_id: secplus-ports-helpdesk
+title: "Portland Desk — The Port That Is Open"
+audience: "Someone studying Security+ ports/protocols, or a NADF precursor for Ethan's help-desk years"
+purpose: "Weave the SY0-701 secure-vs-insecure port/protocol pairs into one help-desk shift so memorized numbers become decisions."
+estimated_minutes: 20
+sources:
+  - CompTIA Security+ SY0-701 (implementation of secure protocols; firewall ports/protocols)
+  - Common SY0-701 secure/insecure study pairs
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Security+ study targets — the primary study deck"
+  support: "Desk/network jargon marked so a non-IT reader can hover for readability"
+review_filters:
+  - "Exam-only: cards with tier: exam"
+  - "All: exam + support cards (renderer may filter by tier)"
+tooltip_contract:
+  body: [definition, context]
+  exclude_from_hover: [refs, sources, related]
+  definition_style: "short 1–2 sentences; exam-faithful for tier exam, plain gloss for tier support"
+  context_style: "optional one clause when bare definition would not land mid-scene"
+constraints:
+  - Every glossary term appears at least once in a ticket or decision
+  - Story must pass the cover test (readable with marks hidden)
+  - Prefer secure/insecure replacement decisions over trivia dumps
+  - Definitions stay exam-faithful; do not invent rival port numbers
+  - Precursor tone: help desk, not SOC analyst narrative
+  - Present tense only; no foreshadowing of places or events the reader has not met
+  - Narrator may feel lost; reader must never be confused by unexplained references
+  - Two-tier glossary — tier exam for SY0-701 targets; tier support for desk/network jargon
+  - Do not mark Portlandia/flavor background (pannier, MAX, bike helmet, rain pants, coffee, cubes-as-furniture vibe); leave flavor unmarked on purpose

@@ -1,0 +1,19 @@
+unit_id: itm310-vanguard-edge
+title: "The Goal of Vanguard Edge"
+audience: "ITM 310 learner studying for exam chunks"
+purpose: "Same move as Goldratt's The Goal and the 8th-grade vocab paragraph: take the ITM 310 term set that belongs together and weave it into one plant story so the concepts gain shared context and real meaning — not a list of floating definitions."
+estimated_minutes: 25
+sources:
+  - ITM 310 PowerPoint slide decks
+  - Study guides and review notes
+  - Course flashcards
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+constraints:
+  - Every marked term must exist in the glossary
+  - Every glossary term in this unit should appear at least once in the narrative (exam coverage)
+  - Definitions stay exam-faithful; do not invent rival definitions
+  - Prefer analytical or decision use of a term over decoration
+  - Story must still make sense if all marks are hidden (cover test)

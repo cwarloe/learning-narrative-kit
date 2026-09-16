@@ -1,0 +1,44 @@
+# Informal schema for a learning-narrative unit (authoring contract)
+
+unit_id: string            # stable kebab-case id
+title: string
+audience: string
+purpose: string            # why this narrative exists for the learner
+estimated_minutes: number
+sources: [string]          # where glossary truth comes from (unit chrome / sidebar)
+glossary: path|bank_id     # local file or shared bank reference
+narrative: path
+review: path|null
+mark_convention: "[[term_id|surface text]]"
+constraints: [string]
+glossary_tiers: {exam: string, support: string}  # optional two-tier model
+review_filters: [string]                         # optional Exam-only / All intent
+tooltip_contract:                                # optional; documents renderer behavior
+  body: [definition, context]                    # hover shows these only
+  exclude_from_hover: [refs, sources, related]   # citations stay in sidebar/expand
+  definition_style: "short 1–2 sentences; exam-faithful or plain support gloss"
+  context_style: "optional one clause when bare definition would not land mid-scene"
+
+# glossary.yaml
+bank_id: string
+title: string
+source: string               # bank-level provenance (sidebar, not hover)
+terms:
+  - id: string
+    title: string
+    definition: string       # TOOLTIP: primary body
+    context: string          # TOOLTIP: optional mid-scene clause; omit if unneeded
+    tags: [string]
+    tier: exam|support       # optional; exam = study targets, support = readability jargon
+    aliases: [string]        # optional
+    related: [string]        # optional; sidebar only
+    refs: [string]           # optional; SIDEBAR / glossary expand only — never hover
+
+# review.yaml
+deck_id: string
+cards:
+  - id: string             # usually same as term id
+    prompt: string
+    answer: string         # usually the definition (not refs)
+    tags: [string]
+    tier: exam|support     # optional; enables Exam-only vs All filter
