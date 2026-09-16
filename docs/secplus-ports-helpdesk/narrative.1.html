@@ -1,0 +1,17 @@
+
+<p>"People say <span class="term support" data-term="aaa" data-tier="support">AAA</span> like it's one port," Jared drops into the thread, still riding his SSH win. "RADIUS for the VPN crowd, TACACS for us touching the boxes. I mixed them up for a year."</p>
+<p>I do not configure either from the desk. I name the ports when someone asks. The work is naming the replacement while they are still on the line — templates, shortcuts, and the stories attached to them.</p>
+<h2>TFTP and the printer that will not wait</h2>
+<p>Last real ping of the shift. Facilities tech — Owen — needs printer firmware. He wants <span class="term exam" data-term="tftp" data-tier="exam">TFTP</span> from his laptop on the user VLAN. No auth. 69/UDP. Tiny and trusting.</p>
+<p>"MAX leaves in twenty and the printer is dead," Owen says. "Just this once from here. I PXE-boot lab gear with TFTP at home all the time — it's fine if you know the room."</p>
+<p>"Trusted VLAN only," I say. "Management segment, short window, then close it. TFTP does not cross a <span class="term support" data-term="perimeter" data-tier="support">perimeter</span> and it does not live on the desk VLAN next to people browsing the web. Home lab room is a room. This floor is not."</p>
+<p>Owen looks at the clock, then at me. "Staging switch still up? That's the one we used for the badge reader flash last month."</p>
+<p>"Still up."</p>
+<p>He moves. Firmware lands. Port closed. He still catches the MAX. In the ticket note he writes <em>staging only — Owen knows why now</em>, which is more honest than most of my notes from week one.</p>
+<h2>Closing the queue</h2>
+<p>5:40. Queue down to noise. Index cards on the desk — Telnet beside SSH, HTTP beside HTTPS, FTP beside two answers that are not the same, POP and IMAP beside their TLS twins, LDAP beside LDAPS, SNMP beside v3, syslog beside 6514. The numbers have not changed since breakfast. The stories have.</p>
+<p>Jules pauses at my cube, raincoat on, bike lights clipped to the strap.</p>
+<p>"How many ports did you memorize today?"</p>
+<p>"None," I say. "I collected a few war stories and made a few swaps."</p>
+<p>She almost smiles. "Good. Keep the cards if they help you start. Throw them away when the person on the line already knows what they need — and you know what to replace."</p>
+<p>I lock the drawer, badge-swipe into the rain, and walk toward the MAX. Portland is still raining. Tomorrow the queue fills again — and this time I know to ask which decision, not which number.</p>
