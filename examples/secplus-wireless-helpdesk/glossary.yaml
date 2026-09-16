@@ -1,0 +1,271 @@
+bank_id: secplus-sy0-701-wireless
+title: "Security+ SY0-701 — wireless security (help-desk precursor)"
+source: "CompTIA Security+ SY0-701 objectives (wireless security standards; attacks; 802.1X/PSK; site survey; Bluetooth risks)"
+terms:
+  # --- Standards / encryption ---
+  - id: ssid
+    title: SSID
+    definition: "Service set identifier — the network name a wireless network advertises (or tries to hide)."
+    refs:
+      - "CompTIA Security+ SY0-701 — SSID / wireless basics"
+    tags: [wireless]
+    tier: exam
+  - id: wep
+    title: WEP
+    definition: "Wired Equivalent Privacy — obsolete Wi-Fi encryption that is easily broken; treat as insecure legacy."
+    refs:
+      - "CompTIA Security+ SY0-701 — WEP (insecure)"
+    tags: [wireless, encryption]
+    tier: exam
+  - id: wpa2
+    title: WPA2
+    definition: "Wi-Fi Protected Access 2 — widely deployed Wi-Fi security using strong encryption (AES-CCMP) when configured correctly."
+    refs:
+      - "CompTIA Security+ SY0-701 — WPA2"
+    tags: [wireless, encryption]
+    tier: exam
+  - id: wpa3
+    title: WPA3
+    definition: "Newer Wi-Fi security standard with stronger protections (including SAE) against offline password attacks and better open-network options."
+    refs:
+      - "CompTIA Security+ SY0-701 — WPA3"
+    tags: [wireless, encryption]
+    tier: exam
+  - id: sae
+    title: SAE
+    definition: "Simultaneous Authentication of Equals — WPA3 handshake that resists offline dictionary attacks better than WPA2-PSK."
+    refs:
+      - "CompTIA Security+ SY0-701 — WPA3 / SAE"
+    tags: [wireless, encryption]
+    tier: exam
+  - id: psk
+    title: PSK (pre-shared key)
+    definition: "Shared Wi-Fi password mode — everyone uses the same key; fine for small spaces, weak for accountability and rotation."
+    refs:
+      - "CompTIA Security+ SY0-701 — PSK / personal mode"
+    tags: [wireless, auth]
+    tier: exam
+  - id: enterprise_wpa
+    title: WPA-Enterprise (802.1X)
+    definition: "Wi-Fi that authenticates each user/device via 802.1X (usually RADIUS) instead of one shared password."
+    refs:
+      - "CompTIA Security+ SY0-701 — WPA2/WPA3-Enterprise / 802.1X"
+    tags: [wireless, auth]
+    tier: exam
+  - id: ieee_8021x
+    title: 802.1X
+    definition: "Port-based network access control — authenticate before full network access; used for enterprise Wi-Fi and wired NAC."
+    refs:
+      - "CompTIA Security+ SY0-701 — 802.1X"
+    tags: [wireless, auth]
+    tier: exam
+  - id: radius
+    title: RADIUS
+    definition: "Authentication server protocol commonly behind enterprise Wi-Fi — checks user/device credentials for 802.1X."
+    refs:
+      - "CompTIA Security+ SY0-701 — RADIUS / AAA"
+    tags: [wireless, auth]
+    tier: exam
+  - id: open_network
+    title: Open network
+    definition: "Wi-Fi with no encryption on the air — anyone nearby can join and often eavesdrop unless a higher layer protects traffic."
+    refs:
+      - "CompTIA Security+ SY0-701 — open / insecure wireless"
+    tags: [wireless, risk]
+    tier: exam
+  - id: captive_portal
+    title: Captive portal
+    definition: "Web login/splash page before internet access — common on guest Wi-Fi; not a substitute for strong link encryption by itself."
+    refs:
+      - "CompTIA Security+ SY0-701 — captive portal / guest access"
+    tags: [wireless, guest]
+    tier: exam
+  - id: wps
+    title: WPS
+    definition: "Wi-Fi Protected Setup — convenience pairing feature with a history of brute-force weaknesses; disable when possible."
+    refs:
+      - "CompTIA Security+ SY0-701 — WPS risks"
+    tags: [wireless, risk]
+    tier: exam
+
+  # --- Attacks / threats ---
+  - id: evil_twin
+    title: Evil twin
+    definition: "Attacker access point that mimics a trusted SSID to trick clients into connecting and exposing traffic or credentials."
+    refs:
+      - "CompTIA Security+ SY0-701 — evil twin"
+    tags: [wireless, attack]
+    tier: exam
+  - id: rogue_ap
+    title: Rogue access point
+    definition: "Unauthorized AP on the network or in range — intentional attack gear or a well-meaning employee 'helping' coverage."
+    refs:
+      - "CompTIA Security+ SY0-701 — rogue access point"
+    tags: [wireless, attack]
+    tier: exam
+  - id: disassociation
+    title: Disassociation / deauthentication
+    definition: "Wireless frames that kick clients off an AP — used in DoS or to force reconnects toward an evil twin."
+    refs:
+      - "CompTIA Security+ SY0-701 — disassociation / deauthentication attacks"
+    tags: [wireless, attack]
+    tier: exam
+  - id: jamming
+    title: Jamming
+    definition: "Flooding RF so legitimate Wi-Fi cannot communicate — a denial-of-service against the air itself."
+    refs:
+      - "CompTIA Security+ SY0-701 — jamming / RF interference (attack)"
+    tags: [wireless, attack]
+    tier: exam
+  - id: war_driving
+    title: War driving
+    definition: "Roaming an area to discover and map Wi-Fi networks — often looking for weak or open targets."
+    refs:
+      - "CompTIA Security+ SY0-701 — war driving"
+    tags: [wireless, recon]
+    tier: exam
+  - id: eavesdropping
+    title: Wireless eavesdropping
+    definition: "Capturing Wi-Fi frames from the air — catastrophic on open/WEP, still a concern if clients join the wrong network."
+    refs:
+      - "CompTIA Security+ SY0-701 — eavesdropping / sniffing"
+    tags: [wireless, attack]
+    tier: exam
+  - id: replay_attack
+    title: Replay attack
+    definition: "Capturing valid wireless or auth traffic and re-sending it later to gain access or disrupt sessions."
+    refs:
+      - "CompTIA Security+ SY0-701 — replay attacks"
+    tags: [wireless, attack]
+    tier: exam
+  - id: iv_attack
+    title: IV attack (WEP)
+    definition: "Exploiting WEP's weak initialization vectors to recover the key — one reason WEP is retired."
+    refs:
+      - "CompTIA Security+ SY0-701 — IV attack / WEP weaknesses"
+    tags: [wireless, attack]
+    tier: exam
+
+  # --- Design / ops ---
+  - id: site_survey
+    title: Site survey
+    definition: "Measuring coverage, interference, and dead zones so APs are placed and tuned for both performance and security boundaries."
+    refs:
+      - "CompTIA Security+ SY0-701 — site survey"
+    tags: [wireless, design]
+    tier: exam
+  - id: guest_wifi
+    title: Guest Wi-Fi
+    definition: "Separate wireless access for visitors — should not freely reach internal servers or employee laptops."
+    refs:
+      - "CompTIA Security+ SY0-701 — guest network"
+    tags: [wireless, guest]
+    tier: exam
+  - id: segmentation
+    title: Network segmentation
+    definition: "Splitting networks so a compromise or guest device cannot freely reach sensitive systems."
+    context: "Guest Wi-Fi without segmentation is a hallway into the building."
+    refs:
+      - "CompTIA Security+ SY0-701 — network segmentation"
+    tags: [wireless, architecture]
+    tier: exam
+  - id: hidden_ssid
+    title: Hidden SSID
+    definition: "Not broadcasting the network name — weak obscurity; determined clients and attackers can still discover it."
+    refs:
+      - "CompTIA Security+ SY0-701 — SSID suppression"
+    tags: [wireless]
+    tier: exam
+  - id: mac_filtering
+    title: MAC filtering
+    definition: "Allow/deny Wi-Fi by hardware address — easily spoofed; not a real access-control substitute."
+    refs:
+      - "CompTIA Security+ SY0-701 — MAC filtering"
+    tags: [wireless]
+    tier: exam
+  - id: ap_placement
+    title: AP placement
+    definition: "Where access points sit and how loud they transmit — affects coverage, leakage outside the building, and attack surface."
+    refs:
+      - "CompTIA Security+ SY0-701 — access point placement / power levels"
+    tags: [wireless, design]
+    tier: exam
+  - id: wifi_analyzer
+    title: Wi-Fi analyzer
+    definition: "Tool that shows SSIDs, channels, signal strength, and sometimes security modes — useful for survey and spotting twins."
+    refs:
+      - "CompTIA Security+ SY0-701 — wireless analyzers / site survey tools"
+    tags: [wireless, tools]
+    tier: exam
+
+  # --- Bluetooth (light) ---
+  - id: bluetooth
+    title: Bluetooth
+    definition: "Short-range wireless for peripherals and phones — convenient, and a side channel if pairing is careless."
+    refs:
+      - "CompTIA Security+ SY0-701 — Bluetooth risks"
+    tags: [bluetooth]
+    tier: exam
+  - id: bluejacking
+    title: Bluejacking
+    definition: "Sending unsolicited messages to nearby Bluetooth devices — annoying spam more than full takeover."
+    refs:
+      - "CompTIA Security+ SY0-701 — bluejacking"
+    tags: [bluetooth]
+    tier: exam
+  - id: bluesnarfing
+    title: Bluesnarfing
+    definition: "Unauthorized access to data on a Bluetooth device — contacts, messages, files — when pairing/security is weak."
+    refs:
+      - "CompTIA Security+ SY0-701 — bluesnarfing"
+    tags: [bluetooth]
+    tier: exam
+  - id: bluetooth_pairing
+    title: Bluetooth pairing hygiene
+    definition: "Only pair expected devices, prefer confirm codes, turn discovery off when idle — desk-level Bluetooth risk control."
+    refs:
+      - "CompTIA Security+ SY0-701 — Bluetooth security practices"
+    tags: [bluetooth]
+    tier: exam
+
+  # --- Support ---
+  - id: help_desk
+    title: Help desk
+    definition: "Front-line IT support that takes tickets, coaches users, and escalates security signals."
+    tags: [support, desk]
+    tier: support
+  - id: ticket
+    title: Ticket
+    definition: "Tracked support request — the work unit the desk opens, updates, and closes."
+    tags: [support, desk]
+    tier: support
+  - id: access_point
+    title: Access point (AP)
+    definition: "Device that bridges wireless clients onto the wired LAN — the radio end of corporate Wi-Fi."
+    tags: [support, wireless]
+    tier: support
+  - id: controller
+    title: Wireless controller
+    definition: "Central brain that manages many APs — SSIDs, encryption mode, rogue detection, guest policy."
+    tags: [support, wireless]
+    tier: support
+  - id: vpn
+    title: VPN
+    definition: "Encrypted tunnel for traffic — still wise on untrusted Wi-Fi even when the café page looks friendly."
+    tags: [support, network]
+    tier: support
+  - id: certificate
+    title: Client/server certificate (Wi-Fi)
+    definition: "Credential material used in enterprise Wi-Fi so clients can verify the real RADIUS/network and not a twin."
+    tags: [support, auth]
+    tier: support
+  - id: signal_strength
+    title: Signal strength
+    definition: "How loud the AP looks to a client — useful for coverage tickets and for noticing a twin that is 'too strong' in the wrong place."
+    tags: [support, wireless]
+    tier: support
+  - id: soc
+    title: SOC
+    definition: "Security operations center — team that monitors alerts, investigates wireless attacks, and coordinates response."
+    tags: [support, security]
+    tier: support
