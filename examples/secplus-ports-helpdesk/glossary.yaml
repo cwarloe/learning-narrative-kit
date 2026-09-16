@@ -1,0 +1,318 @@
+bank_id: secplus-sy0-701-ports
+title: "Security+ SY0-701 — ports and protocols (help-desk precursor)"
+source: "CompTIA Security+ SY0-701 objectives (implementation of secure protocols / firewall ports-protocols); study reference pairs commonly tested"
+terms:
+  - id: port
+    title: Port
+    definition: "A 16-bit number (0–65535) that multiplexes traffic to a specific service or process on a host."
+    tags: [basics]
+    tier: exam
+  - id: protocol
+    title: Protocol
+    definition: "A formal set of message formats and rules that networked systems use to exchange data."
+    tags: [basics]
+    tier: exam
+  - id: tcp
+    title: TCP
+    definition: "Connection-oriented transport that sequences and acknowledges data so lost packets can be recovered."
+    tags: [transport]
+    tier: exam
+  - id: udp
+    title: UDP
+    definition: "Connectionless transport that sends datagrams without guaranteed delivery; used when speed or simplicity matters more than recovery."
+    tags: [transport]
+    tier: exam
+  - id: cleartext
+    title: Cleartext
+    definition: "Data sent without encryption so anyone on the path can read or alter it, including credentials."
+    tags: [security]
+    tier: exam
+  - id: tls
+    title: TLS
+    definition: "Transport Layer Security — the encryption layer that wraps many application protocols into secure versions."
+    tags: [security]
+    tier: exam
+  - id: http
+    title: HTTP (80/TCP)
+    definition: "Cleartext web protocol. Replaced in production by HTTPS."
+    tags: [web, insecure]
+    tier: exam
+  - id: https
+    title: HTTPS (443/TCP)
+    definition: "HTTP secured with TLS. Default for modern web traffic."
+    context: "Use instead of cleartext HTTP for any page that takes credentials or personal data."
+    refs:
+      - "CompTIA Security+ SY0-701 — implement secure protocols (web)"
+    tags: [web, secure]
+    tier: exam
+  - id: ftp
+    title: FTP (20/21/TCP)
+    definition: "File transfer with cleartext commands and credentials. Port 21 is control; 20 is active-mode data. Replace with SFTP or FTPS."
+    tags: [file, insecure]
+    tier: exam
+  - id: sftp
+    title: SFTP (22/TCP)
+    definition: "File transfer tunneled inside SSH. Different protocol from FTP; uses port 22, not 20/21."
+    context: "Not the same as FTPS — file transfer inside SSH, usually port 22."
+    refs:
+      - "CompTIA Security+ SY0-701 — secure file transfer alternatives to FTP"
+    tags: [file, secure]
+    tier: exam
+  - id: ftps
+    title: FTPS (989/990/TCP)
+    definition: "FTP wrapped in TLS (implicit mode commonly 990 control / 989 data). Not the same as SFTP."
+    context: "Classic FTP wrapped in TLS; different ports and firewall story than SFTP."
+    refs:
+      - "CompTIA Security+ SY0-701 — secure file transfer alternatives to FTP"
+    tags: [file, secure]
+    tier: exam
+  - id: telnet
+    title: Telnet (23/TCP)
+    definition: "Remote shell that sends everything — including passwords — in cleartext. Replace with SSH."
+    context: "Do not allow on management paths; replace with SSH."
+    refs:
+      - "CompTIA Security+ SY0-701 — insecure protocols / secure alternatives"
+    tags: [remote, insecure]
+    tier: exam
+  - id: ssh
+    title: SSH (22/TCP)
+    definition: "Encrypted remote shell and tunnel. Also carries SFTP and SCP. The standard Telnet replacement."
+    context: "Secure replacement for cleartext Telnet on remote admin paths."
+    refs:
+      - "CompTIA Security+ SY0-701 — implement secure protocols (remote access)"
+    tags: [remote, secure]
+    tier: exam
+  - id: smtp
+    title: SMTP (25/TCP)
+    definition: "Server-to-server mail relay, historically cleartext. Clients should submit on 587 or 465 instead."
+    tags: [email, insecure]
+    tier: exam
+  - id: smtp_submission
+    title: SMTP submission (587/TCP)
+    definition: "Authenticated client mail submission, typically upgraded with STARTTLS. Modern send port."
+    tags: [email, secure]
+    tier: exam
+  - id: smtps
+    title: SMTPS (465/TCP)
+    definition: "SMTP wrapped in TLS from the first byte (implicit TLS)."
+    tags: [email, secure]
+    tier: exam
+  - id: pop3
+    title: POP3 (110/TCP)
+    definition: "Downloads mail to the client in cleartext. Secure version is POP3S on 995."
+    tags: [email, insecure]
+    tier: exam
+  - id: pop3s
+    title: POP3S (995/TCP)
+    definition: "POP3 wrapped in TLS."
+    tags: [email, secure]
+    tier: exam
+  - id: imap
+    title: IMAP (143/TCP)
+    definition: "Server-side mailbox access in cleartext. Secure version is IMAPS on 993."
+    tags: [email, insecure]
+    tier: exam
+  - id: imaps
+    title: IMAPS (993/TCP)
+    definition: "IMAP wrapped in TLS — keeps mail on the server with encryption in transit."
+    tags: [email, secure]
+    tier: exam
+  - id: dns
+    title: DNS (53/UDP/TCP)
+    definition: "Resolves names to addresses. UDP 53 for normal lookups; TCP 53 for zone transfers and large responses. Classic DNS is unencrypted."
+    tags: [name, insecure]
+    tier: exam
+  - id: dhcp
+    title: DHCP (67/68/UDP)
+    definition: "Assigns IP configuration. Server listens on 67; client on 68."
+    tags: [network]
+    tier: exam
+  - id: ntp
+    title: NTP (123/UDP)
+    definition: "Synchronizes clocks. Accurate time matters for logs, Kerberos tickets, and certificate validation."
+    tags: [network]
+    tier: exam
+  - id: ldap
+    title: LDAP (389/TCP/UDP)
+    definition: "Directory lookups and authentication in cleartext. Secure version is LDAPS on 636."
+    tags: [directory, insecure]
+    tier: exam
+  - id: ldaps
+    title: LDAPS (636/TCP)
+    definition: "LDAP wrapped in TLS."
+    context: "Directory binds with passwords should not ride cleartext LDAP on untrusted segments."
+    refs:
+      - "CompTIA Security+ SY0-701 — implement secure protocols (directory services)"
+    tags: [directory, secure]
+    tier: exam
+  - id: kerberos
+    title: Kerberos (88/TCP/UDP)
+    definition: "Ticket-based authentication used by Active Directory. Issues time-limited tickets instead of sending reusable passwords repeatedly."
+    tags: [directory]
+    tier: exam
+  - id: snmp
+    title: SNMP (161/162/UDP)
+    definition: "Device monitoring. 161 polls agents; 162 receives traps. v1/v2c send community strings in cleartext — prefer SNMPv3."
+    tags: [monitor, insecure]
+    tier: exam
+  - id: snmpv3
+    title: SNMPv3
+    definition: "SNMP with authentication and encryption. Same ports as classic SNMP, but credentials are no longer cleartext community strings."
+    tags: [monitor, secure]
+    tier: exam
+  - id: syslog
+    title: Syslog (514/UDP)
+    definition: "Cleartext log forwarding to a collector. Secure with syslog over TLS on 6514."
+    tags: [monitor, insecure]
+    tier: exam
+  - id: syslog_tls
+    title: Syslog over TLS (6514/TCP)
+    definition: "Syslog carried inside TLS so log data stays confidential and intact in transit."
+    tags: [monitor, secure]
+    tier: exam
+  - id: smb
+    title: SMB (445/TCP)
+    definition: "Windows file and printer sharing. Never expose to the Internet; a frequent worm and ransomware path."
+    tags: [file]
+    tier: exam
+  - id: rdp
+    title: RDP (3389/TCP)
+    definition: "Microsoft Remote Desktop. Encrypted in modern use, but Internet-exposed RDP is a leading ransomware entry — keep it behind a VPN."
+    context: "Do not expose raw 3389 to the internet; prefer VPN then jump host."
+    refs:
+      - "CompTIA Security+ SY0-701 — firewall ports/protocols; secure remote access"
+    tags: [remote]
+    tier: exam
+  - id: radius
+    title: RADIUS (1812/1813/UDP)
+    definition: "AAA for network access. 1812 authentication; 1813 accounting."
+    tags: [aaa]
+    tier: exam
+  - id: tacacs
+    title: TACACS+ (49/TCP)
+    definition: "Cisco AAA protocol that encrypts the full payload and separates authentication, authorization, and accounting."
+    tags: [aaa]
+    tier: exam
+  - id: tftp
+    title: TFTP (69/UDP)
+    definition: "Tiny file transfer with no authentication. Acceptable only on trusted networks for device configs or PXE — never across a perimeter."
+    tags: [file, insecure]
+    tier: exam
+  - id: firewall_rule
+    title: Firewall rule (ports/protocols)
+    definition: "An allow or deny decision keyed to source, destination, port, and protocol — the operational place Security+ port knowledge gets used."
+    tags: [ops]
+    tier: exam
+  - id: msp
+    title: MSP
+    definition: "Managed Service Provider; a company that runs IT support for other businesses."
+    tags: [support, desk]
+    tier: support
+  - id: vlan
+    title: VLAN
+    definition: "Virtual LAN; a logical network segment that isolates traffic without separate physical wiring."
+    tags: [support, network]
+    tier: support
+  - id: enable_password
+    title: Enable password
+    definition: "Privileged password on network gear that unlocks administrative (enable) mode."
+    tags: [support, network]
+    tier: support
+  - id: key_auth
+    title: Key authentication
+    definition: "Logging in with a cryptographic key pair instead of (or in addition to) a password."
+    tags: [support, security]
+    tier: support
+  - id: starttls
+    title: STARTTLS
+    definition: "A command that upgrades an existing cleartext connection to TLS mid-session (common on mail submission)."
+    context: "Upgrades an existing cleartext mail session mid-stream (common on submission port 587)."
+    tags: [support, email, security]
+    tier: support
+  - id: open_relay
+    title: Open relay
+    definition: "A mail server that accepts and forwards mail from anyone; abused by spammers."
+    tags: [support, email]
+    tier: support
+  - id: jump_host
+    title: Jump host / jump box
+    definition: "A hardened intermediate server you remote into first, then reach internal systems from there."
+    context: "Intermediate hop so workstations are not directly reachable from remote clients."
+    tags: [support, remote, network]
+    tier: support
+  - id: vpn
+    title: VPN
+    definition: "Virtual Private Network; encrypted tunnel into the private network so remote access is not exposed raw to the internet."
+    context: "Encrypted tunnel into the private network before using internal protocols like RDP."
+    tags: [support, network, security]
+    tier: support
+  - id: ransomware
+    title: Ransomware
+    definition: "Malware that encrypts systems or data and demands payment; internet-exposed remote desktop is a common entry."
+    tags: [support, security]
+    tier: support
+  - id: directory_bind
+    title: Directory bind
+    definition: "An application authenticating/connecting to a directory service (like LDAP) to look up or validate accounts."
+    tags: [support, directory]
+    tier: support
+  - id: domain
+    title: Domain
+    definition: "An administrative realm (often Active Directory) that shares authentication and policy."
+    tags: [support, directory]
+    tier: support
+  - id: dhcp_lease
+    title: DHCP lease
+    definition: "Temporary IP configuration handed out by DHCP for a limited time."
+    tags: [support, network]
+    tier: support
+  - id: resolver_cache
+    title: Resolver cache
+    definition: "Local store of recent DNS answers; flushing it forces fresh lookups."
+    tags: [support, network]
+    tier: support
+  - id: community_string
+    title: Community string
+    definition: "A shared secret in SNMPv1/v2c that acts like a password and is sent in cleartext."
+    tags: [support, monitor, security]
+    tier: support
+  - id: aaa
+    title: AAA
+    definition: "Authentication, Authorization, and Accounting — proving identity, deciding what you may do, and logging what you did."
+    tags: [support, aaa]
+    tier: support
+  - id: authz
+    title: Authorization (authz)
+    definition: "What an authenticated user or device is allowed to do (distinct from authentication)."
+    tags: [support, aaa]
+    tier: support
+  - id: concentrator
+    title: VPN concentrator
+    definition: "Device/service that terminates many VPN tunnels for remote users."
+    tags: [support, network]
+    tier: support
+  - id: perimeter
+    title: Network perimeter
+    definition: "Boundary between trusted internal networks and untrusted external networks."
+    tags: [support, network]
+    tier: support
+  - id: guest_wifi
+    title: Guest Wi-Fi
+    definition: "Segmented wireless network for visitors; should not carry sensitive cleartext directory or admin traffic."
+    tags: [support, network]
+    tier: support
+  - id: implicit_tls
+    title: Implicit TLS
+    definition: "Wrapping a protocol in TLS from the first byte (e.g. SMTPS 465, FTPS 990) rather than upgrading mid-session with STARTTLS."
+    tags: [support, security]
+    tier: support
+  - id: change_ticket
+    title: Change (change ticket)
+    definition: "Tracked request to modify production systems (firewall rules, certs, configs) with review/approval."
+    tags: [support, ops]
+    tier: support
+  - id: firewall
+    title: Firewall
+    definition: "Device or software that allows or denies traffic based on rules (addresses, ports, protocols)."
+    tags: [support, network, ops]
+    tier: support
