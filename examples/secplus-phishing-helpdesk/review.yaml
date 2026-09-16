@@ -1,0 +1,192 @@
+deck_id: secplus-phishing-helpdesk
+cards:
+  - id: social_engineering
+    prompt: Social engineering
+    answer: "Manipulating people into revealing information or taking unsafe actions — trust and pressure instead of breaking crypto."
+    tags: [social-engineering]
+    tier: exam
+  - id: phishing
+    prompt: Phishing
+    answer: "Fraudulent messages (usually email) that trick users into clicking, opening, or giving up secrets."
+    tags: [phishing]
+    tier: exam
+  - id: spear_phishing
+    prompt: Spear phishing
+    answer: "Targeted phishing aimed at a specific person or small group, customized with personal or role details."
+    tags: [phishing]
+    tier: exam
+  - id: whaling
+    prompt: Whaling
+    answer: "Phishing aimed at high-value targets such as executives or other senior decision-makers."
+    tags: [phishing]
+    tier: exam
+  - id: vishing
+    prompt: Vishing
+    answer: "Voice phishing — social engineering over phone or voice calls."
+    tags: [phishing, voice]
+    tier: exam
+  - id: smishing
+    prompt: Smishing
+    answer: "SMS phishing — fraudulent texts that push links, codes, or urgent actions."
+    tags: [phishing, sms]
+    tier: exam
+  - id: phishing_url
+    prompt: Phishing URL
+    answer: "A link designed to look legitimate while sending the victim to an attacker-controlled site."
+    tags: [phishing, indicators]
+    tier: exam
+  - id: spoofing
+    prompt: Spoofing
+    answer: "Faking a sender identity — display name, email address, caller ID, or site look — to appear trusted."
+    tags: [indicators]
+    tier: exam
+  - id: impersonation
+    prompt: Impersonation
+    answer: "Pretending to be a trusted person or role (boss, IT, vendor, bank) to get compliance."
+    tags: [social-engineering]
+    tier: exam
+  - id: pretexting
+    prompt: Pretexting
+    answer: "Inventing a believable story or role to justify asking for information or access."
+    tags: [social-engineering]
+    tier: exam
+  - id: quid_pro_quo
+    prompt: Quid pro quo
+    answer: "Offering a benefit (help, gift, refund, free support) in exchange for information or a risky action."
+    tags: [social-engineering]
+    tier: exam
+  - id: tailgating
+    prompt: Tailgating
+    answer: "Following an authorized person through a physical access control (door, turnstile) without authenticating."
+    tags: [physical]
+    tier: exam
+  - id: shoulder_surfing
+    prompt: Shoulder surfing
+    answer: "Watching someone enter credentials, codes, or sensitive screens in person."
+    tags: [physical]
+    tier: exam
+  - id: dumpster_diving
+    prompt: Dumpster diving
+    answer: "Searching discarded paper or media for secrets — passwords, org charts, invoices, badges."
+    tags: [physical]
+    tier: exam
+  - id: watering_hole
+    prompt: Watering hole
+    answer: "Compromising a site a target group already trusts, then waiting for victims to visit."
+    tags: [phishing, web]
+    tier: exam
+  - id: influence_campaigns
+    prompt: Influence campaigns
+    answer: "Coordinated efforts to shape opinions or behavior at scale — often mixing social pressure with deceptive content."
+    tags: [social-engineering]
+    tier: exam
+  - id: urgency
+    prompt: Urgency
+    answer: "Pressure to act immediately so the victim skips verification."
+    tags: [principles]
+    tier: exam
+  - id: familiarity
+    prompt: Familiarity
+    answer: "Using known names, slang, or shared context so a request feels like it comes from 'someone like us.'"
+    tags: [principles]
+    tier: exam
+  - id: authority
+    prompt: Authority
+    answer: "Claiming power (executive, IT admin, law enforcement, vendor) so people comply without checking."
+    tags: [principles]
+    tier: exam
+  - id: scarcity
+    prompt: Scarcity
+    answer: "Claiming limited time, seats, or stock so the victim rushes a decision."
+    tags: [principles]
+    tier: exam
+  - id: consensus
+    prompt: Consensus (social proof)
+    answer: "Implying everyone else already complied — 'your teammates already clicked / updated / paid.'"
+    tags: [principles]
+    tier: exam
+  - id: bec
+    prompt: Business email compromise (BEC)
+    answer: "Fraud that hijacks or fakes business email threads — often to redirect payments or steal wire instructions."
+    tags: [phishing, fraud]
+    tier: exam
+  - id: credential_harvesting
+    prompt: Credential harvesting
+    answer: "Collecting usernames and passwords (or tokens) via fake login pages or forms."
+    tags: [phishing]
+    tier: exam
+  - id: malware_attachment
+    prompt: Malware attachment
+    answer: "A file (or archive) delivered to install malware when opened — often paired with a urgent story."
+    tags: [phishing, malware]
+    tier: exam
+  - id: typo_squatting
+    prompt: Typosquatting
+    answer: "Registering lookalike domains with typos or near-miss spellings of a trusted brand."
+    tags: [indicators]
+    tier: exam
+  - id: brand_impersonation
+    prompt: Brand impersonation
+    answer: "Copying logos, themes, and wording of a known company so a fake message or site feels official."
+    tags: [indicators]
+    tier: exam
+  - id: hoax
+    prompt: Hoax
+    answer: "A false warning or rumor spread to cause panic, wasted effort, or unsafe 'fixes.'"
+    tags: [social-engineering]
+    tier: exam
+  - id: invoice_scam
+    prompt: Invoice scam
+    answer: "Fraudulent billing or payment-change request that looks like a normal vendor or finance workflow."
+    tags: [fraud]
+    tier: exam
+  - id: mfa_fatigue_attack
+    prompt: MFA fatigue attack
+    answer: "Spamming MFA push prompts until the user approves one without thinking."
+    tags: [mfa, phishing]
+    tier: exam
+  - id: reporting_path
+    prompt: Reporting path
+    answer: "The official way to report suspected phishing or social engineering (button, mailbox, SOC, ticket) so response can start."
+    tags: [response]
+    tier: exam
+  - id: help_desk
+    prompt: Help desk
+    answer: "Front-line IT support that takes tickets, coaches users, and escalates security signals."
+    tags: [support, desk]
+    tier: support
+  - id: ticket
+    prompt: Ticket
+    answer: "Tracked support request — the work unit the desk opens, updates, and closes."
+    tags: [support, desk]
+    tier: support
+  - id: soc
+    prompt: SOC
+    answer: "Security operations center — team that monitors alerts, investigates phishing, and coordinates response."
+    tags: [support, security]
+    tier: support
+  - id: quarantine
+    prompt: Quarantine
+    answer: "Holding suspicious mail or files away from the inbox so users cannot open them until reviewed."
+    tags: [support, email]
+    tier: support
+  - id: mail_gateway
+    prompt: Mail gateway
+    answer: "Email security filter that scans, tags, quarantines, or blocks messages before they reach users."
+    tags: [support, email]
+    tier: support
+  - id: user_reported
+    prompt: User-reported
+    answer: "Phish or suspicious message flagged by an employee (report button or forward) rather than only by automated filters."
+    tags: [support, response]
+    tier: support
+  - id: phish_report_button
+    prompt: Phish report button
+    answer: "Client add-in that sends a suspected message to security for analysis without the user forwarding raw risk elsewhere."
+    tags: [support, response]
+    tier: support
+  - id: sandbox
+    prompt: Sandbox
+    answer: "Isolated analysis environment where attachments or links can be opened safely for detonation checks."
+    tags: [support, security]
+    tier: support
