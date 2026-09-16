@@ -1,0 +1,264 @@
+bank_id: secplus-sy0-701-phishing
+title: "Security+ SY0-701 — social engineering and phishing (help-desk precursor)"
+source: "CompTIA Security+ SY0-701 objectives (social engineering techniques; phishing variants; indicators of phishing; influence principles; reporting)"
+terms:
+  # --- Core SE / phishing ---
+  - id: social_engineering
+    title: Social engineering
+    definition: "Manipulating people into revealing information or taking unsafe actions — trust and pressure instead of breaking crypto."
+    refs:
+      - "CompTIA Security+ SY0-701 — social engineering techniques"
+    tags: [social-engineering]
+    tier: exam
+  - id: phishing
+    title: Phishing
+    definition: "Fraudulent messages (usually email) that trick users into clicking, opening, or giving up secrets."
+    refs:
+      - "CompTIA Security+ SY0-701 — phishing"
+    tags: [phishing]
+    tier: exam
+  - id: spear_phishing
+    title: Spear phishing
+    definition: "Targeted phishing aimed at a specific person or small group, customized with personal or role details."
+    refs:
+      - "CompTIA Security+ SY0-701 — spear phishing"
+    tags: [phishing]
+    tier: exam
+  - id: whaling
+    title: Whaling
+    definition: "Phishing aimed at high-value targets such as executives or other senior decision-makers."
+    refs:
+      - "CompTIA Security+ SY0-701 — whaling"
+    tags: [phishing]
+    tier: exam
+  - id: vishing
+    title: Vishing
+    definition: "Voice phishing — social engineering over phone or voice calls."
+    refs:
+      - "CompTIA Security+ SY0-701 — vishing"
+    tags: [phishing, voice]
+    tier: exam
+  - id: smishing
+    title: Smishing
+    definition: "SMS phishing — fraudulent texts that push links, codes, or urgent actions."
+    refs:
+      - "CompTIA Security+ SY0-701 — smishing"
+    tags: [phishing, sms]
+    tier: exam
+  - id: phishing_url
+    title: Phishing URL
+    definition: "A link designed to look legitimate while sending the victim to an attacker-controlled site."
+    context: "Hover, expand, or check the real host before you click."
+    refs:
+      - "CompTIA Security+ SY0-701 — indicators of phishing"
+    tags: [phishing, indicators]
+    tier: exam
+  - id: spoofing
+    title: Spoofing
+    definition: "Faking a sender identity — display name, email address, caller ID, or site look — to appear trusted."
+    refs:
+      - "CompTIA Security+ SY0-701 — spoofing / impersonation"
+    tags: [indicators]
+    tier: exam
+  - id: impersonation
+    title: Impersonation
+    definition: "Pretending to be a trusted person or role (boss, IT, vendor, bank) to get compliance."
+    refs:
+      - "CompTIA Security+ SY0-701 — impersonation"
+    tags: [social-engineering]
+    tier: exam
+  - id: pretexting
+    title: Pretexting
+    definition: "Inventing a believable story or role to justify asking for information or access."
+    refs:
+      - "CompTIA Security+ SY0-701 — pretexting"
+    tags: [social-engineering]
+    tier: exam
+  - id: quid_pro_quo
+    title: Quid pro quo
+    definition: "Offering a benefit (help, gift, refund, free support) in exchange for information or a risky action."
+    refs:
+      - "CompTIA Security+ SY0-701 — quid pro quo"
+    tags: [social-engineering]
+    tier: exam
+  - id: tailgating
+    title: Tailgating
+    definition: "Following an authorized person through a physical access control (door, turnstile) without authenticating."
+    refs:
+      - "CompTIA Security+ SY0-701 — tailgating / piggybacking"
+    tags: [physical]
+    tier: exam
+  - id: shoulder_surfing
+    title: Shoulder surfing
+    definition: "Watching someone enter credentials, codes, or sensitive screens in person."
+    refs:
+      - "CompTIA Security+ SY0-701 — shoulder surfing"
+    tags: [physical]
+    tier: exam
+  - id: dumpster_diving
+    title: Dumpster diving
+    definition: "Searching discarded paper or media for secrets — passwords, org charts, invoices, badges."
+    refs:
+      - "CompTIA Security+ SY0-701 — dumpster diving"
+    tags: [physical]
+    tier: exam
+  - id: watering_hole
+    title: Watering hole
+    definition: "Compromising a site a target group already trusts, then waiting for victims to visit."
+    refs:
+      - "CompTIA Security+ SY0-701 — watering hole"
+    tags: [phishing, web]
+    tier: exam
+  - id: influence_campaigns
+    title: Influence campaigns
+    definition: "Coordinated efforts to shape opinions or behavior at scale — often mixing social pressure with deceptive content."
+    context: "On the exam: social engineering at organizational or public scale, not just one inbox."
+    refs:
+      - "CompTIA Security+ SY0-701 — influence campaigns"
+    tags: [social-engineering]
+    tier: exam
+
+  # --- Influence principles ---
+  - id: urgency
+    title: Urgency
+    definition: "Pressure to act immediately so the victim skips verification."
+    refs:
+      - "CompTIA Security+ SY0-701 — social engineering principles (urgency)"
+    tags: [principles]
+    tier: exam
+  - id: familiarity
+    title: Familiarity
+    definition: "Using known names, slang, or shared context so a request feels like it comes from 'someone like us.'"
+    refs:
+      - "CompTIA Security+ SY0-701 — social engineering principles (familiarity)"
+    tags: [principles]
+    tier: exam
+  - id: authority
+    title: Authority
+    definition: "Claiming power (executive, IT admin, law enforcement, vendor) so people comply without checking."
+    refs:
+      - "CompTIA Security+ SY0-701 — authority"
+    tags: [principles]
+    tier: exam
+  - id: scarcity
+    title: Scarcity
+    definition: "Claiming limited time, seats, or stock so the victim rushes a decision."
+    refs:
+      - "CompTIA Security+ SY0-701 — social engineering principles (scarcity)"
+    tags: [principles]
+    tier: exam
+  - id: consensus
+    title: Consensus (social proof)
+    definition: "Implying everyone else already complied — 'your teammates already clicked / updated / paid.'"
+    refs:
+      - "CompTIA Security+ SY0-701 — social engineering principles (consensus / social proof)"
+    tags: [principles]
+    tier: exam
+
+  # --- Outcomes / variants ---
+  - id: bec
+    title: Business email compromise (BEC)
+    definition: "Fraud that hijacks or fakes business email threads — often to redirect payments or steal wire instructions."
+    refs:
+      - "CompTIA Security+ SY0-701 — BEC / business email compromise"
+    tags: [phishing, fraud]
+    tier: exam
+  - id: credential_harvesting
+    title: Credential harvesting
+    definition: "Collecting usernames and passwords (or tokens) via fake login pages or forms."
+    refs:
+      - "CompTIA Security+ SY0-701 — phishing / credential harvesting"
+    tags: [phishing]
+    tier: exam
+  - id: malware_attachment
+    title: Malware attachment
+    definition: "A file (or archive) delivered to install malware when opened — often paired with a urgent story."
+    refs:
+      - "CompTIA Security+ SY0-701 — malicious attachments / phishing"
+    tags: [phishing, malware]
+    tier: exam
+  - id: typo_squatting
+    title: Typosquatting
+    definition: "Registering lookalike domains with typos or near-miss spellings of a trusted brand."
+    refs:
+      - "CompTIA Security+ SY0-701 — typosquatting / URL indicators"
+    tags: [indicators]
+    tier: exam
+  - id: brand_impersonation
+    title: Brand impersonation
+    definition: "Copying logos, themes, and wording of a known company so a fake message or site feels official."
+    refs:
+      - "CompTIA Security+ SY0-701 — brand impersonation / phishing indicators"
+    tags: [indicators]
+    tier: exam
+  - id: hoax
+    title: Hoax
+    definition: "A false warning or rumor spread to cause panic, wasted effort, or unsafe 'fixes.'"
+    refs:
+      - "CompTIA Security+ SY0-701 — hoax"
+    tags: [social-engineering]
+    tier: exam
+  - id: invoice_scam
+    title: Invoice scam
+    definition: "Fraudulent billing or payment-change request that looks like a normal vendor or finance workflow."
+    refs:
+      - "CompTIA Security+ SY0-701 — invoice scams / BEC-related fraud"
+    tags: [fraud]
+    tier: exam
+  - id: mfa_fatigue_attack
+    title: MFA fatigue attack
+    definition: "Spamming MFA push prompts until the user approves one without thinking."
+    context: "Same muscle as ch2 MFA habits — here it rides a phishing or password-spray path."
+    refs:
+      - "CompTIA Security+ SY0-701 — MFA / social engineering related attacks"
+    tags: [mfa, phishing]
+    tier: exam
+  - id: reporting_path
+    title: Reporting path
+    definition: "The official way to report suspected phishing or social engineering (button, mailbox, SOC, ticket) so response can start."
+    refs:
+      - "CompTIA Security+ SY0-701 — reporting / incident awareness"
+    tags: [response]
+    tier: exam
+
+  # --- Support tier (desk jargon) ---
+  - id: help_desk
+    title: Help desk
+    definition: "Front-line IT support that takes tickets, coaches users, and escalates security signals."
+    tags: [support, desk]
+    tier: support
+  - id: ticket
+    title: Ticket
+    definition: "Tracked support request — the work unit the desk opens, updates, and closes."
+    tags: [support, desk]
+    tier: support
+  - id: soc
+    title: SOC
+    definition: "Security operations center — team that monitors alerts, investigates phishing, and coordinates response."
+    tags: [support, security]
+    tier: support
+  - id: quarantine
+    title: Quarantine
+    definition: "Holding suspicious mail or files away from the inbox so users cannot open them until reviewed."
+    tags: [support, email]
+    tier: support
+  - id: mail_gateway
+    title: Mail gateway
+    definition: "Email security filter that scans, tags, quarantines, or blocks messages before they reach users."
+    tags: [support, email]
+    tier: support
+  - id: user_reported
+    title: User-reported
+    definition: "Phish or suspicious message flagged by an employee (report button or forward) rather than only by automated filters."
+    tags: [support, response]
+    tier: support
+  - id: phish_report_button
+    title: Phish report button
+    definition: "Client add-in that sends a suspected message to security for analysis without the user forwarding raw risk elsewhere."
+    tags: [support, response]
+    tier: support
+  - id: sandbox
+    title: Sandbox
+    definition: "Isolated analysis environment where attachments or links can be opened safely for detonation checks."
+    tags: [support, security]
+    tier: support
