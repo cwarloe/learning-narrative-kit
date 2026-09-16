@@ -134,9 +134,15 @@ Marks are **prose tints**, not hyperlinks. Use a soft background color (exam vs 
 | Layer | Files | Role |
 |-------|-------|------|
 | **Source** | `unit.yaml`, `glossary.yaml`, `narrative.md`, optional `review.yaml` | What humans (and agents) write and review |
-| **Generated** | HTML preview (e.g. from `build_preview.py`) | Lookup UI — rebuild anytime; safe to delete and regenerate |
+| **Generated (Pages)** | `docs/<unit_id>/index.html` via `tools/render_unit.py` | Stable GitHub Pages URLs — committed under `docs/` |
+| **Generated (local scratch)** | `examples/**/*.html` | Optional local preview — gitignored; rebuild anytime |
 
-Offer learners the story as markdown if they want; run a render step when you need hovers, Exam-only / All, and sidebar refs. Checked-in `*.html` under examples, if present, is a **build artifact**, not an authoring surface.
+```bash
+python tools/render_unit.py examples/<unit>
+# → docs/<unit_id>/index.html  (unit_id from unit.yaml)
+```
+
+GitHub Pages serves from `/docs` on `main`. Re-running the renderer replaces the page at the same URL. Do not author the chapter in HTML.
 
 ## Authoring QA checklist (done-definition)
 
