@@ -244,26 +244,25 @@ def build():
       border: 1px solid rgba(255, 255, 255, 0.08);
     }}
 
-    /* Cover-test friendly marks: light underline, readable color */
+    /* Prose marks, not hyperlinks: soft tint only so readers keep sentence context */
     .term {{
-      cursor: help;
-      font-weight: 500;
-      border-radius: 2px;
-      padding: 0 1px;
+      cursor: inherit;
+      font-weight: inherit;
+      border-radius: 3px;
+      padding: 0 2px;
+      border-bottom: none;
+      text-decoration: none;
       transition: background 0.15s, box-shadow 0.15s;
     }}
 
     .term.exam {{
       color: inherit;
       background: var(--exam-bg);
-      border-bottom: 2px solid var(--exam);
-      text-decoration: none;
     }}
 
     .term.support {{
       color: inherit;
       background: var(--support-bg);
-      border-bottom: 1.5px dotted var(--support);
     }}
 
     .term.exam:hover {{
@@ -540,14 +539,14 @@ def build():
       content: "";
       display: inline-block;
       width: 12px;
-      height: 0;
-      border-bottom: 2px solid;
+      height: 12px;
+      border-radius: 3px;
       margin-right: 4px;
       vertical-align: middle;
     }}
 
-    .legend .lg-exam::before {{ border-color: var(--exam); border-bottom-style: solid; }}
-    .legend .lg-support::before {{ border-color: var(--support); border-bottom-style: dotted; }}
+    .legend .lg-exam::before {{ background: var(--exam-bg); box-shadow: inset 0 0 0 1px var(--exam); }}
+    .legend .lg-support::before {{ background: var(--support-bg); box-shadow: inset 0 0 0 1px var(--support); }}
 
     @media (max-width: 960px) {{
       .layout {{
