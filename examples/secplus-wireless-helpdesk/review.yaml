@@ -1,0 +1,197 @@
+deck_id: secplus-wireless-helpdesk
+cards:
+  - id: ssid
+    prompt: SSID
+    answer: "Service set identifier — the network name a wireless network advertises (or tries to hide)."
+    tags: [wireless]
+    tier: exam
+  - id: wep
+    prompt: WEP
+    answer: "Wired Equivalent Privacy — obsolete Wi-Fi encryption that is easily broken; treat as insecure legacy."
+    tags: [wireless, encryption]
+    tier: exam
+  - id: wpa2
+    prompt: WPA2
+    answer: "Wi-Fi Protected Access 2 — widely deployed Wi-Fi security using strong encryption (AES-CCMP) when configured correctly."
+    tags: [wireless, encryption]
+    tier: exam
+  - id: wpa3
+    prompt: WPA3
+    answer: "Newer Wi-Fi security standard with stronger protections (including SAE) against offline password attacks and better open-network options."
+    tags: [wireless, encryption]
+    tier: exam
+  - id: sae
+    prompt: SAE
+    answer: "Simultaneous Authentication of Equals — WPA3 handshake that resists offline dictionary attacks better than WPA2-PSK."
+    tags: [wireless, encryption]
+    tier: exam
+  - id: psk
+    prompt: PSK (pre-shared key)
+    answer: "Shared Wi-Fi password mode — everyone uses the same key; fine for small spaces, weak for accountability and rotation."
+    tags: [wireless, auth]
+    tier: exam
+  - id: enterprise_wpa
+    prompt: WPA-Enterprise (802.1X)
+    answer: "Wi-Fi that authenticates each user/device via 802.1X (usually RADIUS) instead of one shared password."
+    tags: [wireless, auth]
+    tier: exam
+  - id: ieee_8021x
+    prompt: 802.1X
+    answer: "Port-based network access control — authenticate before full network access; used for enterprise Wi-Fi and wired NAC."
+    tags: [wireless, auth]
+    tier: exam
+  - id: radius
+    prompt: RADIUS
+    answer: "Authentication server protocol commonly behind enterprise Wi-Fi — checks user/device credentials for 802.1X."
+    tags: [wireless, auth]
+    tier: exam
+  - id: open_network
+    prompt: Open network
+    answer: "Wi-Fi with no encryption on the air — anyone nearby can join and often eavesdrop unless a higher layer protects traffic."
+    tags: [wireless, risk]
+    tier: exam
+  - id: captive_portal
+    prompt: Captive portal
+    answer: "Web login/splash page before internet access — common on guest Wi-Fi; not a substitute for strong link encryption by itself."
+    tags: [wireless, guest]
+    tier: exam
+  - id: wps
+    prompt: WPS
+    answer: "Wi-Fi Protected Setup — convenience pairing feature with a history of brute-force weaknesses; disable when possible."
+    tags: [wireless, risk]
+    tier: exam
+  - id: evil_twin
+    prompt: Evil twin
+    answer: "Attacker access point that mimics a trusted SSID to trick clients into connecting and exposing traffic or credentials."
+    tags: [wireless, attack]
+    tier: exam
+  - id: rogue_ap
+    prompt: Rogue access point
+    answer: "Unauthorized AP on the network or in range — intentional attack gear or a well-meaning employee 'helping' coverage."
+    tags: [wireless, attack]
+    tier: exam
+  - id: disassociation
+    prompt: Disassociation / deauthentication
+    answer: "Wireless frames that kick clients off an AP — used in DoS or to force reconnects toward an evil twin."
+    tags: [wireless, attack]
+    tier: exam
+  - id: jamming
+    prompt: Jamming
+    answer: "Flooding RF so legitimate Wi-Fi cannot communicate — a denial-of-service against the air itself."
+    tags: [wireless, attack]
+    tier: exam
+  - id: war_driving
+    prompt: War driving
+    answer: "Roaming an area to discover and map Wi-Fi networks — often looking for weak or open targets."
+    tags: [wireless, recon]
+    tier: exam
+  - id: eavesdropping
+    prompt: Wireless eavesdropping
+    answer: "Capturing Wi-Fi frames from the air — catastrophic on open/WEP, still a concern if clients join the wrong network."
+    tags: [wireless, attack]
+    tier: exam
+  - id: replay_attack
+    prompt: Replay attack
+    answer: "Capturing valid wireless or auth traffic and re-sending it later to gain access or disrupt sessions."
+    tags: [wireless, attack]
+    tier: exam
+  - id: iv_attack
+    prompt: IV attack (WEP)
+    answer: "Exploiting WEP's weak initialization vectors to recover the key — one reason WEP is retired."
+    tags: [wireless, attack]
+    tier: exam
+  - id: site_survey
+    prompt: Site survey
+    answer: "Measuring coverage, interference, and dead zones so APs are placed and tuned for both performance and security boundaries."
+    tags: [wireless, design]
+    tier: exam
+  - id: guest_wifi
+    prompt: Guest Wi-Fi
+    answer: "Separate wireless access for visitors — should not freely reach internal servers or employee laptops."
+    tags: [wireless, guest]
+    tier: exam
+  - id: segmentation
+    prompt: Network segmentation
+    answer: "Splitting networks so a compromise or guest device cannot freely reach sensitive systems."
+    tags: [wireless, architecture]
+    tier: exam
+  - id: hidden_ssid
+    prompt: Hidden SSID
+    answer: "Not broadcasting the network name — weak obscurity; determined clients and attackers can still discover it."
+    tags: [wireless]
+    tier: exam
+  - id: mac_filtering
+    prompt: MAC filtering
+    answer: "Allow/deny Wi-Fi by hardware address — easily spoofed; not a real access-control substitute."
+    tags: [wireless]
+    tier: exam
+  - id: ap_placement
+    prompt: AP placement
+    answer: "Where access points sit and how loud they transmit — affects coverage, leakage outside the building, and attack surface."
+    tags: [wireless, design]
+    tier: exam
+  - id: wifi_analyzer
+    prompt: Wi-Fi analyzer
+    answer: "Tool that shows SSIDs, channels, signal strength, and sometimes security modes — useful for survey and spotting twins."
+    tags: [wireless, tools]
+    tier: exam
+  - id: bluetooth
+    prompt: Bluetooth
+    answer: "Short-range wireless for peripherals and phones — convenient, and a side channel if pairing is careless."
+    tags: [bluetooth]
+    tier: exam
+  - id: bluejacking
+    prompt: Bluejacking
+    answer: "Sending unsolicited messages to nearby Bluetooth devices — annoying spam more than full takeover."
+    tags: [bluetooth]
+    tier: exam
+  - id: bluesnarfing
+    prompt: Bluesnarfing
+    answer: "Unauthorized access to data on a Bluetooth device — contacts, messages, files — when pairing/security is weak."
+    tags: [bluetooth]
+    tier: exam
+  - id: bluetooth_pairing
+    prompt: Bluetooth pairing hygiene
+    answer: "Only pair expected devices, prefer confirm codes, turn discovery off when idle — desk-level Bluetooth risk control."
+    tags: [bluetooth]
+    tier: exam
+  - id: help_desk
+    prompt: Help desk
+    answer: "Front-line IT support that takes tickets, coaches users, and escalates security signals."
+    tags: [support, desk]
+    tier: support
+  - id: ticket
+    prompt: Ticket
+    answer: "Tracked support request — the work unit the desk opens, updates, and closes."
+    tags: [support, desk]
+    tier: support
+  - id: access_point
+    prompt: Access point (AP)
+    answer: "Device that bridges wireless clients onto the wired LAN — the radio end of corporate Wi-Fi."
+    tags: [support, wireless]
+    tier: support
+  - id: controller
+    prompt: Wireless controller
+    answer: "Central brain that manages many APs — SSIDs, encryption mode, rogue detection, guest policy."
+    tags: [support, wireless]
+    tier: support
+  - id: vpn
+    prompt: VPN
+    answer: "Encrypted tunnel for traffic — still wise on untrusted Wi-Fi even when the café page looks friendly."
+    tags: [support, network]
+    tier: support
+  - id: certificate
+    prompt: Client/server certificate (Wi-Fi)
+    answer: "Credential material used in enterprise Wi-Fi so clients can verify the real RADIUS/network and not a twin."
+    tags: [support, auth]
+    tier: support
+  - id: signal_strength
+    prompt: Signal strength
+    answer: "How loud the AP looks to a client — useful for coverage tickets and for noticing a twin that is 'too strong' in the wrong place."
+    tags: [support, wireless]
+    tier: support
+  - id: soc
+    prompt: SOC
+    answer: "Security operations center — team that monitors alerts, investigates wireless attacks, and coordinates response."
+    tags: [support, security]
+    tier: support
