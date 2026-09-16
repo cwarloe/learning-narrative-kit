@@ -181,6 +181,49 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "index.html"
     out_path.write_text(html_out, encoding="utf-8")
+    body = body_html.strip() + "\n"
+    # Split large narratives so Pages artifacts stay MCP-push-friendly
+    parts = []
+    max_size = 15000
+    if len(body) <= max_size:
+        parts = [body]
+    else:
+        import re as _re
+        chunks = _re.split(r"(?<=</p>)|(?<=</h2>)|(?<=</h1>)", body)
+        buf = ""
+        for c in chunks:
+            if not c:
+                continue
+            if buf and len(buf) + len(c) > max_size:
+                parts.append(buf)
+                buf = c
+            else:
+                buf += c
+        if buf:
+            parts.append(buf)
+        final = []
+        for p in parts:
+            while len(p) > max_size:
+                final.append(p[:max_size])
+                p = p[max_size:]
+            if p:
+                final.append(p)
+        parts = final
+    # Remove prior narrative parts
+    for oldp in out_dir.glob("narrative*.html"):
+        oldp.unlink()
+    part_names = []
+    for i, part in enumerate(parts):
+        name = f"narrative.{i}.html" if len(parts) > 1 else "narrative.0.html"
+        (out_dir / name).write_text(part, encoding="utf-8")
+        part_names.append(name)
+        print("Wrote", out_dir / name, len(part))
+    import json as _json
+    manifest = {"parts": part_names}
+    (out_dir / "narrative.manifest.json").write_text(
+        _json.dumps(manifest) + "\n", encoding="utf-8"
+    )
+    print("Wrote", out_dir / "narrative.manifest.json")
     gloss_js = "window.__GLOSSARY__ = " + gloss_json + ";\n"
     (out_dir / "glossary.js").write_text(gloss_js, encoding="utf-8")
     print("Wrote", out_dir / "glossary.js")
