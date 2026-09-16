@@ -121,3 +121,7 @@ The hover is interrupt literacy: one glance, back to the story.
 ```
 
 Renderers: tooltip = `definition` + optional `context`. Sidebar glossary row may show `refs`, `tags`, `tier`, and unit `sources`.
+
+## Mark rendering (HTML)
+
+Marks are **prose tints**, not hyperlinks. Use a soft background color (exam vs support) with no underline and no link cursor. Readers should keep full sentence context if they never hover; hover/sidebar are optional lookup, not a required click path.
