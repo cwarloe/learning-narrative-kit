@@ -9,6 +9,9 @@ def render_html(page_title: str, subtitle: str, body_html: str, gloss_json: str)
         "Story first; hover highlighted terms for short definitions. "
         "Exam refs and tags live in the sidebar."
     )
+    # body_html is written separately to narrative.html; index is a thin shell.
+    _ = body_html  # kept in signature for call-site compatibility
+    _ = gloss_json
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +27,7 @@ def render_html(page_title: str, subtitle: str, body_html: str, gloss_json: str)
     <h1>{html.escape(page_title)}</h1>
     <div class="byline">{html.escape(subtitle)}</div>
     <div class="byline-note">{html.escape(byline_note)}</div>
-    <article id="narrative">
-{body_html}
-    </article>
+    <article id="narrative"><p class="loading">Loading narrative…</p></article>
   </main>
 
   <aside>
@@ -55,8 +56,25 @@ def render_html(page_title: str, subtitle: str, body_html: str, gloss_json: str)
 
 <script src="glossary.js"></script>
 <script src="../unit.js"></script>
+<script>
+fetch('narrative.manifest.json')
+  .then(function (r) {{ return r.json(); }})
+  .then(function (manifest) {{
+    return Promise.all(manifest.parts.map(function (p) {{
+      return fetch(p).then(function (r) {{ return r.text(); }});
+    }}));
+  }})
+  .then(function (parts) {{
+    document.getElementById('narrative').innerHTML = parts.join('');
+    window.bootUnitPage();
+  }})
+  .catch(function (err) {{
+    document.getElementById('narrative').innerHTML =
+      '<p>Failed to load narrative</p>';
+    console.error(err);
+  }});
+</script>
 
 </body>
 </html>
 """
-
