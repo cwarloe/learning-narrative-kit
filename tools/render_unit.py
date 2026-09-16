@@ -173,7 +173,7 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
     gloss_list = [
         terms[tid] for tid in sorted(terms.keys(), key=lambda k: terms[k]["title"].lower())
     ]
-    gloss_json = json.dumps({t["id"]: t for t in gloss_list}, ensure_ascii=False, indent=2)
+    gloss_json = json.dumps({t["id"]: t for t in gloss_list}, ensure_ascii=False, separators=(',', ':'))
 
     html_out = render_html(page_title, subtitle, body_html, gloss_json)
 
@@ -181,6 +181,9 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "index.html"
     out_path.write_text(html_out, encoding="utf-8")
+    gloss_js = "window.__GLOSSARY__ = " + gloss_json + ";\n"
+    (out_dir / "glossary.js").write_text(gloss_js, encoding="utf-8")
+    print("Wrote", out_dir / "glossary.js")
 
     if also_local is not None:
         also_local.write_text(html_out, encoding="utf-8")
