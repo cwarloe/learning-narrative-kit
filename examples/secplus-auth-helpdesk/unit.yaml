@@ -1,18 +1,18 @@
-unit_id: secplus-ports-helpdesk
-title: "Portland Desk — The Port That Is Open"
-audience: "Someone studying Security+ ports/protocols, or a NADF precursor for Ethan's help-desk years"
-purpose: "Weave the SY0-701 secure-vs-insecure port/protocol pairs into one help-desk shift so memorized numbers become decisions."
-estimated_minutes: 20
+unit_id: secplus-auth-helpdesk
+title: "Portland Desk — Prove Who You Are"
+audience: "Someone studying Security+ identity/authentication/MFA/password topics, or a NADF precursor for Ethan's help-desk years"
+purpose: "Weave SY0-701 identity, authentication factors, MFA, password policy, SSO/federation, and account lifecycle into one help-desk shift so definitions become desk decisions."
+estimated_minutes: 22
 sources:
-  - CompTIA Security+ SY0-701 (implementation of secure protocols; firewall ports/protocols)
-  - Common SY0-701 secure/insecure study pairs
+  - CompTIA Security+ SY0-701 (identity and account management; authentication methods; MFA; password security; SSO/federation)
+  - Common SY0-701 identity/MFA/password study clusters
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml
 mark_convention: "[[term_id|surface text]]"
 glossary_tiers:
   exam: "Security+ study targets — the primary study deck"
-  support: "Desk/network jargon marked so a non-IT reader can hover for readability"
+  support: "Desk/identity jargon marked so a non-IT reader can hover for readability"
 review_filters:
   - "Exam-only: cards with tier: exam"
   - "All: exam + support cards (renderer may filter by tier)"
@@ -24,15 +24,16 @@ tooltip_contract:
 constraints:
   - Every glossary term appears at least once in a ticket or decision
   - Story must pass the cover test (readable with marks hidden)
-  - Prefer secure/insecure replacement decisions over trivia dumps
-  - Definitions stay exam-faithful; do not invent rival port numbers
+  - Prefer factor/policy/lifecycle decisions over trivia dumps
+  - Definitions stay exam-faithful; password+PIN is single-factor, not MFA
   - Precursor tone: help desk, not SOC analyst narrative
   - Present tense only; no foreshadowing of places or events the reader has not met
   - Narrator may feel lost; reader must never be confused by unexplained references
-  - Two-tier glossary — tier exam for SY0-701 targets; tier support for desk/network jargon
+  - Two-tier glossary — tier exam for SY0-701 targets; tier support for desk/identity jargon
   - Do not mark Portlandia/flavor background (pannier, MAX, bike helmet, rain pants, coffee, cubes-as-furniture vibe); leave flavor unmarked on purpose
+  - No Priya or Harrowmere (Portland Desk rule)
 html_preview:
   status: generated
-  build: "python tools/render_unit.py examples/secplus-ports-helpdesk"
-  pages: "docs/secplus-ports-helpdesk/index.html"
+  build: "python tools/render_unit.py examples/secplus-auth-helpdesk"
+  pages: "docs/secplus-auth-helpdesk/index.html"
   note: "Do not hand-edit HTML; narrative.md + glossary.yaml are source"
