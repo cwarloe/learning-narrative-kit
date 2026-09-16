@@ -3,5 +3,6 @@ __pycache__/
 *.pyc
 .DS_Store
 *.egg-info/
-# Generated previews — rebuild from markdown/YAML; do not author in HTML
+# Generated local scratch under examples — rebuild from markdown/YAML
 examples/**/*.html
+# docs/** is committed (GitHub Pages artifacts); do not ignore
