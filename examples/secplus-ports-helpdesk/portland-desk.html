@@ -93,26 +93,25 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Cover-test friendly marks: light underline, readable color */
+    /* Prose marks, not hyperlinks: soft tint only so readers keep sentence context */
     .term {
-      cursor: help;
-      font-weight: 500;
-      border-radius: 2px;
-      padding: 0 1px;
+      cursor: inherit;
+      font-weight: inherit;
+      border-radius: 3px;
+      padding: 0 2px;
+      border-bottom: none;
+      text-decoration: none;
       transition: background 0.15s, box-shadow 0.15s;
     }
 
     .term.exam {
       color: inherit;
       background: var(--exam-bg);
-      border-bottom: 2px solid var(--exam);
-      text-decoration: none;
     }
 
     .term.support {
       color: inherit;
       background: var(--support-bg);
-      border-bottom: 1.5px dotted var(--support);
     }
 
     .term.exam:hover {
@@ -389,14 +388,14 @@
       content: "";
       display: inline-block;
       width: 12px;
-      height: 0;
-      border-bottom: 2px solid;
+      height: 12px;
+      border-radius: 3px;
       margin-right: 4px;
       vertical-align: middle;
     }
 
-    .legend .lg-exam::before { border-color: var(--exam); border-bottom-style: solid; }
-    .legend .lg-support::before { border-color: var(--support); border-bottom-style: dotted; }
+    .legend .lg-exam::before { background: var(--exam-bg); box-shadow: inset 0 0 0 1px var(--exam); }
+    .legend .lg-support::before { background: var(--support-bg); box-shadow: inset 0 0 0 1px var(--support); }
 
     @media (max-width: 960px) {
       .layout {
@@ -543,10 +542,7 @@
     "definition": "Authentication, Authorization, and Accounting — proving identity, deciding what you may do, and logging what you did.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "aaa"
-    ],
+    "tags": ["support", "aaa"],
     "refs": []
   },
   "authz": {
@@ -555,10 +551,7 @@
     "definition": "What an authenticated user or device is allowed to do (distinct from authentication).",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "aaa"
-    ],
+    "tags": ["support", "aaa"],
     "refs": []
   },
   "change_ticket": {
@@ -567,10 +560,7 @@
     "definition": "Tracked request to modify production systems (firewall rules, certs, configs) with review/approval.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "ops"
-    ],
+    "tags": ["support", "ops"],
     "refs": []
   },
   "cleartext": {
@@ -579,9 +569,7 @@
     "definition": "Data sent without encryption so anyone on the path can read or alter it, including credentials.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "security"
-    ],
+    "tags": ["security"],
     "refs": []
   },
   "community_string": {
@@ -590,11 +578,7 @@
     "definition": "A shared secret in SNMPv1/v2c that acts like a password and is sent in cleartext.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "monitor",
-      "security"
-    ],
+    "tags": ["support", "monitor", "security"],
     "refs": []
   },
   "dhcp": {
@@ -603,9 +587,7 @@
     "definition": "Assigns IP configuration. Server listens on 67; client on 68.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "network"
-    ],
+    "tags": ["network"],
     "refs": []
   },
   "dhcp_lease": {
@@ -614,10 +596,7 @@
     "definition": "Temporary IP configuration handed out by DHCP for a limited time.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "network"
-    ],
+    "tags": ["support", "network"],
     "refs": []
   },
   "directory_bind": {
@@ -626,10 +605,7 @@
     "definition": "An application authenticating/connecting to a directory service (like LDAP) to look up or validate accounts.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "directory"
-    ],
+    "tags": ["support", "directory"],
     "refs": []
   },
   "dns": {
@@ -638,10 +614,7 @@
     "definition": "Resolves names to addresses. UDP 53 for normal lookups; TCP 53 for zone transfers and large responses. Classic DNS is unencrypted.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "name",
-      "insecure"
-    ],
+    "tags": ["name", "insecure"],
     "refs": []
   },
   "domain": {
@@ -650,10 +623,7 @@
     "definition": "An administrative realm (often Active Directory) that shares authentication and policy.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "directory"
-    ],
+    "tags": ["support", "directory"],
     "refs": []
   },
   "enable_password": {
@@ -662,10 +632,7 @@
     "definition": "Privileged password on network gear that unlocks administrative (enable) mode.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "network"
-    ],
+    "tags": ["support", "network"],
     "refs": []
   },
   "firewall": {
@@ -674,11 +641,7 @@
     "definition": "Device or software that allows or denies traffic based on rules (addresses, ports, protocols).",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "network",
-      "ops"
-    ],
+    "tags": ["support", "network", "ops"],
     "refs": []
   },
   "firewall_rule": {
@@ -687,9 +650,7 @@
     "definition": "An allow or deny decision keyed to source, destination, port, and protocol — the operational place Security+ port knowledge gets used.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "ops"
-    ],
+    "tags": ["ops"],
     "refs": []
   },
   "ftp": {
@@ -698,10 +659,7 @@
     "definition": "File transfer with cleartext commands and credentials. Port 21 is control; 20 is active-mode data. Replace with SFTP or FTPS.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "file",
-      "insecure"
-    ],
+    "tags": ["file", "insecure"],
     "refs": []
   },
   "ftps": {
@@ -710,13 +668,8 @@
     "definition": "FTP wrapped in TLS (implicit mode commonly 990 control / 989 data). Not the same as SFTP.",
     "context": "Classic FTP wrapped in TLS; different ports and firewall story than SFTP.",
     "tier": "exam",
-    "tags": [
-      "file",
-      "secure"
-    ],
-    "refs": [
-      "CompTIA Security+ SY0-701 — secure file transfer alternatives to FTP"
-    ]
+    "tags": ["file", "secure"],
+    "refs": ["CompTIA Security+ SY0-701 — secure file transfer alternatives to FTP"]
   },
   "guest_wifi": {
     "id": "guest_wifi",
@@ -724,10 +677,7 @@
     "definition": "Segmented wireless network for visitors; should not carry sensitive cleartext directory or admin traffic.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "network"
-    ],
+    "tags": ["support", "network"],
     "refs": []
   },
   "http": {
@@ -736,10 +686,7 @@
     "definition": "Cleartext web protocol. Replaced in production by HTTPS.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "web",
-      "insecure"
-    ],
+    "tags": ["web", "insecure"],
     "refs": []
   },
   "https": {
@@ -748,13 +695,8 @@
     "definition": "HTTP secured with TLS. Default for modern web traffic.",
     "context": "Use instead of cleartext HTTP for any page that takes credentials or personal data.",
     "tier": "exam",
-    "tags": [
-      "web",
-      "secure"
-    ],
-    "refs": [
-      "CompTIA Security+ SY0-701 — implement secure protocols (web)"
-    ]
+    "tags": ["web", "secure"],
+    "refs": ["CompTIA Security+ SY0-701 — implement secure protocols (web)"]
   },
   "imap": {
     "id": "imap",
@@ -762,10 +704,7 @@
     "definition": "Server-side mailbox access in cleartext. Secure version is IMAPS on 993.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "email",
-      "insecure"
-    ],
+    "tags": ["email", "insecure"],
     "refs": []
   },
   "imaps": {
@@ -774,10 +713,7 @@
     "definition": "IMAP wrapped in TLS — keeps mail on the server with encryption in transit.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "email",
-      "secure"
-    ],
+    "tags": ["email", "secure"],
     "refs": []
   },
   "implicit_tls": {
@@ -786,10 +722,7 @@
     "definition": "Wrapping a protocol in TLS from the first byte (e.g. SMTPS 465, FTPS 990) rather than upgrading mid-session with STARTTLS.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "security"
-    ],
+    "tags": ["support", "security"],
     "refs": []
   },
   "jump_host": {
@@ -798,11 +731,7 @@
     "definition": "A hardened intermediate server you remote into first, then reach internal systems from there.",
     "context": "Intermediate hop so workstations are not directly reachable from remote clients.",
     "tier": "support",
-    "tags": [
-      "support",
-      "remote",
-      "network"
-    ],
+    "tags": ["support", "remote", "network"],
     "refs": []
   },
   "kerberos": {
@@ -811,9 +740,7 @@
     "definition": "Ticket-based authentication used by Active Directory. Issues time-limited tickets instead of sending reusable passwords repeatedly.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "directory"
-    ],
+    "tags": ["directory"],
     "refs": []
   },
   "key_auth": {
@@ -822,10 +749,7 @@
     "definition": "Logging in with a cryptographic key pair instead of (or in addition to) a password.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "security"
-    ],
+    "tags": ["support", "security"],
     "refs": []
   },
   "ldap": {
@@ -834,10 +758,7 @@
     "definition": "Directory lookups and authentication in cleartext. Secure version is LDAPS on 636.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "directory",
-      "insecure"
-    ],
+    "tags": ["directory", "insecure"],
     "refs": []
   },
   "ldaps": {
@@ -846,13 +767,8 @@
     "definition": "LDAP wrapped in TLS.",
     "context": "Directory binds with passwords should not ride cleartext LDAP on untrusted segments.",
     "tier": "exam",
-    "tags": [
-      "directory",
-      "secure"
-    ],
-    "refs": [
-      "CompTIA Security+ SY0-701 — implement secure protocols (directory services)"
-    ]
+    "tags": ["directory", "secure"],
+    "refs": ["CompTIA Security+ SY0-701 — implement secure protocols (directory services)"]
   },
   "msp": {
     "id": "msp",
@@ -860,10 +776,7 @@
     "definition": "Managed Service Provider; a company that runs IT support for other businesses.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "desk"
-    ],
+    "tags": ["support", "desk"],
     "refs": []
   },
   "perimeter": {
@@ -872,10 +785,7 @@
     "definition": "Boundary between trusted internal networks and untrusted external networks.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "network"
-    ],
+    "tags": ["support", "network"],
     "refs": []
   },
   "ntp": {
@@ -884,9 +794,7 @@
     "definition": "Synchronizes clocks. Accurate time matters for logs, Kerberos tickets, and certificate validation.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "network"
-    ],
+    "tags": ["network"],
     "refs": []
   },
   "open_relay": {
@@ -895,10 +803,7 @@
     "definition": "A mail server that accepts and forwards mail from anyone; abused by spammers.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "email"
-    ],
+    "tags": ["support", "email"],
     "refs": []
   },
   "pop3": {
@@ -907,10 +812,7 @@
     "definition": "Downloads mail to the client in cleartext. Secure version is POP3S on 995.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "email",
-      "insecure"
-    ],
+    "tags": ["email", "insecure"],
     "refs": []
   },
   "pop3s": {
@@ -919,10 +821,7 @@
     "definition": "POP3 wrapped in TLS.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "email",
-      "secure"
-    ],
+    "tags": ["email", "secure"],
     "refs": []
   },
   "port": {
@@ -931,9 +830,7 @@
     "definition": "A 16-bit number (0–65535) that multiplexes traffic to a specific service or process on a host.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "basics"
-    ],
+    "tags": ["basics"],
     "refs": []
   },
   "protocol": {
@@ -942,9 +839,7 @@
     "definition": "A formal set of message formats and rules that networked systems use to exchange data.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "basics"
-    ],
+    "tags": ["basics"],
     "refs": []
   },
   "radius": {
@@ -953,9 +848,7 @@
     "definition": "AAA for network access. 1812 authentication; 1813 accounting.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "aaa"
-    ],
+    "tags": ["aaa"],
     "refs": []
   },
   "ransomware": {
@@ -964,10 +857,7 @@
     "definition": "Malware that encrypts systems or data and demands payment; internet-exposed remote desktop is a common entry.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "security"
-    ],
+    "tags": ["support", "security"],
     "refs": []
   },
   "rdp": {
@@ -976,12 +866,8 @@
     "definition": "Microsoft Remote Desktop. Encrypted in modern use, but Internet-exposed RDP is a leading ransomware entry — keep it behind a VPN.",
     "context": "Do not expose raw 3389 to the internet; prefer VPN then jump host.",
     "tier": "exam",
-    "tags": [
-      "remote"
-    ],
-    "refs": [
-      "CompTIA Security+ SY0-701 — firewall ports/protocols; secure remote access"
-    ]
+    "tags": ["remote"],
+    "refs": ["CompTIA Security+ SY0-701 — firewall ports/protocols; secure remote access"]
   },
   "resolver_cache": {
     "id": "resolver_cache",
@@ -989,10 +875,7 @@
     "definition": "Local store of recent DNS answers; flushing it forces fresh lookups.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "network"
-    ],
+    "tags": ["support", "network"],
     "refs": []
   },
   "sftp": {
@@ -1001,13 +884,8 @@
     "definition": "File transfer tunneled inside SSH. Different protocol from FTP; uses port 22, not 20/21.",
     "context": "Not the same as FTPS — file transfer inside SSH, usually port 22.",
     "tier": "exam",
-    "tags": [
-      "file",
-      "secure"
-    ],
-    "refs": [
-      "CompTIA Security+ SY0-701 — secure file transfer alternatives to FTP"
-    ]
+    "tags": ["file", "secure"],
+    "refs": ["CompTIA Security+ SY0-701 — secure file transfer alternatives to FTP"]
   },
   "smb": {
     "id": "smb",
@@ -1015,9 +893,7 @@
     "definition": "Windows file and printer sharing. Never expose to the Internet; a frequent worm and ransomware path.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "file"
-    ],
+    "tags": ["file"],
     "refs": []
   },
   "smtp": {
@@ -1026,10 +902,7 @@
     "definition": "Server-to-server mail relay, historically cleartext. Clients should submit on 587 or 465 instead.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "email",
-      "insecure"
-    ],
+    "tags": ["email", "insecure"],
     "refs": []
   },
   "smtp_submission": {
@@ -1038,10 +911,7 @@
     "definition": "Authenticated client mail submission, typically upgraded with STARTTLS. Modern send port.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "email",
-      "secure"
-    ],
+    "tags": ["email", "secure"],
     "refs": []
   },
   "smtps": {
@@ -1050,10 +920,7 @@
     "definition": "SMTP wrapped in TLS from the first byte (implicit TLS).",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "email",
-      "secure"
-    ],
+    "tags": ["email", "secure"],
     "refs": []
   },
   "snmp": {
@@ -1062,10 +929,7 @@
     "definition": "Device monitoring. 161 polls agents; 162 receives traps. v1/v2c send community strings in cleartext — prefer SNMPv3.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "monitor",
-      "insecure"
-    ],
+    "tags": ["monitor", "insecure"],
     "refs": []
   },
   "snmpv3": {
@@ -1074,10 +938,7 @@
     "definition": "SNMP with authentication and encryption. Same ports as classic SNMP, but credentials are no longer cleartext community strings.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "monitor",
-      "secure"
-    ],
+    "tags": ["monitor", "secure"],
     "refs": []
   },
   "ssh": {
@@ -1086,13 +947,8 @@
     "definition": "Encrypted remote shell and tunnel. Also carries SFTP and SCP. The standard Telnet replacement.",
     "context": "Secure replacement for cleartext Telnet on remote admin paths.",
     "tier": "exam",
-    "tags": [
-      "remote",
-      "secure"
-    ],
-    "refs": [
-      "CompTIA Security+ SY0-701 — implement secure protocols (remote access)"
-    ]
+    "tags": ["remote", "secure"],
+    "refs": ["CompTIA Security+ SY0-701 — implement secure protocols (remote access)"]
   },
   "starttls": {
     "id": "starttls",
@@ -1100,11 +956,7 @@
     "definition": "A command that upgrades an existing cleartext connection to TLS mid-session (common on mail submission).",
     "context": "Upgrades an existing cleartext mail session mid-stream (common on submission port 587).",
     "tier": "support",
-    "tags": [
-      "support",
-      "email",
-      "security"
-    ],
+    "tags": ["support", "email", "security"],
     "refs": []
   },
   "syslog": {
@@ -1113,10 +965,7 @@
     "definition": "Cleartext log forwarding to a collector. Secure with syslog over TLS on 6514.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "monitor",
-      "insecure"
-    ],
+    "tags": ["monitor", "insecure"],
     "refs": []
   },
   "syslog_tls": {
@@ -1125,10 +974,7 @@
     "definition": "Syslog carried inside TLS so log data stays confidential and intact in transit.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "monitor",
-      "secure"
-    ],
+    "tags": ["monitor", "secure"],
     "refs": []
   },
   "tacacs": {
@@ -1137,9 +983,7 @@
     "definition": "Cisco AAA protocol that encrypts the full payload and separates authentication, authorization, and accounting.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "aaa"
-    ],
+    "tags": ["aaa"],
     "refs": []
   },
   "tcp": {
@@ -1148,9 +992,7 @@
     "definition": "Connection-oriented transport that sequences and acknowledges data so lost packets can be recovered.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "transport"
-    ],
+    "tags": ["transport"],
     "refs": []
   },
   "telnet": {
@@ -1159,13 +1001,8 @@
     "definition": "Remote shell that sends everything — including passwords — in cleartext. Replace with SSH.",
     "context": "Do not allow on management paths; replace with SSH.",
     "tier": "exam",
-    "tags": [
-      "remote",
-      "insecure"
-    ],
-    "refs": [
-      "CompTIA Security+ SY0-701 — insecure protocols / secure alternatives"
-    ]
+    "tags": ["remote", "insecure"],
+    "refs": ["CompTIA Security+ SY0-701 — insecure protocols / secure alternatives"]
   },
   "tftp": {
     "id": "tftp",
@@ -1173,10 +1010,7 @@
     "definition": "Tiny file transfer with no authentication. Acceptable only on trusted networks for device configs or PXE — never across a perimeter.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "file",
-      "insecure"
-    ],
+    "tags": ["file", "insecure"],
     "refs": []
   },
   "tls": {
@@ -1185,9 +1019,7 @@
     "definition": "Transport Layer Security — the encryption layer that wraps many application protocols into secure versions.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "security"
-    ],
+    "tags": ["security"],
     "refs": []
   },
   "udp": {
@@ -1196,9 +1028,7 @@
     "definition": "Connectionless transport that sends datagrams without guaranteed delivery; used when speed or simplicity matters more than recovery.",
     "context": null,
     "tier": "exam",
-    "tags": [
-      "transport"
-    ],
+    "tags": ["transport"],
     "refs": []
   },
   "vlan": {
@@ -1207,10 +1037,7 @@
     "definition": "Virtual LAN; a logical network segment that isolates traffic without separate physical wiring.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "network"
-    ],
+    "tags": ["support", "network"],
     "refs": []
   },
   "vpn": {
@@ -1219,11 +1046,7 @@
     "definition": "Virtual Private Network; encrypted tunnel into the private network so remote access is not exposed raw to the internet.",
     "context": "Encrypted tunnel into the private network before using internal protocols like RDP.",
     "tier": "support",
-    "tags": [
-      "support",
-      "network",
-      "security"
-    ],
+    "tags": ["support", "network", "security"],
     "refs": []
   },
   "concentrator": {
@@ -1232,10 +1055,7 @@
     "definition": "Device/service that terminates many VPN tunnels for remote users.",
     "context": null,
     "tier": "support",
-    "tags": [
-      "support",
-      "network"
-    ],
+    "tags": ["support", "network"],
     "refs": []
   }
 }
