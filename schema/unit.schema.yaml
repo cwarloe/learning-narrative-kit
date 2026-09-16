@@ -42,3 +42,16 @@ cards:
     answer: string         # usually the definition (not refs)
     tags: [string]
     tier: exam|support     # optional; enables Exam-only vs All filter
+
+# Authoring / render contract (documentation fields on unit.yaml)
+source_of_truth: [unit.yaml, glossary.yaml, narrative.md, review.yaml]  # never hand-authored HTML
+generated_artifacts: [html_preview]  # rebuild with renderer; optional to commit
+authoring_qa:  # see schema/README.md checklist
+  - cohesive_term_set
+  - forcing_situation
+  - clean_marks
+  - short_definitions
+  - cover_test
+  - density_about_2_per_100_words
+  - tiers_exam_vs_support
+  - html_secondary

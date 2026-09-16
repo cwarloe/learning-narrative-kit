@@ -31,3 +31,8 @@ constraints:
   - Narrator may feel lost; reader must never be confused by unexplained references
   - Two-tier glossary — tier exam for SY0-701 targets; tier support for desk/network jargon
   - Do not mark Portlandia/flavor background (pannier, MAX, bike helmet, rain pants, coffee, cubes-as-furniture vibe); leave flavor unmarked on purpose
+html_preview:
+  status: generated
+  build: "python build_preview.py"
+  note: "Do not hand-edit HTML; narrative.md + glossary.yaml are source"
+

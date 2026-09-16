@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .DS_Store
 *.egg-info/
+# Generated previews — rebuild from markdown/YAML; do not author in HTML
+examples/**/*.html

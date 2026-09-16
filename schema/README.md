@@ -18,7 +18,7 @@ If you strip the marks and the sidebar, the story should still teach relationshi
 ## Mark convention
 
 ```markdown
-She mapped [[five_forces\|Porter's five forces]] against the foundry market.
+She mapped [[five_forces|Porter's five forces]] against the foundry market.
 ```
 
 1. `term_id` must exist in the glossary.
@@ -125,3 +125,30 @@ Renderers: tooltip = `definition` + optional `context`. Sidebar glossary row may
 ## Mark rendering (HTML)
 
 Marks are **prose tints**, not hyperlinks. Use a soft background color (exam vs support) with no underline and no link cursor. Readers should keep full sentence context if they never hover; hover/sidebar are optional lookup, not a required click path.
+
+
+## Source of truth (markdown in, HTML out)
+
+**Author and store units as markdown + YAML.** Do not hand-edit HTML as the story source.
+
+| Layer | Files | Role |
+|-------|-------|------|
+| **Source** | `unit.yaml`, `glossary.yaml`, `narrative.md`, optional `review.yaml` | What humans (and agents) write and review |
+| **Generated** | HTML preview (e.g. from `build_preview.py`) | Lookup UI — rebuild anytime; safe to delete and regenerate |
+
+Offer learners the story as markdown if they want; run a render step when you need hovers, Exam-only / All, and sidebar refs. Checked-in `*.html` under examples, if present, is a **build artifact**, not an authoring surface.
+
+## Authoring QA checklist (done-definition)
+
+Use this before calling a unit “done.” Drawn from kit research (see `research/perplexity-2026-09/07-authoring-rubric.md`); wording adjusted to our tiers.
+
+1. **Cohesive term set** — One bank that belongs together; no colliding definitions; every glossary id appears ≥1 in the narrative.
+2. **One forcing situation** — People with habits/pressures that make the terms interact (not a vocab parade).
+3. **Clean marks** — Every `[[id|text]]` resolves; ids unique; surface text reads as prose.
+4. **Short definitions** — Tooltip-sized (`definition` + optional `context`); `refs` only on sidebar/expand.
+5. **Cover test** — Hide marks; story still makes sense and still teaches relationships.
+6. **Density** — Ballpark ~2 marks per 100 words (ITM-like); justify if far off.
+7. **Two tiers governed** — `exam` = study targets; `support` = readability jargon; Exam-only / All still works; flavor stays unmarked.
+8. **HTML secondary** — Markdown/YAML pass QA first; then render. Never author the chapter in HTML.
+
+**Exam tier** here means “on the study/exam list,” not a graded quiz inside the page.

@@ -13,7 +13,9 @@ The story is not decoration. It is the thing that supplies **connectedness** —
 
 Interactive glosses (hover, sidebar) and review cards are optional layers for lookup and later retrieval. They are not the pedagogy.
 
-## Unit shape
+## Source of truth
+
+**Markdown + YAML in → HTML out.**
 
 | File | Role |
 |------|------|
@@ -24,19 +26,24 @@ Interactive glosses (hover, sidebar) and review cards are optional layers for lo
 
 Marks in prose: `[[term_id|surface text]]`
 
+**Do not author chapters as HTML.** Render a preview when you want hovers / Exam-only / All (e.g. `examples/secplus-ports-helpdesk/build_preview.py`). Generated HTML is disposable.
+
 ## Generation order (story-first)
 
 1. Collect the term set that belongs together (slides, notes, flashcards, lesson vocab).
-2. Decide the **situation** that would force those ideas to interact (a plant crisis, a first ticket, an exam-relevant decision).
-3. Write the narrative so each term earns its place — used as someone would use it when thinking, not as a checklist.
-4. Attach short definitions for lookup (exam-faithful when studying a class; analytical when teaching a framework).
-5. Validate: every required term appears; every mark has a definition; the story still reads if you hide the marks.
+2. Decide the **situation** that would force those ideas to interact.
+3. Write `narrative.md` so each term earns its place.
+4. Attach short definitions in `glossary.yaml` (exam-faithful when studying a class).
+5. Run the authoring QA checklist in `schema/README.md` (cover test, density, tiers).
 6. Optionally render HTML and emit a review deck.
 
 ## Specimens
 
-- `examples/itm310-vanguard-edge/` — disciplined class study narrative (ITM 310), glossary-first, Goldratt-shaped plant story.
-- `examples/secplus-ports-helpdesk/` — Security+ SY0-701 ports/protocols help-desk precursor (*Portland Desk*). Two-tier glossary (exam + support), tooltip = definition + optional context, refs on sidebar only. Open `portland-desk.html` or rebuild with `python build_preview.py` (needs PyYAML).
-- Earlier NADF prologue HTML was a one-shot smoke test without a prebuilt glossary.
+- `examples/itm310-vanguard-edge/` — ITM 310 class study narrative (markdown unit).
+- `examples/secplus-ports-helpdesk/` — Security+ ports help-desk precursor (*Portland Desk*). Rebuild HTML with `python build_preview.py` (PyYAML).
 
-See `schema/README.md` for the authoring contract.
+## Research
+
+Background notes that shaped the contract live in `research/` (including the Sep 2026 Perplexity pass). Schema wins if notes disagree.
+
+See `schema/README.md` for the full authoring contract.
