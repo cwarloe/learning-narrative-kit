@@ -290,8 +290,3 @@ cards:
     answer: "Device or software that allows or denies traffic based on rules (addresses, ports, protocols)."
     tags: [support, network, ops]
     tier: support
-  - id: concentrator
-    prompt: VPN concentrator
-    answer: "Device/service that terminates many VPN tunnels for remote users."
-    tags: [support, network]
-    tier: support
