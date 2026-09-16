@@ -137,7 +137,7 @@ terms:
     title: Authority
     definition: "Claiming power (executive, IT admin, law enforcement, vendor) so people comply without checking."
     refs:
-      - "CompTIA Security+ SY0-701 — authority"
+      - "CompTIA Security+ SY0-701 — social engineering principles (authority)"
     tags: [principles]
     tier: exam
   - id: scarcity
