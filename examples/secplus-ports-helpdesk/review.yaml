@@ -1,0 +1,297 @@
+deck_id: secplus-ports-helpdesk
+cards:
+  - id: port
+    prompt: Port
+    answer: "A 16-bit number (0–65535) that multiplexes traffic to a specific service or process on a host."
+    tags: [basics]
+    tier: exam
+  - id: protocol
+    prompt: Protocol
+    answer: "A formal set of message formats and rules that networked systems use to exchange data."
+    tags: [basics]
+    tier: exam
+  - id: tcp
+    prompt: TCP
+    answer: "Connection-oriented transport that sequences and acknowledges data so lost packets can be recovered."
+    tags: [transport]
+    tier: exam
+  - id: udp
+    prompt: UDP
+    answer: "Connectionless transport that sends datagrams without guaranteed delivery; used when speed or simplicity matters more than recovery."
+    tags: [transport]
+    tier: exam
+  - id: cleartext
+    prompt: Cleartext
+    answer: "Data sent without encryption so anyone on the path can read or alter it, including credentials."
+    tags: [security]
+    tier: exam
+  - id: tls
+    prompt: TLS
+    answer: "Transport Layer Security — the encryption layer that wraps many application protocols into secure versions."
+    tags: [security]
+    tier: exam
+  - id: http
+    prompt: HTTP (80/TCP)
+    answer: "Cleartext web protocol. Replaced in production by HTTPS."
+    tags: [web, insecure]
+    tier: exam
+  - id: https
+    prompt: HTTPS (443/TCP)
+    answer: "HTTP secured with TLS. Default for modern web traffic."
+    tags: [web, secure]
+    tier: exam
+  - id: ftp
+    prompt: FTP (20/21/TCP)
+    answer: "File transfer with cleartext commands and credentials. Port 21 is control; 20 is active-mode data. Replace with SFTP or FTPS."
+    tags: [file, insecure]
+    tier: exam
+  - id: sftp
+    prompt: SFTP (22/TCP)
+    answer: "File transfer tunneled inside SSH. Different protocol from FTP; uses port 22, not 20/21."
+    tags: [file, secure]
+    tier: exam
+  - id: ftps
+    prompt: FTPS (989/990/TCP)
+    answer: "FTP wrapped in TLS (implicit mode commonly 990 control / 989 data). Not the same as SFTP."
+    tags: [file, secure]
+    tier: exam
+  - id: telnet
+    prompt: Telnet (23/TCP)
+    answer: "Remote shell that sends everything — including passwords — in cleartext. Replace with SSH."
+    tags: [remote, insecure]
+    tier: exam
+  - id: ssh
+    prompt: SSH (22/TCP)
+    answer: "Encrypted remote shell and tunnel. Also carries SFTP and SCP. The standard Telnet replacement."
+    tags: [remote, secure]
+    tier: exam
+  - id: smtp
+    prompt: SMTP (25/TCP)
+    answer: "Server-to-server mail relay, historically cleartext. Clients should submit on 587 or 465 instead."
+    tags: [email, insecure]
+    tier: exam
+  - id: smtp_submission
+    prompt: SMTP submission (587/TCP)
+    answer: "Authenticated client mail submission, typically upgraded with STARTTLS. Modern send port."
+    tags: [email, secure]
+    tier: exam
+  - id: smtps
+    prompt: SMTPS (465/TCP)
+    answer: "SMTP wrapped in TLS from the first byte (implicit TLS)."
+    tags: [email, secure]
+    tier: exam
+  - id: pop3
+    prompt: POP3 (110/TCP)
+    answer: "Downloads mail to the client in cleartext. Secure version is POP3S on 995."
+    tags: [email, insecure]
+    tier: exam
+  - id: pop3s
+    prompt: POP3S (995/TCP)
+    answer: "POP3 wrapped in TLS."
+    tags: [email, secure]
+    tier: exam
+  - id: imap
+    prompt: IMAP (143/TCP)
+    answer: "Server-side mailbox access in cleartext. Secure version is IMAPS on 993."
+    tags: [email, insecure]
+    tier: exam
+  - id: imaps
+    prompt: IMAPS (993/TCP)
+    answer: "IMAP wrapped in TLS — keeps mail on the server with encryption in transit."
+    tags: [email, secure]
+    tier: exam
+  - id: dns
+    prompt: DNS (53/UDP/TCP)
+    answer: "Resolves names to addresses. UDP 53 for normal lookups; TCP 53 for zone transfers and large responses. Classic DNS is unencrypted."
+    tags: [name, insecure]
+    tier: exam
+  - id: dhcp
+    prompt: DHCP (67/68/UDP)
+    answer: "Assigns IP configuration. Server listens on 67; client on 68."
+    tags: [network]
+    tier: exam
+  - id: ntp
+    prompt: NTP (123/UDP)
+    answer: "Synchronizes clocks. Accurate time matters for logs, Kerberos tickets, and certificate validation."
+    tags: [network]
+    tier: exam
+  - id: ldap
+    prompt: LDAP (389/TCP/UDP)
+    answer: "Directory lookups and authentication in cleartext. Secure version is LDAPS on 636."
+    tags: [directory, insecure]
+    tier: exam
+  - id: ldaps
+    prompt: LDAPS (636/TCP)
+    answer: "LDAP wrapped in TLS."
+    tags: [directory, secure]
+    tier: exam
+  - id: kerberos
+    prompt: Kerberos (88/TCP/UDP)
+    answer: "Ticket-based authentication used by Active Directory. Issues time-limited tickets instead of sending reusable passwords repeatedly."
+    tags: [directory]
+    tier: exam
+  - id: snmp
+    prompt: SNMP (161/162/UDP)
+    answer: "Device monitoring. 161 polls agents; 162 receives traps. v1/v2c send community strings in cleartext — prefer SNMPv3."
+    tags: [monitor, insecure]
+    tier: exam
+  - id: snmpv3
+    prompt: SNMPv3
+    answer: "SNMP with authentication and encryption. Same ports as classic SNMP, but credentials are no longer cleartext community strings."
+    tags: [monitor, secure]
+    tier: exam
+  - id: syslog
+    prompt: Syslog (514/UDP)
+    answer: "Cleartext log forwarding to a collector. Secure with syslog over TLS on 6514."
+    tags: [monitor, insecure]
+    tier: exam
+  - id: syslog_tls
+    prompt: Syslog over TLS (6514/TCP)
+    answer: "Syslog carried inside TLS so log data stays confidential and intact in transit."
+    tags: [monitor, secure]
+    tier: exam
+  - id: smb
+    prompt: SMB (445/TCP)
+    answer: "Windows file and printer sharing. Never expose to the Internet; a frequent worm and ransomware path."
+    tags: [file]
+    tier: exam
+  - id: rdp
+    prompt: RDP (3389/TCP)
+    answer: "Microsoft Remote Desktop. Encrypted in modern use, but Internet-exposed RDP is a leading ransomware entry — keep it behind a VPN."
+    tags: [remote]
+    tier: exam
+  - id: radius
+    prompt: RADIUS (1812/1813/UDP)
+    answer: "AAA for network access. 1812 authentication; 1813 accounting."
+    tags: [aaa]
+    tier: exam
+  - id: tacacs
+    prompt: TACACS+ (49/TCP)
+    answer: "Cisco AAA protocol that encrypts the full payload and separates authentication, authorization, and accounting."
+    tags: [aaa]
+    tier: exam
+  - id: tftp
+    prompt: TFTP (69/UDP)
+    answer: "Tiny file transfer with no authentication. Acceptable only on trusted networks for device configs or PXE — never across a perimeter."
+    tags: [file, insecure]
+    tier: exam
+  - id: firewall_rule
+    prompt: Firewall rule (ports/protocols)
+    answer: "An allow or deny decision keyed to source, destination, port, and protocol — the operational place Security+ port knowledge gets used."
+    tags: [ops]
+    tier: exam
+  - id: msp
+    prompt: MSP
+    answer: "Managed Service Provider; a company that runs IT support for other businesses."
+    tags: [support, desk]
+    tier: support
+  - id: vlan
+    prompt: VLAN
+    answer: "Virtual LAN; a logical network segment that isolates traffic without separate physical wiring."
+    tags: [support, network]
+    tier: support
+  - id: enable_password
+    prompt: Enable password
+    answer: "Privileged password on network gear that unlocks administrative (enable) mode."
+    tags: [support, network]
+    tier: support
+  - id: key_auth
+    prompt: Key authentication
+    answer: "Logging in with a cryptographic key pair instead of (or in addition to) a password."
+    tags: [support, security]
+    tier: support
+  - id: starttls
+    prompt: STARTTLS
+    answer: "A command that upgrades an existing cleartext connection to TLS mid-session (common on mail submission)."
+    tags: [support, email, security]
+    tier: support
+  - id: open_relay
+    prompt: Open relay
+    answer: "A mail server that accepts and forwards mail from anyone; abused by spammers."
+    tags: [support, email]
+    tier: support
+  - id: jump_host
+    prompt: Jump host / jump box
+    answer: "A hardened intermediate server you remote into first, then reach internal systems from there."
+    tags: [support, remote, network]
+    tier: support
+  - id: vpn
+    prompt: VPN
+    answer: "Virtual Private Network; encrypted tunnel into the private network so remote access is not exposed raw to the internet."
+    tags: [support, network, security]
+    tier: support
+  - id: ransomware
+    prompt: Ransomware
+    answer: "Malware that encrypts systems or data and demands payment; internet-exposed remote desktop is a common entry."
+    tags: [support, security]
+    tier: support
+  - id: directory_bind
+    prompt: Directory bind
+    answer: "An application authenticating/connecting to a directory service (like LDAP) to look up or validate accounts."
+    tags: [support, directory]
+    tier: support
+  - id: domain
+    prompt: Domain
+    answer: "An administrative realm (often Active Directory) that shares authentication and policy."
+    tags: [support, directory]
+    tier: support
+  - id: dhcp_lease
+    prompt: DHCP lease
+    answer: "Temporary IP configuration handed out by DHCP for a limited time."
+    tags: [support, network]
+    tier: support
+  - id: resolver_cache
+    prompt: Resolver cache
+    answer: "Local store of recent DNS answers; flushing it forces fresh lookups."
+    tags: [support, network]
+    tier: support
+  - id: community_string
+    prompt: Community string
+    answer: "A shared secret in SNMPv1/v2c that acts like a password and is sent in cleartext."
+    tags: [support, monitor, security]
+    tier: support
+  - id: aaa
+    prompt: AAA
+    answer: "Authentication, Authorization, and Accounting — proving identity, deciding what you may do, and logging what you did."
+    tags: [support, aaa]
+    tier: support
+  - id: authz
+    prompt: Authorization (authz)
+    answer: "What an authenticated user or device is allowed to do (distinct from authentication)."
+    tags: [support, aaa]
+    tier: support
+  - id: concentrator
+    prompt: VPN concentrator
+    answer: "Device/service that terminates many VPN tunnels for remote users."
+    tags: [support, network]
+    tier: support
+  - id: perimeter
+    prompt: Network perimeter
+    answer: "Boundary between trusted internal networks and untrusted external networks."
+    tags: [support, network]
+    tier: support
+  - id: guest_wifi
+    prompt: Guest Wi-Fi
+    answer: "Segmented wireless network for visitors; should not carry sensitive cleartext directory or admin traffic."
+    tags: [support, network]
+    tier: support
+  - id: implicit_tls
+    prompt: Implicit TLS
+    answer: "Wrapping a protocol in TLS from the first byte (e.g. SMTPS 465, FTPS 990) rather than upgrading mid-session with STARTTLS."
+    tags: [support, security]
+    tier: support
+  - id: change_ticket
+    prompt: Change (change ticket)
+    answer: "Tracked request to modify production systems (firewall rules, certs, configs) with review/approval."
+    tags: [support, ops]
+    tier: support
+  - id: firewall
+    prompt: Firewall
+    answer: "Device or software that allows or denies traffic based on rules (addresses, ports, protocols)."
+    tags: [support, network, ops]
+    tier: support
+  - id: concentrator
+    prompt: VPN concentrator
+    answer: "Device/service that terminates many VPN tunnels for remote users."
+    tags: [support, network]
+    tier: support
