@@ -1,0 +1,312 @@
+bank_id: itm-310
+title: "ITM 310 — Operations Systems terminology"
+source: "Class slide decks, study guides, review notes, and flashcards for ITM 310"
+terms:
+  - id: data
+    title: Data
+    definition: Raw, unorganized, unanalyzed facts, figures, and symbols that lack business context.
+    tags: [mod-1]
+  - id: information
+    title: Information
+    definition: Data that has been processed, cleaned, organized, structured, or contextualized to make it useful.
+    tags: [mod-1]
+  - id: knowledge
+    title: Knowledge
+    definition: Actionable understanding, insights, and rules derived from information, experience, and critical thinking.
+    tags: [mod-1]
+  - id: five_forces
+    title: "Porter's 5 Forces"
+    definition: "Framework assessing industry competitiveness: Buyer Power, Supplier Power, Threat of Substitutes, Threat of New Entrants, Rivalry."
+    tags: [mod-1]
+  - id: cost_leadership
+    title: Cost Leadership
+    definition: Generic strategy targeting a broad industry with the lowest production or operational costs (e.g., Walmart).
+    tags: [mod-1]
+  - id: differentiation
+    title: Differentiation
+    definition: Generic strategy targeting a broad industry with unique, premium features that command higher prices (e.g., Apple).
+    tags: [mod-1]
+  - id: diff_focus
+    title: Differentiation Focus
+    definition: Generic strategy targeting a narrow, specialized niche market with highly customized, premium features.
+    tags: [mod-1]
+  - id: buyer_power
+    title: Buyer Power
+    definition: High when buyers have many competing alternatives and low switching costs, driving prices down.
+    tags: [mod-1]
+  - id: supplier_power
+    title: Supplier Power
+    definition: High when buyers have few alternative suppliers to choose from, allowing suppliers to drive prices up.
+    tags: [mod-1]
+  - id: threat_substitutes
+    title: Threat of Substitutes
+    definition: High when alternative products outside the immediate industry satisfy the same customer need (e.g., train vs. airline).
+    tags: [mod-1]
+  - id: threat_entrants
+    title: Threat of New Entrants
+    definition: High when barriers to entry (capital costs, patents, regulations) are low, allowing new rivals to easily join the market.
+    tags: [mod-1]
+  - id: rivalry
+    title: Competitive Rivalry
+    definition: High when many competitors of similar size and capability compete aggressively on price and marketing.
+    tags: [mod-1]
+  - id: switching_costs
+    title: Switching Costs
+    definition: Monetary, operational, time, or psychological costs incurred by a customer when changing from one supplier to a rival.
+    tags: [mod-1]
+  - id: first_mover
+    title: First-Mover Advantage
+    definition: "Competitive edge gained by the initial significant occupant of a market segment (offset by high R&D risks and costs)."
+    tags: [mod-1]
+  - id: sustaining_innov
+    title: Sustaining Innovation
+    definition: Incremental improvements to established products designed to satisfy mainstream, high-tier existing customers.
+    tags: [mod-1]
+  - id: disruptive_innov
+    title: Disruptive Innovation
+    definition: Simpler, cheaper, or more accessible tech initially serving lower-end or niche buyers that matures to displace incumbents.
+    tags: [mod-1]
+  - id: network_effects
+    title: Network Effects
+    definition: "Economic principle (Metcalfe's Law) where the value of a system or product increases exponentially as more users adopt it."
+    tags: [mod-1]
+  - id: value_chain
+    title: "Porter's Value Chain"
+    definition: Framework breaking a business into Primary Activities (core operations) and Support Activities (infrastructure/HR/tech).
+    tags: [mod-1]
+  - id: primary_activities
+    title: Primary Activities
+    definition: "Direct product-handling steps: Inbound Logistics, Operations, Outbound Logistics, Marketing & Sales, Customer Service."
+    tags: [mod-1]
+  - id: support_activities
+    title: Support Activities
+    definition: "Functions supporting core line activities: Firm Infrastructure, Human Resources, Tech Development, Procurement."
+    tags: [mod-1]
+  - id: is_components
+    title: 5 Components of IS
+    definition: Hardware and Software (machine side); People and Procedures (human side); bridged in the center by Data.
+    tags: [mod-1]
+  - id: photolithography
+    title: Photolithography
+    definition: Manufacturing process using light to project geometric circuit designs onto a photosensitive chemical layer on a silicon wafer.
+    tags: [special]
+  - id: yield
+    title: Wafer Yield Rate
+    definition: The percentage of non-defective, fully functioning integrated circuits (dies) produced from a single silicon wafer.
+    tags: [special]
+  - id: fabless
+    title: Fabless Semiconductor Co.
+    definition: Companies that design microchips and software internally but outsource all physical wafer fabrication (e.g., Nvidia, Apple).
+    tags: [special]
+  - id: foundry
+    title: Pure-Play Foundry
+    definition: Dedicated contract manufacturing plants that produce silicon chips for clients but design no proprietary chips (e.g., TSMC).
+    tags: [special]
+  - id: idm
+    title: IDM
+    definition: "Integrated Device Manufacturer: enterprise that designs, manufactures, and packages its own microchips (e.g., Intel, Micron)."
+    tags: [special]
+  - id: moores_law
+    title: "Moore's Law"
+    definition: Empirical observation that the number of transistors on a microchip doubles roughly every two years, halving compute costs.
+    tags: [special]
+  - id: cpu
+    title: CPU
+    definition: "Central Processing Unit: the electronic brain executing instructions via the Machine Cycle (Fetch, Decode, Execute, Store)."
+    tags: [mod-2]
+  - id: cu
+    title: Control Unit (CU)
+    definition: Component of the CPU that directs instruction execution flow, decodes machine language, and manages bus timing.
+    tags: [mod-2]
+  - id: alu
+    title: Arithmetic Logic Unit (ALU)
+    definition: "Component of the CPU executing arithmetic operations (+, -, *, /) and logical evaluations (<, >, =)."
+    tags: [mod-2]
+  - id: registers
+    title: Registers
+    definition: Ultra-fast, minimal-capacity memory cells located directly inside the CPU housing active instructions and values.
+    tags: [mod-2]
+  - id: cache
+    title: Cache Memory
+    definition: Extremely fast volatile memory buffer (L1, L2, L3) positioned between the CPU and RAM to accelerate data retrieval.
+    tags: [mod-2]
+  - id: ram
+    title: RAM
+    definition: "Random Access Memory: primary volatile workspace storing active programs, documents, and OS processes."
+    tags: [mod-2]
+  - id: volatile
+    title: Volatile Memory
+    definition: Memory requiring continuous electrical power to preserve data (e.g., RAM, Cache). Data is erased immediately on power cutoff.
+    tags: [mod-2]
+  - id: rom
+    title: ROM
+    definition: "Read-Only Memory: non-volatile primary storage holding factory bootstrap firmware and BIOS/UEFI startup instructions."
+    tags: [mod-2]
+  - id: non_volatile
+    title: Non-Volatile Storage
+    definition: Storage media retaining data permanently even when unpowered (e.g., ROM, SSD, Magnetic HDD, Optical, Cloud).
+    tags: [mod-2]
+  - id: ssd
+    title: SSD (Solid-State Drive)
+    definition: High-speed non-volatile secondary flash storage with no moving mechanical parts, offering high shock resistance.
+    tags: [mod-2]
+  - id: hdd
+    title: HDD (Hard Disk Drive)
+    definition: Traditional secondary magnetic storage utilizing rotating magnetic platters and mechanical read/write heads.
+    tags: [mod-2]
+  - id: cots
+    title: COTS Software
+    definition: "Commercial Off-The-Shelf: pre-packaged, standardized commercial software available for immediate purchase and deployment."
+    tags: [mod-2]
+  - id: open_source
+    title: Open-Source Software
+    definition: Software whose source code is freely available for inspection, modification, and community enhancement (e.g., Linux).
+    tags: [mod-2]
+  - id: data_silos
+    title: Data Silos
+    definition: Isolated, unintegrated pools of data held within separate departments that fail to synchronize across the enterprise.
+    tags: [mod-7]
+  - id: erp
+    title: ERP
+    definition: "Enterprise Resource Planning: central relational database integrating core business processes (finance, HR, ops) enterprise-wide."
+    tags: [mod-7]
+  - id: bullwhip
+    title: Bullwhip Effect
+    definition: Supply chain distortion where small shifts in retail demand trigger progressively amplified swings in upstream orders.
+    tags: [mod-7]
+  - id: scm
+    title: Supply Chain Management
+    definition: Management of the flow of goods, data, and finances from raw material procurement to end-customer fulfillment.
+    tags: [mod-7]
+  - id: upstream
+    title: Upstream Supply Chain
+    definition: Tier 1 and Tier 2 suppliers providing raw materials, components, and inbound parts toward the manufacturing plant.
+    tags: [mod-7]
+  - id: downstream
+    title: Downstream Supply Chain
+    definition: Distribution centers, freight haulers, retail points, and end-customers receiving finished goods.
+    tags: [mod-7]
+  - id: push_model
+    title: Push Model (Make-to-Stock)
+    definition: Manufacturing execution driven by speculative long-range sales forecasts rather than confirmed orders.
+    tags: [mod-7]
+  - id: pull_model
+    title: Pull Model (Make-to-Order)
+    definition: Just-In-Time manufacturing execution triggered strictly by confirmed, real-time incoming customer purchase orders.
+    tags: [mod-7]
+  - id: crm
+    title: CRM
+    definition: "Customer Relationship Management: systems and strategies managing enterprise interactions with current and potential clients."
+    tags: [mod-7]
+  - id: op_crm
+    title: Operational CRM
+    definition: Frontline customer-facing tools supporting customer support ticketing, call routing, and sales force automation.
+    tags: [mod-7]
+  - id: ana_crm
+    title: Analytical CRM
+    definition: Back-office analytics systems that evaluate customer behavioral data, churn probability, and profitability patterns.
+    tags: [mod-7]
+  - id: clv
+    title: Customer Lifetime Value (CLV)
+    definition: Projected net profit attributed to the entire future lifetime relationship with a specific customer account.
+    tags: [mod-7]
+  - id: dss
+    title: Decision Support System
+    definition: "Interactive DSS composed of three subsystems: Data Management, Model Management, and User Interface/Dialogue."
+    tags: [mod-8]
+  - id: cobe_model
+    title: COBE Problem Solving
+    definition: "6-step process: 1. Identify Need, 2. Analyze Problem, 3. Generate Alternatives, 4. Decide, 5. Implement, 6. Evaluate."
+    tags: [mod-8]
+  - id: sensitivity_analysis
+    title: Sensitivity Analysis
+    definition: Study assessing how variations in a single model input parameter apportion and impact the overall system output.
+    tags: [mod-8]
+  - id: structured_dec
+    title: Structured Decision
+    definition: Routine, standardized, operational decisions governed by explicit rules that can be fully automated.
+    tags: [mod-8]
+  - id: semistructured_dec
+    title: Semistructured Decision
+    definition: Tactical decisions possessing both objective data components and requiring managerial judgment/evaluation.
+    tags: [mod-8]
+  - id: unstructured_dec
+    title: Unstructured Decision
+    definition: Novel, high-level strategic decisions with no standardized guidelines, relying heavily on executive intuition.
+    tags: [mod-8]
+  - id: descriptive
+    title: Descriptive Analytics
+    definition: "'What happened?' Summarizes past performance metrics using reports, standard queries, and operational dashboards."
+    tags: [mod-8]
+  - id: diagnostic
+    title: Diagnostic Analytics
+    definition: "'Why did it happen?' Drills down into historical data to identify underlying correlations, anomalies, and root causes."
+    tags: [mod-8]
+  - id: predictive
+    title: Predictive Analytics
+    definition: "'What could happen?' Employs statistical regression, pattern modeling, and forecasting to calculate future probabilities."
+    tags: [mod-8]
+  - id: prescriptive
+    title: Prescriptive Analytics
+    definition: "'What should we do?' Recommends optimal courses of action or automates decision rules using prescriptive algorithms."
+    tags: [mod-8]
+  - id: kpi
+    title: Key Performance Indicator
+    definition: "Measurable, quantifiable outcome metric directly aligned with an enterprise's strategic critical success factors."
+    tags: [mod-8]
+  - id: iaas
+    title: IaaS
+    definition: "Infrastructure as a Service: vendor provides raw VMs, networks, and storage; client configures and manages OS and apps."
+    tags: [mod-10]
+  - id: paas
+    title: PaaS
+    definition: "Platform as a Service: vendor manages hardware, OS, and runtimes; client uploads and manages application code."
+    tags: [mod-10]
+  - id: saas
+    title: SaaS
+    definition: "Software as a Service: complete turnkey applications delivered and managed entirely by the vendor over the web."
+    tags: [mod-10]
+  - id: hybrid_cloud
+    title: Hybrid Cloud
+    definition: Computing architecture combining private on-premises infrastructure with public multi-tenant cloud services.
+    tags: [mod-10]
+  - id: private_cloud
+    title: Private Cloud
+    definition: Dedicated cloud infrastructure operated exclusively for a single enterprise, providing maximum control and security.
+    tags: [mod-10]
+  - id: public_cloud
+    title: Public Cloud
+    definition: Multi-tenant cloud infrastructure owned and operated by third-party vendors (e.g., AWS, Azure) over the public internet.
+    tags: [mod-10]
+  - id: edge
+    title: Edge Computing
+    definition: Computing architecture processing data physically near the local sensor/device rather than sending raw streams to the cloud.
+    tags: [mod-10]
+  - id: abs_ref
+    title: Absolute Referencing ($A$1)
+    definition: Cell addressing syntax locking both column and row coordinates so the reference does not shift when copied.
+    tags: [excel]
+  - id: rel_ref
+    title: Relative Referencing (A1)
+    definition: Cell addressing syntax that dynamically updates row and column coordinates relative to where it is copied.
+    tags: [excel]
+  - id: mixed_ref
+    title: Mixed Referencing ($A1 / A$1)
+    definition: Cell addressing syntax locking either the column ($A1) or the row (A$1) coordinate while leaving the other dynamic.
+    tags: [excel]
+  - id: vlookup
+    title: VLOOKUP Function
+    definition: "=VLOOKUP(lookup_value, table_array, col_index, [range_lookup]). Column 1 must hold key; FALSE forces exact match."
+    tags: [excel]
+  - id: goal_seek
+    title: Goal Seek
+    definition: What-If tool calculating the specific value of a single input cell required to drive a formula cell to a target output.
+    tags: [excel]
+  - id: scenario_mgr
+    title: Scenario Manager
+    definition: What-If analysis tool storing and comparing up to 32 changing variables across distinct business scenarios.
+    tags: [excel]
+  - id: pivottable
+    title: PivotTable
+    definition: Interactive tool designed to rapidly summarize, sort, filter, count, and aggregate large tabular datasets.
+    tags: [excel]
