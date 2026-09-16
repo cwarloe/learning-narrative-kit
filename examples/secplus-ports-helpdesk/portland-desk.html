@@ -5,96 +5,1445 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portland Desk — The Port That Is Open</title>
   <style>
-    :root { --bg:#0f172a; --surface:#1e293b; --border:#334155; --text:#e2e8f0; --muted:#94a3b8; --primary:#38bdf8; --support:#a78bfa; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--bg); color:var(--text); line-height:1.75; }
-    .layout { display:grid; grid-template-columns:1fr 340px; max-width:1280px; margin:auto; gap:1.75rem; padding:2rem 1.25rem; }
-    main, aside { background:var(--surface); border:1px solid var(--border); border-radius:12px; }
-    main { padding:2.75rem 2.5rem; } aside { padding:1.25rem; position:sticky; top:1.25rem; height:calc(100vh - 2.5rem); overflow:auto; }
-    h1 { color:#fff; font-size:2rem; line-height:1.25; margin-bottom:.4rem; } h2 { color:var(--primary); font-size:1.28rem; margin:2.5rem 0 1rem; border-bottom:1px solid #334155; }
-    .byline,.note { color:var(--muted); font-size:.9rem; margin-bottom:1rem; } p { margin-bottom:1.2rem; font-size:1.02rem; }
-    .term { cursor:help; background:rgba(56,189,248,.12); border-bottom:2px solid var(--primary); padding:0 1px; } .term.support { background:rgba(167,139,250,.1); border-bottom:1.5px dotted var(--support); }
-    .term-list { overflow:auto; max-height:calc(100vh - 220px); margin-top:.75rem; } .term-item { padding:.4rem; border-radius:6px; color:var(--muted); cursor:pointer; }
-    .term-item:hover { background:#334155; color:#fff; } .badge { float:right; font-size:.65rem; text-transform:uppercase; }
-    @media (max-width:960px) { .layout { grid-template-columns:1fr; padding:1rem; } aside { position:relative; height:auto; } }
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-border: #334155;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --accent: #f59e0b;
+      --exam: #38bdf8;
+      --support: #a78bfa;
+      --exam-bg: rgba(56, 189, 248, 0.12);
+      --support-bg: rgba(167, 139, 250, 0.10);
+      --flash: rgba(245, 158, 11, 0.45);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.75;
+      display: flex;
+      justify-content: center;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      max-width: 1280px;
+      width: 100%;
+      min-height: 100vh;
+      gap: 1.75rem;
+      padding: 2rem 1.25rem;
+    }
+
+    main {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 2.75rem 2.5rem;
+      min-width: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .byline {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .byline-note {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-bottom: 1.75rem;
+      border-bottom: 1px solid var(--surface-border);
+      padding-bottom: 1.1rem;
+    }
+
+    h2 {
+      font-size: 1.28rem;
+      color: var(--primary);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+      line-height: 1.35;
+    }
+
+    p { margin-bottom: 1.2rem; font-size: 1.02rem; }
+
+    code {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      color: #f1f5f9;
+      font-size: 0.88em;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Cover-test friendly marks: light underline, readable color */
+    .term {
+      cursor: help;
+      font-weight: 500;
+      border-radius: 2px;
+      padding: 0 1px;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+
+    .term.exam {
+      color: inherit;
+      background: var(--exam-bg);
+      border-bottom: 2px solid var(--exam);
+      text-decoration: none;
+    }
+
+    .term.support {
+      color: inherit;
+      background: var(--support-bg);
+      border-bottom: 1.5px dotted var(--support);
+    }
+
+    .term.exam:hover {
+      background: rgba(56, 189, 248, 0.28);
+    }
+
+    .term.support:hover {
+      background: rgba(167, 139, 250, 0.22);
+    }
+
+    .term.flash {
+      background: var(--flash) !important;
+      box-shadow: 0 0 0 3px var(--flash);
+    }
+
+    /* Exam-only filter: support marks become plain/muted unmarked */
+    body.filter-exam-only .term.support {
+      color: inherit;
+      background: transparent;
+      border-bottom: none;
+      cursor: inherit;
+      font-weight: inherit;
+      padding: 0;
+    }
+
+    body.filter-exam-only .term.support:hover {
+      background: transparent;
+    }
+
+    #tooltip {
+      position: absolute;
+      display: none;
+      background: #0f172a;
+      border: 1px solid var(--primary);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.7);
+      border-radius: 8px;
+      padding: 0.95rem 1.05rem;
+      width: 320px;
+      max-width: calc(100vw - 24px);
+      z-index: 1000;
+      pointer-events: none;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    #tooltip.tier-support {
+      border-color: var(--support);
+    }
+
+    #tooltip .tt-tier {
+      display: inline-block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 0.45rem;
+      font-weight: 600;
+    }
+
+    #tooltip .tt-tier.exam {
+      background: rgba(56, 189, 248, 0.18);
+      color: var(--exam);
+    }
+
+    #tooltip .tt-tier.support {
+      background: rgba(167, 139, 250, 0.18);
+      color: var(--support);
+    }
+
+    #tooltip .tt-title {
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.98rem;
+      margin-bottom: 0.35rem;
+    }
+
+    #tooltip .tt-body {
+      color: var(--text-main);
+    }
+
+    #tooltip .tt-context {
+      color: var(--text-muted);
+      margin-top: 0.45rem;
+      font-size: 0.84rem;
+    }
+
+    aside {
+      position: sticky;
+      top: 1.25rem;
+      height: calc(100vh - 2.5rem);
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    aside h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: #fff;
+    }
+
+    .sidebar-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .filter-bar button {
+      flex: 1;
+      padding: 0.45rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--surface-border);
+      background: #0f172a;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .filter-bar button.active {
+      border-color: var(--primary);
+      color: #fff;
+      background: rgba(56, 189, 248, 0.15);
+    }
+
+    #search-box {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      background: #0f172a;
+      border: 1px solid var(--surface-border);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.86rem;
+      margin-bottom: 0.75rem;
+    }
+    #search-box:focus { outline: 1px solid var(--primary); }
+
+    .term-list {
+      overflow-y: auto;
+      flex: 1 1 auto;
+      min-height: 0;
+      padding-right: 2px;
+    }
+
+    .term-item {
+      padding: 0.45rem 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.15s;
+    }
+
+    .term-item:hover,
+    .term-item.selected {
+      background: #334155;
+      color: #fff;
+    }
+
+    .term-item .badge {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    .term-item .badge.exam {
+      color: var(--exam);
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+    .term-item .badge.support {
+      color: var(--support);
+      background: rgba(167, 139, 250, 0.12);
+    }
+
+    .detail-panel {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--surface-border);
+      flex: 0 0 auto;
+      max-height: 42%;
+      overflow-y: auto;
+    }
+
+    .detail-panel.empty {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .detail-panel .d-title {
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .detail-panel .d-tier {
+      display: inline-block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-bottom: 0.45rem;
+      font-weight: 600;
+    }
+
+    .detail-panel .d-tier.exam {
+      background: rgba(56, 189, 248, 0.18);
+      color: var(--exam);
+    }
+
+    .detail-panel .d-tier.support {
+      background: rgba(167, 139, 250, 0.18);
+      color: var(--support);
+    }
+
+    .detail-panel .d-def {
+      font-size: 0.84rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .detail-panel .d-context {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .detail-panel .d-tags {
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .detail-panel .d-refs {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    .detail-panel .d-refs li {
+      margin-left: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .legend {
+      display: flex;
+      gap: 0.85rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .legend span::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 0;
+      border-bottom: 2px solid;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    .legend .lg-exam::before { border-color: var(--exam); border-bottom-style: solid; }
+    .legend .lg-support::before { border-color: var(--support); border-bottom-style: dotted; }
+
+    @media (max-width: 960px) {
+      .layout {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+      aside {
+        position: relative;
+        top: 0;
+        height: auto;
+        max-height: none;
+      }
+      .term-list {
+        max-height: 280px;
+      }
+      main {
+        padding: 1.5rem 1.15rem;
+      }
+      h1 { font-size: 1.55rem; }
+    }
   </style>
 </head>
-<body>
+<body class="filter-exam-only">
+
 <div class="layout">
-<main>
-<h1>Portland Desk — The Port That Is Open</h1>
-<div class="byline">A Security+ ports-and-protocols precursor • Hover over highlighted terms for exam definitions and supporting desk/network jargon.</div>
-<div class="note">Story first; hover highlighted terms for short definitions. Exam refs and tags live in the sidebar.</div>
-<article id="narrative">
-<p>I keep a stack of index cards in the top drawer of my help-desk cube in Portland — a midsize <span class="term support" data-term="msp">MSP</span> on the east side where the coffee tastes like burnt paper and the ticket queue never empties. On the front of each card: a service name. On the back: a number and a one-line note. Twenty-two. Twenty-three. Four-forty-three. I can recite them in the shower. What I still cannot do is decide.</p>
-<p>Jules sits two cubes over. Desk lead. Bike helmet hanging off the monitor arm, rain pants still drying on the chair back. She has the patience of someone who has already made every mistake I am about to make, and she will not let me hide behind memorization.</p>
-<p>"Numbers are inventory," she tells me on my second week, clipping her pannier shut like the point is already decided. "Decisions are the job."</p>
-<p>Tuesday starts with rain on the windows and fourteen open tickets. By lunch I use every card in that drawer — not as trivia, but as a reason to say yes, no, or replace.</p>
-<h2>Ticket 4187 — The switch that still speaks Telnet</h2>
-<p>Jared from network ops pings me before nine. He needs console access to a closet switch in Building C. The old habit is still on his clipboard: open <span class="term" data-term="telnet">Telnet</span> to the management address, type the enable password, fix the VLAN, hang up.</p>
-<p>I almost type the answer from a flashcard. Port twenty-three. Cleartext. Bad. Done.</p>
-<p>Jules leans into my cube before I hit send, coffee steam fogging her glasses for half a second. "What are you actually deciding?"</p>
-<p>"That Telnet is insecure?"</p>
-<p>"You're deciding which port we allow on the management VLAN, and which protocol carries the password. Recite the replacement."</p>
-<p>I swallow. "We stop Telnet. We move the switch to SSH. Same remote shell job, encrypted session, port twenty-two."</p>
-<p>She nods once. "And when Jared says his script only speaks Telnet?"</p>
-<p>"Then we fix the script, not the firewall."</p>
-<p>I write the ticket note carefully: deny Telnet on the management path; require SSH with key auth where we can get it. Jared grumbles, then sends a screenshot of an SSH login that works. The enable password no longer rides the wire in cleartext. That is the whole point of the card — not the number alone, but the swap.</p>
-<h2>Ticket 4192 — Mail that still trusts the hallway</h2>
-<p>Accounting calls next. Maya's laptop can receive mail on the office Wi-Fi but fails at home, and she is convinced our server is broken. I remote-view her client settings and feel the flashcards rearrange themselves into a picture.</p>
-<p>Inbound is set to POP3 on port 110 — download, delete, hope. Another of her coworkers uses IMAP on 143 so folders stay on the server. Both paths are cleartext. Anyone on a coffee-shop network can watch credentials and message bodies drift past.</p>
-<p>"We need the secure versions," I tell her, walking her through the change. "POP3S on 995 if you insist on POP. Better: IMAPS on 993 so the mailbox stays on the server and the whole session rides TLS."</p>
-<p>Outbound is worse. Her client is pointed at SMTP on port 25 — the old server-to-server relay port, the one ISPs throttle and attackers abuse. I almost say "SMTP is twenty-five" like a quiz answer. Jules's voice is already in my head: <em>which decision?</em></p>
-<p>"Clients shouldn't submit on twenty-five," I say aloud. "Use SMTP submission on 587 with STARTTLS, or SMTPS on 465 if the client wants TLS from the first byte. Authenticated submission. Not open relay cosplay."</p>
-<p>Maya updates the profile, sends a test to herself, and the red banner in Outlook finally goes away. I close the ticket with a one-liner for the knowledge base: cleartext mail ports are not a preference; they are a leak.</p>
-<h2>Ticket 4199 — A vendor who asks for FTP</h2>
-<p>Midmorning, a facilities vendor needs a building controller config. Their ticket says, cheerfully, "Just drop it on our FTP server."</p>
-<p>I know the numbers — twenty-one for control, twenty for active data — and I know they mean passwords and file names in cleartext again. I draft a polite refusal and an offer: we can push over SFTP.</p>
-<p>The vendor's reply bounces back in under a minute. "Our appliance only does FTPS, not SFTP. Aren't they the same?"</p>
-<p>I start to type <em>yes</em> because both sound like "secure FTP," then stop. Jules drew this distinction on the whiteboard last month with a red marker, helmet strap still looped around her wrist like she might leave mid-sentence for a ride home.</p>
-<p>"They are not the same," I write. "SFTP is file transfer inside SSH — usually port twenty-two, a different protocol entirely, not FTP with a lock sticker. FTPS is classic FTP wrapped in TLS — often 990 for control and 989 for data in implicit mode. If your box speaks FTPS, we can do FTPS. We will not do plain FTP across the internet."</p>
-<p>We land on FTPS from a jump host we control. I log the distinction in the ticket so the next person on the desk will not smear the two together under exam pressure or vendor pressure. Same goal — move a file safely. Different protocol, different ports, different firewall story.</p>
-<h2>Ticket 4204 — The intranet page and the open desktop</h2>
-<p>After standup, HR pings: the benefits portal on the internal web still loads as HTTP on port 80. People are typing open-enrollment details into a page with no padlock. Marketing "meant to fix it after benefits season." Benefits season is now.</p>
-<p>I open a change with web ops: terminate HTTPS on 443, redirect eighty to four-forty-three, renew the cert before Friday. No lecture — just the operational fact that HTTP is the cleartext twin and HTTPS is the one we are allowed to keep.</p>
-<p>While that change cooks, another ticket lands from a contractor who wants Remote Desktop from a hotel in Seattle straight to a finance workstation on 3389. I feel the flashcard reflex — <em>RDP, thirty-three eighty-nine, TCP</em> — and almost approve a temporary allow.</p>
-<p>Jules intercepts the draft firewall request on the shared board, rolling her chair over without unclipping from whatever Slack thread she was mid-sentence in.</p>
-<p>"Read it back as a decision," she says.</p>
+  <main>
+    <h1>Portland Desk — The Port That Is Open</h1>
+    <div class="byline">A Security+ ports-and-protocols precursor • Hover over highlighted terms for exam definitions and supporting desk/network jargon.</div>
+    <div class="byline-note">Story first; hover highlighted terms for short definitions. Exam refs and tags live in the sidebar.</div>
+    <article id="narrative">
+<p>Rain hits the east-side windows like it has opinions. I am Ethan, week three at a midsize <span class="term support" data-term="msp" data-tier="support">MSP</span>, index cards in the top drawer — service on the front, number on the back. I can recite them in the shower. What I still cannot do is decide.</p>
+<p>Jules sits two cubes over. Desk lead. Bike helmet on the monitor arm, rain pants drying on the chair. She keeps a sticky on her monitor that just says <em>which decision?</em> She does not do pep talks.</p>
+<p>"Numbers are inventory," she says when I reach for a card. "Decisions are the job."</p>
+<p>Tuesday is a normal queue. People keep bringing me habits they learned somewhere else — old shops, vendor docs, a home lab at 1 a.m. My job is to talk each habit into a decision that fits <em>here</em>.</p>
+<h2>Jared and the script that still speaks Telnet</h2>
+<p>Jared from network ops pings before nine. Closet switch in Building C. A <span class="term support" data-term="vlan" data-tier="support">VLAN</span> is wrong. He already has the steps on his clipboard from years of closet work.</p>
+<p>"I Telnet in, type the <span class="term support" data-term="enable_password" data-tier="support">enable password</span>, fix the VLAN, hang up," he says. "Ten minutes. My script expects <span class="term exam" data-term="telnet" data-tier="exam">Telnet</span>. Wrote it when I was still racking gear in Hillsboro."</p>
+<p>I almost say <em>sure, twenty-three is open on that box</em>.</p>
+<p>Jules leans on my cube wall. Coffee steam. "Ask him what we burned on last year."</p>
+<p>Jared answers before I can. "Packet capture on the management span. Enable password in the clear, sitting there like a sticky note. Boss made us rotate everything. I still flinch."</p>
+<p>"So which <span class="term exam" data-term="port" data-tier="exam">port</span> do we allow on the management path," I say, "and which <span class="term exam" data-term="protocol" data-tier="exam">protocol</span> carries that password? Telnet puts it in <span class="term exam" data-term="cleartext" data-tier="exam">cleartext</span>."</p>
+<p>He sighs. "You're going to say <span class="term exam" data-term="ssh" data-tier="exam">SSH</span>. Same remote shell, encrypted, twenty-two. Fine. Script's mine — I can rewrite it. Don't make me do it twice."</p>
+<p>"SSH with <span class="term support" data-term="key_auth" data-tier="support">key auth</span> where we can get it," I say. "Then you only rewrite once. We fix the script, not the <span class="term support" data-term="firewall" data-tier="support">firewall</span>."</p>
+<p>Eleven minutes later he pastes a screenshot of an SSH login that works. In Slack he adds, almost proud: <em>keys feel weird after ten years of passwords, but whatever.</em> The clipboard loses a line. That is the whole point of the card — not the number alone, but the swap we agree on out loud.</p>
+<h2>Maya and the mail client that trusts the hallway</h2>
+<p>Accounting next. Maya can receive mail on office Wi-Fi and fails at home. She is sure our server is broken.</p>
+<p>I remote-view her settings with her on the phone. Inbound is <span class="term exam" data-term="pop3" data-tier="exam">POP3</span> on 110 — download, delete, hope.</p>
+<p>"That's how my first laptop did it in college," she says. "Grab mail, leave. My coworker keeps everything on the server with <span class="term exam" data-term="imap" data-tier="exam">IMAP</span> on 143. I never knew why both still worked here."</p>
+<p>"Both are cleartext," I tell her. "On a coffee-shop network, credentials and message bodies are readable. We want the secure versions. <span class="term exam" data-term="pop3s" data-tier="exam">POP3S</span> on 995 if you insist on POP. Better for how you work: <span class="term exam" data-term="imaps" data-tier="exam">IMAPS</span> on 993 — mailbox stays on the server, whole session under <span class="term exam" data-term="tls" data-tier="exam">TLS</span>."</p>
+<p>Outbound is pointed at <span class="term exam" data-term="smtp" data-tier="exam">SMTP</span> on 25. Maya says that is "what IT set years ago, before I even started."</p>
+<p>Jules murmurs from her cube, not looking up: "Twenty-five is how servers talk to servers. Clients submitting there is how we used to get yelled at by the ISP."</p>
+<p>"Use <span class="term exam" data-term="smtp_submission" data-tier="exam">SMTP submission</span> on 587 with <span class="term support" data-term="starttls" data-tier="support">STARTTLS</span>," I say, slower this time. "Or <span class="term exam" data-term="smtps" data-tier="exam">SMTPS</span> on 465 if the client wants <span class="term support" data-term="implicit_tls" data-tier="support">implicit TLS</span> from the first byte. Authenticated submission. Not <span class="term support" data-term="open_relay" data-tier="support">open relay</span> cosplay."</p>
+<p>Maya laughs. "Say STARTTLS again and I'll click where you point. My brother runs a home Pi mail lab and would never let me live this down."</p>
+<p>We change the profile together. Test message lands. Red banner dies. Cleartext mail is not a preference she has to live with — it is a setting we can replace.</p>
+<h2>The vendor whose appliance has one door</h2>
+<p>Facilities vendor. Building controller config. Ticket text, cheerful: "Drop it on our <span class="term exam" data-term="ftp" data-tier="exam">FTP</span> server."</p>
+<p>I call instead of typing a lecture. Their engineer, Dana, sounds busy in a truck, radio chirping in the background.</p>
+<p>"FTP is what the appliance docs still show," Dana says. "Twenty-one, username, done. I've done it that way on every install since the 2010s."</p>
+<p>"Passwords and filenames ride cleartext on FTP," I say. "We can push over <span class="term exam" data-term="sftp" data-tier="exam">SFTP</span>."</p>
+<p>"Our box doesn't do SFTP. It does FTPS. Aren't those the same? My own lab NAS does SFTP and I always mix the letters up."</p>
+<p>Jules's whiteboard sketch from last month is still in my head: two arrows, red marker, helmet strap looped around her wrist while she drew. She caught me calling them "secure FTP" like one animal.</p>
+<p>"Not the same," I say. "<span class="term exam" data-term="sftp" data-tier="exam">SFTP</span> is file transfer inside SSH — usually port twenty-two, a different protocol entirely. <span class="term exam" data-term="ftps" data-tier="exam">FTPS</span> is classic FTP wrapped in TLS — often 990 for control and 989 for data in implicit mode. Different firewall story, different ports. If your appliance speaks FTPS, we do FTPS. We don't do plain FTP across the internet."</p>
+<p>Dana exhales. "FTPS I can turn on. Got burned once when a firewall guy opened twenty-one and wondered why data hung — active mode, port twenty, whole mess. Where do you want me to land?"</p>
+<p>"From a <span class="term support" data-term="jump_host" data-tier="support">jump host</span> we control." Same goal — move a file safely. Talking the gotcha through keeps us from smearing the two names under schedule pressure.</p>
+<h2>HR's padlock and the contractor in a hotel</h2>
+<p>HR pings after standup. Benefits portal still loads as <span class="term exam" data-term="http" data-tier="exam">HTTP</span> on 80. People typing open-enrollment into a page with no padlock. Marketing meant to fix it after benefits season. Benefits season is now.</p>
+<p>Web ops Slack is already half a meme about "we'll cert it after open enrollment." I open a <span class="term support" data-term="change_ticket" data-tier="support">change</span>: terminate <span class="term exam" data-term="https" data-tier="exam">HTTPS</span> on 443, redirect eighty to four-forty-three, renew the cert before Friday. HTTP is the cleartext twin. HTTPS is the one we keep. Someone drops a gif of a padlock. Desk humor.</p>
+<p>While that cooks, a contractor — Sam — wants <span class="term exam" data-term="rdp" data-tier="exam">Remote Desktop</span> from a Seattle hotel to a finance workstation on 3389. He is polite and late for a deliverable.</p>
+<p>"I only need the desktop for an hour," Sam says. "Hotel Wi-Fi, my laptop, their machine. Port's <span class="term exam" data-term="tcp" data-tier="exam">TCP</span> 3389, right? Last client just whitelisted my home IP and called it done."</p>
+<p>I feel the flashcard reflex and almost draft a temporary allow.</p>
+<p>Jules is already in the thread. "Read the request back as a decision, Ethan."</p>
 <p>"Allow RDP from any to finance-WS-14 on 3389/TCP."</p>
-<p>"That's an invitation," she says. "Modern RDP can encrypt the session and still be a ransomware front door if it faces the world. VPN first. Then RDP only from the VPN pool. Better: jump box. Never raw 3389 to the internet."</p>
-<p>I rewrite the request. The firewall rule we finally submit is narrow on purpose: source = VPN address group, destination = jump host, port = 3389, protocol = TCP, action = allow; everything else to that workstation on 3389 = deny. Adjacent rules in the same change close the old mistakes people keep asking for — no SMB on 445 from outside the building (file shares stay inside; worms love that port), no gratuitous anything "just for this week."</p>
-<p>Jules initials the change. "That," she says, "is what the port numbers are <em>for</em>."</p>
-<h2>Ticket 4211 — Password reset that will not ticket</h2>
-<p>Early afternoon, a new hire in legal cannot bind to the directory for a password reset tool. The app is configured for LDAP on 389. It works on the wired desk VLAN and fails over guest Wi-Fi in ways that make no sense until I open the packet story: directory binds with passwords in cleartext, and our guest network is not a place we want that conversation.</p>
-<p>"Move the bind to LDAPS on 636," I tell the app owner. "TLS around the directory talk. Same queries, sealed path."</p>
-<p>While we test, the new hire's laptop also keeps failing Kerberos authentication to the domain — tickets rejected, clocks skewing. Help desk ambient reality: her machine has drifted fourteen minutes off because it never got a clean time sync after a long sleep. I point it at our internal NTP servers on 123/UDP, watch the clock jump, and Kerberos stops sulking. Time is not a nice-to-have when tickets are time-limited.</p>
-<p>On the same call she asks why her laptop "couldn't find the internet" until she rebooted. Classic desk noise: DHCP on 67/68 handed her a lease that morning, DNS on 53 is resolving names for everyone else, and her adapter has simply wedged. I renew the lease, flush the resolver cache, and send her back to onboarding. Not glamorous. The ports still matter — they are the quiet plumbing under every flashier ticket.</p>
-<h2>Ticket 4220 — Monitoring, printers, and the end of the shift</h2>
-<p>Network monitoring opens the last real ticket of the day. They want to poll a stack of access switches with SNMP using a community string of <code>public</code> — the default everyone knows — over 161/UDP, traps on 162. I can see the cleartext community riding every poll.</p>
-<p>"We can poll," I say, "but not like that. Turn up SNMPv3 with auth and privacy. Same ports if we keep the defaults, different trust model. No more community strings as passwords shouted down the hallway."</p>
-<p>Logging is the twin problem. Several closets still forward syslog in cleartext to the collector on 514/UDP. Jules already filed the long-term fix; I just have to stop a technician from opening 514 from the guest SSID "for convenience." We steer him to syslog over TLS on 6514/TCP so the log stream itself is not another cleartext gossip channel.</p>
-<p>VPN and network-device login questions stack on the same ticket thread. Remote users hitting the concentrator authenticate through RADIUS — 1812 for auth, 1813 for accounting — while the network team prefers TACACS+ on 49/TCP for switch and firewall administrator sessions because it encrypts the full payload and splits authz from authentication cleanly. I do not need to configure either from the desk; I need to know which ports the firewall change should name when someone asks for "AAA access" as if that were one number.</p>
-<p>Last ping of the shift: a facilities tech wants to push printer firmware with TFTP from his laptop on the user VLAN. No auth, 69/UDP, tiny and trusting. I almost let him "just this once." Then I picture the cover test Jules uses on my prose and on my changes alike — if you strip the excuses, what remains?</p>
-<p>"Trusted VLAN only," I say. "Management segment, short window, then close it. TFTP does not cross a perimeter and it does not live on the desk VLAN next to people browsing the web."</p>
-<p>He moves to the staging switch we keep for that purpose. Firmware lands. Port closed.</p>
+<p>"Sam needs the desktop," Jules says. "He does not need a hotel network to have a straight line to finance. Our insurer's questionnaire asks whether 3389 faces the world — that's how <span class="term support" data-term="ransomware" data-tier="support">ransomware</span> talks show up in renewals, not in movie plots. Talk him through the path we actually use."</p>
+<p>I call Sam. "<span class="term support" data-term="vpn" data-tier="support">VPN</span> first, into our pool. Then RDP only from there. Better: a <span class="term support" data-term="jump_host" data-tier="support">jump box</span>. We don't open raw 3389 to the internet — not even for an hour. Same reason we don't hang <span class="term exam" data-term="smb" data-tier="exam">SMB</span> on 445 outside the building. File shares stay inside; worms love that port and the insurance people know the number too."</p>
+<p>Sam groans, then softens. "VPN I already have from the last gig. Jump box is fine if someone sends the name. Honestly nicer than hoping hotel Wi-Fi is friendly."</p>
+<p>The <span class="term exam" data-term="firewall_rule" data-tier="exam">firewall rule</span> we submit is narrow on purpose: source = VPN address group, destination = jump host, port = 3389, protocol = TCP, allow; everything else to that workstation on 3389 = deny.</p>
+<p>Jules initials it. "That is what the port numbers are <em>for</em>."</p>
+<h2>The new hire, the directory, and the quiet plumbing</h2>
+<p>Early afternoon. New hire in legal — Lena — cannot <span class="term support" data-term="directory_bind" data-tier="support">bind</span> to the directory for a password-reset tool. The app is on <span class="term exam" data-term="ldap" data-tier="exam">LDAP</span> on 389. It works on the wired desk VLAN and fails over <span class="term support" data-term="guest_wifi" data-tier="support">guest Wi-Fi</span>.</p>
+<p>"I sat in the lobby because the desk wasn't ready," Lena says. "Now the reset tool hates me. At my last internship they just said 'use guest, it's fine.'"</p>
+<p>"Guest isn't where we want directory binds with passwords in cleartext," I say. "We move the bind to <span class="term exam" data-term="ldaps" data-tier="exam">LDAPS</span> on 636. TLS around the directory talk. Same queries, sealed path."</p>
+<p>While we test, her laptop also fails <span class="term exam" data-term="kerberos" data-tier="exam">Kerberos</span> to the <span class="term support" data-term="domain" data-tier="support">domain</span> — tickets rejected. Clocks skewing. Fourteen minutes off after a long sleep.</p>
+<p>Jules rolls by with a granola bar. "Home lab tip that became a desk tip: I once spent a Sunday convinced I'd broken Active Directory. Clock was wrong. Kerberos does not forgive."</p>
+<p>I point Lena at our internal <span class="term exam" data-term="ntp" data-tier="exam">NTP</span> on 123/<span class="term exam" data-term="udp" data-tier="exam">UDP</span>. The clock jumps. Kerberos stops sulking.</p>
+<p>She asks why the laptop "couldn't find the internet" until a reboot earlier. Classic desk noise under the directory work: <span class="term exam" data-term="dhcp" data-tier="exam">DHCP</span> on 67/68 handed a <span class="term support" data-term="dhcp_lease" data-tier="support">lease</span> that morning, <span class="term exam" data-term="dns" data-tier="exam">DNS</span> on 53 resolves for everyone else, her adapter wedged. We renew the lease, flush the <span class="term support" data-term="resolver_cache" data-tier="support">resolver cache</span>, and send her back to onboarding. Not glamorous. Still a conversation — guest and cleartext directory do not share a room, and the quiet ports still matter.</p>
+<h2>Monitoring, AAA, and the community everyone knows</h2>
+<p>Network monitoring opens a ticket that looks routine. Dee wants to poll access switches with <span class="term exam" data-term="snmp" data-tier="exam">SNMP</span> using a <span class="term support" data-term="community_string" data-tier="support">community string</span> of <code>public</code> — the default everyone knows — over 161/UDP, traps on 162.</p>
+<p>"It's what the vendor template ships," Dee says. "We just need graphs before the weekend change window. I still have a Raspberry Pi at home that answers to <code>public</code>. Don't tell Jules."</p>
+<p>"Jules already knows," Jules says from two cubes over, without turning around. "We can poll. Not with <code>public</code> in cleartext. Turn up <span class="term exam" data-term="snmpv3" data-tier="exam">SNMPv3</span> with auth and privacy. Same ports if we keep the defaults. Different trust model. I found <code>public</code> on a customer's core once during an after-hours walkthrough — felt like finding the spare key under the mat."</p>
+<p>Dee mutters about templates, then asks for the v3 checklist. Jules drops it in the channel without commentary.</p>
+<p>Logging is the twin habit. Closets still forward <span class="term exam" data-term="syslog" data-tier="exam">syslog</span> in cleartext to the collector on 514/UDP. A technician — Marco — asks to open 514 from the guest SSID so he can finish a closet without walking upstairs.</p>
+<p>"For convenience," Marco says. "I used to debug printers that way at my last MSP. Guest, syslog, done."</p>
+<p>"Convenience for you is cleartext logs on guest," I say. "Use <span class="term exam" data-term="syslog_tls" data-tier="exam">syslog over TLS</span> on 6514/TCP. Jules already filed the long-term fix; this is the path that matches it."</p>
+<p>He takes the upstairs walk. Grumpy. On the way he mutters that 6514 is "the one I always forget on flashcards." Same.</p>
+<p>VPN and device-login questions stack on the same thread. Remote users hit the <span class="term support" data-term="concentrator" data-tier="support">concentrator</span> through <span class="term exam" data-term="radius" data-tier="exam">RADIUS</span> — 1812 for auth, 1813 for accounting. Network prefers <span class="term exam" data-term="tacacs" data-tier="exam">TACACS+</span> on 49/TCP for switch and firewall admin sessions because it encrypts the full payload and splits <span class="term support" data-term="authz" data-tier="support">authz</span> from authentication cleanly.</p>
+<p>"People say <span class="term support" data-term="aaa" data-tier="support">AAA</span> like it's one port," Jared drops into the thread, still riding his SSH win. "RADIUS for the VPN crowd, TACACS for us touching the boxes. I mixed them up for a year."</p>
+<p>I do not configure either from the desk. I name the ports when someone asks. The work is naming the replacement while they are still on the line — templates, shortcuts, and the stories attached to them.</p>
+<h2>TFTP and the printer that will not wait</h2>
+<p>Last real ping of the shift. Facilities tech — Owen — needs printer firmware. He wants <span class="term exam" data-term="tftp" data-tier="exam">TFTP</span> from his laptop on the user VLAN. No auth. 69/UDP. Tiny and trusting.</p>
+<p>"MAX leaves in twenty and the printer is dead," Owen says. "Just this once from here. I PXE-boot lab gear with TFTP at home all the time — it's fine if you know the room."</p>
+<p>"Trusted VLAN only," I say. "Management segment, short window, then close it. TFTP does not cross a <span class="term support" data-term="perimeter" data-tier="support">perimeter</span> and it does not live on the desk VLAN next to people browsing the web. Home lab room is a room. This floor is not."</p>
+<p>Owen looks at the clock, then at me. "Staging switch still up? That's the one we used for the badge reader flash last month."</p>
+<p>"Still up."</p>
+<p>He moves. Firmware lands. Port closed. He still catches the MAX. In the ticket note he writes <em>staging only — Owen knows why now</em>, which is more honest than most of my notes from week one.</p>
 <h2>Closing the queue</h2>
-<p>At 5:40 the queue is down to noise. I pull the index cards out of the drawer and spread them on the desk — Telnet beside SSH, HTTP beside HTTPS, FTP beside the two different answers that are not the same, POP and IMAP beside their TLS twins, LDAP beside LDAPS, SNMP beside v3, syslog beside 6514. The numbers have not changed since breakfast. What has changed is the shape of the question.</p>
-<p>Jules pauses at my cube on her way out, raincoat already on, bike lights clipped to the strap.</p>
+<p>5:40. Queue down to noise. Index cards on the desk — Telnet beside SSH, HTTP beside HTTPS, FTP beside two answers that are not the same, POP and IMAP beside their TLS twins, LDAP beside LDAPS, SNMP beside v3, syslog beside 6514. The numbers have not changed since breakfast. The stories have.</p>
+<p>Jules pauses at my cube, raincoat on, bike lights clipped to the strap.</p>
 <p>"How many ports did you memorize today?"</p>
-<p>"None," I say. "I decided a few."</p>
-<p>She almost smiles. "Good. Keep the cards if they help you start. Throw them away when the ticket already knows what to ask."</p>
-<p>I lock the drawer, badge-swipe into the rain, and walk toward the MAX. Portland is still raining. The cards are still in the drawer. Tomorrow the queue fills again — and this time I know to ask which decision, not which number.</p>
-</article>
-</main>
-<aside><h3>Glossary</h3><div id="term-count"></div><div class="term-list" id="term-list"></div></aside>
+<p>"None," I say. "I collected a few war stories and made a few swaps."</p>
+<p>She almost smiles. "Good. Keep the cards if they help you start. Throw them away when the person on the line already knows what they need — and you know what to replace."</p>
+<p>I lock the drawer, badge-swipe into the rain, and walk toward the MAX. Portland is still raining. Tomorrow the queue fills again — and this time I know to ask which decision, not which number.</p>
+    </article>
+  </main>
+
+  <aside>
+    <h3>Glossary</h3>
+    <div class="sidebar-meta" id="term-count"></div>
+    <div class="legend">
+      <span class="lg-exam">Exam</span>
+      <span class="lg-support">Support</span>
+    </div>
+    <div class="filter-bar" role="group" aria-label="Tier filter">
+      <button type="button" id="filter-exam" class="active" data-filter="exam">Exam only</button>
+      <button type="button" id="filter-all" data-filter="all">All</button>
+    </div>
+    <input type="text" id="search-box" placeholder="Filter terms…" autocomplete="off">
+    <div class="term-list" id="term-list"></div>
+    <div class="detail-panel empty" id="detail-panel">Select a term to see definition, tags, and refs.</div>
+  </aside>
 </div>
-<script>
-const terms = {};
-const items = document.querySelectorAll('.term');
-items.forEach(e => { const id=e.dataset.term; if(!terms[id]) terms[id]={id,title:id,definition:'See glossary.yaml for the full definition.'}; });
-const list=document.getElementById('term-list');
-Object.values(terms).sort((a,b)=>a.title.localeCompare(b.title)).forEach(t=>{const d=document.createElement('div'); d.className='term-item'; d.textContent=t.title; list.appendChild(d);});
-document.getElementById('term-count').textContent='Highlighted terms';
+
+<div id="tooltip" role="tooltip">
+  <div class="tt-tier" id="tt-tier"></div>
+  <div class="tt-title" id="tt-title"></div>
+  <div class="tt-body" id="tt-body"></div>
+  <div class="tt-context" id="tt-context"></div>
+</div>
+
+<script type="application/json" id="glossary-data">
+{
+  "aaa": {
+    "id": "aaa",
+    "title": "AAA",
+    "definition": "Authentication, Authorization, and Accounting — proving identity, deciding what you may do, and logging what you did.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "aaa"
+    ],
+    "refs": []
+  },
+  "authz": {
+    "id": "authz",
+    "title": "Authorization (authz)",
+    "definition": "What an authenticated user or device is allowed to do (distinct from authentication).",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "aaa"
+    ],
+    "refs": []
+  },
+  "change_ticket": {
+    "id": "change_ticket",
+    "title": "Change (change ticket)",
+    "definition": "Tracked request to modify production systems (firewall rules, certs, configs) with review/approval.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "ops"
+    ],
+    "refs": []
+  },
+  "cleartext": {
+    "id": "cleartext",
+    "title": "Cleartext",
+    "definition": "Data sent without encryption so anyone on the path can read or alter it, including credentials.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "security"
+    ],
+    "refs": []
+  },
+  "community_string": {
+    "id": "community_string",
+    "title": "Community string",
+    "definition": "A shared secret in SNMPv1/v2c that acts like a password and is sent in cleartext.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "monitor",
+      "security"
+    ],
+    "refs": []
+  },
+  "dhcp": {
+    "id": "dhcp",
+    "title": "DHCP (67/68/UDP)",
+    "definition": "Assigns IP configuration. Server listens on 67; client on 68.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "network"
+    ],
+    "refs": []
+  },
+  "dhcp_lease": {
+    "id": "dhcp_lease",
+    "title": "DHCP lease",
+    "definition": "Temporary IP configuration handed out by DHCP for a limited time.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "refs": []
+  },
+  "directory_bind": {
+    "id": "directory_bind",
+    "title": "Directory bind",
+    "definition": "An application authenticating/connecting to a directory service (like LDAP) to look up or validate accounts.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "directory"
+    ],
+    "refs": []
+  },
+  "dns": {
+    "id": "dns",
+    "title": "DNS (53/UDP/TCP)",
+    "definition": "Resolves names to addresses. UDP 53 for normal lookups; TCP 53 for zone transfers and large responses. Classic DNS is unencrypted.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "name",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "domain": {
+    "id": "domain",
+    "title": "Domain",
+    "definition": "An administrative realm (often Active Directory) that shares authentication and policy.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "directory"
+    ],
+    "refs": []
+  },
+  "enable_password": {
+    "id": "enable_password",
+    "title": "Enable password",
+    "definition": "Privileged password on network gear that unlocks administrative (enable) mode.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "refs": []
+  },
+  "firewall": {
+    "id": "firewall",
+    "title": "Firewall",
+    "definition": "Device or software that allows or denies traffic based on rules (addresses, ports, protocols).",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "network",
+      "ops"
+    ],
+    "refs": []
+  },
+  "firewall_rule": {
+    "id": "firewall_rule",
+    "title": "Firewall rule (ports/protocols)",
+    "definition": "An allow or deny decision keyed to source, destination, port, and protocol — the operational place Security+ port knowledge gets used.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "ops"
+    ],
+    "refs": []
+  },
+  "ftp": {
+    "id": "ftp",
+    "title": "FTP (20/21/TCP)",
+    "definition": "File transfer with cleartext commands and credentials. Port 21 is control; 20 is active-mode data. Replace with SFTP or FTPS.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "file",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "ftps": {
+    "id": "ftps",
+    "title": "FTPS (989/990/TCP)",
+    "definition": "FTP wrapped in TLS (implicit mode commonly 990 control / 989 data). Not the same as SFTP.",
+    "context": "Classic FTP wrapped in TLS; different ports and firewall story than SFTP.",
+    "tier": "exam",
+    "tags": [
+      "file",
+      "secure"
+    ],
+    "refs": [
+      "CompTIA Security+ SY0-701 — secure file transfer alternatives to FTP"
+    ]
+  },
+  "guest_wifi": {
+    "id": "guest_wifi",
+    "title": "Guest Wi-Fi",
+    "definition": "Segmented wireless network for visitors; should not carry sensitive cleartext directory or admin traffic.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "refs": []
+  },
+  "http": {
+    "id": "http",
+    "title": "HTTP (80/TCP)",
+    "definition": "Cleartext web protocol. Replaced in production by HTTPS.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "web",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "https": {
+    "id": "https",
+    "title": "HTTPS (443/TCP)",
+    "definition": "HTTP secured with TLS. Default for modern web traffic.",
+    "context": "Use instead of cleartext HTTP for any page that takes credentials or personal data.",
+    "tier": "exam",
+    "tags": [
+      "web",
+      "secure"
+    ],
+    "refs": [
+      "CompTIA Security+ SY0-701 — implement secure protocols (web)"
+    ]
+  },
+  "imap": {
+    "id": "imap",
+    "title": "IMAP (143/TCP)",
+    "definition": "Server-side mailbox access in cleartext. Secure version is IMAPS on 993.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "email",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "imaps": {
+    "id": "imaps",
+    "title": "IMAPS (993/TCP)",
+    "definition": "IMAP wrapped in TLS — keeps mail on the server with encryption in transit.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "email",
+      "secure"
+    ],
+    "refs": []
+  },
+  "implicit_tls": {
+    "id": "implicit_tls",
+    "title": "Implicit TLS",
+    "definition": "Wrapping a protocol in TLS from the first byte (e.g. SMTPS 465, FTPS 990) rather than upgrading mid-session with STARTTLS.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "security"
+    ],
+    "refs": []
+  },
+  "jump_host": {
+    "id": "jump_host",
+    "title": "Jump host / jump box",
+    "definition": "A hardened intermediate server you remote into first, then reach internal systems from there.",
+    "context": "Intermediate hop so workstations are not directly reachable from remote clients.",
+    "tier": "support",
+    "tags": [
+      "support",
+      "remote",
+      "network"
+    ],
+    "refs": []
+  },
+  "kerberos": {
+    "id": "kerberos",
+    "title": "Kerberos (88/TCP/UDP)",
+    "definition": "Ticket-based authentication used by Active Directory. Issues time-limited tickets instead of sending reusable passwords repeatedly.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "directory"
+    ],
+    "refs": []
+  },
+  "key_auth": {
+    "id": "key_auth",
+    "title": "Key authentication",
+    "definition": "Logging in with a cryptographic key pair instead of (or in addition to) a password.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "security"
+    ],
+    "refs": []
+  },
+  "ldap": {
+    "id": "ldap",
+    "title": "LDAP (389/TCP/UDP)",
+    "definition": "Directory lookups and authentication in cleartext. Secure version is LDAPS on 636.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "directory",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "ldaps": {
+    "id": "ldaps",
+    "title": "LDAPS (636/TCP)",
+    "definition": "LDAP wrapped in TLS.",
+    "context": "Directory binds with passwords should not ride cleartext LDAP on untrusted segments.",
+    "tier": "exam",
+    "tags": [
+      "directory",
+      "secure"
+    ],
+    "refs": [
+      "CompTIA Security+ SY0-701 — implement secure protocols (directory services)"
+    ]
+  },
+  "msp": {
+    "id": "msp",
+    "title": "MSP",
+    "definition": "Managed Service Provider; a company that runs IT support for other businesses.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "desk"
+    ],
+    "refs": []
+  },
+  "perimeter": {
+    "id": "perimeter",
+    "title": "Network perimeter",
+    "definition": "Boundary between trusted internal networks and untrusted external networks.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "refs": []
+  },
+  "ntp": {
+    "id": "ntp",
+    "title": "NTP (123/UDP)",
+    "definition": "Synchronizes clocks. Accurate time matters for logs, Kerberos tickets, and certificate validation.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "network"
+    ],
+    "refs": []
+  },
+  "open_relay": {
+    "id": "open_relay",
+    "title": "Open relay",
+    "definition": "A mail server that accepts and forwards mail from anyone; abused by spammers.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "email"
+    ],
+    "refs": []
+  },
+  "pop3": {
+    "id": "pop3",
+    "title": "POP3 (110/TCP)",
+    "definition": "Downloads mail to the client in cleartext. Secure version is POP3S on 995.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "email",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "pop3s": {
+    "id": "pop3s",
+    "title": "POP3S (995/TCP)",
+    "definition": "POP3 wrapped in TLS.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "email",
+      "secure"
+    ],
+    "refs": []
+  },
+  "port": {
+    "id": "port",
+    "title": "Port",
+    "definition": "A 16-bit number (0–65535) that multiplexes traffic to a specific service or process on a host.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "basics"
+    ],
+    "refs": []
+  },
+  "protocol": {
+    "id": "protocol",
+    "title": "Protocol",
+    "definition": "A formal set of message formats and rules that networked systems use to exchange data.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "basics"
+    ],
+    "refs": []
+  },
+  "radius": {
+    "id": "radius",
+    "title": "RADIUS (1812/1813/UDP)",
+    "definition": "AAA for network access. 1812 authentication; 1813 accounting.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "aaa"
+    ],
+    "refs": []
+  },
+  "ransomware": {
+    "id": "ransomware",
+    "title": "Ransomware",
+    "definition": "Malware that encrypts systems or data and demands payment; internet-exposed remote desktop is a common entry.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "security"
+    ],
+    "refs": []
+  },
+  "rdp": {
+    "id": "rdp",
+    "title": "RDP (3389/TCP)",
+    "definition": "Microsoft Remote Desktop. Encrypted in modern use, but Internet-exposed RDP is a leading ransomware entry — keep it behind a VPN.",
+    "context": "Do not expose raw 3389 to the internet; prefer VPN then jump host.",
+    "tier": "exam",
+    "tags": [
+      "remote"
+    ],
+    "refs": [
+      "CompTIA Security+ SY0-701 — firewall ports/protocols; secure remote access"
+    ]
+  },
+  "resolver_cache": {
+    "id": "resolver_cache",
+    "title": "Resolver cache",
+    "definition": "Local store of recent DNS answers; flushing it forces fresh lookups.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "refs": []
+  },
+  "sftp": {
+    "id": "sftp",
+    "title": "SFTP (22/TCP)",
+    "definition": "File transfer tunneled inside SSH. Different protocol from FTP; uses port 22, not 20/21.",
+    "context": "Not the same as FTPS — file transfer inside SSH, usually port 22.",
+    "tier": "exam",
+    "tags": [
+      "file",
+      "secure"
+    ],
+    "refs": [
+      "CompTIA Security+ SY0-701 — secure file transfer alternatives to FTP"
+    ]
+  },
+  "smb": {
+    "id": "smb",
+    "title": "SMB (445/TCP)",
+    "definition": "Windows file and printer sharing. Never expose to the Internet; a frequent worm and ransomware path.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "file"
+    ],
+    "refs": []
+  },
+  "smtp": {
+    "id": "smtp",
+    "title": "SMTP (25/TCP)",
+    "definition": "Server-to-server mail relay, historically cleartext. Clients should submit on 587 or 465 instead.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "email",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "smtp_submission": {
+    "id": "smtp_submission",
+    "title": "SMTP submission (587/TCP)",
+    "definition": "Authenticated client mail submission, typically upgraded with STARTTLS. Modern send port.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "email",
+      "secure"
+    ],
+    "refs": []
+  },
+  "smtps": {
+    "id": "smtps",
+    "title": "SMTPS (465/TCP)",
+    "definition": "SMTP wrapped in TLS from the first byte (implicit TLS).",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "email",
+      "secure"
+    ],
+    "refs": []
+  },
+  "snmp": {
+    "id": "snmp",
+    "title": "SNMP (161/162/UDP)",
+    "definition": "Device monitoring. 161 polls agents; 162 receives traps. v1/v2c send community strings in cleartext — prefer SNMPv3.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "monitor",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "snmpv3": {
+    "id": "snmpv3",
+    "title": "SNMPv3",
+    "definition": "SNMP with authentication and encryption. Same ports as classic SNMP, but credentials are no longer cleartext community strings.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "monitor",
+      "secure"
+    ],
+    "refs": []
+  },
+  "ssh": {
+    "id": "ssh",
+    "title": "SSH (22/TCP)",
+    "definition": "Encrypted remote shell and tunnel. Also carries SFTP and SCP. The standard Telnet replacement.",
+    "context": "Secure replacement for cleartext Telnet on remote admin paths.",
+    "tier": "exam",
+    "tags": [
+      "remote",
+      "secure"
+    ],
+    "refs": [
+      "CompTIA Security+ SY0-701 — implement secure protocols (remote access)"
+    ]
+  },
+  "starttls": {
+    "id": "starttls",
+    "title": "STARTTLS",
+    "definition": "A command that upgrades an existing cleartext connection to TLS mid-session (common on mail submission).",
+    "context": "Upgrades an existing cleartext mail session mid-stream (common on submission port 587).",
+    "tier": "support",
+    "tags": [
+      "support",
+      "email",
+      "security"
+    ],
+    "refs": []
+  },
+  "syslog": {
+    "id": "syslog",
+    "title": "Syslog (514/UDP)",
+    "definition": "Cleartext log forwarding to a collector. Secure with syslog over TLS on 6514.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "monitor",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "syslog_tls": {
+    "id": "syslog_tls",
+    "title": "Syslog over TLS (6514/TCP)",
+    "definition": "Syslog carried inside TLS so log data stays confidential and intact in transit.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "monitor",
+      "secure"
+    ],
+    "refs": []
+  },
+  "tacacs": {
+    "id": "tacacs",
+    "title": "TACACS+ (49/TCP)",
+    "definition": "Cisco AAA protocol that encrypts the full payload and separates authentication, authorization, and accounting.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "aaa"
+    ],
+    "refs": []
+  },
+  "tcp": {
+    "id": "tcp",
+    "title": "TCP",
+    "definition": "Connection-oriented transport that sequences and acknowledges data so lost packets can be recovered.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "transport"
+    ],
+    "refs": []
+  },
+  "telnet": {
+    "id": "telnet",
+    "title": "Telnet (23/TCP)",
+    "definition": "Remote shell that sends everything — including passwords — in cleartext. Replace with SSH.",
+    "context": "Do not allow on management paths; replace with SSH.",
+    "tier": "exam",
+    "tags": [
+      "remote",
+      "insecure"
+    ],
+    "refs": [
+      "CompTIA Security+ SY0-701 — insecure protocols / secure alternatives"
+    ]
+  },
+  "tftp": {
+    "id": "tftp",
+    "title": "TFTP (69/UDP)",
+    "definition": "Tiny file transfer with no authentication. Acceptable only on trusted networks for device configs or PXE — never across a perimeter.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "file",
+      "insecure"
+    ],
+    "refs": []
+  },
+  "tls": {
+    "id": "tls",
+    "title": "TLS",
+    "definition": "Transport Layer Security — the encryption layer that wraps many application protocols into secure versions.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "security"
+    ],
+    "refs": []
+  },
+  "udp": {
+    "id": "udp",
+    "title": "UDP",
+    "definition": "Connectionless transport that sends datagrams without guaranteed delivery; used when speed or simplicity matters more than recovery.",
+    "context": null,
+    "tier": "exam",
+    "tags": [
+      "transport"
+    ],
+    "refs": []
+  },
+  "vlan": {
+    "id": "vlan",
+    "title": "VLAN",
+    "definition": "Virtual LAN; a logical network segment that isolates traffic without separate physical wiring.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "refs": []
+  },
+  "vpn": {
+    "id": "vpn",
+    "title": "VPN",
+    "definition": "Virtual Private Network; encrypted tunnel into the private network so remote access is not exposed raw to the internet.",
+    "context": "Encrypted tunnel into the private network before using internal protocols like RDP.",
+    "tier": "support",
+    "tags": [
+      "support",
+      "network",
+      "security"
+    ],
+    "refs": []
+  },
+  "concentrator": {
+    "id": "concentrator",
+    "title": "VPN concentrator",
+    "definition": "Device/service that terminates many VPN tunnels for remote users.",
+    "context": null,
+    "tier": "support",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "refs": []
+  }
+}
 </script>
+
+<script>
+(function () {
+  const glossary = JSON.parse(document.getElementById('glossary-data').textContent);
+  const tooltip = document.getElementById('tooltip');
+  const ttTier = document.getElementById('tt-tier');
+  const ttTitle = document.getElementById('tt-title');
+  const ttBody = document.getElementById('tt-body');
+  const ttContext = document.getElementById('tt-context');
+  const termList = document.getElementById('term-list');
+  const searchBox = document.getElementById('search-box');
+  const termCount = document.getElementById('term-count');
+  const detailPanel = document.getElementById('detail-panel');
+  const filterExamBtn = document.getElementById('filter-exam');
+  const filterAllBtn = document.getElementById('filter-all');
+
+  let filterMode = 'exam'; // 'exam' | 'all'
+  let selectedId = null;
+
+  function isMarkVisible(tier) {
+    if (filterMode === 'all') return true;
+    return tier === 'exam';
+  }
+
+  function tooltipBody(item) {
+    // STRICT: definition + optional context only — never refs/tags/sources/related
+    let text = item.definition || '';
+    if (item.context) {
+      return { def: text, ctx: item.context };
+    }
+    return { def: text, ctx: '' };
+  }
+
+  function showTooltip(el, e) {
+    const id = el.getAttribute('data-term');
+    const tier = el.getAttribute('data-tier');
+    if (!isMarkVisible(tier)) return;
+    const item = glossary[id];
+    if (!item) return;
+    const parts = tooltipBody(item);
+    ttTier.textContent = item.tier === 'exam' ? 'Exam' : 'Support';
+    ttTier.className = 'tt-tier ' + item.tier;
+    ttTitle.textContent = item.title || id;
+    ttBody.textContent = parts.def;
+    if (parts.ctx) {
+      ttContext.textContent = parts.ctx;
+      ttContext.style.display = 'block';
+    } else {
+      ttContext.textContent = '';
+      ttContext.style.display = 'none';
+    }
+    tooltip.className = item.tier === 'support' ? 'tier-support' : '';
+    tooltip.style.display = 'block';
+    placeTooltip(e);
+  }
+
+  function placeTooltip(e) {
+    const pad = 14;
+    let x = e.pageX + pad;
+    let y = e.pageY + pad;
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = y + 'px';
+    const rect = tooltip.getBoundingClientRect();
+    if (rect.right > window.innerWidth - 8) {
+      x = e.pageX - rect.width - pad;
+      tooltip.style.left = Math.max(8, x) + 'px';
+    }
+    if (rect.bottom > window.innerHeight - 8) {
+      y = e.pageY - rect.height - pad;
+      tooltip.style.top = Math.max(window.scrollY + 8, y) + 'px';
+    }
+  }
+
+  function hideTooltip() {
+    tooltip.style.display = 'none';
+  }
+
+  document.querySelectorAll('#narrative .term').forEach(function (el) {
+    el.addEventListener('mouseenter', function (e) { showTooltip(el, e); });
+    el.addEventListener('mousemove', function (e) {
+      if (tooltip.style.display === 'block') placeTooltip(e);
+    });
+    el.addEventListener('mouseleave', hideTooltip);
+    el.addEventListener('click', function () {
+      selectTerm(el.getAttribute('data-term'), false);
+    });
+  });
+
+  function setFilter(mode) {
+    filterMode = mode;
+    document.body.classList.toggle('filter-exam-only', mode === 'exam');
+    filterExamBtn.classList.toggle('active', mode === 'exam');
+    filterAllBtn.classList.toggle('active', mode === 'all');
+    hideTooltip();
+    renderList(searchBox.value);
+  }
+
+  filterExamBtn.addEventListener('click', function () { setFilter('exam'); });
+  filterAllBtn.addEventListener('click', function () { setFilter('all'); });
+
+  function renderList(filter) {
+    filter = (filter || '').toLowerCase();
+    termList.innerHTML = '';
+    const keys = Object.keys(glossary).sort(function (a, b) {
+      return glossary[a].title.localeCompare(glossary[b].title);
+    }).filter(function (k) {
+      const t = glossary[k];
+      if (filterMode === 'exam' && t.tier !== 'exam') return false;
+      const hay = (t.title + ' ' + t.definition + ' ' + (t.tags || []).join(' ')).toLowerCase();
+      return !filter || hay.indexOf(filter) !== -1;
+    });
+
+    const totalVisible = Object.keys(glossary).filter(function (k) {
+      return filterMode === 'all' || glossary[k].tier === 'exam';
+    }).length;
+    termCount.textContent = 'Showing ' + keys.length + ' of ' + totalVisible +
+      (filterMode === 'exam' ? ' exam' : '') + ' terms';
+
+    keys.forEach(function (key) {
+      const item = glossary[key];
+      const div = document.createElement('div');
+      div.className = 'term-item' + (selectedId === key ? ' selected' : '');
+      div.setAttribute('data-id', key);
+      const titleSpan = document.createElement('span');
+      titleSpan.textContent = item.title;
+      const badge = document.createElement('span');
+      badge.className = 'badge ' + item.tier;
+      badge.textContent = item.tier;
+      div.appendChild(titleSpan);
+      div.appendChild(badge);
+      div.addEventListener('click', function () { selectTerm(key, true); });
+      termList.appendChild(div);
+    });
+  }
+
+  function selectTerm(id, scroll) {
+    selectedId = id;
+    const item = glossary[id];
+    if (!item) return;
+
+    document.querySelectorAll('.term-item').forEach(function (el) {
+      el.classList.toggle('selected', el.getAttribute('data-id') === id);
+    });
+
+    // Sidebar detail MAY show tier, tags, refs
+    let html = '<div class="d-tier ' + item.tier + '">' + item.tier + '</div>';
+    html += '<div class="d-title"></div>';
+    html += '<div class="d-def"></div>';
+    detailPanel.className = 'detail-panel';
+    detailPanel.innerHTML = html;
+    detailPanel.querySelector('.d-title').textContent = item.title;
+    detailPanel.querySelector('.d-def').textContent = item.definition || '';
+
+    if (item.context) {
+      const c = document.createElement('div');
+      c.className = 'd-context';
+      c.textContent = item.context;
+      detailPanel.appendChild(c);
+    }
+    if (item.tags && item.tags.length) {
+      const tg = document.createElement('div');
+      tg.className = 'd-tags';
+      tg.textContent = 'Tags: ' + item.tags.join(', ');
+      detailPanel.appendChild(tg);
+    }
+    if (item.refs && item.refs.length) {
+      const wrap = document.createElement('div');
+      wrap.className = 'd-refs';
+      const label = document.createElement('div');
+      label.textContent = 'Refs';
+      wrap.appendChild(label);
+      const ul = document.createElement('ul');
+      item.refs.forEach(function (r) {
+        const li = document.createElement('li');
+        li.textContent = r;
+        ul.appendChild(li);
+      });
+      wrap.appendChild(ul);
+      detailPanel.appendChild(wrap);
+    }
+
+    if (scroll) {
+      const matches = document.querySelectorAll('#narrative .term[data-term="' + CSS.escape(id) + '"]');
+      let target = null;
+      for (let i = 0; i < matches.length; i++) {
+        const t = matches[i].getAttribute('data-tier');
+        if (isMarkVisible(t)) { target = matches[i]; break; }
+      }
+      if (!target && matches.length) target = matches[0];
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        matches.forEach(function (m) {
+          if (!isMarkVisible(m.getAttribute('data-tier')) && filterMode === 'exam') return;
+          m.classList.add('flash');
+          setTimeout(function () { m.classList.remove('flash'); }, 1400);
+        });
+      }
+    }
+  }
+
+  searchBox.addEventListener('input', function (e) { renderList(e.target.value); });
+  renderList();
+})();
+</script>
+
 </body>
 </html>
