@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Narrative Kit</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-border: #334155;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 2rem 1.25rem;
+    }
+    .wrap { max-width: 640px; margin: 0 auto; }
+    h1 {
+      font-size: 1.75rem;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .lede {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--surface-border);
+    }
+    h2 {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin: 1.5rem 0 0.75rem;
+      font-weight: 700;
+    }
+    h2:first-of-type { margin-top: 0; }
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    a.card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    a.card:hover {
+      border-color: var(--primary);
+      background: #243044;
+    }
+    a.card .title {
+      display: block;
+      font-weight: 600;
+      color: #fff;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+    a.card .meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    footer {
+      margin-top: 2rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    footer code { color: var(--primary); }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.45rem; }
+      body { padding: 1.25rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Learning Narrative Kit</h1>
+    <p class="lede">Story-first study units. Source is markdown + YAML; these pages are generated HTML.</p>
+
+    <h2>ITM track</h2>
+    <ul>
+      <li>
+        <a class="card" href="itm310-vanguard-edge/">
+          <span class="title">The Goal of Vanguard Edge</span>
+          <span class="meta">ITM 310 operations systems · itm310-vanguard-edge</span>
+        </a>
+      </li>
+    </ul>
+
+    <h2>Portland Desk track</h2>
+    <ul>
+      <li>
+        <a class="card" href="secplus-ports-helpdesk/">
+          <span class="title">Portland Desk — The Port That Is Open</span>
+          <span class="meta">Security+ ports &amp; protocols · secplus-ports-helpdesk</span>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="secplus-auth-helpdesk/">
+          <span class="title">Portland Desk — Prove Who You Are</span>
+          <span class="meta">Security+ identity &amp; authentication · secplus-auth-helpdesk</span>
+        </a>
+      </li>
+    </ul>
+
+    <footer>Re-render with <code>python tools/render_unit.py examples/&lt;unit&gt;</code> then push <code>docs/</code>.</footer>
+  </div>
+</body>
+</html>
