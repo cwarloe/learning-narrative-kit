@@ -26,7 +26,29 @@ Interactive glosses (hover, sidebar) and review cards are optional layers for lo
 
 Marks in prose: `[[term_id|surface text]]`
 
-**Do not author chapters as HTML.** Render a preview when you want hovers / Exam-only / All (e.g. `examples/secplus-ports-helpdesk/build_preview.py`). Generated HTML is disposable.
+Do **not** author chapters as HTML. Render when you want hovers / Exam-only / All:
+
+```bash
+# Prefer the ports example venv (has PyYAML)
+examples/secplus-ports-helpdesk/.venv/bin/python tools/render_unit.py examples/itm310-vanguard-edge
+examples/secplus-ports-helpdesk/.venv/bin/python tools/render_unit.py examples/secplus-ports-helpdesk
+examples/secplus-ports-helpdesk/.venv/bin/python tools/render_unit.py examples/secplus-auth-helpdesk
+```
+
+That writes `docs/<unit_id>/index.html` (from `unit.yaml`’s `unit_id`). Local scratch HTML under `examples/` stays gitignored; **`docs/` is committed** for GitHub Pages.
+
+## GitHub Pages
+
+Repo Settings → Pages → Source: **Deploy from a branch** → Branch: **main** → folder: **/docs** (once).
+
+Expected URLs after Pages is enabled:
+
+- https://cwarloe.github.io/learning-narrative-kit/
+- https://cwarloe.github.io/learning-narrative-kit/itm310-vanguard-edge/
+- https://cwarloe.github.io/learning-narrative-kit/secplus-ports-helpdesk/
+- https://cwarloe.github.io/learning-narrative-kit/secplus-auth-helpdesk/
+
+Re-render + push updates the same URLs.
 
 ## Generation order (story-first)
 
@@ -35,12 +57,15 @@ Marks in prose: `[[term_id|surface text]]`
 3. Write `narrative.md` so each term earns its place.
 4. Attach short definitions in `glossary.yaml` (exam-faithful when studying a class).
 5. Run the authoring QA checklist in `schema/README.md` (cover test, density, tiers).
-6. Optionally render HTML and emit a review deck.
+6. Optionally render HTML (`tools/render_unit.py`) and emit a review deck.
 
 ## Specimens
 
 - `examples/itm310-vanguard-edge/` — ITM 310 class study narrative (markdown unit).
-- `examples/secplus-ports-helpdesk/` — Security+ ports help-desk precursor (*Portland Desk*). Rebuild HTML with `python build_preview.py` (PyYAML).
+- `examples/secplus-ports-helpdesk/` — Security+ ports help-desk precursor (*Portland Desk — The Port That Is Open*).
+- `examples/secplus-auth-helpdesk/` — Security+ identity/auth help-desk precursor (*Portland Desk — Prove Who You Are*).
+
+Validate: `python tools/validate_unit.py examples/<unit>` (see `tools/README.md`).
 
 ## Research
 
