@@ -158,3 +158,8 @@ Use this before calling a unit “done.” Drawn from kit research (see `researc
 8. **HTML secondary** — Markdown/YAML pass QA first; then render. Never author the chapter in HTML.
 
 **Exam tier** here means “on the study/exam list,” not a graded quiz inside the page.
+
+## Ship steps (agents / LLMs)
+
+Mechanical pipeline, landing-card reminder, and copy-paste prompt: see [`AGENTS.md`](../AGENTS.md) at the repo root. Portland Desk track canon: [`examples/PORTLAND_DESK.md`](../examples/PORTLAND_DESK.md).
+
