@@ -1,0 +1,280 @@
+bank_id: secplus-sy0-701-ir
+title: "Security+ SY0-701 — incident response (help-desk precursor)"
+source: "CompTIA Security+ SY0-701 objectives (incident response process; detection and analysis; containment, eradication, and recovery; post-incident activities)"
+terms:
+  # --- Event vs incident ---
+  - id: event
+    title: Event
+    definition: "An observable occurrence in a system or network — a login, alert, crash, or odd ticket — that may or may not be a security problem."
+    refs:
+      - "CompTIA Security+ SY0-701 — events vs incidents"
+    tags: [ir]
+    tier: exam
+  - id: security_incident
+    title: Security incident
+    definition: "A violation or imminent threat of violation of security policy, acceptable use, or standard security practices — not every scary ticket qualifies."
+    refs:
+      - "CompTIA Security+ SY0-701 — security incidents"
+    tags: [ir]
+    tier: exam
+  - id: incident_response
+    title: Incident response (IR)
+    definition: "Organized process for detecting, analyzing, containing, eradicating, recovering from, and learning from security incidents."
+    refs:
+      - "CompTIA Security+ SY0-701 — incident response"
+    tags: [ir]
+    tier: exam
+  - id: irp
+    title: Incident response plan (IRP)
+    definition: "Documented organization-wide plan that defines roles, criteria, escalation paths, and steps for handling incidents."
+    refs:
+      - "CompTIA Security+ SY0-701 — incident response plan"
+    tags: [ir]
+    tier: exam
+  - id: severity
+    title: Severity / priority classification
+    definition: "Ranking how bad an incident is (impact and urgency) so the right people respond at the right speed — criteria beat vibes."
+    refs:
+      - "CompTIA Security+ SY0-701 — incident classification / severity"
+    tags: [ir]
+    tier: exam
+
+  # --- Lifecycle ---
+  - id: preparation
+    title: Preparation
+    definition: "IR phase of building plans, playbooks, tools, contacts, and practice before an incident hits — readiness, not heroics."
+    refs:
+      - "CompTIA Security+ SY0-701 — preparation"
+    tags: [ir, lifecycle]
+    tier: exam
+  - id: detection_analysis
+    title: Detection and analysis
+    definition: "IR phase of spotting and validating that something is (or is not) an incident — triage alerts, tickets, and IoCs into a decision."
+    refs:
+      - "CompTIA Security+ SY0-701 — detection and analysis / identification"
+    tags: [ir, lifecycle]
+    tier: exam
+  - id: containment
+    title: Containment
+    definition: "IR phase of limiting damage and spread — stop the bleeding before you deep-dive or rebuild."
+    refs:
+      - "CompTIA Security+ SY0-701 — containment"
+    tags: [ir, lifecycle]
+    tier: exam
+  - id: short_term_containment
+    title: Short-term containment
+    definition: "Fast stopgap that buys time — isolate a host, block an account, cut a path — before longer fixes are ready."
+    refs:
+      - "CompTIA Security+ SY0-701 — short-term containment"
+    tags: [ir, containment]
+    tier: exam
+  - id: long_term_containment
+    title: Long-term containment
+    definition: "More durable controls that keep the business running while eradication and recovery are planned — temporary systems, hardened segments, monitoring."
+    refs:
+      - "CompTIA Security+ SY0-701 — long-term containment"
+    tags: [ir, containment]
+    tier: exam
+  - id: eradication
+    title: Eradication
+    definition: "Removing the cause — malware, backdoors, compromised accounts — so the threat is actually gone, not just quiet."
+    refs:
+      - "CompTIA Security+ SY0-701 — eradication"
+    tags: [ir, lifecycle]
+    tier: exam
+  - id: recovery
+    title: Recovery
+    definition: "Restoring systems and services to trusted operation after eradication — rebuild, restore, validate, and watch for reinfection."
+    refs:
+      - "CompTIA Security+ SY0-701 — recovery"
+    tags: [ir, lifecycle]
+    tier: exam
+  - id: lessons_learned
+    title: Lessons learned / post-incident review
+    definition: "After-action review that captures what happened, what worked, and what to change in plans, playbooks, and training."
+    refs:
+      - "CompTIA Security+ SY0-701 — lessons learned"
+    tags: [ir, lifecycle]
+    tier: exam
+
+  # --- Desk-facing IR tools ---
+  - id: playbook
+    title: Playbook
+    definition: "Step-by-step response guide for a known incident type (phishing, ransomware, account takeover) so responders do not invent process at 2am."
+    refs:
+      - "CompTIA Security+ SY0-701 — playbooks"
+    tags: [ir]
+    tier: exam
+  - id: runbook
+    title: Runbook
+    definition: "Operational procedure for a recurring task (isolate host, collect logs, reset credentials) — often the how-to companion to a playbook."
+    refs:
+      - "CompTIA Security+ SY0-701 — runbooks / procedures"
+    tags: [ir]
+    tier: exam
+  - id: escalation
+    title: Escalation
+    definition: "Handing an issue to a higher or more specialized team when criteria are met — with clean facts, not a Slack panic dump."
+    refs:
+      - "CompTIA Security+ SY0-701 — escalation"
+    tags: [ir]
+    tier: exam
+  - id: first_responder
+    title: First responder
+    definition: "First person or team to touch an incident — at many orgs the help desk is that first touch and must preserve options for IR."
+    refs:
+      - "CompTIA Security+ SY0-701 — first responders"
+    tags: [ir]
+    tier: exam
+  - id: csirt
+    title: CSIRT / IR team
+    definition: "Computer Security Incident Response Team (or equivalent IR team) — specialists who own analysis, forensics coordination, and incident command after escalation."
+    refs:
+      - "CompTIA Security+ SY0-701 — CSIRT / incident response team"
+    tags: [ir]
+    tier: exam
+  - id: tabletop
+    title: Tabletop exercise
+    definition: "Discussion-based practice walkthrough of an incident scenario — cheap preparation that finds gaps before a real ticket does."
+    refs:
+      - "CompTIA Security+ SY0-701 — tabletop exercises"
+    tags: [ir, preparation]
+    tier: exam
+
+  # --- Evidence / containment actions ---
+  - id: chain_of_custody
+    title: Chain of custody
+    definition: "Documented control of evidence — who had it, when, and what changed — so findings stay credible and you do not casually wipe a laptop IR still needs."
+    refs:
+      - "CompTIA Security+ SY0-701 — chain of custody"
+    tags: [ir, evidence]
+    tier: exam
+  - id: evidence
+    title: Evidence
+    definition: "Artifacts retained for investigation — logs, disk images, screenshots, tickets — collected carefully so they remain usable."
+    refs:
+      - "CompTIA Security+ SY0-701 — evidence collection"
+    tags: [ir, evidence]
+    tier: exam
+  - id: forensic_image
+    title: Forensic image
+    definition: "Bit-for-bit copy of storage for analysis — why IR may tell you not to power-cycle, reimage, or 'clean it up' before imaging."
+    refs:
+      - "CompTIA Security+ SY0-701 — forensic imaging / acquisition"
+    tags: [ir, evidence]
+    tier: exam
+  - id: ioc
+    title: Indicator of compromise (IoC)
+    definition: "Observable clue that compromise may have happened — odd domains, hashes, filenames, login patterns — that desk can document and escalate."
+    refs:
+      - "CompTIA Security+ SY0-701 — indicators of compromise"
+    tags: [ir, detection]
+    tier: exam
+  - id: quarantine
+    title: Quarantine
+    definition: "Isolating a file, email, or host into a restricted state so it cannot harm others while it is inspected or held."
+    refs:
+      - "CompTIA Security+ SY0-701 — quarantine"
+    tags: [ir, containment]
+    tier: exam
+  - id: isolation
+    title: Isolation
+    definition: "Separating a system from the network or peers to stop spread — pull the cable, disable Wi-Fi, or VLAN-park the host."
+    refs:
+      - "CompTIA Security+ SY0-701 — isolation"
+    tags: [ir, containment]
+    tier: exam
+  - id: legal_hold
+    title: Legal / litigation hold
+    definition: "Order to preserve relevant data and stop routine deletion because of potential or active legal matters — overrides casual cleanup."
+    refs:
+      - "CompTIA Security+ SY0-701 — legal hold / litigation hold"
+    tags: [ir, evidence]
+    tier: exam
+
+  # --- Comms / signal quality ---
+  - id: communication_plan
+    title: Communication plan
+    definition: "Who gets told what, when, and through which channel during an incident — so updates are controlled instead of chaotic."
+    refs:
+      - "CompTIA Security+ SY0-701 — incident communication"
+    tags: [ir]
+    tier: exam
+  - id: need_to_know
+    title: Need-to-know
+    definition: "Principle of sharing incident details only with people who require them to act — not blasting the whole company Slack."
+    refs:
+      - "CompTIA Security+ SY0-701 — need-to-know / least privilege of information"
+    tags: [ir]
+    tier: exam
+  - id: true_positive
+    title: True positive
+    definition: "Alert or finding that correctly identifies a real problem — signal worth escalating."
+    refs:
+      - "CompTIA Security+ SY0-701 — true positive"
+    tags: [ir, detection]
+    tier: exam
+  - id: false_positive
+    title: False positive
+    definition: "Alert or finding that looks bad but is not a real incident — noise that still needs a calm close-out, not a war room."
+    refs:
+      - "CompTIA Security+ SY0-701 — false positive"
+    tags: [ir, detection]
+    tier: exam
+  - id: siem
+    title: SIEM
+    definition: "Security information and event management — platform that aggregates and correlates logs/alerts so analysts can spot patterns tickets alone miss."
+    refs:
+      - "CompTIA Security+ SY0-701 — SIEM"
+    tags: [ir, detection]
+    tier: exam
+  - id: disaster_recovery
+    title: Disaster recovery (DR)
+    definition: "Restoring IT after major outage or disaster — related to continuity, but distinct from day-to-day security incident response."
+    context: "IR handles compromise and policy violations; DR handles 'the building flooded' scale recovery."
+    refs:
+      - "CompTIA Security+ SY0-701 — disaster recovery vs incident response"
+    tags: [ir, continuity]
+    tier: exam
+
+  # --- Support ---
+  - id: help_desk
+    title: Help desk
+    definition: "Front-line IT support that takes tickets, coaches users, and often acts as first touch on security signals."
+    tags: [support, desk]
+    tier: support
+  - id: ticket
+    title: Ticket
+    definition: "Tracked support request — the work unit the desk opens, updates, and closes; not automatically an incident."
+    tags: [support, desk]
+    tier: support
+  - id: on_call
+    title: On-call
+    definition: "Person scheduled to answer after-hours pages for ops or security escalations."
+    tags: [support, ops]
+    tier: support
+  - id: bridge_call
+    title: Bridge call
+    definition: "Shared conference line where responders sync during an active incident."
+    tags: [support, ops]
+    tier: support
+  - id: war_room
+    title: War room
+    definition: "Focused coordination space (physical or virtual) for an active high-severity incident — used sparingly, not for every alert."
+    tags: [support, ops]
+    tier: support
+  - id: p1
+    title: P1 / Sev-1
+    definition: "Slang for the highest priority severity class — biggest impact, fastest response expectations."
+    tags: [support, ops]
+    tier: support
+  - id: change_freeze
+    title: Change freeze
+    definition: "Temporary halt on non-essential changes so the environment stays stable during investigation or recovery."
+    tags: [support, ops]
+    tier: support
+  - id: soc
+    title: SOC
+    definition: "Security operations center — team that monitors alerts, investigates, and often sits next to or inside the IR path."
+    tags: [support, security]
+    tier: support

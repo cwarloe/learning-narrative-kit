@@ -1,0 +1,39 @@
+unit_id: secplus-ir-helpdesk
+title: "Portland Desk — When the Ticket Escalates"
+audience: "Someone studying Security+ incident response basics, or a NADF precursor for Ethan's help-desk years"
+purpose: "Weave SY0-701 incident response basics — event vs incident, IR lifecycle, containment before curiosity, evidence preservation, escalation to CSIRT, playbooks and lessons learned — into one help-desk shift so definitions become desk decisions."
+estimated_minutes: 24
+sources:
+  - CompTIA Security+ SY0-701 (incident response; detection and analysis; containment, eradication, recovery; lessons learned)
+  - Common SY0-701 IR study clusters that surface as help-desk tickets and escalations
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Security+ study targets — the primary study deck"
+  support: "Desk/ops jargon marked so a non-IT reader can hover for readability"
+review_filters:
+  - "Exam-only: cards with tier: exam"
+  - "All: exam + support cards (renderer may filter by tier)"
+tooltip_contract:
+  body: [definition, context]
+  exclude_from_hover: [refs, sources, related]
+  definition_style: "short 1–2 sentences; exam-faithful for tier exam, plain gloss for tier support"
+  context_style: "optional one clause when bare definition would not land mid-scene"
+constraints:
+  - Every glossary term appears at least once in a ticket or decision
+  - Story must pass the cover test (readable with marks hidden)
+  - Prefer IR decision beats over vocab parade
+  - Definitions stay exam-faithful; not every scary ticket is an incident
+  - Precursor tone: help desk as first touch, not CSIRT engineer narrative
+  - Present tense only; no foreshadowing of places or events the reader has not met
+  - Narrator may feel lost; reader must never be confused by unexplained references
+  - Two-tier glossary — tier exam for SY0-701 targets; tier support for desk jargon
+  - Do not mark Portlandia/flavor background (pannier, MAX, bike helmet, rain pants, coffee, cubes-as-furniture vibe); leave flavor unmarked on purpose
+  - No Priya or Harrowmere (Portland Desk rule)
+html_preview:
+  status: generated
+  build: "python tools/render_unit.py examples/secplus-ir-helpdesk"
+  pages: "docs/secplus-ir-helpdesk/index.html"
+  note: "Do not hand-edit HTML; narrative.md + glossary.yaml are source"
