@@ -1,0 +1,39 @@
+unit_id: secplus-crypto-helpdesk
+title: "Portland Desk — Trust on Paper"
+audience: "Someone studying Security+ cryptography / PKI basics, or a NADF precursor for Ethan's help-desk years"
+purpose: "Weave SY0-701 crypto basics that hit help-desk tickets — encryption vs hashing vs encoding, symmetric/asymmetric, signatures, certificates, CA/CSR, TLS errors users see — into one shift so definitions become desk decisions."
+estimated_minutes: 24
+sources:
+  - CompTIA Security+ SY0-701 (cryptography; public key infrastructure; certificates; hashing)
+  - Common SY0-701 crypto / PKI study clusters that surface as user-facing tickets
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Security+ study targets — the primary study deck"
+  support: "Desk/browser jargon marked so a non-IT reader can hover for readability"
+review_filters:
+  - "Exam-only: cards with tier: exam"
+  - "All: exam + support cards (renderer may filter by tier)"
+tooltip_contract:
+  body: [definition, context]
+  exclude_from_hover: [refs, sources, related]
+  definition_style: "short 1–2 sentences; exam-faithful for tier exam, plain gloss for tier support"
+  context_style: "optional one clause when bare definition would not land mid-scene"
+constraints:
+  - Every glossary term appears at least once in a ticket or decision
+  - Story must pass the cover test (readable with marks hidden)
+  - Prefer trust/warning/key decisions over math dumps
+  - Definitions stay exam-faithful; encoding is not encryption; hashing is not reversible secrecy
+  - Precursor tone: help desk, not cryptographer narrative
+  - Present tense only; no foreshadowing of places or events the reader has not met
+  - Narrator may feel lost; reader must never be confused by unexplained references
+  - Two-tier glossary — tier exam for SY0-701 targets; tier support for desk jargon
+  - Do not mark Portlandia/flavor background (pannier, MAX, bike helmet, rain pants, coffee, cubes-as-furniture vibe); leave flavor unmarked on purpose
+  - No Priya or Harrowmere (Portland Desk rule)
+html_preview:
+  status: generated
+  build: "python tools/render_unit.py examples/secplus-crypto-helpdesk"
+  pages: "docs/secplus-crypto-helpdesk/index.html"
+  note: "Do not hand-edit HTML; narrative.md + glossary.yaml are source"

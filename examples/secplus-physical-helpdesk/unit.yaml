@@ -1,0 +1,39 @@
+unit_id: secplus-physical-helpdesk
+title: "Portland Desk — Badge, Lock, Eyes"
+audience: "Someone studying Security+ physical security topics, or a NADF precursor for Ethan's help-desk years"
+purpose: "Weave SY0-701 physical security controls — badges, cameras, mantraps, clean desk, tailgating, Faraday/air gap, USB blockers, and visitor process — into one help-desk shift so definitions become desk decisions."
+estimated_minutes: 22
+sources:
+  - CompTIA Security+ SY0-701 (physical security controls; personnel; secure areas; environmental)
+  - Common SY0-701 physical security study clusters
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Security+ study targets — the primary study deck"
+  support: "Desk/building jargon marked so a non-IT reader can hover for readability"
+review_filters:
+  - "Exam-only: cards with tier: exam"
+  - "All: exam + support cards (renderer may filter by tier)"
+tooltip_contract:
+  body: [definition, context]
+  exclude_from_hover: [refs, sources, related]
+  definition_style: "short 1–2 sentences; exam-faithful for tier exam, plain gloss for tier support"
+  context_style: "optional one clause when bare definition would not land mid-scene"
+constraints:
+  - Every glossary term appears at least once in a ticket or decision
+  - Story must pass the cover test (readable with marks hidden)
+  - Prefer badge/door/desk decisions over trivia dumps
+  - Definitions stay exam-faithful; physical controls are layered, not one magic lock
+  - Precursor tone: help desk, not physical security engineer narrative
+  - Present tense only; no foreshadowing of places or events the reader has not met
+  - Narrator may feel lost; reader must never be confused by unexplained references
+  - Two-tier glossary — tier exam for SY0-701 targets; tier support for desk jargon
+  - Do not mark Portlandia/flavor background (pannier, MAX, bike helmet, rain pants, coffee, cubes-as-furniture vibe); leave flavor unmarked on purpose
+  - No Priya or Harrowmere (Portland Desk rule)
+html_preview:
+  status: generated
+  build: "python tools/render_unit.py examples/secplus-physical-helpdesk"
+  pages: "docs/secplus-physical-helpdesk/index.html"
+  note: "Do not hand-edit HTML; narrative.md + glossary.yaml are source"

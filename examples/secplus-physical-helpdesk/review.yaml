@@ -1,0 +1,192 @@
+deck_id: secplus-physical-helpdesk
+cards:
+  - id: physical_controls
+    prompt: Physical security controls
+    answer: "Tangible barriers and processes that protect facilities, people, and hardware — fences, locks, cameras, badges, and the habits that make them work."
+    tags: [physical]
+    tier: exam
+  - id: fencing
+    prompt: Fencing
+    answer: "Perimeter barrier that deters and delays casual entry — height, materials, and gates matter more than looking serious."
+    tags: [physical, perimeter]
+    tier: exam
+  - id: bollards
+    prompt: Bollards
+    answer: "Short posts that stop or slow vehicles from ramming doors, glass, or loading docks."
+    tags: [physical, perimeter]
+    tier: exam
+  - id: barricade
+    prompt: Barricade
+    answer: "Temporary or permanent obstacle used to control vehicle or crowd movement around a site."
+    tags: [physical, perimeter]
+    tier: exam
+  - id: lighting
+    prompt: Lighting (security)
+    answer: "Illumination that reduces dark hiding spots and improves camera usefulness — a cheap control that attackers hate."
+    tags: [physical]
+    tier: exam
+  - id: industrial_camouflage
+    prompt: Industrial camouflage
+    answer: "Making a facility blend into the neighborhood so it draws less attention as a high-value target."
+    tags: [physical]
+    tier: exam
+  - id: signage
+    prompt: Signage
+    answer: "Posted notices that warn, direct, or mark restricted areas — supporting control, not a substitute for locks."
+    tags: [physical]
+    tier: exam
+  - id: cctv
+    prompt: CCTV / cameras
+    answer: "Video surveillance that records and deters — useful for investigation when retention and coverage are planned."
+    tags: [physical, detection]
+    tier: exam
+  - id: motion_detection
+    prompt: Motion detection
+    answer: "Sensors that alert when movement occurs in a watched zone — often paired with cameras or alarms."
+    tags: [physical, detection]
+    tier: exam
+  - id: alarm_system
+    prompt: Alarm system
+    answer: "Sensors and signaling that notify people of unauthorized entry, door forced open, or other physical events."
+    tags: [physical, detection]
+    tier: exam
+  - id: security_guard
+    prompt: Security guard
+    answer: "Human presence that can challenge, escort, and respond — flexible where cameras only watch."
+    tags: [physical, personnel]
+    tier: exam
+  - id: reception
+    prompt: Reception / access desk
+    answer: "Front-desk checkpoint that verifies visitors, issues badges, and is the first human filter into the building."
+    tags: [physical, personnel]
+    tier: exam
+  - id: access_badge
+    prompt: Access badge
+    answer: "Credential (card, fob, or phone token) presented to readers to open doors for authorized people."
+    tags: [physical, access]
+    tier: exam
+  - id: proximity_card
+    prompt: Proximity / RFID badge
+    answer: "Badge that unlocks when held near a reader — convenient, and clonable if not paired with PIN or biometrics."
+    tags: [physical, access]
+    tier: exam
+  - id: biometrics
+    prompt: Biometrics (door)
+    answer: "Unlocking with something you are — fingerprint, face, iris — often combined with a badge or PIN."
+    tags: [physical, access]
+    tier: exam
+  - id: cable_lock
+    prompt: Cable lock
+    answer: "Physical lock that tethers a laptop to furniture so walk-away theft is harder."
+    tags: [physical, endpoint]
+    tier: exam
+  - id: door_lock
+    prompt: Locks (doors)
+    answer: "Mechanical or electronic door hardware — deadbolts, electric strikes, cipher locks — that enforce who may enter."
+    tags: [physical, access]
+    tier: exam
+  - id: mantrap
+    prompt: Mantrap
+    answer: "Two-door vestibule that only opens one door at a time so people cannot slip through with someone else."
+    tags: [physical, access]
+    tier: exam
+  - id: secure_area
+    prompt: Secure area
+    answer: "Restricted space (server room, wiring closet, records vault) with stronger controls than the open floor."
+    tags: [physical]
+    tier: exam
+  - id: visitor_log
+    prompt: Visitor log
+    answer: "Record of who entered, when, and who escorted them — accountability for guests and contractors."
+    tags: [physical, personnel]
+    tier: exam
+  - id: clean_desk
+    prompt: Clean desk policy
+    answer: "Requirement to clear sensitive papers and lock screens when leaving a workstation — no leftover secrets on the blotter."
+    tags: [physical, policy]
+    tier: exam
+  - id: privacy_filter
+    prompt: Privacy / screen filter
+    answer: "Overlay that narrows the viewing angle so neighbors and café eyes cannot easily read the display."
+    tags: [physical, endpoint]
+    tier: exam
+  - id: tailgating
+    prompt: Tailgating
+    answer: "Following an authorized person through a door without badging yourself — exploiting politeness."
+    tags: [physical, attack]
+    tier: exam
+  - id: piggybacking
+    prompt: Piggybacking
+    answer: "Entering with consent of the person who opened the door — they held it; you still did not authenticate."
+    tags: [physical, attack]
+    tier: exam
+  - id: shoulder_surfing
+    prompt: Shoulder surfing
+    answer: "Watching someone type a PIN, password, or badge code from nearby — eyes as the attack tool."
+    tags: [physical, attack]
+    tier: exam
+  - id: usb_data_blocker
+    prompt: USB data blocker
+    answer: "Inline adapter that passes power only — blocks data lines so a public charge port cannot talk to the phone."
+    tags: [physical, endpoint]
+    tier: exam
+  - id: faraday_cage
+    prompt: Faraday cage / bag
+    answer: "Conductive enclosure that blocks RF — used for evidence phones, test devices, or shielding sensitive gear."
+    tags: [physical]
+    tier: exam
+  - id: air_gap
+    prompt: Air gap
+    answer: "Keeping a system physically isolated from other networks — no cable, no Wi-Fi, no convenient USB bridge."
+    tags: [physical, architecture]
+    tier: exam
+  - id: protected_distribution
+    prompt: Protected cable distribution
+    answer: "Hardened or monitored pathways for sensitive cabling so taps and tampering are harder."
+    tags: [physical]
+    tier: exam
+  - id: hot_aisle
+    prompt: Hot / cold aisle (awareness)
+    answer: "Data-center layout that separates hot exhaust and cold intake — operational design that also shapes who can walk where."
+    tags: [physical, datacenter]
+    tier: exam
+  - id: help_desk
+    prompt: Help desk
+    answer: "Front-line IT support that takes tickets, coaches users, and escalates security signals."
+    tags: [support, desk]
+    tier: support
+  - id: ticket
+    prompt: Ticket
+    answer: "Tracked support request — the work unit the desk opens, updates, and closes."
+    tags: [support, desk]
+    tier: support
+  - id: badge_reader
+    prompt: Badge reader
+    answer: "Door hardware that accepts a badge or PIN and signals the lock to open when policy allows."
+    tags: [support, physical]
+    tier: support
+  - id: server_room
+    prompt: Server room
+    answer: "Secure area housing critical compute and network gear — usually badge-plus and camera-covered."
+    tags: [support, physical]
+    tier: support
+  - id: facilities
+    prompt: Facilities
+    answer: "Building ops team that owns doors, cameras, lighting, and badge hardware alongside IT policy."
+    tags: [support, physical]
+    tier: support
+  - id: lobby
+    prompt: Lobby
+    answer: "Public-facing entry where visitors meet reception — highest tailgating risk zone."
+    tags: [support, physical]
+    tier: support
+  - id: escort
+    prompt: Escort
+    answer: "Authorized person who accompanies a visitor in restricted space so guests are never unattended."
+    tags: [support, physical]
+    tier: support
+  - id: soc
+    prompt: SOC
+    answer: "Security operations center — team that monitors alerts, investigates incidents, and coordinates response."
+    tags: [support, security]
+    tier: support

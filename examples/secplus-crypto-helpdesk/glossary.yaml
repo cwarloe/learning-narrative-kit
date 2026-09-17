@@ -1,0 +1,270 @@
+bank_id: secplus-sy0-701-crypto
+title: "Security+ SY0-701 — cryptography & PKI (help-desk precursor)"
+source: "CompTIA Security+ SY0-701 objectives (cryptography concepts; PKI; certificates; hashing; key management)"
+terms:
+  # --- Core distinctions ---
+  - id: encryption
+    title: Encryption
+    definition: "Transforming readable data into ciphertext so only parties with the right key can recover the original."
+    refs:
+      - "CompTIA Security+ SY0-701 — encryption"
+    tags: [crypto]
+    tier: exam
+  - id: hashing
+    title: Hashing
+    definition: "One-way fingerprint of data — fixed-length digest used to check integrity, not to hide and later reveal secrets."
+    refs:
+      - "CompTIA Security+ SY0-701 — hashing"
+    tags: [crypto]
+    tier: exam
+  - id: encoding
+    title: Encoding
+    definition: "Reversible representation change (like Base64) for transport or display — not confidentiality; anyone can decode."
+    refs:
+      - "CompTIA Security+ SY0-701 — encoding vs encryption"
+    tags: [crypto]
+    tier: exam
+  - id: obfuscation
+    title: Obfuscation
+    definition: "Making something harder to read or understand without providing real cryptographic strength by itself."
+    refs:
+      - "CompTIA Security+ SY0-701 — obfuscation"
+    tags: [crypto]
+    tier: exam
+  - id: steganography
+    title: Steganography
+    definition: "Hiding a message inside other media (image, audio, file) so the secret's existence is less obvious."
+    refs:
+      - "CompTIA Security+ SY0-701 — steganography"
+    tags: [crypto]
+    tier: exam
+  - id: plaintext
+    title: Plaintext
+    definition: "Data in readable form before encryption — the thing you are trying not to leave lying around."
+    refs:
+      - "CompTIA Security+ SY0-701 — plaintext / ciphertext"
+    tags: [crypto]
+    tier: exam
+  - id: ciphertext
+    title: Ciphertext
+    definition: "Encrypted output — unreadable without the correct cryptographic key."
+    refs:
+      - "CompTIA Security+ SY0-701 — plaintext / ciphertext"
+    tags: [crypto]
+    tier: exam
+
+  # --- Symmetric / asymmetric ---
+  - id: symmetric
+    title: Symmetric encryption
+    definition: "Same key encrypts and decrypts — fast for bulk data; key distribution is the hard part."
+    refs:
+      - "CompTIA Security+ SY0-701 — symmetric encryption"
+    tags: [crypto]
+    tier: exam
+  - id: asymmetric
+    title: Asymmetric encryption
+    definition: "Key pair model — public key encrypts or verifies; private key decrypts or signs."
+    refs:
+      - "CompTIA Security+ SY0-701 — asymmetric / public-key cryptography"
+    tags: [crypto]
+    tier: exam
+  - id: public_key
+    title: Public key
+    definition: "Shareable half of a key pair — used to encrypt to someone or verify their digital signature."
+    refs:
+      - "CompTIA Security+ SY0-701 — public/private keys"
+    tags: [crypto, pki]
+    tier: exam
+  - id: private_key
+    title: Private key
+    definition: "Secret half of a key pair — decrypts or signs; must stay protected or the trust story collapses."
+    refs:
+      - "CompTIA Security+ SY0-701 — public/private keys"
+    tags: [crypto, pki]
+    tier: exam
+  - id: key_exchange
+    title: Key exchange
+    definition: "Method for agreeing on a shared secret over an untrusted channel (often using asymmetric math so symmetric keys can follow)."
+    refs:
+      - "CompTIA Security+ SY0-701 — key exchange"
+    tags: [crypto]
+    tier: exam
+  - id: perfect_forward_secrecy
+    title: Perfect forward secrecy
+    definition: "Property where past session keys stay safe even if a long-term private key is later stolen — ephemeral session secrets."
+    refs:
+      - "CompTIA Security+ SY0-701 — perfect forward secrecy / PFS"
+    tags: [crypto, tls]
+    tier: exam
+
+  # --- Integrity / auth of data ---
+  - id: digital_signature
+    title: Digital signature
+    definition: "Private-key operation that proves origin and integrity of data — verifiers use the matching public key."
+    refs:
+      - "CompTIA Security+ SY0-701 — digital signatures"
+    tags: [crypto, pki]
+    tier: exam
+  - id: non_repudiation
+    title: Non-repudiation
+    definition: "Difficulty denying you signed or sent something when a valid signature and key custody support the claim."
+    refs:
+      - "CompTIA Security+ SY0-701 — non-repudiation"
+    tags: [crypto]
+    tier: exam
+  - id: salting
+    title: Salting
+    definition: "Random value mixed into password hashing so identical passwords do not produce identical hashes."
+    refs:
+      - "CompTIA Security+ SY0-701 — salting"
+    tags: [crypto, auth]
+    tier: exam
+  - id: integrity
+    title: Integrity
+    definition: "Assurance that data has not been altered — often checked with hashes or signatures."
+    refs:
+      - "CompTIA Security+ SY0-701 — integrity"
+    tags: [crypto]
+    tier: exam
+
+  # --- PKI / certificates ---
+  - id: pki
+    title: PKI
+    definition: "Public key infrastructure — the people, policies, and systems that issue and manage certificates and trust."
+    refs:
+      - "CompTIA Security+ SY0-701 — PKI"
+    tags: [pki]
+    tier: exam
+  - id: certificate
+    title: Digital certificate
+    definition: "Signed document binding an identity to a public key — what browsers and apps check for TLS and code trust."
+    refs:
+      - "CompTIA Security+ SY0-701 — digital certificates"
+    tags: [pki]
+    tier: exam
+  - id: ca
+    title: Certificate authority (CA)
+    definition: "Trusted issuer that signs certificates after validating identity — the root of many trust decisions."
+    refs:
+      - "CompTIA Security+ SY0-701 — certificate authority"
+    tags: [pki]
+    tier: exam
+  - id: intermediate_ca
+    title: Intermediate CA
+    definition: "CA beneath the root that issues end-entity certificates — keeps the root offline and the chain manageable."
+    refs:
+      - "CompTIA Security+ SY0-701 — intermediate CA / certificate chain"
+    tags: [pki]
+    tier: exam
+  - id: csr
+    title: CSR
+    definition: "Certificate signing request — package with your public key and identity details sent to a CA for signing."
+    refs:
+      - "CompTIA Security+ SY0-701 — CSR"
+    tags: [pki]
+    tier: exam
+  - id: self_signed
+    title: Self-signed certificate
+    definition: "Certificate signed by its own key instead of a trusted CA — fine for lab toys, scary in production browsers."
+    refs:
+      - "CompTIA Security+ SY0-701 — self-signed certificates"
+    tags: [pki]
+    tier: exam
+  - id: expired_cert
+    title: Expired certificate
+    definition: "Certificate past its validity dates — browsers and clients correctly refuse or warn because trust has a calendar."
+    refs:
+      - "CompTIA Security+ SY0-701 — certificate expiration / validation"
+    tags: [pki]
+    tier: exam
+  - id: certificate_pinning
+    title: Certificate / public-key pinning
+    definition: "Client remembers an expected cert or key and rejects surprises — stronger against some MitM, brittle when pins go stale."
+    refs:
+      - "CompTIA Security+ SY0-701 — certificate pinning"
+    tags: [pki, tls]
+    tier: exam
+  - id: tls
+    title: TLS
+    definition: "Transport Layer Security — encrypts and authenticates network sessions (the modern successor people still call SSL)."
+    refs:
+      - "CompTIA Security+ SY0-701 — TLS"
+    tags: [crypto, tls]
+    tier: exam
+  - id: key_escrow
+    title: Key escrow
+    definition: "Storing decryption keys with a trusted third party so data can be recovered under policy — powerful and controversial."
+    refs:
+      - "CompTIA Security+ SY0-701 — key escrow"
+    tags: [crypto, keys]
+    tier: exam
+  - id: hsm
+    title: HSM
+    definition: "Hardware security module — hardened device that generates and protects keys so private material rarely leaves the box."
+    refs:
+      - "CompTIA Security+ SY0-701 — HSM"
+    tags: [crypto, keys]
+    tier: exam
+  - id: key_management
+    title: Key management
+    definition: "Lifecycle of creating, storing, rotating, revoking, and destroying cryptographic keys without leaking them."
+    refs:
+      - "CompTIA Security+ SY0-701 — key management"
+    tags: [crypto, keys]
+    tier: exam
+  - id: certificate_chain
+    title: Certificate chain
+    definition: "Path from end-entity certificate through intermediate CA(s) to a trusted root — missing links break trust."
+    refs:
+      - "CompTIA Security+ SY0-701 — certificate chain / chaining"
+    tags: [pki]
+    tier: exam
+  - id: wildcard_cert
+    title: Wildcard certificate
+    definition: "Certificate that covers many hostnames under one domain (like *.example.com) — convenient, broader blast radius if stolen."
+    refs:
+      - "CompTIA Security+ SY0-701 — wildcard certificates"
+    tags: [pki]
+    tier: exam
+
+  # --- Support ---
+  - id: help_desk
+    title: Help desk
+    definition: "Front-line IT support that takes tickets, coaches users, and escalates security signals."
+    tags: [support, desk]
+    tier: support
+  - id: ticket
+    title: Ticket
+    definition: "Tracked support request — the work unit the desk opens, updates, and closes."
+    tags: [support, desk]
+    tier: support
+  - id: browser_padlock
+    title: Browser padlock
+    definition: "UI hint that the page is using HTTPS/TLS — not a guarantee the site is honest, only that the channel looks encrypted to a trusted name."
+    tags: [support, browser]
+    tier: support
+  - id: cert_warning
+    title: Certificate warning dialog
+    definition: "Browser interstitial when TLS validation fails — expired, name mismatch, untrusted issuer, or broken chain."
+    tags: [support, browser]
+    tier: support
+  - id: trust_store
+    title: Trust store
+    definition: "Collection of root/intermediate CAs the OS or browser trusts by default — the quiet list behind the padlock."
+    tags: [support, pki]
+    tier: support
+  - id: base64
+    title: Base64
+    definition: "Common encoding that turns binary into ASCII-safe text — looks 'scrambled' but is not encryption."
+    tags: [support, crypto]
+    tier: support
+  - id: https
+    title: HTTPS
+    definition: "HTTP over TLS — the everyday encrypted web users mean when they say 'the lock is on.'"
+    tags: [support, tls]
+    tier: support
+  - id: soc
+    title: SOC
+    definition: "Security operations center — team that monitors alerts, investigates incidents, and coordinates response."
+    tags: [support, security]
+    tier: support

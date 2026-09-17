@@ -1,0 +1,197 @@
+deck_id: secplus-crypto-helpdesk
+cards:
+  - id: encryption
+    prompt: Encryption
+    answer: "Transforming readable data into ciphertext so only parties with the right key can recover the original."
+    tags: [crypto]
+    tier: exam
+  - id: hashing
+    prompt: Hashing
+    answer: "One-way fingerprint of data — fixed-length digest used to check integrity, not to hide and later reveal secrets."
+    tags: [crypto]
+    tier: exam
+  - id: encoding
+    prompt: Encoding
+    answer: "Reversible representation change (like Base64) for transport or display — not confidentiality; anyone can decode."
+    tags: [crypto]
+    tier: exam
+  - id: obfuscation
+    prompt: Obfuscation
+    answer: "Making something harder to read or understand without providing real cryptographic strength by itself."
+    tags: [crypto]
+    tier: exam
+  - id: steganography
+    prompt: Steganography
+    answer: "Hiding a message inside other media (image, audio, file) so the secret's existence is less obvious."
+    tags: [crypto]
+    tier: exam
+  - id: plaintext
+    prompt: Plaintext
+    answer: "Data in readable form before encryption — the thing you are trying not to leave lying around."
+    tags: [crypto]
+    tier: exam
+  - id: ciphertext
+    prompt: Ciphertext
+    answer: "Encrypted output — unreadable without the correct cryptographic key."
+    tags: [crypto]
+    tier: exam
+  - id: symmetric
+    prompt: Symmetric encryption
+    answer: "Same key encrypts and decrypts — fast for bulk data; key distribution is the hard part."
+    tags: [crypto]
+    tier: exam
+  - id: asymmetric
+    prompt: Asymmetric encryption
+    answer: "Key pair model — public key encrypts or verifies; private key decrypts or signs."
+    tags: [crypto]
+    tier: exam
+  - id: public_key
+    prompt: Public key
+    answer: "Shareable half of a key pair — used to encrypt to someone or verify their digital signature."
+    tags: [crypto, pki]
+    tier: exam
+  - id: private_key
+    prompt: Private key
+    answer: "Secret half of a key pair — decrypts or signs; must stay protected or the trust story collapses."
+    tags: [crypto, pki]
+    tier: exam
+  - id: key_exchange
+    prompt: Key exchange
+    answer: "Method for agreeing on a shared secret over an untrusted channel (often using asymmetric math so symmetric keys can follow)."
+    tags: [crypto]
+    tier: exam
+  - id: perfect_forward_secrecy
+    prompt: Perfect forward secrecy
+    answer: "Property where past session keys stay safe even if a long-term private key is later stolen — ephemeral session secrets."
+    tags: [crypto, tls]
+    tier: exam
+  - id: digital_signature
+    prompt: Digital signature
+    answer: "Private-key operation that proves origin and integrity of data — verifiers use the matching public key."
+    tags: [crypto, pki]
+    tier: exam
+  - id: non_repudiation
+    prompt: Non-repudiation
+    answer: "Difficulty denying you signed or sent something when a valid signature and key custody support the claim."
+    tags: [crypto]
+    tier: exam
+  - id: salting
+    prompt: Salting
+    answer: "Random value mixed into password hashing so identical passwords do not produce identical hashes."
+    tags: [crypto, auth]
+    tier: exam
+  - id: integrity
+    prompt: Integrity
+    answer: "Assurance that data has not been altered — often checked with hashes or signatures."
+    tags: [crypto]
+    tier: exam
+  - id: pki
+    prompt: PKI
+    answer: "Public key infrastructure — the people, policies, and systems that issue and manage certificates and trust."
+    tags: [pki]
+    tier: exam
+  - id: certificate
+    prompt: Digital certificate
+    answer: "Signed document binding an identity to a public key — what browsers and apps check for TLS and code trust."
+    tags: [pki]
+    tier: exam
+  - id: ca
+    prompt: Certificate authority (CA)
+    answer: "Trusted issuer that signs certificates after validating identity — the root of many trust decisions."
+    tags: [pki]
+    tier: exam
+  - id: intermediate_ca
+    prompt: Intermediate CA
+    answer: "CA beneath the root that issues end-entity certificates — keeps the root offline and the chain manageable."
+    tags: [pki]
+    tier: exam
+  - id: csr
+    prompt: CSR
+    answer: "Certificate signing request — package with your public key and identity details sent to a CA for signing."
+    tags: [pki]
+    tier: exam
+  - id: self_signed
+    prompt: Self-signed certificate
+    answer: "Certificate signed by its own key instead of a trusted CA — fine for lab toys, scary in production browsers."
+    tags: [pki]
+    tier: exam
+  - id: expired_cert
+    prompt: Expired certificate
+    answer: "Certificate past its validity dates — browsers and clients correctly refuse or warn because trust has a calendar."
+    tags: [pki]
+    tier: exam
+  - id: certificate_pinning
+    prompt: Certificate / public-key pinning
+    answer: "Client remembers an expected cert or key and rejects surprises — stronger against some MitM, brittle when pins go stale."
+    tags: [pki, tls]
+    tier: exam
+  - id: tls
+    prompt: TLS
+    answer: "Transport Layer Security — encrypts and authenticates network sessions (the modern successor people still call SSL)."
+    tags: [crypto, tls]
+    tier: exam
+  - id: key_escrow
+    prompt: Key escrow
+    answer: "Storing decryption keys with a trusted third party so data can be recovered under policy — powerful and controversial."
+    tags: [crypto, keys]
+    tier: exam
+  - id: hsm
+    prompt: HSM
+    answer: "Hardware security module — hardened device that generates and protects keys so private material rarely leaves the box."
+    tags: [crypto, keys]
+    tier: exam
+  - id: key_management
+    prompt: Key management
+    answer: "Lifecycle of creating, storing, rotating, revoking, and destroying cryptographic keys without leaking them."
+    tags: [crypto, keys]
+    tier: exam
+  - id: certificate_chain
+    prompt: Certificate chain
+    answer: "Path from end-entity certificate through intermediate CA(s) to a trusted root — missing links break trust."
+    tags: [pki]
+    tier: exam
+  - id: wildcard_cert
+    prompt: Wildcard certificate
+    answer: "Certificate that covers many hostnames under one domain (like *.example.com) — convenient, broader blast radius if stolen."
+    tags: [pki]
+    tier: exam
+  - id: help_desk
+    prompt: Help desk
+    answer: "Front-line IT support that takes tickets, coaches users, and escalates security signals."
+    tags: [support, desk]
+    tier: support
+  - id: ticket
+    prompt: Ticket
+    answer: "Tracked support request — the work unit the desk opens, updates, and closes."
+    tags: [support, desk]
+    tier: support
+  - id: browser_padlock
+    prompt: Browser padlock
+    answer: "UI hint that the page is using HTTPS/TLS — not a guarantee the site is honest, only that the channel looks encrypted to a trusted name."
+    tags: [support, browser]
+    tier: support
+  - id: cert_warning
+    prompt: Certificate warning dialog
+    answer: "Browser interstitial when TLS validation fails — expired, name mismatch, untrusted issuer, or broken chain."
+    tags: [support, browser]
+    tier: support
+  - id: trust_store
+    prompt: Trust store
+    answer: "Collection of root/intermediate CAs the OS or browser trusts by default — the quiet list behind the padlock."
+    tags: [support, pki]
+    tier: support
+  - id: base64
+    prompt: Base64
+    answer: "Common encoding that turns binary into ASCII-safe text — looks 'scrambled' but is not encryption."
+    tags: [support, crypto]
+    tier: support
+  - id: https
+    prompt: HTTPS
+    answer: "HTTP over TLS — the everyday encrypted web users mean when they say 'the lock is on.'"
+    tags: [support, tls]
+    tier: support
+  - id: soc
+    prompt: SOC
+    answer: "Security operations center — team that monitors alerts, investigates incidents, and coordinates response."
+    tags: [support, security]
+    tier: support

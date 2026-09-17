@@ -1,0 +1,269 @@
+bank_id: secplus-sy0-701-physical
+title: "Security+ SY0-701 — physical security (help-desk precursor)"
+source: "CompTIA Security+ SY0-701 objectives (physical security controls; personnel; secure areas; media / Faraday / air gap)"
+terms:
+  # --- Perimeter / site ---
+  - id: physical_controls
+    title: Physical security controls
+    definition: "Tangible barriers and processes that protect facilities, people, and hardware — fences, locks, cameras, badges, and the habits that make them work."
+    refs:
+      - "CompTIA Security+ SY0-701 — physical security controls"
+    tags: [physical]
+    tier: exam
+  - id: fencing
+    title: Fencing
+    definition: "Perimeter barrier that deters and delays casual entry — height, materials, and gates matter more than looking serious."
+    refs:
+      - "CompTIA Security+ SY0-701 — fencing / perimeter"
+    tags: [physical, perimeter]
+    tier: exam
+  - id: bollards
+    title: Bollards
+    definition: "Short posts that stop or slow vehicles from ramming doors, glass, or loading docks."
+    refs:
+      - "CompTIA Security+ SY0-701 — bollards"
+    tags: [physical, perimeter]
+    tier: exam
+  - id: barricade
+    title: Barricade
+    definition: "Temporary or permanent obstacle used to control vehicle or crowd movement around a site."
+    refs:
+      - "CompTIA Security+ SY0-701 — barricades"
+    tags: [physical, perimeter]
+    tier: exam
+  - id: lighting
+    title: Lighting (security)
+    definition: "Illumination that reduces dark hiding spots and improves camera usefulness — a cheap control that attackers hate."
+    refs:
+      - "CompTIA Security+ SY0-701 — lighting"
+    tags: [physical]
+    tier: exam
+  - id: industrial_camouflage
+    title: Industrial camouflage
+    definition: "Making a facility blend into the neighborhood so it draws less attention as a high-value target."
+    refs:
+      - "CompTIA Security+ SY0-701 — industrial camouflage"
+    tags: [physical]
+    tier: exam
+  - id: signage
+    title: Signage
+    definition: "Posted notices that warn, direct, or mark restricted areas — supporting control, not a substitute for locks."
+    refs:
+      - "CompTIA Security+ SY0-701 — signage"
+    tags: [physical]
+    tier: exam
+
+  # --- Detection / response people ---
+  - id: cctv
+    title: CCTV / cameras
+    definition: "Video surveillance that records and deters — useful for investigation when retention and coverage are planned."
+    refs:
+      - "CompTIA Security+ SY0-701 — cameras / CCTV"
+    tags: [physical, detection]
+    tier: exam
+  - id: motion_detection
+    title: Motion detection
+    definition: "Sensors that alert when movement occurs in a watched zone — often paired with cameras or alarms."
+    refs:
+      - "CompTIA Security+ SY0-701 — motion detection"
+    tags: [physical, detection]
+    tier: exam
+  - id: alarm_system
+    title: Alarm system
+    definition: "Sensors and signaling that notify people of unauthorized entry, door forced open, or other physical events."
+    refs:
+      - "CompTIA Security+ SY0-701 — alarms"
+    tags: [physical, detection]
+    tier: exam
+  - id: security_guard
+    title: Security guard
+    definition: "Human presence that can challenge, escort, and respond — flexible where cameras only watch."
+    refs:
+      - "CompTIA Security+ SY0-701 — security guards / personnel"
+    tags: [physical, personnel]
+    tier: exam
+  - id: reception
+    title: Reception / access desk
+    definition: "Front-desk checkpoint that verifies visitors, issues badges, and is the first human filter into the building."
+    refs:
+      - "CompTIA Security+ SY0-701 — reception / access control personnel"
+    tags: [physical, personnel]
+    tier: exam
+
+  # --- Access credentials ---
+  - id: access_badge
+    title: Access badge
+    definition: "Credential (card, fob, or phone token) presented to readers to open doors for authorized people."
+    refs:
+      - "CompTIA Security+ SY0-701 — badges / access cards"
+    tags: [physical, access]
+    tier: exam
+  - id: proximity_card
+    title: Proximity / RFID badge
+    definition: "Badge that unlocks when held near a reader — convenient, and clonable if not paired with PIN or biometrics."
+    refs:
+      - "CompTIA Security+ SY0-701 — proximity cards / RFID"
+    tags: [physical, access]
+    tier: exam
+  - id: biometrics
+    title: Biometrics (door)
+    definition: "Unlocking with something you are — fingerprint, face, iris — often combined with a badge or PIN."
+    refs:
+      - "CompTIA Security+ SY0-701 — biometrics"
+    tags: [physical, access]
+    tier: exam
+  - id: cable_lock
+    title: Cable lock
+    definition: "Physical lock that tethers a laptop to furniture so walk-away theft is harder."
+    refs:
+      - "CompTIA Security+ SY0-701 — cable locks"
+    tags: [physical, endpoint]
+    tier: exam
+  - id: door_lock
+    title: Locks (doors)
+    definition: "Mechanical or electronic door hardware — deadbolts, electric strikes, cipher locks — that enforce who may enter."
+    refs:
+      - "CompTIA Security+ SY0-701 — locks"
+    tags: [physical, access]
+    tier: exam
+
+  # --- Spaces / process ---
+  - id: mantrap
+    title: Mantrap
+    definition: "Two-door vestibule that only opens one door at a time so people cannot slip through with someone else."
+    context: "Also called an access control vestibule on some exams."
+    refs:
+      - "CompTIA Security+ SY0-701 — mantrap / access control vestibule"
+    tags: [physical, access]
+    tier: exam
+  - id: secure_area
+    title: Secure area
+    definition: "Restricted space (server room, wiring closet, records vault) with stronger controls than the open floor."
+    refs:
+      - "CompTIA Security+ SY0-701 — secure areas"
+    tags: [physical]
+    tier: exam
+  - id: visitor_log
+    title: Visitor log
+    definition: "Record of who entered, when, and who escorted them — accountability for guests and contractors."
+    refs:
+      - "CompTIA Security+ SY0-701 — visitor logs / escorts"
+    tags: [physical, personnel]
+    tier: exam
+  - id: clean_desk
+    title: Clean desk policy
+    definition: "Requirement to clear sensitive papers and lock screens when leaving a workstation — no leftover secrets on the blotter."
+    refs:
+      - "CompTIA Security+ SY0-701 — clean desk"
+    tags: [physical, policy]
+    tier: exam
+  - id: privacy_filter
+    title: Privacy / screen filter
+    definition: "Overlay that narrows the viewing angle so neighbors and café eyes cannot easily read the display."
+    refs:
+      - "CompTIA Security+ SY0-701 — privacy screens / filters"
+    tags: [physical, endpoint]
+    tier: exam
+
+  # --- People attacks ---
+  - id: tailgating
+    title: Tailgating
+    definition: "Following an authorized person through a door without badging yourself — exploiting politeness."
+    refs:
+      - "CompTIA Security+ SY0-701 — tailgating"
+    tags: [physical, attack]
+    tier: exam
+  - id: piggybacking
+    title: Piggybacking
+    definition: "Entering with consent of the person who opened the door — they held it; you still did not authenticate."
+    refs:
+      - "CompTIA Security+ SY0-701 — piggybacking"
+    tags: [physical, attack]
+    tier: exam
+  - id: shoulder_surfing
+    title: Shoulder surfing
+    definition: "Watching someone type a PIN, password, or badge code from nearby — eyes as the attack tool."
+    refs:
+      - "CompTIA Security+ SY0-701 — shoulder surfing"
+    tags: [physical, attack]
+    tier: exam
+
+  # --- Media / TEMPEST-ish / isolation ---
+  - id: usb_data_blocker
+    title: USB data blocker
+    definition: "Inline adapter that passes power only — blocks data lines so a public charge port cannot talk to the phone."
+    context: "Often nicknamed a USB condom."
+    refs:
+      - "CompTIA Security+ SY0-701 — USB data blockers"
+    tags: [physical, endpoint]
+    tier: exam
+  - id: faraday_cage
+    title: Faraday cage / bag
+    definition: "Conductive enclosure that blocks RF — used for evidence phones, test devices, or shielding sensitive gear."
+    refs:
+      - "CompTIA Security+ SY0-701 — Faraday cages / bags"
+    tags: [physical]
+    tier: exam
+  - id: air_gap
+    title: Air gap
+    definition: "Keeping a system physically isolated from other networks — no cable, no Wi-Fi, no convenient USB bridge."
+    refs:
+      - "CompTIA Security+ SY0-701 — air gap"
+    tags: [physical, architecture]
+    tier: exam
+  - id: protected_distribution
+    title: Protected cable distribution
+    definition: "Hardened or monitored pathways for sensitive cabling so taps and tampering are harder."
+    refs:
+      - "CompTIA Security+ SY0-701 — protected cable distribution"
+    tags: [physical]
+    tier: exam
+  - id: hot_aisle
+    title: Hot / cold aisle (awareness)
+    definition: "Data-center layout that separates hot exhaust and cold intake — operational design that also shapes who can walk where."
+    refs:
+      - "CompTIA Security+ SY0-701 — hot/cold aisle (physical / environmental)"
+    tags: [physical, datacenter]
+    tier: exam
+
+  # --- Support ---
+  - id: help_desk
+    title: Help desk
+    definition: "Front-line IT support that takes tickets, coaches users, and escalates security signals."
+    tags: [support, desk]
+    tier: support
+  - id: ticket
+    title: Ticket
+    definition: "Tracked support request — the work unit the desk opens, updates, and closes."
+    tags: [support, desk]
+    tier: support
+  - id: badge_reader
+    title: Badge reader
+    definition: "Door hardware that accepts a badge or PIN and signals the lock to open when policy allows."
+    tags: [support, physical]
+    tier: support
+  - id: server_room
+    title: Server room
+    definition: "Secure area housing critical compute and network gear — usually badge-plus and camera-covered."
+    tags: [support, physical]
+    tier: support
+  - id: facilities
+    title: Facilities
+    definition: "Building ops team that owns doors, cameras, lighting, and badge hardware alongside IT policy."
+    tags: [support, physical]
+    tier: support
+  - id: lobby
+    title: Lobby
+    definition: "Public-facing entry where visitors meet reception — highest tailgating risk zone."
+    tags: [support, physical]
+    tier: support
+  - id: escort
+    title: Escort
+    definition: "Authorized person who accompanies a visitor in restricted space so guests are never unattended."
+    tags: [support, physical]
+    tier: support
+  - id: soc
+    title: SOC
+    definition: "Security operations center — team that monitors alerts, investigates incidents, and coordinates response."
+    tags: [support, security]
+    tier: support
