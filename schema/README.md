@@ -54,6 +54,68 @@ When you already have a real glossary, aim nearer the ITM density: coverage with
 Hide every `[[...]]` mark. Read the paragraph. If it still sounds like a person thinking through a real situation, keep it. If it sounds like a vocab parade, rewrite the situation until the words are necessary.
 
 
+## Beat structure — where a term should sit
+
+The cover test tells you a beat is flat. This tells you why, and what to do about it.
+
+A learner remembers a term by the **decision it was attached to**. A term that appears
+only in setup, or only in narration after the problem is solved, is a definition wearing
+a costume — it will read fine and teach nothing. That is the vocab-parade failure in its
+subtle form, and the cover test catches it only sometimes.
+
+Borrowed from the scene grammar in
+[`novel-builder`](https://github.com/cwarloe/novel-builder)'s `templates/E-SCENE.md`,
+adapted for teaching. Every beat has:
+
+| Part | Question |
+|------|----------|
+| **Goal** | What does this person want in the next ten minutes? |
+| **Complication** | What makes the obvious move wrong? |
+| **Pivot** | What gets decided, and what does it cost? |
+
+**The rule: marked terms belong at the complication or the pivot.** Not in the goal, not
+in aftermath narration. If an `exam` term only ever appears in setup, move it or rebuild
+the beat around it.
+
+### The habit *is* the complication
+
+In practice this track already runs on one engine: **the obsolete habit is the
+complication; the replacement is the pivot.** People arrive carrying something they
+learned at an old shop, in college, from vendor docs, or at 1 a.m. in a home lab, and the
+beat is talking that habit into a decision that fits here.
+
+That maps onto secure/insecure pairs natively — the insecure term is what they already do,
+the secure term is what they decide:
+
+> **Goal** — Jared wants the VLAN fixed in ten minutes.
+> **Complication** — his script speaks `telnet`; the `enable_password` crosses in
+> `cleartext`, and they got burned on a packet capture last year.
+> **Pivot** — `ssh` with `key_auth`, rewritten once. *"We fix the script, not the
+> `firewall`."* The concession costs him a rewrite; he says so out loud.
+
+Every exam term in that beat sits on the complication or the pivot. None is in the goal.
+Same shape in Maya's mail beat (`pop3`/`imap` as the habit, `imaps` and
+`smtp_submission` as the decision) and in the phishing beats
+(`typo_squatting` at the complication, `phish_report_button` at the pivot).
+
+### Diagnostic for a flat beat
+
+Ask in order:
+
+1. What does this person **want**? If you can't say it in one clause, there's no beat yet.
+2. What **habit** are they carrying, and where did they get it? Name the old shop.
+3. What does the decision **cost** them? A free decision teaches nothing — the pivot needs
+   friction, even small (a rewrite, a workflow change, an admission).
+4. Where do the marked terms land? If they're in the goal or the aftermath, rebuild.
+
+### Scope
+
+This is a **quality lever, not a gate.** It is not validated mechanically and it must not
+override effectiveness: if a beat teaches well and ignores the grammar, ship it. Narrative
+coherence is how a term stops floating — it is the mechanism, not the product. Do not trade
+a clear explanation for a better scene.
+
+
 ## Two-tier glossary (exam + support)
 
 Some units (e.g. Security+ help-desk) keep **two tiers** of marked terms:
@@ -149,7 +211,7 @@ GitHub Pages serves from `/docs` on `main`. Re-running the renderer replaces the
 Use this before calling a unit “done.” Drawn from kit research (see `research/perplexity-2026-09/07-authoring-rubric.md`); wording adjusted to our tiers.
 
 1. **Cohesive term set** — One bank that belongs together; no colliding definitions; every glossary id appears ≥1 in the narrative.
-2. **One forcing situation** — People with habits/pressures that make the terms interact (not a vocab parade).
+2. **One forcing situation** — People with habits/pressures that make the terms interact (not a vocab parade). Per beat: the habit is the complication, the replacement is the pivot, and marked terms sit on one or the other — see [Beat structure](#beat-structure--where-a-term-should-sit).
 3. **Clean marks** — Every `[[id|text]]` resolves; ids unique; surface text reads as prose.
 4. **Short definitions** — Tooltip-sized (`definition` + optional `context`); `refs` only on sidebar/expand.
 5. **Cover test** — Hide marks; story still makes sense and still teaches relationships.

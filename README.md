@@ -19,8 +19,6 @@ Interactive glosses (hover, sidebar) and review cards are optional layers for lo
 
 Authoring contract (density, tiers, tooltips, QA): [`schema/README.md`](schema/README.md).
 
-Shared **narrative-core** contract: [`SPEC.md`](SPEC.md) — held verbatim in [`novel-builder`](https://github.com/cwarloe/novel-builder) too. Both repos build the same machine (a fact bank, ID'd, with prose that may not exceed it); `SPEC.md` names the shared parts and records where each repo currently diverges. `schema/README.md` wins for this repo's day-to-day authoring.
-
 Portland Desk (Security+) voice and sizing: [`examples/PORTLAND_DESK.md`](examples/PORTLAND_DESK.md).
 
 ## Source of truth
