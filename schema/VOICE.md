@@ -74,7 +74,13 @@ raccoon / convenience is not a personality trait.* Five instances of one joke sh
 
 ### 5. Mentors who speak only in epigrams
 
-Jules almost never says a functional sentence. She delivers bare labels ("Obfuscation."
+**The rule: a line is quotable because the narrator marks it as memorable.** If every line
+is quotable, none of them is. Give the coach one or two lines per chapter that the narrator
+explicitly registers — *that's the one I write down* — and make the rest of her speech
+functional. The quotable line earns its weight from being singled out, not from being
+well-phrased.
+
+Beyond that, Jules almost never says a functional sentence. She delivers bare labels ("Obfuscation."
 "Rootkit." "Air gap."), maxims ("Containment before curious poking"), or the formula
 above — usually *without looking up*, which recurs verbatim across chapters.
 
