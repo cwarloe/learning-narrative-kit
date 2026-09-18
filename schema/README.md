@@ -56,6 +56,8 @@ Hide every `[[...]]` mark. Read the paragraph. If it still sounds like a person 
 
 ## Beat structure — where a term should sit
 
+> Prose that passes every check here can still read as machine-written. Tells, metrics, and the repair pass: [`VOICE.md`](VOICE.md).
+
 The cover test tells you a beat is flat. This tells you why, and what to do about it.
 
 A learner remembers a term by the **decision it was attached to**. A term that appears
