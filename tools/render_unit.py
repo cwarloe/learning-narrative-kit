@@ -7,7 +7,7 @@ Usage:
   python tools/render_unit.py examples/secplus-ports-helpdesk
   python tools/render_unit.py examples/secplus-auth-helpdesk
 
-Requires PyYAML (use examples/secplus-ports-helpdesk/.venv or tools/.venv).
+Requires PyYAML (see Setup in AGENTS.md: python3 -m venv .venv).
 """
 from __future__ import annotations
 
@@ -25,8 +25,8 @@ try:
 except ImportError:
     sys.exit(
         "PyYAML is required. Try:\n"
-        "  examples/secplus-ports-helpdesk/.venv/bin/python tools/render_unit.py <unit_dir>\n"
-        "or: python -m venv tools/.venv && tools/.venv/bin/pip install pyyaml"
+        "  python3 -m venv .venv && .venv/bin/pip install -r requirements.txt\n"
+        "then: .venv/bin/python tools/render_unit.py <unit_dir>"
     )
 
 KIT_ROOT = Path(__file__).resolve().parent.parent

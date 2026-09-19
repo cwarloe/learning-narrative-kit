@@ -26,7 +26,8 @@ try:
 except ImportError:
     print(
         "FAIL: PyYAML is required. "
-        "Use examples/secplus-ports-helpdesk/.venv or: pip install pyyaml",
+        "See Setup in AGENTS.md: python3 -m venv .venv "
+        "&& .venv/bin/pip install -r requirements.txt",
         file=sys.stderr,
     )
     sys.exit(2)

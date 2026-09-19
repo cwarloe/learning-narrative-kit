@@ -31,8 +31,9 @@ Marks in prose: `[[term_id|surface text]]`
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-# or reuse: examples/secplus-ports-helpdesk/.venv if present
 ```
+
+`.venv` at the repo root is the only supported location — it is gitignored, so a fresh clone has none until you run the above. If your system `python3` already has PyYAML, you can skip the venv and run the tools with `python3` directly; that is the only dependency.
 
 ## Add a new unit (ship checklist)
 
