@@ -104,6 +104,37 @@ simile is reaching, cut it — plain statement is almost always better.
 Three stacked appositives delivering biography. Nobody narrates themselves this way.
 Let the facts arrive when they matter.
 
+
+### 8. Em-dashes as a default connector
+
+The Portland Desk chapters ran 12.6–20.9 em-dashes per 1k words against ITM's 5.6. The
+fix is not zero — a writer uses a dash sometimes, and a chapter with none reads as
+carefully as one with too many. Aim near the ITM rate: **roughly one per 180 words.**
+
+The dash earns its place three ways:
+
+1. **Interruption or self-correction**, mostly in dialogue. Someone cuts themselves off
+   or gets cut off.
+2. **An appositive that already contains commas.** Commas can't hold it and parentheses
+   are too quiet: *narrow on purpose — source the VPN group, destination the jump host,
+   port 3389, TCP, allow — and everything else denied.*
+3. **A turn the sentence didn't promise.** A reversal or a sting where a comma is too
+   soft.
+
+It does not earn its place as:
+
+- A general connector where a comma, a period, or *and* would do the same work.
+- **A hitch for a summarizing clause.** This is the tic: *download, delete, hope — and
+  that's the whole problem.* The dash is how the section-final maxim (tell 3) gets
+  delivered. Cut the clause, not just the dash.
+- More than one per paragraph, or two in a sentence unless they are a matched pair
+  bracketing one appositive.
+
+Used well the dash also **compresses** — it replaces *which was*, *and that meant*, and
+most *where* clauses at a saving of two to four words each. A tightening pass and a
+dash pass are the same pass.
+
+
 ## Repair pass
 
 Work a chapter in this order. The first three are mechanical; the rest need judgment.
@@ -115,7 +146,8 @@ Work a chapter in this order. The first three are mechanical; the rest need judg
 4. **Cut the closing maxim** from most sections. Let the beat stop.
 5. **Deformulate the coach.** Replace at least half her lines with functional speech.
 6. **Cut reaching similes.** All of them, then restore any you actually miss.
-7. **Re-run `voice_check.py`** and confirm the density moved toward the ITM numbers.
+7. **Restore a few em-dashes** (tell 8) while tightening — the same edit does both.
+8. **Re-run `voice_check.py`** and confirm the density moved toward the ITM numbers.
 
 ## What not to trade away
 
