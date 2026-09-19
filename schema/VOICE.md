@@ -149,6 +149,27 @@ Work a chapter in this order. The first three are mechanical; the rest need judg
 7. **Restore a few em-dashes** (tell 8) while tightening — the same edit does both.
 8. **Re-run `voice_check.py`** and confirm the density moved toward the ITM numbers.
 
+## Word targets produce this problem
+
+Most of the tells above are compression artifacts. Dropped determiners, verbless
+fragments, and dash-swallowed subjects are all what happens when prose is squeezed toward
+a word count. The Portland Desk ceiling was ~1800–2000 while the chapter that reads best,
+`itm310-vanguard-edge`, is 3857 words.
+
+So: **a word target is not a reason to drop a subject, an article, or a finite verb.**
+
+> ~~a contractor named Sam wanted RDP from a hotel in Seattle to a finance workstation —
+> polite about it, and late on a deliverable.~~
+>
+> A contractor named Sam wanted Remote Desktop from a hotel in Seattle to a finance
+> workstation. He was polite about it, and late on a deliverable.
+
+The second is six words longer and correct. The dash in the first is not an appositive
+doing work — it is a period wearing a disguise, and it swallowed *He was*. When a dash
+replaces a clause and takes the subject with it, make it a sentence.
+
+If a chapter must get shorter, cut a beat. Do not cut grammar.
+
 ## What not to trade away
 
 Voice repair must not cost teaching. The rules in `schema/README.md` still bind:

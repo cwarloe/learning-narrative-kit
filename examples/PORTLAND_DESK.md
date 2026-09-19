@@ -73,10 +73,24 @@ is not by itself a teaching chapter.
 
 | Metric | Target |
 |--------|--------|
-| Cover-stripped words | ~1800–2000 |
+| Cover-stripped words | ~2000–2800 (see note) |
 | Exam terms | ~28–35 |
 | Support terms | ~6–10 |
 | Density | ~2–3.5 marks / 100 words (ITM-like; justify outliers) |
+
+
+**On the word target.** It was ~1800–2000 and was raised, because it was generating the
+defect. `itm310-vanguard-edge` — the chapter that reads least like machine prose — is
+**3857 words**, nearly double the old ceiling. The Sec+ chapters hit the ceiling by
+dropping subjects and articles ("Closet switch in Building C", "Desk lead", "polite about
+it, and late on a deliverable"), which is the telegraphic register `schema/VOICE.md` exists
+to remove.
+
+**Never hit the number by cutting grammar.** A full sentence that costs six more words
+beats a fragment that saves them. If a chapter runs long, cut a *beat* — one whole ticket,
+with its terms rehoused — not the articles and finite verbs inside the sentences. Cutting a
+beat is a content decision about which terms lose their complication/pivot home, and it is
+the author's call, not a tightening pass.
 
 ## Existing units (clone structure from the nearest sibling)
 

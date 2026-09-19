@@ -36,7 +36,7 @@ Eleven minutes later he pasted a screenshot of a working SSH login and added, so
 
 Accounting next. Maya could get her mail on the office Wi-Fi and it failed at home, and she had decided the server was broken.
 
-I remoted into her settings while she was on the phone. Her inbound was [[pop3|POP3]] on 110 — download, delete, hope.
+I remoted into her settings while she was on the phone. Her inbound was [[pop3|POP3]] on 110, which downloads, deletes, and hopes.
 
 "That's how my first laptop did it in college," she said. "Grab the mail and go. My coworker keeps everything on the server with [[imap|IMAP]] on 143 and I never understood why both of them still worked here."
 
@@ -56,7 +56,7 @@ We changed the profile together, sent a test message, and the red banner went aw
 
 The facilities vendor needed a building controller config sent over, and the ticket said, cheerfully, to drop it on their [[ftp|FTP]] server.
 
-I called instead of typing a lecture at them. Their engineer, Dana, sounded like she was in a truck — a radio going somewhere behind her.
+I called instead of typing a lecture at them. Their engineer, Dana, sounded like she was in a truck, with a radio going somewhere behind her.
 
 "FTP is what the appliance documentation still shows," Dana said. "Twenty-one, username, done. I've done it that way on every install since sometime in the 2010s."
 
@@ -74,11 +74,11 @@ Dana exhaled. "FTPS I can turn on. I got burned once when a firewall guy opened 
 
 ## HR's padlock and the contractor in a hotel
 
-HR pinged right after standup. The benefits portal still loaded over [[http|HTTP]] on 80 — people typing open-enrollment information into a page with no padlock. Marketing had meant to fix it after benefits season. Benefits season was now.
+HR pinged right after standup. The benefits portal still loaded over [[http|HTTP]] on 80, which meant people were typing open-enrollment information into a page with no padlock. Marketing had meant to fix it after benefits season. Benefits season was now.
 
 The web ops channel was already half memes about certing it after open enrollment. I opened a [[change_ticket|change ticket]] to terminate [[https|HTTPS]] on 443, redirect eighty to four-forty-three, and get the certificate renewed before Friday. Somebody dropped in a gif of a padlock.
 
-While that worked its way through, a contractor named Sam wanted [[rdp|Remote Desktop]] from a hotel in Seattle to a finance workstation — polite about it, and late on a deliverable.
+While that worked its way through, a contractor named Sam wanted [[rdp|Remote Desktop]] from a hotel in Seattle to a finance workstation. He was polite about it, and late on a deliverable.
 
 "I only need the desktop for an hour," Sam said. "Hotel Wi-Fi, my laptop, their machine. It's [[tcp|TCP]] 3389, right? My last client just whitelisted my home address and called it done."
 
@@ -110,7 +110,7 @@ Jules went past with a granola bar. "I spent an entire Sunday once convinced I'd
 
 I pointed Lena at our internal [[ntp|NTP]] on 123/[[udp|UDP]], her clock jumped, and Kerberos stopped sulking.
 
-She asked why the laptop couldn't find the internet at all until she rebooted earlier — ordinary desk noise sitting underneath the directory problem. [[dhcp|DHCP]] on 67 and 68 had handed her a [[dhcp_lease|lease]] that morning, [[dns|DNS]] on 53 was resolving fine for everybody else, and her adapter had simply wedged. We renewed the lease, flushed the [[resolver_cache|resolver cache]], and sent her back to onboarding.
+She asked why the laptop couldn't find the internet at all until she rebooted earlier, which turned out to be ordinary desk noise sitting underneath the directory problem. [[dhcp|DHCP]] on 67 and 68 had handed her a [[dhcp_lease|lease]] that morning, [[dns|DNS]] on 53 was resolving fine for everybody else, and her adapter had simply wedged. We renewed the lease, flushed the [[resolver_cache|resolver cache]], and sent her back to onboarding.
 
 ## Monitoring, AAA, and the community string everybody knows
 
