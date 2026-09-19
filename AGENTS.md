@@ -37,7 +37,7 @@ python3 -m venv .venv
 ## Add a new unit (ship checklist)
 
 1. **Collect the term set** that belongs together (one exam/lesson cluster).
-2. **Choose one forcing situation** where those ideas must interact (ticket plot, plant floor, etc.).
+2. **Choose one forcing situation** where those ideas must interact (ticket plot, plant floor, etc.). Build each beat as goal / complication / pivot, with the marked terms on the complication or the pivot (`schema/README.md` → Beat structure).
 3. **Create** `examples/<unit_id>/` by copying the nearest sibling unit’s file shapes.
 4. **Write** `narrative.md` (story-first) and `glossary.yaml` (every id used ≥1 in the narrative).
 5. **Write** `unit.yaml` (`unit_id` must match folder name and Pages path) and `review.yaml` (cards from glossary; include `tier`).

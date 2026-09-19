@@ -1,17 +1,20 @@
 
-<p>"People say <span class="term support" data-term="aaa" data-tier="support">AAA</span> like it's one port," Jared drops into the thread, still riding his SSH win. "RADIUS for the VPN crowd, TACACS for us touching the boxes. I mixed them up for a year."</p>
-<p>I do not configure either from the desk. I name the ports when someone asks. The work is naming the replacement while they are still on the line — templates, shortcuts, and the stories attached to them.</p>
+<p>"Convenience for you is cleartext logs riding the guest network," I said. "Use <span class="term exam" data-term="syslog_tls" data-tier="exam">syslog over TLS</span> on 6514/TCP. Jules already filed the long-term fix and this matches it."</p>
+<p>He took the walk upstairs, grumbling, and mentioned on the way that 6514 was the one he always forgot on flashcards. Same.</p>
+<p>VPN and device login questions piled onto the same thread. Remote users authenticate to the <span class="term support" data-term="concentrator" data-tier="support">concentrator</span> through <span class="term exam" data-term="radius" data-tier="exam">RADIUS</span>, 1812 for authentication and 1813 for accounting, and the network team would rather use <span class="term exam" data-term="tacacs" data-tier="exam">TACACS+</span> on 49/TCP for switch and firewall admin sessions, because it encrypts the whole payload and splits <span class="term support" data-term="authz" data-tier="support">authorization</span> cleanly away from authentication.</p>
+<p>"People say <span class="term support" data-term="aaa" data-tier="support">AAA</span> like it's one port," Jared said, dropping into the thread still riding his SSH win. "RADIUS for the VPN crowd, TACACS for those of us touching the boxes. I had them mixed up for about a year."</p>
+<p>I didn't configure either one from the desk. I named the ports when somebody asked.</p>
 <h2>TFTP and the printer that will not wait</h2>
-<p>Last real ping of the shift. Facilities tech — Owen — needs printer firmware. He wants <span class="term exam" data-term="tftp" data-tier="exam">TFTP</span> from his laptop on the user VLAN. No auth. 69/UDP. Tiny and trusting.</p>
-<p>"MAX leaves in twenty and the printer is dead," Owen says. "Just this once from here. I PXE-boot lab gear with TFTP at home all the time — it's fine if you know the room."</p>
-<p>"Trusted VLAN only," I say. "Management segment, short window, then close it. TFTP does not cross a <span class="term support" data-term="perimeter" data-tier="support">perimeter</span> and it does not live on the desk VLAN next to people browsing the web. Home lab room is a room. This floor is not."</p>
-<p>Owen looks at the clock, then at me. "Staging switch still up? That's the one we used for the badge reader flash last month."</p>
+<p>The last real ping of the shift was a facilities tech named Owen, who needed to get firmware onto a printer and wanted to do it with <span class="term exam" data-term="tftp" data-tier="exam">TFTP</span> from his laptop on the user VLAN. No authentication, 69/UDP, tiny and trusting.</p>
+<p>"The MAX leaves in twenty minutes and the printer is dead," Owen said. "Just this once from here. I PXE boot lab gear with TFTP at home all the time, it's fine if you know the room."</p>
+<p>"Management segment only," I said. "Short window, and then we close it. TFTP doesn't cross a <span class="term support" data-term="perimeter" data-tier="support">perimeter</span> and it doesn't belong on the desk VLAN next to people browsing the web. Your home lab is one room you know everything about. This floor isn't."</p>
+<p>Owen looked at the clock, then at me. "Is the staging switch still up? The one we used for the badge reader flash last month?"</p>
 <p>"Still up."</p>
-<p>He moves. Firmware lands. Port closed. He still catches the MAX. In the ticket note he writes <em>staging only — Owen knows why now</em>, which is more honest than most of my notes from week one.</p>
+<p>He moved fast. The firmware landed and I closed the port behind him. He made his train. In the ticket note he wrote <em>staging only, Owen knows why now</em>, which was more honest than most of the notes I'd written in week one.</p>
 <h2>Closing the queue</h2>
-<p>5:40. Queue down to noise. Index cards on the desk — Telnet beside SSH, HTTP beside HTTPS, FTP beside two answers that are not the same, POP and IMAP beside their TLS twins, LDAP beside LDAPS, SNMP beside v3, syslog beside 6514. The numbers have not changed since breakfast. The stories have.</p>
-<p>Jules pauses at my cube, raincoat on, bike lights clipped to the strap.</p>
+<p>By 5:40 the queue was down to noise. The index cards were still out on my desk, and I noticed I'd been pairing them off all afternoon without meaning to: Telnet next to SSH, HTTP next to HTTPS, FTP next to two answers that are not the same answer, POP and IMAP next to their TLS versions, LDAP next to LDAPS, SNMP next to v3, syslog next to 6514. None of the numbers had changed that day.</p>
+<p>Jules stopped at my cube on her way out, raincoat on, bike lights already clipped to the strap.</p>
 <p>"How many ports did you memorize today?"</p>
-<p>"None," I say. "I collected a few war stories and made a few swaps."</p>
-<p>She almost smiles. "Good. Keep the cards if they help you start. Throw them away when the person on the line already knows what they need — and you know what to replace."</p>
-<p>I lock the drawer, badge-swipe into the rain, and walk toward the MAX. Portland is still raining. Tomorrow the queue fills again — and this time I know to ask which decision, not which number.</p>
+<p>"None. I collected some war stories and made a few swaps."</p>
+<p>"Keep the cards if they help you get started," she said. "Throw them out when the person on the phone already knows the number, and what they actually need from you is the other half."</p>
+<p>That was the one I wrote down. I locked the drawer and went out into the rain to catch the MAX.</p>

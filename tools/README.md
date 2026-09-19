@@ -43,3 +43,14 @@ Local wrapper: `examples/secplus-ports-helpdesk/build_preview.py` calls this and
 ## Full LLM playbook
 
 See [`AGENTS.md`](../AGENTS.md) at the repo root.
+
+## voice_check.py
+
+Flags machine-prose tells (dropped determiners, fragment runs, section-final
+aphorisms, antithesis formulas, sentence-length flatness). Heuristic — a reading
+aid, not a gate. Contract and repair pass: `schema/VOICE.md`.
+
+```bash
+python3 tools/voice_check.py examples/<unit_id>/narrative.md
+python3 tools/voice_check.py examples/*/narrative.md --summary
+```

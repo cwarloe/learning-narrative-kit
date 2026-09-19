@@ -27,7 +27,7 @@ constraints:
   - Prefer secure/insecure replacement decisions over trivia dumps
   - Definitions stay exam-faithful; do not invent rival port numbers
   - Precursor tone: help desk, not SOC analyst narrative
-  - Present tense only; no foreshadowing of places or events the reader has not met
+  - Past tense narration, first person (see examples/PORTLAND_DESK.md); no foreshadowing of places or events the reader has not met
   - Narrator may feel lost; reader must never be confused by unexplained references
   - Two-tier glossary — tier exam for SY0-701 targets; tier support for desk/network jargon
   - Do not mark Portlandia/flavor background (pannier, MAX, bike helmet, rain pants, coffee, cubes-as-furniture vibe); leave flavor unmarked on purpose
