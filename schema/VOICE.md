@@ -6,7 +6,8 @@ trusting the material. For a training product that is a correctness problem, not
 problem.
 
 `tools/voice_check.py` flags the countable tells. It is heuristic and produces false
-positives — a reading aid, never a gate.
+positives — a reading aid, never a gate. The costliest tell isn't countable and sits above
+the sentence: see [The structural tell](#the-structural-tell).
 
 ```bash
 python3 tools/voice_check.py examples/<unit_id>/narrative.md
@@ -135,6 +136,47 @@ most *where* clauses at a saving of two to four words each. A tightening pass an
 dash pass are the same pass.
 
 
+## The structural tell
+
+The eight above live in sentences. This one lives above them, so `voice_check.py` cannot
+see it — and for a training product it is the most expensive of the lot.
+
+**Resolution the situation hasn't paid for.** The ticket opens, the concepts get used, the
+fix works, the user is grateful, and the chapter closes. It reads tidy and it reads false.
+
+Beat structure already asks the right question — *Pivot: what gets decided, **and what does
+it cost?*** A tidy chapter is that second half going unanswered. The decision happens; the
+cost never gets charged.
+
+What it looks like:
+
+- The user is told why the policy exists and immediately complies.
+- The vendor picks up, is helpful, and has the answer.
+- The fix works the first time.
+- Nobody is annoyed, nobody escalates, nothing is deferred.
+- The chapter ends with the problem closed and the queue clear.
+
+Why this is a correctness problem and not a taste problem: **the learner walks away with a
+model of the work, not just a set of terms.** A reader who does six chapters where
+explaining the reason produces compliance has learned something false about help desk
+work, and it will cost them in week one. The narrative is the learning object — which
+means its shape teaches too, not only its marked terms.
+
+What to do instead. The concepts still have to land; that is the unit's job and it is not
+negotiable. The *situation* is what should stay honest:
+
+- **Charge for the pivot.** Name what the decision cost — time, goodwill, a capability the
+  user liked, a thing that now has to be watched.
+- **Let the ticket end where real tickets end.** Escalated. Deferred to a change window.
+  Mitigated with a tradeoff. Fixed for now. Fixed, and the user is still annoyed.
+- **Let someone stay unconvinced.** A user who complies because they were told to, not
+  because they agreed, is more instructive than a convert.
+- **Cut the last line.** If the chapter ends on a line explaining the chapter, delete it —
+  this is tell 3 wearing its largest coat.
+
+A chapter that ends on "she said she'd think about it" has taught the terms and told the
+truth about the work. That is a better unit, not a weaker one.
+
 ## Repair pass
 
 Work a chapter in this order. The first three are mechanical; the rest need judgment.
@@ -147,7 +189,10 @@ Work a chapter in this order. The first three are mechanical; the rest need judg
 5. **Deformulate the coach.** Replace at least half her lines with functional speech.
 6. **Cut reaching similes.** All of them, then restore any you actually miss.
 7. **Restore a few em-dashes** (tell 8) while tightening — the same edit does both.
-8. **Re-run `voice_check.py`** and confirm the density moved toward the ITM numbers.
+8. **Check what the ending cost.** Read the last beat and say in one sentence what the
+   pivot charged. If the answer is "nothing," the chapter is tidy — reopen it per the
+   structural tell above. This is the one repair the checker can't prompt you to do.
+9. **Re-run `voice_check.py`** and confirm the density moved toward the ITM numbers.
 
 ## Word targets produce this problem
 

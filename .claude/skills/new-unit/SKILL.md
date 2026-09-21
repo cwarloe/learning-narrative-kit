@@ -35,6 +35,8 @@ The unit id is `$1` when given; otherwise agree one with the author before creat
 
 **The cover test is what matters.** Strip every `[[...]]` mark; the story must still teach how the concepts depend on each other. A unit that only works with tooltips on has failed, even when validation is green.
 
+**Don't let the situation resolve tidily.** Beat structure asks what the pivot *costs*; answer it. The fix shouldn't work the first time, the vendor shouldn't be helpful, and the user shouldn't comply just because someone explained the reason well. A chapter where the ticket closes clean and the queue empties has taught the terms and told a lie about the work — and the shape of a narrative teaches as surely as its marked terms do. Escalated, deferred, mitigated with a tradeoff, or fixed-and-the-user-is-still-annoyed are all better endings. `schema/VOICE.md` → The structural tell has the full list.
+
 Two tiers when used: `exam` = study targets, `support` = readability jargon, flavor unmarked. Tooltips carry `definition` plus optional `context` only — `refs` stay in the sidebar.
 
 **Don't invent port numbers, exam definitions, or vendor specifics.** If the course source doesn't state it, ask. A confidently wrong Security+ fact inside a study narrative is worse than a gap, because the story makes it memorable.

@@ -50,8 +50,18 @@ The renderer will not do this. Add a card to `docs/index.html` under the right t
 
 Live at `https://cwarloe.github.io/learning-narrative-kit/<unit_id>/`.
 
+## Voice pass
+
+Before shipping, run the reading aid:
+
+```bash
+python3 tools/voice_check.py examples/<unit_id>/narrative.md
+```
+
+Report what it flags — it's heuristic and produces false positives, so never rewrite just to move a number. Then answer the one thing it can't see: **read the last beat and say in one sentence what the pivot cost.** If the answer is "nothing," the chapter is tidy and needs reopening before it ships. `schema/VOICE.md` → The structural tell.
+
 ## Done means
 
-Validate PASS, render succeeded, landing card present, **cover test passes** (strip the `[[...]]` marks and the story still teaches the relationships), the sticky teaching beats can each be named in one sentence, and `docs/` is pushed.
+Validate PASS, render succeeded, landing card present, **cover test passes** (strip the `[[...]]` marks and the story still teaches the relationships), the sticky teaching beats can each be named in one sentence, the ending cost something you can name, and `docs/` is pushed.
 
 Report the validate output rather than summarising it as "passed" — the density and tier counts are worth the author seeing.
