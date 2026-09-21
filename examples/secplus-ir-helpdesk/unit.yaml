@@ -1,8 +1,8 @@
 unit_id: secplus-ir-helpdesk
 title: "Portland Desk — When the Ticket Escalates"
 audience: "Someone studying Security+ incident response basics, or a NADF precursor for Ethan's help-desk years"
-purpose: "Weave SY0-701 incident response basics — event vs incident, IR lifecycle, containment before curiosity, evidence preservation, escalation to CSIRT, playbooks and lessons learned — into one help-desk shift so definitions become desk decisions."
-estimated_minutes: 24
+purpose: "Weave the first-touch half of SY0-701 incident response — event vs incident, isolation before erasure, what makes an indicator worth writing down, when to escalate to CSIRT, and need-to-know — into one help-desk shift so definitions become desk decisions. The IR lifecycle, playbooks and live-incident coordination are a separate lesson; their terms are parked in glossary.deferred.yaml."
+estimated_minutes: 9
 sources:
   - CompTIA Security+ SY0-701 (incident response; detection and analysis; containment, eradication, recovery; lessons learned)
   - Common SY0-701 IR study clusters that surface as help-desk tickets and escalations
@@ -25,6 +25,7 @@ constraints:
   - Every glossary term appears at least once in a ticket or decision
   - Story must pass the cover test (readable with marks hidden)
   - Prefer IR decision beats over vocab parade
+  - Do not recite the lifecycle; this unit teaches the decision before the lifecycle starts
   - Definitions stay exam-faithful; not every scary ticket is an incident
   - Precursor tone: help desk as first touch, not CSIRT engineer narrative
   - Present tense only; no foreshadowing of places or events the reader has not met

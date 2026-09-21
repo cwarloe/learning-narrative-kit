@@ -1,202 +1,84 @@
 deck_id: secplus-ir-helpdesk
 cards:
-  - id: event
-    prompt: Event
-    answer: "An observable occurrence in a system or network — a login, alert, crash, or odd ticket — that may or may not be a security problem."
-    tags: [ir]
-    tier: exam
-  - id: security_incident
-    prompt: Security incident
-    answer: "A violation or imminent threat of violation of security policy, acceptable use, or standard security practices — not every scary ticket qualifies."
-    tags: [ir]
-    tier: exam
-  - id: incident_response
-    prompt: Incident response (IR)
-    answer: "Organized process for detecting, analyzing, containing, eradicating, recovering from, and learning from security incidents."
-    tags: [ir]
-    tier: exam
-  - id: irp
-    prompt: Incident response plan (IRP)
-    answer: "Documented organization-wide plan that defines roles, criteria, escalation paths, and steps for handling incidents."
-    tags: [ir]
-    tier: exam
-  - id: severity
-    prompt: Severity / priority classification
-    answer: "Ranking how bad an incident is (impact and urgency) so the right people respond at the right speed — criteria beat vibes."
-    tags: [ir]
-    tier: exam
-  - id: preparation
-    prompt: Preparation
-    answer: "IR phase of building plans, playbooks, tools, contacts, and practice before an incident hits — readiness, not heroics."
-    tags: [ir, lifecycle]
-    tier: exam
-  - id: detection_analysis
-    prompt: Detection and analysis
-    answer: "IR phase of spotting and validating that something is (or is not) an incident — triage alerts, tickets, and IoCs into a decision."
-    tags: [ir, lifecycle]
-    tier: exam
-  - id: containment
-    prompt: Containment
-    answer: "IR phase of limiting damage and spread — stop the bleeding before you deep-dive or rebuild."
-    tags: [ir, lifecycle]
-    tier: exam
-  - id: short_term_containment
-    prompt: Short-term containment
-    answer: "Fast stopgap that buys time — isolate a host, block an account, cut a path — before longer fixes are ready."
-    tags: [ir, containment]
-    tier: exam
-  - id: long_term_containment
-    prompt: Long-term containment
-    answer: "More durable controls that keep the business running while eradication and recovery are planned — temporary systems, hardened segments, monitoring."
-    tags: [ir, containment]
-    tier: exam
-  - id: eradication
-    prompt: Eradication
-    answer: "Removing the cause — malware, backdoors, compromised accounts — so the threat is actually gone, not just quiet."
-    tags: [ir, lifecycle]
-    tier: exam
-  - id: recovery
-    prompt: Recovery
-    answer: "Restoring systems and services to trusted operation after eradication — rebuild, restore, validate, and watch for reinfection."
-    tags: [ir, lifecycle]
-    tier: exam
-  - id: lessons_learned
-    prompt: Lessons learned / post-incident review
-    answer: "After-action review that captures what happened, what worked, and what to change in plans, playbooks, and training."
-    tags: [ir, lifecycle]
-    tier: exam
-  - id: playbook
-    prompt: Playbook
-    answer: "Step-by-step response guide for a known incident type (phishing, ransomware, account takeover) so responders do not invent process at 2am."
-    tags: [ir]
-    tier: exam
-  - id: runbook
-    prompt: Runbook
-    answer: "Operational procedure for a recurring task (isolate host, collect logs, reset credentials) — often the how-to companion to a playbook."
-    tags: [ir]
-    tier: exam
-  - id: escalation
-    prompt: Escalation
-    answer: "Handing an issue to a higher or more specialized team when criteria are met — with clean facts, not a Slack panic dump."
-    tags: [ir]
-    tier: exam
-  - id: first_responder
-    prompt: First responder
-    answer: "First person or team to touch an incident — at many orgs the help desk is that first touch and must preserve options for IR."
-    tags: [ir]
-    tier: exam
-  - id: csirt
-    prompt: CSIRT / IR team
-    answer: "Computer Security Incident Response Team (or equivalent IR team) — specialists who own analysis, forensics coordination, and incident command after escalation."
-    tags: [ir]
-    tier: exam
-  - id: tabletop
-    prompt: Tabletop exercise
-    answer: "Discussion-based practice walkthrough of an incident scenario — cheap preparation that finds gaps before a real ticket does."
-    tags: [ir, preparation]
-    tier: exam
-  - id: chain_of_custody
-    prompt: Chain of custody
-    answer: "Documented control of evidence — who had it, when, and what changed — so findings stay credible and you do not casually wipe a laptop IR still needs."
-    tags: [ir, evidence]
-    tier: exam
-  - id: evidence
-    prompt: Evidence
-    answer: "Artifacts retained for investigation — logs, disk images, screenshots, tickets — collected carefully so they remain usable."
-    tags: [ir, evidence]
-    tier: exam
-  - id: forensic_image
-    prompt: Forensic image
-    answer: "Bit-for-bit copy of storage for analysis — why IR may tell you not to power-cycle, reimage, or 'clean it up' before imaging."
-    tags: [ir, evidence]
-    tier: exam
-  - id: ioc
-    prompt: Indicator of compromise (IoC)
-    answer: "Observable clue that compromise may have happened — odd domains, hashes, filenames, login patterns — that desk can document and escalate."
-    tags: [ir, detection]
-    tier: exam
-  - id: quarantine
-    prompt: Quarantine
-    answer: "Isolating a file, email, or host into a restricted state so it cannot harm others while it is inspected or held."
-    tags: [ir, containment]
-    tier: exam
-  - id: isolation
-    prompt: Isolation
-    answer: "Separating a system from the network or peers to stop spread — pull the cable, disable Wi-Fi, or VLAN-park the host."
-    tags: [ir, containment]
-    tier: exam
-  - id: legal_hold
-    prompt: Legal / litigation hold
-    answer: "Order to preserve relevant data and stop routine deletion because of potential or active legal matters — overrides casual cleanup."
-    tags: [ir, evidence]
-    tier: exam
-  - id: communication_plan
-    prompt: Communication plan
-    answer: "Who gets told what, when, and through which channel during an incident — so updates are controlled instead of chaotic."
-    tags: [ir]
-    tier: exam
-  - id: need_to_know
-    prompt: Need-to-know
-    answer: "Principle of sharing incident details only with people who require them to act — not blasting the whole company Slack."
-    tags: [ir]
-    tier: exam
-  - id: true_positive
-    prompt: True positive
-    answer: "Alert or finding that correctly identifies a real problem — signal worth escalating."
-    tags: [ir, detection]
-    tier: exam
-  - id: false_positive
-    prompt: False positive
-    answer: "Alert or finding that looks bad but is not a real incident — noise that still needs a calm close-out, not a war room."
-    tags: [ir, detection]
-    tier: exam
-  - id: siem
-    prompt: SIEM
-    answer: "Security information and event management — platform that aggregates and correlates logs/alerts so analysts can spot patterns tickets alone miss."
-    tags: [ir, detection]
-    tier: exam
-  - id: disaster_recovery
-    prompt: Disaster recovery (DR)
-    answer: "Restoring IT after major outage or disaster — related to continuity, but distinct from day-to-day security incident response."
-    tags: [ir, continuity]
-    tier: exam
-  - id: help_desk
-    prompt: Help desk
-    answer: "Front-line IT support that takes tickets, coaches users, and often acts as first touch on security signals."
-    tags: [support, desk]
-    tier: support
-  - id: ticket
-    prompt: Ticket
-    answer: "Tracked support request — the work unit the desk opens, updates, and closes; not automatically an incident."
-    tags: [support, desk]
-    tier: support
-  - id: on_call
-    prompt: On-call
-    answer: "Person scheduled to answer after-hours pages for ops or security escalations."
-    tags: [support, ops]
-    tier: support
-  - id: bridge_call
-    prompt: Bridge call
-    answer: "Shared conference line where responders sync during an active incident."
-    tags: [support, ops]
-    tier: support
-  - id: war_room
-    prompt: War room
-    answer: "Focused coordination space (physical or virtual) for an active high-severity incident — used sparingly, not for every alert."
-    tags: [support, ops]
-    tier: support
-  - id: p1
-    prompt: P1 / Sev-1
-    answer: "Slang for the highest priority severity class — biggest impact, fastest response expectations."
-    tags: [support, ops]
-    tier: support
-  - id: change_freeze
-    prompt: Change freeze
-    answer: "Temporary halt on non-essential changes so the environment stays stable during investigation or recovery."
-    tags: [support, ops]
-    tier: support
-  - id: soc
-    prompt: SOC
-    answer: "Security operations center — team that monitors alerts, investigates, and often sits next to or inside the IR path."
-    tags: [support, security]
-    tier: support
+- id: event
+  prompt: Event
+  answer: An observable occurrence in a system or network — a login, alert, crash, or odd ticket — that
+    may or may not be a security problem.
+  tags:
+  - ir
+  tier: exam
+- id: security_incident
+  prompt: Security incident
+  answer: A violation or imminent threat of violation of security policy, acceptable use, or standard
+    security practices — not every scary ticket qualifies.
+  tags:
+  - ir
+  tier: exam
+- id: escalation
+  prompt: Escalation
+  answer: Handing an issue to a higher or more specialized team when criteria are met — with clean facts,
+    not a Slack panic dump.
+  tags:
+  - ir
+  tier: exam
+- id: first_responder
+  prompt: First responder
+  answer: First person or team to touch an incident — at many orgs the help desk is that first touch and
+    must preserve options for IR.
+  tags:
+  - ir
+  tier: exam
+- id: csirt
+  prompt: CSIRT / IR team
+  answer: Computer Security Incident Response Team (or equivalent IR team) — specialists who own analysis,
+    forensics coordination, and incident command after escalation.
+  tags:
+  - ir
+  tier: exam
+- id: chain_of_custody
+  prompt: Chain of custody
+  answer: Documented control of evidence — who had it, when, and what changed — so findings stay credible
+    and you do not casually wipe a laptop IR still needs.
+  tags:
+  - ir
+  - evidence
+  tier: exam
+- id: ioc
+  prompt: Indicator of compromise (IoC)
+  answer: Observable clue that compromise may have happened — odd domains, hashes, filenames, login patterns
+    — that desk can document and escalate.
+  tags:
+  - ir
+  - detection
+  tier: exam
+- id: quarantine
+  prompt: Quarantine
+  answer: Isolating a file, email, or host into a restricted state so it cannot harm others while it is
+    inspected or held.
+  tags:
+  - ir
+  - containment
+  tier: exam
+- id: isolation
+  prompt: Isolation
+  answer: Separating a system from the network or peers to stop spread — pull the cable, disable Wi-Fi,
+    or VLAN-park the host.
+  tags:
+  - ir
+  - containment
+  tier: exam
+- id: need_to_know
+  prompt: Need-to-know
+  answer: Principle of sharing incident details only with people who require them to act — not blasting
+    the whole company Slack.
+  tags:
+  - ir
+  tier: exam
+- id: ticket
+  prompt: Ticket
+  answer: Tracked support request — the work unit the desk opens, updates, and closes; not automatically
+    an incident.
+  tags:
+  - support
+  - desk
+  tier: support

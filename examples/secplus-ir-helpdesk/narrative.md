@@ -12,7 +12,7 @@ First ticket: *PC possessed — ads, slowness, standup in twelve — please wipe
 
 Maya is at the glass with the machine under her arm like a guilty dog. "Just reimage it. I have a meeting."
 
-I believe her. Possessed is a word that wants a fire. I take the laptop, yank the Ethernet, and I am already in the imaging USB drawer when Jules's coffee mug appears on my cube wall.
+I believe her. Possessed is a word that wants a fire. I take the laptop, [[isolation|yank the Ethernet]], and I am already in the imaging USB drawer when Jules's coffee mug appears on my cube wall.
 
 "What did it do," she says, "besides scare you?"
 
@@ -24,7 +24,7 @@ Known adware hash. Quarantine completed at 7:41. No odd logins. No new local adm
 
 I put the USB back. My hands were too fast for my criteria.
 
-She makes me write the ticket again, slower. Observable. Scary to a human. Not a [[security_incident|security incident]] until the plan says so. This one is an [[event|event]]: the [[quarantine|quarantine]] already did the verb. I return Maya her laptop with the adware gone and her standup intact. I do not get to feel heroic. I get to feel like I almost paid for a feeling.
+She makes me write the [[ticket|ticket]] again, slower. Observable. Scary to a human. Not a [[security_incident|security incident]] until the plan says so. This one is an [[event|event]]: the [[quarantine|quarantine]] already did the verb. I return Maya her laptop with the adware gone and her standup intact. I do not get to feel heroic. I get to feel like I almost paid for a feeling.
 
 Jules puts the imaging USB on her side of the wall. "You can have it back when you can say why you should not."
 
@@ -42,7 +42,7 @@ I disable the rule because leaving it up is still the crime in progress. I do no
 
 Then [[escalation|escalation]] to the [[csirt|CSIRT]] queue. Not theater. Stolen mailbox plus an exfil rule earns the serious lane.
 
-Finance Maya asks if she should warn the channel. I say no. Need-to-know is not rudeness. It is how you keep the person who made the rule from watching us watch them.
+Finance Maya asks if she should warn the channel. I say no. [[need_to_know|Need-to-know]] is not rudeness. It is how you keep the person who made the rule from watching us watch them.
 
 Jules has me bag the laptop Finance Maya also brought, "just in case." Tag, time, who had it, where it sits. Boring. That boredom is [[chain_of_custody|chain of custody]] at desk volume.
 
@@ -54,7 +54,7 @@ I almost say *I learned the phases.* I do not. I learned that my first useful mo
 
 "Tell Wednesday," she says, "without listing a lifecycle."
 
-I tell her: I nearly wiped a loud nothing. I stopped a quiet something without turning it into a parade. I am first touch, not freelance forensics.
+I tell her: I nearly wiped a loud nothing. I stopped a quiet something without turning it into a parade. I am [[first_responder|first touch]], not freelance forensics.
 
 She nods once. "When the ticket escalates, you do not escalate your ego with it."
 
