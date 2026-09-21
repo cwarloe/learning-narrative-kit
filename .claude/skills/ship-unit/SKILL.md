@@ -15,7 +15,7 @@ Use whichever the line above names. The commands below write `python3`; substitu
 
 ## Ship it
 
-The unit is `$1` when given; otherwise ask which one.
+The unit is `$0` when given; otherwise ask which one.
 
 **1. Validate — must PASS.**
 

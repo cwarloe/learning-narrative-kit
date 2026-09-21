@@ -22,7 +22,7 @@ Read the contract and the relevant track file before writing. Don't work from wh
 
 ## Build it
 
-The unit id is `$1` when given; otherwise agree one with the author before creating files. It must match the folder name and the Pages path.
+The unit id is `$0` when given; otherwise agree one with the author before creating files. It must match the folder name and the Pages path.
 
 1. **Collect the term set** that genuinely belongs together — one exam or lesson cluster, not an arbitrary slice.
 2. **Choose one forcing situation** where those ideas must interact. Build each beat as goal / complication / pivot, with the marked terms landing on the complication or the pivot, per `schema/README.md` → Beat structure.
