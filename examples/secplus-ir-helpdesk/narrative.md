@@ -2,60 +2,60 @@
 
 *A Security+ incident response precursor • Hover over highlighted terms after they have earned their keep.*
 
-Wednesday rain arrives sideways. I am Ethan, week-something at the desk. The queue is already yelling.
+The rain came in sideways on Wednesday, hard enough that the lobby mat was already soaked when I sat down. I had a queue full of subject lines in all caps and a USB drawer I trusted too much.
 
-Jules's sticky still says *which decision?* I have not read it yet. I am reading subject lines.
+Jules's sticky still said *which decision?* I had not looked at it yet. I was looking at the first ticket.
 
 ## Maya and the laptop that must die
 
-First ticket: *PC possessed — ads, slowness, standup in twelve — please wipe.*
+The subject was *PC possessed — ads, slowness, standup in twelve — please wipe.*
 
-Maya is at the glass with the machine under her arm like a guilty dog. "Just reimage it. I have a meeting."
+Maya stood at the glass with the machine under her arm. "Just reimage it. I have a meeting."
 
-I believe her. Possessed is a word that wants a fire. I take the laptop, [[isolation|yank the Ethernet]], and I am already in the imaging USB drawer when Jules's coffee mug appears on my cube wall.
+I believed her. Possessed is a word that wants a fire. I took the laptop, [[isolation|yanked the Ethernet]], and I was already in the imaging USB drawer when Jules set her coffee mug on my cube wall.
 
-"What did it do," she says, "besides scare you?"
+"What did it do," she said, "besides scare you?"
 
-I tell her ads, slowness, AV popped something. She does not take the USB. She takes the laptop, plugs it into a throwaway dongle, and opens the AV history I did not open.
+I told her ads, slowness, AV popped something. She did not take the USB. She took the laptop, plugged it into a throwaway dongle, and opened the AV history I had not opened.
 
 Known adware hash. Quarantine completed at 7:41. No odd logins. No new local admins. No other hosts talking to it.
 
-"You were about to kill the only copy of a nothingburger," she says. "And if it had been something, you were about to kill the only copy of the something."
+"You were about to kill the only copy of a nothingburger," she said. "And if it had been something, you were about to kill the only copy of the something."
 
-I put the USB back. My hands were too fast for my criteria.
+I put the USB back. My hands had been too fast for my criteria.
 
-She makes me write the [[ticket|ticket]] again, slower. Observable. Scary to a human. Not a [[security_incident|security incident]] until the plan says so. This one is an [[event|event]]: the [[quarantine|quarantine]] already did the verb. I return Maya her laptop with the adware gone and her standup intact. I do not get to feel heroic. I get to feel like I almost paid for a feeling.
+She made me write the [[ticket|ticket]] again, slower. Observable. Scary to a human. Not a [[security_incident|security incident]] until the plan said so. This one was an [[event|event]]: the [[quarantine|quarantine]] had already done the verb. I returned Maya her laptop with the adware gone and her standup intact. I did not get to feel heroic. I got to feel like I had almost paid for a feeling.
 
-Jules puts the imaging USB on her side of the wall. "You can have it back when you can say why you should not."
+Jules put the imaging USB on her side of the wall. "You can have it back when you can say why you should not."
 
 ## The quiet mailbox
 
-The next subject line is almost polite. *Can't see my Sent. Also a rule I did not make.*
+The next subject line was almost polite. *Can't see my Sent. Also a rule I did not make.*
 
-Finance Maya this time. She is not asking for a wipe. She is asking why her own mail is leaving without her.
+Finance this time — a different Maya, mailboxes, not laptops. She was not asking for a wipe. She was asking why her own mail was leaving without her.
 
-I do not reach for the USB. I open the portal the way Jules opened the AV log. A forwarding rule to a domain that is almost ours and not ours. An MFA reset at 2:13 a.m. from an IP that has never bought coffee in Portland.
+I did not reach for the USB. I opened the portal the way Jules had opened the AV log. A forwarding rule to a domain that was almost ours and not ours. An MFA reset at 2:13 a.m. from an IP that had never bought coffee in Portland.
 
-This time the scare is quiet, which is how the real ones dress.
+This time the scare was quiet, which is how the real ones dress.
 
-I disable the rule because leaving it up is still the crime in progress. I do not go hunting in the mailbox for souvenirs. I do not tell Accounting Slack to panic. I write what I can see without poking: rule name, destination, reset time, source IP, hostname. Those are [[ioc|indicators of compromise]] because they are facts that will still matter after I go home.
+I disabled the rule because leaving it up was still the crime in progress. I did not go hunting in the mailbox for souvenirs. I did not tell Accounting Slack to panic. I wrote what I could see without poking: rule name, destination, reset time, source IP, hostname. Those were [[ioc|indicators of compromise]] because they were facts that would still matter after I went home.
 
-Then [[escalation|escalation]] to the [[csirt|CSIRT]] queue. Not theater. Stolen mailbox plus an exfil rule earns the serious lane.
+Then [[escalation|escalation]] to the [[csirt|CSIRT]] queue. Stolen mailbox plus an exfil rule earned the serious lane. Nobody asked me to feel dramatic about it.
 
-Finance Maya asks if she should warn the channel. I say no. [[need_to_know|Need-to-know]] is not rudeness. It is how you keep the person who made the rule from watching us watch them.
+She asked if she should warn the channel. I said no. [[need_to_know|Need-to-know]] is how you keep the person who made the rule from watching us watch them. She did not like that answer. She accepted it the way people accept a locked door.
 
-Jules has me bag the laptop Finance Maya also brought, "just in case." Tag, time, who had it, where it sits. Boring. That boredom is [[chain_of_custody|chain of custody]] at desk volume.
+Jules had me bag the laptop she had also brought, "just in case." Tag, time, who had it, where it sat. That boredom is [[chain_of_custody|chain of custody]] at desk volume.
 
-I almost say *I learned the phases.* I do not. I learned that my first useful move today was an undo.
+I almost said I had learned the phases. I did not. I had learned that my first useful move of the day was an undo.
 
 ## After the rain
 
-5:45. Queue quieter. Jules clips her bike lights on.
+At 5:45 the queue was quieter. Jules clipped her bike lights on.
 
-"Tell Wednesday," she says, "without listing a lifecycle."
+"Tell Wednesday," she said, "without listing a lifecycle."
 
-I tell her: I nearly wiped a loud nothing. I stopped a quiet something without turning it into a parade. I am [[first_responder|first touch]], not freelance forensics.
+I told her: I had nearly wiped a loud nothing. I had stopped a quiet something without turning it into a parade. I am [[first_responder|first touch]], not freelance forensics.
 
-She nods once. "When the ticket escalates, you do not escalate your ego with it."
+She nodded once, then remembered the USB on her wall. "Keep asking what it did before you decide what it is."
 
-The queue shows one more URGENT. I open it anyway — criteria first, adrenaline second. That, for Wednesday, is enough.
+The queue showed one more URGENT. I opened it anyway — criteria first, adrenaline second. The subject was louder than the evidence. I left it in the queue with a note, and I left the imaging USB where she had put it.
