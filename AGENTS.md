@@ -26,6 +26,8 @@ research/               # background notes (schema wins on conflict)
 
 Marks in prose: `[[term_id|surface text]]`
 
+Scene artifacts (ticket / console / gui / table) are optional fenced blocks in `narrative.md`. Schema: `schema/README.md` → Scene artifacts. HTML is still generated only by `render_unit.py`.
+
 ## Setup (once)
 
 ```bash

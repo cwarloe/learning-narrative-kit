@@ -191,6 +191,36 @@ Renderers: tooltip = `definition` + optional `context`. Sidebar glossary row may
 Marks are **prose tints**, not hyperlinks. Use a soft background color (exam vs support) with no underline and no link cursor. Readers should keep full sentence context if they never hover; hover/sidebar are optional lookup, not a required click path.
 
 
+## Scene artifacts (optional, HTML)
+
+The narrative can include **exhibits the character is looking at** — a ticket, a console, a warning dialog, a process tree — so the learner sees the same surface the desk sees. These are still part of the story, not a second lesson. If you strip them, the surrounding sentences must still teach.
+
+Author as fenced blocks in `narrative.md`. The renderer turns them into HTML. Do not hand-write the HTML.
+
+Example (`ticket` fence):
+
+    ```ticket
+    id: HD-4419
+    priority: High
+    from: Maya (Accounting)
+    subject: PC slow + random ads
+    ```
+
+| Fence | Use for |
+|-------|---------|
+| `ticket` | Help-desk / change ticket chrome (`id`, `priority`, `from`, `subject`, …) |
+| `console` / `terminal` | Command line. First line may be `caption:`. Commands starting `$ `, `PS `, or `C:\` tint as input. |
+| `gui` | On-screen dialog. `kind: cert-warning` or `ransomware`; `chrome`, `heading`, `actions: Back \| Advanced` |
+| `alert` | EDR / SOC alert card |
+| `tree` | Indented process tree (2-space indent = child) |
+| `chain` | Certificate chain. Lines: `- Name \| trusted\|missing\|expired \| note` |
+| `meter` | Single bar (`label`, `value` 0–100, `note`) |
+| `table` | Pipe table inside the fence, or a native markdown pipe table in the prose |
+
+Marks (`[[id|text]]`) work inside artifacts. Keep exhibits at the **complication or the pivot** — what the person is staring at when they have to decide — not as a gallery of extra specimens.
+
+Flavor still unmarked. A fake UI is not a reason to mark “ticket” six extra times.
+
 ## Source of truth (markdown in, HTML out)
 
 **Author and store units as markdown + YAML.** Do not hand-edit HTML as the story source.
