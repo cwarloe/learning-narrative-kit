@@ -1,0 +1,274 @@
+bank_id: mis-03-data-bi
+title: Tamarack — One Customer, Four Records — glossary
+source: MindTap course glossary export (MIS), module '03. Data and Business Intelligence'
+terms:
+- id: allocation
+  title: "allocation"
+  definition: "The allocation approach to a distributed DBMS combines fragmentation and replication, with each site storing the data it uses most often."
+  tags:
+  - mod-03
+  tier: exam
+- id: business_analytics_ba
+  title: "Business analytics (BA)"
+  definition: "Business analytics (BA) uses data and statistical methods to gain insight into the data and provide decision makers with information they can act on."
+  tags:
+  - mod-03
+  tier: exam
+- id: business_intelligence_bi
+  title: "Business intelligence (BI)"
+  definition: "Business intelligence (BI) provides historical, current, and predictive views of business operations and environments and gives organizations a competitive advantage in the marketplace."
+  tags:
+  - mod-03
+  tier: exam
+- id: class
+  title: "class"
+  definition: "A class defines the format of the object and the action that it performs."
+  tags:
+  - mod-03
+  tier: exam
+- id: create_read_update_and_delete_crud
+  title: "create, read, update, and delete (CRUD)"
+  definition: "Create, read, update, and delete (CRUD) refers to a range of functions and the users who data administrators determine have permission to perform those functions."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_dictionary
+  title: "data dictionary"
+  definition: "The data dictionary stores definitions, such as data types for fields, default values, and validation rules for data in each field."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_encryption
+  title: "Data encryption"
+  definition: "Data encryption transforms data, called plaintext or cleartext, into a scrambled form called ciphertext that cannot be read by others."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_hierarchy
+  title: "data hierarchy"
+  definition: "A data hierarchy is the structure and organization of data, which involves fields, records, and files."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_lake
+  title: "data lake"
+  definition: "A data lake gathers and stores data in its original format in a central location. The collected data can be structured as well as unstructured."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_mart
+  title: "data mart"
+  definition: "A data mart is usually a smaller version of a data warehouse, used by a single department or function."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_model
+  title: "data model"
+  definition: "A data model determines how data is created, represented, organized, and maintained. It usually contains a data structure, operations, and integrity rules."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_warehouse
+  title: "data warehouse"
+  definition: "A data warehouse is a collection of data from a variety of sources used to support decision-making applications and generate business intelligence."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_driven_web_site
+  title: "data-driven Web site"
+  definition: "A data-driven Web site acts as an interface to a database, retrieving data for users and allowing users to enter data in the database."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_mining_agents
+  title: "Data-mining agents"
+  definition: "Data-mining agents work with a data warehouse, detecting trends and discovering new information and relationships among data items that were not readily apparent."
+  tags:
+  - mod-03
+  tier: exam
+- id: data_mining_analysis
+  title: "Data-mining analysis"
+  definition: "Data-mining analysis is used to discover patterns and relationships."
+  tags:
+  - mod-03
+  tier: exam
+- id: database
+  title: "database"
+  definition: "A database is a collection of related data that is stored in a central location or in multiple locations."
+  tags:
+  - mod-03
+  tier: exam
+- id: database_administrator_dba
+  title: "database administrator (DBA)"
+  definition: "Database administrator (DBA) in large organizations design and set up databases, establish security measures, develop recovery procedures, evaluate database performance, and add and fine-tune database functions."
+  tags:
+  - mod-03
+  tier: exam
+- id: database_management_system_dbms
+  title: "database management system (DBMS)"
+  definition: "A database management system (DBMS) is software for creating, storing, maintaining, and accessing database files. A DBMS makes using databases more efficient."
+  tags:
+  - mod-03
+  tier: exam
+- id: database_marketing
+  title: "database marketing"
+  definition: "Database marketing uses an organization’s database of customers and potential customers to promote products or services."
+  tags:
+  - mod-03
+  tier: exam
+- id: distributed_database_management_system_d
+  title: "distributed database management system (DDBMS)"
+  definition: "A distributed database management system (DDBMS) stores data on multiple servers throughout an organization."
+  tags:
+  - mod-03
+  tier: exam
+- id: encapsulation
+  title: "encapsulation"
+  definition: "Encapsulation refers to the grouping of various objects along with their attributes and methods into a class—in other words, grouping related items into a single unit. This assists in the handling of more complex types of data, such as images and graphs."
+  tags:
+  - mod-03
+  tier: exam
+- id: extraction_transformation_and_loading_et
+  title: "Extraction, transformation, and loading (ETL)"
+  definition: "Extraction, transformation, and loading (ETL) refers to the processes used in a data warehouse. It includes extracting data from outside sources, transforming it to fit operational needs, and loading it into the end target (database or data warehouse)."
+  tags:
+  - mod-03
+  tier: exam
+- id: foreign_key
+  title: "foreign key"
+  definition: "A foreign key is a field in a relational table that matches the primary key column of another table. It can be used to cross-reference tables."
+  tags:
+  - mod-03
+  tier: exam
+- id: fragmentation
+  title: "fragmentation"
+  definition: "The fragmentation approach to a distributed DBMS addresses how tables are divided among multiple locations. There are three variations: horizontal, vertical, and mixed."
+  tags:
+  - mod-03
+  tier: exam
+- id: graph_database
+  title: "graph database"
+  definition: "A graph database is a database that uses graph structures for query operation with nodes, edges, and properties to represent and store data."
+  tags:
+  - mod-03
+  tier: exam
+- id: hierarchical_model
+  title: "hierarchical model"
+  definition: "In a hierarchical model, the relationships between records form a treelike structure (hierarchy). Records are called nodes, and relationships between records are called branches. The node at the top is called the root, and every other node (called a child) has a parent. Nodes with the same parents are called twins or siblings."
+  tags:
+  - mod-03
+  tier: exam
+- id: indexed_sequential_access_method_isam
+  title: "indexed sequential access method (ISAM)"
+  definition: "With the indexed sequential access method (ISAM), records can be accessed sequentially or randomly, depending on the number being accessed. For a small number, random access is used, and for a large number, sequential access is used."
+  tags:
+  - mod-03
+  tier: exam
+- id: inheritance
+  title: "inheritance"
+  definition: "Inheritance refers to new objects being created faster and more easily by entering new data in attributes."
+  tags:
+  - mod-03
+  tier: exam
+- id: logical_view
+  title: "logical view"
+  definition: "The logical view involves how information appears to users and how it can be organized and retrieved."
+  tags:
+  - mod-03
+  tier: exam
+- id: network_model
+  title: "network model"
+  definition: "The network model is similar to the hierarchical model, but records are organized differently. Unlike the hierarchical model, each record in the network model can have multiple parent and child records."
+  tags:
+  - mod-03
+  tier: exam
+- id: normalization
+  title: "normalization"
+  definition: "Normalization improves database efficiency by eliminating redundant data and ensuring that only related data is stored in a table."
+  tags:
+  - mod-03
+  tier: exam
+- id: object
+  title: "object"
+  definition: "An object is an item that contains both data and the procedures that read and manipulate it."
+  tags:
+  - mod-03
+  tier: exam
+- id: object_oriented_databases
+  title: "object-oriented databases"
+  definition: "In object-oriented databases, both data and their relationships are contained in a single object. An object consists of attributes and methods that can be performed on the object’s data."
+  tags:
+  - mod-03
+  tier: exam
+- id: online_analytical_processing_olap
+  title: "Online analytical processing (OLAP)"
+  definition: "Online analytical processing (OLAP) generates business intelligence. It uses multiple sources of information and provides multidimensional analysis, such as viewing data based on time, product, and location."
+  tags:
+  - mod-03
+  tier: exam
+- id: online_transaction_processing_oltp
+  title: "online transaction processing (OLTP)"
+  definition: "Online transaction processing (OLTP) is used to facilitate and manage transaction-oriented applications, such as point-of-sale, data entry, and retrieval transaction processing. It generally uses internal data and responds in real time."
+  tags:
+  - mod-03
+  tier: exam
+- id: physical_view
+  title: "physical view"
+  definition: "The physical view involves how data is stored on and retrieved from storage media, such as hard disks or magnetic tapes."
+  tags:
+  - mod-03
+  tier: exam
+- id: primary_key
+  title: "primary key"
+  definition: "A primary key uniquely identifies every record in a relational database. Examples include student ID numbers, account numbers, Social Security numbers, and invoice numbers."
+  tags:
+  - mod-03
+  tier: exam
+- id: query_by_example_qbe
+  title: "query by example (QBE)"
+  definition: "With query by example (QBE), you request data from a database by constructing a statement made up of query forms. With current graphical databases, you simply click to select query forms instead of having to remember keywords, as you do with SQL. You can add AND, OR, and NOT operators to the QBE form to fine-tune the query."
+  tags:
+  - mod-03
+  tier: exam
+- id: random_access_file_structure
+  title: "random access file structure"
+  definition: "In a random access file structure, records can be accessed in any order, regardless of their physical locations in storage media. This method of access is fast and very effective when a small number of records needs to be processed daily or weekly."
+  tags:
+  - mod-03
+  tier: exam
+- id: relational_model
+  title: "relational model"
+  definition: "A relational model uses a two-dimensional table of rows and columns of data. Rows are records (also called tuples), and columns are fields (also referred to as attributes)."
+  tags:
+  - mod-03
+  tier: exam
+- id: replication
+  title: "replication"
+  definition: "The replication approach to a distributed DBMS has each site store a copy of the data in the organization’s database."
+  tags:
+  - mod-03
+  tier: exam
+- id: sequential_access_file_structure
+  title: "sequential access file structure"
+  definition: "In a sequential access file structure, records in files are organized and processed in numerical or sequential order, typically the order in which they were entered."
+  tags:
+  - mod-03
+  tier: exam
+- id: structured_query_language_sql
+  title: "Structured Query Language (SQL)"
+  definition: "Structured Query Language (SQL) is a standard fourth-generation query language used by many DBMS packages, such as Oracle Database 12 and Microsoft SQL Server. SQL consists of several keywords that specify actions to take."
+  tags:
+  - mod-03
+  tier: exam
+- id: tableau
+  title: "Tableau"
+  definition: "Tableau is a data visualization tool used for generating business intelligence. It is used to analyze data for generating trends using graphs and charts."
+  tags:
+  - mod-03
+  tier: exam
+- id: text_mining_analysis
+  title: "Text-mining analysis"
+  definition: "Text-mining analysis, or text data-mining analysis is the process of analyzing vast amounts of textual information to capture key concepts, trends, and hidden relationships."
+  tags:
+  - mod-03
+  tier: exam
