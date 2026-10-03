@@ -1,0 +1,134 @@
+deck_id: excel-08-what-if
+cards:
+- id: answer_report
+  prompt: "answer report"
+  answer: "A Solver report summarizing the results of a successful solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: binding_constraint
+  prompt: "binding constraint"
+  answer: "A constraint that must be included in the Solver model and is a limiting factor in arriving at a solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: break_even_analysis
+  prompt: "break-even analysis"
+  answer: "Another term for Cost-Volume-Profit (CVP) analysis."
+  tags:
+  - mod-18
+  tier: exam
+- id: cost_volume_profit_cvp_analysis
+  prompt: "Cost-Volume-Profit (CVP) analysis"
+  answer: "A branch of financial analysis that studies the relationship between expenses, sales volume, and profitability."
+  tags:
+  - mod-18
+  tier: exam
+- id: cost_volume_profit_cvp_chart
+  prompt: "Cost-Volume-Profit (CVP) chart"
+  answer: "A branch of financial analysis that studies the relationship between expenses, sales volume, and profitability."
+  tags:
+  - mod-18
+  tier: exam
+- id: data_table
+  prompt: "data table"
+  answer: "A range of cells that shows the resulting values when one or more input values are varied in a formula; in a chart, a grid containing the chart data."
+  tags:
+  - mod-18
+  tier: exam
+- id: evolutionary_method
+  prompt: "Evolutionary method"
+  answer: "A Solver method used for complicated expressions involving discontinuous functions."
+  tags:
+  - mod-18
+  tier: exam
+- id: fixed_expense
+  prompt: "fixed expense"
+  answer: "In financial analysis, an expense that must be paid regardless of sales volume."
+  tags:
+  - mod-18
+  tier: exam
+- id: global_optimum
+  prompt: "global optimum"
+  answer: "The overall high point or optimal solution to a Solver problem."
+  tags:
+  - mod-18
+  tier: exam
+- id: goal_seek
+  prompt: "Goal Seek"
+  answer: "A feature that reverses the trial-and-error process by allowing you to specify an output value and then working backward to find the input value needed to reach that goal."
+  tags:
+  - mod-18
+  tier: exam
+- id: grg_nonlinear_method
+  prompt: "GRG Nonlinear method"
+  answer: "A Solver method used for complicated expressions involving nonlinear functions."
+  tags:
+  - mod-18
+  tier: exam
+- id: iterative_process
+  prompt: "iterative process"
+  answer: "A process used by Solver that starts with an initial solution that it uses as a basis to calculate new solutions."
+  tags:
+  - mod-18
+  tier: exam
+- id: limits_report
+  prompt: "limits report"
+  answer: "A Solver report that displays the mathematical aspects of a successful solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: local_optimum
+  prompt: "local optimum"
+  answer: "A nearby highpoint or local solution to a Solver problem."
+  tags:
+  - mod-18
+  tier: exam
+- id: mixed_expense
+  prompt: "mixed expense"
+  answer: "Expenses which are part variable and part fixed."
+  tags:
+  - mod-18
+  tier: exam
+- id: nonbinding_constraint
+  prompt: "nonbinding constraint"
+  answer: "A constraint that needs not be included in the Solver model and is not a limiting factor in arriving at the solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: sensitivity_report
+  prompt: "sensitivity report"
+  answer: "A Solver report that displays the mathematical aspects of a successful solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: simplex_lp_method
+  prompt: "Simplex LP method"
+  answer: "A Solver method used for simple linear expressions."
+  tags:
+  - mod-18
+  tier: exam
+- id: slack
+  prompt: "slack"
+  answer: "In Solver, the difference between the value in the cell and the value at the limit of the constraint, showing how close the constraint came to be a binding constraint."
+  tags:
+  - mod-18
+  tier: exam
+- id: trial_and_error
+  prompt: "trial and error"
+  answer: "A way to perform what-if analysis by changing one or more of the input values to see how they affect the other cells in the workbook."
+  tags:
+  - mod-18
+  tier: exam
+- id: variable_expenses
+  prompt: "Variable expenses"
+  answer: "Expenses that change in proportion to the volume of production."
+  tags:
+  - mod-18
+  tier: exam
+- id: what_if_analysis
+  prompt: "what-if analysis"
+  answer: "A way to explore the impact that changing input values has on calculated values and output values."
+  tags:
+  - mod-18
+  tier: exam

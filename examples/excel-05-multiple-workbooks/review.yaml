@@ -1,0 +1,26 @@
+deck_id: excel-05-multiple-workbooks
+cards:
+- id: indirect_referencing
+  prompt: "indirect referencing"
+  answer: "A cell reference in which the reference itself is a calculated value."
+  tags:
+  - mod-15
+  tier: exam
+- id: path
+  prompt: "path"
+  answer: "An address that describes the exact location of a file in a file hierarchy showing the folder with the highest hierarchy level on the left and steps through each hierarchy level toward the right; locations are separated by small triangles or by backslashes."
+  tags:
+  - mod-15
+  tier: exam
+- id: template
+  prompt: "template"
+  answer: "A file with a theme applied and that may contain formatted placeholder text, headers and footers, and graphics that you replace with your own information for hundreds of purposes, including budgets, flyers, and resumes; template files have slightly different file extensions than standard application files, such as .xltx, .pptx., or .dotx."
+  tags:
+  - mod-15
+  tier: exam
+- id: watch_window
+  prompt: "Watch Window"
+  answer: "In Excel, a window that displays values of cells located throughout the workbook."
+  tags:
+  - mod-15
+  tier: exam
