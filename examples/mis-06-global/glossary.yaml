@@ -1,0 +1,58 @@
+bank_id: mis-06-global
+title: Tamarack — The Rep Who Couldn't Say Yes — glossary
+source: MindTap course glossary export (MIS), module '06. Global Information Systems'
+terms:
+- id: global_information_system_gis
+  title: "global information system (GIS)"
+  definition: "A global information system (GIS) works across national borders, facilitates communication between headquarters and subsidiaries in other countries, and incorporates all the technologies and applications found in a typical information system to gather, store, manipulate, and transmit data across cultural and geographic boundaries."
+  tags:
+  - mod-06
+  tier: exam
+- id: global_structure
+  title: "global structure"
+  definition: "A global structure uses highly centralized information systems. Subsidiaries have little autonomy and rely on headquarters for all process and control decisions as well as system design and implementation."
+  tags:
+  - mod-06
+  tier: exam
+- id: global_supply_chain_management
+  title: "Global supply chain management"
+  definition: "Global supply chain management incorporates management processes around the globe that integrate the network of suppliers, manufacturers, warehouses, and retail outlets in order to source high-quality raw materials, efficiently convert them to finished goods, and ship them in the right quantities to the right locations in a timely manner with the highest possible quality."
+  tags:
+  - mod-06
+  tier: exam
+- id: international_structure
+  title: "international structure"
+  definition: "An organization with an international structure operates much like a multinational corporation, but subsidiaries depend on headquarters more for process and production decisions."
+  tags:
+  - mod-06
+  tier: exam
+- id: multinational_corporations_mncs
+  title: "multinational corporations (MNCs)"
+  definition: "A multinational corporation (MNC) is an organization with assets and operations in at least one country other than its home country. An MNC delivers products and services across national borders and is usually centrally managed from its headquarters."
+  tags:
+  - mod-06
+  tier: exam
+- id: multinational_structure
+  title: "multinational structure"
+  definition: "In a multinational structure, production, sales, and marketing are decentralized, and financial management remains the parent’s responsibility."
+  tags:
+  - mod-06
+  tier: exam
+- id: offshore_outsourcing
+  title: "Offshore outsourcing"
+  definition: "With offshore outsourcing, an organization chooses an outsourcing firm in another country that can provide needed services and products."
+  tags:
+  - mod-06
+  tier: exam
+- id: transborder_data_flow_tdf
+  title: "transborder data flow (TDF)"
+  definition: "Transborder data flow (TDF) restricts what type of data can be captured and transmitted in foreign countries."
+  tags:
+  - mod-06
+  tier: exam
+- id: transnational_structure
+  title: "transnational structure"
+  definition: "In an organization with a transnational structure, the parent and all the subsidiaries work together in designing policies, procedures, and logistics for delivering products and services to the right market."
+  tags:
+  - mod-06
+  tier: exam
