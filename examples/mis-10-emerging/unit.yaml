@@ -1,0 +1,19 @@
+unit_id: mis-10-emerging
+title: "Tamarack — The Closet Gets Too Hot"
+audience: "Learner working through the MindTap MIS module '10. Emerging Trends, Technologies, and Applications'"
+purpose: "Weave the Module 10 cloud, blockchain, extended-reality and emerging-technology vocabulary into one hosting decision and one trade show so each option is judged against a real Tamarack need."
+estimated_minutes: 25
+sources:
+- "MindTap course glossary export, module '10. Emerging Trends, Technologies, and Applications'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"

@@ -1,0 +1,242 @@
+deck_id: excel-01-getting-started
+cards:
+- id: activity_calendar
+  prompt: "Activity Calendar"
+  answer: "A feature in SAM that displays available assignments and due dates."
+  tags:
+  - mod-11
+  tier: exam
+- id: activity_list
+  prompt: "Activity List"
+  answer: "A feature in SAM that provides a detailed list of assignments with their availability, due date, section, and status."
+  tags:
+  - mod-11
+  tier: exam
+- id: add_in
+  prompt: "add-in"
+  answer: "Software that adds commands and features to Microsoft Office applications."
+  tags:
+  - mod-11
+  tier: exam
+- id: autocomplete
+  prompt: "AutoComplete"
+  answer: "A feature that automatically suggests text, numbers, or dates to insert."
+  tags:
+  - mod-11
+  tier: exam
+- id: backstage_view
+  prompt: "Backstage view"
+  answer: "The view that contains commands that let you manage the file and program settings."
+  tags:
+  - mod-11
+  tier: exam
+- id: cell_reference
+  prompt: "cell reference"
+  answer: "The column letter and row number location that identifies a cell within a worksheet or table, such as A1."
+  tags:
+  - mod-11
+  tier: exam
+- id: clearing
+  prompt: "Clearing"
+  answer: "To remove data, formats, or filters from cells."
+  tags:
+  - mod-11
+  tier: exam
+- id: clipboard
+  prompt: "Clipboard"
+  answer: "A temporary Windows storage area that holds the selections you copy or cut so you can use them later."
+  tags:
+  - mod-11
+  tier: exam
+- id: date_data
+  prompt: "Date data"
+  answer: "A value in a recognized date format."
+  tags:
+  - mod-11
+  tier: exam
+- id: deleting
+  prompt: "Deleting"
+  answer: "To remove both the data and the selected cells from the worksheet."
+  tags:
+  - mod-11
+  tier: exam
+- id: drag_and_drop
+  prompt: "drag and drop"
+  answer: "The technique of moving an item by selecting it and then dragging the selection to a new location; can be used to move an Excel cell or range, a PowerPoint thumbnail, or a Word text or graphic."
+  tags:
+  - mod-11
+  tier: exam
+- id: edit_mode
+  prompt: "Edit mode"
+  answer: "The mode in which you can make changes to a cell’s content directly in the cell."
+  tags:
+  - mod-11
+  tier: exam
+- id: excel
+  prompt: "Excel"
+  answer: "A spreadsheet program used to enter, analyze, and present quantitative data; also called Microsoft Excel 2019."
+  tags:
+  - mod-11
+  tier: exam
+- id: fill_handle
+  prompt: "fill handle"
+  answer: "A black square that appears in the lower-right corner of a selected cell or range; used to fill adjacent cells with duplicate or similar data."
+  tags:
+  - mod-11
+  tier: exam
+- id: flash_fill
+  prompt: "Flash Fill"
+  answer: "An Excel feature that looks for patterns in the data you enter and automatically fills or formats data in remaining cells based on those patterns."
+  tags:
+  - mod-11
+  tier: exam
+- id: freeze
+  prompt: "freeze"
+  answer: "To keep rows and/or columns you select visible as you scroll a worksheet."
+  tags:
+  - mod-11
+  tier: exam
+- id: hiding
+  prompt: "Hiding"
+  answer: "To remove a row, column, or worksheet from view while still keeping it part of the worksheet."
+  tags:
+  - mod-11
+  tier: exam
+- id: keyboard_shortcut
+  prompt: "keyboard shortcut"
+  answer: "A key or combination of keys that you press to access a feature or perform a command, instead of using a mouse or touch gestures."
+  tags:
+  - mod-11
+  tier: exam
+- id: keytips
+  prompt: "KeyTips"
+  answer: "Labels that appear over each tab and command on the ribbon when the ALT key is pressed."
+  tags:
+  - mod-11
+  tier: exam
+- id: live_preview
+  prompt: "Live Preview"
+  answer: "An Office feature that shows the results that would occur in your file, such as the effects of formatting options on a document’s appearance, if you clicked the option you are pointing to."
+  tags:
+  - mod-11
+  tier: exam
+- id: microsoft_excel
+  prompt: "Microsoft Excel"
+  answer: "The spreadsheet program in the Microsoft Office suite; used to enter, analyze, and present quantitative data; also called Excel."
+  tags:
+  - mod-11
+  tier: exam
+- id: mini_toolbar
+  prompt: "Mini toolbar"
+  answer: "A small toolbar that appears next to text you select using the mouse or when you right-click a document, worksheet, slide, or database cell."
+  tags:
+  - mod-11
+  tier: exam
+- id: mouse_mode
+  prompt: "Mouse Mode"
+  answer: "A mode in which you use a computer mouse to interact with commands and tools."
+  tags:
+  - mod-11
+  tier: exam
+- id: numeric_data
+  prompt: "Numeric data"
+  answer: "Any number that can be used in a mathematical operation."
+  tags:
+  - mod-11
+  tier: exam
+- id: paste
+  prompt: "paste"
+  answer: "To place an item stored in the Clipboard into a location in a file or window."
+  tags:
+  - mod-11
+  tier: exam
+- id: pixel
+  prompt: "pixel"
+  answer: "Short for picture element, an individual point of color on a display screen or printout."
+  tags:
+  - mod-11
+  tier: exam
+- id: quick_analysis_tool
+  prompt: "Quick Analysis tool"
+  answer: "A button that appears whenever you select a range of cells, providing access to the most common tools for data analysis and formatting of the selected range."
+  tags:
+  - mod-11
+  tier: exam
+- id: range_reference
+  prompt: "range reference"
+  answer: "The cell reference of the upper-left cell of the rectangular block and the cell reference of the lower-right cell, separated by a colon."
+  tags:
+  - mod-11
+  tier: exam
+- id: sam_skills_assessment_manager
+  prompt: "SAM (Skills Assessment Manager)"
+  answer: "An interactive online learning environment that teaches and assesses skills in Microsoft Office, Windows, keyboarding, and technology topics."
+  tags:
+  - mod-11
+  tier: exam
+- id: sam_exams
+  prompt: "SAM Exams"
+  answer: "An assessment tool in SAM that lets students demonstrate what they’ve learned about Microsoft Office, Windows, and technology topics."
+  tags:
+  - mod-11
+  tier: exam
+- id: sam_path
+  prompt: "SAM Path"
+  answer: "A feature in SAM that lists a sequence of exam and training assignments."
+  tags:
+  - mod-11
+  tier: exam
+- id: sam_projects
+  prompt: "SAM Projects"
+  answer: "SAM assignment types that require students to work in the appropriate Microsoft Office application and provide autograded results."
+  tags:
+  - mod-11
+  tier: exam
+- id: sam_training
+  prompt: "SAM Training"
+  answer: "A step-by-step, interactive, cloud-based tool for learning Microsoft Office, Windows, and technology topics."
+  tags:
+  - mod-11
+  tier: exam
+- id: screentip
+  prompt: "ScreenTip"
+  answer: "A label that appears when you point to a button or object, that may include the name, purpose, or keyboard shortcut for the object; may also include a link to associated help topics."
+  tags:
+  - mod-11
+  tier: exam
+- id: shortcut_menu
+  prompt: "shortcut menu"
+  answer: "A list of frequently used commands that relate to an object, typically displayed by right-clicking; the commands on a shortcut menu are related to the item you right-clicked."
+  tags:
+  - mod-11
+  tier: exam
+- id: spreadsheet
+  prompt: "spreadsheet"
+  answer: "A grid of cells that contain numbers and text; in Microsoft Excel, a spreadsheet is called a worksheet."
+  tags:
+  - mod-11
+  tier: exam
+- id: text_data
+  prompt: "Text data"
+  answer: "In Excel, any combination of letters, numbers, and symbols."
+  tags:
+  - mod-11
+  tier: exam
+- id: time_data
+  prompt: "time data"
+  answer: "A value in a recognized time format."
+  tags:
+  - mod-11
+  tier: exam
+- id: touch_mode
+  prompt: "Touch Mode"
+  answer: "The interface that that makes it easier to interact with a computer touchscreen using your finger instead of a mouse pointer; the ribbon increases in height, the buttons are larger, and more space appears around buttons so you can more easily use your finger or stylus to tap screen elements."
+  tags:
+  - mod-11
+  tier: exam
+- id: unhiding
+  prompt: "Unhiding"
+  answer: "In Excel, to redisplay hidden rows, columns, or worksheets."
+  tags:
+  - mod-11
+  tier: exam
