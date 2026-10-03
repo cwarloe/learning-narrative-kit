@@ -17,3 +17,5 @@ constraints:
 - "Definitions are copied from the course glossary; do not invent rival definitions"
 - "Story must pass the cover test (readable with marks hidden)"
 - "Third-person past tense; same company and cast as the rest of the Tamarack track"
+source_notes:
+  - "The course glossary gives 'sensitivity report' the same definition as 'limits report', and 'CVP chart' the same definition as 'CVP analysis'. Kept verbatim; the narrative describes what each report and the chart show."

@@ -17,3 +17,5 @@ constraints:
 - "Definitions are copied from the course glossary; do not invent rival definitions"
 - "Story must pass the cover test (readable with marks hidden)"
 - "Third-person past tense; same company and cast as the rest of the Tamarack track"
+source_notes:
+  - "The course glossary gives 'on-demand software' and 'Software as a Service' the same definition; both are kept and both are marked."

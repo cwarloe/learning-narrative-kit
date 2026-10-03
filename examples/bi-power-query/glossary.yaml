@@ -1,0 +1,82 @@
+bank_id: bi-power-query
+title: Tamarack — Fifteen-Minute Readings — glossary
+source: 'MindTap course glossary export (Excel / BI), module ''24. Ch 4: BI Tools for Data Analysis: Power Query'''
+terms:
+- id: analytics
+  title: "analytics"
+  definition: "Data analysis that seeks to answer questions related to strategic planning."
+  tags:
+  - mod-24
+  tier: exam
+- id: bi
+  title: "BI"
+  definition: "Business intelligence (BI) provides historical, current, and predictive views of business operations and environments and gives organizations a competitive advantage in the marketplace."
+  tags:
+  - mod-24
+  tier: exam
+- id: big_data
+  title: "big data"
+  definition: "Large and complex data sources that defy easy handling with traditional data processing methods."
+  tags:
+  - mod-24
+  tier: exam
+- id: business_intelligence
+  title: "Business Intelligence"
+  definition: "Software tools designed to extract useful information from big data."
+  tags:
+  - mod-24
+  tier: exam
+- id: comma_separated_values_csv_files
+  title: "Comma Separated Values (CSV) files"
+  definition: "A text file with a .txt or .csv file extension, in which each paragraph contains one record, with the fields separated by commas."
+  tags:
+  - mod-24
+  tier: exam
+- id: data_driven_decision_support_system
+  title: "data-driven decision support system"
+  definition: "A set of software packages that provide analysts with tools to interpret big data."
+  tags:
+  - mod-24
+  tier: exam
+- id: delimiter
+  title: "delimiter"
+  definition: "A separator such as a space, comma, or semicolon between elements in imported data."
+  tags:
+  - mod-24
+  tier: exam
+- id: m
+  title: "M"
+  definition: "The query language used by Power Query to create queries."
+  tags:
+  - mod-24
+  tier: exam
+- id: mashup_query_language
+  title: "mashup query language"
+  definition: "In Excel, a type of programming language used by queries to extract and transform data."
+  tags:
+  - mod-24
+  tier: exam
+- id: power_query
+  title: "Power Query"
+  definition: "A BI tool used for writing queries to almost any kind of data source."
+  tags:
+  - mod-24
+  tier: exam
+- id: variety
+  title: "Variety"
+  definition: "A large collection of different types of data sources that characterizes big data."
+  tags:
+  - mod-24
+  tier: exam
+- id: velocity
+  title: "Velocity"
+  definition: "In big data, the rate at which big data is changing."
+  tags:
+  - mod-24
+  tier: exam
+- id: volume
+  title: "Volume"
+  definition: "In big data, a large amount of data, so large that even storing the information is a challenge."
+  tags:
+  - mod-24
+  tier: exam

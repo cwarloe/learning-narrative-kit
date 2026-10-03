@@ -1,0 +1,70 @@
+bank_id: excel-11-pivottable-design
+title: Tamarack — Eleven Packets, Then Twelve — glossary
+source: 'MindTap course glossary export (Excel / BI), module ''21. Excel 11: Exploring PivotTable Design'''
+terms:
+- id: base_field
+  title: "base field"
+  definition: "A field used as the basis for comparison."
+  tags:
+  - mod-21
+  tier: exam
+- id: base_item
+  title: "base item"
+  definition: "An item used as the basis for comparison."
+  tags:
+  - mod-21
+  tier: exam
+- id: calculated_item
+  title: "calculated item"
+  definition: "A user-defined formula for calculations between items within a PivotTable field."
+  tags:
+  - mod-21
+  tier: exam
+- id: data_cube
+  title: "Data Cube"
+  definition: "A set of advanced analytic functions that you can use with multidimensional data; also called cube functions."
+  tags:
+  - mod-21
+  tier: exam
+- id: getpivotdata_function
+  title: "GETPIVOTDATA function"
+  definition: "The function That extracts information from a PivotTable for use in a report."
+  tags:
+  - mod-21
+  tier: exam
+- id: manual_group
+  title: "manual group"
+  definition: "A new PivotTable group created by combining items within a field that appears as a new field within the PivotTable."
+  tags:
+  - mod-21
+  tier: exam
+- id: named_sets
+  title: "named sets"
+  definition: "A feature that defines which fields are displayed within each part of the PivotTable based on the Data Model."
+  tags:
+  - mod-21
+  tier: exam
+- id: online_analytic_processing
+  title: "Online Analytic Processing"
+  definition: "A database built to optimize structured data for querying and reporting."
+  tags:
+  - mod-21
+  tier: exam
+- id: pivottable_cache
+  title: "PivotTable cache"
+  definition: "An object that stores PivotTable data."
+  tags:
+  - mod-21
+  tier: exam
+- id: pivottable_wizard
+  title: "PivotTable Wizard"
+  definition: "The tool used to PivotTables prior to Excel 2016; can be used now to create a separate PivotTable cache."
+  tags:
+  - mod-21
+  tier: exam
+- id: show_report_filters_pages
+  title: "Show Report Filters Pages"
+  definition: "In Excel, a feature that lets you filter PivotTable data to show one or more fields."
+  tags:
+  - mod-21
+  tier: exam

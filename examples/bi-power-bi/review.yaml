@@ -1,0 +1,50 @@
+deck_id: bi-power-bi
+cards:
+- id: drill_mode
+  prompt: "drill mode"
+  answer: "A mode applied to a visualization that lets the user “drill” into, or go to deeper levels in, the data."
+  tags:
+  - mod-b
+  tier: exam
+- id: page_level_filter
+  prompt: "page-level filter"
+  answer: "In Power BI Desktop, filtering that is applied to all content within a page."
+  tags:
+  - mod-b
+  tier: exam
+- id: power_bi
+  prompt: "Power BI"
+  answer: "Power BI is a platform that allows a user to analyze and visualize data from different sources with different formats."
+  tags:
+  - mod-b
+  tier: exam
+- id: power_bi_service
+  prompt: "Power BI service"
+  answer: "A Microsoft cloud-based DDS for creating and publishing datasets, reports, customized apps, and other content to be shared with colleagues and customers."
+  tags:
+  - mod-b
+  tier: exam
+- id: report_level_filter
+  prompt: "report-level filter"
+  answer: "In Power BI, filtering that is applied to all pages of a report."
+  tags:
+  - mod-b
+  tier: exam
+- id: visual
+  prompt: "visual"
+  answer: "In Power BI Desktop, the term that describes charts, graphs, and tables that help you visualize data relationships; also called visualizations."
+  tags:
+  - mod-b
+  tier: exam
+- id: visual_level_filter
+  prompt: "visual-level filter"
+  answer: "In Power BI Desktop, filtering you perform using visualizations on a page."
+  tags:
+  - mod-b
+  tier: exam
+- id: visualization
+  prompt: "visualization"
+  answer: "In Power BI Desktop, the term that describes charts, graphs, and tables that help you visualize data relationships; also called visuals."
+  tags:
+  - mod-b
+  tier: exam

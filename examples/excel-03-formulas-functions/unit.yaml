@@ -17,3 +17,5 @@ constraints:
 - "Definitions are copied from the course glossary; do not invent rival definitions"
 - "Story must pass the cover test (readable with marks hidden)"
 - "Third-person past tense; same company and cast as the rest of the Tamarack track"
+source_notes:
+  - "The course glossary defines MODE.MULT as returning 'the single value that is repeated most often'. In Excel, MODE.MULT returns every most-frequent value (an array) when there is a tie; MODE.SNGL returns one. The narrative uses a data set with a single mode so the scene is consistent with both. The glossary text is kept verbatim."

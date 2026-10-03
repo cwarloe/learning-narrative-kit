@@ -83,6 +83,7 @@ Full text: `schema/README.md`. Non-negotiables:
 
 - **Portland Desk (Sec+):** `examples/PORTLAND_DESK.md`
 - **ITM:** see `examples/itm310-vanguard-edge/` as specimen
+- **Tamarack (MIS + Excel/BI, MindTap):** `examples/TAMARACK.md`
 
 ## Copy-paste prompt for a new chapter
 
