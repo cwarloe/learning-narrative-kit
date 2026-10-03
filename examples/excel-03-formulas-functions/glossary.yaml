@@ -1,0 +1,280 @@
+bank_id: excel-03-formulas-functions
+title: Tamarack — The Crew Bonus — glossary
+source: 'MindTap course glossary export (Excel / BI), module ''13. Excel 3: Performing Calculations with Formulas and Functions'''
+terms:
+- id: and_function
+  title: "AND function"
+  definition: "A logical function that returns the word TRUE if both arguments are true."
+  tags:
+  - mod-13
+  tier: exam
+- id: approximate_match_lookup
+  title: "approximate match lookup"
+  definition: "A lookup in which the lookup value falls within a range in a lookup table."
+  tags:
+  - mod-13
+  tier: exam
+- id: argument
+  title: "argument"
+  definition: "In Excel and Access, and in Word tables, information necessary for a formula or function to calculate an answer."
+  tags:
+  - mod-13
+  tier: exam
+- id: arithmetic_operators
+  title: "arithmetic operators"
+  definition: "In a formula, a symbol that performs mathematical calculations, such as addition (+), subtraction (-), multiplication (*), division (/), or exponentiation (^)."
+  tags:
+  - mod-13
+  tier: exam
+- id: array_formula
+  title: "array formula"
+  definition: "An Excel formula that performs multiple calculations within a single step."
+  tags:
+  - mod-13
+  tier: exam
+- id: average
+  title: "average"
+  definition: "The sum of the data values divided by the number of values in the data series; also called mean."
+  tags:
+  - mod-13
+  tier: exam
+- id: average_function
+  title: "AVERAGE function"
+  definition: "An Excel function that calculates the average value of a collection of numbers."
+  tags:
+  - mod-13
+  tier: exam
+- id: averageifs_function
+  title: "AVERAGEIFS function"
+  definition: "An Excel function that calculates the average of values within a range that meet multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: cell_function
+  title: "CELL function"
+  definition: "A function used to retrieve information about a cell."
+  tags:
+  - mod-13
+  tier: exam
+- id: central_tendency
+  title: "Central tendency"
+  definition: "A single measurement from a data series that returns the most typical or “central” data value."
+  tags:
+  - mod-13
+  tier: exam
+- id: comparison_operator
+  title: "comparison operator"
+  definition: "A symbol that indicates the relationship between two values."
+  tags:
+  - mod-13
+  tier: exam
+- id: conditional_average
+  title: "conditional average"
+  definition: "Refers to the AVERAGEIF function, which averages the values in a range that match criteria you specify."
+  tags:
+  - mod-13
+  tier: exam
+- id: conditional_count
+  title: "conditional count"
+  definition: "Refers to the COUNTIF function, which calculates the number of cells in a range that match criteria you specify."
+  tags:
+  - mod-13
+  tier: exam
+- id: conditional_sum
+  title: "conditional sum"
+  definition: "Refers to the SUMIF function, which adds the values in a range that match criteria you specify."
+  tags:
+  - mod-13
+  tier: exam
+- id: constants
+  title: "constants"
+  definition: "Terms in an equation whose values don’t change."
+  tags:
+  - mod-13
+  tier: exam
+- id: countifs_function
+  title: "COUNTIFS function"
+  definition: "A function that counts the number of cells within a range that meet multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: error_value
+  title: "error value"
+  definition: "A message in a cell that indicates some part of a formula is preventing Excel from returning a calculated value."
+  tags:
+  - mod-13
+  tier: exam
+- id: exact_match_lookup
+  title: "exact match lookup"
+  definition: "A lookup in which the lookup value must exactly match one of the values in the lookup table."
+  tags:
+  - mod-13
+  tier: exam
+- id: iferror_function
+  title: "IFERROR function"
+  definition: "A function used to hide error values from appearing in cells."
+  tags:
+  - mod-13
+  tier: exam
+- id: ifs_function
+  title: "IFS function"
+  definition: "A function that tests for multiple conditions without nesting."
+  tags:
+  - mod-13
+  tier: exam
+- id: int_function
+  title: "INT function"
+  definition: "The function that always rounds a value down to the next lowest integer."
+  tags:
+  - mod-13
+  tier: exam
+- id: logical_function
+  title: "logical function"
+  definition: "A function that returns a different value depending on whether the given condition is true or false."
+  tags:
+  - mod-13
+  tier: exam
+- id: lookup_function
+  title: "lookup function"
+  definition: "A function that retrieves a value that matches a specified condition from a table of data."
+  tags:
+  - mod-13
+  tier: exam
+- id: lookup_table
+  title: "lookup table"
+  definition: "In Excel, a table that stores the data you want to retrieve with a lookup function; also called a table array."
+  tags:
+  - mod-13
+  tier: exam
+- id: lookup_values
+  title: "lookup values"
+  definition: "The value that is being looked up in a lookup table."
+  tags:
+  - mod-13
+  tier: exam
+- id: maxifs_function
+  title: "MAXIFS function"
+  definition: "A function that calculates the maximum value in a range that meets multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: mean
+  title: "mean"
+  definition: "The average of a series of data values calculated by dividing the data sum by the number of data values in the series."
+  tags:
+  - mod-13
+  tier: exam
+- id: median
+  title: "median"
+  definition: "The central value of a data series."
+  tags:
+  - mod-13
+  tier: exam
+- id: minifs_function
+  title: "MINIFS function"
+  definition: "A function that calculates the minimum value in a range that meets multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: mode
+  title: "mode"
+  definition: "The value that is repeated most often in a data set."
+  tags:
+  - mod-13
+  tier: exam
+- id: mode_mult_function
+  title: "MODE.MULT function"
+  definition: "The function that returns the single value that is repeated most often in the range."
+  tags:
+  - mod-13
+  tier: exam
+- id: mround_function
+  title: "MROUND function"
+  definition: "The function that rounds a value to the nearest multiple of a given number."
+  tags:
+  - mod-13
+  tier: exam
+- id: nested
+  title: "nested"
+  definition: "To place one thing inside another, such as a function inside another function."
+  tags:
+  - mod-13
+  tier: exam
+- id: networkdays_function
+  title: "NETWORKDAYS function"
+  definition: "The function that calculates the number of working days between two dates."
+  tags:
+  - mod-13
+  tier: exam
+- id: operators
+  title: "operators"
+  definition: "A mathematical symbol used in a formula to combine different values, resulting in a single value that is displayed within the cell."
+  tags:
+  - mod-13
+  tier: exam
+- id: or_function
+  title: "OR function"
+  definition: "A logical function that returns TRUE if either part of the condition is true."
+  tags:
+  - mod-13
+  tier: exam
+- id: return_values
+  title: "return values"
+  definition: "The data values being retrieved by the lookup function from a lookup table."
+  tags:
+  - mod-13
+  tier: exam
+- id: round_function
+  title: "ROUND function"
+  definition: "The function that rounds a value to the nearest digit."
+  tags:
+  - mod-13
+  tier: exam
+- id: rounddown_function
+  title: "ROUNDDOWN function"
+  definition: "The function that rounds a value to the next lowest digit."
+  tags:
+  - mod-13
+  tier: exam
+- id: significant_digits
+  title: "significant digits"
+  definition: "The number of digits that should be displayed for a calculation; they indicate the accuracy of the measured and calculated values."
+  tags:
+  - mod-13
+  tier: exam
+- id: sumifs_function
+  title: "SUMIFS function"
+  definition: "In Excel, a function that adds values in a range that meet multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: syntax
+  title: "syntax"
+  definition: "A set of rules; used for functions in Excel, procedures in VBA, and queries and properties in Access."
+  tags:
+  - mod-13
+  tier: exam
+- id: text_string
+  title: "text string"
+  definition: "In Excel, a series of text characters."
+  tags:
+  - mod-13
+  tier: exam
+- id: today_function
+  title: "TODAY function"
+  definition: "A function that returns only the current date, which updates each time a worksheet is opened."
+  tags:
+  - mod-13
+  tier: exam
+- id: volatile_functions
+  title: "volatile functions"
+  definition: "A function that automatically recalculates its values every time Excel does any calculation in the workbook."
+  tags:
+  - mod-13
+  tier: exam
+- id: workday_function
+  title: "WORKDAY function"
+  definition: "In Excel, a function that displays the date of a weekday that is a specified number of weekdays past a starting date."
+  tags:
+  - mod-13
+  tier: exam

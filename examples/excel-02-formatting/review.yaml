@@ -1,0 +1,146 @@
+deck_id: excel-02-formatting
+cards:
+- id: accounting_format
+  prompt: "Accounting format"
+  answer: "The number format that places a currency symbol at the left edge of the cell, adds a thousands separator to the value, shows two decimal places, lines up numbers within a column by their currency symbols and decimal points, displays negative numbers within parentheses, and displays zero values with a dash."
+  tags:
+  - mod-12
+  tier: exam
+- id: autofit
+  prompt: "AutoFit"
+  answer: "In an Excel worksheet or a table in Word, PowerPoint, or Access a feature that automatically adjusts column width or row height to accommodate its widest or tallest entry."
+  tags:
+  - mod-12
+  tier: exam
+- id: cell_style
+  prompt: "cell style"
+  answer: "A collection of formatting options, such as a specified font, font size, font styles, font color, fill color, and borders, that is applied to a cell."
+  tags:
+  - mod-12
+  tier: exam
+- id: currency_format
+  prompt: "Currency format"
+  answer: "In Excel, the number format that places a currency symbol directly to the left of the first digit of the monetary value, adds a thousands separator to the value, shows two decimal places, lines up numbers within a column by their decimal points, and displays negative numbers with a negative sign."
+  tags:
+  - mod-12
+  tier: exam
+- id: footer
+  prompt: "footer"
+  answer: "In Excel, text or graphics that print at the bottom of each page."
+  tags:
+  - mod-12
+  tier: exam
+- id: formatting
+  prompt: "Formatting"
+  answer: "The enhancement of how content appears on the screen by changes to its font, size, color, or alignment."
+  tags:
+  - mod-12
+  tier: exam
+- id: general_format
+  prompt: "General format"
+  answer: "An Excel number format that, for the most part, displays values exactly as they are typed."
+  tags:
+  - mod-12
+  tier: exam
+- id: header
+  prompt: "header"
+  answer: "In Excel, text or graphics that print at the top of each page."
+  tags:
+  - mod-12
+  tier: exam
+- id: landscape_orientation
+  prompt: "landscape orientation"
+  answer: "The position of a page, slide, or worksheet so that the page, slide, or worksheet is wider than it is tall."
+  tags:
+  - mod-12
+  tier: exam
+- id: long_date_format
+  prompt: "Long Date format"
+  answer: "A format for dates that displays the day of the week and the full month in addition to the day of the month and the year."
+  tags:
+  - mod-12
+  tier: exam
+- id: margin
+  prompt: "margin"
+  answer: "In Excel and Word, the space between the page content and the edges of the page."
+  tags:
+  - mod-12
+  tier: exam
+- id: page_orientation
+  prompt: "Page orientation"
+  answer: "The direction in which content is printed on the page."
+  tags:
+  - mod-12
+  tier: exam
+- id: point
+  prompt: "point"
+  answer: "A unit of measure used for font size and, in Excel, row height; one point is equal to 1/72nd of an inch."
+  tags:
+  - mod-12
+  tier: exam
+- id: portrait_orientation
+  prompt: "portrait orientation"
+  answer: "The position of a page, slide, or worksheet so that the page, slide, or worksheet is taller than it is wide."
+  tags:
+  - mod-12
+  tier: exam
+- id: rgb_color_model
+  prompt: "RGB Color model"
+  answer: "A format used to create custom colors by specifying varying intensities of red, green, and blue."
+  tags:
+  - mod-12
+  tier: exam
+- id: sans_serif_fonts
+  prompt: "Sans serif fonts"
+  answer: "Font that does not include short decorative lines at the upper and lower ends of their characters."
+  tags:
+  - mod-12
+  tier: exam
+- id: serif_fonts
+  prompt: "Serif fonts"
+  answer: "Fonts that have short decorative lines at the upper and lower ends of their characters."
+  tags:
+  - mod-12
+  tier: exam
+- id: short_date_format
+  prompt: "Short Date format"
+  answer: "In Excel, an abbreviated date format in the format mm/dd/yyyy."
+  tags:
+  - mod-12
+  tier: exam
+- id: smartart_graphics
+  prompt: "SmartArt graphics"
+  answer: "A diagram that shows information or ideas visually using a combination of shapes and text."
+  tags:
+  - mod-12
+  tier: exam
+- id: standard_colors
+  prompt: "standard colors"
+  answer: "In Excel, one of 10 colors—dark red, red, orange, yellow, light green, green, light blue, blue, dark blue, and purple—that is always available regardless of the workbook’s theme."
+  tags:
+  - mod-12
+  tier: exam
+- id: standard_font
+  prompt: "standard font"
+  answer: "A font that retains its appearance no matter what theme is used with the workbook."
+  tags:
+  - mod-12
+  tier: exam
+- id: theme
+  prompt: "theme"
+  answer: "A predefined, coordinated set of colors, fonts, graphical effects, and other formats that can be applied to documents, spreadsheets, presentations, publications, and Access forms and reports to give them a consistent, professional look."
+  tags:
+  - mod-12
+  tier: exam
+- id: theme_colors
+  prompt: "Theme colors"
+  answer: "A named set of complementary colors for text, background, accents, and links in a document."
+  tags:
+  - mod-12
+  tier: exam
+- id: theme_font
+  prompt: "theme font"
+  answer: "A font associated with a particular theme and used for headings and body text; theme fonts change automatically when the theme is changed."
+  tags:
+  - mod-12
+  tier: exam

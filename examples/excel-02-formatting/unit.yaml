@@ -1,0 +1,19 @@
+unit_id: excel-02-formatting
+title: "Tamarack — The Board Packet"
+audience: "Learner working through the MindTap Excel / BI module '12. Excel 2: Formatting Workbook Text and Data'"
+purpose: "Weave the Excel Module 2 number-format, theme and page-setup vocabulary into one printed board report so each formatting choice is made for a specific reader."
+estimated_minutes: 12
+sources:
+- "MindTap course glossary export, module '12. Excel 2: Formatting Workbook Text and Data'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"

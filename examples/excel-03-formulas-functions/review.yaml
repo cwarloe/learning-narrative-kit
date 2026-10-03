@@ -1,0 +1,278 @@
+deck_id: excel-03-formulas-functions
+cards:
+- id: and_function
+  prompt: "AND function"
+  answer: "A logical function that returns the word TRUE if both arguments are true."
+  tags:
+  - mod-13
+  tier: exam
+- id: approximate_match_lookup
+  prompt: "approximate match lookup"
+  answer: "A lookup in which the lookup value falls within a range in a lookup table."
+  tags:
+  - mod-13
+  tier: exam
+- id: argument
+  prompt: "argument"
+  answer: "In Excel and Access, and in Word tables, information necessary for a formula or function to calculate an answer."
+  tags:
+  - mod-13
+  tier: exam
+- id: arithmetic_operators
+  prompt: "arithmetic operators"
+  answer: "In a formula, a symbol that performs mathematical calculations, such as addition (+), subtraction (-), multiplication (*), division (/), or exponentiation (^)."
+  tags:
+  - mod-13
+  tier: exam
+- id: array_formula
+  prompt: "array formula"
+  answer: "An Excel formula that performs multiple calculations within a single step."
+  tags:
+  - mod-13
+  tier: exam
+- id: average
+  prompt: "average"
+  answer: "The sum of the data values divided by the number of values in the data series; also called mean."
+  tags:
+  - mod-13
+  tier: exam
+- id: average_function
+  prompt: "AVERAGE function"
+  answer: "An Excel function that calculates the average value of a collection of numbers."
+  tags:
+  - mod-13
+  tier: exam
+- id: averageifs_function
+  prompt: "AVERAGEIFS function"
+  answer: "An Excel function that calculates the average of values within a range that meet multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: cell_function
+  prompt: "CELL function"
+  answer: "A function used to retrieve information about a cell."
+  tags:
+  - mod-13
+  tier: exam
+- id: central_tendency
+  prompt: "Central tendency"
+  answer: "A single measurement from a data series that returns the most typical or “central” data value."
+  tags:
+  - mod-13
+  tier: exam
+- id: comparison_operator
+  prompt: "comparison operator"
+  answer: "A symbol that indicates the relationship between two values."
+  tags:
+  - mod-13
+  tier: exam
+- id: conditional_average
+  prompt: "conditional average"
+  answer: "Refers to the AVERAGEIF function, which averages the values in a range that match criteria you specify."
+  tags:
+  - mod-13
+  tier: exam
+- id: conditional_count
+  prompt: "conditional count"
+  answer: "Refers to the COUNTIF function, which calculates the number of cells in a range that match criteria you specify."
+  tags:
+  - mod-13
+  tier: exam
+- id: conditional_sum
+  prompt: "conditional sum"
+  answer: "Refers to the SUMIF function, which adds the values in a range that match criteria you specify."
+  tags:
+  - mod-13
+  tier: exam
+- id: constants
+  prompt: "constants"
+  answer: "Terms in an equation whose values don’t change."
+  tags:
+  - mod-13
+  tier: exam
+- id: countifs_function
+  prompt: "COUNTIFS function"
+  answer: "A function that counts the number of cells within a range that meet multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: error_value
+  prompt: "error value"
+  answer: "A message in a cell that indicates some part of a formula is preventing Excel from returning a calculated value."
+  tags:
+  - mod-13
+  tier: exam
+- id: exact_match_lookup
+  prompt: "exact match lookup"
+  answer: "A lookup in which the lookup value must exactly match one of the values in the lookup table."
+  tags:
+  - mod-13
+  tier: exam
+- id: iferror_function
+  prompt: "IFERROR function"
+  answer: "A function used to hide error values from appearing in cells."
+  tags:
+  - mod-13
+  tier: exam
+- id: ifs_function
+  prompt: "IFS function"
+  answer: "A function that tests for multiple conditions without nesting."
+  tags:
+  - mod-13
+  tier: exam
+- id: int_function
+  prompt: "INT function"
+  answer: "The function that always rounds a value down to the next lowest integer."
+  tags:
+  - mod-13
+  tier: exam
+- id: logical_function
+  prompt: "logical function"
+  answer: "A function that returns a different value depending on whether the given condition is true or false."
+  tags:
+  - mod-13
+  tier: exam
+- id: lookup_function
+  prompt: "lookup function"
+  answer: "A function that retrieves a value that matches a specified condition from a table of data."
+  tags:
+  - mod-13
+  tier: exam
+- id: lookup_table
+  prompt: "lookup table"
+  answer: "In Excel, a table that stores the data you want to retrieve with a lookup function; also called a table array."
+  tags:
+  - mod-13
+  tier: exam
+- id: lookup_values
+  prompt: "lookup values"
+  answer: "The value that is being looked up in a lookup table."
+  tags:
+  - mod-13
+  tier: exam
+- id: maxifs_function
+  prompt: "MAXIFS function"
+  answer: "A function that calculates the maximum value in a range that meets multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: mean
+  prompt: "mean"
+  answer: "The average of a series of data values calculated by dividing the data sum by the number of data values in the series."
+  tags:
+  - mod-13
+  tier: exam
+- id: median
+  prompt: "median"
+  answer: "The central value of a data series."
+  tags:
+  - mod-13
+  tier: exam
+- id: minifs_function
+  prompt: "MINIFS function"
+  answer: "A function that calculates the minimum value in a range that meets multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: mode
+  prompt: "mode"
+  answer: "The value that is repeated most often in a data set."
+  tags:
+  - mod-13
+  tier: exam
+- id: mode_mult_function
+  prompt: "MODE.MULT function"
+  answer: "The function that returns the single value that is repeated most often in the range."
+  tags:
+  - mod-13
+  tier: exam
+- id: mround_function
+  prompt: "MROUND function"
+  answer: "The function that rounds a value to the nearest multiple of a given number."
+  tags:
+  - mod-13
+  tier: exam
+- id: nested
+  prompt: "nested"
+  answer: "To place one thing inside another, such as a function inside another function."
+  tags:
+  - mod-13
+  tier: exam
+- id: networkdays_function
+  prompt: "NETWORKDAYS function"
+  answer: "The function that calculates the number of working days between two dates."
+  tags:
+  - mod-13
+  tier: exam
+- id: operators
+  prompt: "operators"
+  answer: "A mathematical symbol used in a formula to combine different values, resulting in a single value that is displayed within the cell."
+  tags:
+  - mod-13
+  tier: exam
+- id: or_function
+  prompt: "OR function"
+  answer: "A logical function that returns TRUE if either part of the condition is true."
+  tags:
+  - mod-13
+  tier: exam
+- id: return_values
+  prompt: "return values"
+  answer: "The data values being retrieved by the lookup function from a lookup table."
+  tags:
+  - mod-13
+  tier: exam
+- id: round_function
+  prompt: "ROUND function"
+  answer: "The function that rounds a value to the nearest digit."
+  tags:
+  - mod-13
+  tier: exam
+- id: rounddown_function
+  prompt: "ROUNDDOWN function"
+  answer: "The function that rounds a value to the next lowest digit."
+  tags:
+  - mod-13
+  tier: exam
+- id: significant_digits
+  prompt: "significant digits"
+  answer: "The number of digits that should be displayed for a calculation; they indicate the accuracy of the measured and calculated values."
+  tags:
+  - mod-13
+  tier: exam
+- id: sumifs_function
+  prompt: "SUMIFS function"
+  answer: "In Excel, a function that adds values in a range that meet multiple criteria."
+  tags:
+  - mod-13
+  tier: exam
+- id: syntax
+  prompt: "syntax"
+  answer: "A set of rules; used for functions in Excel, procedures in VBA, and queries and properties in Access."
+  tags:
+  - mod-13
+  tier: exam
+- id: text_string
+  prompt: "text string"
+  answer: "In Excel, a series of text characters."
+  tags:
+  - mod-13
+  tier: exam
+- id: today_function
+  prompt: "TODAY function"
+  answer: "A function that returns only the current date, which updates each time a worksheet is opened."
+  tags:
+  - mod-13
+  tier: exam
+- id: volatile_functions
+  prompt: "volatile functions"
+  answer: "A function that automatically recalculates its values every time Excel does any calculation in the workbook."
+  tags:
+  - mod-13
+  tier: exam
+- id: workday_function
+  prompt: "WORKDAY function"
+  answer: "In Excel, a function that displays the date of a weekday that is a specified number of weekdays past a starting date."
+  tags:
+  - mod-13
+  tier: exam

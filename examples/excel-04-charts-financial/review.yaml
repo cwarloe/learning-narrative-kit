@@ -1,0 +1,212 @@
+deck_id: excel-04-charts-financial
+cards:
+- id: 100_stacked_column_chart
+  prompt: "100% stacked column chart"
+  answer: "A column chart that places the data series values in combined columns showing the percentage for each series."
+  tags:
+  - mod-14
+  tier: exam
+- id: axis_title
+  prompt: "axis title"
+  answer: "Descriptive text that appears next to a chart’s horizontal or vertical axis."
+  tags:
+  - mod-14
+  tier: exam
+- id: bar_chart
+  prompt: "bar chart"
+  answer: "A column chart turned on its side so that the length of each bar is based on its value."
+  tags:
+  - mod-14
+  tier: exam
+- id: bar_charts
+  prompt: "Bar charts"
+  answer: "Bar charts emphasize the differences among data items."
+  tags:
+  - mod-14
+  tier: exam
+- id: category_axis
+  prompt: "category axis"
+  answer: "The horizontal axis in a chart, usually containing the names of data categories; also called the x-axis."
+  tags:
+  - mod-14
+  tier: exam
+- id: chart_elements
+  prompt: "chart elements"
+  answer: "A part of a chart, such as its title or legend, which you can add, remove, or modify."
+  tags:
+  - mod-14
+  tier: exam
+- id: chart_sheet
+  prompt: "chart sheet"
+  answer: "A separate sheet in a workbook that contains only a chart, which is linked to the workbook data."
+  tags:
+  - mod-14
+  tier: exam
+- id: charts
+  prompt: "charts"
+  answer: "A graphic that represents data using bars, columns, dots, lines, or other symbols to make the data easier to understand and to make it easier to see the relationships among the data."
+  tags:
+  - mod-14
+  tier: exam
+- id: clustered_column_chart
+  prompt: "clustered column chart"
+  answer: "A column chart that displays data values in side-by-side columns."
+  tags:
+  - mod-14
+  tier: exam
+- id: column_chart
+  prompt: "column chart"
+  answer: "A chart that displays data values as columns; the column height represents the value."
+  tags:
+  - mod-14
+  tier: exam
+- id: column_charts
+  prompt: "Column charts"
+  answer: "Column charts are useful for showing data changes over a period of time or for illustrating comparisons among items."
+  tags:
+  - mod-14
+  tier: exam
+- id: data_callout
+  prompt: "data callout"
+  answer: "Data labels that appear in a chart as bubbles pointing to data markers."
+  tags:
+  - mod-14
+  tier: exam
+- id: data_series
+  prompt: "data series"
+  answer: "Data from a column or row in a sheet; the set of values represented in a chart."
+  tags:
+  - mod-14
+  tier: exam
+- id: exploded_pie_chart
+  prompt: "exploded pie chart"
+  answer: "A pie chart that moves one slice away from the others as if someone were taking the piece away from the pie."
+  tags:
+  - mod-14
+  tier: exam
+- id: financial_functions
+  prompt: "financial functions"
+  answer: "Excel functions used to analyze loans, investments, and business statistics."
+  tags:
+  - mod-14
+  tier: exam
+- id: future_value
+  prompt: "future value"
+  answer: "The value of a loan or investment at a future date."
+  tags:
+  - mod-14
+  tier: exam
+- id: hierarchy_charts
+  prompt: "Hierarchy charts"
+  answer: "A chart that show the relative contribution of groups to a whole."
+  tags:
+  - mod-14
+  tier: exam
+- id: interest
+  prompt: "Interest"
+  answer: "The amount added to a principal amount by a lender."
+  tags:
+  - mod-14
+  tier: exam
+- id: line_charts_or_time_series_charts
+  prompt: "Line charts (or time-series charts)"
+  answer: "Line charts (or time-series charts) show data changes over time."
+  tags:
+  - mod-14
+  tier: exam
+- id: major_tick_marks
+  prompt: "Major tick marks"
+  answer: "Lines that identify the main units on a chart axis."
+  tags:
+  - mod-14
+  tier: exam
+- id: minor_tick_marks
+  prompt: "minor tick marks"
+  answer: "Lines that identify the smaller intervals between major tick marks on a chart axis."
+  tags:
+  - mod-14
+  tier: exam
+- id: pareto_chart
+  prompt: "Pareto chart"
+  answer: "A combination chart that combines a column chart a line chart with the categories sorted in order from largest contributors to the smallest."
+  tags:
+  - mod-14
+  tier: exam
+- id: pie_charts
+  prompt: "Pie charts"
+  answer: "Pie charts are used to show the proportions of different data items."
+  tags:
+  - mod-14
+  tier: exam
+- id: present_value
+  prompt: "present value"
+  answer: "The current value of a loan or investment."
+  tags:
+  - mod-14
+  tier: exam
+- id: primary_axis
+  prompt: "primary axis"
+  answer: "The axis against which a chart’s data series is plotted; usually appears along the left side of a chart."
+  tags:
+  - mod-14
+  tier: exam
+- id: principal
+  prompt: "Principal"
+  answer: "An amount of money being loaned."
+  tags:
+  - mod-14
+  tier: exam
+- id: scale
+  prompt: "scale"
+  answer: "In Excel, the range of values displayed on a chart axis, or to change the size of the worksheet on the printed page."
+  tags:
+  - mod-14
+  tier: exam
+- id: scaling
+  prompt: "Scaling"
+  answer: "In Excel, the range of values displayed on a chart axis, or to change the size of the worksheet on the printed page."
+  tags:
+  - mod-14
+  tier: exam
+- id: secondary_axis
+  prompt: "secondary axis"
+  answer: "In a combination chart, an additional axis that supplies the scale for one of the chart types used."
+  tags:
+  - mod-14
+  tier: exam
+- id: stacked_column_chart
+  prompt: "stacked column chart"
+  answer: "A column chart or visualization that places data series values in combined columns that show how much is contributed by each series."
+  tags:
+  - mod-14
+  tier: exam
+- id: sunburst_chart
+  prompt: "sunburst chart"
+  answer: "A hierarchy chart that groups categories within a series of concentric rings, with the upper levels of the hierarchy placed in the innermost rings."
+  tags:
+  - mod-14
+  tier: exam
+- id: treemap_chart
+  prompt: "treemap chart"
+  answer: "An Excel chart that provides a hierarchical, visual view of data, making it easy to spot patterns and trends."
+  tags:
+  - mod-14
+  tier: exam
+- id: value_axis
+  prompt: "value axis"
+  answer: "In a chart, the axis that contains numerical values; in a 2-dimensional chart, also known as the y-axis."
+  tags:
+  - mod-14
+  tier: exam
+- id: waterfall_chart
+  prompt: "waterfall chart"
+  answer: "A chart used to track the addition and subtraction of values within a sum."
+  tags:
+  - mod-14
+  tier: exam
+- id: xy_scatter_charts
+  prompt: "XY (scatter) charts"
+  answer: "XY (scatter) charts show relationships between two sets of data—for example, total sales and advertising budgets or years of education and yearly income."
+  tags:
+  - mod-14
+  tier: exam
