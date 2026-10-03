@@ -1,0 +1,52 @@
+bank_id: bi-power-bi
+title: Tamarack — The Dashboard Ruth Could Share — glossary
+source: MindTap course glossary export (Excel / BI), module 'B. Introducing Power BI'
+terms:
+- id: drill_mode
+  title: "drill mode"
+  definition: "A mode applied to a visualization that lets the user “drill” into, or go to deeper levels in, the data."
+  tags:
+  - mod-b
+  tier: exam
+- id: page_level_filter
+  title: "page-level filter"
+  definition: "In Power BI Desktop, filtering that is applied to all content within a page."
+  tags:
+  - mod-b
+  tier: exam
+- id: power_bi
+  title: "Power BI"
+  definition: "Power BI is a platform that allows a user to analyze and visualize data from different sources with different formats."
+  tags:
+  - mod-b
+  tier: exam
+- id: power_bi_service
+  title: "Power BI service"
+  definition: "A Microsoft cloud-based DDS for creating and publishing datasets, reports, customized apps, and other content to be shared with colleagues and customers."
+  tags:
+  - mod-b
+  tier: exam
+- id: report_level_filter
+  title: "report-level filter"
+  definition: "In Power BI, filtering that is applied to all pages of a report."
+  tags:
+  - mod-b
+  tier: exam
+- id: visual
+  title: "visual"
+  definition: "In Power BI Desktop, the term that describes charts, graphs, and tables that help you visualize data relationships; also called visualizations."
+  tags:
+  - mod-b
+  tier: exam
+- id: visual_level_filter
+  title: "visual-level filter"
+  definition: "In Power BI Desktop, filtering you perform using visualizations on a page."
+  tags:
+  - mod-b
+  tier: exam
+- id: visualization
+  title: "visualization"
+  definition: "In Power BI Desktop, the term that describes charts, graphs, and tables that help you visualize data relationships; also called visuals."
+  tags:
+  - mod-b
+  tier: exam

@@ -1,0 +1,100 @@
+bank_id: mis-08-decisions
+title: Tamarack — Where the Twelfth Store Goes — glossary
+source: MindTap course glossary export (MIS), module '08. Supporting Decisions and Processes'
+terms:
+- id: choice_phase
+  title: "choice phase"
+  definition: "During the choice phase, the best and most effective course of action is chosen."
+  tags:
+  - mod-08
+  tier: exam
+- id: decision_support_system_dss
+  title: "decision support system (DSS)"
+  definition: "A decision support system (DSS) is an interactive information system consisting of hardware, software, data, and models (mathematical and statistical) designed to assist decision makers in an organization. Its three major components are a database, a model base, and a user interface."
+  tags:
+  - mod-08
+  tier: exam
+- id: design_phase
+  title: "design phase"
+  definition: "In the design phase, the objective is to define criteria for the decision, generate alternatives for meeting the criteria, and define associations between the criteria and the alternatives."
+  tags:
+  - mod-08
+  tier: exam
+- id: digital_dashboard
+  title: "digital dashboard"
+  definition: "A digital dashboard integrates information from multiple sources and presents it in a unified, understandable format, often as charts and graphs. It offers up-to-the minute snapshots of information and assists decision makers in identifying trends and potential problems."
+  tags:
+  - mod-08
+  tier: exam
+- id: executive_information_systems_eiss
+  title: "Executive information systems (EISs)"
+  definition: "Executive information systems (EISs), which are branches of DSSs, are interactive information systems that give executives easy access to internal and external data. They typically include “drill-down” features and a digital dashboard for examining and analyzing information."
+  tags:
+  - mod-08
+  tier: exam
+- id: geographic_information_system_gis
+  title: "geographic information system (GIS)"
+  definition: "A geographic information system (GIS) captures, stores, processes, and displays geographic information or information in a geographic context. For example, a GIS can show the locations of all city streetlights on a map."
+  tags:
+  - mod-08
+  tier: exam
+- id: implementation_phase
+  title: "implementation phase"
+  definition: "In the implementation phase, the organization devises a plan for carrying out the alternative selected in the choice phase and obtains the resources to implement the plan."
+  tags:
+  - mod-08
+  tier: exam
+- id: intelligence_phase
+  title: "intelligence phase"
+  definition: "In the intelligence phase, a decision maker examines the organization’s environment for conditions that need decisions. Data is collected from a variety of sources (internal and external) and processed. From this information, the decision maker can discover ways to approach the problem."
+  tags:
+  - mod-08
+  tier: exam
+- id: management_support_systems_msss
+  title: "management support systems (MSSs)"
+  definition: "Management support systems (MSSs) are the different types of information systems that have been developed to support certain aspects and types of decisions. Each type of MSS is designed with unique goals and objectives."
+  tags:
+  - mod-08
+  tier: exam
+- id: managerial_designer
+  title: "managerial designer"
+  definition: "A managerial designer defines the management issues in designing and using a DSS. These issues do not involve the technological aspects of the system; they are related to management’s goals and needs."
+  tags:
+  - mod-08
+  tier: exam
+- id: model_base
+  title: "model base"
+  definition: "The model base component includes mathematical and statistical models that, along with the database, enable a DSS to analyze information."
+  tags:
+  - mod-08
+  tier: exam
+- id: model_builder
+  title: "model builder"
+  definition: "A model builder is the liaison between users and designers. This person is responsible for supplying information on what the model does, what data inputs it accepts, how the model’s output should be interpreted, and what assumptions go into creating and using the model."
+  tags:
+  - mod-08
+  tier: exam
+- id: semistructured_decisions
+  title: "Semistructured decisions"
+  definition: "Semistructured decisions include a structured aspect that benefits from information retrieval, analytical models, and information systems technology."
+  tags:
+  - mod-08
+  tier: exam
+- id: structured_decisions
+  title: "Structured decisions"
+  definition: "Structured decisions, or programmable tasks, can be automated because a well-defined standard operating procedure exists for these types of decisions."
+  tags:
+  - mod-08
+  tier: exam
+- id: technical_designer
+  title: "technical designer"
+  definition: "The technical designer focuses on how the DSS is implemented and usually addresses questions about data storage, file structure, user access, response time, and security measures."
+  tags:
+  - mod-08
+  tier: exam
+- id: unstructured_decisions
+  title: "Unstructured decisions"
+  definition: "Unstructured decisions are typically one-time decisions, with no standard operating procedure pertaining to them."
+  tags:
+  - mod-08
+  tier: exam

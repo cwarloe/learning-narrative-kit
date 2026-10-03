@@ -1,0 +1,21 @@
+unit_id: excel-12-excel-application
+title: "Tamarack — The Receiving App"
+audience: "Learner working through the MindTap Excel / BI module '22. Excel 12: Developing an Excel Application'"
+purpose: "Weave the Excel Module 12 application, validation, protection, macro and trust vocabulary into one dock-entry app so each feature exists because a clerk or a security rule needed it."
+estimated_minutes: 8
+sources:
+- "MindTap course glossary export, module '22. Excel 12: Developing an Excel Application'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"
+source_notes:
+  - "The course glossary defines 'validation rule' in XML-schema terms and 'form controls' as a Word feature. Kept verbatim; the narrative uses both in their Excel sense."

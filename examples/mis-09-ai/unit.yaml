@@ -1,0 +1,19 @@
+unit_id: mis-09-ai
+title: "Tamarack — The Counter Assistant"
+audience: "Learner working through the MindTap MIS module '09. Artificial Intelligence and Automation'"
+purpose: "Weave the Module 9 AI, expert-system and agent vocabulary into one counter-advice problem so each component is judged by whether a clerk can trust and explain it."
+estimated_minutes: 15
+sources:
+- "MindTap course glossary export, module '09. Artificial Intelligence and Automation'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"

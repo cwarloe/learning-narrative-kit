@@ -1,0 +1,128 @@
+deck_id: mis-07-enterprise
+cards:
+- id: collaboration_system_or_collaboration_so
+  prompt: "collaboration system or collaboration software"
+  answer: "A collaboration system or collaboration software assists teams in communicating, collaborating, and coordinating their activities."
+  tags:
+  - mod-07
+  tier: exam
+- id: collaborative_filtering_cf
+  prompt: "Collaborative filtering (CF)"
+  answer: "Collaborative filtering (CF) is a search for specific information or patterns using input from multiple business partners and data sources. It identifies groups of people based on common interests and recommends products or services based on what members of the group purchased or did not purchase."
+  tags:
+  - mod-07
+  tier: exam
+- id: collaborative_planning_forecasting_and_r
+  prompt: "Collaborative planning, forecasting, and replenishment (CPFR)"
+  answer: "Collaborative planning, forecasting, and replenishment (CPFR) is used to coordinate supply chain members through point-of-sale (POS) data sharing and joint planning."
+  tags:
+  - mod-07
+  tier: exam
+- id: communication_software
+  prompt: "Communication software"
+  answer: "Communication software, which also includes audio and video conferencing, provides chat, messaging, or video features that enable real-time communication."
+  tags:
+  - mod-07
+  tier: exam
+- id: customer_relationship_management_crm
+  prompt: "Customer relationship management (CRM)"
+  answer: "Customer relationship management (CRM) consists of the processes a company uses to track and organize its contacts with customers. It improves services offered to customers and uses customer contact information for targeted marketing."
+  tags:
+  - mod-07
+  tier: exam
+- id: customization
+  prompt: "Customization"
+  answer: "Customization allows customers to modify the standard offering of a product, such as selecting a different home page to be displayed each time you open your Web browser."
+  tags:
+  - mod-07
+  tier: exam
+- id: document_and_content_management_software
+  prompt: "Document and content management software"
+  answer: "Document and content management software enables team members to store and share information and work together on different files."
+  tags:
+  - mod-07
+  tier: exam
+- id: e_marketplace
+  prompt: "e-marketplace"
+  answer: "An e-marketplace is a third-party exchange (B2B model) that provides a platform for buyers and sellers to interact with each other and trade more efficiently online."
+  tags:
+  - mod-07
+  tier: exam
+- id: electronic_data_interchange_edi
+  prompt: "Electronic data interchange (EDI)"
+  answer: "Electronic data interchange (EDI) enables business partners to send and receive information about business transactions."
+  tags:
+  - mod-07
+  tier: exam
+- id: enterprise_resource_planning_erp
+  prompt: "Enterprise resource planning (ERP)"
+  answer: "Enterprise resource planning (ERP) is an integrated system that collects and processes data and manages and coordinates resources, information, and functions throughout an organization."
+  tags:
+  - mod-07
+  tier: exam
+- id: enterprise_system
+  prompt: "enterprise system"
+  answer: "An enterprise system is an application that is used in all the functions of a business and supports decision making throughout the organization."
+  tags:
+  - mod-07
+  tier: exam
+- id: knowledge_management_km
+  prompt: "Knowledge management (KM)"
+  answer: "Knowledge management (KM) draws on concepts of organizational learning, organizational culture, and best practices to convert tacit knowledge into explicit knowledge, creates a knowledge-sharing culture in an organization, and eliminates obstacles to sharing knowledge."
+  tags:
+  - mod-07
+  tier: exam
+- id: online_auction
+  prompt: "online auction"
+  answer: "By using the Internet, an online auction brings traditional auctions to customers around the globe and makes it possible to sell far more goods and services than at a traditional auction."
+  tags:
+  - mod-07
+  tier: exam
+- id: personalization
+  prompt: "Personalization"
+  answer: "Personalization is the process of satisfying customers’ needs, building customer relationships, and increasing profits by designing goods and services that meet customers’ preferences better. It involves not only customers’ requests, but also the interaction between customers and the company."
+  tags:
+  - mod-07
+  tier: exam
+- id: pull_technology
+  prompt: "pull technology"
+  answer: "With pull technology, a user states a need before getting information, as when a URL is entered in a Web browser so the user can go to a certain Web site."
+  tags:
+  - mod-07
+  tier: exam
+- id: push_technology
+  prompt: "push technology"
+  answer: "With push technology, also known as webcasting, a Web server delivers information to users (who have signed up for the service) instead of waiting for them to request the information be sent to them."
+  tags:
+  - mod-07
+  tier: exam
+- id: radio_frequency_identification_rfid
+  prompt: "radio frequency identification (RFID)"
+  answer: "A radio frequency identification (RFID) tag is a small electronic device consisting of a small chip and an antenna. This device provides a unique identification for a card or an object carrying the tag."
+  tags:
+  - mod-07
+  tier: exam
+- id: reverse_auctions
+  prompt: "reverse auctions"
+  answer: "A reverse auction invites sellers to submit bids for products and services. In other words, there is one buyer and many sellers: a one-to-many relationship. The buyer can choose the seller that offers the service or product at the lowest price."
+  tags:
+  - mod-07
+  tier: exam
+- id: supply_chain
+  prompt: "supply chain"
+  answer: "A supply chain is an integrated network consisting of an organization, its suppliers, transportation companies, and brokers used to deliver goods and services to customers."
+  tags:
+  - mod-07
+  tier: exam
+- id: supply_chain_management_scm
+  prompt: "Supply chain management (SCM)"
+  answer: "Supply chain management (SCM) is the process of working with suppliers and other partners in the supply chain to improve procedures for delivering products and services."
+  tags:
+  - mod-07
+  tier: exam
+- id: task_management_software
+  prompt: "Task management software"
+  answer: "Task management software enables team members to prioritize and track tasks, which helps to keep track of deadlines."
+  tags:
+  - mod-07
+  tier: exam

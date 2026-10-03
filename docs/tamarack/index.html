@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamarack Supply — MIS &amp; Excel/BI</title>
+  <style>
+    :root {
+      --bg: #0f172a; --surface: #1e293b; --surface-border: #334155;
+      --text-main: #e2e8f0; --text-muted: #94a3b8; --primary: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--text-main); line-height: 1.6;
+      min-height: 100vh; padding: 2rem 1.25rem;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    .crumb { font-size: 0.82rem; margin-bottom: 1.25rem; }
+    .crumb a, .start { color: var(--primary); text-decoration: none; }
+    .crumb a:hover { text-decoration: underline; }
+    h1 { font-size: 1.8rem; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.5rem; line-height: 1.25; }
+    .lede { color: var(--text-muted); font-size: 0.97rem; margin-bottom: 1rem; }
+    .stats { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem; }
+    .start {
+      display: inline-block; border: 1px solid var(--primary); border-radius: 8px;
+      padding: 0.55rem 1rem; font-weight: 600; margin-bottom: 2rem;
+    }
+    .start:hover { background: rgba(56, 189, 248, 0.12); }
+    section { margin-bottom: 2.25rem; }
+    h2 {
+      font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--primary); font-weight: 700; margin-bottom: 0.3rem;
+    }
+    .part-lede { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.9rem; }
+    ol { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    a.ch {
+      display: grid; grid-template-columns: 2.4rem 1fr; gap: 0 0.9rem;
+      background: var(--surface); border: 1px solid var(--surface-border); border-radius: 10px;
+      padding: 0.95rem 1.1rem; text-decoration: none; color: var(--text-main);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    a.ch:hover { border-color: var(--primary); background: #243044; }
+    .num {
+      grid-row: span 4; font-size: 1.35rem; font-weight: 700; color: var(--primary);
+      font-variant-numeric: tabular-nums; line-height: 1.3;
+    }
+    .mod { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+    .t { font-weight: 600; color: #fff; font-size: 1.05rem; }
+    .blurb { font-size: 0.9rem; margin-top: 0.15rem; }
+    .meta { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; }
+    footer { font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--surface-border); padding-top: 1rem; }
+    @media (max-width: 480px) {
+      body { padding: 1.25rem 1rem; }
+      h1 { font-size: 1.45rem; }
+      a.ch { grid-template-columns: 1.9rem 1fr; padding: 0.85rem 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="crumb"><a href="../">&larr; All tracks</a></div>
+    <h1>Tamarack Supply — MIS &amp; Excel/BI</h1>
+    <p class="lede">One fictional farm-and-hardware company, one year, twenty-four chapters. Each chapter is one MindTap module&#x27;s glossary woven into a single story. Read in order, or jump to the module you&#x27;re studying.</p>
+    <p class="stats">24 chapters · 526 terms · about 5.8 hours of reading</p>
+    <a class="start" href="../mis-01-information-systems/">Start with chapter 1 &rarr;</a>
+    <section>
+      <h2>Part 1 — Management Information Systems</h2>
+      <p class="part-lede">Dana Okafor, business systems analyst, about a year into the job.</p>
+      <ol>
+        <li><a class="ch" href="../mis-01-information-systems/"><span class="num">1</span><span class="mod">MIS 1 · Information Systems in Business</span><span class="t">The Count That Didn&#x27;t Match</span><span class="blurb">The register says 112 bags, the pallet says 53, and Walt wants new software.</span><span class="meta">11 terms · ~12 min</span></a></li>
+        <li><a class="ch" href="../mis-02-computers/"><span class="num">2</span><span class="mod">MIS 2 · Computers and Their Business Applications</span><span class="t">The Server in the Feed Room</span><span class="blurb">The billing server is dying on invoice day, and the backups are on tape nobody has tested.</span><span class="meta">29 terms · ~15 min</span></a></li>
+        <li><a class="ch" href="../mis-03-data-bi/"><span class="num">3</span><span class="mod">MIS 3 · Data and Business Intelligence</span><span class="t">One Customer, Four Records</span><span class="blurb">A rancher gets four copies of the same mailer, and the fix runs straight through keys, models, and warehouses.</span><span class="meta">45 terms · ~22 min</span></a></li>
+        <li><a class="ch" href="../mis-04-ethics-legal/"><span class="num">4</span><span class="mod">MIS 4 · Personal, Legal, Ethical, and Organizational Issues</span><span class="t">The Video From the Kettle Falls Lot</span><span class="blurb">A cut-together video says Tamarack&#x27;s feed killed cattle. It didn&#x27;t. That turns out not to be enough.</span><span class="meta">18 terms · ~15 min</span></a></li>
+        <li><a class="ch" href="../mis-05-security/"><span class="num">5</span><span class="mod">MIS 5 · Protecting Information Resources</span><span class="t">The Invoice That Changed Its Bank</span><span class="blurb">The seed supplier didn&#x27;t change banks, but somebody already got paid once.</span><span class="meta">49 terms · ~25 min</span></a></li>
+        <li><a class="ch" href="../mis-06-global/"><span class="num">6</span><span class="mod">MIS 6 · Global Information Systems</span><span class="t">The Rep Who Couldn&#x27;t Say Yes</span><span class="blurb">The fencing rep who used to approve discounts on the phone now has to ask Saskatoon.</span><span class="meta">9 terms · ~10 min</span></a></li>
+        <li><a class="ch" href="../mis-07-enterprise/"><span class="num">7</span><span class="mod">MIS 7 · Enterprise Systems</span><span class="t">Chick Days</span><span class="blurb">Four hundred chicks arrive at the wrong store, and they can&#x27;t wait.</span><span class="meta">21 terms · ~18 min</span></a></li>
+        <li><a class="ch" href="../mis-08-decisions/"><span class="num">8</span><span class="mod">MIS 8 · Supporting Decisions and Processes</span><span class="t">Where the Twelfth Store Goes</span><span class="blurb">Walt wants store twelve in Sandpoint because of a napkin. The model has opinions.</span><span class="meta">16 terms · ~12 min</span></a></li>
+        <li><a class="ch" href="../mis-09-ai/"><span class="num">9</span><span class="mod">MIS 9 · Artificial Intelligence and Automation</span><span class="t">The Counter Assistant</span><span class="blurb">A new clerk sells cattle dewormer for a goat, and a vendor pitches an expert system.</span><span class="meta">22 terms · ~15 min</span></a></li>
+        <li><a class="ch" href="../mis-10-emerging/"><span class="num">10</span><span class="mod">MIS 10 · Emerging Trends, Technologies, and Applications</span><span class="t">The Closet Gets Too Hot</span><span class="blurb">The server closet hits 97 degrees, and the trade show sells fourteen kinds of cloud.</span><span class="meta">42 terms · ~25 min</span></a></li>
+      </ol>
+    </section>
+    <section>
+      <h2>Part 2 — Excel and Business Intelligence</h2>
+      <p class="part-lede">Eli Mendez, night-shift lead at the distribution center, taking an evening course that runs on SAM.</p>
+      <ol>
+        <li><a class="ch" href="../excel-01-getting-started/"><span class="num">11</span><span class="mod">Excel 1 · Getting Started with Excel</span><span class="t">The Damage Log</span><span class="blurb">A damage claim and a first SAM Project, due the same Sunday night.</span><span class="meta">40 terms · ~18 min</span></a></li>
+        <li><a class="ch" href="../excel-02-formatting/"><span class="num">12</span><span class="mod">Excel 2 · Formatting Workbook Text and Data</span><span class="t">The Board Packet</span><span class="blurb">Seven printed copies for a board that reads with a pen.</span><span class="meta">24 terms · ~12 min</span></a></li>
+        <li><a class="ch" href="../excel-03-formulas-functions/"><span class="num">13</span><span class="mod">Excel 3 · Performing Calculations with Formulas and Functions</span><span class="t">The Crew Bonus</span><span class="blurb">Walt promised the crew a bonus. Somebody has to calculate it, and one IFERROR hides a person.</span><span class="meta">46 terms · ~25 min</span></a></li>
+        <li><a class="ch" href="../excel-04-charts-financial/"><span class="num">14</span><span class="mod">Excel 4 · Analyzing and Charting Financial Data</span><span class="t">Two Old Forklifts</span><span class="blurb">Making the case for two new forklifts with charts, a loan, and an honest axis.</span><span class="meta">35 terms · ~22 min</span></a></li>
+        <li><a class="ch" href="../excel-05-multiple-workbooks/"><span class="num">15</span><span class="mod">Excel 5 · Generating Reports from Multiple Worksheets and Workbooks</span><span class="t">Eleven Workbooks</span><span class="blurb">Eleven stores, eleven workbooks, one summary that only works when they&#x27;re all open.</span><span class="meta">4 terms · ~8 min</span></a></li>
+        <li><a class="ch" href="../excel-06-data-tools/"><span class="num">16</span><span class="mod">Excel 6 · Managing Data with Data Tools</span><span class="t">The Returns Nobody Credited</span><span class="blurb">Three years of vendor returns, and some of them were never credited.</span><span class="meta">17 terms · ~12 min</span></a></li>
+        <li><a class="ch" href="../excel-07-pivottables/"><span class="num">17</span><span class="mod">Excel 7 · Summarizing Data with PivotTables</span><span class="t">Did the Coupon Work?</span><span class="blurb">Did the mineral coupon work? The first answer goes to Walt before the real one.</span><span class="meta">8 terms · ~8 min</span></a></li>
+        <li><a class="ch" href="../excel-08-what-if/"><span class="num">18</span><span class="mod">Excel 8 · Performing What-If Analyses</span><span class="t">What Davenport Has to Sell</span><span class="blurb">The bank wants Davenport&#x27;s break-even, and Solver wants more shelf space.</span><span class="meta">22 terms · ~18 min</span></a></li>
+        <li><a class="ch" href="../excel-09-financial-tools/"><span class="num">19</span><span class="mod">Excel 9 · Exploring Financial Tools and Functions</span><span class="t">Hank&#x27;s Year-End</span><span class="blurb">Four year-end questions from the controller, ending with how much propane to buy.</span><span class="meta">19 terms · ~15 min</span></a></li>
+        <li><a class="ch" href="../excel-10-bi-tools/"><span class="num">20</span><span class="mod">Excel 10 · Analyzing Data with Business Intelligence Tools</span><span class="t">Davenport&#x27;s First Month</span><span class="blurb">Davenport&#x27;s first month on a KPI, two maps, and the wrong Republic.</span><span class="meta">8 terms · ~8 min</span></a></li>
+        <li><a class="ch" href="../excel-11-pivottable-design/"><span class="num">21</span><span class="mod">Excel 11 · Exploring PivotTable Design</span><span class="t">Eleven Packets, Then Twelve</span><span class="blurb">Twelve manager packets in four seconds, and one manager who didn&#x27;t want hers compared.</span><span class="meta">11 terms · ~10 min</span></a></li>
+        <li><a class="ch" href="../excel-12-excel-application/"><span class="num">22</span><span class="mod">Excel 12 · Developing an Excel Application</span><span class="t">The Receiving App</span><span class="blurb">Rebuilding the damage log as an app the night clerks can&#x27;t break, and the macros IT won&#x27;t run.</span><span class="meta">9 terms · ~8 min</span></a></li>
+        <li><a class="ch" href="../bi-power-query/"><span class="num">23</span><span class="mod">BI Tools · Power Query</span><span class="t">Fifteen-Minute Readings</span><span class="blurb">Nine hundred propane tanks report every fifteen minutes. A spreadsheet can&#x27;t hold that.</span><span class="meta">13 terms · ~10 min</span></a></li>
+        <li><a class="ch" href="../bi-power-bi/"><span class="num">24</span><span class="mod">BI Tools · Introducing Power BI</span><span class="t">The Dashboard Ruth Could Share</span><span class="blurb">Five Monday workbooks become one shared report, for the people with licenses.</span><span class="meta">8 terms · ~8 min</span></a></li>
+      </ol>
+    </section>
+    <footer>Each chapter page has Previous / Next links and a link back here. Hover a highlighted term in any story for its course definition.</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+bank_id: excel-12-excel-application
+title: Tamarack — The Receiving App — glossary
+source: 'MindTap course glossary export (Excel / BI), module ''22. Excel 12: Developing an Excel Application'''
+terms:
+- id: digital_signature
+  title: "digital signature"
+  definition: "An electronic attachment not visible in the file that verifies the identify of the creation of the file by comparing the digital signature to a digital certificate."
+  tags:
+  - mod-22
+  tier: exam
+- id: excel_application
+  title: "Excel application"
+  definition: "A workbook written or tailored to meet specific needs; typically includes reports and charts, a data entry area, a custom interface, as well as instructions and documentation."
+  tags:
+  - mod-22
+  tier: exam
+- id: form_controls
+  title: "form controls"
+  definition: "In Word, a field into which a user types information."
+  tags:
+  - mod-22
+  tier: exam
+- id: locked_property
+  title: "locked property"
+  definition: "A setting that determines whether changes can be made to a cell."
+  tags:
+  - mod-22
+  tier: exam
+- id: module
+  title: "module"
+  definition: "In Access and Excel, an object that stores Visual Basic for Applications (VBA) programming code in the form of macros."
+  tags:
+  - mod-22
+  tier: exam
+- id: personal_macro_workbook
+  title: "Personal Macro workbook"
+  definition: "A workbook named Personal.xlsb that can contain macros that are available to any open workbook; opens whenever you start Excel to make macros available at any time, but is hidden by default."
+  tags:
+  - mod-22
+  tier: exam
+- id: trust_center
+  title: "Trust Center"
+  definition: "A central location for all Office security settings."
+  tags:
+  - mod-22
+  tier: exam
+- id: validation_criteria
+  title: "validation criteria"
+  definition: "In Excel, the type of data, as well as a list or range of acceptable values, specified for a validation rule."
+  tags:
+  - mod-22
+  tier: exam
+- id: validation_rule
+  title: "validation rule"
+  definition: "A process in which an xml schema makes sure the xml data follows the rules outlined in the schema."
+  tags:
+  - mod-22
+  tier: exam

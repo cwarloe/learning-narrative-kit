@@ -1,0 +1,87 @@
+# Track manifest: the reading order for the Tamarack units.
+# tools/render_track.py turns this into docs/<track_id>/index.html (the table of contents),
+# and tools/render_unit.py uses it to add Contents / Previous / Next links to each unit page.
+# Order follows the MindTap course module order in the source glossary export.
+track_id: tamarack
+title: "Tamarack Supply — MIS & Excel/BI"
+description: "One fictional farm-and-hardware company, one year, twenty-four chapters. Each chapter is one MindTap module's glossary woven into a single story. Read in order, or jump to the module you're studying."
+canon: examples/TAMARACK.md
+parts:
+  - title: "Part 1 — Management Information Systems"
+    lede: "Dana Okafor, business systems analyst, about a year into the job."
+    units:
+      - id: mis-01-information-systems
+        module: "MIS 1 · Information Systems in Business"
+        blurb: "The register says 112 bags, the pallet says 53, and Walt wants new software."
+      - id: mis-02-computers
+        module: "MIS 2 · Computers and Their Business Applications"
+        blurb: "The billing server is dying on invoice day, and the backups are on tape nobody has tested."
+      - id: mis-03-data-bi
+        module: "MIS 3 · Data and Business Intelligence"
+        blurb: "A rancher gets four copies of the same mailer, and the fix runs straight through keys, models, and warehouses."
+      - id: mis-04-ethics-legal
+        module: "MIS 4 · Personal, Legal, Ethical, and Organizational Issues"
+        blurb: "A cut-together video says Tamarack's feed killed cattle. It didn't. That turns out not to be enough."
+      - id: mis-05-security
+        module: "MIS 5 · Protecting Information Resources"
+        blurb: "The seed supplier didn't change banks, but somebody already got paid once."
+      - id: mis-06-global
+        module: "MIS 6 · Global Information Systems"
+        blurb: "The fencing rep who used to approve discounts on the phone now has to ask Saskatoon."
+      - id: mis-07-enterprise
+        module: "MIS 7 · Enterprise Systems"
+        blurb: "Four hundred chicks arrive at the wrong store, and they can't wait."
+      - id: mis-08-decisions
+        module: "MIS 8 · Supporting Decisions and Processes"
+        blurb: "Walt wants store twelve in Sandpoint because of a napkin. The model has opinions."
+      - id: mis-09-ai
+        module: "MIS 9 · Artificial Intelligence and Automation"
+        blurb: "A new clerk sells cattle dewormer for a goat, and a vendor pitches an expert system."
+      - id: mis-10-emerging
+        module: "MIS 10 · Emerging Trends, Technologies, and Applications"
+        blurb: "The server closet hits 97 degrees, and the trade show sells fourteen kinds of cloud."
+  - title: "Part 2 — Excel and Business Intelligence"
+    lede: "Eli Mendez, night-shift lead at the distribution center, taking an evening course that runs on SAM."
+    units:
+      - id: excel-01-getting-started
+        module: "Excel 1 · Getting Started with Excel"
+        blurb: "A damage claim and a first SAM Project, due the same Sunday night."
+      - id: excel-02-formatting
+        module: "Excel 2 · Formatting Workbook Text and Data"
+        blurb: "Seven printed copies for a board that reads with a pen."
+      - id: excel-03-formulas-functions
+        module: "Excel 3 · Performing Calculations with Formulas and Functions"
+        blurb: "Walt promised the crew a bonus. Somebody has to calculate it, and one IFERROR hides a person."
+      - id: excel-04-charts-financial
+        module: "Excel 4 · Analyzing and Charting Financial Data"
+        blurb: "Making the case for two new forklifts with charts, a loan, and an honest axis."
+      - id: excel-05-multiple-workbooks
+        module: "Excel 5 · Generating Reports from Multiple Worksheets and Workbooks"
+        blurb: "Eleven stores, eleven workbooks, one summary that only works when they're all open."
+      - id: excel-06-data-tools
+        module: "Excel 6 · Managing Data with Data Tools"
+        blurb: "Three years of vendor returns, and some of them were never credited."
+      - id: excel-07-pivottables
+        module: "Excel 7 · Summarizing Data with PivotTables"
+        blurb: "Did the mineral coupon work? The first answer goes to Walt before the real one."
+      - id: excel-08-what-if
+        module: "Excel 8 · Performing What-If Analyses"
+        blurb: "The bank wants Davenport's break-even, and Solver wants more shelf space."
+      - id: excel-09-financial-tools
+        module: "Excel 9 · Exploring Financial Tools and Functions"
+        blurb: "Four year-end questions from the controller, ending with how much propane to buy."
+      - id: excel-10-bi-tools
+        module: "Excel 10 · Analyzing Data with Business Intelligence Tools"
+        blurb: "Davenport's first month on a KPI, two maps, and the wrong Republic."
+      - id: excel-11-pivottable-design
+        module: "Excel 11 · Exploring PivotTable Design"
+        blurb: "Twelve manager packets in four seconds, and one manager who didn't want hers compared."
+      - id: excel-12-excel-application
+        module: "Excel 12 · Developing an Excel Application"
+        blurb: "Rebuilding the damage log as an app the night clerks can't break, and the macros IT won't run."
+      - id: bi-power-query
+        module: "BI Tools · Power Query"
+        blurb: "Nine hundred propane tanks report every fifteen minutes. A spreadsheet can't hold that."
+      - id: bi-power-bi
+        module: "BI Tools · Introducing Power BI"
+        blurb: "Five Monday workbooks become one shared report, for the people with licenses."

@@ -1,0 +1,50 @@
+deck_id: excel-10-bi-tools
+cards:
+- id: category_map
+  prompt: "category map"
+  answer: "A map chart that fills regions belonging to the same category with the same color."
+  tags:
+  - mod-20
+  tier: exam
+- id: data_view
+  prompt: "Data view"
+  answer: "In Power Pivot, the view that shows the contents of each table in the Data Model in a separate tab."
+  tags:
+  - mod-20
+  tier: exam
+- id: diagram_view
+  prompt: "Diagram view"
+  answer: "The view in PowerPivot that shows the structure of each data table."
+  tags:
+  - mod-20
+  tier: exam
+- id: key_performance_indicator
+  prompt: "key performance indicator"
+  answer: "A measurement used by business to measure achievement of a specific goal."
+  tags:
+  - mod-20
+  tier: exam
+- id: linked_data_types
+  prompt: "Linked data types"
+  answer: "Data types linked to resources on the Internet."
+  tags:
+  - mod-20
+  tier: exam
+- id: one_to_one_relationship
+  prompt: "one-to-one relationship"
+  answer: "A relationship between two tables in which each record in the first table matches at most one record in the second table, and each record in the second table matches at most one record in the first table."
+  tags:
+  - mod-20
+  tier: exam
+- id: relational_databases
+  prompt: "relational databases"
+  answer: "A database that consists of a collection of tables that can be joined through a common field; each table contains information on a specific subject, stored in the same file."
+  tags:
+  - mod-20
+  tier: exam
+- id: value_map
+  prompt: "value map"
+  answer: "A map chart that fills regions with a color gradient based on the numeric value associated with each region."
+  tags:
+  - mod-20
+  tier: exam

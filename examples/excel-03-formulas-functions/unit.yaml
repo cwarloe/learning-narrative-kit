@@ -1,0 +1,22 @@
+unit_id: excel-03-formulas-functions
+title: "Tamarack — The Crew Bonus"
+audience: "Learner working through the MindTap Excel / BI module '13. Excel 3: Performing Calculations with Formulas and Functions'"
+purpose: "Weave the Excel Module 3 formula, logical, statistical, lookup, rounding and date-function vocabulary into one crew bonus calculation so each function answers a rule someone set."
+estimated_minutes: 25
+sources:
+- "MindTap course glossary export, module '13. Excel 3: Performing Calculations with Formulas and Functions'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"
+source_notes:
+  - "The course glossary defines MODE.MULT as returning 'the single value that is repeated most often'. In Excel, MODE.MULT returns every most-frequent value (an array) when there is a tie; MODE.SNGL returns one. The narrative uses a data set with a single mode so the scene is consistent with both. The glossary text is kept verbatim."
+  - "The course glossary defines ROUNDDOWN as rounding to the next lowest digit. In Excel, ROUNDDOWN rounds toward zero, so ROUNDDOWN(-1.9, 0) is -1, while INT(-1.9) is -2. The narrative uses a positive bonus amount, where both definitions agree, and points out the negative-number difference. The glossary text is kept verbatim."

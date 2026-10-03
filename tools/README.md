@@ -40,6 +40,17 @@ Markdown/YAML remain source of truth; never hand-edit generated HTML under `docs
 
 Local wrapper: `examples/secplus-ports-helpdesk/build_preview.py` calls this and also writes a gitignored scratch HTML next to the unit.
 
+## `render_track.py`
+
+Render a track manifest (`tracks/<track>.yaml`: parts, units in reading order, one-line blurbs) to a table-of-contents page.
+
+```bash
+.venv/bin/python tools/render_track.py tracks/tamarack.yaml
+# → docs/tamarack/index.html
+```
+
+`render_unit.py` also reads `tracks/*.yaml`: a unit listed in a track gets a Contents link and Previous / Next links. Units in no track render unchanged.
+
 ## Full LLM playbook
 
 See [`AGENTS.md`](../AGENTS.md) at the repo root.

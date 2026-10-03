@@ -1,0 +1,21 @@
+unit_id: excel-08-what-if
+title: "Tamarack — What Davenport Has to Sell"
+audience: "Learner working through the MindTap Excel / BI module '18. Excel 8: Performing What-If Analyses'"
+purpose: "Weave the Excel Module 8 cost-behavior, Goal Seek, data table and Solver vocabulary into one new-store break-even and opening-inventory plan so each tool answers a question the bank or the buyer asked."
+estimated_minutes: 18
+sources:
+- "MindTap course glossary export, module '18. Excel 8: Performing What-If Analyses'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"
+source_notes:
+  - "The course glossary gives 'sensitivity report' the same definition as 'limits report', and 'CVP chart' the same definition as 'CVP analysis'. Kept verbatim; the narrative describes what each report and the chart show."

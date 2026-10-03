@@ -20,7 +20,8 @@ docs/<unit_id>/         # GENERATED — never hand-edit; from render_unit.py
 docs/index.html         # landing cards — update BY HAND when adding a unit
 docs/unit.css, unit.js  # shared Pages assets
 schema/                 # authoring contract + informal schema
-tools/                  # validate_unit.py, render_unit.py
+tools/                  # validate_unit.py, render_unit.py, render_track.py
+tracks/<track>.yaml     # reading order for a track → contents page + prev/next links
 research/               # background notes (schema wins on conflict)
 ```
 
@@ -54,7 +55,12 @@ python3 -m venv .venv
    .venv/bin/python tools/render_unit.py examples/<unit_id>
    ```
 9. **Landing card** — add a card under the right track in `docs/index.html` (renderer does **not** update the landing page).
-10. **Commit** `examples/<unit_id>/`, `docs/<unit_id>/`, and `docs/index.html`. Push `main`. Pages serves `/docs`.
+10. **Track (if the unit belongs to one)** — add it to `tracks/<track>.yaml` in reading order, then:
+    ```bash
+    .venv/bin/python tools/render_track.py tracks/<track>.yaml
+    ```
+    This writes the contents page `docs/<track_id>/index.html`. Re-render the unit and its old and new neighbours so their Previous / Next links update.
+11. **Commit** `examples/<unit_id>/`, `docs/<unit_id>/`, `docs/index.html`, and any track files. Push `main`. Pages serves `/docs`.
 
 Expected URL: `https://cwarloe.github.io/learning-narrative-kit/<unit_id>/`
 
@@ -83,6 +89,7 @@ Full text: `schema/README.md`. Non-negotiables:
 
 - **Portland Desk (Sec+):** `examples/PORTLAND_DESK.md`
 - **ITM:** see `examples/itm310-vanguard-edge/` as specimen
+- **Tamarack (MIS + Excel/BI, MindTap):** `examples/TAMARACK.md`
 
 ## Copy-paste prompt for a new chapter
 

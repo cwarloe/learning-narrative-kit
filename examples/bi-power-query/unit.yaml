@@ -1,0 +1,21 @@
+unit_id: bi-power-query
+title: "Tamarack — Fifteen-Minute Readings"
+audience: "Learner working through the MindTap Excel / BI module '24. Ch 4: BI Tools for Data Analysis: Power Query'"
+purpose: "Weave the Power Query and big-data vocabulary into one propane tank-monitor feed so each term explains why the data needs a query, not a paste."
+estimated_minutes: 10
+sources:
+- "MindTap course glossary export, module '24. Ch 4: BI Tools for Data Analysis: Power Query'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"
+source_notes:
+  - "The course glossary's entry for 'BI' in this module reads 'An alphabetical list of sources referenced in a research paper', which is a bibliography definition attached to the wrong term. glossary.yaml uses the course glossary's own Business intelligence (BI) definition from MIS Module 3 instead."

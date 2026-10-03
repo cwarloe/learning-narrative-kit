@@ -1,0 +1,104 @@
+deck_id: excel-06-data-tools
+cards:
+- id: advanced_filtering
+  prompt: "Advanced filtering"
+  answer: "In an Excel table or data range, a way of writing more complicated filter criteria that involves expressions that combine fields using the AND and OR logical operators."
+  tags:
+  - mod-16
+  tier: exam
+- id: ascending_order
+  prompt: "ascending order"
+  answer: "The arrangement of text alphabetically from A to Z, numbers from smallest to largest, and dates from oldest to newest."
+  tags:
+  - mod-16
+  tier: exam
+- id: calculated_field
+  prompt: "calculated field"
+  answer: "In an Excel table, a field whose values are not entered but calcuated based on other fields."
+  tags:
+  - mod-16
+  tier: exam
+- id: criteria_filters
+  prompt: "criteria filters"
+  answer: "Conditions you specify for a filter."
+  tags:
+  - mod-16
+  tier: exam
+- id: criteria_range
+  prompt: "criteria range"
+  answer: "A location separate from the table used to list specific search specifications."
+  tags:
+  - mod-16
+  tier: exam
+- id: custom_list
+  prompt: "custom list"
+  answer: "A sequence you specify to sort data."
+  tags:
+  - mod-16
+  tier: exam
+- id: data_definition_table
+  prompt: "data definition table"
+  answer: "Documentation that lists the fields to be maintained for each record, a description of the information each field will include, and the type of data stored in each field."
+  tags:
+  - mod-16
+  tier: exam
+- id: database_function
+  prompt: "Database function"
+  answer: "A function that performs summary data analysis, such as sum, average, or count, on an Excel table or data range based on criteria specified in a criteria range."
+  tags:
+  - mod-16
+  tier: exam
+- id: descending_order
+  prompt: "descending order"
+  answer: "Data sorted from highest to lowest, most recent to earliest, or alphabetically from Z to A."
+  tags:
+  - mod-16
+  tier: exam
+- id: dfunction
+  prompt: "Dfunction"
+  answer: "A function that performs summary data analysis, such as sum, average, or count, on an Excel table or data range based on criteria specified in a criteria range."
+  tags:
+  - mod-16
+  tier: exam
+- id: excel_data_form
+  prompt: "Excel data form"
+  answer: "A dialog box containing the field names from an Excel table or data range along with input boxes for entering new data."
+  tags:
+  - mod-16
+  tier: exam
+- id: header_row
+  prompt: "header row"
+  answer: "In an Excel or Word table, the first row; it contains field (column) names."
+  tags:
+  - mod-16
+  tier: exam
+- id: primary_sort_field
+  prompt: "primary sort field"
+  answer: "The first sort field specified that determines the order of records in an object."
+  tags:
+  - mod-16
+  tier: exam
+- id: secondary_sort_field
+  prompt: "secondary sort field"
+  answer: "In Access and Excel, a second field that determines the order of records in an object that are already sorted by a primary sort field."
+  tags:
+  - mod-16
+  tier: exam
+- id: structural_references
+  prompt: "structural references"
+  answer: "A reference that refers to a structural element of an Excel table."
+  tags:
+  - mod-16
+  tier: exam
+- id: subtotals
+  prompt: "subtotals"
+  answer: "In Excel, summary functions applied to part of a data range."
+  tags:
+  - mod-16
+  tier: exam
+- id: wildcard
+  prompt: "wildcard"
+  answer: "A special symbol that substitutes for unknown characters in search text; the most common are the question mark (?), which stands for any single character, and the asterisk (*), which represents any group of characters."
+  tags:
+  - mod-16
+  tier: exam

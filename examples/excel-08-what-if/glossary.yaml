@@ -1,0 +1,136 @@
+bank_id: excel-08-what-if
+title: Tamarack — What Davenport Has to Sell — glossary
+source: 'MindTap course glossary export (Excel / BI), module ''18. Excel 8: Performing What-If Analyses'''
+terms:
+- id: answer_report
+  title: "answer report"
+  definition: "A Solver report summarizing the results of a successful solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: binding_constraint
+  title: "binding constraint"
+  definition: "A constraint that must be included in the Solver model and is a limiting factor in arriving at a solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: break_even_analysis
+  title: "break-even analysis"
+  definition: "Another term for Cost-Volume-Profit (CVP) analysis."
+  tags:
+  - mod-18
+  tier: exam
+- id: cost_volume_profit_cvp_analysis
+  title: "Cost-Volume-Profit (CVP) analysis"
+  definition: "A branch of financial analysis that studies the relationship between expenses, sales volume, and profitability."
+  tags:
+  - mod-18
+  tier: exam
+- id: cost_volume_profit_cvp_chart
+  title: "Cost-Volume-Profit (CVP) chart"
+  definition: "A branch of financial analysis that studies the relationship between expenses, sales volume, and profitability."
+  tags:
+  - mod-18
+  tier: exam
+- id: data_table
+  title: "data table"
+  definition: "A range of cells that shows the resulting values when one or more input values are varied in a formula; in a chart, a grid containing the chart data."
+  tags:
+  - mod-18
+  tier: exam
+- id: evolutionary_method
+  title: "Evolutionary method"
+  definition: "A Solver method used for complicated expressions involving discontinuous functions."
+  tags:
+  - mod-18
+  tier: exam
+- id: fixed_expense
+  title: "fixed expense"
+  definition: "In financial analysis, an expense that must be paid regardless of sales volume."
+  tags:
+  - mod-18
+  tier: exam
+- id: global_optimum
+  title: "global optimum"
+  definition: "The overall high point or optimal solution to a Solver problem."
+  tags:
+  - mod-18
+  tier: exam
+- id: goal_seek
+  title: "Goal Seek"
+  definition: "A feature that reverses the trial-and-error process by allowing you to specify an output value and then working backward to find the input value needed to reach that goal."
+  tags:
+  - mod-18
+  tier: exam
+- id: grg_nonlinear_method
+  title: "GRG Nonlinear method"
+  definition: "A Solver method used for complicated expressions involving nonlinear functions."
+  tags:
+  - mod-18
+  tier: exam
+- id: iterative_process
+  title: "iterative process"
+  definition: "A process used by Solver that starts with an initial solution that it uses as a basis to calculate new solutions."
+  tags:
+  - mod-18
+  tier: exam
+- id: limits_report
+  title: "limits report"
+  definition: "A Solver report that displays the mathematical aspects of a successful solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: local_optimum
+  title: "local optimum"
+  definition: "A nearby highpoint or local solution to a Solver problem."
+  tags:
+  - mod-18
+  tier: exam
+- id: mixed_expense
+  title: "mixed expense"
+  definition: "Expenses which are part variable and part fixed."
+  tags:
+  - mod-18
+  tier: exam
+- id: nonbinding_constraint
+  title: "nonbinding constraint"
+  definition: "A constraint that needs not be included in the Solver model and is not a limiting factor in arriving at the solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: sensitivity_report
+  title: "sensitivity report"
+  definition: "A Solver report that displays the mathematical aspects of a successful solution."
+  tags:
+  - mod-18
+  tier: exam
+- id: simplex_lp_method
+  title: "Simplex LP method"
+  definition: "A Solver method used for simple linear expressions."
+  tags:
+  - mod-18
+  tier: exam
+- id: slack
+  title: "slack"
+  definition: "In Solver, the difference between the value in the cell and the value at the limit of the constraint, showing how close the constraint came to be a binding constraint."
+  tags:
+  - mod-18
+  tier: exam
+- id: trial_and_error
+  title: "trial and error"
+  definition: "A way to perform what-if analysis by changing one or more of the input values to see how they affect the other cells in the workbook."
+  tags:
+  - mod-18
+  tier: exam
+- id: variable_expenses
+  title: "Variable expenses"
+  definition: "Expenses that change in proportion to the volume of production."
+  tags:
+  - mod-18
+  tier: exam
+- id: what_if_analysis
+  title: "what-if analysis"
+  definition: "A way to explore the impact that changing input values has on calculated values and output values."
+  tags:
+  - mod-18
+  tier: exam

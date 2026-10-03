@@ -1,0 +1,19 @@
+unit_id: mis-04-ethics-legal
+title: "Tamarack — The Video From the Kettle Falls Lot"
+audience: "Learner working through the MindTap MIS module '04. Personal, Legal, Ethical, and Organizational Issues'"
+purpose: "Weave the Module 4 ethics, privacy and information-integrity vocabulary into one viral-rumor week so each distinction changes what the company does next."
+estimated_minutes: 15
+sources:
+- "MindTap course glossary export, module '04. Personal, Legal, Ethical, and Organizational Issues'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"

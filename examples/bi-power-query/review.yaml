@@ -1,0 +1,80 @@
+deck_id: bi-power-query
+cards:
+- id: analytics
+  prompt: "analytics"
+  answer: "Data analysis that seeks to answer questions related to strategic planning."
+  tags:
+  - mod-24
+  tier: exam
+- id: bi
+  prompt: "BI"
+  answer: "Business intelligence (BI) provides historical, current, and predictive views of business operations and environments and gives organizations a competitive advantage in the marketplace."
+  tags:
+  - mod-24
+  tier: exam
+- id: big_data
+  prompt: "big data"
+  answer: "Large and complex data sources that defy easy handling with traditional data processing methods."
+  tags:
+  - mod-24
+  tier: exam
+- id: business_intelligence
+  prompt: "Business Intelligence"
+  answer: "Software tools designed to extract useful information from big data."
+  tags:
+  - mod-24
+  tier: exam
+- id: comma_separated_values_csv_files
+  prompt: "Comma Separated Values (CSV) files"
+  answer: "A text file with a .txt or .csv file extension, in which each paragraph contains one record, with the fields separated by commas."
+  tags:
+  - mod-24
+  tier: exam
+- id: data_driven_decision_support_system
+  prompt: "data-driven decision support system"
+  answer: "A set of software packages that provide analysts with tools to interpret big data."
+  tags:
+  - mod-24
+  tier: exam
+- id: delimiter
+  prompt: "delimiter"
+  answer: "A separator such as a space, comma, or semicolon between elements in imported data."
+  tags:
+  - mod-24
+  tier: exam
+- id: m
+  prompt: "M"
+  answer: "The query language used by Power Query to create queries."
+  tags:
+  - mod-24
+  tier: exam
+- id: mashup_query_language
+  prompt: "mashup query language"
+  answer: "In Excel, a type of programming language used by queries to extract and transform data."
+  tags:
+  - mod-24
+  tier: exam
+- id: power_query
+  prompt: "Power Query"
+  answer: "A BI tool used for writing queries to almost any kind of data source."
+  tags:
+  - mod-24
+  tier: exam
+- id: variety
+  prompt: "Variety"
+  answer: "A large collection of different types of data sources that characterizes big data."
+  tags:
+  - mod-24
+  tier: exam
+- id: velocity
+  prompt: "Velocity"
+  answer: "In big data, the rate at which big data is changing."
+  tags:
+  - mod-24
+  tier: exam
+- id: volume
+  prompt: "Volume"
+  answer: "In big data, a large amount of data, so large that even storing the information is a challenge."
+  tags:
+  - mod-24
+  tier: exam

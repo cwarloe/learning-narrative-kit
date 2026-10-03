@@ -1,0 +1,19 @@
+unit_id: excel-01-getting-started
+title: "Tamarack — The Damage Log"
+audience: "Learner working through the MindTap Excel / BI module '11. Excel 1: Getting Started with Excel'"
+purpose: "Weave the Excel Module 1 interface, data-entry and SAM vocabulary into one inherited damage spreadsheet and one first assignment so each feature is learned because a deadline needed it."
+estimated_minutes: 18
+sources:
+- "MindTap course glossary export, module '11. Excel 1: Getting Started with Excel'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"

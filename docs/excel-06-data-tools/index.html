@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamarack — The Returns Nobody Credited</title>
+  <link rel="stylesheet" href="../unit.css"><style>
+.track-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem;
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+.track-nav a { color: var(--primary); text-decoration: none; }
+.track-nav a:hover { text-decoration: underline; }
+.track-nav .pos { margin-left: auto; }
+.track-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;
+  margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--surface-border); }
+.track-pager a { display: block; padding: 0.85rem 1rem; border: 1px solid var(--surface-border);
+  border-radius: 10px; text-decoration: none; color: var(--text-main); background: var(--bg); }
+.track-pager a:hover { border-color: var(--primary); }
+.track-pager .dir { display: block; font-size: 0.72rem; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.2rem; }
+.track-pager .next { text-align: right; grid-column: 2; }
+.track-pager .t { font-weight: 600; color: #fff; font-size: 0.95rem; }
+@media (max-width: 600px) { .track-pager { grid-template-columns: 1fr; }
+  .track-pager .next { grid-column: 1; } .track-nav .pos { margin-left: 0; } }
+</style>
+</head>
+<body class="filter-exam-only">
+
+<div class="layout">
+  <main>
+    <nav class="track-nav" aria-label="Track"><a href="../tamarack/">&larr; Contents</a><span>Excel 6 · Managing Data with Data Tools</span><span class="pos">Chapter 16 of 24</span></nav>
+    <h1>Tamarack — The Returns Nobody Credited</h1>
+    <div class="byline">Tamarack Supply • Excel Module 6: Managing Data with Data Tools • Hover over highlighted terms for course definitions.</div>
+    <div class="byline-note">Story first; hover highlighted terms for short definitions. Exam refs and tags live in the sidebar.</div>
+    <article id="narrative"><p class="loading">Loading narrative…</p></article>
+    <nav class="track-pager" aria-label="Chapter"><a class="prev" href="../excel-05-multiple-workbooks/"><span class="dir">&larr; Previous</span><span class="t">Tamarack — Eleven Workbooks</span></a><a class="next" href="../excel-07-pivottables/"><span class="dir">Next &rarr;</span><span class="t">Tamarack — Did the Coupon Work?</span></a></nav>
+  </main>
+
+  <aside>
+    <h3>Glossary</h3>
+    <div class="sidebar-meta" id="term-count"></div>
+    <div class="legend">
+      <span class="lg-exam">Exam</span>
+      <span class="lg-support">Support</span>
+    </div>
+    <div class="filter-bar" role="group" aria-label="Tier filter">
+      <button type="button" id="filter-exam" class="active" data-filter="exam">Exam only</button>
+      <button type="button" id="filter-all" data-filter="all">All</button>
+    </div>
+    <input type="text" id="search-box" placeholder="Filter terms…" autocomplete="off">
+    <div class="term-list" id="term-list"></div>
+    <div class="detail-panel empty" id="detail-panel">Select a term to see definition, tags, and refs.</div>
+  </aside>
+</div>
+
+<div id="tooltip" role="tooltip">
+  <div class="tt-tier" id="tt-tier"></div>
+  <div class="tt-title" id="tt-title"></div>
+  <div class="tt-body" id="tt-body"></div>
+  <div class="tt-context" id="tt-context"></div>
+</div>
+
+<script src="glossary.js"></script>
+<script src="../unit.js"></script>
+<script>
+fetch('narrative.manifest.json')
+  .then(function (r) { return r.json(); })
+  .then(function (manifest) {
+    return Promise.all(manifest.parts.map(function (p) {
+      return fetch(p).then(function (r) { return r.text(); });
+    }));
+  })
+  .then(function (parts) {
+    document.getElementById('narrative').innerHTML = parts.join('');
+    window.bootUnitPage();
+  })
+  .catch(function (err) {
+    document.getElementById('narrative').innerHTML =
+      '<p>Failed to load narrative</p>';
+    console.error(err);
+  });
+</script>
+
+</body>
+</html>

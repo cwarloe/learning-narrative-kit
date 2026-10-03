@@ -1,0 +1,19 @@
+unit_id: excel-09-financial-tools
+title: "Tamarack — Hank's Year-End"
+audience: "Learner working through the MindTap Excel / BI module '19. Excel 9: Exploring Financial Tools and Functions'"
+purpose: "Weave the Excel Module 9 financial-statement, depreciation, loan, investment and forecasting vocabulary into one year-end close so each function answers one of the controller's questions."
+estimated_minutes: 15
+sources:
+- "MindTap course glossary export, module '19. Excel 9: Exploring Financial Tools and Functions'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"

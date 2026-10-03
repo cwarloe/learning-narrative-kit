@@ -1,0 +1,178 @@
+bank_id: mis-02-computers
+title: Tamarack — The Server in the Feed Room — glossary
+source: MindTap course glossary export (MIS), module '02. Computers and Their Business Applications'
+terms:
+- id: application_software
+  title: "application software"
+  definition: "Application software can be commercial software or software developed in-house; it is used to perform a variety of tasks on a personal computer."
+  tags:
+  - mod-02
+  tier: exam
+- id: arithmetic_logic_unit_alu
+  title: "arithmetic logic unit (ALU)"
+  definition: "The arithmetic logic unit (ALU) performs arithmetic operations (+, −, *, /) as well as comparison or relational operations (<, >, =); the latter are used to compare numbers."
+  tags:
+  - mod-02
+  tier: exam
+- id: assembly_language
+  title: "Assembly language"
+  definition: "Assembly language, the second generation of computer languages, is a higher-level language than machine language but is also machine dependent. It uses a series of short codes, or mnemonics, to represent data or instructions."
+  tags:
+  - mod-02
+  tier: exam
+- id: bus
+  title: "bus"
+  definition: "A bus is a link between devices connected to the computer. It can be parallel or serial, internal (local) or external."
+  tags:
+  - mod-02
+  tier: exam
+- id: cache_ram
+  title: "cache RAM"
+  definition: "Cache RAM resides on the processor. Because memory access from main RAM storage takes several clock cycles (a few nanoseconds), cache RAM stores recently accessed memory so the processor is not waiting for the memory transfer."
+  tags:
+  - mod-02
+  tier: exam
+- id: central_processing_unit_cpu
+  title: "central processing unit (CPU)"
+  definition: "The central processing unit (CPU) is the heart of a computer. It is divided into two components: the arithmetic logic unit (ALU) and the control unit."
+  tags:
+  - mod-02
+  tier: exam
+- id: computer
+  title: "computer"
+  definition: "A computer is a machine that accepts data as input, processes data without human intervention by using stored instructions, and outputs information."
+  tags:
+  - mod-02
+  tier: exam
+- id: control_unit
+  title: "control unit"
+  definition: "The control unit tells the computer what to do, such as instructing the computer which device to read or send output to."
+  tags:
+  - mod-02
+  tier: exam
+- id: cpu_case
+  title: "CPU case"
+  definition: "A CPU case is also known as a computer chassis or tower. It is the enclosure containing the computer’s main components."
+  tags:
+  - mod-02
+  tier: exam
+- id: disk_drive
+  title: "disk drive"
+  definition: "A disk drive is a peripheral device for recording, storing, and retrieving information."
+  tags:
+  - mod-02
+  tier: exam
+- id: fifth_generation_languages_5gls
+  title: "Fifth-generation languages (5GLs)"
+  definition: "Fifth-generation languages (5GLs) use some artificial intelligence technologies, such as knowledge-based systems, natural language processing (NLP), visual programming, and a graphical approach to programming. These languages are designed to facilitate natural conversations between you and the computer."
+  tags:
+  - mod-02
+  tier: exam
+- id: fourth_generation_languages_4gls
+  title: "Fourth-generation languages (4GLs)"
+  definition: "Fourth-generation languages (4GLs) use macro codes that can take the place of several lines of programming. The commands are powerful and easy to learn, even for people with little computer training."
+  tags:
+  - mod-02
+  tier: exam
+- id: high_level_languages
+  title: "high-level languages"
+  definition: "High-level languages are machine independent and part of the third generation of computer languages. Many languages are available, and each is designed for a specific purpose."
+  tags:
+  - mod-02
+  tier: exam
+- id: input_devices
+  title: "Input devices"
+  definition: "Input devices send data and information to the computer. Examples include a keyboard and mouse."
+  tags:
+  - mod-02
+  tier: exam
+- id: machine_language
+  title: "machine language"
+  definition: "Machine language, the first generation of computer languages, consists of a series of 0s and 1s representing data or instructions. It is dependent on the machine, so code written for one type of computer does not work on another type of computer."
+  tags:
+  - mod-02
+  tier: exam
+- id: magnetic_disk
+  title: "magnetic disk"
+  definition: "A magnetic disk, made of Mylar or metal, is used for random-access processing. In other words, data can be accessed in any order, regardless of its order on the surface."
+  tags:
+  - mod-02
+  tier: exam
+- id: magnetic_tape
+  title: "Magnetic tape"
+  definition: "Magnetic tape is made of a plastic material and stores data sequentially."
+  tags:
+  - mod-02
+  tier: exam
+- id: main_memory
+  title: "Main memory"
+  definition: "Main memory stores data and information and is usually volatile; its contents are lost when electrical power is turned off. It plays a major role in a computer’s performance."
+  tags:
+  - mod-02
+  tier: exam
+- id: motherboard
+  title: "motherboard"
+  definition: "A motherboard is the main circuit board containing connectors for attaching additional boards. It usually contains the CPU, basic input/output system (BIOS), memory, storage, interfaces, serial and parallel ports, expansion slots, and all the controllers for standard peripheral devices, such as the display monitor, disk drive, and keyboard."
+  tags:
+  - mod-02
+  tier: exam
+- id: network_attached_storage_nas
+  title: "Network-attached storage (NAS)"
+  definition: "Network-attached storage (NAS) is essentially a network-connected computer dedicated to providing file-based data storage services to other network devices."
+  tags:
+  - mod-02
+  tier: exam
+- id: object_oriented_programming_oop
+  title: "object-oriented programming (OOP)"
+  definition: "An object-oriented programming (OOP) language is organized around a system of objects that represent the real world, as opposed to a series of computational steps used in traditional languages."
+  tags:
+  - mod-02
+  tier: exam
+- id: operating_system_os
+  title: "operating system (OS)"
+  definition: "An operating system (OS) is a set of programs for controlling and managing computer hardware and software. It provides an interface between a computer and the user and increases computer efficiency by helping users share computer resources and by performing repetitive tasks for users."
+  tags:
+  - mod-02
+  tier: exam
+- id: output_devices
+  title: "output devices"
+  definition: "An output device is capable of representing information from a computer. The form of this output might be visual, audio, or digital; examples include printers, display monitors, and plotters."
+  tags:
+  - mod-02
+  tier: exam
+- id: random_access_memory_ram
+  title: "random access memory (RAM)"
+  definition: "Random access memory (RAM) is volatile memory, in which data can be read from and written to; it is also called read-write memory."
+  tags:
+  - mod-02
+  tier: exam
+- id: read_only_memory_rom
+  title: "read-only memory (ROM)"
+  definition: "Read-only memory (ROM) is nonvolatile; data cannot be written to ROM."
+  tags:
+  - mod-02
+  tier: exam
+- id: redundant_array_of_independent_disks_rai
+  title: "redundant array of independent disks (RAID)"
+  definition: "A redundant array of independent disks (RAID) system is a collection of disk drives used for fault tolerance and improved performance and is typically found in large network systems."
+  tags:
+  - mod-02
+  tier: exam
+- id: secondary_memory
+  title: "Secondary memory"
+  definition: "Secondary memory, which is nonvolatile, holds data when the computer is off or during the course of a program’s operation. It also serves as archival storage."
+  tags:
+  - mod-02
+  tier: exam
+- id: server
+  title: "server"
+  definition: "A server is a computer and all the software for managing network resources and offering services to a network."
+  tags:
+  - mod-02
+  tier: exam
+- id: storage_area_network_san
+  title: "storage area network (SAN)"
+  definition: "A storage area network (SAN) is a dedicated high-speed network consisting of both hardware and software used to connect and manage shared storage devices, such as disk arrays, tape libraries, and optical storage devices."
+  tags:
+  - mod-02
+  tier: exam

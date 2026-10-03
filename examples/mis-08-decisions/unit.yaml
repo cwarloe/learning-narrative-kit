@@ -1,0 +1,19 @@
+unit_id: mis-08-decisions
+title: "Tamarack — Where the Twelfth Store Goes"
+audience: "Learner working through the MindTap MIS module '08. Supporting Decisions and Processes'"
+purpose: "Weave the Module 8 decision-type, decision-phase and DSS vocabulary into one new-store site choice so each phase and role changes what gets decided."
+estimated_minutes: 12
+sources:
+- "MindTap course glossary export, module '08. Supporting Decisions and Processes'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"

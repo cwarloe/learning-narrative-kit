@@ -29,6 +29,8 @@ except ImportError:
         "then: .venv/bin/python tools/render_unit.py <unit_dir>"
     )
 
+from _track import NAV_CSS, find_track_for, nav_html  # noqa: E402  (needs yaml)
+
 KIT_ROOT = Path(__file__).resolve().parent.parent
 MARK_RE = re.compile(r"\[\[([a-z0-9_]+)\|([^\]]+)\]\]")
 
@@ -538,7 +540,15 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
     ]
     gloss_json = json.dumps({t["id"]: t for t in gloss_list}, ensure_ascii=False, separators=(',', ':'))
 
-    html_out = render_html(page_title, subtitle, body_html, gloss_json)
+    nav_top = nav_bottom = extra_css = ""
+    track = find_track_for(unit_id, kit_root)
+    if track is not None:
+        nav_top, nav_bottom = nav_html(track, unit_id, kit_root)
+        extra_css = NAV_CSS
+
+    html_out = render_html(
+        page_title, subtitle, body_html, gloss_json, nav_top, nav_bottom, extra_css
+    )
 
     out_dir = kit_root / "docs" / unit_id
     out_dir.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,52 @@
+bank_id: excel-07-pivottables
+title: Tamarack — Did the Coupon Work? — glossary
+source: 'MindTap course glossary export (Excel / BI), module ''17. Excel 7: Summarizing Data with PivotTables'''
+terms:
+- id: date_filters
+  title: "Date filters"
+  definition: "A filter applied directly to PivotTable fields that selects data based on specific dates or date ranges."
+  tags:
+  - mod-17
+  tier: exam
+- id: drill_up
+  title: "drill up"
+  definition: "The process in data analysis in which the data view goes from the most specific to the most general."
+  tags:
+  - mod-17
+  tier: exam
+- id: drilling_down
+  title: "drilling down"
+  definition: "In Excel, the process in data analysis in which the data view goes from the most general to the most specific."
+  tags:
+  - mod-17
+  tier: exam
+- id: label_filters
+  title: "Label filters"
+  definition: "A filter applied directly to PivotTable fields that selects data based on the labels of the items in the field."
+  tags:
+  - mod-17
+  tier: exam
+- id: manual_filters
+  title: "Manual filters"
+  definition: "A filter applied directly to PivotTable fields that selects values selected from check boxes listing all of the unique field values."
+  tags:
+  - mod-17
+  tier: exam
+- id: refresh
+  title: "refresh"
+  definition: "To update a PivotTable so it reflects changes to the underlying data."
+  tags:
+  - mod-17
+  tier: exam
+- id: standard_pivottable
+  title: "standard PivotTable"
+  definition: "A PivotTable that summarizes data from an Excel table."
+  tags:
+  - mod-17
+  tier: exam
+- id: value_filters
+  title: "Value filters"
+  definition: "A filter applied directly to PivotTable fields that filters data based on values of numeric field elsewhere in the PivotTable."
+  tags:
+  - mod-17
+  tier: exam

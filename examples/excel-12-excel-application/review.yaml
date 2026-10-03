@@ -1,0 +1,56 @@
+deck_id: excel-12-excel-application
+cards:
+- id: digital_signature
+  prompt: "digital signature"
+  answer: "An electronic attachment not visible in the file that verifies the identify of the creation of the file by comparing the digital signature to a digital certificate."
+  tags:
+  - mod-22
+  tier: exam
+- id: excel_application
+  prompt: "Excel application"
+  answer: "A workbook written or tailored to meet specific needs; typically includes reports and charts, a data entry area, a custom interface, as well as instructions and documentation."
+  tags:
+  - mod-22
+  tier: exam
+- id: form_controls
+  prompt: "form controls"
+  answer: "In Word, a field into which a user types information."
+  tags:
+  - mod-22
+  tier: exam
+- id: locked_property
+  prompt: "locked property"
+  answer: "A setting that determines whether changes can be made to a cell."
+  tags:
+  - mod-22
+  tier: exam
+- id: module
+  prompt: "module"
+  answer: "In Access and Excel, an object that stores Visual Basic for Applications (VBA) programming code in the form of macros."
+  tags:
+  - mod-22
+  tier: exam
+- id: personal_macro_workbook
+  prompt: "Personal Macro workbook"
+  answer: "A workbook named Personal.xlsb that can contain macros that are available to any open workbook; opens whenever you start Excel to make macros available at any time, but is hidden by default."
+  tags:
+  - mod-22
+  tier: exam
+- id: trust_center
+  prompt: "Trust Center"
+  answer: "A central location for all Office security settings."
+  tags:
+  - mod-22
+  tier: exam
+- id: validation_criteria
+  prompt: "validation criteria"
+  answer: "In Excel, the type of data, as well as a list or range of acceptable values, specified for a validation rule."
+  tags:
+  - mod-22
+  tier: exam
+- id: validation_rule
+  prompt: "validation rule"
+  answer: "A process in which an xml schema makes sure the xml data follows the rules outlined in the schema."
+  tags:
+  - mod-22
+  tier: exam

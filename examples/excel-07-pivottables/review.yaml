@@ -1,0 +1,50 @@
+deck_id: excel-07-pivottables
+cards:
+- id: date_filters
+  prompt: "Date filters"
+  answer: "A filter applied directly to PivotTable fields that selects data based on specific dates or date ranges."
+  tags:
+  - mod-17
+  tier: exam
+- id: drill_up
+  prompt: "drill up"
+  answer: "The process in data analysis in which the data view goes from the most specific to the most general."
+  tags:
+  - mod-17
+  tier: exam
+- id: drilling_down
+  prompt: "drilling down"
+  answer: "In Excel, the process in data analysis in which the data view goes from the most general to the most specific."
+  tags:
+  - mod-17
+  tier: exam
+- id: label_filters
+  prompt: "Label filters"
+  answer: "A filter applied directly to PivotTable fields that selects data based on the labels of the items in the field."
+  tags:
+  - mod-17
+  tier: exam
+- id: manual_filters
+  prompt: "Manual filters"
+  answer: "A filter applied directly to PivotTable fields that selects values selected from check boxes listing all of the unique field values."
+  tags:
+  - mod-17
+  tier: exam
+- id: refresh
+  prompt: "refresh"
+  answer: "To update a PivotTable so it reflects changes to the underlying data."
+  tags:
+  - mod-17
+  tier: exam
+- id: standard_pivottable
+  prompt: "standard PivotTable"
+  answer: "A PivotTable that summarizes data from an Excel table."
+  tags:
+  - mod-17
+  tier: exam
+- id: value_filters
+  prompt: "Value filters"
+  answer: "A filter applied directly to PivotTable fields that filters data based on values of numeric field elsewhere in the PivotTable."
+  tags:
+  - mod-17
+  tier: exam
