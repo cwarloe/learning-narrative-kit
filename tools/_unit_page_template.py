@@ -4,11 +4,21 @@ from __future__ import annotations
 import html
 
 
-def render_html(page_title: str, subtitle: str, body_html: str, gloss_json: str) -> str:
+def render_html(
+    page_title: str,
+    subtitle: str,
+    body_html: str,
+    gloss_json: str,
+    nav_top: str = "",
+    nav_bottom: str = "",
+    extra_css: str = "",
+) -> str:
     byline_note = (
         "Story first; hover highlighted terms for short definitions. "
         "Exam refs and tags live in the sidebar."
     )
+    nav_top = f"    {nav_top}\n" if nav_top else ""
+    nav_bottom = f"    {nav_bottom}\n" if nav_bottom else ""
     # body_html is written separately to narrative.html; index is a thin shell.
     _ = body_html  # kept in signature for call-site compatibility
     _ = gloss_json
@@ -18,17 +28,17 @@ def render_html(page_title: str, subtitle: str, body_html: str, gloss_json: str)
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{html.escape(page_title)}</title>
-  <link rel="stylesheet" href="../unit.css">
+  <link rel="stylesheet" href="../unit.css">{f"<style>{extra_css}</style>" if extra_css else ""}
 </head>
 <body class="filter-exam-only">
 
 <div class="layout">
   <main>
-    <h1>{html.escape(page_title)}</h1>
+{nav_top}    <h1>{html.escape(page_title)}</h1>
     <div class="byline">{html.escape(subtitle)}</div>
     <div class="byline-note">{html.escape(byline_note)}</div>
     <article id="narrative"><p class="loading">Loading narrative…</p></article>
-  </main>
+{nav_bottom}  </main>
 
   <aside>
     <h3>Glossary</h3>
