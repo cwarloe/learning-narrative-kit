@@ -1,0 +1,116 @@
+deck_id: excel-09-financial-tools
+cards:
+- id: bins
+  prompt: "bins"
+  answer: "Categories within a histogram into which data values are allocated."
+  tags:
+  - mod-19
+  tier: exam
+- id: cash_flow
+  prompt: "cash flow"
+  answer: "The movement of money to and from an individual or company."
+  tags:
+  - mod-19
+  tier: exam
+- id: confidence_bounds
+  prompt: "confidence bounds"
+  answer: "The upper and lower measures of the uncertainty of a forecast, indicating the range forecasted values will lie within."
+  tags:
+  - mod-19
+  tier: exam
+- id: cumipmt_function
+  prompt: "CUMIPMT function"
+  answer: "The financial function to calculate the sum of several interest payments."
+  tags:
+  - mod-19
+  tier: exam
+- id: cumprinc_function
+  prompt: "CUMPRINC function"
+  answer: "The financial function to calculate the cumulative total of payments made toward the principal."
+  tags:
+  - mod-19
+  tier: exam
+- id: declining_balance_depreciation
+  prompt: "declining balance depreciation"
+  answer: "A depreciation in which an asset loses value by an equal percentage each time period until it reach the salvage value."
+  tags:
+  - mod-19
+  tier: exam
+- id: forecast_sheets
+  prompt: "Forecast sheets"
+  answer: "An Excel tool used for modeling data and forecasting future values."
+  tags:
+  - mod-19
+  tier: exam
+- id: gross_profit
+  prompt: "gross profit"
+  answer: "The difference between sales revenue and the cost of goods sold."
+  tags:
+  - mod-19
+  tier: exam
+- id: histogram
+  prompt: "histogram"
+  answer: "A column chart displaying the distribution of values from a single data series."
+  tags:
+  - mod-19
+  tier: exam
+- id: income_statement
+  prompt: "income statement"
+  answer: "A financial statement that summarizes the income and expenses incurred during a specified interval. Also called a profit and loss statement."
+  tags:
+  - mod-19
+  tier: exam
+- id: profit_and_loss_p_l_statement
+  prompt: "profit and loss (P&L) statement"
+  answer: "A financial statement that summarizes the income and expenses incurred during a specified interval. Also called an income statement."
+  tags:
+  - mod-19
+  tier: exam
+- id: r_statistic
+  prompt: "R² statistic"
+  answer: "A measure of the percentage of the variability in a data series that can be explained by a trendline."
+  tags:
+  - mod-19
+  tier: exam
+- id: seasonal_data
+  prompt: "seasonal data"
+  answer: "Data in which the data values follow a periodic pattern throughout the calendar year."
+  tags:
+  - mod-19
+  tier: exam
+- id: straight_line_depreciation
+  prompt: "straight-line depreciation"
+  answer: "A depreciation method in which an asset loses value by an equal amount each time period until it reach the salvage value."
+  tags:
+  - mod-19
+  tier: exam
+- id: tangible_assets
+  prompt: "tangible assets"
+  answer: "Noncash assets such as equipment, land, buildings, and vehicles."
+  tags:
+  - mod-19
+  tier: exam
+- id: time_value_of_money
+  prompt: "time value of money"
+  answer: "A financial concept based on the observation that money received today is often worth more than the same amount received later."
+  tags:
+  - mod-19
+  tier: exam
+- id: trendline
+  prompt: "trendline"
+  answer: "A line that represents the general direction in a series of data."
+  tags:
+  - mod-19
+  tier: exam
+- id: xirr_function
+  prompt: "XIRR function"
+  answer: "The financial function to calculate the internal rate of return for a series of cash flows made at specified dates."
+  tags:
+  - mod-19
+  tier: exam
+- id: xnpv_function
+  prompt: "XNPV function"
+  answer: "The financial function to calculate the net present value of a series of cash flows at specified dates."
+  tags:
+  - mod-19
+  tier: exam

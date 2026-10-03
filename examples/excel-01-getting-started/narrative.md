@@ -6,7 +6,7 @@
 
 Eli Mendez had been the night shift lead at Tamarack's distribution center for four years, and in September he signed up for the evening business course at the community college because Ruth Halvorsen had told him, more or less directly, that the day-shift supervisor job would go to someone who could do the numbers.
 
-The course ran on [[sam_skills_assessment_manager|SAM]], the college's online system for learning and testing Microsoft Office skills. On his first login Eli found the [[sam_path|SAM Path]] for the semester: a long list of training modules and exams in order, twelve of them before December. The [[activity_calendar|Activity Calendar]] showed the first three due dates as colored blocks. The [[activity_list|Activity List]] showed the same assignments as rows, with a status column that said "Not Started" for all of them.
+The course ran on [[sam_skills_assessment_manager|SAM]], the college's online system for learning and testing Microsoft Office skills. On his first login Eli found the [[sam_path|SAM Path]] for the semester: a long list of training modules and exams in order, running through two terms and into the next summer. The [[activity_calendar|Activity Calendar]] showed the first three due dates as colored blocks. The [[activity_list|Activity List]] showed the same assignments as rows, with a status column that said "Not Started" for all of them.
 
 The first one that mattered was a [[sam_projects|SAM Project]] due Sunday night: build a small worksheet in the real application, upload it, and get an automatic grade.
 
