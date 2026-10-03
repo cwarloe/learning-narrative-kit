@@ -1,0 +1,19 @@
+unit_id: mis-02-computers
+title: "Tamarack — The Server in the Feed Room"
+audience: "Learner working through the MindTap MIS module '02. Computers and Their Business Applications'"
+purpose: "Weave the Module 2 hardware, storage and language-generation vocabulary into one failed-server morning so each component matters because something depended on it."
+estimated_minutes: 15
+sources:
+- "MindTap course glossary export, module '02. Computers and Their Business Applications'"
+- "Tamarack Supply track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms from the course glossary for this module — the study deck"
+constraints:
+- "Every glossary term appears at least once in a decision or complication"
+- "Definitions are copied from the course glossary; do not invent rival definitions"
+- "Story must pass the cover test (readable with marks hidden)"
+- "Third-person past tense; same company and cast as the rest of the Tamarack track"
