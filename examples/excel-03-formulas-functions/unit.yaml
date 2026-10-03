@@ -19,3 +19,4 @@ constraints:
 - "Third-person past tense; same company and cast as the rest of the Tamarack track"
 source_notes:
   - "The course glossary defines MODE.MULT as returning 'the single value that is repeated most often'. In Excel, MODE.MULT returns every most-frequent value (an array) when there is a tie; MODE.SNGL returns one. The narrative uses a data set with a single mode so the scene is consistent with both. The glossary text is kept verbatim."
+  - "The course glossary defines ROUNDDOWN as rounding to the next lowest digit. In Excel, ROUNDDOWN rounds toward zero, so ROUNDDOWN(-1.9, 0) is -1, while INT(-1.9) is -2. The narrative uses a positive bonus amount, where both definitions agree, and points out the negative-number difference. The glossary text is kept verbatim."

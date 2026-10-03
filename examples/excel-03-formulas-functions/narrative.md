@@ -68,7 +68,7 @@ Ruth asked for a plain-language tier name next to each number. Eli used the [[if
 
 The bonus came out in odd amounts: $412.6875. Hank didn't want odd amounts on paychecks.
 
-The [[round_function|ROUND function]] rounded to the nearest digit you specified: =ROUND(K2, 2) gave $412.69. Hank wanted whole dollars, and he wanted them rounded down, so nobody could say the company had rounded up for some people. The [[rounddown_function|ROUNDDOWN function]] always rounded toward the next lowest digit: =ROUNDDOWN(K2, 0) gave $412. The [[int_function|INT function]] did the same thing for positive numbers, always rounding down to the next lowest integer, and Eli used it to count full weeks worked: =INT(F2/5).
+The [[round_function|ROUND function]] rounded to the nearest digit you specified: =ROUND(K2, 2) gave $412.69. Hank wanted whole dollars, and he wanted them rounded down, so nobody could say the company had rounded up for some people. The [[rounddown_function|ROUNDDOWN function]] cut off digits instead of rounding: =ROUNDDOWN(K2, 0) gave $412. The [[int_function|INT function]] gave the same answer for a positive number like this one, and Eli used it to count full weeks worked: =INT(F2/5). The two weren't the same function. The SAM module's practice sheet had a negative adjustment of -1.9, and ROUNDDOWN turned it into -1, moving toward zero, while INT turned it into -2, the next lowest integer. Bonuses were never negative, so Eli left a note in the workbook and moved on.
 
 Ruth wanted the bonus amounts in multiples of five dollars so they looked deliberate. The [[mround_function|MROUND function]] rounded to the nearest multiple of a number: =MROUND(K2, 5) gave $415. That rounded up for some people. Hank and Ruth argued about it. Hank lost.
 
