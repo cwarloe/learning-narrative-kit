@@ -5,7 +5,7 @@ purpose: "Weave the Excel Module 11 PivotTable design vocabulary into one monthl
 estimated_minutes: 10
 sources:
 - "MindTap course glossary export, module '21. Excel 11: Exploring PivotTable Design'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

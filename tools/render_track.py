@@ -49,6 +49,7 @@ PAGE = """<!DOCTYPE html>
     .crumb a, .start {{ color: var(--primary); text-decoration: none; }}
     .crumb a:hover {{ text-decoration: underline; }}
     h1 {{ font-size: 1.8rem; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.5rem; line-height: 1.25; }}
+    .sub {{ color: var(--primary); font-size: 1rem; font-weight: 600; margin: -0.2rem 0 0.75rem; }}
     .lede {{ color: var(--text-muted); font-size: 0.97rem; margin-bottom: 1rem; }}
     .stats {{ color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem; }}
     .start {{
@@ -90,7 +91,7 @@ PAGE = """<!DOCTYPE html>
   <div class="wrap">
     <div class="crumb"><a href="../">&larr; All tracks</a></div>
     <h1>{title}</h1>
-    <p class="lede">{description}</p>
+{subtitle}    <p class="lede">{description}</p>
     <p class="stats">{n_units} chapters · {n_terms} terms · about {hours} hours of reading</p>
     <a class="start" href="../{first}/">Start with chapter 1 &rarr;</a>
 {sections}
@@ -138,6 +139,7 @@ def render_track(manifest: Path, kit_root: Path = KIT_ROOT) -> Path:
         )
     page = PAGE.format(
         title=html.escape(track.get("title") or track["track_id"]),
+        subtitle=(f'    <p class="sub">{html.escape(track["subtitle"])}</p>\n' if track.get("subtitle") else ""),
         description=html.escape(track.get("description") or ""),
         n_units=len(units),
         n_terms=total_terms,

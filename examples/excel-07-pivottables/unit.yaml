@@ -5,7 +5,7 @@ purpose: "Weave the Excel Module 7 PivotTable, drill and filter vocabulary into 
 estimated_minutes: 8
 sources:
 - "MindTap course glossary export, module '17. Excel 7: Summarizing Data with PivotTables'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

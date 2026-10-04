@@ -5,7 +5,7 @@ purpose: "Weave the Module 10 cloud, blockchain, extended-reality and emerging-t
 estimated_minutes: 25
 sources:
 - "MindTap course glossary export, module '10. Emerging Trends, Technologies, and Applications'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

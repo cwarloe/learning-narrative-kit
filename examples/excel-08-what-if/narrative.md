@@ -1,6 +1,6 @@
 # What Davenport Has to Sell
 
-*Tamarack Supply • Excel Module 8: Performing What-If Analyses • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 8: Performing What-If Analyses • Hover over highlighted terms for course definitions.*
 
 ## The Number Ruth Didn't Have
 

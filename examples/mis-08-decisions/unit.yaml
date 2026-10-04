@@ -5,7 +5,7 @@ purpose: "Weave the Module 8 decision-type, decision-phase and DSS vocabulary in
 estimated_minutes: 12
 sources:
 - "MindTap course glossary export, module '08. Supporting Decisions and Processes'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

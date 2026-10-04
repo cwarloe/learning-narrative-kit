@@ -5,7 +5,7 @@ purpose: "Weave the Excel Module 5 template, path, indirect-reference and Watch 
 estimated_minutes: 8
 sources:
 - "MindTap course glossary export, module '15. Excel 5: Generating Reports from Multiple Worksheets and Workbooks'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

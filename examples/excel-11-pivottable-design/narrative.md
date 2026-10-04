@@ -1,6 +1,6 @@
 # Eleven Packets, Then Twelve
 
-*Tamarack Supply • Excel Module 11: Exploring PivotTable Design • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 11: Exploring PivotTable Design • Hover over highlighted terms for course definitions.*
 
 ## Every Store Its Own Sheet
 

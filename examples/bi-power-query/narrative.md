@@ -1,6 +1,6 @@
 # Fifteen-Minute Readings
 
-*Tamarack Supply • BI Tools for Data Analysis: Power Query • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • BI Tools for Data Analysis: Power Query • Hover over highlighted terms for course definitions.*
 
 ## The Tanks Start Talking
 

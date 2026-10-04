@@ -1,6 +1,6 @@
 # The Rep Who Couldn't Say Yes
 
-*Tamarack Supply • MIS Module 6: Global Information Systems • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • MIS Module 6: Global Information Systems • Hover over highlighted terms for course definitions.*
 
 ## The Discount That Used to Be a Phone Call
 

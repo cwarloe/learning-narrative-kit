@@ -5,7 +5,7 @@ purpose: "Weave the Excel Module 12 application, validation, protection, macro a
 estimated_minutes: 8
 sources:
 - "MindTap course glossary export, module '22. Excel 12: Developing an Excel Application'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

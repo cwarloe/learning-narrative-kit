@@ -5,7 +5,7 @@ purpose: "Weave the Excel Module 4 chart-type, chart-element and loan-function v
 estimated_minutes: 22
 sources:
 - "MindTap course glossary export, module '14. Excel 4: Analyzing and Charting Financial Data'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

@@ -1,6 +1,6 @@
 # The Returns Nobody Credited
 
-*Tamarack Supply • Excel Module 6: Managing Data with Data Tools • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 6: Managing Data with Data Tools • Hover over highlighted terms for course definitions.*
 
 ## Hank's Year-End Question
 

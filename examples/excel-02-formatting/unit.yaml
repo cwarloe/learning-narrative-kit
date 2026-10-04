@@ -5,7 +5,7 @@ purpose: "Weave the Excel Module 2 number-format, theme and page-setup vocabular
 estimated_minutes: 12
 sources:
 - "MindTap course glossary export, module '12. Excel 2: Formatting Workbook Text and Data'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

@@ -1,10 +1,10 @@
 # The Video From the Kettle Falls Lot
 
-*Tamarack Supply • MIS Module 4: Personal, Legal, Ethical, and Organizational Issues • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • MIS Module 4: Personal, Legal, Ethical, and Organizational Issues • Hover over highlighted terms for course definitions.*
 
 ## Forty Seconds
 
-The clip was forty seconds long. It showed a man in a Tamarack Supply vest loading feed bags into a pickup at the Kettle Falls store, and then, after a cut, the same truck at a fence line with a cow lying on its side. A caption in block letters said that Tamarack's sweet feed had killed three head of cattle and the company was covering it up.
+The clip was forty seconds long. It showed a man in a Tamarack vest loading feed bags into a pickup at the Kettle Falls store, and then, after a cut, the same truck at a fence line with a cow lying on its side. A caption in block letters said that Tamarack's sweet feed had killed three head of cattle and the company was covering it up.
 
 By Tuesday morning it had eleven thousand shares. By Tuesday noon Walt Brandvold had watched it nine times.
 

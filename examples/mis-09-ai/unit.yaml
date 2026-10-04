@@ -5,7 +5,7 @@ purpose: "Weave the Module 9 AI, expert-system and agent vocabulary into one cou
 estimated_minutes: 15
 sources:
 - "MindTap course glossary export, module '09. Artificial Intelligence and Automation'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml
