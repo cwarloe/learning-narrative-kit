@@ -42,13 +42,15 @@ Dana walked her through what the site actually knew. The site set [[cookies|cook
 
 Some of them had opted out of marketing. Sending to them anyway would be [[spam|spam]] in the legal sense and in the sense that mattered: unsolicited email, sent because Tamarack wanted something. Marcy cut the list to people who had opted in. It shrank from 1,400 to 310.
 
-## A Letter From Bavaria
+* * *
 
 Two days into the mess, a request came through the web store's contact form from a customer in Germany. She bred Haflinger horses, had ordered a specialty harness from Tamarack two years earlier, and had seen the video on a horse forum. She wanted to know every piece of personal data Tamarack held on her, and then she wanted it deleted.
 
 Hank asked whether a German law applied to a store in Spokane Valley. Dana had already looked it up. The [[general_data_protection_regulation_gdpr|General Data Protection Regulation]] protected the personal data of people in the European Union, and Tamarack had sold to her, shipped to her, and kept her address. It applied enough that their lawyer told them to comply.
 
 Answering her took Dana most of a day: the order record, the shipping address, the cookie ID tied to her login, the log file entries, an abandoned cart from last spring. Deleting it raised a second problem. Her harness was still under warranty, and the only proof of purchase was the order record. Dana wrote back, explained the tradeoff, and asked whether she wanted the warranty record kept. She did not reply.
+
+## The Site That Wasn't Ours
 
 On Friday, a customer called to ask why the "official Tamarack site" was selling sweet feed at forty percent off. The site was tamarackfeedco.com. Tamarack's was tamarackfeed.com. Somebody had registered the near-match in March, copied the logo and product photos, and set up a checkout page.
 

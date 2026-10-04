@@ -48,7 +48,7 @@ The web store vendor's way of doing that was [[collaborative_filtering_cf|collab
 
 Teo raised notifications. Customers currently had to check the website or call the store to find out whether chicks had arrived, which was [[pull_technology|pull technology]]: the customer had to ask first. He proposed [[push_technology|push technology]] instead: customers who signed up would get a text the moment their store's shipment was checked in. Marcy liked it. Hank Pruitt asked what it cost per text.
 
-## The Man Who Knew How Many Ducks
+* * *
 
 When Chick Days ended, Ruth drove up to Republic to see the store manager, Arlo Nygaard, who was retiring in June after thirty-one years. Arlo was the one person at Tamarack who knew, without looking, how many of each breed to order for his store, which ones sold out first, which week the ducklings should come, and which local 4-H families would want what.
 
@@ -59,6 +59,8 @@ That was [[knowledge_management_km|knowledge management]]: converting the tacit 
 Dana set up the tools for it, mostly ones Tamarack already paid for and didn't use. Their [[collaboration_system_or_collaboration_so|collaboration software]] gave every store manager one shared workspace for Chick Days. Its [[communication_software|communication software]] ran a fifteen-minute video call every Tuesday morning before the truck came in. A [[document_and_content_management_software|document and content management]] library held one shared order sheet instead of eleven versions in eleven inboxes. [[task_management_software|Task management software]] tracked the hatchery's cutoff dates and assigned each one to a person.
 
 Arlo recorded two video calls about his ordering before he said he didn't have time for a third.
+
+* * *
 
 Back at head office, heat lamps were the other bottleneck. Two suppliers had shorted Tamarack in week one.
 

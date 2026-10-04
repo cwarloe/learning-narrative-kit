@@ -52,7 +52,7 @@ He needed the last month's rows on a separate sheet for the claim. He selected t
 
 Eli was learning that every [[keyboard_shortcut|keyboard shortcut]] he used saved him a trip to the ribbon. When he couldn't remember one, he pressed the Alt key, and small letters appeared over every tab and button: [[keytips|KeyTips]]. Alt, then H, then the letters for whatever he needed. When he hovered over a button he didn't know, a [[screentip|ScreenTip]] appeared with its name, what it did, and sometimes its shortcut.
 
-## The Tablet on the Dock
+* * *
 
 On Friday, the dock supervisor asked whether the damage log could be filled in on the DC's tablet, so drivers could enter torn bags at the truck instead of on paper.
 
@@ -61,6 +61,8 @@ Eli opened the file on the tablet. The ribbon's buttons were too small to hit wi
 On the tablet he also discovered [[autocomplete|AutoComplete]]. When a driver typed "Min" in the product column, Excel suggested "Mineral 12:12 50lb" from the entries already in that column, and the driver just pressed Enter. It cut the typos in half.
 
 He set up a new row for each day using the [[fill_handle|fill handle]], the small square at the lower-right corner of a selected cell. He typed one date, grabbed the square, and dragged it down; Excel filled in the next thirty dates in order.
+
+* * *
 
 Back at the office computer that night, Eli turned to the claim form, which had to look professional. Eli selected the claim range, and a small button appeared at its lower-right corner. That was the [[quick_analysis_tool|Quick Analysis tool]], with common formatting and totals one click away. He chose Totals, and a sum appeared under the bag count and value columns.
 
