@@ -2,8 +2,6 @@
 
 *Tamarack Feed & Supply Co. • MIS Module 1: Information Systems in Business • Hover over highlighted terms for course definitions.*
 
-## Forty Bags of Layer Pellets
-
 The Colville store said it had forty bags of layer pellets. The register system said it had one hundred and twelve. Dana Okafor had the two numbers side by side on her laptop in the head-office break room, and neither of them was the number of bags on the pallet, which a clerk had just counted by hand and texted to her as fifty-three.
 
 Walt Brandvold came in for coffee and looked over her shoulder. He had owned Tamarack Feed & Supply for twenty-two years and his father had owned it before that, and he did not like it when a screen disagreed with a pallet.
@@ -16,7 +14,7 @@ Dana had been expecting this, and she had a half-finished answer. The register s
 
 Walt drank his coffee and said he would still like a price.
 
-## What the Pallet Count Actually Is
+* * *
 
 Ruth Halvorsen, the chief operating officer, took Dana's side in the afternoon meeting, though not for Dana's reasons. Ruth's concern was the store managers' quarterly review, which used the register system's numbers to grade shrink, and three managers were about to be graded on a mistake.
 
@@ -34,7 +32,7 @@ What turned one into the other was the part Dana thought Walt kept skipping. The
 
 Ruth asked who owned shelf tags. Nobody in the room knew.
 
-## The Clerk Who Didn't Trust the Screen
+* * *
 
 On Thursday Dana drove the ninety minutes up to Colville. The store manager, a lean man named Curtis who had been there since the store opened, walked her to the feed aisle and showed her the tag. It was a pre-printed label from the vendor, and somebody had stuck it over the old one.
 
@@ -46,9 +44,9 @@ The harder gap was in Curtis. Curtis could use every system the store had. What 
 
 She told him the truth, which was that she didn't know.
 
-## Pricing the Thing Walt Asked For
+## What Teo Could Buy
 
-Back in Spokane Valley, Teo Vasquez had already priced the co-op's system. It was mostly cloud software and handheld scanners, and the scanners were the part Dana liked.
+Back in Spokane Valley, Teo Vasquez had already priced the co-op's system, and on Friday morning he walked Walt, Ruth, and Dana through it in the conference room. It was mostly cloud software and handheld scanners, and the scanners were the part Dana liked.
 
 "The [[information_technologies|information technologies]] aren't the hard part," Teo said. "Handhelds, the network, a database, the point-of-sale lanes, maybe RFID on the pallets eventually. I can buy all of that. What I can't buy is somebody at Colville who scans the bag."
 
@@ -58,15 +56,13 @@ Walt wanted to know whether the new system would beat Northland Farm Supply, the
 
 That reframed the purchase. A [[strategic_information_systems_siss|strategic information system]] was supposed to serve a long-term goal, and the goal Ruth had just named was being the store that knows. The inventory software was only strategic if it served that. If it was just a nicer register, it was a cost.
 
-## The Feed Co-op Idea
-
-Marcy Lund, the head buyer, raised the idea nobody had planned for. Three independent feed dealers in the region, Tamarack among them, had talked for years about pooling their purchasing to get better terms from the mills. The co-op's system could share inventory and orders across companies.
+Before the meeting broke up, Marcy Lund, the head buyer, raised the idea nobody had planned for. Three independent feed dealers in the region, Tamarack among them, had talked for years about pooling their purchasing to get better terms from the mills. The co-op's system could share inventory and orders across companies.
 
 "If we're on the same platform as Palmer's and the Deer Park dealer, we could run as a [[virtual_organizations|virtual organization]] for feed," Marcy said. "Shared purchasing, shared delivery runs, each of us keeps our own stores and our own customers."
 
 Walt didn't like the idea of Palmer's seeing his counts. Marcy pointed out that Palmer's counts were probably wrong too. Nobody laughed.
 
-## What Got Decided
+* * *
 
 The decision came on the following Monday, and it was smaller than anyone wanted.
 

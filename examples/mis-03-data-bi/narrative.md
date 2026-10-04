@@ -2,8 +2,6 @@
 
 *Tamarack Feed & Supply Co. • MIS Module 3: Data and Business Intelligence • Hover over highlighted terms for course definitions.*
 
-## Four Envelopes in One Mailbox
-
 Gordon Ashby ran cattle outside Republic and had been a Tamarack customer for thirty years. In April he walked into the Colville store holding four identical envelopes, each one a spring mailer with a twenty-dollar coupon for fencing supplies, each one addressed to him.
 
 "Either you think I'm four people," he told the counter, "or somebody's going to try to use these."
@@ -14,9 +12,7 @@ The mailer was Marcy's project. It was the company's first real attempt at [[dat
 
 "How many Gordons do we have?" she asked.
 
-## What a Customer Is, Physically
-
-Dana pulled the loyalty export. It was a single [[database|database]] in the sense that it was a collection of related data in one place, but it had grown without anybody deciding what it should look like.
+Dana pulled the loyalty export while Marcy waited in the chair by the door. It was a single [[database|database]] in the sense that it was a collection of related data in one place, but it had grown without anybody deciding what it should look like.
 
 She walked Marcy through the [[data_hierarchy|data hierarchy]] because Marcy would have to defend the fix to Walt. A single piece of information, like a phone number, was a field. All the fields for one customer made a record. All the customer records together made the file. Gordon was four records in that file, with four slightly different spellings of the same ranch road and two different phone numbers.
 
@@ -26,17 +22,13 @@ Because the system had never been told what made a customer unique. The loyalty 
 
 The purchase table had the same problem from the other direction. Each purchase carried a [[foreign_key|foreign key]], the loyalty card number, which pointed back to one customer record. Gordon's fencing history was split across four cards, so the mailer logic saw four customers, each of whom had bought a moderate amount of fencing. All four qualified.
 
-## The Old Program's Habits
-
-Some of the mess was older than the current software. Teo Vasquez came by with the history.
+Some of the mess was older than the current software. Teo Vasquez heard them through the wall and came in with the history.
 
 Tamarack's first loyalty program, from 2009, had been run by a vendor that sent nightly files. It stored customers in a [[sequential_access_file_structure|sequential access file structure]]: records in the order they were entered, read from top to bottom. That was fine for printing a list once a month. It was terrible for a cashier trying to find one customer, so the vendor added an index and moved to an [[indexed_sequential_access_method_isam|indexed sequential access method]], which went straight to a record when you looked up one person and read in order when you ran a batch. The current system used a [[random_access_file_structure|random access file structure]] for the lookups, which was why the register could find a card number instantly.
 
 The duplicates came from the migration. The 2009 vendor's export had been arranged in a [[hierarchical_model|hierarchical model]]: each store at the top, customers underneath as children, purchases underneath them. Every record had one parent. A rancher who shopped in both Colville and Kettle Falls had to appear twice, once under each store. The current system was relational and could have had one Gordon linked to two stores, but the migration had simply loaded every child it found.
 
 "The [[network_model|network model]] would have fixed that," Teo said, "if anybody had used it in 2014. One customer record, multiple parent stores." He shrugged. "Nobody did."
-
-## Who Gets to Delete a Person
 
 The obvious fix was to merge duplicates. The less obvious question was who was allowed to.
 
@@ -52,8 +44,6 @@ They settled on create and read for the stores, update with a supervisor's PIN, 
 
 Dana also wrote the first real [[data_dictionary|data dictionary]] for the loyalty tables: what each field was, its data type, its default, and its validation rules. Phone numbers would be ten digits, no dashes. The ranch-road field would get a pick list for the twelve roads that accounted for most of the misspellings. Nobody would read the dictionary, Teo said, but the validation rules would read it for them.
 
-## Finding the Duplicates
-
 Marcy wanted a list of every probable duplicate by Friday. Dana wrote it in [[structured_query_language_sql|SQL]]: select customers grouped by last name and phone number where the count was more than one, then a second pass on last name and street.
 
 Marcy didn't read SQL. She built her own version in the reporting tool using [[query_by_example_qbe|query by example]], clicking fields into a grid and adding an OR row for "same phone or same address." Hers found 212 more possible matches than Dana's. Most were real. Eleven were families: a father and son with the same name on the same ranch, a mother and daughter-in-law sharing a phone.
@@ -62,7 +52,7 @@ That was the thing about [[normalization|normalization]] that Dana found hardest
 
 They also couldn't tell you how the data looked to the person using it. Marcy's [[logical_view|logical view]] was a list of customers with their history. The [[physical_view|physical view]] was a set of tables, index files, and a log on the server's disks. Most of the fight over Gordon happened because the two views didn't match.
 
-## Walt Wants a Dashboard
+## The Screen Walt Wanted
 
 Walt's interest arrived on Thursday, by way of a conference. He had sat through a session on [[business_intelligence_bi|business intelligence]] and come back wanting to see, on one screen, what had happened, what was happening, and what was going to happen, by store.
 
@@ -80,15 +70,13 @@ Then [[online_analytical_processing_olap|OLAP]], which would let Marcy turn the 
 
 Ruth asked about the comment cards. Every store had a box of them, plus the web reviews. Dana suggested a [[data_lake|data lake]], a cheaper bucket that kept data in its raw form, structured or not, so they could ask questions of it later. [[text_mining_analysis|Text-mining analysis]] could pull themes out of thousands of comments. The free trial had already found that "propane" and "wait" showed up together a lot.
 
-## What the Patterns Said
+## What Three Weeks Turned Up
 
 The trial ran for three weeks. [[data_mining_analysis|Data-mining analysis]] on the merged purchase history found a pattern Marcy hadn't known: customers who bought T-posts in March bought mineral feed within six weeks at almost twice the normal rate. The vendor's [[data_mining_agents|data-mining agents]], small programs that ran against the warehouse looking for relationships nobody had asked about, flagged it on their own.
 
 Marcy wanted to act on it. That was the step from BI to [[business_analytics_ba|business analytics]]: not just seeing what happened, but using statistics to decide what to do. She built a test: a mineral coupon in the bag with every T-post order in two stores, none in two others.
 
-## The Parts Nobody Asked About
-
-Three other decisions got made that month because the warehouse forced them.
+Three other decisions got made during the trial, because the warehouse forced them.
 
 The stores lost internet a few times a year, usually in winter. Teo proposed a [[distributed_database_management_system_d|distributed database]] so each store kept working on its own server and synced later. The question was how. Full [[replication|replication]] put a copy of everything at every store, which was simple and used a lot of disk. [[fragmentation|Fragmentation]] split the tables, so the Colville server held only Colville's rows. Teo picked [[allocation|allocation]], a mix of the two: each store kept its own customers and transactions plus a copy of the product catalog, which it used constantly.
 
@@ -98,7 +86,7 @@ A different vendor pitched a [[graph_database|graph database]] for household rel
 
 Finally, because the warehouse vendor would hold customer names, addresses, and phone numbers, Hank insisted on [[data_encryption|data encryption]] in transit and at rest. The vendor charged extra for it.
 
-## What It Cost
+* * *
 
 The merge ran on a Saturday. It collapsed 1,940 duplicate cards into 811 customers, including Gordon, who went from four cards to one and was mailed a single apology letter with one coupon.
 
