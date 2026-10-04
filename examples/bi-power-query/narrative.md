@@ -2,13 +2,9 @@
 
 *Tamarack Feed & Supply Co. • BI Tools for Data Analysis: Power Query • Hover over highlighted terms for course definitions.*
 
-## The Tanks Start Talking
-
 In June, Tamarack put remote monitors on 900 of its customers' propane tanks. Each monitor read the tank's level every fifteen minutes and sent it to the monitor vendor's cloud. The idea, Hank Pruitt's idea, was to stop sending trucks to tanks that were half full and stop missing tanks that were nearly empty.
 
 The vendor's website showed one tank at a time. Hank wanted all 900 in a workbook every Monday, next to each customer's delivery history and the weather, so the dispatcher could plan the week's routes. He asked Dana Okafor, and Dana, who had more projects than hours, asked Eli Mendez to help, since Eli's course had just reached its Power Query module.
-
-## What Kind of Data This Was
 
 Dana started with the arithmetic, because she wanted Hank to understand why this wasn't just another spreadsheet.
 
@@ -18,8 +14,6 @@ Nine hundred tanks times ninety-six readings a day came to 86,400 rows a day, an
 
 "We put a summary in a spreadsheet," Dana said. "Something has to get it from there to here."
 
-## Getting It In
-
 The something was [[power_query|Power Query]], the tool built into Excel for connecting to almost any data source and shaping what came back before it reached the workbook.
 
 The monitor vendor exported readings as [[comma_separated_values_csv_files|Comma Separated Values (CSV) files]]: plain text, one record per line, fields separated by commas. Eli connected Power Query to the vendor's export folder, and it read every file in it.
@@ -28,13 +22,11 @@ The first import was wrong. Customer names came through split across two columns
 
 The weather data came from a different vendor in a file that used semicolons as the delimiter. Power Query guessed that one correctly.
 
-## The Steps It Remembered
-
 Each thing Eli did in the Power Query editor — remove the name column, change the reading column from text to a number, filter out monitors that reported zero because their batteries were dead, group by tank and day — appeared as a step in a list on the right side of the screen. Each Monday, Power Query would replay the steps on the new files.
 
 Underneath, each step was written in [[m|M]], the query language Power Query used. The course called M a [[mashup_query_language|mashup query language]], a language for queries that extracted data from different sources and transformed it. Eli opened the Advanced Editor and saw the steps written out as code. He didn't need to write it. He needed to be able to read it, because the next week something broke.
 
-## The Monday It Broke
+* * *
 
 On the second Monday in July, Hank opened the workbook and the tank summary was blank.
 
@@ -42,9 +34,9 @@ The vendor had added a column to its export, "Signal Strength," between "Tank ID
 
 The refresh itself took eleven minutes on Hank's laptop, which Hank mentioned every Monday after that.
 
-## What the Workbook Was For
+* * *
 
-Once it ran, Dana explained what they'd built, using the course's terms, because Ruth Halvorsen wanted to know whether it was worth paying the monitor vendor's subscription after the trial.
+At the end of July, once it ran reliably, Dana explained what they'd built, using the course's terms, because Ruth Halvorsen wanted to know whether it was worth paying the monitor vendor's subscription after the trial.
 
 [[business_intelligence|Business Intelligence]], in the course's sense, was the category of software tools that pulled useful information out of big data. Power Query and the workbook were small examples. [[bi|BI]] more broadly gave the company a view of its operations, historical, current, and predictive, that it could use to compete. Tamarack's competitors' propane customers still called when they ran out.
 
