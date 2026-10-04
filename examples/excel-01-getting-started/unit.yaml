@@ -5,7 +5,7 @@ purpose: "Weave the Excel Module 1 interface, data-entry and SAM vocabulary into
 estimated_minutes: 18
 sources:
 - "MindTap course glossary export, module '11. Excel 1: Getting Started with Excel'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

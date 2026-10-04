@@ -1,6 +1,6 @@
 # Did the Coupon Work?
 
-*Tamarack Supply • Excel Module 7: Summarizing Data with PivotTables • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 7: Summarizing Data with PivotTables • Hover over highlighted terms for course definitions.*
 
 ## Walt's One Question
 

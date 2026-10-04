@@ -3,7 +3,8 @@
 # and tools/render_unit.py uses it to add Contents / Previous / Next links to each unit page.
 # Order follows the MindTap course module order in the source glossary export.
 track_id: tamarack
-title: "Tamarack Supply — MIS & Excel/BI"
+title: "Tamarack Feed & Supply Company"
+subtitle: "A Narrative Primer for ITM 310"
 description: "One fictional farm-and-hardware company, one year, twenty-four chapters. Each chapter is one MindTap module's glossary woven into a single story. Read in order, or jump to the module you're studying."
 canon: examples/TAMARACK.md
 parts:

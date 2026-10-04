@@ -1,6 +1,6 @@
 # Eleven Workbooks
 
-*Tamarack Supply • Excel Module 5: Generating Reports from Multiple Worksheets and Workbooks • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 5: Generating Reports from Multiple Worksheets and Workbooks • Hover over highlighted terms for course definitions.*
 
 ## The Monthly Count
 

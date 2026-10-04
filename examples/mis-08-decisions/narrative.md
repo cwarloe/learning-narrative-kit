@@ -1,6 +1,6 @@
 # Where the Twelfth Store Goes
 
-*Tamarack Supply • MIS Module 8: Supporting Decisions and Processes • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • MIS Module 8: Supporting Decisions and Processes • Hover over highlighted terms for course definitions.*
 
 ## Walt's Napkin
 

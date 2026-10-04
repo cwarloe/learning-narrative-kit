@@ -5,7 +5,7 @@ purpose: "Weave the Module 5 threat, attacker and control vocabulary into one pa
 estimated_minutes: 25
 sources:
 - "MindTap course glossary export, module '05. Protecting Information Resources'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

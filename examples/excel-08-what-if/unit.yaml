@@ -5,7 +5,7 @@ purpose: "Weave the Excel Module 8 cost-behavior, Goal Seek, data table and Solv
 estimated_minutes: 18
 sources:
 - "MindTap course glossary export, module '18. Excel 8: Performing What-If Analyses'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

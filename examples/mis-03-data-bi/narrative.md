@@ -1,6 +1,6 @@
 # One Customer, Four Records
 
-*Tamarack Supply • MIS Module 3: Data and Business Intelligence • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • MIS Module 3: Data and Business Intelligence • Hover over highlighted terms for course definitions.*
 
 ## Four Envelopes in One Mailbox
 

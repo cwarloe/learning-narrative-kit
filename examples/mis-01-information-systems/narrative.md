@@ -1,12 +1,12 @@
 # The Count That Didn't Match
 
-*Tamarack Supply • MIS Module 1: Information Systems in Business • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • MIS Module 1: Information Systems in Business • Hover over highlighted terms for course definitions.*
 
 ## Forty Bags of Layer Pellets
 
 The Colville store said it had forty bags of layer pellets. The register system said it had one hundred and twelve. Dana Okafor had the two numbers side by side on her laptop in the head-office break room, and neither of them was the number of bags on the pallet, which a clerk had just counted by hand and texted to her as fifty-three.
 
-Walt Brandvold came in for coffee and looked over her shoulder. He had owned Tamarack Supply for twenty-two years and his father had owned it before that, and he did not like it when a screen disagreed with a pallet.
+Walt Brandvold came in for coffee and looked over her shoulder. He had owned Tamarack Feed & Supply for twenty-two years and his father had owned it before that, and he did not like it when a screen disagreed with a pallet.
 
 "That's the third store this month," he said. "I want a new inventory system. Teo says there's one the co-op in Moscow uses. Price it out."
 

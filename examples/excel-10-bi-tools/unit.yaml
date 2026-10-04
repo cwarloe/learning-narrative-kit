@@ -5,7 +5,7 @@ purpose: "Weave the Excel Module 10 Power Pivot, KPI, map-chart and linked-data 
 estimated_minutes: 8
 sources:
 - "MindTap course glossary export, module '20. Excel 10: Analyzing Data with Business Intelligence Tools'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

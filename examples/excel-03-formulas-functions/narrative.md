@@ -1,8 +1,6 @@
 # The Crew Bonus
 
-*Tamarack Supply • Excel Module 3: Performing Calculations with Formulas and Functions • Hover over highlighted terms for course definitions.*
-
-## A Promise Walt Made in August
+*Tamarack Feed & Supply Co. • Excel Module 3: Performing Calculations with Formulas and Functions • Hover over highlighted terms for course definitions.*
 
 In August, during the worst week of the heat, Walt Brandvold walked through the distribution center and told the night crew that if they got through Chick Days' fall rush and the feed season without a lost-time injury, there would be a bonus. He didn't say how much. He didn't say how it would be figured. He told Ruth Halvorsen about it the next morning, and Ruth told Hank Pruitt, and Hank asked who was going to calculate it.
 
@@ -10,9 +8,7 @@ In October, the answer turned out to be Eli Mendez, because he ran the night cre
 
 Ruth gave him the rules she and Walt had worked out. A base amount per person, scaled by productivity tier. Only people who'd worked at least sixty days in the quarter. Nobody with a safety incident. Paid with the second paycheck after quarter end. Hank added one rule of his own: every number had to trace back to the timeclock export or the warehouse system, and nothing could be typed in by hand.
 
-Eli's third SAM module was formulas and functions. He worked through it on two nights and then opened the timeclock export.
-
-## Formulas First
+Eli's third SAM module was formulas and functions. He worked through it on two nights, and on the third, after the last truck was unloaded, he sat down at the computer in the DC office and opened the timeclock export.
 
 The first thing he needed was hours. Each row in the export had an employee ID, a date, a clock-in time, and a clock-out time.
 
@@ -22,17 +18,13 @@ The night shift crossed midnight, so for some rows clock-out was smaller than cl
 
 The IF function had three [[argument|arguments]] separated by commas: the condition, what to return if it was true, what to return if it was false. Each function had its own [[syntax|syntax]], the rules for which arguments went where and in what order. Eli got it wrong twice before he got it right, and the formula bar showed him exactly where.
 
-## Who Qualified
-
 Ruth's eligibility rule had two parts, and both had to be true: at least sixty days worked and no safety incidents. Eli used the [[and_function|AND function]], which returned TRUE only if every argument was true. =AND(F2>=60, G2=0).
 
 Then Hank remembered an exception. Two people had been on light duty for part of the quarter after non-work injuries, and one had been on approved family leave. Walt had said they should still qualify if they'd been on the crew when he made the promise. That needed the [[or_function|OR function]], which returned TRUE if any argument was true. Eli [[nested|nested]] it, putting one function inside another: =OR(AND(F2>=60, G2=0), H2="Light duty", H2="Leave").
 
 The words "Light duty" and "Leave" in quotation marks were each a [[text_string|text string]], a series of characters Excel compared as text rather than numbers. When Eli forgot the quotation marks the first time, Excel showed #NAME? in the cell. That was an [[error_value|error value]], a message saying something in the formula kept Excel from calculating an answer.
 
-## How Productive Was Productive
-
-The tiers were based on pallets moved per hour, from the warehouse system. Ruth wanted to know what a normal number was before she set the tier cutoffs.
+The tiers were based on pallets moved per hour, from the warehouse system. Ruth stopped at the DC office the next evening on her way home, still in her coat, because she wanted to know what a normal number was before she set the tier cutoffs.
 
 Eli started with the [[average_function|AVERAGE function]] over the whole crew. It returned 41.3 pallets per hour. The [[average|average]], the sum divided by the count, was the number most people meant by "normal."
 
@@ -44,17 +36,13 @@ The median came out to 44. That was closer to what Eli would have guessed from w
 
 Ruth set the tier cutoffs around the median.
 
-## Totals by Crew and Month
-
-Hank wanted the bonus checked against overtime. If a crew had hit its numbers by working a lot more hours, that was a different story.
+Two nights later Hank called down from head office. He wanted the bonus checked against overtime. If a crew had hit its numbers by working a lot more hours, that was a different story.
 
 The first version of what Hank wanted was a [[conditional_sum|conditional sum]]: total overtime hours for the night crew only. SUMIF added the values in a range that matched one condition. A [[conditional_count|conditional count]], COUNTIF, counted the cells that met one condition: how many shifts ran over ten hours. A [[conditional_average|conditional average]], AVERAGEIF, averaged values that met a condition: average shift length on Saturdays.
 
 But Hank wanted those numbers by crew and by month, which was two conditions. The SAM module had functions for that. The [[sumifs_function|SUMIFS function]] added values that met several criteria at once: overtime hours where the crew was "Night" and the month was October. The [[countifs_function|COUNTIFS function]] counted rows meeting several criteria. The [[averageifs_function|AVERAGEIFS function]] averaged them. The [[maxifs_function|MAXIFS function]] found the highest value meeting the criteria, which was the night crew's best week, and the [[minifs_function|MINIFS function]] found the lowest, which was the week the propane forklift was down.
 
 Eli tripped once on syntax. In SUMIF, the range to add came last. In SUMIFS, it came first. He swapped them and got a number that was obviously wrong, then caught it.
-
-## The Lookups
 
 Each employee's tier came from their pallets per hour, and their name and base bonus amount came from a separate HR list, which set the base by role. Both were jobs for a [[lookup_function|lookup function]], which retrieved a value from a table based on something you gave it.
 
@@ -64,17 +52,13 @@ The tiers were different. Ruth's tier table had cutoffs: 0 pallets per hour was 
 
 Ruth asked for a plain-language tier name next to each number. Eli used the [[ifs_function|IFS function]], which tested multiple conditions in order without nesting a stack of IFs: =IFS(J2=3, "Gold", J2=2, "Silver", J2=1, "Bronze", J2=0, "Base").
 
-## Rounding
-
 The bonus came out in odd amounts: $412.6875. Hank didn't want odd amounts on paychecks.
 
 The [[round_function|ROUND function]] rounded to the nearest digit you specified: =ROUND(K2, 2) gave $412.69. Hank wanted whole dollars, and he wanted them rounded down, so nobody could say the company had rounded up for some people. The [[rounddown_function|ROUNDDOWN function]] cut off digits instead of rounding: =ROUNDDOWN(K2, 0) gave $412. The [[int_function|INT function]] gave the same answer for a positive number like this one, and Eli used it to count full weeks worked: =INT(F2/5). The two weren't the same function. The SAM module's practice sheet had a negative adjustment of -1.9, and ROUNDDOWN turned it into -1, moving toward zero, while INT turned it into -2, the next lowest integer. Bonuses were never negative, so Eli left a note in the workbook and moved on.
 
-Ruth wanted the bonus amounts in multiples of five dollars so they looked deliberate. The [[mround_function|MROUND function]] rounded to the nearest multiple of a number: =MROUND(K2, 5) gave $415. That rounded up for some people. Hank and Ruth argued about it. Hank lost.
+Ruth wanted the bonus amounts in multiples of five dollars so they looked deliberate. The [[mround_function|MROUND function]] rounded to the nearest multiple of a number: =MROUND(K2, 5) gave $415. That rounded up for some people. Hank and Ruth argued about it by email, with Eli copied on every message. Hank lost.
 
 Pallets per hour stayed rounded to whole numbers. Showing 44.271 suggested a precision the warehouse system's counts didn't have. The SAM module called this choosing [[significant_digits|significant digits]]: displaying only as many digits as the measurement could support.
-
-## Dates
 
 The payout date came from Ruth's rule: the second paycheck after quarter end. Eli needed to count working days.
 
@@ -84,17 +68,15 @@ At the top of the sheet, Eli put "Calculated as of" and the [[today_function|TOD
 
 Hank also wanted every printed page to show which file it came from, since there were already three versions. Eli used the [[cell_function|CELL function]], which returned information about a cell. =CELL("filename", A1) returned the file's full path and sheet name, and he put it in the corner of the printout.
 
-## One Formula for the Total
-
 The last number Hank wanted was the total payout: each person's bonus times one if they qualified and zero if they didn't, all added up. Eli could add a helper column and sum it. The SAM module showed another way.
 
 An [[array_formula|array formula]] performed multiple calculations in one step. =SUM(L2:L38*M2:M38) multiplied each bonus by each eligibility flag, row by row, and added the results, all in one cell. In older versions of Excel he would have had to press Ctrl+Shift+Enter. His version just worked. The total was $9,840.
 
-## The Name That Wasn't There
-
 Before he sent the workbook to Hank, Eli cleaned up its appearance. A few rows showed #N/A where the lookup hadn't found an employee ID in the HR list. He wrapped the lookup in the [[iferror_function|IFERROR function]], which replaced any error value with something you chose. He chose a zero, so the totals downstream would still add up. The sheet looked clean.
 
 Hank checked the total against payroll and approved it. Walt announced the bonus at the Friday crew meeting. Everyone got the amount on their list.
+
+## Marco's Pay Stub
 
 On payday, a forklift driver named Marco Reyes came to Eli's desk with his pay stub and asked where his bonus was. He had worked eighty-one days, he'd had no incidents, and he ran fifty-three pallets an hour.
 

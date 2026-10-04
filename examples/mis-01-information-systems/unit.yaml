@@ -5,7 +5,7 @@ purpose: "Weave the Module 1 information-systems vocabulary into one inventory d
 estimated_minutes: 12
 sources:
 - "MindTap course glossary export, module '01. Information Systems in Business'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

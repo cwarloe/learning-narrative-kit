@@ -1,6 +1,6 @@
 # The Dashboard Ruth Could Share
 
-*Tamarack Supply • Introducing Power BI • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Introducing Power BI • Hover over highlighted terms for course definitions.*
 
 ## Too Many Workbooks
 

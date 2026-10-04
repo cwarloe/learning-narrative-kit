@@ -5,7 +5,7 @@ purpose: "Weave the Power BI vocabulary into one five-workbooks-to-one-report bu
 estimated_minutes: 8
 sources:
 - "MindTap course glossary export, module 'B. Introducing Power BI'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

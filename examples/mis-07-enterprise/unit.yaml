@@ -5,7 +5,7 @@ purpose: "Weave the Module 7 enterprise, supply-chain, CRM and collaboration voc
 estimated_minutes: 18
 sources:
 - "MindTap course glossary export, module '07. Enterprise Systems'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

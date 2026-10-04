@@ -1,6 +1,6 @@
 # The Closet Gets Too Hot
 
-*Tamarack Supply • MIS Module 10: Emerging Trends, Technologies, and Applications • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • MIS Module 10: Emerging Trends, Technologies, and Applications • Hover over highlighted terms for course definitions.*
 
 ## Ninety-Seven Degrees
 

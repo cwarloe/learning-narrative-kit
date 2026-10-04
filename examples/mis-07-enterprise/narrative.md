@@ -1,10 +1,10 @@
 # Chick Days
 
-*Tamarack Supply • MIS Module 7: Enterprise Systems • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • MIS Module 7: Enterprise Systems • Hover over highlighted terms for course definitions.*
 
 ## Live Animals on a Tuesday
 
-Every spring, for four weeks, Tamarack Supply sold baby chicks. They came from a hatchery in the Willamette Valley by overnight truck every Tuesday, in ventilated boxes of fifty, and they could not wait. A box of chicks that arrived at a store with nobody ready for it had perhaps a day.
+Every spring, for four weeks, Tamarack Feed & Supply sold baby chicks. They came from a hatchery in the Willamette Valley by overnight truck every Tuesday, in ventilated boxes of fifty, and they could not wait. A box of chicks that arrived at a store with nobody ready for it had perhaps a day.
 
 Chick Days was also the busiest four weeks of the year for feed, heat lamps, waterers, and brooder bedding, which meant it was the four weeks when every weakness in how Tamarack ordered things showed up at once.
 

@@ -1,6 +1,6 @@
 # The Counter Assistant
 
-*Tamarack Supply • MIS Module 9: Artificial Intelligence and Automation • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • MIS Module 9: Artificial Intelligence and Automation • Hover over highlighted terms for course definitions.*
 
 ## The Question at the Counter
 

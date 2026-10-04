@@ -1,6 +1,6 @@
 # The Damage Log
 
-*Tamarack Supply • Excel Module 1: Getting Started with Excel • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 1: Getting Started with Excel • Hover over highlighted terms for course definitions.*
 
 ## Two Deadlines on the Same Sunday
 

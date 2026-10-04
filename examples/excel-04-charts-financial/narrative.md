@@ -1,6 +1,6 @@
 # Two Old Forklifts
 
-*Tamarack Supply • Excel Module 4: Analyzing and Charting Financial Data • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 4: Analyzing and Charting Financial Data • Hover over highlighted terms for course definitions.*
 
 ## The Week the Forklift Was Down
 

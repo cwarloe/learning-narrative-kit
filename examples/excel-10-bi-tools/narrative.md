@@ -1,6 +1,6 @@
 # Davenport's First Month
 
-*Tamarack Supply • Excel Module 10: Analyzing Data with Business Intelligence Tools • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 10: Analyzing Data with Business Intelligence Tools • Hover over highlighted terms for course definitions.*
 
 ## A Target on the Wall
 

@@ -5,7 +5,7 @@ purpose: "Weave the Module 6 global-structure and cross-border vocabulary into o
 estimated_minutes: 10
 sources:
 - "MindTap course glossary export, module '06. Global Information Systems'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

@@ -5,7 +5,7 @@ purpose: "Weave the Power Query and big-data vocabulary into one propane tank-mo
 estimated_minutes: 10
 sources:
 - "MindTap course glossary export, module '24. Ch 4: BI Tools for Data Analysis: Power Query'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

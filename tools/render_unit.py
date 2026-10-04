@@ -482,6 +482,12 @@ def md_to_html(md: str, terms: dict):
             rows = [split_table_row(ln) for ln in table_lines if not is_table_sep(ln)]
             paras.append(render_table(rows, terms, used_ids))
             continue
+        if line.strip() == "* * *":
+            # Scene break: a time skip inside one thread, too small for a heading.
+            flush_para()
+            paras.append('<hr class="scene-break">')
+            i += 1
+            continue
         if line.startswith("## "):
             flush_para()
             paras.append(f"<h2>{inline_md(line[3:].strip(), terms, used_ids)}</h2>")

@@ -1,6 +1,6 @@
 # Hank's Year-End
 
-*Tamarack Supply • Excel Module 9: Exploring Financial Tools and Functions • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 9: Exploring Financial Tools and Functions • Hover over highlighted terms for course definitions.*
 
 ## Four Questions in One Week
 

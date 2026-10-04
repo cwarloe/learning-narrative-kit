@@ -102,3 +102,7 @@
   .meter-row { grid-template-columns: 1fr auto; }
   .meter-label { grid-column: 1 / -1; }
 }
+
+/* Scene break (`* * *` on its own line in narrative.md): a small time skip, no heading. */
+hr.scene-break { border: none; text-align: center; margin: 2rem 0; color: var(--text-muted); }
+hr.scene-break::after { content: "\2042"; font-size: 1.1rem; letter-spacing: 0.2em; }

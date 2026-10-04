@@ -1,6 +1,6 @@
 # The Server in the Feed Room
 
-*Tamarack Supply • MIS Module 2: Computers and Their Business Applications • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • MIS Module 2: Computers and Their Business Applications • Hover over highlighted terms for course definitions.*
 
 ## Monday, 7:40 a.m.
 

@@ -5,7 +5,7 @@ purpose: "Weave the Module 2 hardware, storage and language-generation vocabular
 estimated_minutes: 15
 sources:
 - "MindTap course glossary export, module '02. Computers and Their Business Applications'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

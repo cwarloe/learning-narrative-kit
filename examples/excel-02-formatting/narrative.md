@@ -1,6 +1,6 @@
 # The Board Packet
 
-*Tamarack Supply • Excel Module 2: Formatting Workbook Text and Data • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 2: Formatting Workbook Text and Data • Hover over highlighted terms for course definitions.*
 
 ## Seven Copies by Thursday
 

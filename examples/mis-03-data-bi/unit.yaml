@@ -5,7 +5,7 @@ purpose: "Weave the Module 3 database and business-intelligence vocabulary into 
 estimated_minutes: 22
 sources:
 - "MindTap course glossary export, module '03. Data and Business Intelligence'"
-- "Tamarack Supply track canon: examples/TAMARACK.md"
+- "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml

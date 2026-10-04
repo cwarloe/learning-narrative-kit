@@ -1,6 +1,6 @@
 # The Receiving App
 
-*Tamarack Supply • Excel Module 12: Developing an Excel Application • Hover over highlighted terms for course definitions.*
+*Tamarack Feed & Supply Co. • Excel Module 12: Developing an Excel Application • Hover over highlighted terms for course definitions.*
 
 ## The Damage Log, One Year Later
 
