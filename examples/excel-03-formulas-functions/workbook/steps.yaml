@@ -1,0 +1,138 @@
+# Recording script for Excel 3 ("The Crew Bonus").
+# Source of truth for the clips: each clip is tied to a passage in narrative.md,
+# and every "expect" value is checked against crew-bonus-key.xlsx by build_workbook.py.
+# build_workbook.py renders this file to RECORDING.md.
+unit: excel-03-formulas-functions
+workbook: crew-bonus-start.xlsx
+clips:
+  - id: 1
+    title: "Hours that cross midnight"
+    passage: "The first thing he needed was hours."
+    steps:
+      - do: "Click the Timeclock sheet tab. Click cell G2."
+      - do: "Type =(D2-C2)*24 and press Enter."
+        expect: "G2 shows -12.50. The night shift crossed midnight, so clock-out is smaller than clock-in."
+      - do: "Click G2 again. Type =IF(D2<C2,D2+1-C2,D2-C2)*24 and press Enter."
+        expect: "G2 shows 11.50."
+      - do: "Click H2. Type =MAX(0,G2-8) and press Enter."
+        expect: "H2 shows 3.50, the overtime past eight hours."
+      - do: "Select G2:H2 and double-click the fill handle (the small square at the lower right of the selection)."
+        expect: "Both columns fill to the bottom of the export."
+  - id: 2
+    title: "Who qualified"
+    passage: "Ruth's eligibility rule had two parts"
+    steps:
+      - do: "Click the Bonus sheet tab. Click F2. Type =COUNTIF(Timeclock!A:A,A2) and press Enter."
+        expect: "Days worked for employee 1101."
+      - do: "In G2, type =COUNTIF(Safety!B:B,A2) and press Enter."
+        expect: "G2 shows 0 incidents."
+      - do: "In I2, type =AND(F2>=60,G2=0) and press Enter."
+        expect: "TRUE."
+      - do: "Click I2. Type =OR(AND(F2>=60,G2=0),H2=Leave) and press Enter. (The quotation marks are left out on purpose.)"
+        expect: "#NAME? appears."
+      - do: "Click I2. Type =OR(AND(F2>=60,G2=0),H2=\"Light duty\",H2=\"Leave\") and press Enter."
+        expect: "TRUE. Column H is still empty; it fills in during clip 5."
+  - id: 3
+    title: "What normal looks like"
+    passage: "Eli started with the AVERAGE function"
+    steps:
+      - do: "Click the Checks sheet tab. In B2, type =AVERAGE(WMS!D:D) and press Enter."
+        expect: "41.3"
+      - do: "In B3, type =MEDIAN(WMS!D:D) and press Enter."
+        expect: "44"
+      - do: "In B4, type =MODE.MULT(WMS!D:D) and press Enter."
+        expect: "45"
+  - id: 4
+    title: "Totals by crew and month"
+    passage: "Two nights later Hank called down from head office."
+    steps:
+      - do: "In B6, type =SUMIF(Timeclock!E:E,\"Night\",Timeclock!H:H) and press Enter."
+        expect: "Total night-crew overtime for the quarter."
+      - do: "In B7, type =COUNTIF(Timeclock!G:G,\">10\") and press Enter."
+        expect: "Number of shifts over ten hours."
+      - do: "In B8, type =AVERAGEIF(Timeclock!E:E,\"Night\",Timeclock!G:G) and press Enter."
+        expect: "Average night shift length."
+      - do: "In B9, type =SUMIFS(Timeclock!H:H,Timeclock!E:E,\"Night\",Timeclock!F:F,\"Sep\") and press Enter."
+        expect: "1103.0, night overtime in September. Note the order: in SUMIFS the range to add comes first."
+      - do: "In B10, type =COUNTIFS(Timeclock!E:E,\"Night\",Timeclock!F:F,\"Sep\",Timeclock!G:G,\">10\") and press Enter."
+      - do: "In B11, type =AVERAGEIFS(Timeclock!G:G,Timeclock!E:E,\"Night\",Timeclock!F:F,\"Sep\") and press Enter."
+      - do: "In B12, type =MAXIFS(Timeclock!G:G,Timeclock!E:E,\"Night\",Timeclock!F:F,\"Sep\") and press Enter."
+        expect: "11.50, the longest night shift in September."
+      - do: "In B13, type =MINIFS(Timeclock!G:G,Timeclock!E:E,\"Night\",Timeclock!F:F,\"Aug\") and press Enter."
+        expect: "3.00, the week the forklift was down."
+  - id: 5
+    title: "The lookups"
+    passage: "Each employee's tier came from their pallets per hour"
+    steps:
+      - do: "Click the Bonus sheet tab. In B2, type =VLOOKUP(A2,HR!$A:$F,2,FALSE) and press Enter."
+        expect: "Dale Ostrander"
+      - do: "In C2, type =VLOOKUP(A2,HR!$A:$F,4,FALSE) and press Enter."
+        expect: "$330.15"
+      - do: "In H2, type =VLOOKUP(A2,HR!$A:$F,6,FALSE)&\"\" and press Enter."
+        expect: "Blank. Dale has no special status. (The &\"\" turns an empty cell into blank text instead of 0.)"
+      - do: "In D2, type =ROUND(AVERAGEIF(WMS!A:A,A2,WMS!D:D),0) and press Enter."
+        expect: "44"
+      - do: "In J2, type =VLOOKUP(D2,Tiers!$A$2:$C$5,2,TRUE) and press Enter."
+        expect: "2. An approximate match: 44 is at least the 44 cutoff and under 52."
+      - do: "In E2, type =IFS(J2=3,\"Gold\",J2=2,\"Silver\",J2=1,\"Bronze\",J2=0,\"Base\") and press Enter."
+        expect: "Silver"
+  - id: 6
+    title: "Rounding"
+    passage: "The bonus came out in odd amounts"
+    steps:
+      - do: "In K2, type =C2*VLOOKUP(D2,Tiers!$A$2:$C$5,3,TRUE) and press Enter."
+        expect: "$412.6875"
+      - do: "Click the Checks sheet tab. In B15, type =ROUND(Bonus!K2,2) and press Enter."
+        expect: "$412.69"
+      - do: "In B16, type =ROUNDDOWN(Bonus!K2,0) and press Enter."
+        expect: "$412.00"
+      - do: "In B18, type =ROUNDDOWN(-1.9,0). In B19, type =INT(-1.9)."
+        expect: "-1 and -2. ROUNDDOWN moves toward zero; INT goes to the next lowest integer."
+      - do: "In B17, type =MROUND(Bonus!K2,5) and press Enter."
+        expect: "$415.00"
+      - do: "Click the Bonus sheet tab. In L2, type =MROUND(K2,5). In N2, type =INT(F2/5)."
+        expect: "L2 shows $415. N2 shows full weeks worked."
+  - id: 7
+    title: "Dates"
+    passage: "The payout date came from Ruth's rule"
+    steps:
+      - do: "Click the Checks sheet tab. In B22, type =WORKDAY(B21,10) and press Enter."
+        expect: "10/14/2026"
+      - do: "In B23, type =NETWORKDAYS(HR!E7,B21). In B24, type =NETWORKDAYS(HR!E27,B21). In B25, type =NETWORKDAYS(HR!E28,B21)."
+        expect: "53, 63 and 43: the most days each new hire could have worked. Only Kyle Banks could reach 60."
+      - do: "In B26, type =TODAY() and press Enter."
+        expect: "Today's date. It will change every time the file is opened, which is the problem."
+      - do: "Click B26 and type 10/6/2026, then press Enter. In C26, type: Typed, not TODAY()."
+      - do: "In B27, type =CELL(\"filename\",A1) and press Enter."
+        expect: "The file's full path and the sheet name."
+  - id: 8
+    title: "One formula for the total"
+    passage: "The last number Hank wanted was the total payout"
+    steps:
+      - do: "Click the Bonus sheet tab. In M2, type =IF(I2,1,0) and press Enter."
+        expect: "1"
+      - do: "Select B2:N2 and double-click the fill handle."
+        expect: "Every row fills. Row 6 (employee 1147) shows #N/A in several columns."
+      - do: "Click L40. Type =SUM(L2:L38*M2:M38) and press Enter. (In Excel 2019 or earlier, press Ctrl+Shift+Enter.)"
+        expect: "#N/A. One bad row breaks the total."
+  - id: 9
+    title: "The IFERROR that hid a person"
+    passage: "Eli's first try at the total"
+    steps:
+      - do: "Click B2. Change the formula to =IFERROR(VLOOKUP(A2,HR!$A:$F,2,FALSE),0) and press Enter."
+      - do: "Click C2. Change it to =IFERROR(VLOOKUP(A2,HR!$A:$F,4,FALSE),0). Click H2. Change it to =IFERROR(VLOOKUP(A2,HR!$A:$F,6,FALSE)&\"\",0)."
+      - do: "Select B2:C2, double-click the fill handle. Select H2, double-click the fill handle."
+        expect: "Row 6 now shows 0 instead of #N/A. L40 shows $9,840. The sheet looks clean."
+  - id: 10
+    title: "Marco's pay stub"
+    passage: "On payday, a forklift driver named Marco Reyes"
+    steps:
+      - do: "Click the HR sheet tab. Press Ctrl+F, search for 1147, and press Find Next."
+        expect: "Excel can't find it."
+      - do: "Search for Marco instead."
+        expect: "Marco Reyes, row 6, with Emp ID 1174: two digits swapped."
+      - do: "Close Find. Click A6 on the HR sheet, type 1147, press Enter."
+      - do: "Click the Bonus sheet tab."
+        expect: "Row 6 shows Marco Reyes, $330.15, and a $415 bonus. L40 shows $10,255."
+      - do: "Click B2. Change it to =IFERROR(VLOOKUP(A2,HR!$A:$F,2,FALSE),\"ID NOT FOUND\") and fill down. Click C2 and remove the IFERROR: =VLOOKUP(A2,HR!$A:$F,4,FALSE), and fill down."
+        expect: "A missing ID will now show ID NOT FOUND, and the total will break loudly instead of quietly coming up short."

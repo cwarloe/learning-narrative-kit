@@ -16,7 +16,7 @@ A formula in Excel started with an equal sign and used [[arithmetic_operators|ar
 
 The night shift crossed midnight, so for some rows clock-out was smaller than clock-in and the answer came out negative. Eli fixed it the way the SAM example showed, by adding 1 day when the out time was earlier. That needed a [[logical_function|logical function]], one that returned different values depending on whether a condition was true: =IF(D2<C2, D2+1-C2, D2-C2)*24. The < was a [[comparison_operator|comparison operator]], a symbol showing how two values related. The others were >, =, >=, <=, and <>.
 
-The IF function had three [[argument|arguments]] separated by commas: the condition, what to return if it was true, what to return if it was false. Each function had its own [[syntax|syntax]], the rules for which arguments went where and in what order. Eli got it wrong twice before he got it right, and the formula bar showed him exactly where.
+The IF function had three [[argument|arguments]] separated by commas: the condition, what to return if it was true, what to return if it was false. Each function had its own [[syntax|syntax]], the rules for which arguments went where and in what order. Eli got it wrong twice before he got it right, and the formula bar showed him exactly where. Next to the hours he added an overtime column, anything past eight hours in a shift, =MAX(0,G2-8), and filled both columns down the whole export.
 
 Ruth's eligibility rule had two parts, and both had to be true: at least sixty days worked and no safety incidents. Eli used the [[and_function|AND function]], which returned TRUE only if every argument was true. =AND(F2>=60, G2=0).
 
@@ -38,9 +38,9 @@ Ruth set the tier cutoffs around the median.
 
 Two nights later Hank called down from head office. He wanted the bonus checked against overtime. If a crew had hit its numbers by working a lot more hours, that was a different story.
 
-The first version of what Hank wanted was a [[conditional_sum|conditional sum]]: total overtime hours for the night crew only. SUMIF added the values in a range that matched one condition. A [[conditional_count|conditional count]], COUNTIF, counted the cells that met one condition: how many shifts ran over ten hours. A [[conditional_average|conditional average]], AVERAGEIF, averaged values that met a condition: average shift length on Saturdays.
+The first version of what Hank wanted was a [[conditional_sum|conditional sum]]: total overtime hours for the night crew only. SUMIF added the values in a range that matched one condition. A [[conditional_count|conditional count]], COUNTIF, counted the cells that met one condition: how many shifts ran over ten hours. A [[conditional_average|conditional average]], AVERAGEIF, averaged values that met a condition: the average night shift, a little over nine hours.
 
-But Hank wanted those numbers by crew and by month, which was two conditions. The SAM module had functions for that. The [[sumifs_function|SUMIFS function]] added values that met several criteria at once: overtime hours where the crew was "Night" and the month was October. The [[countifs_function|COUNTIFS function]] counted rows meeting several criteria. The [[averageifs_function|AVERAGEIFS function]] averaged them. The [[maxifs_function|MAXIFS function]] found the highest value meeting the criteria, which was the night crew's best week, and the [[minifs_function|MINIFS function]] found the lowest, which was the week the propane forklift was down.
+But Hank wanted those numbers by crew and by month, which was two conditions. The SAM module had functions for that. The [[sumifs_function|SUMIFS function]] added values that met several criteria at once: overtime hours where the crew was "Night" and the month was September. The [[countifs_function|COUNTIFS function]] counted rows meeting several criteria. The [[averageifs_function|AVERAGEIFS function]] averaged them. The [[maxifs_function|MAXIFS function]] found the highest value meeting the criteria: the longest night shift in September, eleven and a half hours. The [[minifs_function|MINIFS function]] found the lowest: a three-hour night shift in August, the week the propane forklift was down and the crew went home early.
 
 Eli tripped once on syntax. In SUMIF, the range to add came last. In SUMIFS, it came first. He swapped them and got a number that was obviously wrong, then caught it.
 
@@ -48,7 +48,7 @@ Each employee's tier came from their pallets per hour, and their name and base b
 
 The HR list was a [[lookup_table|lookup table]], a table holding the data to retrieve. The employee ID was the [[lookup_values|lookup value]], the thing being looked for. The name and base amount were the [[return_values|return values]], what came back. The IDs had to match exactly; employee 1047 was not employee 1046. That was an [[exact_match_lookup|exact match lookup]].
 
-The tiers were different. Ruth's tier table had cutoffs: 0 pallets per hour was Tier 0, 38 was Tier 1, 44 was Tier 2, 52 was Tier 3. A person at 47 wasn't in the table, but fell between 44 and 52, so they were Tier 2. That was an [[approximate_match_lookup|approximate match lookup]], where the value fell within a range. The cutoffs had to be sorted from smallest to largest or the lookup would return the wrong tier. The first time, Eli had Tier 3 at the top and everyone came out Tier 3.
+The tiers were different. Ruth's tier table had cutoffs: 0 pallets per hour was Tier 0, 38 was Tier 1, 44 was Tier 2, 52 was Tier 3. A person at 47 wasn't in the table, but fell between 44 and 52, so they were Tier 2. That was an [[approximate_match_lookup|approximate match lookup]], where the value fell within a range. The cutoffs had to be sorted from smallest to largest or the lookup would return the wrong tier. The first time, Eli had the table upside down, Tier 3 at the top, and the tiers came out wrong.
 
 Ruth asked for a plain-language tier name next to each number. Eli used the [[ifs_function|IFS function]], which tested multiple conditions in order without nesting a stack of IFs: =IFS(J2=3, "Gold", J2=2, "Silver", J2=1, "Bronze", J2=0, "Base").
 
@@ -68,18 +68,18 @@ At the top of the sheet, Eli put "Calculated as of" and the [[today_function|TOD
 
 Hank also wanted every printed page to show which file it came from, since there were already three versions. Eli used the [[cell_function|CELL function]], which returned information about a cell. =CELL("filename", A1) returned the file's full path and sheet name, and he put it in the corner of the printout.
 
-The last number Hank wanted was the total payout: each person's bonus times one if they qualified and zero if they didn't, all added up. Eli could add a helper column and sum it. The SAM module showed another way.
+The last number Hank wanted was the total payout: each person's bonus times one if they qualified and zero if they didn't, all added up. Eli added a column with a 1 for everyone who qualified and a 0 for everyone who didn't. He could have added another helper column and summed it. The SAM module showed another way.
 
-An [[array_formula|array formula]] performed multiple calculations in one step. =SUM(L2:L38*M2:M38) multiplied each bonus by each eligibility flag, row by row, and added the results, all in one cell. In older versions of Excel he would have had to press Ctrl+Shift+Enter. His version just worked. The total was $9,840.
+An [[array_formula|array formula]] performed multiple calculations in one step. =SUM(L2:L38*M2:M38) multiplied each bonus by each eligibility flag, row by row, and added the results, all in one cell. In older versions of Excel he would have had to press Ctrl+Shift+Enter. His version just worked, in the sense that it returned an answer: #N/A.
 
-Before he sent the workbook to Hank, Eli cleaned up its appearance. A few rows showed #N/A where the lookup hadn't found an employee ID in the HR list. He wrapped the lookup in the [[iferror_function|IFERROR function]], which replaced any error value with something you chose. He chose a zero, so the totals downstream would still add up. The sheet looked clean.
+Eli's first try at the total had run into one bad row. Row 6 showed #N/A across several columns, where the lookup hadn't found employee 1147 in the HR list, and a single error anywhere in the range was enough to turn the whole total into an error. He assumed it was a new hire HR hadn't entered yet. He wrapped the lookups in the [[iferror_function|IFERROR function]], which replaced any error value with something you chose. He chose a zero, so the total would add up. The total came to $9,840, and the sheet looked clean.
 
 Hank checked the total against payroll and approved it. Walt announced the bonus at the Friday crew meeting. Everyone got the amount on their list.
 
 ## Marco's Pay Stub
 
-On payday, a forklift driver named Marco Reyes came to Eli's desk with his pay stub and asked where his bonus was. He had worked eighty-one days, he'd had no incidents, and he ran fifty-three pallets an hour.
+On payday, a forklift driver named Marco Reyes came to Eli's desk with his pay stub and asked where his bonus was. He had worked sixty-four days, he'd had no incidents, and he ran forty-eight pallets an hour.
 
-Eli found it in three minutes. Marco's employee ID in the HR list had a typo: 1174 instead of 1147. The lookup couldn't find him and returned #N/A, and IFERROR turned it into a zero. His base amount became zero, and zero times any tier multiplier was still zero. The total had been $415 short.
+Eli found it in three minutes. Row 6 was Marco. His employee ID in the HR list had a typo: 1174 instead of 1147. The lookup couldn't find him and returned #N/A, and IFERROR turned it into a zero. His base amount became zero, and zero times any tier multiplier was still zero. The total had been $415 short.
 
 Hank cut Marco a separate check the following week. Eli removed the IFERROR and replaced it with one that said "ID NOT FOUND" in red, so that the next missing person would be visible instead of clean. Marco took the check and said thanks. He also said that he'd waited a week for money the company had announced in front of everyone, and that people on the crew had asked him whether he'd done something wrong.

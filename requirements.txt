@@ -1,1 +1,2 @@
 PyYAML>=6.0
+openpyxl>=3.1  # only for workbook builders (examples/*/workbook/build_workbook.py)
