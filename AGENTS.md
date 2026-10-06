@@ -64,6 +64,34 @@ python3 -m venv .venv
 
 Expected URL: `https://cwarloe.github.io/learning-narrative-kit/<unit_id>/`
 
+## Before a pull request
+
+Run all of these. Each one caught something real on the Tamarack track.
+
+1. `validate_unit.py` on every unit you touched: PASS, and no unexplained WARN. Units
+   with `heading_rule: scene` also get the heading check.
+2. Re-render (`render_unit.py`, and `render_track.py` if a track changed). Only commit
+   `docs/` changes for the units you meant to change; an older unit whose output shifts
+   on re-render is pre-existing drift, so leave it out.
+3. If the unit has a builder (for example `examples/*/workbook/build_workbook.py`), run
+   it and confirm every check is `ok`. Don't commit regenerated binaries whose only
+   change is a timestamp.
+4. Recompute any number you added or changed in the prose, and check dates and
+   standing facts against the track's timeline.
+5. Open the rendered page in a headless browser at desktop and phone widths: marks
+   render, no horizontal scroll, no console errors, new artifacts look right.
+6. After the PR is up, read the review bot's comments, reply on each thread before
+   pushing the fix, and re-audit the whole unit if the fix moves structure.
+
+## Environment notes
+
+- Recalculating `.xlsx` files needs LibreOffice **Calc** (`soffice` alone may be
+  Writer-only). On Debian or Ubuntu: `apt-get install libreoffice-calc`.
+- `pkill -f <pattern>` can match the shell running it and kill your own command; find
+  the process ID first and kill that.
+- Some sandboxes can't reach `*.github.io`. Confirm a Pages deploy from the
+  "pages build and deployment" workflow run instead.
+
 ## Validate rules (mechanical)
 
 | Check | Severity |
@@ -74,6 +102,7 @@ Expected URL: `https://cwarloe.github.io/learning-narrative-kit/<unit_id>/`
 | Mark density | report |
 | Missing `tier` when any tier present | warn |
 | `Priya` or `Harrowmere` in narrative | fail |
+| Heading rule (units with `heading_rule: scene`): heading at chapter start, heading or break with nothing under it, heading over fewer than ~270 words, more than one heading per ~500 words | warn |
 
 ## Authoring contract (summary)
 

@@ -255,6 +255,35 @@ Use this before calling a unit “done.” Drawn from kit research (see `researc
 
 **Exam tier** here means “on the study/exam list,” not a graded quiz inside the page.
 
+## Working rules learned the hard way
+
+These came out of building the Tamarack track (24 chapters plus lecture units). The full
+account, with what went wrong and how it was found, is in
+[`research/lessons-learned.md`](../research/lessons-learned.md).
+
+1. **Pilot before batch.** Write one unit, get the author's read on it, then write the
+   rest. Style problems found after unit one cost one rewrite; found after unit
+   twenty-four, they cost twenty-four.
+2. **Prove the story.** Every number in a narrative should come from a calculation,
+   not a guess. When the numbers come from a tool, build the artifact (a workbook, a
+   query, a model) and check the story's figures against it automatically. A real file
+   is a stricter reviewer than any reader.
+3. **Source errors stay quoted, never repeated.** When the course source is wrong or
+   ambiguous, keep its wording in the glossary, record the problem in `unit.yaml`
+   (`source_notes`), and write the scene so it is true under both readings. The prose
+   must not restate the wrong version as fact.
+4. **Don't state what you haven't checked.** Software behavior, populations, legal
+   effects, "everyone came out Tier 3": either verify it or write around it.
+5. **Keep a timeline per track.** Dates, counts, and who-has-what that more than one
+   unit relies on go in the track canon, and new units are checked against it.
+6. **Watch for the catalog chapter.** A module with more than about 30 loosely related
+   terms tends to become a tour (a trade show, a list of deferred items). Give it two
+   scenes with different stakes, or split it.
+7. **Check before review, then use review.** Run the checks in `AGENTS.md` → Before a
+   pull request first. Then take automated review seriously; it caught real errors in
+   this track. When a fix changes structure, re-audit the whole unit, not just the
+   flagged line.
+
 ## Ship steps (agents / LLMs)
 
 Mechanical pipeline, landing-card reminder, and copy-paste prompt: see [`AGENTS.md`](../AGENTS.md) at the repo root. Portland Desk track canon: [`examples/PORTLAND_DESK.md`](../examples/PORTLAND_DESK.md).

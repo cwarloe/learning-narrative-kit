@@ -18,6 +18,7 @@ Authoring QA checker. **Must PASS before render/ship.**
 | Mark density (marks per 100 cover-stripped words) | report |
 | If any `tier` present: exam/support counts; warn if a term lacks tier | warn |
 | `Priya` or `Harrowmere` in narrative (Portland Desk rule) | fail |
+| Heading rule, for units with `heading_rule: scene` in `unit.yaml` (see `examples/TAMARACK.md`) | warn |
 
 Exits **0** on PASS, **nonzero** on FAIL.
 

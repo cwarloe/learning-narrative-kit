@@ -19,3 +19,4 @@ constraints:
 - "Third-person past tense; same company and cast as the rest of the Tamarack track"
 source_notes:
   - "The course glossary defines 'validation rule' in XML-schema terms and 'form controls' as a Word feature. Kept verbatim; the narrative uses both in their Excel sense."
+heading_rule: scene

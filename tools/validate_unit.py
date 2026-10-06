@@ -57,6 +57,46 @@ def word_count(text: str) -> int:
     return len(WORD_RE.findall(stripped))
 
 
+HEADING_MIN_WORDS = 270   # the rule says "about 300"; allow a little under
+WORDS_PER_HEADING = 500   # the ceiling: at most one heading per ~500 words
+
+
+def check_headings(unit_dir: Path, narrative: str, warnings: list[str]) -> list[str]:
+    """Scene-heading rule: headings mark a change of place, time, or cast, and only
+    over ~300 words; shorter shifts are `* * *` scene breaks. Warnings, not failures.
+    Exceptions are listed by heading text in unit.yaml `heading_exceptions`."""
+    unit_path = unit_dir / "unit.yaml"
+    if not unit_path.is_file():
+        return []
+    unit = yaml.safe_load(unit_path.read_text(encoding="utf-8")) or {}
+    if unit.get("heading_rule") != "scene":
+        return []
+    exceptions = set(unit.get("heading_exceptions") or [])
+    body = narrative.split("\n", 1)[1] if narrative.startswith("# ") else narrative
+    body = re.sub(r"^\*[^\n]*\*\s*$", "", body.lstrip("\n"), count=1, flags=re.M)  # byline
+    parts = re.split(r"^(## .+|\* \* \*)$", body, flags=re.M)
+    total = word_count(body)
+    n_head = sum(1 for p in parts[1::2] if p.startswith("## "))
+    if parts[0].strip() == "" and len(parts) > 1:
+        warnings.append("heading rule: chapter starts with a heading or break; the title does that work")
+    for i in range(1, len(parts), 2):
+        marker, section = parts[i], parts[i + 1]
+        words = word_count(section)
+        if not section.strip():
+            warnings.append(f"heading rule: '{marker}' is directly followed by another heading or break, or ends the chapter")
+            continue
+        if marker.startswith("## "):
+            title = marker[3:].strip()
+            if words < HEADING_MIN_WORDS and title not in exceptions:
+                warnings.append(
+                    f"heading rule: '{title}' covers {words} words; under ~300 it should be a scene break "
+                    f"(or list it in heading_exceptions)"
+                )
+    if n_head and total / n_head < WORDS_PER_HEADING:
+        warnings.append(f"heading rule: {n_head} headings in {total} words; the ceiling is about one per 500")
+    return [f"Headings: {n_head}, scene breaks: {sum(1 for p in parts[1::2] if p == '* * *')}"]
+
+
 def validate(unit_dir: Path) -> int:
     unit_dir = unit_dir.resolve()
     glossary_path = unit_dir / "glossary.yaml"
@@ -154,6 +194,9 @@ def validate(unit_dir: Path) -> int:
             warnings.append(
                 f"{missing_tier} term(s) lack tier: {', '.join(missing_ids)}"
             )
+
+    # Heading rule (opt-in: unit.yaml `heading_rule: scene`; see examples/TAMARACK.md)
+    lines.extend(check_headings(unit_dir, narrative, warnings))
 
     # Portland Desk rule
     for name in FORBIDDEN:
