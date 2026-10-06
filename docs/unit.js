@@ -186,5 +186,15 @@ window.bootUnitPage = function () {
 
   searchBox.addEventListener('input', function (e) { renderList(e.target.value); });
   renderList();
+
+  // Deep link: chapter/#term=<id> opens that term and scrolls to its first mark.
+  function openFromHash() {
+    const m = location.hash.match(/^#term=([A-Za-z0-9_-]+)$/);
+    if (!m || !glossary[m[1]]) return;
+    if (glossary[m[1]].tier === 'support' && filterMode === 'exam') setFilter('all');
+    selectTerm(m[1], true);
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
 };
 

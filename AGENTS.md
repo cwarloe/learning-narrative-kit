@@ -60,6 +60,7 @@ python3 -m venv .venv
     .venv/bin/python tools/render_track.py tracks/<track>.yaml
     ```
     This writes the contents page `docs/<track_id>/index.html`. Re-render the unit and its old and new neighbours so their Previous / Next links update.
+    If the track has `glossary: true`, also run `tools/render_glossary.py tracks/<track>.yaml` so the A-Z glossary picks up the new terms.
 11. **Commit** `examples/<unit_id>/`, `docs/<unit_id>/`, `docs/index.html`, and any track files. Push `main`. Pages serves `/docs`.
 
 Expected URL: `https://cwarloe.github.io/learning-narrative-kit/<unit_id>/`

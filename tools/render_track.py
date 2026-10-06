@@ -93,7 +93,7 @@ PAGE = """<!DOCTYPE html>
     <h1>{title}</h1>
 {subtitle}    <p class="lede">{description}</p>
     <p class="stats">{n_units} chapters · {n_terms} terms · about {hours} hours of reading</p>
-    <a class="start" href="../{first}/">Start with chapter 1 &rarr;</a>
+    <a class="start" href="../{first}/">Start with chapter 1 &rarr;</a>{glossary_link}
 {sections}
     <footer>Each chapter page has Previous / Next links and a link back here. Hover a highlighted term in any story for its course definition.</footer>
   </div>
@@ -145,6 +145,7 @@ def render_track(manifest: Path, kit_root: Path = KIT_ROOT) -> Path:
         n_terms=total_terms,
         hours=round(total_minutes / 60, 1),
         first=units[0]["id"],
+        glossary_link=(' <a class="start" href="glossary/">Glossary: every term, A&ndash;Z</a>' if track.get("glossary") else ""),
         sections="\n".join(sections),
     )
     out_dir = kit_root / "docs" / track["track_id"]
