@@ -215,6 +215,8 @@ Example (`ticket` fence):
 | `tree` | Indented process tree (2-space indent = child) |
 | `chain` | Certificate chain. Lines: `- Name \| trusted\|missing\|expired \| note` |
 | `meter` | Single bar (`label`, `value` 0–100, `note`) |
+| `formula` | Formula bar (DAX or Excel). One formula per line, colored by part; a line starting `→` is the result of the formula above. `caption:` names where it was typed. |
+| `steps` | Numbered panel (Query Editor Applied Steps, a process, a life cycle). A line starting `> ` is highlighted as the current step. |
 | `table` | Pipe table inside the fence, or a native markdown pipe table in the prose |
 
 Marks (`[[id|text]]`) work inside artifacts. Keep exhibits at the **complication or the pivot** — what the person is staring at when they have to decide — not as a gallery of extra specimens.

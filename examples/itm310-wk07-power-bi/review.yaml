@@ -1,0 +1,221 @@
+deck_id: itm310-wk07-power-bi
+cards:
+- id: crisp_dm
+  prompt: CRISP-DM
+  answer: 'CRoss-Industry Standard Process for Data Mining: a BI and data mining project methodology. Non-proprietary, industry-neutral, and tool-neutral, with a life cycle of six phases.'
+  tags:
+  - crisp-dm
+  tier: exam
+- id: business_understanding
+  prompt: Business Understanding (CRISP-DM phase 1)
+  answer: Understanding the project objectives and requirements from a business perspective, converting this knowledge into a BI problem definition, and developing a preliminary plan designed to achieve the objectives.
+  tags:
+  - crisp-dm
+  tier: exam
+- id: data_understanding
+  prompt: Data Understanding (CRISP-DM phase 2)
+  answer: Starts with an initial data collection and proceeds with activities to get familiar with the data, identify data quality problems, discover first insights, and detect interesting subsets to form hypotheses for hidden information.
+  tags:
+  - crisp-dm
+  tier: exam
+- id: data_preparation
+  prompt: Data Preparation (CRISP-DM phase 3)
+  answer: Covers all activities necessary for constructing the final dataset from the initial raw data. Tasks are likely to be performed multiple times and not in any prescribed order.
+  tags:
+  - crisp-dm
+  tier: exam
+- id: modeling_phase
+  prompt: Modeling (CRISP-DM phase 4)
+  answer: 'Various modeling techniques are selected and applied: select the techniques, build the models, and assess them. It may be necessary to step back to the data preparation phase.'
+  tags:
+  - crisp-dm
+  tier: exam
+- id: evaluation_phase
+  prompt: Evaluation (CRISP-DM phase 5)
+  answer: Evaluating whether the business objectives were achieved. For descriptive analytics, the question is whether the reporting satisfies the project objectives.
+  tags:
+  - crisp-dm
+  tier: exam
+- id: deployment_phase
+  prompt: Deployment (CRISP-DM phase 6)
+  answer: Determining how the results need to be used, who needs to use them, and how often, and implementing a repeatable BI process.
+  tags:
+  - crisp-dm
+  tier: exam
+- id: etl
+  prompt: ETL (Extraction, Transformation, and Loading)
+  answer: 'Extraction, Transformation, and Loading: selecting tables, records, and attributes, then transforming and cleaning the data.'
+  tags:
+  - crisp-dm
+  - power-bi
+  tier: exam
+- id: query_editor
+  prompt: Query Editor
+  answer: Power BI's ETL tool, used for shaping and mashing up data. It can import and merge data from a variety of sources, append tables together, and set table and column properties such as data types.
+  tags:
+  - power-bi
+  tier: exam
+- id: dax
+  prompt: DAX (Data Analysis Expressions)
+  answer: A library of functions and operators used to build formulas in Power BI Desktop (and other Microsoft data systems). Starts similar to Excel functions, but goes far beyond.
+  tags:
+  - power-bi
+  - dax
+  tier: exam
+- id: calculated_column
+  prompt: Calculated column
+  answer: A calculation added as a new column in a table, with a new value in each row. Computed at refresh time. Good for simple calculations, or when you need to slice or filter on the values.
+  tags:
+  - power-bi
+  - dax
+  tier: exam
+- id: calculated_measure
+  prompt: Calculated measure
+  answer: A calculation that belongs to the entire data set, not to a table. Use it for all aggregate functions. Computed on the fly in a visual, it adapts to whatever filters are applied, and it can be used in other calculations.
+  tags:
+  - power-bi
+  - dax
+  tier: exam
+- id: relationship
+  prompt: Relationship (Power BI model)
+  answer: A link between tables in the data model, created on Primary Key and Foreign Key fields that match (have the same ranges of values).
+  tags:
+  - power-bi
+  - modeling
+  tier: exam
+- id: primary_key
+  prompt: Primary key
+  answer: A primary key uniquely identifies every record in a relational database. Examples include student ID numbers, account numbers, Social Security numbers, and invoice numbers.
+  tags:
+  - modeling
+  tier: exam
+- id: foreign_key
+  prompt: Foreign key
+  answer: A foreign key is a field in a relational table that matches the primary key column of another table. It can be used to cross-reference tables.
+  tags:
+  - modeling
+  tier: exam
+- id: kpi
+  prompt: Key performance indicator (KPI)
+  answer: A measurement used by business to measure achievement of a specific goal.
+  tags:
+  - power-bi
+  tier: exam
+- id: power_bi_reports
+  prompt: Power BI reports
+  answer: 'Power BI''s data visualization tools: interactive visual reports that let decision makers quickly and visually explore their data.'
+  tags:
+  - power-bi
+  tier: exam
+- id: power_bi_desktop
+  prompt: Power BI Desktop
+  answer: Power BI on a single machine. On-premise.
+  tags:
+  - power-bi
+  - deployment
+  tier: exam
+- id: power_bi_service
+  prompt: Power BI service
+  answer: Power BI via Office 365. Cloud based, so strictly off-premise.
+  tags:
+  - power-bi
+  - deployment
+  tier: exam
+- id: power_bi_mobile
+  prompt: Power BI Mobile
+  answer: Power BI on smartphones and tablets, one of the deployment options.
+  tags:
+  - power-bi
+  - deployment
+  tier: exam
+- id: delimiter
+  prompt: Delimiter
+  answer: A separator such as a space, comma, or semicolon between elements in imported data.
+  tags:
+  - power-bi
+  - etl
+  tier: exam
+- id: get_data
+  prompt: Get Data
+  answer: The Power BI command that connects to a data source and starts an import.
+  tags:
+  - support
+  - power-bi
+  tier: support
+- id: applied_steps
+  prompt: Applied Steps
+  answer: The Query Editor's list of every shaping step, in order. Power BI replays the list each time the data refreshes.
+  tags:
+  - support
+  - power-bi
+  tier: support
+- id: close_and_load
+  prompt: Close & Load
+  answer: The Query Editor command that finishes shaping and loads the data into the model.
+  tags:
+  - support
+  - power-bi
+  tier: support
+- id: star_schema
+  prompt: Star schema
+  answer: A way of arranging a data model with one central table of transactions surrounded by lookup tables, each joined to it by a key.
+  tags:
+  - support
+  - modeling
+  tier: support
+- id: fact_table
+  prompt: Fact table
+  answer: 'The central table in a star schema: one row per transaction or event, holding the numbers being measured and keys to the lookup tables.'
+  tags:
+  - support
+  - modeling
+  tier: support
+- id: dimension_table
+  prompt: Dimension table
+  answer: A lookup table in a star schema, such as products, stores, or dates, that describes the rows in the fact table.
+  tags:
+  - support
+  - modeling
+  tier: support
+- id: data_view
+  prompt: Data view
+  answer: The Power BI Desktop view that shows the rows of each table. The course recommends creating calculations here, from the Modeling tab.
+  tags:
+  - support
+  - power-bi
+  tier: support
+- id: report_canvas
+  prompt: Report canvas
+  answer: The page in Power BI Desktop where visuals are built by dragging fields onto it.
+  tags:
+  - support
+  - power-bi
+  tier: support
+- id: visual_details
+  prompt: Visual details area
+  answer: The course's name for the area under Visualizations where fields go into the axes, legend, values, and details of the selected visual.
+  tags:
+  - support
+  - power-bi
+  tier: support
+- id: slicer
+  prompt: Slicer
+  answer: A visual on the report canvas that filters the other visuals on the page when you pick a value.
+  tags:
+  - support
+  - power-bi
+  tier: support
+- id: filter_pane
+  prompt: Filters pane
+  answer: Filters a visual, page, or report the way a slicer does, but is not shown on the canvas.
+  tags:
+  - support
+  - power-bi
+  tier: support
+- id: aggregation
+  prompt: Aggregation
+  answer: 'How Power BI combines a field''s values in a visual: sum by default, or average, count, minimum, or maximum.'
+  tags:
+  - support
+  - power-bi
+  tier: support

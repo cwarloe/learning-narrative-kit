@@ -86,3 +86,9 @@ parts:
       - id: bi-power-bi
         module: "BI Tools · Introducing Power BI"
         blurb: "Five Monday workbooks become one shared report, for the people with licenses."
+  - title: "Part 3 — From the ITM 310 lectures"
+    lede: "Chapters written from the weekly ITM 310 slide decks, in the same company and cast."
+    units:
+      - id: itm310-wk07-power-bi
+        module: "ITM 310 · Week 7 · Intro to Power BI"
+        blurb: "Three feed dealers have to prove one number to the mill, and CRISP-DM is how they get there."
