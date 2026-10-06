@@ -52,6 +52,20 @@ Render a track manifest (`tracks/<track>.yaml`: parts, units in reading order, o
 
 `render_unit.py` also reads `tracks/*.yaml`: a unit listed in a track gets a Contents link and Previous / Next links. Units in no track render unchanged.
 
+## `render_glossary.py`
+
+Render one A-Z glossary page for a whole track, from every unit's `glossary.yaml`.
+
+```bash
+.venv/bin/python tools/render_glossary.py tracks/tamarack.yaml
+# → docs/tamarack/glossary/index.html
+```
+
+- Terms with the same name in several chapters merge into one entry, including acronym and spelled-out forms ("ETL" and "Extraction, transformation, and loading (ETL)"). Differing definitions are all shown, each labeled with its chapter.
+- Each chapter link opens the chapter at the term: `chapter/#term=<id>` makes `docs/unit.js` open the term, switch to All if it is support-tier, and scroll to its first mark.
+- Search box, Exam-only filter, and A-Z jump bar; works without JavaScript except for search and filtering.
+- Set `glossary: true` in the track manifest so the contents page and every chapter's top bar link to it. Re-run after any glossary or track change.
+
 ## Full LLM playbook
 
 See [`AGENTS.md`](../AGENTS.md) at the repo root.

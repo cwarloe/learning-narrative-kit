@@ -7,6 +7,7 @@ title: "Tamarack Feed & Supply Company"
 subtitle: "A Narrative Primer for ITM 310"
 description: "One fictional farm-and-hardware company, one year, twenty-four chapters. Each chapter is one MindTap module's glossary woven into a single story. Read in order, or jump to the module you're studying."
 canon: examples/TAMARACK.md
+glossary: true   # tools/render_glossary.py builds docs/tamarack/glossary/
 parts:
   - title: "Part 1 — Management Information Systems"
     lede: "Dana Okafor, business systems analyst, about a year into the job."

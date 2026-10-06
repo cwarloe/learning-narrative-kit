@@ -66,9 +66,10 @@ def nav_html(track: dict, unit_id: str, kit_root: Path) -> tuple[str, str]:
     idx = next(i for i, u in enumerate(units) if u["id"] == unit_id)
     me = units[idx]
     toc = f"../{track['track_id']}/"
+    glossary = f'<a href="{toc}glossary/">Glossary</a>' if track.get("glossary") else ""
     top = (
         '<nav class="track-nav" aria-label="Track">'
-        f'<a href="{toc}">&larr; Contents</a>'
+        f'<a href="{toc}">&larr; Contents</a>{glossary}'
         f"<span>{html.escape(me.get('module', ''))}</span>"
         f'<span class="pos">Chapter {idx + 1} of {len(units)}</span>'
         "</nav>"
