@@ -19,3 +19,4 @@ constraints:
 - "Third-person past tense; same company and cast as the rest of the Tamarack track"
 source_notes:
   - "The course glossary's entry for 'BI' in this module reads 'An alphabetical list of sources referenced in a research paper', which is a bibliography definition attached to the wrong term. glossary.yaml uses the course glossary's own Business intelligence (BI) definition from MIS Module 3 instead."
+heading_rule: scene

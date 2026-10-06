@@ -23,3 +23,4 @@ constraints:
 source_notes:
   - "The slides name the Week 7 technical assignment 'Star Schema and Visualization' but do not define star schema, fact table, or dimension table. Those three are tier support with plain-language glosses, not exam definitions. Replace them if the assignment or textbook gives wording."
   - "Slide 13 expands ETL as 'Explore, Transform, Load'; slide 10 and the MindTap glossary expand it as 'Extraction, Transformation, and Loading'. The glossary uses the latter."
+heading_rule: scene

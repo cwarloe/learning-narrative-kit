@@ -4,7 +4,7 @@
 
 The Davenport store opened on May 4. On May 5, Walt Brandvold asked how it was doing.
 
-Ruth Halvorsen wanted a single workbook she could open every Monday that answered Walt's question the same way every time. She asked Eli Mendez to build it. He was ten weeks from finishing his course, and his tenth SAM module was on Excel's business intelligence tools.
+Ruth Halvorsen wanted a single workbook she could open every Monday that answered Walt's question the same way every time. She asked Eli Mendez to build it. He had four months of his course left, and his tenth SAM module was on Excel's business intelligence tools.
 
 The data lived in four places. Sales came from the register system. Store information — address, square footage, opening date — was in a list Marcy Lund kept. Each store's lease terms were in a separate list Hank Pruitt kept, because Hank did not want lease terms in the same file as anything Marcy shared. Loyalty customers and their ZIP codes came from the loyalty system.
 
