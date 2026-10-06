@@ -1,0 +1,196 @@
+bank_id: itm310-wk07-power-bi
+title: "The Buying Group — glossary"
+source: "ITM 310 Week 7 slides, Intro to Power BI (Fall 2026). Exam-tier definitions follow the slides; where the slides only name a term, the definition is taken from the course's MindTap glossary or marked support."
+terms:
+  # ---- CRISP-DM (slides 5-18)
+  - id: crisp_dm
+    title: "CRISP-DM"
+    definition: "CRoss-Industry Standard Process for Data Mining: a BI and data mining project methodology. Non-proprietary, industry-neutral, and tool-neutral, with a life cycle of six phases."
+    context: "A standard process makes BI reliable and repeatable by people with little BI background."
+    tags: [crisp-dm]
+    tier: exam
+    refs: ["ITM 310 Week 7, slides 5-8"]
+  - id: business_understanding
+    title: "Business Understanding (CRISP-DM phase 1)"
+    definition: "Understanding the project objectives and requirements from a business perspective, converting this knowledge into a BI problem definition, and developing a preliminary plan designed to achieve the objectives."
+    tags: [crisp-dm]
+    tier: exam
+    refs: ["ITM 310 Week 7, slides 10, 12"]
+  - id: data_understanding
+    title: "Data Understanding (CRISP-DM phase 2)"
+    definition: "Starts with an initial data collection and proceeds with activities to get familiar with the data, identify data quality problems, discover first insights, and detect interesting subsets to form hypotheses for hidden information."
+    tags: [crisp-dm]
+    tier: exam
+    refs: ["ITM 310 Week 7, slide 13"]
+  - id: data_preparation
+    title: "Data Preparation (CRISP-DM phase 3)"
+    definition: "Covers all activities necessary for constructing the final dataset from the initial raw data. Tasks are likely to be performed multiple times and not in any prescribed order."
+    context: "Can easily take 80% to 90% of a project's time."
+    tags: [crisp-dm]
+    tier: exam
+    refs: ["ITM 310 Week 7, slide 14"]
+  - id: modeling_phase
+    title: "Modeling (CRISP-DM phase 4)"
+    definition: "Various modeling techniques are selected and applied: select the techniques, build the models, and assess them. It may be necessary to step back to the data preparation phase."
+    tags: [crisp-dm]
+    tier: exam
+    refs: ["ITM 310 Week 7, slides 11, 15"]
+  - id: evaluation_phase
+    title: "Evaluation (CRISP-DM phase 5)"
+    definition: "Evaluating whether the business objectives were achieved. For descriptive analytics, the question is whether the reporting satisfies the project objectives."
+    tags: [crisp-dm]
+    tier: exam
+    refs: ["ITM 310 Week 7, slides 11, 16"]
+  - id: deployment_phase
+    title: "Deployment (CRISP-DM phase 6)"
+    definition: "Determining how the results need to be used, who needs to use them, and how often, and implementing a repeatable BI process."
+    tags: [crisp-dm]
+    tier: exam
+    refs: ["ITM 310 Week 7, slides 11, 17"]
+  - id: etl
+    title: "ETL (Extraction, Transformation, and Loading)"
+    definition: "Extraction, Transformation, and Loading: selecting tables, records, and attributes, then transforming and cleaning the data."
+    tags: [crisp-dm, power-bi]
+    tier: exam
+    refs: ["ITM 310 Week 7, slide 10"]
+  # ---- Power BI (slides 13-31)
+  - id: query_editor
+    title: "Query Editor"
+    definition: "Power BI's ETL tool, used for shaping and mashing up data. It can import and merge data from a variety of sources, append tables together, and set table and column properties such as data types."
+    tags: [power-bi]
+    tier: exam
+    refs: ["ITM 310 Week 7, slides 13-14, 30"]
+  - id: dax
+    title: "DAX (Data Analysis Expressions)"
+    definition: "A library of functions and operators used to build formulas in Power BI Desktop (and other Microsoft data systems). Starts similar to Excel functions, but goes far beyond."
+    tags: [power-bi, dax]
+    tier: exam
+    refs: ["ITM 310 Week 7, slides 20-23"]
+  - id: calculated_column
+    title: "Calculated column"
+    definition: "A calculation added as a new column in a table, with a new value in each row. Computed at refresh time. Good for simple calculations, or when you need to slice or filter on the values."
+    tags: [power-bi, dax]
+    tier: exam
+    refs: ["ITM 310 Week 7, slides 24, 31"]
+  - id: calculated_measure
+    title: "Calculated measure"
+    definition: "A calculation that belongs to the entire data set, not to a table. Use it for all aggregate functions. Computed on the fly in a visual, it adapts to whatever filters are applied, and it can be used in other calculations."
+    tags: [power-bi, dax]
+    tier: exam
+    refs: ["ITM 310 Week 7, slide 24"]
+  - id: relationship
+    title: "Relationship (Power BI model)"
+    definition: "A link between tables in the data model, created on Primary Key and Foreign Key fields that match (have the same ranges of values)."
+    tags: [power-bi, modeling]
+    tier: exam
+    refs: ["ITM 310 Week 7, slide 20"]
+  - id: primary_key
+    title: "Primary key"
+    definition: "A primary key uniquely identifies every record in a relational database. Examples include student ID numbers, account numbers, Social Security numbers, and invoice numbers."
+    tags: [modeling]
+    tier: exam
+    refs: ["MindTap course glossary, MIS module 3"]
+  - id: foreign_key
+    title: "Foreign key"
+    definition: "A foreign key is a field in a relational table that matches the primary key column of another table. It can be used to cross-reference tables."
+    tags: [modeling]
+    tier: exam
+    refs: ["MindTap course glossary, MIS module 3"]
+  - id: kpi
+    title: "Key performance indicator (KPI)"
+    definition: "A measurement used by business to measure achievement of a specific goal."
+    context: "In Power BI, KPIs are built from calculated measures."
+    tags: [power-bi]
+    tier: exam
+    refs: ["MindTap course glossary, Excel module 10", "ITM 310 Week 7, slide 20"]
+  - id: power_bi_reports
+    title: "Power BI reports"
+    definition: "Power BI's data visualization tools: interactive visual reports that let decision makers quickly and visually explore their data."
+    tags: [power-bi]
+    tier: exam
+    refs: ["ITM 310 Week 7, slide 16"]
+  - id: power_bi_desktop
+    title: "Power BI Desktop"
+    definition: "Power BI on a single machine. On-premise."
+    tags: [power-bi, deployment]
+    tier: exam
+    refs: ["ITM 310 Week 7, slide 17"]
+  - id: power_bi_service
+    title: "Power BI service"
+    definition: "Power BI via Office 365. Cloud based, so strictly off-premise."
+    tags: [power-bi, deployment]
+    tier: exam
+    refs: ["ITM 310 Week 7, slide 17"]
+  - id: power_bi_mobile
+    title: "Power BI Mobile"
+    definition: "Power BI on smartphones and tablets, one of the deployment options."
+    tags: [power-bi, deployment]
+    tier: exam
+    refs: ["ITM 310 Week 7, slide 17 and notes to slide 16"]
+  - id: delimiter
+    title: "Delimiter"
+    definition: "A separator such as a space, comma, or semicolon between elements in imported data."
+    tags: [power-bi, etl]
+    tier: exam
+    refs: ["MindTap course glossary, Power Query module", "ITM 310 Week 7, slide 30"]
+  # ---- Support: interface and modeling jargon the slides use without defining
+  - id: get_data
+    title: "Get Data"
+    definition: "The Power BI command that connects to a data source and starts an import."
+    tags: [support, power-bi]
+    tier: support
+  - id: applied_steps
+    title: "Applied Steps"
+    definition: "The Query Editor's list of every shaping step, in order. Power BI replays the list each time the data refreshes."
+    tags: [support, power-bi]
+    tier: support
+  - id: close_and_load
+    title: "Close & Load"
+    definition: "The Query Editor command that finishes shaping and loads the data into the model."
+    tags: [support, power-bi]
+    tier: support
+  - id: star_schema
+    title: "Star schema"
+    definition: "A way of arranging a data model with one central table of transactions surrounded by lookup tables, each joined to it by a key."
+    tags: [support, modeling]
+    tier: support
+  - id: fact_table
+    title: "Fact table"
+    definition: "The central table in a star schema: one row per transaction or event, holding the numbers being measured and keys to the lookup tables."
+    tags: [support, modeling]
+    tier: support
+  - id: dimension_table
+    title: "Dimension table"
+    definition: "A lookup table in a star schema, such as products, stores, or dates, that describes the rows in the fact table."
+    tags: [support, modeling]
+    tier: support
+  - id: data_view
+    title: "Data view"
+    definition: "The Power BI Desktop view that shows the rows of each table. The course recommends creating calculations here, from the Modeling tab."
+    tags: [support, power-bi]
+    tier: support
+  - id: report_canvas
+    title: "Report canvas"
+    definition: "The page in Power BI Desktop where visuals are built by dragging fields onto it."
+    tags: [support, power-bi]
+    tier: support
+  - id: visual_details
+    title: "Visual details area"
+    definition: "The course's name for the area under Visualizations where fields go into the axes, legend, values, and details of the selected visual."
+    tags: [support, power-bi]
+    tier: support
+  - id: slicer
+    title: "Slicer"
+    definition: "A visual on the report canvas that filters the other visuals on the page when you pick a value."
+    tags: [support, power-bi]
+    tier: support
+  - id: filter_pane
+    title: "Filters pane"
+    definition: "Filters a visual, page, or report the way a slicer does, but is not shown on the canvas."
+    tags: [support, power-bi]
+    tier: support
+  - id: aggregation
+    title: "Aggregation"
+    definition: "How Power BI combines a field's values in a visual: sum by default, or average, count, minimum, or maximum."
+    tags: [support, power-bi]
+    tier: support

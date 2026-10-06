@@ -1,0 +1,25 @@
+unit_id: itm310-wk07-power-bi
+title: "Tamarack — The Buying Group"
+audience: "ITM 310 student, Week 7: Intro to Power BI"
+purpose: "Walk one real project through the six CRISP-DM phases and the Power BI tool for each (Query Editor for ETL, the model and DAX for modeling, reports for evaluation, Desktop/service/Mobile for deployment), so the phases are decisions with costs rather than a list."
+estimated_minutes: 18
+sources:
+  - "ITM 310 Week 7 slides, Intro to Power BI (Fall 2026): CRISP-DM highlights, Power BI, DAX calculated columns and measures, video take-aways"
+  - "MindTap course glossary export (primary key, foreign key, KPI, delimiter)"
+  - "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms the Week 7 slides teach, defined from the slides (or the MindTap glossary where the slides only name them)"
+  support: "Power BI interface and modeling words the slides use without defining; plain-language glosses"
+constraints:
+  - Every glossary term appears at least once in a decision or complication
+  - Exam definitions follow the slides; do not invent rival definitions
+  - Power BI behavior described accurately (column vs measure, default sum aggregation, relationship key matching)
+  - Story must pass the cover test (readable with marks hidden)
+  - Third-person past tense; same company and cast as the rest of the Tamarack track
+source_notes:
+  - "The slides name the Week 7 technical assignment 'Star Schema and Visualization' but do not define star schema, fact table, or dimension table. Those three are tier support with plain-language glosses, not exam definitions. Replace them if the assignment or textbook gives wording."
+  - "Slide 13 expands ETL as 'Explore, Transform, Load'; slide 10 and the MindTap glossary expand it as 'Extraction, Transformation, and Loading'. The glossary uses the latter."

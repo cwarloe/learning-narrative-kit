@@ -382,6 +382,75 @@ def is_table_sep(line: str) -> bool:
     return bool(cells) and all(re.match(r"^:?-{3,}:?$", c) for c in cells)
 
 
+FORMULA_TOKEN = re.compile(
+    r"(?P<ref>(?:'[^']+'|[A-Za-z_][A-Za-z0-9_]*)?\[[^\]]+\])"   # Table[Column] or [Measure]
+    r"|(?P<fn>\b[A-Z][A-Z0-9.]*(?=\s*\())"                          # FUNCTION(
+    r"|(?P<str>\"[^\"]*\")"
+    r"|(?P<num>(?<![\w.])\d+(?:\.\d+)?|(?<![\w.])\.\d+)"
+)
+
+
+def highlight_formula(line: str) -> str:
+    """Color a DAX / Excel formula: name = expression, functions, Table[Column] refs, literals."""
+    name, eq, expr = "", "", line
+    m = re.match(r"^(\s*[A-Za-z_][A-Za-z0-9_ ]*?)(\s*=\s*)(.*)$", line)
+    if m and not line.lstrip().startswith("="):
+        name, eq, expr = m.groups()
+    out = []
+    if name:
+        out.append(f'<span class="f-name">{html.escape(name)}</span>{html.escape(eq)}')
+    pos = 0
+    for t in FORMULA_TOKEN.finditer(expr):
+        out.append(html.escape(expr[pos:t.start()]))
+        out.append(f'<span class="f-{t.lastgroup}">{html.escape(t.group(0))}</span>')
+        pos = t.end()
+    out.append(html.escape(expr[pos:]))
+    return "".join(out)
+
+
+def render_formula(fields: dict[str, str], body: str, terms: dict, used_ids: list) -> str:
+    """A formula bar. Each line is a formula; a line starting with '→' is the result of the one above."""
+    caption = _caption(fields, "Formula bar")
+    rows = []
+    for line in body.splitlines():
+        if not line.strip():
+            continue
+        if line.lstrip().startswith(("→", "->")):
+            text = line.lstrip()[1:].lstrip(">").strip()
+            rows.append(f'<div class="f-result">{inline_md(text, terms, used_ids)}</div>')
+        else:
+            rows.append(
+                f'<div class="f-bar"><span class="f-icons" aria-hidden="true">✕ ✓ <i>fx</i></span>'
+                f'<code class="f-code">{highlight_formula(line)}</code></div>'
+            )
+    return (
+        f'<figure class="artifact formula">'
+        f"<figcaption>{html.escape(caption)}</figcaption>"
+        f'<div class="formula-body">{"".join(rows)}</div>'
+        f"</figure>"
+    )
+
+
+def render_steps(fields: dict[str, str], body: str, terms: dict, used_ids: list) -> str:
+    """A numbered panel (Applied Steps, a process). A line starting with '> ' is the current step."""
+    caption = _caption(fields, "Steps")
+    items = []
+    for line in body.splitlines():
+        if not line.strip():
+            continue
+        text = line.strip()
+        cls = ""
+        if text.startswith("> "):
+            text, cls = text[2:], ' class="current"'
+        items.append(f"<li{cls}>{inline_md(text, terms, used_ids)}</li>")
+    return (
+        f'<figure class="artifact steps">'
+        f"<figcaption>{html.escape(caption)}</figcaption>"
+        f'<ol class="steps-list">{"".join(items)}</ol>'
+        f"</figure>"
+    )
+
+
 def render_fence(kind: str, block: str, terms: dict, used_ids: list) -> str:
     tokens = kind.split()
     ftype = (tokens[0] if tokens else "code").lower()
@@ -401,6 +470,10 @@ def render_fence(kind: str, block: str, terms: dict, used_ids: list) -> str:
         return render_tree(fields, body, terms, used_ids)
     if ftype == "chain":
         return render_chain(fields, body, terms, used_ids)
+    if ftype in ("formula", "dax"):
+        return render_formula(fields, body, terms, used_ids)
+    if ftype in ("steps", "applied-steps"):
+        return render_steps(fields, body, terms, used_ids)
     if ftype == "meter":
         return render_meter(fields, terms, used_ids)
     if ftype == "table":

@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import datetime as dt
 import random
+import re
 import shutil
 import subprocess
 import tempfile
@@ -535,6 +536,7 @@ def verify_with_libreoffice(key_path: Path, rows) -> list[str]:
         if bs.cell(i, 12).value != r["bonus"] or bool(bs.cell(i, 9).value) != r["elig"]:
             out.append(f"BAD row {i} {r['p']['name']}: sheet {bs.cell(i, 12).value}/{bs.cell(i, 9).value}, "
                        f"model {r['bonus']}/{r['elig']}")
+    out.extend(verify_step_checks(wb))
     out.append(f"info: night OT Sep {ck['B9'].value}, longest Sep shift {ck['B12'].value}, "
                f"shortest Aug shift {ck['B13'].value}, NETWORKDAYS "
                f"{ck['B23'].value}/{ck['B24'].value}/{ck['B25'].value}, G2 night shift {wb['Timeclock']['G2'].value}")
@@ -587,6 +589,147 @@ def render_recording(steps_path: Path, out_path: Path) -> None:
     out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def step_checks():
+    import yaml
+    data = yaml.safe_load((HERE / "steps.yaml").read_text(encoding="utf-8"))
+    for clip in data["clips"]:
+        for step in clip["steps"]:
+            for act in step.get("bot", []):
+                if act.startswith("check "):
+                    _, ref, want = act.split(" ", 2)
+                    yield clip["id"], ref, want
+
+
+def verify_step_checks(wb) -> list[str]:
+    """Every `check REF VALUE` in steps.yaml must match the recalculated answer key."""
+    out = []
+    for clip, ref, want in step_checks():
+        sheet, cell = ref.split("!")
+        got = wb[sheet][cell].value
+        if want in ("TRUE", "FALSE"):
+            ok = got is (want == "TRUE")
+        elif re.fullmatch(r"\d\d/\d\d/\d{4}", want):
+            ok = hasattr(got, "strftime") and got.strftime("%m/%d/%Y") == want
+        elif re.fullmatch(r"-?\d+(\.\d+)?", want):
+            places = len(want.split(".")[1]) if "." in want else 0
+            ok = isinstance(got, (int, float)) and abs(got - float(want)) < 0.5 * 10 ** -places
+        else:
+            ok = got == want
+        out.append(f"{'ok ' if ok else 'BAD'} clip {clip} check {ref}: sheet {got!r}, script says {want!r}")
+    return out
+
+
+AGENT_INTRO = """# Bot script: The Crew Bonus (Excel 3)
+
+Generated from `steps.yaml` by `build_workbook.py`. Edit the YAML, not this file.
+Every value under **Check** was verified against the answer key when this file was built.
+
+This file has two parts. **Part A is for you**, the person setting up. **Part B is the
+prompt**: paste it into the computer-use agent (Claude, ChatGPT, Grok, or another), one
+clip at a time.
+
+## Part A: before you hand over control
+
+1. **Use a clean screen.** Close email, the browser, chat apps, password managers, and
+   anything with personal or work data. Turn on Do Not Disturb. Better still, use a
+   separate user account or a virtual machine that only has Excel.
+2. **Work on a copy.** Copy `crew-bonus-start.xlsx` to a local folder (Desktop or
+   Documents, not inside OneDrive or a synced folder) and open the copy. If Excel opens
+   it in **Protected View** (a yellow bar), click **Enable Editing** yourself.
+3. **Set up Excel.** Desktop Excel for Microsoft 365 or 2021, maximized, zoom 120%. Make
+   sure the **Bonus** sheet tab is visible and the window is on your main display.
+4. **Start the screen recorder yourself**, recording **the Excel window only** (not the
+   whole display), so the agent's own chat window and overlay stay out of the video.
+   Don't ask the agent to start or stop the recording.
+5. **Give the agent access to Excel only**, if your tool asks which apps it may control.
+6. **Run one clip per message.** Paste the rules plus Clip 1. When it reports done, check
+   the screen, then paste Clip 2. A wrong turn then costs one clip, not the whole take.
+7. **Stay at the keyboard.** If the agent wanders out of Excel, take over the mouse;
+   most tools stop when you do.
+
+## Part B: paste this to the agent
+
+### Rules (paste these first, with Clip 1)
+
+You are operating Microsoft Excel on my computer to record a training video. The
+workbook `crew-bonus-start.xlsx` is already open in Excel.
+
+- **Work only inside Excel.** Do not open, click, or type into any other application,
+  browser, file, or website. Do not use the File menu, Save, Share, or any sign-in.
+- **Follow the actions exactly, in order.** Type text exactly as given, character for
+  character, including quotation marks, dollar signs, and parentheses. Do not fix,
+  improve, or reformat anything.
+- **Prefer the keyboard.** To go to a cell or range, press Ctrl+G, type the reference,
+  and press Enter. Do not click cells or drag. Do not use the fill handle; use the
+  `fill` action instead.
+- **Never press Tab** while typing a formula. It accepts Excel's autocomplete suggestion
+  and can change the formula.
+- **Go slowly.** This is a video. After each `enter` action, wait about one second.
+  Obey every `pause`.
+- **Check, then stop if wrong.** After each **Check** or **Look**, compare what the cell
+  shows. If it does not match, **stop**, do not try to repair it, and tell me the cell,
+  what you expected, and what you see.
+- **Dialogs.** If an unexpected dialog appears (a security warning, sign-in, update,
+  anything not in these steps), stop and tell me. Do not click through it.
+- When the clip is done, say "Clip N done" and wait for my next message.
+
+**Action meanings:**
+
+- *Tab* NAME: click the sheet tab with that name at the bottom of the window.
+- *Go to* REF: press Ctrl+G, type REF, press Enter.
+- *Enter* TEXT: type TEXT exactly, then press Enter.
+- *Type* TEXT: type TEXT exactly, without pressing Enter.
+- *Fill* RANGE: press Ctrl+G, type RANGE, press Enter, then press Ctrl+D.
+- *Press* KEYS: press that key or key combination.
+- *Pause* N: wait N seconds without touching anything.
+- *Check* / *Look*: read the cell on screen and compare.
+"""
+
+
+def render_agent(steps_path: Path, out_path: Path, tc_last: int) -> None:
+    import yaml
+    data = yaml.safe_load(steps_path.read_text(encoding="utf-8"))
+    lines = [AGENT_INTRO]
+
+    def fmt(act: str) -> str:
+        verb, _, rest = act.partition(" ")
+        rest = rest.replace("{TC_LAST}", str(tc_last))
+        if verb == "tab":
+            return f"*Tab* **{rest}**"
+        if verb == "goto":
+            return f"*Go to* `{rest}`"
+        if verb == "enter":
+            return f"*Enter* `{rest}`"
+        if verb == "type":
+            return f"*Type* `{rest}`"
+        if verb == "key":
+            return f"*Press* **{rest}**"
+        if verb == "fill":
+            return f"*Fill* `{rest}`"
+        if verb == "pause":
+            return f"*Pause* {rest}"
+        if verb == "check":
+            ref, _, want = rest.partition(" ")
+            return f"**Check:** `{ref}` shows **{want}**"
+        if verb == "note":
+            return f"**Look:** {rest}"
+        if verb == "see":
+            ref, _, want = rest.partition(" ")
+            return f"**Look:** `{ref}` shows {want}"
+        raise SystemExit(f"unknown bot action: {act!r}")
+
+    for clip in data["clips"]:
+        lines.append(f"### Clip {clip['id']}: {clip['title']}\n")
+        lines.append("*Pause 3* (hold still: this marks the start of the clip)\n")
+        n = 1
+        for step in clip["steps"]:
+            for act in step.get("bot", []):
+                lines.append(f"{n}. {fmt(act)}")
+                n += 1
+        lines.append(f"{n}. *Pause 3*, then say \"Clip {clip['id']} done\".\n")
+    out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def main():
     for seed in range(1, 400):
         result = solve(seed)
@@ -605,7 +748,9 @@ def main():
     print(f"{len(rows)} night crew, {eligible} eligible; corrected total "
           f"{STORY['total_with_typo'] + STORY['marco_bonus']}")
     render_recording(HERE / "steps.yaml", HERE / "RECORDING.md")
-    print("wrote RECORDING.md")
+    tc_last = load_workbook(start, read_only=True)["Timeclock"].max_row
+    render_agent(HERE / "steps.yaml", HERE / "AGENT_RECORDING.md", tc_last)
+    print(f"wrote RECORDING.md and AGENT_RECORDING.md (Timeclock last row {tc_last})")
     for line in verify_with_libreoffice(key, rows):
         print(line)
 

@@ -39,7 +39,7 @@ Generated from `steps.yaml` by `build_workbook.py`. Edit the YAML, not this file
 *Story passage:* "Ruth's eligibility rule had two parts…"
 
 1. Click the Bonus sheet tab. Click F2. Type =COUNTIF(Timeclock!A:A,A2) and press Enter.
-   - **You should see:** Days worked for employee 1101.
+   - **You should see:** 61, the days employee 1101 worked.
 2. In G2, type =COUNTIF(Safety!B:B,A2) and press Enter.
    - **You should see:** G2 shows 0 incidents.
 3. In I2, type =AND(F2>=60,G2=0) and press Enter.
@@ -65,15 +65,17 @@ Generated from `steps.yaml` by `build_workbook.py`. Edit the YAML, not this file
 *Story passage:* "Two nights later Hank called down from head office."
 
 1. In B6, type =SUMIF(Timeclock!E:E,"Night",Timeclock!H:H) and press Enter.
-   - **You should see:** Total night-crew overtime for the quarter.
+   - **You should see:** 3016.5, total night-crew overtime for the quarter.
 2. In B7, type =COUNTIF(Timeclock!G:G,">10") and press Enter.
-   - **You should see:** Number of shifts over ten hours.
+   - **You should see:** 616 shifts over ten hours.
 3. In B8, type =AVERAGEIF(Timeclock!E:E,"Night",Timeclock!G:G) and press Enter.
-   - **You should see:** Average night shift length.
+   - **You should see:** 9.02, the average night shift.
 4. In B9, type =SUMIFS(Timeclock!H:H,Timeclock!E:E,"Night",Timeclock!F:F,"Sep") and press Enter.
    - **You should see:** 1103.0, night overtime in September. Note the order: in SUMIFS the range to add comes first.
 5. In B10, type =COUNTIFS(Timeclock!E:E,"Night",Timeclock!F:F,"Sep",Timeclock!G:G,">10") and press Enter.
+   - **You should see:** 220
 6. In B11, type =AVERAGEIFS(Timeclock!G:G,Timeclock!E:E,"Night",Timeclock!F:F,"Sep") and press Enter.
+   - **You should see:** 9.47
 7. In B12, type =MAXIFS(Timeclock!G:G,Timeclock!E:E,"Night",Timeclock!F:F,"Sep") and press Enter.
    - **You should see:** 11.50, the longest night shift in September.
 8. In B13, type =MINIFS(Timeclock!G:G,Timeclock!E:E,"Night",Timeclock!F:F,"Aug") and press Enter.
@@ -111,7 +113,7 @@ Generated from `steps.yaml` by `build_workbook.py`. Edit the YAML, not this file
 5. In B17, type =MROUND(Bonus!K2,5) and press Enter.
    - **You should see:** $415.00
 6. Click the Bonus sheet tab. In L2, type =MROUND(K2,5). In N2, type =INT(F2/5).
-   - **You should see:** L2 shows $415. N2 shows full weeks worked.
+   - **You should see:** L2 shows $415. N2 shows 12 full weeks.
 
 ## Clip 7: Dates
 
