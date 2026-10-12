@@ -1,0 +1,27 @@
+# Example brief (mode: source-material). Slides or lesson notes in, one chapter out.
+# A source can be a repo file (path:) or a description of something the author has
+# (note:). Definitions come from the source; anything the source doesn't state is a gap.
+brief_id: example-source-material
+mode: source-material
+title: "Week 7: Introduction to Power BI"
+
+reader:
+  who: "ITM 310 student"
+  knows: "Excel PivotTables; has never opened Power BI"
+
+purpose: >
+  Follow the CRISP-DM steps from a raw spreadsheet to a published dashboard, and tell a
+  calculated column from a measure.
+
+inputs:
+  sources:
+    - note: "ITM 310 Week 7 slides (Intro to Power BI), supplied by the author in the session; not stored in the repo"
+      kind: slides
+    - path: examples/itm310-wk07-power-bi/glossary.yaml
+      kind: other
+  glossaries:
+    - examples/itm310-wk07-power-bi/glossary.yaml
+
+track:
+  manifest: tracks/tamarack.yaml
+  canon: examples/TAMARACK.md

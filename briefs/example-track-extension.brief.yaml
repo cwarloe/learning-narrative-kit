@@ -1,0 +1,31 @@
+# Example brief (mode: track-extension). New material for an established track.
+# The canon and the accepted chapters are binding (continuity: strict): the review step
+# lists every new name and dated statement for the author to confirm.
+brief_id: example-track-extension
+mode: track-extension
+title: "Tamarack: Week 8, Power BI visuals"
+
+reader:
+  who: "ITM 310 student"
+  knows: "Has read the Week 7 chapter"
+
+purpose: >
+  Choose a visual that fits the question being asked, and explain why a slicer filters
+  every visual on the page.
+
+inputs:
+  terms:
+    - "slicer"
+    - "card visual"
+    - "drill down"
+  sources:
+    - note: "Week 8 slides, to be supplied by the author"
+      kind: slides
+
+creative:
+  notes: "Picks up after The Buying Group; Teo presents to the co-op board."
+
+track:
+  manifest: tracks/tamarack.yaml
+  canon: examples/TAMARACK.md
+  continuity: strict

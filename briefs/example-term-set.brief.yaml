@@ -1,0 +1,35 @@
+# Example brief (mode: term-set). A handful of terms, some with sources, some bare.
+# brief-check reports which ones still need a dependable definition; plan-check refuses
+# to clear drafting until they have one (status source or confirmed).
+brief_id: example-term-set
+mode: term-set
+title: "Memory hierarchy, one story"
+
+reader:
+  who: "First-year IT student"
+  knows: "Has built a PC or watched someone do it"
+
+purpose: >
+  Explain why a computer has several kinds of memory, and predict which one a slow
+  task is waiting on.
+
+inputs:
+  terms:
+    - term: "cache"
+      sense: "CPU cache memory, not a browser cache"
+      definition: "A small, fast memory close to the processor that holds copies of recently used data."
+      source: "author, from course lecture 3"
+      status: confirmed
+    - term: "random access memory (RAM)"
+      definition: "Volatile memory that holds the programs and data the computer is currently using."
+      source: "course glossary"
+    - term: "virtual memory"
+      definition: "Disk space the operating system uses as an extension of RAM."
+      source: "agent draft"
+      status: proposed
+    - "spooling"
+    - "latency"
+
+creative:
+  tone: "light, a small office the week before a deadline"
+  pov: "first person, the newest employee"

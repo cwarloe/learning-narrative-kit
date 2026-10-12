@@ -22,6 +22,8 @@ docs/unit.css, unit.js  # shared Pages assets
 schema/                 # authoring contract + informal schema
 tools/                  # validate_unit.py, render_unit.py, render_track.py
 tracks/<track>.yaml     # reading order for a track → contents page + prev/next links
+briefs/<brief_id>.brief.yaml   # the author's instructions for one job (schema/BRIEF.md)
+workshop/<brief_id>/    # plan, status, reviews, CANDIDATE chapters; never published
 research/               # background notes (schema wins on conflict)
 ```
 
@@ -37,6 +39,71 @@ python3 -m venv .venv
 ```
 
 `.venv` at the repo root is the only supported location — it is gitignored, so a fresh clone has none until you run the above. If your system `python3` already has PyYAML, you can skip the venv and run the tools with `python3` directly; that is the only dependency.
+
+## Authoring workflow (brief → plan → draft → review → preview)
+
+Use this when a job starts from material rather than from a finished chapter. The author
+decides; the agent drafts; `tools/author.py` keeps the books. Format and decision points:
+`schema/BRIEF.md`. Every command below runs from the repo root.
+
+**The four starting points.** Each one begins with a brief in `briefs/`. The examples are
+in the repo and run as written:
+
+| You have | `mode` | Example brief |
+|---|---|---|
+| A set of related terms (bare or defined) → one story | `term-set` | `briefs/example-term-set.brief.yaml` |
+| A whole course glossary → a connected multi-chapter narrative | `course-glossary` | `briefs/tamarack-mis-companion.brief.yaml` |
+| Lessons, slides or notes → a narrative | `source-material` | `briefs/example-source-material.brief.yaml` |
+| New material → another chapter in an established track | `track-extension` | `briefs/example-track-extension.brief.yaml` |
+
+```bash
+# 1. Check the brief: required fields, defaults applied, definitions that block drafting
+.venv/bin/python tools/author.py brief-check briefs/example-term-set.brief.yaml
+.venv/bin/python tools/author.py brief-check briefs/example-source-material.brief.yaml
+.venv/bin/python tools/author.py brief-check briefs/example-track-extension.brief.yaml
+.venv/bin/python tools/author.py brief-check briefs/tamarack-mis-companion.brief.yaml
+
+# 2. Start the resumable record (any mode)
+.venv/bin/python tools/author.py status briefs/<id>.brief.yaml --init
+
+# 3. course-glossary only: plan the companion, then check coverage and the drafting gate
+.venv/bin/python tools/author.py plan briefs/tamarack-mis-companion.brief.yaml            # writes workshop/<id>/plan.yaml + plan.md
+.venv/bin/python tools/author.py plan briefs/tamarack-mis-companion.brief.yaml --refresh  # after inputs change; keeps the author's parts
+.venv/bin/python tools/author.py plan-check briefs/tamarack-mis-companion.brief.yaml --chapter ch10
+
+# 4. Draft the candidate in workshop/<id>/candidates/<unit_id>/ (same files as examples/<unit_id>/),
+#    then review it. --chapter checks it against the plan; omit both flags for a unit with no brief.
+.venv/bin/python tools/author.py review workshop/<id>/candidates/<unit_id> \
+    --brief briefs/<id>.brief.yaml --chapter chNN --out workshop/<id>/reviews/chNN-r1.md
+
+# 5. Validate and preview, outside docs/ (the preview folder is gitignored)
+.venv/bin/python tools/validate_unit.py workshop/<id>/candidates/<unit_id>
+.venv/bin/python tools/render_unit.py workshop/<id>/candidates/<unit_id> --out workshop/<id>/preview
+
+# 6. Where does the job stand?
+.venv/bin/python tools/author.py status briefs/<id>.brief.yaml
+```
+
+Rules the workflow enforces, or asks you to keep:
+
+- **Definitions before claims.** A bare term or an agent-`proposed` definition blocks
+  drafting until it has a source or the author confirms it. When only terms are supplied,
+  ask the author what each ambiguous one means (record it as `sense`) before writing.
+- **Approval gates.** `plan-check --chapter` refuses a chapter until the author sets
+  `approved: true` in `plan.yaml` and the chapter's situation (goal, complication,
+  decision, cost, carries_forward) is filled in.
+- **Bounded revision.** `max_revisions` in `status.yaml` (default 2). At the cap, the chapter
+  goes back to the author with the open questions; it does not get a third pass.
+- **Candidates are not published.** Nothing in `workshop/` reaches Pages. Promoting a
+  candidate means copying its files into `examples/<unit_id>/` with the author's
+  go-ahead, then the ship checklist below.
+- **Three kinds of evidence, kept apart.** The review report separates automated checks
+  (pass/fail), heuristic flags (a person looks), and editorial judgment (the author
+  decides). It does not claim the chapter teaches better; that needs readers.
+
+`workshop/tamarack-mis-companion/` is the worked example: a 264-term plan for the ten MIS
+modules, and a candidate rewrite of MIS 10 with its reviews r0 (the accepted version, as
+a baseline) through r3.
 
 ## Add a new unit (ship checklist)
 

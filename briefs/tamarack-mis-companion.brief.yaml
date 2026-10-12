@@ -1,0 +1,46 @@
+# Demonstration brief (mode: course-glossary).
+# The ten MIS module glossaries already in the repo, planned as one continuing companion
+# story inside the Tamarack track. Existing chapters stay accepted; the plan shows where
+# each term is introduced, applied and revisited, and which chapters need rework.
+brief_id: tamarack-mis-companion
+mode: course-glossary
+title: "Tamarack MIS companion: course plan"
+
+reader:
+  who: "ITM 310 student"
+  knows: "Uses Excel and a phone; new to information-systems vocabulary"
+  setting: "Read alongside the MindTap MIS chapters, one chapter per module"
+
+purpose: >
+  After each chapter the reader can explain how that module's ideas depend on each
+  other, and use them to reason about a business decision at a real-feeling company.
+
+inputs:
+  glossaries:
+    - examples/mis-01-information-systems/glossary.yaml
+    - examples/mis-02-computers/glossary.yaml
+    - examples/mis-03-data-bi/glossary.yaml
+    - examples/mis-04-ethics-legal/glossary.yaml
+    - examples/mis-05-security/glossary.yaml
+    - examples/mis-06-global/glossary.yaml
+    - examples/mis-07-enterprise/glossary.yaml
+    - examples/mis-08-decisions/glossary.yaml
+    - examples/mis-09-ai/glossary.yaml
+    - examples/mis-10-emerging/glossary.yaml
+  sequence: inputs          # MindTap module order
+
+scope:
+  words_per_chapter: 1800
+  terms_per_chapter_max: 30
+
+creative:
+  setting: "Tamarack Feed & Supply Company (examples/TAMARACK.md), year one"
+  notes: >
+    Same cast and company as the accepted chapters. Decisions in earlier chapters
+    should have consequences later (the backups in MIS 2, the fraud in MIS 5, the
+    Saskatoon parent in MIS 6).
+
+track:
+  manifest: tracks/tamarack.yaml
+  canon: examples/TAMARACK.md
+  continuity: strict

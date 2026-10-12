@@ -1,0 +1,107 @@
+# The Closet Gets Too Hot
+
+*Tamarack Feed & Supply Co. • MIS Module 10: Emerging Trends, Technologies, and Applications • Hover over highlighted terms for course definitions.*
+
+In the second week of July, the window air conditioner in the feed-room closet quit during a heat wave, and by two in the afternoon the thermometer Teo Vasquez had taped to the rack read ninety-seven degrees. The new NAS shut itself down to protect its disks. The billing program, the shared drives, and the time clock went with it.
+
+Teo got a portable cooler from the DC and had everything back up by four. Then he went to Ruth Halvorsen's office and said what he'd been saying since the spring: Tamarack shouldn't be running its own servers in a closet.
+
+Ruth agreed, mostly. She had a problem of her own. The ERP selection had started, and every vendor on the shortlist was asking where Tamarack wanted the system to run. She gave Teo two weeks to bring her a recommendation with costs, and told him to take Dana Okafor to the farm-retail technology expo in Boise, because two of the three ERP vendors would be there and she wanted someone in the room who would ask about the stores.
+
+Dana asked about the stores before they left. She put one question at the top of her notepad, because it was the one Ruth would ask: what happens at Republic when the line goes down? The Republic store sat at the end of a rural internet connection that failed a few times every winter. Arlo had run the store through every one of those outages on paper tickets and a calculator. Arlo had retired in June.
+
+## The Vendor With One Answer
+
+The ERP vendor Teo liked best had a booth with chairs, which at an expo meant they expected a long conversation. The sales engineer was a woman named Brenda who had sold to farm stores for eleven years and opened by asking how many registers Tamarack ran.
+
+Her company sold the ERP one way. It was software as a service: the vendor ran the whole application in its own data centers, and Tamarack's people would use it through a browser for a fee. Brenda called it Software as a Service on her slides and on-demand software on her price sheet, and both meant a subscription, monthly or annual, in place of a license Tamarack would own. Her company had started out twenty years ago as one of the application service providers that hosted other people's software for a fee. Now it hosted its own.
+
+Teo asked if they could buy a license and run it themselves.
+
+"Not anymore," Brenda said.
+
+So Teo tried the next layer down. He could rent servers, storage, and networking from a cloud provider, which was infrastructure as a service, and run the ERP on them the way he ran things now, minus the closet. Brenda said that was exactly what her company did, at a scale Tamarack couldn't match, and that her license didn't allow anyone else to do it. That ended the idea for the ERP. It didn't end it for the propane billing program, which nobody sold as a service because nobody else used it. That one could move to rented infrastructure until the MSP rewrote it, and the MSP would want platform as a service for the rewrite, a ready-made environment to build and run the new application in, so its developers didn't have to manage servers either.
+
+Dana had been listening for the word that kept appearing on every banner in the hall. Cloud computing, as the vendors used it, was all of this together: software, storage, and computing power from one provider over the Internet, with the business applications in a browser and the data on the provider's servers. The part that mattered for Republic was the last part.
+
+She asked her question. Every sale at Republic, under Brenda's system, would cross that rural line to reach the vendor's servers. What happened when the line was down?
+
+Brenda didn't pretend the answer was nothing. Her company ran on a public cloud, meaning its customers connected to its off-site infrastructure over the Internet, and when a store couldn't connect, the store couldn't reach it. The fix was edge computing: a small server in the store's back room that pushed processing and data out to the near edge of the network, close to the registers. The registers would talk to it. It would talk to the cloud when it could, and hold the sales when it couldn't.
+
+Teo asked about the vendor's newer offer, the one on the banner. Brenda's company had started distributed cloud computing, placing pieces of its cloud services in data centers closer to customers to cut the delay. The nearest one was in Seattle. That would make head office faster. It wouldn't do anything for a store whose line was cut, because a closer data center was still on the other side of the cut. Dana wrote *edge, not distributed* under her question and underlined *edge*.
+
+That left the question of what Tamarack would own. Teo drew it on the back of Brenda's price sheet. The ERP would live in the vendor's public cloud. The edge servers at each of the eleven stores, and whatever else ran on Tamarack's own network, would be a private cloud, in the plain sense that the services and the hardware ran on a private network Tamarack controlled. Together that made a hybrid cloud.
+
+"Eleven boxes in back rooms is a private cloud?" Dana said.
+
+"They run our services on our network," Teo said. "That's all the term asks."
+
+It was also, Dana pointed out, eleven more things that could overheat. Teo said the back rooms at least had doors.
+
+On the way out of the hall Dana counted the clouds Tamarack was already in. The web store lived on one provider. The loyalty program lived on another. Counter Assistant ran on a third. Tamarack was multicloud before it had decided anything, using more than one public cloud with three different contracts, three support numbers, and no one who had compared them.
+
+* * *
+
+That night in the hotel, Teo forwarded the quote to Hank Pruitt, because Hank would ask anyway. Hank called back twenty minutes later with the sheet open in front of him.
+
+```table
+caption: The quote Teo forwarded to Hank
+| Line | What Tamarack gets | Billed |
+|---|---|---|
+| ERP subscription | The ERP, through a browser, run by the vendor | Per user, per month |
+| Edge server, per store | A back-room server that keeps registers running offline | Per store, per month |
+| Backup as a service | Offsite copies of files, folders, or whole drives | Per gigabyte, per month |
+| Cloud storage | Shared drives on leased space on the provider's servers | Per gigabyte, per month |
+| Data as a service | Storage, integration, processing, and analytics for reporting | Per month |
+| Security as a service | Monitoring and threat response, run by the vendor | Per user, per month |
+```
+
+Hank read every line out loud and stopped at the last column each time. Everything was per month. He asked what they were paying for the closet now. Teo said nothing, except when it failed.
+
+"That's my point," Hank said. "It fails once a year and costs nothing the other eleven months. This costs something every month forever."
+
+Dana took the sheet and went down it with him. The backup line was the one she wanted most. It meant the next failed disk would not mean a day of rewinding tapes nobody had ever tested, which was where Tamarack had been in the winter. Cloud storage would move the shared drives off the NAS that had just shut itself down. The data line was harder. It was the merchandising data mart from the spring, rented instead of built, and Marcy had built the one she had. Dana crossed it off. The security line Hank would have signed in the middle of the night; after the payment fraud he would have bought anything with that label. Dana circled it and wrote *after the ERP* beside it.
+
+Hank asked if there was any line where Tamarack paid only for what it used. Teo said there was one he wanted: the propane route optimizer from the spring trial, which needed a lot of computing power for an hour on Monday mornings and none the rest of the week. For that, utility computing made sense, paying for computing and storage as needed, the way Tamarack paid for heat. One booth had offered to run the optimizer on grid computing instead, pooling many computers' processing power for problems too large for one machine to finish in time. Teo had run the optimizer on his laptop in forty minutes. He hadn't gone back to that booth.
+
+Hank said he'd look at it in the morning. In the morning he said yes to backups and asked for everything else in writing, which meant he would look at it again.
+
+## Walt Drives Down
+
+Walt Brandvold drove down from Spokane for the second day, and he arrived with an errand. Arlo's replacement at Republic had called him the week before. The store's biggest cattle account, a ranch that bought feed by the truckload, wanted proof of what its cattle had eaten, because the packer it sold to was paying more for beef that could be traced. The cattle association had a way to provide it, and it had a booth in the second hall.
+
+The association was building a blockchain for beef traceability: a decentralized network that recorded each transaction (calf born, vaccinated, fed, sold, shipped) as a block of data that couldn't be altered once it was written. Feed dealers would record every feed lot they sold to a member ranch. The association had built it on blockchain as a service, cloud infrastructure from a third party that organizations used to develop their own blockchains, so it didn't have to run any servers of its own.
+
+Walt wanted to sign up at the table. Dana asked the rep where Tamarack's records would be written.
+
+From the store, the rep said, at the moment of sale. The blockchain recorded transactions across connected devices, and each dealer was one of the connected devices. If the store was offline, the record would wait.
+
+Dana looked at the question at the top of her notepad. The one store that needed the blockchain was the one store most likely to be offline when a truckload went out. The edge server would hold the sale. The rep didn't know whether the association's system would accept a record written six hours late, and said she'd find out.
+
+The rep went on to the rest of the program while she waited for an answer that didn't come. Members could be paid in cryptocurrency, digital money created from computer code and tracked by a peer-to-peer protocol over the Internet; Hank had already said no to that once, when a rancher asked. The association's feed credits were fungible tokens on the same blockchain, each one interchangeable with any other, like dollars. Its "Founders' Herd" collectibles were non-fungible tokens, each one unique, with a different painted cow on each. Its sale-day passes were semi-fungible tokens, interchangeable as admission until the sale and one-of-a-kind souvenirs after it. Walt said the cows were ugly and asked again whether he could sign up today.
+
+Dana said he could sign anything, but the first record that mattered would be written at Republic in January.
+
+Walt took the brochure and walked the rest of the hall with her, and after that he asked her question himself. At the forklift maker's booth, the virtual reality trainer used computer-generated 3D images to make a new driver feel he was inside a real DC. The full headset was an egocentric environment, where the trainee was totally immersed. The cheaper version ran on a laptop as an exocentric environment, a window view in 3D that the trainee could watch but not reach into. Both ran on hardware in the room. Walt said Eli would like it, and Dana took pictures for him. A university booth had a CAVE, a cube-shaped room whose walls were rear-projection screens showing true 3D images, for designing grain-handling facilities. Walt asked what it cost and laughed.
+
+The fencing company had an augmented reality app that laid a virtual fence line over a pasture seen through a phone's camera, with a count of posts and rolls. The rep's version for next year was mixed reality, where the virtual gate was anchored to a real post and swung shut against it. Walt asked whether it worked in a pasture with no signal. It needed to download the pasture map first. Walt said half his customers' pastures had no signal, and the rep wrote that down.
+
+A feed brand had built a virtual world, a simulated farm where customers met each other as avatars and could shop for feed. The brand called it a first step into the metaverse, a 3D world where people could do almost everything they did in the real one. Dana thought of Ruth's count from the spring: about a third of Tamarack's ranch customers had slow internet at home or none. None of them were going to meet anyone as an avatar.
+
+Some of the hall didn't need a connection at all. A parts supplier demonstrated 3D printing, building a replacement gear for a discontinued grain cart one thin layer at a time from a digital model. Ranchers brought that kind of problem to the counter every week, and Walt took the supplier's card. A research booth showed 4D printing, printed parts made of materials programmed to change shape on their own, like an irrigation valve that opened when the soil dried. A wire maker claimed its nanotechnology coating, engineered at the scale of molecules, would double the life of galvanized wire. Dana wrote down the claim and not the number.
+
+Two booths she walked past on purpose. A loyalty-app vendor demonstrated contextual computing, an app that sensed a customer walking into the store, knew what she had bought last spring, and suggested a refill. Dana thought about the GDPR request that was still open in Teo's folder. The other booth sold implanted microchips for people, rice-sized chips placed between the thumb and forefinger that could hold an ID or a credit card. Walt pointed out that Tamarack already sold microchips, for horses.
+
+The keynote that afternoon was about quantum computing, computers built on qubits that could solve problems traditional computers couldn't. Nobody in the audience sold feed. Walt left at the first slide of equations.
+
+The cheapest thing they saw all day was a QR code, a square of black modules on a white background, printed on a feed-bag tag. Scanning it opened the product's feeding guide. It worked at Republic as well as anywhere, Walt said, until Dana pointed out that the guide it opened was a web page. So they would print the two lines that mattered, the daily ration and the warning, on the tag beside the code. That cost a larger tag.
+
+The association rep found them at the exit. The system would take late records, she said, but a record written more than a day after the sale was flagged for review, and flagged records didn't qualify for the packer's premium.
+
+* * *
+
+Back in Spokane Valley the following week, Teo's recommendation to Ruth was a hybrid. The ERP would be software as a service in a public cloud. Each store would get an edge server so registers could run offline. Backups would go to a backup service, and the closet would hold only network equipment. The billing program would move to rented infrastructure until it was rewritten. Tamarack would join the dealers' community cloud, built for the exclusive use of farm-supply dealers with the same concerns, for pesticide sales records only. Dana recognized two of the dealers on its member list. They were the ones Marcy had wanted to form a buying group with in the winter.
+
+Ruth approved it. Walt did not sign with the cattle association. He told Ruth he would revisit it once the Republic edge server had been through a winter, and he called the ranch himself to say so.
+
+The ranch moved its show-cattle feed to a dealer in Colville that had signed. It kept buying range cubes from Republic. The QR codes went on the feed tags in September. In October the Republic store's internet went down for six hours during the first snow, and its edge server, which had been installed only two weeks earlier, kept the registers running until the line came back. Then it took eleven hours to sync, and two loyalty customers got double points.
