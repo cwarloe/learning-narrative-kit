@@ -50,7 +50,7 @@ Teo wrote that down. Then he pointed at the banner over her head, which advertis
 
 "Then Seattle is as far away as anywhere else." Brenda shrugged. "Closer helps when the line is up. The box helps when it's down."
 
-Dana wrote *edge, not distributed* under her question and underlined *edge*.
+Dana wrote *edge, not distributed* under her question and underlined *edge*. It was the distributed database Teo had drawn on her whiteboard in April, a server in every store, which Walt had put in next year's column. This time it came inside the ERP quote, where Walt couldn't move it to another column.
 
 Teo drew what Tamarack would own on the back of the price sheet. The ERP would live in the vendor's public cloud. The edge servers in the eleven stores would be a [[private_cloud|private cloud]], services and hardware on a private network that Tamarack ran. One of each made a [[hybrid_cloud|hybrid cloud]].
 

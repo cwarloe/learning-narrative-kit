@@ -54,15 +54,38 @@ It also made the case for something Teo had wanted for a year. He brought in a [
 
 ## What the Testers Found
 
-The testers arrived the following Monday, two of them, with laptops and a box of donuts for the IT office. The penetration test took a week. The report ran to forty pages. Dana read all of it because Ruth asked her to turn it into a list Walt would read.
+The testers arrived the following Monday, two of them, with laptops and a box of donuts for the IT office. The penetration test took a week. The report ran to forty pages, and Ruth asked Dana to turn it into something Walt would read. Dana kept the testers' own summary page and wrote around it.
 
-The worst finding was in the propane billing program. The contractor who wrote it in 2004 had left a [[backdoor|backdoor]]: a hard-coded username and password that bypassed the program's login, presumably so he could fix things remotely. It still worked. The testers also checked the code for a [[logic_bomb|logic bomb]], something set to go off on a date or an event after a programmer left, because a departing contractor with a backdoor was exactly the person who would plant one. They found none. Teo said he would have liked that sentence to be stronger than "found none."
+```table
+caption: Penetration test, summary of findings
+| Finding | Where | Severity |
+|---|---|---|
+| [[backdoor|Backdoor]]: a hard-coded login that bypasses the program's security | Propane billing program | Critical |
+| [[cryptojacking|Cryptojacking]]: the server's processor is mining cryptocurrency for someone else | Feed-room server | High |
+| [[quid_pro_quo|Quid pro quo]]: a manager gave a login in exchange for a "free upgrade" | Chewelah store, by phone | High |
+| [[baiting|Baiting]]: a USB stick labeled "Q2 Payroll" was plugged into a register PC within 40 minutes | Deer Park store | High |
+| [[sniffing|Sniffing]]: captured traffic shows employee PINs in plain text | Spokane Valley guest Wi-Fi | High |
+| [[spoofing|Spoofing]]: a tester posed as an authorized user and collected a manager's credentials | Spokane Valley store network | High |
+| [[logic_bomb|Logic bomb]]: none found | Propane billing program | Note |
+```
 
-The feed-room server was mining cryptocurrency. Its CPU had been pinned at ninety-eight percent since a public-facing service was exposed in December. That was [[cryptojacking|cryptojacking]], someone using Tamarack's electricity and hardware to make money for themselves, and it explained why the billing box had felt slow even before its disks started dying.
+Walt read the table standing at Dana's desk and stopped on the first line. "Who left himself a key?"
 
-The testers also ran the usual social tests at two stores. At Deer Park, a USB stick labeled "Q2 Payroll" left in the break room was plugged into a register PC within forty minutes. That was [[baiting|baiting]], the promise of something worth having. At Chewelah, a tester called pretending to be from the register vendor, offering a free upgrade in exchange for the manager's login. The manager gave it. That was [[quid_pro_quo|quid pro quo]], and it worked because the offer sounded like a favor.
+The contractor who wrote the billing program in 2004 had built in a username and password that skipped the login, presumably so he could fix things remotely. It still worked. Teo had asked the testers to look for one more thing because of it. A programmer who leaves himself a way back in is exactly the person who might leave a logic bomb, code set to go off on a date or an event after he's gone.
 
-On the guest Wi-Fi at the Spokane Valley store, the testers ran [[sniffing|sniffing]] tools to capture traffic and found the old time-clock app sending employee PINs in plain text. They also showed they could do [[spoofing|spoofing]] on the store network, posing as the register server so a lane would send it a manager's credentials.
+"And?"
+
+"They found none," Teo said. He said he would have liked that sentence to be stronger than "found none."
+
+The second line explained something Teo had been blaming on old hardware. The feed-room server's processor had been pinned at ninety-eight percent since a public-facing service was exposed in December, because someone was using Tamarack's electricity and hardware to mine cryptocurrency for themselves. That was why the billing box had felt slow even before its disks started dying.
+
+Walt spent the most time on the two store tests. At Deer Park, someone had found the payroll stick in the break room and plugged it in to see who was getting paid what. The bait was the promise of something worth having. At Chewelah, a tester had called pretending to be from the register vendor and offered the manager a free upgrade in exchange for his login, and the manager had read it to him over the phone. That one was a trade, a service for a credential, and it had worked because it sounded like a favor.
+
+"Who's the manager at Chewelah?" Walt asked.
+
+Ruth said it didn't matter. Nobody at Tamarack had ever been told what a call like that sounded like, and she wasn't going to fire someone for failing a test the company had never trained anyone to pass. Walt said that was a generous way to put it. Ruth put store training on the list, above the new firewall.
+
+The last two findings were the network's. On the Spokane Valley guest Wi-Fi, the testers had recorded the traffic going by and found the old time-clock app sending employee PINs in plain text. On the store network, one of them had posed as an authorized user, the register server's own account, and a lane had sent him a manager's credentials. The time-clock app was retired that week. The Spokane Valley store went back to paper timesheets for nine days while its replacement was installed, and its manager said so every one of those days.
 
 One more item in the report came from Hank's quarantine folder. Besides the bank-change email, the attacker had sent a second message in February with a spreadsheet attached, "updated seed pricing." Hank's mail filter had caught it.
 
@@ -76,7 +99,29 @@ Teo's list of fixes was long, and Ruth made him rank it before she would put it 
 
 [[access_controls|Access controls]] came first: nobody would share a login, store managers would get their own accounts, and changing a vendor's bank details would require two people. Every login to email and the bank would require an [[authentication_tokens|authentication token]] after the password, so that one stolen password wouldn't be enough. Hank complained about the token for a week.
 
-The vendor bank-change process got a real fix. Tamarack would accept bank changes only through a signed form from the vendor portal. The portal used [[pki_public_key_infrastructure|PKI]], with key pairs issued through a trusted authority, so a change request could be verified as coming from the vendor. Teo explained the two kinds of encryption underneath. [[symmetric_encryption|Symmetric encryption]] used one shared secret key for both locking and unlocking, which was fast but meant both sides had to agree on the key and keep it secret. [[asymmetric_encryption|Asymmetric encryption]] used a public key anyone could have and a private key only the owner held. Signing with the private key gave [[nonrepudiation|nonrepudiation]]: the seed company couldn't later claim it hadn't sent a change, and nobody else could send one in its name.
+The vendor bank-change process got a real fix, and Hank was the one who had to be convinced. From now on Tamarack would accept a bank change only as a signed form through the seed company's vendor portal.
+
+"Karen's email had her signature on it," Hank said.
+
+"It had her name on it," Teo said. "Anybody can type a name. This is a signature nobody else can make."
+
+He tried it on Hank with locks. The simple kind was [[symmetric_encryption|symmetric encryption]]: one key locked a message and the same key opened it, so Tamarack and the seed company would both need a copy, would have to agree on it, and would have to keep it secret.
+
+"And if it's in my email," Hank said, "whoever's reading my email has it too."
+
+"Right. So the portal uses two keys." With [[asymmetric_encryption|asymmetric encryption]], each side had a public key that anyone could have and a private key that only its owner held. A message locked with Tamarack's public key could be opened only with Tamarack's private key, so anyone who intercepted it got nothing they could read.
+
+"Who hands out the keys? If I get a public key in an email from 'Karen,' I'm right back where I started."
+
+That was the question [[pki_public_key_infrastructure|PKI]] answered. The key pairs came from a trusted authority and were shared through it, so Tamarack never had to trust a key just because of who claimed to have sent it. The signature worked the same pairing in the other direction: the seed company signed a change with its private key, and Tamarack checked it with the public key from the authority. Only the holder of that private key could have produced it.
+
+"So if a signed change comes through and the money goes wrong," Hank said, "Karen can't tell me she never sent it."
+
+"That's the idea." The signed form bound both companies to what it said, which was what the course called [[nonrepudiation|nonrepudiation]].
+
+"And if somebody steals her private key?"
+
+Teo admitted that then they'd be back to the phone call. Hank put last year's paper invoice in his top drawer, with Karen's number on it.
 
 The web store already used [[transport_layer_security_tls|TLS]] for checkout. The MSP pointed out that one old supplier integration still negotiated the older [[secure_sockets_layer_ssl|SSL]] protocol, and turned it off; the supplier's integration broke for two days.
 

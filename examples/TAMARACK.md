@@ -20,6 +20,38 @@ Walt Brandvold's grandfather opened it in the 1940s as a feed mill and store bes
 stand of tamaracks outside Colville. (The tamarack is the western larch, the conifer
 that turns gold and drops its needles every fall.) The full name is on the cover, the
 letterhead, and the trucks. In dialogue and narration, everyone just says "Tamarack."
+
+### Stores
+
+Eleven stores through May 3, 2027; twelve from May 4, 2027, when Davenport opens. Check a
+new chapter's store names against this list. "Established" means a chapter already uses
+the store; the rest are named here so later chapters have somewhere to go, and can be
+renamed until one does.
+
+| Store | State | Status | Known for (chapter) |
+|---|---|---|---|
+| Colville | WA | Established | The original store, next to the old feed mill. Curtis is the manager. The inventory pilot starts here (MIS 1). Gordon Ashby's four mailers (MIS 3). |
+| Kettle Falls | WA | Established | The parking-lot video (MIS 4). Gordon also shops here (MIS 3). |
+| Republic | WA | Established | At the end of a rural line that fails every winter. Got 400 chicks it hadn't ordered in the Chick Days mix-up; Arlo Nygaard ran it until he retired in June 2026 (MIS 7). The edge server and the October 2026 outage (MIS 10). |
+| Chewelah | WA | Established | The Counter Assistant clerk (MIS 9). The manager who read his login to a "vendor" (MIS 5). |
+| Deer Park | WA | Established | The "Q2 Payroll" USB stick (MIS 5). Monthly count file (Excel 5). |
+| Spokane Valley | WA | Established | Same town as the DC and head office. Got 100 of the 300 chicks it ordered in the Chick Days mix-up (MIS 7). Leaky time-clock app (MIS 5). |
+| Newport | WA | Named, not yet used | |
+| Cheney | WA | Named, not yet used | |
+| Rathdrum | ID | Named, not yet used | |
+| Priest River | ID | Named, not yet used | |
+| Bonners Ferry | ID | Named, not yet used | |
+| Davenport | WA | Established, opens May 4, 2027 | Chosen over Sandpoint (MIS 8). Break-even (Excel 8). Opening and first-month sales (Excel 10). |
+
+There is no store in Sandpoint (MIS 8: Walt's napkin lost to the model).
+
+**Other dealers in the same towns.** Small towns hold competitors, so a Tamarack store and an
+independent dealer can share a town:
+
+- **Palmer's Feed & Seed** (Gene Palmer), Kettle Falls: buying-group member (ITM Week 7).
+- **Grange Supply** (Linda Ostby), Deer Park: buying-group member; drops out (ITM Week 7).
+- **Northland Farm Supply**: a chain that opened two stores in Tamarack's territory (MIS 1).
+- An unnamed dealer in **Omak** that signed with the cattle association (MIS 10).
 "Feed" stayed in the name after the fencing, propane, and web store arrived, and Walt
 will defend that.
 
