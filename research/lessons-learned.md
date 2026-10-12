@@ -109,3 +109,24 @@ for it: a formula bar (`formula`) and a numbered steps panel (`steps`).
 **Still to build:** a `diagram` fence for schemas and flows, a mock report canvas
 (cards, bars, slicer) for Power BI and dashboard scenes, and a before/after table for
 transformations.
+
+## When the review tool starts writing the story (MIS 10 candidate, October 2026)
+
+The first course-companion run used `tools/author.py review` between revisions. It helped
+once: it caught the rewrite of MIS 10 sliding back into a booth-by-booth tour (seven
+paragraphs in a row, each introducing a term with no one speaking). Then it hurt once. To
+shorten an "exposition run," a short, funny keynote beat was folded into the paragraph
+before it, and the passage read worse. The numbers improved, and the story didn't.
+
+The author's correction became two working rules (`schema/README.md` 8 and 9):
+
+- A character, or the narrator, may explain in technical detail when the scene gives a
+  reason. It works best as an exchange with a concrete case that tests it. The rewritten
+  edge-computing beat (a truckload sold at Republic at ten, the line down at ten past, and
+  what Colville sees) teaches more than the narrated version, and it sets up the ending.
+- Metrics point; they don't decide. A passage that reads well and is accurate stays,
+  with a line in the review saying why.
+
+The author also restated the kit's place: the story supports the course and doesn't carry
+it. Students still have the textbook and their own tools. A minor term can pass with a
+sentence of context; the cover test is about the chapter's central relationships.

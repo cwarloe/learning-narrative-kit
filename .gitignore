@@ -6,3 +6,6 @@ __pycache__/
 # Generated local scratch under examples — rebuild from markdown/YAML
 examples/**/*.html
 # docs/** is committed (GitHub Pages artifacts); do not ignore
+
+# Candidate previews (tools/render_unit.py --out); review them locally, never published
+workshop/*/preview/

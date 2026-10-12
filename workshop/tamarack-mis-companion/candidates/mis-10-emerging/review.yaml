@@ -1,0 +1,254 @@
+deck_id: mis-10-emerging
+cards:
+- id: 3d_printing
+  prompt: "3D printing"
+  answer: "3D printing, or additive manufacturing is a process for making a physical object from a three-dimensional digital model. The process is accomplished through the application of many successive thin layers of material."
+  tags:
+  - mod-10
+  tier: exam
+- id: 4d_printing
+  prompt: "4D printing"
+  answer: "4D printing uses special materials and sophisticated designs that are “programmed” to prompt 3D printed objects to change their shape and structure by the influence of external factors."
+  tags:
+  - mod-10
+  tier: exam
+- id: application_service_providers_asps
+  prompt: "application service providers (ASPs)"
+  answer: "Application service providers (ASPs) provide access to software or services for a fee."
+  tags:
+  - mod-10
+  tier: exam
+- id: augmented_reality_ar
+  prompt: "Augmented reality (AR)"
+  answer: "Augmented reality (AR) is a branch of virtual reality that generates a virtual scene that is overlaid on the real object."
+  tags:
+  - mod-10
+  tier: exam
+- id: avatar
+  prompt: "avatar"
+  answer: "An avatar is a 2D or 3D graphical representation of a person in the virtual world; avatars are used in chat rooms and online games."
+  tags:
+  - mod-10
+  tier: exam
+- id: backup_as_a_service_baas
+  prompt: "backup as a service (BaaS)"
+  answer: "The backup as a service (BaaS) model provides offsite data storage for files, folders, or the entire contents of a hard drive."
+  tags:
+  - mod-10
+  tier: exam
+- id: blockchain
+  prompt: "blockchain"
+  answer: "A blockchain is a decentralized and distributed network that is used to record transactions across connected devices as blocks of data that cannot be altered after being recorded."
+  tags:
+  - mod-10
+  tier: exam
+- id: blockchain_as_a_service_baas
+  prompt: "Blockchain as a service (BaaS)"
+  answer: "Blockchain as a service (BaaS) is third-party cloud-based infrastructure that organizations can use to develop their own blockchain and smart contract applications."
+  tags:
+  - mod-10
+  tier: exam
+- id: cave_automatic_virtual_environment_cave
+  prompt: "cave automatic virtual environment (CAVE)"
+  answer: "A cave automatic virtual environment (CAVE) consists of a cube-shaped room in which the walls are rear-projection screens. A CAVE uses holographic devices that create, capture, and display images in true 3D form."
+  tags:
+  - mod-10
+  tier: exam
+- id: cloud_computing
+  prompt: "Cloud computing"
+  answer: "Cloud computing uses one platform to incorporate many technologies, including the SaaS model, Web 2.0, grid computing, and utility computing; hence, a variety of resources can be provided to users over the Internet. Business applications are accessed via a Web browser, and data is stored on the providers’ servers."
+  tags:
+  - mod-10
+  tier: exam
+- id: cloud_storage
+  prompt: "Cloud storage"
+  answer: "Used for online storage and backup, cloud storage involves multiple virtual servers that are usually hosted by third parties. Customers buy or lease storage space from third parties based on their current or future needs."
+  tags:
+  - mod-10
+  tier: exam
+- id: community_cloud
+  prompt: "community cloud"
+  answer: "With the community cloud, the cloud infrastructure is designed for exclusive use by a specific community of users from organizations that share common concerns."
+  tags:
+  - mod-10
+  tier: exam
+- id: contextual_computing
+  prompt: "contextual computing"
+  answer: "Contextual computing refers to a computing environment that is always present, can feel our surroundings, and—based on who we are, where we are, and whom we are with—offer recommendations."
+  tags:
+  - mod-10
+  tier: exam
+- id: cryptocurrency
+  prompt: "Cryptocurrency"
+  answer: "Cryptocurrency is digital money created from computer codes. It is monitored by a peer-to-peer Internet protocol."
+  tags:
+  - mod-10
+  tier: exam
+- id: data_as_a_service_daas
+  prompt: "data as a service (DaaS)"
+  answer: "The data as a service (DaaS) model delivers data storage, integration, processing, and analytics services over the cloud."
+  tags:
+  - mod-10
+  tier: exam
+- id: distributed_cloud_computing
+  prompt: "Distributed cloud computing"
+  answer: "Distributed cloud computing reduces latency and improves performance by distributing cloud services such as data sets, storage, and processing to different physical locations that are closer to the users."
+  tags:
+  - mod-10
+  tier: exam
+- id: edge_computing
+  prompt: "Edge computing"
+  answer: "Edge computing pushes processing and data to the near edge of the network, which enables timely collection, processing, and analysis of data."
+  tags:
+  - mod-10
+  tier: exam
+- id: egocentric_environment
+  prompt: "egocentric environment"
+  answer: "In an egocentric environment, the user is totally immersed in the VR world."
+  tags:
+  - mod-10
+  tier: exam
+- id: exocentric_environment
+  prompt: "exocentric environment"
+  answer: "In an exocentric environment, the user is given a “window view” of VR. Data is still rendered in 3D, but users can only view it on a screen. They cannot interact with objects, as in an egocentric environment."
+  tags:
+  - mod-10
+  tier: exam
+- id: fungible_tokens
+  prompt: "Fungible tokens"
+  answer: "Fungible tokens are representations of assets on a blockchain that are interchangeable."
+  tags:
+  - mod-10
+  tier: exam
+- id: grid_computing
+  prompt: "grid computing"
+  answer: "Grid computing involves combining the processing powers of various computers. With this configuration, users can make use of other computers’ resources to solve problems involving large-scale, complex calculations, such as circuit analysis or mechanical design—problems that a single computer is not capable of solving in a timely manner."
+  tags:
+  - mod-10
+  tier: exam
+- id: hybrid_cloud
+  prompt: "hybrid cloud"
+  answer: "A hybrid cloud is a collection of at least one private cloud and at least one public cloud. In a hybrid cloud environment, there are a variety of public and private options, with multiple providers."
+  tags:
+  - mod-10
+  tier: exam
+- id: implanted_microchips
+  prompt: "Implanted microchips"
+  answer: "Implanted microchips, a controversial technology, are microchips the size of a grain of rice that are inserted between the thumb and the index finger. The microchip can store various information, including that for a user’s ID cards and credit cards, which could be used to log in to Web sites and to enter a secure room."
+  tags:
+  - mod-10
+  tier: exam
+- id: infrastructure_as_a_service_iaas
+  prompt: "Infrastructure as a service (IaaS)"
+  answer: "Infrastructure as a service (IaaS), also called hardware as a service (HaaS), is a type of cloud computing whereby computer infrastructure (such as storage, hardware, servers, and networking components) is delivered as a service."
+  tags:
+  - mod-10
+  tier: exam
+- id: metaverse
+  prompt: "metaverse"
+  answer: "The metaverse is a 3D virtual world that provides a seamless digital environment where users can do almost everything they do in the real world, such as playing games, shopping, buying real estate, and attending conferences."
+  tags:
+  - mod-10
+  tier: exam
+- id: mixed_reality_mr
+  prompt: "Mixed reality (MR)"
+  answer: "Mixed reality (MR) overlays virtual objects on real objects and anchors virtual objects to real-world objects so they can interact with one another."
+  tags:
+  - mod-10
+  tier: exam
+- id: multicloud
+  prompt: "Multicloud"
+  answer: "Multicloud refers to using more than a single public cloud in an organization."
+  tags:
+  - mod-10
+  tier: exam
+- id: nanotechnology
+  prompt: "Nanotechnology"
+  answer: "Nanotechnology incorporates techniques that involve the structure and composition of materials on a nanoscale."
+  tags:
+  - mod-10
+  tier: exam
+- id: non_fungible_token_nft
+  prompt: "non-fungible token (NFT)"
+  answer: "A non-fungible token (NFT) is a one-of-a-kind crypto asset in which each token is unique and backed by a blockchain."
+  tags:
+  - mod-10
+  tier: exam
+- id: on_demand_software
+  prompt: "on-demand software"
+  answer: "Software that is distributed online for a monthly subscription or an annual fee."
+  tags:
+  - mod-10
+  tier: exam
+- id: platform_as_a_service_paas
+  prompt: "Platform as a service (PaaS)"
+  answer: "Platform as a service (PaaS) provides a computing platform and a computing solution as a service. Clients use the platform and environment to build applications and services over the Internet."
+  tags:
+  - mod-10
+  tier: exam
+- id: private_cloud
+  prompt: "private cloud"
+  answer: "In a private cloud, services and the infrastructure are run on a private network."
+  tags:
+  - mod-10
+  tier: exam
+- id: public_cloud
+  prompt: "public cloud"
+  answer: "With a public cloud, users connect with an off-site infrastructure over the Internet."
+  tags:
+  - mod-10
+  tier: exam
+- id: qr_quick_response_code
+  prompt: "QR (quick response) code"
+  answer: "A QR (quick response) code is a matrix barcode consisting of black modules arranged in a square pattern on a white background."
+  tags:
+  - mod-10
+  tier: exam
+- id: quantum_computing
+  prompt: "Quantum computing"
+  answer: "Quantum computing uses quantum mechanics to generate and manipulate quantum bits, or qubits. A quantum computer solves problems considered impossible for traditional computers."
+  tags:
+  - mod-10
+  tier: exam
+- id: security_as_a_service_secaas
+  prompt: "security as a service (SECaaS)"
+  answer: "The security as a service (SECaaS) model provides cybersecurity services on a subscription basis."
+  tags:
+  - mod-10
+  tier: exam
+- id: semi_fungible_tokens_sfts
+  prompt: "Semi-fungible tokens (SFTs)"
+  answer: "Semi-fungible tokens (SFTs) can be traded as both fungible and non-fungible."
+  tags:
+  - mod-10
+  tier: exam
+- id: software_as_a_service
+  prompt: "Software as a Service"
+  answer: "Software that is distributed online for a monthly subscription or an annual fee."
+  tags:
+  - mod-10
+  tier: exam
+- id: software_as_a_service_saas
+  prompt: "Software as a service (SaaS)"
+  answer: "Software as a service (SaaS), also known as on-demand software, is a model in which ASPs deliver software to users for a fee; the software is for temporary or long-term use."
+  tags:
+  - mod-10
+  tier: exam
+- id: utility_on_demand_computing
+  prompt: "Utility (on-demand) computing"
+  answer: "Utility (on-demand) computing is the provision of IT services on demand. Users pay for computing or storage resources on an as-needed basis, similar to the way one pays for utilities such as heat and water."
+  tags:
+  - mod-10
+  tier: exam
+- id: virtual_reality_vr
+  prompt: "Virtual reality (VR)"
+  answer: "Virtual reality (VR) uses computer-generated, three-dimensional images to create the illusion of interaction in a real-world environment."
+  tags:
+  - mod-10
+  tier: exam
+- id: virtual_world
+  prompt: "virtual world"
+  answer: "A virtual world is a simulated environment designed for users to interact with one another via avatars."
+  tags:
+  - mod-10
+  tier: exam

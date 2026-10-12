@@ -6,6 +6,10 @@ Source of truth remains markdown + YAML. Generated HTML is a Pages artifact.
 Usage:
   python tools/render_unit.py examples/secplus-ports-helpdesk
   python tools/render_unit.py examples/secplus-auth-helpdesk
+  python tools/render_unit.py workshop/<job>/candidates/<unit_id> --out workshop/<job>/preview
+
+--out renders a candidate somewhere other than docs/ (a preview Pages never serves): it
+copies unit.css and unit.js beside it and replaces the track navigation with a banner.
 
 Requires PyYAML (see Setup in AGENTS.md: python3 -m venv .venv).
 """
@@ -15,6 +19,7 @@ import argparse
 import html
 import json
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -579,8 +584,9 @@ def md_to_html(md: str, terms: dict):
 
 
 
-def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path | None = None) -> Path:
-    """Render unit_dir → docs/<unit_id>/index.html. Returns output path."""
+def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path | None = None,
+                out_root: Path | None = None) -> Path:
+    """Render unit_dir → docs/<unit_id>/index.html (or <out_root>/<unit_id>/). Returns output path."""
     kit_root = kit_root or KIT_ROOT
     unit_dir = unit_dir.resolve()
     unit_path = unit_dir / "unit.yaml"
@@ -620,8 +626,12 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
     gloss_json = json.dumps({t["id"]: t for t in gloss_list}, ensure_ascii=False, separators=(',', ':'))
 
     nav_top = nav_bottom = extra_css = ""
-    track = find_track_for(unit_id, kit_root)
-    if track is not None:
+    track = find_track_for(unit_id, kit_root) if out_root is None else None
+    if out_root is not None:
+        nav_top = ('<nav class="track-nav" aria-label="Preview"><span>Candidate preview: not published. '
+                   f'Source: {html.escape(str(unit_dir.relative_to(kit_root)) if unit_dir.is_relative_to(kit_root) else str(unit_dir))}</span></nav>')
+        extra_css = NAV_CSS
+    elif track is not None:
         nav_top, nav_bottom = nav_html(track, unit_id, kit_root)
         extra_css = NAV_CSS
 
@@ -629,8 +639,17 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
         page_title, subtitle, body_html, gloss_json, nav_top, nav_bottom, extra_css
     )
 
-    out_dir = kit_root / "docs" / unit_id
-    out_dir.mkdir(parents=True, exist_ok=True)
+    if out_root is not None:
+        out_root = out_root.resolve()
+        if out_root == (kit_root / "docs").resolve() or (kit_root / "docs").resolve() in out_root.parents:
+            raise SystemExit("--out is for previews outside docs/; omit it to render into docs/")
+        out_dir = out_root / unit_id
+        out_dir.mkdir(parents=True, exist_ok=True)
+        for asset in ("unit.css", "unit.js"):
+            shutil.copyfile(kit_root / "docs" / asset, out_root / asset)
+    else:
+        out_dir = kit_root / "docs" / unit_id
+        out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "index.html"
     out_path.write_text(html_out, encoding="utf-8")
     body = body_html.strip() + "\n"
@@ -711,8 +730,14 @@ def main(argv: list[str] | None = None) -> None:
         default=None,
         help="Kit root (default: parent of tools/)",
     )
+    parser.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="Render a preview into OUT/<unit_id>/ instead of docs/ (never under docs/)",
+    )
     args = parser.parse_args(argv)
-    render_unit(args.unit_dir, kit_root=args.kit_root)
+    render_unit(args.unit_dir, kit_root=args.kit_root, out_root=args.out)
 
 
 if __name__ == "__main__":

@@ -17,6 +17,8 @@ Use whichever the line above names. The commands below write `python3`; substitu
 
 The unit is `$0` when given; otherwise ask which one.
 
+**Candidates need the author's go-ahead.** A chapter that lives in `workshop/<id>/candidates/` is not shipped until the author says so in this conversation. When they do, copy its files into `examples/<unit_id>/` (replacing the accepted version only if they said to). Then mark the stage done in `workshop/<id>/status.yaml` and continue below.
+
 **1. Validate — must PASS.**
 
 ```bash

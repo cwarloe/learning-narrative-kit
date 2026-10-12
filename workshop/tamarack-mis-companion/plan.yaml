@@ -1,0 +1,2706 @@
+# Course-companion plan. Generated parts: summary, chapters[*].terms_introduced/builds_on/risks,
+# gaps, terms. Author parts (kept on --refresh): approved, story, chapters[*].title/status/situation/notes.
+plan_id: tamarack-mis-companion
+brief: briefs/tamarack-mis-companion.brief.yaml
+approved: true
+generated: '2026-10-12'
+story:
+  premise: 'Dana Okafor''s first year as Tamarack''s business systems analyst: eleven stores, a DC and
+    a propane division running on systems nobody chose on purpose.'
+  setting: Tamarack Feed & Supply Company, Spokane Valley and the stores (examples/TAMARACK.md), January–October
+    2026
+  cast: 'From canon: Dana (POV), Ruth, Walt, Teo, Marcy, Hank, Eli. Recurring minor characters used so
+    far but not in the canon cast table: Curtis (Colville), Karen (seed supplier AR), Arlo Nygaard (Republic),
+    Jim Sorensen.'
+  through_line: Each fix Tamarack makes on purpose creates the next problem it didn't plan for. The inventory
+    pilot needs reliable servers (ch02); the servers get exploited (ch05); the cleaned-up data feeds the
+    decisions (ch08) and the AI (ch09); and by ch10 the question is no longer which system but where any
+    of it should run, and what happens at Republic when the line goes down.
+summary:
+  chapters: 10
+  terms: 264
+  definitions:
+    source: 264
+    confirmed: 0
+    proposed: 0
+    missing: 0
+  suggested_dependencies: 287
+  most_depended_on:
+  - data (73)
+  - Information (55)
+  - computer (33)
+  - database (19)
+  - process (10)
+  - database management system (DBMS) (6)
+  - object (6)
+  - Business intelligence (BI) (5)
+  - server (4)
+  - decision support system (DSS) (4)
+  - data warehouse (3)
+  - Integrity (3)
+chapters:
+- id: ch01
+  group: mis-01-information-systems
+  unit_id: mis-01-information-systems
+  status: accepted
+  title: The Count That Didn't Match
+  terms_introduced:
+  - computer_literacy
+  - data
+  - five_forces_model
+  - information
+  - information_literacy
+  - information_technologies
+  - management_information_system_mis
+  - process
+  - strategic_information_systems_siss
+  - transaction_processing_systems_tpss
+  - virtual_organizations
+  builds_on: []
+  situation:
+    pov: Dana
+    goal: make the register count match the pallet at Colville
+    complication: the system records transactions but nobody trusts its information; Curtis keeps a notebook
+    decision: a three-store inventory pilot instead of Walt's new software
+    cost: Curtis will believe the screen only after three months of matching
+    carries_forward: the pilot needs servers that stay up (ch02)
+  notes: ''
+  risks:
+  - 6 term(s) here depend on terms introduced later (see gaps.forward_references)
+- id: ch02
+  group: mis-02-computers
+  unit_id: mis-02-computers
+  status: accepted
+  title: The Server in the Feed Room
+  terms_introduced:
+  - application_software
+  - arithmetic_logic_unit_alu
+  - assembly_language
+  - bus
+  - cache_ram
+  - central_processing_unit_cpu
+  - computer
+  - control_unit
+  - cpu_case
+  - disk_drive
+  - fifth_generation_languages_5gls
+  - fourth_generation_languages_4gls
+  - high_level_languages
+  - input_devices
+  - machine_language
+  - magnetic_disk
+  - magnetic_tape
+  - main_memory
+  - motherboard
+  - network_attached_storage_nas
+  - object_oriented_programming_oop
+  - operating_system_os
+  - output_devices
+  - random_access_memory_ram
+  - read_only_memory_rom
+  - redundant_array_of_independent_disks_rai
+  - secondary_memory
+  - server
+  - storage_area_network_san
+  builds_on:
+  - data
+  - information
+  situation:
+    pov: Dana
+    goal: keep billing running on invoice day
+    complication: the billing server is failing and the tape backups have never been tested
+    decision: buy a NAS now; defer the billing rewrite
+    cost: the rewrite slips a year; the predecessor's alert addresses are everywhere
+    carries_forward: the feed-room closet and its NAS (ch05, ch10)
+  notes: ''
+  risks:
+  - 3 term(s) here depend on terms introduced later (see gaps.forward_references)
+- id: ch03
+  group: mis-03-data-bi
+  unit_id: mis-03-data-bi
+  status: revise
+  title: One Customer, Four Records
+  terms_introduced:
+  - allocation
+  - big_data
+  - business_analytics_ba
+  - business_intelligence_bi
+  - class
+  - create_read_update_and_delete_crud
+  - data_dictionary
+  - data_encryption
+  - data_hierarchy
+  - data_lake
+  - data_mart
+  - data_model
+  - data_warehouse
+  - data_driven_web_site
+  - data_mining_agents
+  - data_mining_analysis
+  - database
+  - database_administrator_dba
+  - database_management_system_dbms
+  - database_marketing
+  - distributed_database_management_system_d
+  - encapsulation
+  - extraction_transformation_and_loading_et
+  - foreign_key
+  - fragmentation
+  - graph_database
+  - hierarchical_model
+  - indexed_sequential_access_method_isam
+  - inheritance
+  - logical_view
+  - network_model
+  - normalization
+  - object
+  - object_oriented_databases
+  - online_analytical_processing_olap
+  - online_transaction_processing_oltp
+  - physical_view
+  - power_bi
+  - primary_key
+  - query_by_example_qbe
+  - random_access_file_structure
+  - relational_model
+  - replication
+  - sequential_access_file_structure
+  - structured_query_language_sql
+  - tableau
+  - text_mining_analysis
+  builds_on:
+  - data
+  - process
+  - information
+  - server
+  situation:
+    pov: Dana
+    goal: one record per customer before the spring mailer
+    complication: the 2009 migration duplicated customers across models and stores
+    decision: a merchandising data mart now, the warehouse later
+    cost: the mailer goes out two weeks late, after fencing season starts
+    carries_forward: the data mart (ch08, Excel 11); clean customer data (ch09)
+  notes: Catalog-chapter risk (see risks). Candidate for the same two-scene rework after ch10; not started.
+  risks:
+  - 'catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split'
+  - 1 term(s) here depend on terms introduced later (see gaps.forward_references)
+- id: ch04
+  group: mis-04-ethics-legal
+  unit_id: mis-04-ethics-legal
+  status: accepted
+  title: The Video From the Kettle Falls Lot
+  terms_introduced:
+  - acceptable_use_policies
+  - accountability
+  - business_networking_ethics
+  - cheap_fakes
+  - cookies
+  - cybersquatting
+  - deepfakes
+  - digital_citizenship
+  - digital_divide
+  - disinformation
+  - fake_news
+  - general_data_protection_regulation_gdpr
+  - green_computing
+  - intellectual_property
+  - log_files
+  - misinformation
+  - social_media_networking_ethics
+  - spam
+  builds_on:
+  - information
+  - data
+  - server
+  situation:
+    pov: Dana
+    goal: answer a false video about the feed
+    complication: being right is not enough in public; a GDPR request arrives
+    decision: keep comments open, test the feed and post the results, print them for the stores
+    cost: about a third of ranch customers have slow or no home internet and never see the correction
+      online (digital divide); the GDPR request stays open
+    carries_forward: the digital divide and the open GDPR request (ch10)
+  notes: ''
+  risks: []
+- id: ch05
+  group: mis-05-security
+  unit_id: mis-05-security
+  status: revise
+  title: The Invoice That Changed Its Bank
+  terms_introduced:
+  - access_controls
+  - adware
+  - asymmetric_encryption
+  - authentication_tokens
+  - availability
+  - backdoor
+  - baiting
+  - biometric_security_measures
+  - black_hats
+  - blended_threat
+  - brain_password
+  - business_continuity_planning
+  - callback_modem
+  - computer_fraud
+  - confidentiality
+  - cryptojacking
+  - denial_of_service_dos_attack
+  - dna_identification
+  - fault_tolerant_systems
+  - firewall
+  - gray_hats
+  - integrity
+  - intrusion_detection_system_ids
+  - keystroke_loggers
+  - logic_bomb
+  - macro_viruses
+  - nonrepudiation
+  - password
+  - pharming
+  - phishing
+  - physical_security_measures
+  - pki_public_key_infrastructure
+  - quid_pro_quo
+  - rootkit
+  - script_kiddies
+  - secure_sockets_layer_ssl
+  - sniffing
+  - social_engineering
+  - spoofing
+  - spyware
+  - symmetric_encryption
+  - transport_layer_security_tls
+  - trojan_programs
+  - virtual_private_network_vpn
+  - virus
+  - white_hats
+  - worm
+  - zero_login
+  - zero_trust_security
+  builds_on:
+  - data
+  - information
+  - computer
+  - database
+  - server
+  - operating_system_os
+  situation:
+    pov: Dana
+    goal: find out how $14,200 went to a fake account
+    complication: Hank's laptop was infected and the feed-room server was cryptojacked
+    decision: MFA tokens, a callback rule, a locked closet
+    cost: Hank hates the token every morning
+    carries_forward: Hank will buy anything labeled security (ch10)
+  notes: Catalog-chapter risk (see risks). Candidate for the same two-scene rework after ch10; not started.
+  risks:
+  - 'catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split'
+  - 1 term(s) here depend on terms introduced later (see gaps.forward_references)
+- id: ch06
+  group: mis-06-global
+  unit_id: mis-06-global
+  status: accepted
+  title: The Rep Who Couldn't Say Yes
+  terms_introduced:
+  - global_information_system_gis
+  - global_structure
+  - global_supply_chain_management
+  - international_structure
+  - multinational_corporations_mncs
+  - multinational_structure
+  - offshore_outsourcing
+  - transborder_data_flow_tdf
+  - transnational_structure
+  builds_on:
+  - data
+  - information
+  - process
+  situation:
+    pov: Dana
+    goal: keep the fencing rep's discounts
+    complication: Prairie Wire's new owners route every price and order through Saskatoon
+    decision: work through the new approval chain; park the private-label idea
+    cost: the rep can no longer say yes on the phone
+    carries_forward: the feed co-op folder (ch10 community cloud; ITM Week 7 buying group)
+  notes: ''
+  risks:
+  - 3 term(s) here depend on terms introduced later (see gaps.forward_references)
+- id: ch07
+  group: mis-07-enterprise
+  unit_id: mis-07-enterprise
+  status: accepted
+  title: Chick Days
+  terms_introduced:
+  - collaboration_system_or_collaboration_so
+  - collaborative_filtering_cf
+  - collaborative_planning_forecasting_and_r
+  - communication_software
+  - customer_relationship_management_crm
+  - customization
+  - document_and_content_management_software
+  - e_marketplace
+  - electronic_data_interchange_edi
+  - enterprise_resource_planning_erp
+  - enterprise_system
+  - knowledge_management_km
+  - online_auction
+  - personalization
+  - pull_technology
+  - push_technology
+  - radio_frequency_identification_rfid
+  - reverse_auctions
+  - supply_chain
+  - supply_chain_management_scm
+  - task_management_software
+  builds_on:
+  - data
+  - information
+  - process
+  - server
+  - object
+  situation:
+    pov: Dana
+    goal: get 400 chicks to the right store
+    complication: four disconnected systems; the expert, Arlo, is retiring
+    decision: start an ERP selection with a twelve-month deadline
+    cost: nobody believes the deadline; Arlo's knowledge leaves with him
+    carries_forward: the ERP vendors asking where it should run (ch10)
+  notes: ''
+  risks: []
+- id: ch08
+  group: mis-08-decisions
+  unit_id: mis-08-decisions
+  status: accepted
+  title: Where the Twelfth Store Goes
+  terms_introduced:
+  - choice_phase
+  - decision_support_system_dss
+  - design_phase
+  - digital_dashboard
+  - executive_information_systems_eiss
+  - geographic_information_system_gis
+  - implementation_phase
+  - intelligence_phase
+  - management_support_systems_msss
+  - managerial_designer
+  - model_base
+  - model_builder
+  - semistructured_decisions
+  - structured_decisions
+  - technical_designer
+  - unstructured_decisions
+  builds_on:
+  - data
+  - information
+  - database
+  - global_information_system_gis
+  situation:
+    pov: Dana
+    goal: choose store twelve
+    complication: Walt's napkin says Sandpoint; the model says Davenport
+    decision: Davenport
+    cost: Walt's friend Jim Sorensen is told to wait a year
+    carries_forward: Davenport (Excel 8–10)
+  notes: ''
+  risks: []
+- id: ch09
+  group: mis-09-ai
+  unit_id: mis-09-ai
+  status: accepted
+  title: The Counter Assistant
+  terms_introduced:
+  - artificial_intelligence_ai
+  - artificial_neural_networks_anns
+  - augmented_intelligence
+  - backward_chaining
+  - case_based_reasoning_cbr
+  - expert_systems
+  - explanation_facility
+  - forward_chaining
+  - fuzzy_logic
+  - genetic_algorithms_gas
+  - inference_engine
+  - intelligent_agents
+  - knowledge_acquisition_facility
+  - knowledge_base
+  - knowledge_base_management_system_kbms
+  - machine_learning
+  - monitoring_and_surveillance_agents
+  - natural_language_processing_nlp
+  - personal_agents
+  - robots
+  - shopping_and_information_agents
+  - soft_robot
+  builds_on:
+  - spam
+  - information
+  - database
+  - computer
+  - process
+  - decision_support_system_dss
+  - model_base
+  - database_management_system_dbms
+  situation:
+    pov: Dana
+    goal: stop clerks giving wrong dosing answers
+    complication: an AI counter assistant is confident and sometimes wrong
+    decision: pilot it with human override
+    cost: correct overrides are logged as errors
+    carries_forward: Counter Assistant lives in its own cloud (ch10 multicloud)
+  notes: ''
+  risks: []
+- id: ch10
+  group: mis-10-emerging
+  unit_id: mis-10-emerging
+  status: accepted
+  title: The Closet Gets Too Hot
+  terms_introduced:
+  - 3d_printing
+  - 4d_printing
+  - application_service_providers_asps
+  - augmented_reality_ar
+  - avatar
+  - backup_as_a_service_baas
+  - blockchain
+  - blockchain_as_a_service_baas
+  - cave_automatic_virtual_environment_cave
+  - cloud_computing
+  - cloud_storage
+  - community_cloud
+  - contextual_computing
+  - cryptocurrency
+  - data_as_a_service_daas
+  - distributed_cloud_computing
+  - edge_computing
+  - egocentric_environment
+  - exocentric_environment
+  - fungible_tokens
+  - grid_computing
+  - hybrid_cloud
+  - implanted_microchips
+  - infrastructure_as_a_service_iaas
+  - metaverse
+  - mixed_reality_mr
+  - multicloud
+  - nanotechnology
+  - non_fungible_token_nft
+  - on_demand_software
+  - platform_as_a_service_paas
+  - private_cloud
+  - public_cloud
+  - qr_quick_response_code
+  - quantum_computing
+  - security_as_a_service_secaas
+  - semi_fungible_tokens_sfts
+  - software_as_a_service
+  - software_as_a_service_saas
+  - utility_on_demand_computing
+  - virtual_reality_vr
+  - virtual_world
+  builds_on:
+  - process
+  - object
+  - data
+  - computer
+  - information
+  situation:
+    pov: Dana
+    goal: recommend where Tamarack's systems should run, in two weeks, after the closet hits 97°F
+    complication: the ERP vendor sells only software as a service, and Republic's line fails every winter;
+      at the expo a Republic ranch wants its feed recorded on the cattle association's blockchain, which
+      records transactions from connected devices
+    decision: 'a hybrid: SaaS ERP in a public cloud, an edge server in each store, backup as a service;
+      Walt does not sign with the association until the Republic edge server has been through a winter'
+    cost: Tamarack rents its core system every month from now on; the Republic ranch moves its show-cattle
+      feed to a dealer in Omak that signed
+    carries_forward: 'the October Republic outage and eleven-hour sync; Walt''s open question on the cattle
+      association (revisit after a winter); membership in the dealers'' community cloud. Author to decide:
+      is that membership how the ITM Week 7 buying group first met?'
+  notes: 'Published 2026-10-12 from the candidate (reviews r0-r4). Two scenes: the hosting decision, and
+    Walt at the expo.'
+  risks:
+  - 'catalog-chapter risk: 42 terms (max 30); plan two scenes with different stakes, or split'
+  candidate: workshop/tamarack-mis-companion/candidates/mis-10-emerging
+gaps:
+  needs_definition: []
+  proposed_definitions: []
+  conflicting_definitions:
+  - term: Software as a Service
+    in:
+    - software_as_a_service
+    - software_as_a_service_saas
+  same_definition_different_terms:
+  - terms:
+    - on_demand_software
+    - software_as_a_service
+  forward_references:
+  - term: computer_literacy
+    chapter: ch01
+    needs: computer
+    introduced_later_in: ch02
+  - term: computer_literacy
+    chapter: ch01
+    needs: database
+    introduced_later_in: ch03
+  - term: information_literacy
+    chapter: ch01
+    needs: business_intelligence_bi
+    introduced_later_in: ch03
+  - term: information_technologies
+    chapter: ch01
+    needs: computer
+    introduced_later_in: ch02
+  - term: information_technologies
+    chapter: ch01
+    needs: database
+    introduced_later_in: ch03
+  - term: information_technologies
+    chapter: ch01
+    needs: radio_frequency_identification_rfid
+    introduced_later_in: ch07
+  - term: fifth_generation_languages_5gls
+    chapter: ch02
+    needs: artificial_intelligence_ai
+    introduced_later_in: ch09
+  - term: fifth_generation_languages_5gls
+    chapter: ch02
+    needs: natural_language_processing_nlp
+    introduced_later_in: ch09
+  - term: object_oriented_programming_oop
+    chapter: ch02
+    needs: object
+    introduced_later_in: ch03
+  - term: data_model
+    chapter: ch03
+    needs: integrity
+    introduced_later_in: ch05
+  - term: cryptojacking
+    chapter: ch05
+    needs: cryptocurrency
+    introduced_later_in: ch10
+  - term: global_information_system_gis
+    chapter: ch06
+    needs: geographic_information_system_gis
+    introduced_later_in: ch08
+  - term: global_supply_chain_management
+    chapter: ch06
+    needs: supply_chain
+    introduced_later_in: ch07
+  - term: global_supply_chain_management
+    chapter: ch06
+    needs: supply_chain_management_scm
+    introduced_later_in: ch07
+  never_revisited:
+  - computer_literacy
+  - five_forces_model
+  - information_literacy
+  - information_technologies
+  - strategic_information_systems_siss
+  - transaction_processing_systems_tpss
+  - virtual_organizations
+  - application_software
+  - assembly_language
+  - bus
+  - cache_ram
+  - cpu_case
+  - fifth_generation_languages_5gls
+  - fourth_generation_languages_4gls
+  - high_level_languages
+  - input_devices
+  - magnetic_disk
+  - magnetic_tape
+  - main_memory
+  - motherboard
+  - object_oriented_programming_oop
+  - output_devices
+  - read_only_memory_rom
+  - redundant_array_of_independent_disks_rai
+  - secondary_memory
+  - storage_area_network_san
+  - allocation
+  - big_data
+  - business_analytics_ba
+  - create_read_update_and_delete_crud
+  - data_dictionary
+  - data_encryption
+  - data_hierarchy
+  - data_lake
+  - data_model
+  - data_driven_web_site
+  - data_mining_agents
+  - database_administrator_dba
+  - database_marketing
+  - distributed_database_management_system_d
+  - encapsulation
+  - extraction_transformation_and_loading_et
+  - foreign_key
+  - graph_database
+  - indexed_sequential_access_method_isam
+  - inheritance
+  - logical_view
+  - network_model
+  - normalization
+  - object_oriented_databases
+  - online_analytical_processing_olap
+  - online_transaction_processing_oltp
+  - physical_view
+  - power_bi
+  - query_by_example_qbe
+  - random_access_file_structure
+  - relational_model
+  - sequential_access_file_structure
+  - tableau
+  - text_mining_analysis
+  - acceptable_use_policies
+  - accountability
+  - business_networking_ethics
+  - cheap_fakes
+  - cookies
+  - cybersquatting
+  - deepfakes
+  - digital_citizenship
+  - digital_divide
+  - disinformation
+  - green_computing
+  - intellectual_property
+  - log_files
+  - misinformation
+  - social_media_networking_ethics
+  - access_controls
+  - adware
+  - asymmetric_encryption
+  - authentication_tokens
+  - backdoor
+  - biometric_security_measures
+  - black_hats
+  - blended_threat
+  - brain_password
+  - business_continuity_planning
+  - callback_modem
+  - computer_fraud
+  - confidentiality
+  - cryptojacking
+  - denial_of_service_dos_attack
+  - dna_identification
+  - fault_tolerant_systems
+  - gray_hats
+  - intrusion_detection_system_ids
+  - keystroke_loggers
+  - logic_bomb
+  - macro_viruses
+  - nonrepudiation
+  - pharming
+  - physical_security_measures
+  - pki_public_key_infrastructure
+  - quid_pro_quo
+  - rootkit
+  - script_kiddies
+  - secure_sockets_layer_ssl
+  - sniffing
+  - social_engineering
+  - spoofing
+  - symmetric_encryption
+  - transport_layer_security_tls
+  - trojan_programs
+  - virtual_private_network_vpn
+  - white_hats
+  - zero_login
+  - zero_trust_security
+  - global_structure
+  - global_supply_chain_management
+  - international_structure
+  - multinational_corporations_mncs
+  - multinational_structure
+  - offshore_outsourcing
+  - transborder_data_flow_tdf
+  - transnational_structure
+  - collaboration_system_or_collaboration_so
+  - collaborative_filtering_cf
+  - collaborative_planning_forecasting_and_r
+  - communication_software
+  - customer_relationship_management_crm
+  - customization
+  - document_and_content_management_software
+  - e_marketplace
+  - electronic_data_interchange_edi
+  - enterprise_system
+  - knowledge_management_km
+  - online_auction
+  - personalization
+  - pull_technology
+  - push_technology
+  - reverse_auctions
+  - task_management_software
+  - design_phase
+  - executive_information_systems_eiss
+  - implementation_phase
+  - intelligence_phase
+  - management_support_systems_msss
+  - managerial_designer
+  - model_builder
+  - semistructured_decisions
+  - structured_decisions
+  - technical_designer
+  - unstructured_decisions
+  - artificial_neural_networks_anns
+  - augmented_intelligence
+  - case_based_reasoning_cbr
+  - expert_systems
+  - explanation_facility
+  - forward_chaining
+  - fuzzy_logic
+  - genetic_algorithms_gas
+  - inference_engine
+  - intelligent_agents
+  - knowledge_acquisition_facility
+  - knowledge_base_management_system_kbms
+  - machine_learning
+  - monitoring_and_surveillance_agents
+  - personal_agents
+  - shopping_and_information_agents
+  - soft_robot
+  - 3d_printing
+  - 4d_printing
+  - augmented_reality_ar
+  - avatar
+  - cave_automatic_virtual_environment_cave
+  - cloud_storage
+  - community_cloud
+  - contextual_computing
+  - data_as_a_service_daas
+  - distributed_cloud_computing
+  - edge_computing
+  - exocentric_environment
+  - hybrid_cloud
+  - implanted_microchips
+  - infrastructure_as_a_service_iaas
+  - metaverse
+  - mixed_reality_mr
+  - multicloud
+  - nanotechnology
+  - non_fungible_token_nft
+  - platform_as_a_service_paas
+  - qr_quick_response_code
+  - quantum_computing
+  - security_as_a_service_secaas
+  - semi_fungible_tokens_sfts
+  - software_as_a_service
+  - utility_on_demand_computing
+terms:
+  computer_literacy:
+    title: Computer literacy
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - computer
+    - database
+    revisited_in: []
+  data:
+    title: data
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  five_forces_model:
+    title: Five Forces Model
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  information:
+    title: Information
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - process
+    revisited_in:
+    - ch02
+    - ch03
+    - ch04
+    - ch05
+    - ch06
+    - ch08
+    - ch09
+  information_literacy:
+    title: Information literacy
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - information
+    - business_intelligence_bi
+    revisited_in: []
+  information_technologies:
+    title: information technologies
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - information
+    - computer
+    - database
+    - radio_frequency_identification_rfid
+    revisited_in: []
+  management_information_system_mis:
+    title: management information system (MIS)
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - data
+    - information
+    revisited_in:
+    - ch02
+    - ch03
+    - ch04
+    - ch05
+    - ch06
+    - ch07
+    - ch08
+    - ch09
+    - ch10
+  process:
+    title: process
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - information
+    revisited_in:
+    - ch03
+    - ch04
+    - ch05
+    - ch06
+    - ch07
+    - ch08
+  strategic_information_systems_siss:
+    title: Strategic information systems (SISs)
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  transaction_processing_systems_tpss:
+    title: transaction-processing systems (TPSs)
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  virtual_organizations:
+    title: virtual organizations
+    introduced_in: ch01
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  application_software:
+    title: application software
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  arithmetic_logic_unit_alu:
+    title: arithmetic logic unit (ALU)
+    introduced_in: ch02
+    status: source
+    depends_on: []
+    revisited_in: []
+  assembly_language:
+    title: Assembly language
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    - computer
+    - machine_language
+    revisited_in: []
+  bus:
+    title: bus
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  cache_ram:
+    title: cache RAM
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - random_access_memory_ram
+    revisited_in: []
+  central_processing_unit_cpu:
+    title: central processing unit (CPU)
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - arithmetic_logic_unit_alu
+    - computer
+    - control_unit
+    revisited_in:
+    - ch05
+  computer:
+    title: computer
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    - information
+    revisited_in:
+    - ch04
+    - ch05
+    - ch07
+    - ch10
+  control_unit:
+    title: control unit
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  cpu_case:
+    title: CPU case
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - central_processing_unit_cpu
+    - computer
+    revisited_in: []
+  disk_drive:
+    title: disk drive
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  fifth_generation_languages_5gls:
+    title: Fifth-generation languages (5GLs)
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - computer
+    - artificial_intelligence_ai
+    - natural_language_processing_nlp
+    revisited_in: []
+  fourth_generation_languages_4gls:
+    title: Fourth-generation languages (4GLs)
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  high_level_languages:
+    title: high-level languages
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  input_devices:
+    title: Input devices
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    - information
+    - computer
+    revisited_in: []
+  machine_language:
+    title: machine language
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    - computer
+    revisited_in: []
+  magnetic_disk:
+    title: magnetic disk
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  magnetic_tape:
+    title: Magnetic tape
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  main_memory:
+    title: Main memory
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    - information
+    - computer
+    revisited_in: []
+  motherboard:
+    title: motherboard
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - central_processing_unit_cpu
+    - disk_drive
+    revisited_in: []
+  network_attached_storage_nas:
+    title: Network-attached storage (NAS)
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    - computer
+    revisited_in:
+    - ch05
+    - ch09
+    - ch10
+  object_oriented_programming_oop:
+    title: object-oriented programming (OOP)
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - object
+    revisited_in: []
+  operating_system_os:
+    title: operating system (OS)
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - computer
+    revisited_in:
+    - ch05
+  output_devices:
+    title: output devices
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - information
+    - computer
+    revisited_in: []
+  random_access_memory_ram:
+    title: random access memory (RAM)
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  read_only_memory_rom:
+    title: read-only memory (ROM)
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  redundant_array_of_independent_disks_rai:
+    title: redundant array of independent disks (RAID)
+    introduced_in: ch02
+    status: source
+    depends_on: []
+    revisited_in: []
+  secondary_memory:
+    title: Secondary memory
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - data
+    - computer
+    revisited_in: []
+  server:
+    title: server
+    introduced_in: ch02
+    status: source
+    depends_on:
+    - computer
+    revisited_in:
+    - ch03
+    - ch04
+    - ch05
+    - ch10
+  storage_area_network_san:
+    title: storage area network (SAN)
+    introduced_in: ch02
+    status: source
+    depends_on: []
+    revisited_in: []
+  allocation:
+    title: allocation
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - database_management_system_dbms
+    - fragmentation
+    - replication
+    revisited_in: []
+  big_data:
+    title: Big data
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - process
+    revisited_in: []
+  business_analytics_ba:
+    title: Business analytics (BA)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - information
+    revisited_in: []
+  business_intelligence_bi:
+    title: Business intelligence (BI)
+    introduced_in: ch03
+    status: source
+    depends_on: []
+    revisited_in: []
+  class:
+    title: class
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - object
+    revisited_in: []
+  create_read_update_and_delete_crud:
+    title: create, read, update, and delete (CRUD)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  data_dictionary:
+    title: data dictionary
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  data_encryption:
+    title: Data encryption
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  data_hierarchy:
+    title: data hierarchy
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  data_lake:
+    title: data lake
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  data_mart:
+    title: data mart
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - data_warehouse
+    revisited_in:
+    - ch10
+  data_model:
+    title: data model
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - integrity
+    revisited_in: []
+  data_warehouse:
+    title: data warehouse
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - business_intelligence_bi
+    revisited_in: []
+  data_driven_web_site:
+    title: data-driven Web site
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - database
+    revisited_in: []
+  data_mining_agents:
+    title: Data-mining agents
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - information
+    - data_warehouse
+    revisited_in: []
+  data_mining_analysis:
+    title: Data-mining analysis
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  database:
+    title: database
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in:
+    - ch06
+    - ch07
+    - ch08
+    - ch09
+  database_administrator_dba:
+    title: database administrator (DBA)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - database
+    revisited_in: []
+  database_management_system_dbms:
+    title: database management system (DBMS)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - database
+    revisited_in:
+    - ch09
+  database_marketing:
+    title: database marketing
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - database
+    revisited_in: []
+  distributed_database_management_system_d:
+    title: distributed database management system (DDBMS)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - database
+    - database_management_system_dbms
+    revisited_in: []
+  encapsulation:
+    title: encapsulation
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - class
+    revisited_in: []
+  extraction_transformation_and_loading_et:
+    title: Extraction, transformation, and loading (ETL)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - data_warehouse
+    - database
+    revisited_in: []
+  foreign_key:
+    title: foreign key
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - primary_key
+    revisited_in: []
+  fragmentation:
+    title: fragmentation
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - database_management_system_dbms
+    revisited_in: []
+  graph_database:
+    title: graph database
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - database
+    revisited_in: []
+  hierarchical_model:
+    title: hierarchical model
+    introduced_in: ch03
+    status: source
+    depends_on: []
+    revisited_in: []
+  indexed_sequential_access_method_isam:
+    title: indexed sequential access method (ISAM)
+    introduced_in: ch03
+    status: source
+    depends_on: []
+    revisited_in: []
+  inheritance:
+    title: inheritance
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  logical_view:
+    title: logical view
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  network_model:
+    title: network model
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - hierarchical_model
+    revisited_in: []
+  normalization:
+    title: normalization
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - database
+    revisited_in: []
+  object:
+    title: object
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  object_oriented_databases:
+    title: object-oriented databases
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - object
+    revisited_in: []
+  online_analytical_processing_olap:
+    title: Online analytical processing (OLAP)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - information
+    - business_intelligence_bi
+    revisited_in: []
+  online_transaction_processing_oltp:
+    title: online transaction processing (OLTP)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  physical_view:
+    title: physical view
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  power_bi:
+    title: Power BI
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - business_intelligence_bi
+    revisited_in: []
+  primary_key:
+    title: primary key
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - database
+    revisited_in: []
+  query_by_example_qbe:
+    title: query by example (QBE)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - database
+    - structured_query_language_sql
+    revisited_in: []
+  random_access_file_structure:
+    title: random access file structure
+    introduced_in: ch03
+    status: source
+    depends_on: []
+    revisited_in: []
+  relational_model:
+    title: relational model
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  replication:
+    title: replication
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - database
+    - database_management_system_dbms
+    revisited_in: []
+  sequential_access_file_structure:
+    title: sequential access file structure
+    introduced_in: ch03
+    status: source
+    depends_on: []
+    revisited_in: []
+  structured_query_language_sql:
+    title: Structured Query Language (SQL)
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - server
+    - database
+    - database_management_system_dbms
+    revisited_in: []
+  tableau:
+    title: Tableau
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - business_intelligence_bi
+    revisited_in: []
+  text_mining_analysis:
+    title: Text-mining analysis
+    introduced_in: ch03
+    status: source
+    depends_on:
+    - data
+    - information
+    - process
+    - data_mining_analysis
+    revisited_in: []
+  acceptable_use_policies:
+    title: acceptable use policies
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  accountability:
+    title: accountability
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  business_networking_ethics:
+    title: Business networking ethics
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  cheap_fakes:
+    title: Cheap fakes
+    introduced_in: ch04
+    status: source
+    depends_on:
+    - fake_news
+    revisited_in: []
+  cookies:
+    title: Cookies
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  cybersquatting:
+    title: cybersquatting
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  deepfakes:
+    title: Deepfakes
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  digital_citizenship:
+    title: Digital citizenship
+    introduced_in: ch04
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  digital_divide:
+    title: digital divide
+    introduced_in: ch04
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  disinformation:
+    title: disinformation
+    introduced_in: ch04
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  fake_news:
+    title: Fake news
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  general_data_protection_regulation_gdpr:
+    title: General Data Protection Regulation (GDPR)
+    introduced_in: ch04
+    status: source
+    depends_on:
+    - data
+    revisited_in:
+    - ch10
+  green_computing:
+    title: Green computing
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  intellectual_property:
+    title: Intellectual property
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  log_files:
+    title: Log files
+    introduced_in: ch04
+    status: source
+    depends_on:
+    - server
+    revisited_in: []
+  misinformation:
+    title: Misinformation
+    introduced_in: ch04
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  social_media_networking_ethics:
+    title: Social media networking ethics
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  spam:
+    title: spam
+    introduced_in: ch04
+    status: source
+    depends_on: []
+    revisited_in: []
+  access_controls:
+    title: Access controls
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - data
+    - integrity
+    revisited_in: []
+  adware:
+    title: Adware
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - information
+    - spyware
+    revisited_in: []
+  asymmetric_encryption:
+    title: Asymmetric encryption
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  authentication_tokens:
+    title: Authentication tokens
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  availability:
+    title: Availability
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  backdoor:
+    title: backdoor
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  baiting:
+    title: Baiting
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - phishing
+    revisited_in: []
+  biometric_security_measures:
+    title: Biometric security measures
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  black_hats:
+    title: Black hats
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - data
+    - information
+    revisited_in: []
+  blended_threat:
+    title: blended threat
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  brain_password:
+    title: brain password
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - database
+    - password
+    revisited_in: []
+  business_continuity_planning:
+    title: business continuity planning
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  callback_modem:
+    title: callback modem
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  computer_fraud:
+    title: Computer fraud
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - data
+    - computer
+    revisited_in: []
+  confidentiality:
+    title: Confidentiality
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  cryptojacking:
+    title: Cryptojacking
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - cryptocurrency
+    revisited_in: []
+  denial_of_service_dos_attack:
+    title: denial-of-service (DoS) attack
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - server
+    revisited_in: []
+  dna_identification:
+    title: DNA identification
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  fault_tolerant_systems:
+    title: fault-tolerant systems
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - availability
+    revisited_in: []
+  firewall:
+    title: firewall
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  gray_hats:
+    title: Gray hats
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  integrity:
+    title: Integrity
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  intrusion_detection_system_ids:
+    title: intrusion detection system (IDS)
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - firewall
+    revisited_in: []
+  keystroke_loggers:
+    title: Keystroke loggers
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  logic_bomb:
+    title: logic bomb
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - virus
+    - worm
+    revisited_in: []
+  macro_viruses:
+    title: Macro viruses
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - virus
+    revisited_in: []
+  nonrepudiation:
+    title: nonrepudiation
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  password:
+    title: password
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  pharming:
+    title: Pharming
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - information
+    - phishing
+    revisited_in: []
+  phishing:
+    title: Phishing
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  physical_security_measures:
+    title: Physical security measures
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  pki_public_key_infrastructure:
+    title: PKI (public key infrastructure)
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  quid_pro_quo:
+    title: quid pro quo
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - data
+    - information
+    - baiting
+    revisited_in: []
+  rootkit:
+    title: rootkit
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  script_kiddies:
+    title: Script kiddies
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  secure_sockets_layer_ssl:
+    title: Secure Sockets Layer (SSL)
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  sniffing:
+    title: Sniffing
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  social_engineering:
+    title: social engineering
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  spoofing:
+    title: Spoofing
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  spyware:
+    title: Spyware
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  symmetric_encryption:
+    title: symmetric encryption
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  transport_layer_security_tls:
+    title: Transport Layer Security (TLS)
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - data
+    - integrity
+    revisited_in: []
+  trojan_programs:
+    title: Trojan programs
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  virtual_private_network_vpn:
+    title: virtual private network (VPN)
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  virus:
+    title: virus
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - operating_system_os
+    revisited_in: []
+  white_hats:
+    title: White hats
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - information
+    - computer
+    revisited_in: []
+  worm:
+    title: worm
+    introduced_in: ch05
+    status: source
+    depends_on:
+    - data
+    - computer
+    revisited_in: []
+  zero_login:
+    title: Zero login
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  zero_trust_security:
+    title: Zero trust security
+    introduced_in: ch05
+    status: source
+    depends_on: []
+    revisited_in: []
+  global_information_system_gis:
+    title: global information system (GIS)
+    introduced_in: ch06
+    status: source
+    depends_on:
+    - data
+    - information
+    - geographic_information_system_gis
+    revisited_in: []
+  global_structure:
+    title: global structure
+    introduced_in: ch06
+    status: source
+    depends_on:
+    - information
+    - process
+    revisited_in: []
+  global_supply_chain_management:
+    title: Global supply chain management
+    introduced_in: ch06
+    status: source
+    depends_on:
+    - supply_chain
+    - supply_chain_management_scm
+    revisited_in: []
+  international_structure:
+    title: international structure
+    introduced_in: ch06
+    status: source
+    depends_on:
+    - process
+    revisited_in: []
+  multinational_corporations_mncs:
+    title: multinational corporations (MNCs)
+    introduced_in: ch06
+    status: source
+    depends_on: []
+    revisited_in: []
+  multinational_structure:
+    title: multinational structure
+    introduced_in: ch06
+    status: source
+    depends_on: []
+    revisited_in: []
+  offshore_outsourcing:
+    title: Offshore outsourcing
+    introduced_in: ch06
+    status: source
+    depends_on: []
+    revisited_in: []
+  transborder_data_flow_tdf:
+    title: transborder data flow (TDF)
+    introduced_in: ch06
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  transnational_structure:
+    title: transnational structure
+    introduced_in: ch06
+    status: source
+    depends_on: []
+    revisited_in: []
+  collaboration_system_or_collaboration_so:
+    title: collaboration system or collaboration software
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  collaborative_filtering_cf:
+    title: Collaborative filtering (CF)
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - data
+    - information
+    revisited_in: []
+  collaborative_planning_forecasting_and_r:
+    title: Collaborative planning, forecasting, and replenishment (CPFR)
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - data
+    - supply_chain
+    revisited_in: []
+  communication_software:
+    title: Communication software
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  customer_relationship_management_crm:
+    title: Customer relationship management (CRM)
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  customization:
+    title: Customization
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  document_and_content_management_software:
+    title: Document and content management software
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  e_marketplace:
+    title: e-marketplace
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  electronic_data_interchange_edi:
+    title: Electronic data interchange (EDI)
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - data
+    - information
+    revisited_in: []
+  enterprise_resource_planning_erp:
+    title: Enterprise resource planning (ERP)
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - data
+    - information
+    revisited_in:
+    - ch10
+  enterprise_system:
+    title: enterprise system
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  knowledge_management_km:
+    title: Knowledge management (KM)
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  online_auction:
+    title: online auction
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  personalization:
+    title: Personalization
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - process
+    revisited_in: []
+  pull_technology:
+    title: pull technology
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  push_technology:
+    title: push technology
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - information
+    - server
+    revisited_in: []
+  radio_frequency_identification_rfid:
+    title: radio frequency identification (RFID)
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - object
+    revisited_in: []
+  reverse_auctions:
+    title: reverse auctions
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  supply_chain:
+    title: supply chain
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  supply_chain_management_scm:
+    title: Supply chain management (SCM)
+    introduced_in: ch07
+    status: source
+    depends_on:
+    - process
+    - supply_chain
+    revisited_in: []
+  task_management_software:
+    title: Task management software
+    introduced_in: ch07
+    status: source
+    depends_on: []
+    revisited_in: []
+  choice_phase:
+    title: choice phase
+    introduced_in: ch08
+    status: source
+    depends_on: []
+    revisited_in: []
+  decision_support_system_dss:
+    title: decision support system (DSS)
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - data
+    - information
+    - database
+    - model_base
+    revisited_in:
+    - ch09
+  design_phase:
+    title: design phase
+    introduced_in: ch08
+    status: source
+    depends_on: []
+    revisited_in: []
+  digital_dashboard:
+    title: digital dashboard
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  executive_information_systems_eiss:
+    title: Executive information systems (EISs)
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - data
+    - information
+    - digital_dashboard
+    revisited_in: []
+  geographic_information_system_gis:
+    title: geographic information system (GIS)
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - information
+    - global_information_system_gis
+    revisited_in: []
+  implementation_phase:
+    title: implementation phase
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - choice_phase
+    revisited_in: []
+  intelligence_phase:
+    title: intelligence phase
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - data
+    - information
+    revisited_in: []
+  management_support_systems_msss:
+    title: management support systems (MSSs)
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  managerial_designer:
+    title: managerial designer
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - decision_support_system_dss
+    revisited_in: []
+  model_base:
+    title: model base
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - information
+    - database
+    - decision_support_system_dss
+    revisited_in:
+    - ch09
+  model_builder:
+    title: model builder
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - data
+    - information
+    revisited_in: []
+  semistructured_decisions:
+    title: Semistructured decisions
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  structured_decisions:
+    title: Structured decisions
+    introduced_in: ch08
+    status: source
+    depends_on: []
+    revisited_in: []
+  technical_designer:
+    title: technical designer
+    introduced_in: ch08
+    status: source
+    depends_on:
+    - data
+    - decision_support_system_dss
+    revisited_in: []
+  unstructured_decisions:
+    title: Unstructured decisions
+    introduced_in: ch08
+    status: source
+    depends_on: []
+    revisited_in: []
+  artificial_intelligence_ai:
+    title: Artificial intelligence (AI)
+    introduced_in: ch09
+    status: source
+    depends_on: []
+    revisited_in: []
+  artificial_neural_networks_anns:
+    title: Artificial neural networks (ANNs)
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - spam
+    revisited_in: []
+  augmented_intelligence:
+    title: Augmented intelligence
+    introduced_in: ch09
+    status: source
+    depends_on: []
+    revisited_in: []
+  backward_chaining:
+    title: backward chaining
+    introduced_in: ch09
+    status: source
+    depends_on: []
+    revisited_in: []
+  case_based_reasoning_cbr:
+    title: case-based reasoning (CBR)
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - information
+    - database
+    revisited_in: []
+  expert_systems:
+    title: Expert systems
+    introduced_in: ch09
+    status: source
+    depends_on: []
+    revisited_in: []
+  explanation_facility:
+    title: explanation facility
+    introduced_in: ch09
+    status: source
+    depends_on: []
+    revisited_in: []
+  forward_chaining:
+    title: forward chaining
+    introduced_in: ch09
+    status: source
+    depends_on: []
+    revisited_in: []
+  fuzzy_logic:
+    title: Fuzzy logic
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  genetic_algorithms_gas:
+    title: Genetic algorithms (GAs)
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - process
+    revisited_in: []
+  inference_engine:
+    title: inference engine
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - decision_support_system_dss
+    - model_base
+    - backward_chaining
+    revisited_in: []
+  intelligent_agents:
+    title: Intelligent agents
+    introduced_in: ch09
+    status: source
+    depends_on: []
+    revisited_in: []
+  knowledge_acquisition_facility:
+    title: knowledge acquisition facility
+    introduced_in: ch09
+    status: source
+    depends_on: []
+    revisited_in: []
+  knowledge_base:
+    title: knowledge base
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - database
+    revisited_in: []
+  knowledge_base_management_system_kbms:
+    title: knowledge base management system (KBMS)
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - database_management_system_dbms
+    - knowledge_base
+    revisited_in: []
+  machine_learning:
+    title: Machine learning
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - process
+    revisited_in: []
+  monitoring_and_surveillance_agents:
+    title: Monitoring and surveillance agents
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  natural_language_processing_nlp:
+    title: natural-language processing (NLP)
+    introduced_in: ch09
+    status: source
+    depends_on: []
+    revisited_in: []
+  personal_agents:
+    title: Personal agents
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  robots:
+    title: Robots
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - artificial_intelligence_ai
+    revisited_in: []
+  shopping_and_information_agents:
+    title: Shopping and information agents
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  soft_robot:
+    title: soft robot
+    introduced_in: ch09
+    status: source
+    depends_on:
+    - robots
+    revisited_in: []
+  3d_printing:
+    title: 3D printing
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - process
+    - object
+    revisited_in: []
+  4d_printing:
+    title: 4D printing
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  application_service_providers_asps:
+    title: application service providers (ASPs)
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  augmented_reality_ar:
+    title: Augmented reality (AR)
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - object
+    - virtual_reality_vr
+    revisited_in: []
+  avatar:
+    title: avatar
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - virtual_world
+    revisited_in: []
+  backup_as_a_service_baas:
+    title: backup as a service (BaaS)
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - data
+    - blockchain_as_a_service_baas
+    revisited_in: []
+  blockchain:
+    title: blockchain
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  blockchain_as_a_service_baas:
+    title: Blockchain as a service (BaaS)
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - backup_as_a_service_baas
+    - blockchain
+    revisited_in: []
+  cave_automatic_virtual_environment_cave:
+    title: cave automatic virtual environment (CAVE)
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  cloud_computing:
+    title: Cloud computing
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - data
+    - grid_computing
+    - software_as_a_service_saas
+    revisited_in: []
+  cloud_storage:
+    title: Cloud storage
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  community_cloud:
+    title: community cloud
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  contextual_computing:
+    title: contextual computing
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  cryptocurrency:
+    title: Cryptocurrency
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  data_as_a_service_daas:
+    title: data as a service (DaaS)
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  distributed_cloud_computing:
+    title: Distributed cloud computing
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - data
+    - cloud_computing
+    revisited_in: []
+  edge_computing:
+    title: Edge computing
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - data
+    revisited_in: []
+  egocentric_environment:
+    title: egocentric environment
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - virtual_reality_vr
+    revisited_in: []
+  exocentric_environment:
+    title: exocentric environment
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - data
+    - egocentric_environment
+    - virtual_reality_vr
+    revisited_in: []
+  fungible_tokens:
+    title: Fungible tokens
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - blockchain
+    revisited_in: []
+  grid_computing:
+    title: grid computing
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  hybrid_cloud:
+    title: hybrid cloud
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - private_cloud
+    - public_cloud
+    revisited_in: []
+  implanted_microchips:
+    title: Implanted microchips
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - information
+    revisited_in: []
+  infrastructure_as_a_service_iaas:
+    title: Infrastructure as a service (IaaS)
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - computer
+    - cloud_computing
+    revisited_in: []
+  metaverse:
+    title: metaverse
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - virtual_world
+    revisited_in: []
+  mixed_reality_mr:
+    title: Mixed reality (MR)
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  multicloud:
+    title: Multicloud
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - public_cloud
+    revisited_in: []
+  nanotechnology:
+    title: Nanotechnology
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  non_fungible_token_nft:
+    title: non-fungible token (NFT)
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - blockchain
+    revisited_in: []
+  on_demand_software:
+    title: on-demand software
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  platform_as_a_service_paas:
+    title: Platform as a service (PaaS)
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  private_cloud:
+    title: private cloud
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  public_cloud:
+    title: public cloud
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  qr_quick_response_code:
+    title: QR (quick response) code
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  quantum_computing:
+    title: Quantum computing
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  security_as_a_service_secaas:
+    title: security as a service (SECaaS)
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  semi_fungible_tokens_sfts:
+    title: Semi-fungible tokens (SFTs)
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - fungible_tokens
+    revisited_in: []
+  software_as_a_service:
+    title: Software as a Service
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  software_as_a_service_saas:
+    title: Software as a service (SaaS)
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - application_service_providers_asps
+    - on_demand_software
+    revisited_in: []
+  utility_on_demand_computing:
+    title: Utility (on-demand) computing
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+  virtual_reality_vr:
+    title: Virtual reality (VR)
+    introduced_in: ch10
+    status: source
+    depends_on:
+    - computer
+    revisited_in: []
+  virtual_world:
+    title: virtual world
+    introduced_in: ch10
+    status: source
+    depends_on: []
+    revisited_in: []
+approval_note: '2026-10-12: author accepted the ch10 candidate and directed rework of ch03 and ch05 (''accept
+  it and go live. then fix MIS 3 and 5'').'

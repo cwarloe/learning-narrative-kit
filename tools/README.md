@@ -39,6 +39,13 @@ Render a unit directory to **GitHub Pages** HTML under `docs/<unit_id>/`.
 
 Markdown/YAML remain source of truth; never hand-edit generated HTML under `docs/<unit_id>/`.
 
+**Preview a candidate without publishing it:** `--out DIR` writes `DIR/<unit_id>/` plus copies of `unit.css` and `unit.js`, and swaps the track navigation for a "Candidate preview: not published" banner. It refuses any path under `docs/`.
+
+```bash
+.venv/bin/python tools/render_unit.py workshop/<job>/candidates/<unit_id> --out workshop/<job>/preview
+cd workshop/<job>/preview && python3 -m http.server 8000   # then open /<unit_id>/
+```
+
 Local wrapper: `examples/secplus-ports-helpdesk/build_preview.py` calls this and also writes a gitignored scratch HTML next to the unit.
 
 ## `render_track.py`
@@ -80,3 +87,28 @@ aid, not a gate. Contract and repair pass: `schema/VOICE.md`.
 python3 tools/voice_check.py examples/<unit_id>/narrative.md
 python3 tools/voice_check.py examples/*/narrative.md --summary
 ```
+
+## `author.py`
+
+The authoring workflow's bookkeeping: brief → plan → review → status. It never writes narrative. Brief format: `schema/BRIEF.md`; full workflow with examples: `AGENTS.md` → Authoring workflow.
+
+| Subcommand | What it does | Writes |
+|---|---|---|
+| `brief-check BRIEF` | Required fields, defaults applied, terms per group, definitions that block drafting (bare or `proposed`), conflicting definitions | nothing |
+| `plan BRIEF [--refresh]` | Maps every term to the chapter that introduces it; suggests dependencies (a term whose definition names another term); finds revisits in accepted chapter text; lists gaps (missing or conflicting definitions, forward references, catalog-chapter risk) | `workshop/<id>/plan.yaml`, `plan.md` |
+| `plan-check BRIEF [--chapter chNN]` | Coverage (every term introduced exactly once) and the drafting gate (plan approved, situation filled in, definitions dependable) | nothing |
+| `review UNIT_DIR [--brief B --chapter chNN] [--out FILE]` | One report: validate + voice metrics, plan conformance, heuristic flags, continuity prompts (new names, dated statements, stated figures), an editorial checklist, and what is not measured | report `.md` + marks-stripped `.cover.txt` |
+| `status BRIEF [--init]` | Shows or starts the resumable record: stages, revisions used against the cap, open issues, next action | `workshop/<id>/status.yaml` (on `--init`) |
+
+`--refresh` regenerates the computed parts of a plan (term lists, dependencies, gaps) and keeps everything the author wrote: `approved`, `story`, and each chapter's title, status, situation, notes, and any field the author added.
+
+**How far to trust the heuristics.** All of them were calibrated on twelve accepted chapters (MIS 1–10, ITM Week 7, Excel 3, Power Query):
+
+| Signal | Separates weak chapters? |
+|---|---|
+| Longest exposition run (paragraphs in a row that each introduce a term with no dialogue) ≥ 5 | **Yes.** It flagged exactly MIS 5 and MIS 10, the two chapters already judged to be catalogs by reading them. |
+| Mark clusters (4+ marks in one paragraph) | Partly; MIS 5 had 4. |
+| Inline-gloss share, marks near decisions or dialogue | **No.** Week 7, the strongest chapter, scored 21% on decisions. Kept as context, not as a verdict. |
+| Definition echo | Low counts everywhere; useful for pointing at specific sentences. |
+
+The dependency map is a suggestion, not an analysis: it matches term titles inside definitions, so "data" and "information" dominate, and a dependency the definition doesn't spell out is missed.

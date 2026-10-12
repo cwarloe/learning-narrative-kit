@@ -1,6 +1,6 @@
 ---
 name: new-unit
-description: Author a new learning-narrative unit for this kit — pick the term set, build one forcing situation, and write narrative.md, glossary.yaml, unit.yaml and review.yaml under examples/<unit_id>/. Use when starting a new chapter, lesson, module or exam cluster for the Portland Desk or ITM tracks.
+description: Author a new learning-narrative unit for this kit — pick the term set, build one forcing situation, and write narrative.md, glossary.yaml, unit.yaml and review.yaml under examples/<unit_id>/. Use when starting a new chapter, lesson, module or exam cluster, or drafting a candidate chapter from a brief or course plan.
 argument-hint: "[unit-id]"
 allowed-tools: Read Grep Glob
 ---
@@ -19,6 +19,21 @@ The full contract is `schema/README.md`, and it **wins over anything in this ski
 - ITM — `examples/itm310-vanguard-edge/` as the specimen
 
 Read the contract and the relevant track file before writing. Don't work from what a sibling unit happens to do; the sibling is for file *shapes*.
+
+## Starting from a brief (candidate mode)
+
+If the job has a brief (`briefs/<id>.brief.yaml`), the chapter is a **candidate**: write it in `workshop/<id>/candidates/<unit_id>/`, never directly in `examples/`, and never over an accepted chapter.
+
+1. `.venv/bin/python tools/author.py brief-check briefs/<id>.brief.yaml`. For a course plan, also run `plan-check --chapter chNN`. Don't draft past a failed gate unless the author says to, and if they do, record it in `status.yaml`.
+2. Write the four files (below), taking the situation from the plan.
+3. Review, revise (no more than `max_revisions` times, default 2), validate, and preview:
+   ```bash
+   .venv/bin/python tools/author.py review workshop/<id>/candidates/<unit_id> --brief briefs/<id>.brief.yaml --chapter chNN --out workshop/<id>/reviews/chNN-r1.md
+   .venv/bin/python tools/validate_unit.py workshop/<id>/candidates/<unit_id>
+   .venv/bin/python tools/render_unit.py workshop/<id>/candidates/<unit_id> --out workshop/<id>/preview
+   ```
+4. Do your own editorial pass, in the report under its own heading, separate from the automated results. Cover test, accuracy against each definition, and continuity against the canon and the accepted chapters. The review's continuity list is a prompt for this pass, not a substitute.
+5. Update `status.yaml` and stop. The author accepts, asks for a revision, or rejects. Publishing is `/ship-unit`, and only on their say-so.
 
 ## Build it
 

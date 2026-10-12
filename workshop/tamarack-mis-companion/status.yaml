@@ -1,0 +1,25 @@
+# Resumable record for this job. Update after each stage.
+job: tamarack-mis-companion
+brief: briefs/tamarack-mis-companion.brief.yaml
+updated: '2026-10-12'
+max_revisions: 3
+revisions: 3
+stages:
+- {stage: brief, state: done, note: "brief-check OK; 264 terms in 10 groups (262 before the MIS 3 Big data / Power BI patch; plan refreshed), every definition from the course glossary"}
+- {stage: definitions, state: done, note: "all source; SaaS conflict in mis-10 (two definitions) handled by writing to both; already in unit.yaml source_notes"}
+- {stage: plan, state: done, note: "plan.yaml/plan.md; architecture PROPOSED by the agent from the accepted chapters"}
+- {stage: plan-approved, state: done, note: "2026-10-12: author accepted ch10 and directed rework of ch03 and ch05"}
+- {stage: draft, state: done, note: "ch10 candidate drafted ahead of approval as the demonstration (see open_issues)"}
+- {stage: review, state: done, note: "reviews/ch10-r0-accepted.md (baseline), ch10-r1.md, ch10-r2.md, ch10-r3.md"}
+- {stage: revise, state: done, note: "2 of 2 revisions used, then 3 accuracy/continuity corrections (data mart owner, ASP wording, undated tapes). Cap reached; further changes are the author's call"}
+- {stage: validate, state: done, note: "validate_unit.py PASS: 42/42 marked, 1.79 marks/100w, headings rule clean"}
+- {stage: preview, state: done, note: "render_unit.py --out workshop/tamarack-mis-companion/preview (gitignored); headless Chromium 1280px and 390px: 42 marks, table, 2 scene breaks, no h-scroll, 0 console errors"}
+- {stage: revise-3, state: done, note: "author lifted the cap: 'make the necessary revisions; don't change it just to meet the analytics'. Edge beat rewritten as an exchange; keynote restored; rules 8-9 added to schema/README.md. reviews/ch10-r4.md"}
+- {stage: author-accepts, state: done, note: "2026-10-12: accepted"}
+- {stage: publish, state: done, note: "2026-10-12, on the author's go-ahead: narrative.md copied to examples/mis-10-emerging/ (glossary, review, unit.yaml unchanged), rendered, live check passed"}
+open_issues:
+- "Length: ~2,520 words vs the brief's ~1,800. Kept on purpose: the added length is the earned explanation (author: don't cut to meet a number)."
+- "New names in published ch10: Brenda (ERP sales engineer), a dealer in Omak (accepted with the chapter)."
+- "Canon cast table lacks recurring minor characters (Curtis, Karen, Arlo Nygaard, Jim Sorensen). Add them to examples/TAMARACK.md?"
+- "Plan gaps: 14 forward references (e.g. ch01 'computer literacy' relies on 'database', introduced in ch03); ch03 and ch05 carry the same catalog risk ch10 had."
+next_action: "Rework ch03 (MIS 3) and ch05 (MIS 5) as candidates: plan situations, draft, review, preview, then the author accepts."

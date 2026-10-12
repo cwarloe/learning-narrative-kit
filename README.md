@@ -17,6 +17,8 @@ Interactive glosses (hover, sidebar) and review cards are optional layers for lo
 
 **Start here:** [`AGENTS.md`](AGENTS.md) — full ship checklist, validate/render commands, copy-paste prompt, and links to track canon.
 
+Starting from material instead of a finished chapter (a term list, a whole course glossary, slides, or the next chapter of a track)? Write a brief and follow **Authoring workflow** in `AGENTS.md`. The format is in [`schema/BRIEF.md`](schema/BRIEF.md), and `workshop/tamarack-mis-companion/` is a worked example. Drafts stay in `workshop/` as candidates until the author publishes them.
+
 Authoring contract (density, tiers, tooltips, QA): [`schema/README.md`](schema/README.md).
 
 Portland Desk (Security+) voice and sizing: [`examples/PORTLAND_DESK.md`](examples/PORTLAND_DESK.md).
