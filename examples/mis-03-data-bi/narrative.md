@@ -80,20 +80,32 @@ The trial ran for three weeks. [[data_mining_analysis|Data-mining analysis]] on 
 
 Marcy wanted to act on it. That was the step from BI to [[business_analytics_ba|business analytics]]: not just seeing what happened, but using statistics to decide what to do. She built a test: a mineral coupon in the bag with every T-post order in two stores, none in two others.
 
-Three other decisions got made during the trial, because the warehouse forced them.
+The trial also broke things, which was partly the point of running one.
 
-The stores lost internet a few times a year, usually in winter. Teo proposed a [[distributed_database_management_system_d|distributed database]] so each store kept working on its own server and synced later. The question was how. Full [[replication|replication]] put a copy of everything at every store, which was simple and used a lot of disk. [[fragmentation|Fragmentation]] split the tables, so the Colville server held only Colville's rows. Teo picked [[allocation|allocation]], a mix of the two: each store kept its own customers and transactions plus a copy of the product catalog, which it used constantly.
+The nightly ETL job failed four nights out of the first five, and every failure was the web store. Its vendor ran an [[object_oriented_databases|object-oriented database]], and Dana spent an afternoon on the phone with their support engineer finding out what that meant for her.
 
-The web store's vendor ran an [[object_oriented_databases|object-oriented database]]. In it, a product was an [[object|object]] that held its own data and its own procedures, like how to calculate its shipping weight. Every product came from a [[class|class]] that defined its format and behavior. A propane tank was a new class built from the general product class through [[inheritance|inheritance]], with a few extra attributes for hazmat rules. All of it was bundled together through [[encapsulation|encapsulation]], which was why the vendor could add product photos and spec sheets without touching anything else. It also meant Dana couldn't query it with SQL, and the nightly ETL job had to go through the vendor's export.
+"Why can't I just query it?" she asked. "Select the orders, join the products."
 
-A different vendor pitched a [[graph_database|graph database]] for household relationships, with customers as nodes and "same household" or "same ranch" as edges. It would have solved the Gordon problem properly. It cost more than the mailer.
+"Because there's no products table to join. Each product is an [[object|object]]. It holds its own data and its own procedures, like how to work out its shipping weight." Every product came from a [[class|class]] that defined its format and what it could do. A propane tank was a class of its own, built from the general product class through [[inheritance|inheritance]], with a few extra attributes for the hazmat rules.
 
-Finally, because the warehouse vendor would hold customer names, addresses, and phone numbers, Hank insisted on [[data_encryption|data encryption]] in transit and at rest. The vendor charged extra for it.
+"So the tank knows it's a tank."
+
+"And it knows how heavy it is, and that it can't ship by ground to Alaska. All of that is bundled inside it." That was [[encapsulation|encapsulation]], and it was why the vendor could add photos and spec sheets to every product without touching anything else. It was also why Dana's SQL couldn't reach inside. The ETL would have to go through the vendor's export, which ran at two in the morning, so web orders would reach the warehouse a day late. Marcy said a day late was fine for fencing and not fine for chicks, and they left it there.
+
+The second problem came from Republic, which lost its internet twice in March and couldn't look up a loyalty card either time. Teo wanted a [[distributed_database_management_system_d|distributed database]], with the data stored on servers at the stores so each one could keep working on its own and sync later. He walked Dana through the choices on the same whiteboard. Full [[replication|replication]] put a copy of everything at every store: simple, and a lot of disk for a store that would never look up a customer from Sandpoint. [[fragmentation|Fragmentation]] split the tables so the Colville server held only Colville's rows, which meant Colville couldn't find Gordon if he'd signed up in Kettle Falls.
+
+"Gordon shops in both," Dana said.
+
+"That's why I want [[allocation|allocation]]." Each store would keep its own customers and transactions, plus a copy of the product catalog it used all day. It was the right design. It also meant a server in every store, and when Walt saw that line he put it in the same column as the full warehouse: next fiscal year.
+
+Hank's contribution was one sentence. The warehouse vendor's trial now held every customer's name, address, and phone number, and he wanted [[data_encryption|data encryption]] on all of it, in transit and at rest, so that anyone who got a copy would get ciphertext. The vendor charged extra for it. Hank paid.
 
 * * *
 
 The merge ran on a Saturday. It collapsed 1,940 duplicate cards into 811 customers, including Gordon, who went from four cards to one and was mailed a single apology letter with one coupon.
 
-It also merged Dale Hollister Sr. and Dale Hollister Jr., who ran different operations from the same mailing address and did not speak to each other. Dale Jr. found out when his points balance doubled. Splitting them back apart took Dana most of a day, because the [[data_model|data model]] had no way to say "same address, different customer" and she had to add a field to do it.
+It also merged Dale Hollister Sr. and Dale Hollister Jr., who ran different operations from the same mailing address and did not speak to each other. Dale Jr. found out when his points balance doubled. Splitting them back apart took Dana most of a day, because the [[data_model|data model]] had no way to say "same address, different customer," and she had to add a field to do it.
+
+On Monday the vendor who had pitched a [[graph_database|graph database]] called back to follow up. Dana listened differently this time. In a graph, customers were nodes and the relationships between them were edges, so "same address" and "same customer" would have been two different kinds of line, and the merge would never have confused the Hollisters. It was the right tool for the problem she'd spent Sunday on. It cost more than the mailer. She thanked him and kept the field.
 
 Walt approved the merchandising data mart and declined the full warehouse until next fiscal year. Marcy's mineral-feed test was still running. The spring mailer went out again to the corrected list, two weeks late, after most of the fencing season had started.

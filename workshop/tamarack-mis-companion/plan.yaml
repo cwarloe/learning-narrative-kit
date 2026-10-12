@@ -118,7 +118,7 @@ chapters:
 - id: ch03
   group: mis-03-data-bi
   unit_id: mis-03-data-bi
-  status: revise
+  status: accepted
   title: One Customer, Four Records
   terms_introduced:
   - allocation
@@ -180,13 +180,13 @@ chapters:
     decision: a merchandising data mart now, the warehouse later
     cost: the mailer goes out two weeks late, after fencing season starts
     carries_forward: the data mart (ch08, Excel 11); clean customer data (ch09)
-  notes: 'Revise, don''t rewrite. Scenes 1-2 (Gordon''s four records; Walt''s whiteboard, including the
-    author''s Big data / Power BI paragraphs) stay. The last section (''Three other decisions got made
-    during the trial, because the warehouse forced them'') is a list: distributed DB, object-oriented
-    DB, graph DB, encryption. Rework so each lands on a pressure: the web store''s object database breaks
-    the nightly ETL; Teo designs the distributed database for winter outages but it isn''t funded (continuity:
-    MIS 10 still needs edge servers in July); the graph-database pitch arrives after the Hollister merge
-    mistake, when it would have prevented it.'
+  notes: 'Published 2026-10-12 from the candidate (targeted revision). Revise, don''t rewrite. Scenes
+    1-2 (Gordon''s four records; Walt''s whiteboard, including the author''s Big data / Power BI paragraphs)
+    stay. The last section (''Three other decisions got made during the trial, because the warehouse forced
+    them'') is a list: distributed DB, object-oriented DB, graph DB, encryption. Rework so each lands
+    on a pressure: the web store''s object database breaks the nightly ETL; Teo designs the distributed
+    database for winter outages but it isn''t funded (continuity: MIS 10 still needs edge servers in July);
+    the graph-database pitch arrives after the Hollister merge mistake, when it would have prevented it.'
   risks:
   - 'catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split'
   - 1 term(s) here depend on terms introduced later (see gaps.forward_references)
@@ -232,7 +232,7 @@ chapters:
 - id: ch05
   group: mis-05-security
   unit_id: mis-05-security
-  status: revise
+  status: accepted
   title: The Invoice That Changed Its Bank
   terms_introduced:
   - access_controls
@@ -298,11 +298,11 @@ chapters:
     decision: MFA tokens, a callback rule, a locked closet
     cost: Hank hates the token every morning
     carries_forward: Hank will buy anything labeled security (ch10)
-  notes: 'Revise, don''t rewrite. The phishing open, laptop forensics, and CIA memo stay. The pen-test
-    findings (ten in a row) become the report the characters read, as a table artifact; the prose stays
-    on the findings that change a decision (backdoor, cryptojacking, the Chewelah manager). PKI / symmetric
-    / asymmetric / nonrepudiation was a Teo lecture: make it Hank''s question (he was the victim), per
-    schema/README.md rule 8.'
+  notes: 'Published 2026-10-12 from the candidate (targeted revision). Revise, don''t rewrite. The phishing
+    open, laptop forensics, and CIA memo stay. The pen-test findings (ten in a row) become the report
+    the characters read, as a table artifact; the prose stays on the findings that change a decision (backdoor,
+    cryptojacking, the Chewelah manager). PKI / symmetric / asymmetric / nonrepudiation was a Teo lecture:
+    make it Hank''s question (he was the victim), per schema/README.md rule 8.'
   risks:
   - 'catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split'
   - 1 term(s) here depend on terms introduced later (see gaps.forward_references)
@@ -947,8 +947,7 @@ terms:
     - arithmetic_logic_unit_alu
     - computer
     - control_unit
-    revisited_in:
-    - ch05
+    revisited_in: []
   computer:
     title: computer
     introduced_in: ch02
@@ -1267,6 +1266,7 @@ terms:
     - ch07
     - ch08
     - ch09
+    - ch10
   database_administrator_dba:
     title: database administrator (DBA)
     introduced_in: ch03

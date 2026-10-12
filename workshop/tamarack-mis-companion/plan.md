@@ -19,9 +19,9 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 |---|---|---|---|---|---|---|
 | ch01 | mis-01-information-systems | accepted | The Count That Didn't Match | 11 | 0 | 6 term(s) here depend on terms introduced later (see gaps.forward_references) |
 | ch02 | mis-02-computers | accepted | The Server in the Feed Room | 29 | 2 | 3 term(s) here depend on terms introduced later (see gaps.forward_references) |
-| ch03 | mis-03-data-bi | revise | One Customer, Four Records | 47 | 4 | catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
+| ch03 | mis-03-data-bi | accepted | One Customer, Four Records | 47 | 4 | catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
 | ch04 | mis-04-ethics-legal | accepted | The Video From the Kettle Falls Lot | 18 | 3 |  |
-| ch05 | mis-05-security | revise | The Invoice That Changed Its Bank | 49 | 6 | catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
+| ch05 | mis-05-security | accepted | The Invoice That Changed Its Bank | 49 | 6 | catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
 | ch06 | mis-06-global | accepted | The Rep Who Couldn't Say Yes | 9 | 3 | 3 term(s) here depend on terms introduced later (see gaps.forward_references) |
 | ch07 | mis-07-enterprise | accepted | Chick Days | 21 | 5 |  |
 | ch08 | mis-08-decisions | accepted | Where the Twelfth Store Goes | 16 | 4 |  |
@@ -54,7 +54,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 - **Decision:** a merchandising data mart now, the warehouse later
 - **Cost:** the mailer goes out two weeks late, after fencing season starts
 - **Carries forward:** the data mart (ch08, Excel 11); clean customer data (ch09)
-- **Notes:** Revise, don't rewrite. Scenes 1-2 (Gordon's four records; Walt's whiteboard, including the author's Big data / Power BI paragraphs) stay. The last section ('Three other decisions got made during the trial, because the warehouse forced them') is a list: distributed DB, object-oriented DB, graph DB, encryption. Rework so each lands on a pressure: the web store's object database breaks the nightly ETL; Teo designs the distributed database for winter outages but it isn't funded (continuity: MIS 10 still needs edge servers in July); the graph-database pitch arrives after the Hollister merge mistake, when it would have prevented it.
+- **Notes:** Published 2026-10-12 from the candidate (targeted revision). Revise, don't rewrite. Scenes 1-2 (Gordon's four records; Walt's whiteboard, including the author's Big data / Power BI paragraphs) stay. The last section ('Three other decisions got made during the trial, because the warehouse forced them') is a list: distributed DB, object-oriented DB, graph DB, encryption. Rework so each lands on a pressure: the web store's object database breaks the nightly ETL; Teo designs the distributed database for winter outages but it isn't funded (continuity: MIS 10 still needs edge servers in July); the graph-database pitch arrives after the Hollister merge mistake, when it would have prevented it.
 
 ### ch04 · The Video From the Kettle Falls Lot
 
@@ -73,7 +73,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 - **Decision:** MFA tokens, a callback rule, a locked closet
 - **Cost:** Hank hates the token every morning
 - **Carries forward:** Hank will buy anything labeled security (ch10)
-- **Notes:** Revise, don't rewrite. The phishing open, laptop forensics, and CIA memo stay. The pen-test findings (ten in a row) become the report the characters read, as a table artifact; the prose stays on the findings that change a decision (backdoor, cryptojacking, the Chewelah manager). PKI / symmetric / asymmetric / nonrepudiation was a Teo lecture: make it Hank's question (he was the victim), per schema/README.md rule 8.
+- **Notes:** Published 2026-10-12 from the candidate (targeted revision). Revise, don't rewrite. The phishing open, laptop forensics, and CIA memo stay. The pen-test findings (ten in a row) become the report the characters read, as a table artifact; the prose stays on the findings that change a decision (backdoor, cryptojacking, the Chewelah manager). PKI / symmetric / asymmetric / nonrepudiation was a Teo lecture: make it Hank's question (he was the victim), per schema/README.md rule 8.
 
 ### ch06 · The Rep Who Couldn't Say Yes
 
@@ -164,7 +164,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 | Assembly language | ch02 | data, computer, machine_language |  |
 | bus | ch02 | computer |  |
 | cache RAM | ch02 | random_access_memory_ram |  |
-| central processing unit (CPU) | ch02 | arithmetic_logic_unit_alu, computer, control_unit | ch05 |
+| central processing unit (CPU) | ch02 | arithmetic_logic_unit_alu, computer, control_unit |  |
 | computer | ch02 | data, information | ch04, ch05, ch07, ch10 |
 | control unit | ch02 | computer |  |
 | CPU case | ch02 | central_processing_unit_cpu, computer |  |
@@ -204,7 +204,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 | data-driven Web site | ch03 | data, database |  |
 | Data-mining agents | ch03 | data, information, data_warehouse |  |
 | Data-mining analysis | ch03 | data |  |
-| database | ch03 | data | ch06, ch07, ch08, ch09 |
+| database | ch03 | data | ch06, ch07, ch08, ch09, ch10 |
 | database administrator (DBA) | ch03 | database |  |
 | database management system (DBMS) | ch03 | database | ch09 |
 | database marketing | ch03 | database |  |
