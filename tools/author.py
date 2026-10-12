@@ -706,7 +706,11 @@ def cmd_review(args) -> int:
     # 3. Continuity
     out += ["## 3. Continuity (for the author to confirm)", ""]
     if canon or manifest:
-        known = known_names(canon, meta.get("unit_id"), manifest)
+        # A revision of an accepted chapter may reuse that chapter's names; only exclude the unit's own
+        # text when reviewing the accepted version itself.
+        own = KIT / "examples" / str(meta.get("unit_id", "")) / "narrative.md"
+        reviewing_accepted = own.is_file() and own.resolve() == narr_path.resolve()
+        known = known_names(canon, meta.get("unit_id") if reviewing_accepted else None, manifest)
         text = cover_strip("\n\n".join(prose_paras))
         unmarked = MARK_RE.sub("term", "\n\n".join(prose_paras))  # term names aren't characters
         found = OrderedDict()

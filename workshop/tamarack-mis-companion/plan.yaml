@@ -180,10 +180,17 @@ chapters:
     decision: a merchandising data mart now, the warehouse later
     cost: the mailer goes out two weeks late, after fencing season starts
     carries_forward: the data mart (ch08, Excel 11); clean customer data (ch09)
-  notes: Catalog-chapter risk (see risks). Candidate for the same two-scene rework after ch10; not started.
+  notes: 'Revise, don''t rewrite. Scenes 1-2 (Gordon''s four records; Walt''s whiteboard, including the
+    author''s Big data / Power BI paragraphs) stay. The last section (''Three other decisions got made
+    during the trial, because the warehouse forced them'') is a list: distributed DB, object-oriented
+    DB, graph DB, encryption. Rework so each lands on a pressure: the web store''s object database breaks
+    the nightly ETL; Teo designs the distributed database for winter outages but it isn''t funded (continuity:
+    MIS 10 still needs edge servers in July); the graph-database pitch arrives after the Hollister merge
+    mistake, when it would have prevented it.'
   risks:
   - 'catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split'
   - 1 term(s) here depend on terms introduced later (see gaps.forward_references)
+  candidate: workshop/tamarack-mis-companion/candidates/mis-03-data-bi
 - id: ch04
   group: mis-04-ethics-legal
   unit_id: mis-04-ethics-legal
@@ -291,10 +298,15 @@ chapters:
     decision: MFA tokens, a callback rule, a locked closet
     cost: Hank hates the token every morning
     carries_forward: Hank will buy anything labeled security (ch10)
-  notes: Catalog-chapter risk (see risks). Candidate for the same two-scene rework after ch10; not started.
+  notes: 'Revise, don''t rewrite. The phishing open, laptop forensics, and CIA memo stay. The pen-test
+    findings (ten in a row) become the report the characters read, as a table artifact; the prose stays
+    on the findings that change a decision (backdoor, cryptojacking, the Chewelah manager). PKI / symmetric
+    / asymmetric / nonrepudiation was a Teo lecture: make it Hank''s question (he was the victim), per
+    schema/README.md rule 8.'
   risks:
   - 'catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split'
   - 1 term(s) here depend on terms introduced later (see gaps.forward_references)
+  candidate: workshop/tamarack-mis-companion/candidates/mis-05-security
 - id: ch06
   group: mis-06-global
   unit_id: mis-06-global

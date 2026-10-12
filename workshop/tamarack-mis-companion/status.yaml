@@ -17,9 +17,12 @@ stages:
 - {stage: revise-3, state: done, note: "author lifted the cap: 'make the necessary revisions; don't change it just to meet the analytics'. Edge beat rewritten as an exchange; keynote restored; rules 8-9 added to schema/README.md. reviews/ch10-r4.md"}
 - {stage: author-accepts, state: done, note: "2026-10-12: accepted"}
 - {stage: publish, state: done, note: "2026-10-12, on the author's go-ahead: narrative.md copied to examples/mis-10-emerging/ (glossary, review, unit.yaml unchanged), rendered, live check passed"}
+- {stage: ch03-ch05-revise, state: done, note: "candidates/mis-03-data-bi and mis-05-security: targeted revisions (last section of MIS 3; pen-test findings and PKI in MIS 5). Validate PASS; previews clean at 1280 and 390px. reviews/ch03-r1.md, ch05-r1.md (r0 = accepted baselines)"}
+- {stage: ch03-ch05-accept, state: todo, note: "author accepts, revises, or rejects; publishing needs the go-ahead"}
 open_issues:
-- "Length: ~2,520 words vs the brief's ~1,800. Kept on purpose: the added length is the earned explanation (author: don't cut to meet a number)."
+- "ch10 (published) runs ~2,520 words vs the brief's ~1,800, kept on purpose: the added length is the earned explanation."
 - "New names in published ch10: Brenda (ERP sales engineer), a dealer in Omak (accepted with the chapter)."
 - "Canon cast table lacks recurring minor characters (Curtis, Karen, Arlo Nygaard, Jim Sorensen). Add them to examples/TAMARACK.md?"
-- "Plan gaps: 14 forward references (e.g. ch01 'computer literacy' relies on 'database', introduced in ch03); ch03 and ch05 carry the same catalog risk ch10 had."
-next_action: "Rework ch03 (MIS 3) and ch05 (MIS 5) as candidates: plan situations, draft, review, preview, then the author accepts."
+- "Plan gaps: 14 forward references (e.g. ch01 'computer literacy' relies on 'database', introduced in ch03). Catalog risk in ch03 and ch05 addressed by the current candidates."
+- "Canon: Deer Park is both a Tamarack store (Excel 5, MIS 5) and the town of Linda Ostby's Grange Supply (MIS 1, Week 7). Add a store list to examples/TAMARACK.md?"
+next_action: "Author: read reviews/ch03-r1.md and ch05-r1.md (or the previews), then accept or send back. On acceptance, copy each candidate narrative.md into examples/ and ship."

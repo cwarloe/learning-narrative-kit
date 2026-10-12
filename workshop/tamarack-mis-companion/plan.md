@@ -54,7 +54,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 - **Decision:** a merchandising data mart now, the warehouse later
 - **Cost:** the mailer goes out two weeks late, after fencing season starts
 - **Carries forward:** the data mart (ch08, Excel 11); clean customer data (ch09)
-- **Notes:** Catalog-chapter risk (see risks). Candidate for the same two-scene rework after ch10; not started.
+- **Notes:** Revise, don't rewrite. Scenes 1-2 (Gordon's four records; Walt's whiteboard, including the author's Big data / Power BI paragraphs) stay. The last section ('Three other decisions got made during the trial, because the warehouse forced them') is a list: distributed DB, object-oriented DB, graph DB, encryption. Rework so each lands on a pressure: the web store's object database breaks the nightly ETL; Teo designs the distributed database for winter outages but it isn't funded (continuity: MIS 10 still needs edge servers in July); the graph-database pitch arrives after the Hollister merge mistake, when it would have prevented it.
 
 ### ch04 · The Video From the Kettle Falls Lot
 
@@ -73,7 +73,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 - **Decision:** MFA tokens, a callback rule, a locked closet
 - **Cost:** Hank hates the token every morning
 - **Carries forward:** Hank will buy anything labeled security (ch10)
-- **Notes:** Catalog-chapter risk (see risks). Candidate for the same two-scene rework after ch10; not started.
+- **Notes:** Revise, don't rewrite. The phishing open, laptop forensics, and CIA memo stay. The pen-test findings (ten in a row) become the report the characters read, as a table artifact; the prose stays on the findings that change a decision (backdoor, cryptojacking, the Chewelah manager). PKI / symmetric / asymmetric / nonrepudiation was a Teo lecture: make it Hank's question (he was the victim), per schema/README.md rule 8.
 
 ### ch06 · The Rep Who Couldn't Say Yes
 
