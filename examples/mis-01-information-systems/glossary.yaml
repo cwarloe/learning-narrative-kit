@@ -29,12 +29,14 @@ terms:
 - id: information_literacy
   title: "Information literacy"
   definition: "Information literacy is understanding the role of information in generating and using business intelligence."
+  context: "Business intelligence is a Module 3 term; it's defined in MIS 3, One Customer, Four Records."
   tags:
   - mod-01
   tier: exam
 - id: information_technologies
   title: "information technologies"
   definition: "Information technologies support information systems and use the Internet, computer networks, database systems, POS systems, and RFID tags."
+  context: "RFID tags are a Module 7 term; they're defined in MIS 7, Chick Days."
   tags:
   - mod-01
   tier: exam

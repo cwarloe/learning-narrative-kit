@@ -373,6 +373,11 @@ def build_plan(b: Brief, terms: list[dict], previous: dict | None) -> dict:
                 ch = chapters[here]
                 if d not in ch["builds_on"]:
                     ch["builds_on"].append(d)
+    resolved = (previous or {}).get("forward_references_resolved") or {}
+    for f in forward:
+        note = resolved.get(f"{f['term']}>{f['needs']}")
+        if note:
+            f["resolved"] = note
     dependents = {k: 0 for k in term_map}
     for info in term_map.values():
         for d in info["depends_on"]:
@@ -382,9 +387,9 @@ def build_plan(b: Brief, terms: list[dict], previous: dict | None) -> dict:
         if n > b.raw["scope"]["terms_per_chapter_max"]:
             c["risks"].append(f"catalog-chapter risk: {n} terms (max {b.raw['scope']['terms_per_chapter_max']}); "
                               "plan two scenes with different stakes, or split")
-        fw = [f for f in forward if f["chapter"] == c["id"]]
+        fw = [f for f in forward if f["chapter"] == c["id"] and not f.get("resolved")]
         if fw:
-            c["risks"].append(f"{len(fw)} term(s) here depend on terms introduced later (see gaps.forward_references)")
+            c["risks"].append(f"{len(fw)} unresolved forward reference(s) (see gaps.forward_references)")
     rep = definition_report(terms)
     gaps = {
         "needs_definition": rep["needs_definition"],
@@ -453,9 +458,12 @@ def plan_markdown(plan: dict) -> str:
     L.append(f"- **Conflicting definitions:** " + ("; ".join(f"{c['term']} ({', '.join(c['in'])})" for c in g["conflicting_definitions"]) or "none"))
     L.append(f"- **Same definition, different terms:** " + ("; ".join(", ".join(x["terms"]) for x in g["same_definition_different_terms"]) or "none"))
     fw = g["forward_references"]
-    L.append(f"- **Forward references** (a term's definition relies on a term introduced later): {len(fw)}")
-    for f in fw[:40]:
-        L.append(f"  - {f['term']} ({f['chapter']}) needs {f['needs']} (introduced in {f['introduced_later_in']})")
+    open_fw = [f for f in fw if not f.get("resolved")]
+    L.append(f"- **Forward references** (a term's definition relies on a term introduced later): {len(fw)}, "
+             f"{len(open_fw)} open. Record a decision in plan.yaml under forward_references_resolved, keyed \"term>needs\".")
+    for f in fw[:60]:
+        status = f"resolved: {f['resolved']}" if f.get("resolved") else "OPEN"
+        L.append(f"  - {f['term']} ({f['chapter']}) needs {f['needs']} (introduced in {f['introduced_later_in']}): {status}")
     nr = g["never_revisited"]
     if isinstance(nr, list):
         L.append(f"- **Introduced once, never revisited or built on:** {len(nr)} of {s['terms']} terms (not a defect by itself; a list to draw on when planning callbacks)")
@@ -491,7 +499,8 @@ def cmd_plan(args) -> int:
     s = plan["summary"]
     print(f"Wrote {rel(plan_path)} and plan.md: {s['chapters']} chapters, {s['terms']} terms, "
           f"{s['suggested_dependencies']} suggested dependencies, "
-          f"{len(plan['gaps']['forward_references'])} forward references")
+          f"{len(plan['gaps']['forward_references'])} forward references "
+          f"({sum(1 for f in plan['gaps']['forward_references'] if not f.get('resolved'))} open)")
     return 0
 
 
@@ -519,6 +528,9 @@ def cmd_plan_check(args) -> int:
         problems.append("introduced in more than one chapter: " + ", ".join(f"{k} {v}" for k, v in twice.items()))
     if unknown:
         problems.append(f"chapter lists terms not in the inputs: {', '.join(unknown)}")
+    open_fw = [f for f in (plan.get("gaps") or {}).get("forward_references") or [] if not f.get("resolved")]
+    if open_fw:
+        notes.append(f"{len(open_fw)} forward reference(s) without a recorded decision (plan.md → Gaps)")
     story_todo = [k for k, v in (plan.get("story") or {}).items() if v == TODO]
     if story_todo:
         notes.append(f"story fields still TODO: {', '.join(story_todo)}")

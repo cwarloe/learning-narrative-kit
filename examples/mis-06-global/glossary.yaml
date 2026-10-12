@@ -5,6 +5,7 @@ terms:
 - id: global_information_system_gis
   title: "global information system (GIS)"
   definition: "A global information system (GIS) works across national borders, facilitates communication between headquarters and subsidiaries in other countries, and incorporates all the technologies and applications found in a typical information system to gather, store, manipulate, and transmit data across cultural and geographic boundaries."
+  context: "Not the same GIS as the geographic information system in MIS 8. The course abbreviates both as GIS."
   tags:
   - mod-06
   tier: exam

@@ -17,12 +17,12 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 
 | # | Group | Status | Title | Terms | Builds on | Risks |
 |---|---|---|---|---|---|---|
-| ch01 | mis-01-information-systems | accepted | The Count That Didn't Match | 11 | 0 | 6 term(s) here depend on terms introduced later (see gaps.forward_references) |
-| ch02 | mis-02-computers | accepted | The Server in the Feed Room | 29 | 2 | 3 term(s) here depend on terms introduced later (see gaps.forward_references) |
-| ch03 | mis-03-data-bi | accepted | One Customer, Four Records | 47 | 4 | catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
+| ch01 | mis-01-information-systems | accepted | The Count That Didn't Match | 11 | 0 |  |
+| ch02 | mis-02-computers | accepted | The Server in the Feed Room | 29 | 2 |  |
+| ch03 | mis-03-data-bi | accepted | One Customer, Four Records | 47 | 4 | catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split |
 | ch04 | mis-04-ethics-legal | accepted | The Video From the Kettle Falls Lot | 18 | 3 |  |
-| ch05 | mis-05-security | accepted | The Invoice That Changed Its Bank | 49 | 6 | catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
-| ch06 | mis-06-global | accepted | The Rep Who Couldn't Say Yes | 9 | 3 | 3 term(s) here depend on terms introduced later (see gaps.forward_references) |
+| ch05 | mis-05-security | accepted | The Invoice That Changed Its Bank | 49 | 6 | catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split |
+| ch06 | mis-06-global | accepted | The Rep Who Couldn't Say Yes | 9 | 3 |  |
 | ch07 | mis-07-enterprise | accepted | Chick Days | 21 | 5 |  |
 | ch08 | mis-08-decisions | accepted | Where the Twelfth Store Goes | 16 | 4 |  |
 | ch09 | mis-09-ai | accepted | The Counter Assistant | 22 | 8 |  |
@@ -127,21 +127,21 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 - **Proposed definitions awaiting approval:** none
 - **Conflicting definitions:** Software as a Service (software_as_a_service, software_as_a_service_saas)
 - **Same definition, different terms:** on_demand_software, software_as_a_service
-- **Forward references** (a term's definition relies on a term introduced later): 14
-  - computer_literacy (ch01) needs computer (introduced in ch02)
-  - computer_literacy (ch01) needs database (introduced in ch03)
-  - information_literacy (ch01) needs business_intelligence_bi (introduced in ch03)
-  - information_technologies (ch01) needs computer (introduced in ch02)
-  - information_technologies (ch01) needs database (introduced in ch03)
-  - information_technologies (ch01) needs radio_frequency_identification_rfid (introduced in ch07)
-  - fifth_generation_languages_5gls (ch02) needs artificial_intelligence_ai (introduced in ch09)
-  - fifth_generation_languages_5gls (ch02) needs natural_language_processing_nlp (introduced in ch09)
-  - object_oriented_programming_oop (ch02) needs object (introduced in ch03)
-  - data_model (ch03) needs integrity (introduced in ch05)
-  - cryptojacking (ch05) needs cryptocurrency (introduced in ch10)
-  - global_information_system_gis (ch06) needs geographic_information_system_gis (introduced in ch08)
-  - global_supply_chain_management (ch06) needs supply_chain (introduced in ch07)
-  - global_supply_chain_management (ch06) needs supply_chain_management_scm (introduced in ch07)
+- **Forward references** (a term's definition relies on a term introduced later): 14, 0 open. Record a decision in plan.yaml under forward_references_resolved, keyed "term>needs".
+  - computer_literacy (ch01) needs computer (introduced in ch02): resolved: No change: everyday word in Module 1; formally defined in MIS 2.
+  - computer_literacy (ch01) needs database (introduced in ch03): resolved: No change: everyday word in Module 1; formally defined in MIS 3.
+  - information_literacy (ch01) needs business_intelligence_bi (introduced in ch03): resolved: Tooltip context points to MIS 3, where business intelligence is defined.
+  - information_technologies (ch01) needs computer (introduced in ch02): resolved: No change: everyday word in Module 1; formally defined in MIS 2.
+  - information_technologies (ch01) needs database (introduced in ch03): resolved: No change: everyday word in Module 1; formally defined in MIS 3.
+  - information_technologies (ch01) needs radio_frequency_identification_rfid (introduced in ch07): resolved: Tooltip context points to MIS 7, where RFID is defined.
+  - fifth_generation_languages_5gls (ch02) needs artificial_intelligence_ai (introduced in ch09): resolved: Tooltip context points to MIS 9, where AI and natural language processing are defined.
+  - fifth_generation_languages_5gls (ch02) needs natural_language_processing_nlp (introduced in ch09): resolved: Tooltip context points to MIS 9, where AI and natural language processing are defined.
+  - object_oriented_programming_oop (ch02) needs object (introduced in ch03): resolved: No change: MIS 2's story explains objects where it uses them (Customer, Tank, Delivery, Invoice, each with its own data and actions).
+  - data_model (ch03) needs integrity (introduced in ch05): resolved: No change: 'integrity rules' is the same sense as the course's integrity (accuracy); MIS 3 shows it through the data dictionary's validation rules.
+  - cryptojacking (ch05) needs cryptocurrency (introduced in ch10): resolved: Story fix in MIS 5: Walt asks 'Mining what?' and Teo explains in two lines.
+  - global_information_system_gis (ch06) needs geographic_information_system_gis (introduced in ch08): resolved: Tooltip context on both GIS entries (MIS 6 and MIS 8): the course abbreviates two different terms as GIS.
+  - global_supply_chain_management (ch06) needs supply_chain (introduced in ch07): resolved: No change: MIS 6 shows the supply chain concretely (wire drawing in Vietnam, galvanizing in Saskatchewan, the rail yard in Spokane).
+  - global_supply_chain_management (ch06) needs supply_chain_management_scm (introduced in ch07): resolved: No change: same passage; supply chain management is defined in MIS 7.
 - **Introduced once, never revisited or built on:** 195 of 264 terms (not a defect by itself; a list to draw on when planning callbacks)
 
 ## Term map
