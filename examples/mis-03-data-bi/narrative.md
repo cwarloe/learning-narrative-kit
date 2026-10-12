@@ -68,7 +68,11 @@ On the right she drew the [[data_warehouse|data warehouse]], one place where all
 
 Then [[online_analytical_processing_olap|OLAP]], which would let Marcy turn the data like a cube: fencing sales by store, by month, by product line, without writing a new report each time. Then a visualization tool. Teo had a trial of [[tableau|Tableau]] and had already built a map of feed sales by ZIP code that Walt liked so much he asked for a printout.
 
+Hank had come in for the coffee and stayed for the whiteboard. He asked why they weren't looking at [[power_bi|Power BI]] instead. His store P&Ls lived in spreadsheets, the registers exported text files every night, and the loyalty data sat in the DBMS. Power BI was a platform for analyzing and visualizing data from different sources in different formats, which, he pointed out, described Tamarack's entire situation. Dana agreed that it did. She also said that whichever tool they picked, somebody would have to build the reports and keep them working, and that somebody would be her, in the same weeks she was cleaning up Gordon. They left Power BI on the list. Teo's Tableau trial had nineteen days left on it, and Hank went back to his spreadsheets.
+
 Ruth asked about the comment cards. Every store had a box of them, plus the web reviews. Dana suggested a [[data_lake|data lake]], a cheaper bucket that kept data in its raw form, structured or not, so they could ask questions of it later. [[text_mining_analysis|Text-mining analysis]] could pull themes out of thousands of comments. The free trial had already found that "propane" and "wait" showed up together a lot.
+
+The text-mining vendor also had a [[big_data|big data]] platform to sell, and Ruth had brought back the brochure. Its first page explained the term: data so voluminous that conventional computing methods can't process and manage it efficiently. Dana pulled up the size of everything Tamarack owned. Every register sale since the current system went in, the loyalty tables, the web orders, and a scanned box of comment cards fit on the one server in the back room with space left over. The trouble with Gordon had never been volume. Ordinary tools could handle every byte of it, and the cards were still a mess. Ruth kept the brochure in her desk anyway, in case the web store took off.
 
 ## What Three Weeks Turned Up
 

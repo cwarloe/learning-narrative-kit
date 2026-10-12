@@ -8,6 +8,12 @@ terms:
   tags:
   - mod-03
   tier: exam
+- id: big_data
+  title: "Big data"
+  definition: "Big data is data so voluminous that conventional computing methods are not able to efficiently process and manage it."
+  tags:
+  - mod-03
+  tier: exam
 - id: business_analytics_ba
   title: "Business analytics (BA)"
   definition: "Business analytics (BA) uses data and statistical methods to gain insight into the data and provide decision makers with information they can act on."
@@ -215,6 +221,12 @@ terms:
 - id: physical_view
   title: "physical view"
   definition: "The physical view involves how data is stored on and retrieved from storage media, such as hard disks or magnetic tapes."
+  tags:
+  - mod-03
+  tier: exam
+- id: power_bi
+  title: "Power BI"
+  definition: "Power BI is a platform that allows a user to analyze and visualize data from different sources with different formats."
   tags:
   - mod-03
   tier: exam

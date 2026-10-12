@@ -6,6 +6,12 @@ cards:
   tags:
   - mod-03
   tier: exam
+- id: big_data
+  prompt: "Big data"
+  answer: "Big data is data so voluminous that conventional computing methods are not able to efficiently process and manage it."
+  tags:
+  - mod-03
+  tier: exam
 - id: business_analytics_ba
   prompt: "Business analytics (BA)"
   answer: "Business analytics (BA) uses data and statistical methods to gain insight into the data and provide decision makers with information they can act on."
@@ -213,6 +219,12 @@ cards:
 - id: physical_view
   prompt: "physical view"
   answer: "The physical view involves how data is stored on and retrieved from storage media, such as hard disks or magnetic tapes."
+  tags:
+  - mod-03
+  tier: exam
+- id: power_bi
+  prompt: "Power BI"
+  answer: "Power BI is a platform that allows a user to analyze and visualize data from different sources with different formats."
   tags:
   - mod-03
   tier: exam
