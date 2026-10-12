@@ -65,6 +65,7 @@ terms:
 - id: fifth_generation_languages_5gls
   title: "Fifth-generation languages (5GLs)"
   definition: "Fifth-generation languages (5GLs) use some artificial intelligence technologies, such as knowledge-based systems, natural language processing (NLP), visual programming, and a graphical approach to programming. These languages are designed to facilitate natural conversations between you and the computer."
+  context: "Artificial intelligence and natural language processing are Module 9 terms; they're defined in MIS 9, The Counter Assistant."
   tags:
   - mod-02
   tier: exam

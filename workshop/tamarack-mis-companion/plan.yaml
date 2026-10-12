@@ -65,8 +65,7 @@ chapters:
     cost: Curtis will believe the screen only after three months of matching
     carries_forward: the pilot needs servers that stay up (ch02)
   notes: ''
-  risks:
-  - 6 term(s) here depend on terms introduced later (see gaps.forward_references)
+  risks: []
 - id: ch02
   group: mis-02-computers
   unit_id: mis-02-computers
@@ -113,8 +112,7 @@ chapters:
     cost: the rewrite slips a year; the predecessor's alert addresses are everywhere
     carries_forward: the feed-room closet and its NAS (ch05, ch10)
   notes: ''
-  risks:
-  - 3 term(s) here depend on terms introduced later (see gaps.forward_references)
+  risks: []
 - id: ch03
   group: mis-03-data-bi
   unit_id: mis-03-data-bi
@@ -189,7 +187,6 @@ chapters:
     the graph-database pitch arrives after the Hollister merge mistake, when it would have prevented it.'
   risks:
   - 'catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split'
-  - 1 term(s) here depend on terms introduced later (see gaps.forward_references)
   candidate: workshop/tamarack-mis-companion/candidates/mis-03-data-bi
 - id: ch04
   group: mis-04-ethics-legal
@@ -305,7 +302,6 @@ chapters:
     make it Hank''s question (he was the victim), per schema/README.md rule 8.'
   risks:
   - 'catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split'
-  - 1 term(s) here depend on terms introduced later (see gaps.forward_references)
   candidate: workshop/tamarack-mis-companion/candidates/mis-05-security
 - id: ch06
   group: mis-06-global
@@ -334,8 +330,7 @@ chapters:
     cost: the rep can no longer say yes on the phone
     carries_forward: the feed co-op folder (ch10 community cloud; ITM Week 7 buying group)
   notes: ''
-  risks:
-  - 3 term(s) here depend on terms introduced later (see gaps.forward_references)
+  risks: []
 - id: ch07
   group: mis-07-enterprise
   unit_id: mis-07-enterprise
@@ -549,58 +544,76 @@ gaps:
     chapter: ch01
     needs: computer
     introduced_later_in: ch02
+    resolved: 'No change: everyday word in Module 1; formally defined in MIS 2.'
   - term: computer_literacy
     chapter: ch01
     needs: database
     introduced_later_in: ch03
+    resolved: 'No change: everyday word in Module 1; formally defined in MIS 3.'
   - term: information_literacy
     chapter: ch01
     needs: business_intelligence_bi
     introduced_later_in: ch03
+    resolved: Tooltip context points to MIS 3, where business intelligence is defined.
   - term: information_technologies
     chapter: ch01
     needs: computer
     introduced_later_in: ch02
+    resolved: 'No change: everyday word in Module 1; formally defined in MIS 2.'
   - term: information_technologies
     chapter: ch01
     needs: database
     introduced_later_in: ch03
+    resolved: 'No change: everyday word in Module 1; formally defined in MIS 3.'
   - term: information_technologies
     chapter: ch01
     needs: radio_frequency_identification_rfid
     introduced_later_in: ch07
+    resolved: Tooltip context points to MIS 7, where RFID is defined.
   - term: fifth_generation_languages_5gls
     chapter: ch02
     needs: artificial_intelligence_ai
     introduced_later_in: ch09
+    resolved: Tooltip context points to MIS 9, where AI and natural language processing are defined.
   - term: fifth_generation_languages_5gls
     chapter: ch02
     needs: natural_language_processing_nlp
     introduced_later_in: ch09
+    resolved: Tooltip context points to MIS 9, where AI and natural language processing are defined.
   - term: object_oriented_programming_oop
     chapter: ch02
     needs: object
     introduced_later_in: ch03
+    resolved: 'No change: MIS 2''s story explains objects where it uses them (Customer, Tank, Delivery,
+      Invoice, each with its own data and actions).'
   - term: data_model
     chapter: ch03
     needs: integrity
     introduced_later_in: ch05
+    resolved: 'No change: ''integrity rules'' is the same sense as the course''s integrity (accuracy);
+      MIS 3 shows it through the data dictionary''s validation rules.'
   - term: cryptojacking
     chapter: ch05
     needs: cryptocurrency
     introduced_later_in: ch10
+    resolved: 'Story fix in MIS 5: Walt asks ''Mining what?'' and Teo explains in two lines.'
   - term: global_information_system_gis
     chapter: ch06
     needs: geographic_information_system_gis
     introduced_later_in: ch08
+    resolved: 'Tooltip context on both GIS entries (MIS 6 and MIS 8): the course abbreviates two different
+      terms as GIS.'
   - term: global_supply_chain_management
     chapter: ch06
     needs: supply_chain
     introduced_later_in: ch07
+    resolved: 'No change: MIS 6 shows the supply chain concretely (wire drawing in Vietnam, galvanizing
+      in Saskatchewan, the rail yard in Spokane).'
   - term: global_supply_chain_management
     chapter: ch06
     needs: supply_chain_management_scm
     introduced_later_in: ch07
+    resolved: 'No change: same passage; supply chain management is defined in MIS 7.'
   never_revisited:
   - computer_literacy
   - five_forces_model
@@ -2716,3 +2729,28 @@ terms:
     revisited_in: []
 approval_note: '2026-10-12: author accepted the ch10 candidate and directed rework of ch03 and ch05 (''accept
   it and go live. then fix MIS 3 and 5'').'
+forward_references_resolved:
+  computer_literacy>computer: 'No change: everyday word in Module 1; formally defined in MIS 2.'
+  computer_literacy>database: 'No change: everyday word in Module 1; formally defined in MIS 3.'
+  information_technologies>computer: 'No change: everyday word in Module 1; formally defined in MIS 2.'
+  information_technologies>database: 'No change: everyday word in Module 1; formally defined in MIS 3.'
+  information_literacy>business_intelligence_bi: Tooltip context points to MIS 3, where business intelligence
+    is defined.
+  information_technologies>radio_frequency_identification_rfid: Tooltip context points to MIS 7, where
+    RFID is defined.
+  fifth_generation_languages_5gls>artificial_intelligence_ai: Tooltip context points to MIS 9, where AI
+    and natural language processing are defined.
+  fifth_generation_languages_5gls>natural_language_processing_nlp: Tooltip context points to MIS 9, where
+    AI and natural language processing are defined.
+  object_oriented_programming_oop>object: 'No change: MIS 2''s story explains objects where it uses them
+    (Customer, Tank, Delivery, Invoice, each with its own data and actions).'
+  data_model>integrity: 'No change: ''integrity rules'' is the same sense as the course''s integrity (accuracy);
+    MIS 3 shows it through the data dictionary''s validation rules.'
+  cryptojacking>cryptocurrency: 'Story fix in MIS 5: Walt asks ''Mining what?'' and Teo explains in two
+    lines.'
+  global_information_system_gis>geographic_information_system_gis: 'Tooltip context on both GIS entries
+    (MIS 6 and MIS 8): the course abbreviates two different terms as GIS.'
+  global_supply_chain_management>supply_chain: 'No change: MIS 6 shows the supply chain concretely (wire
+    drawing in Vietnam, galvanizing in Saskatchewan, the rail yard in Spokane).'
+  global_supply_chain_management>supply_chain_management_scm: 'No change: same passage; supply chain management
+    is defined in MIS 7.'

@@ -67,6 +67,45 @@ will defend that.
 | Eli Mendez | DC shift lead | Point-of-view character for the Excel/BI units. Mid-thirties, taking an evening business course at the community college that uses SAM. Dana sometimes helps. |
 | Hank Pruitt | Controller | Owns the books, the bank, and the loan schedule. |
 
+### Recurring and minor characters
+
+People who have appeared in a chapter. Reuse them before inventing new ones; check what a
+chapter already said before giving one of them a new detail. Chapter references show where
+each is established.
+
+**Tamarack staff**
+
+| Person | Role | Established |
+|--------|------|-------------|
+| Curtis | Colville store manager, there since the store opened; keeps a notebook he trusts over the screen | MIS 1 |
+| Jesse | Colville clerk, nineteen; defended Tamarack online on his own phone and time | MIS 1, MIS 4 |
+| Arlo Nygaard | Ran the Republic store through every outage on paper; retired June 2026 | MIS 7, MIS 10 |
+| Bud Carlsen | Retired DC night lead; his nine-year damage-log spreadsheet is the one Eli inherits | Excel 1, Excel 12 |
+| Rosa | DC receiving clerk; enters vendor returns ("Prarie Wire" is hers, and intentional) | Excel 6, Excel 12 |
+| Marco Reyes | Forklift operator, employee 1147 (see Standing facts) | Excel 3 |
+
+**Customers**
+
+| Person | Role | Established |
+|--------|------|-------------|
+| Gordon Ashby | Rancher outside Republic, a customer for thirty years; shops Colville and Kettle Falls; got four mailers | MIS 3 |
+| Dale Hollister Sr. and Dale Hollister Jr. | Run separate operations from one mailing address and don't speak; wrongly merged into one loyalty account | MIS 3, Power Query |
+
+**Vendors, partners, and others**
+
+| Person | Role | Established |
+|--------|------|-------------|
+| Karen | Accounts-receivable manager at the seed company; six years of invoices with Hank | MIS 5 |
+| Dale Kowalchuk | Prairie Wire's fencing rep, Marcy's call for eleven years, until approvals moved to Saskatoon | MIS 6 |
+| Corinne | Former regional planner; the site-selection consultant who built the model | MIS 8 |
+| Jim Sorensen | Walt's contact in Sandpoint, with a building he'd lease; told to give it a year | MIS 8 |
+| Kip Andersen | Reads the board packet and asks about every number in parentheses | Excel 2, Excel 4 |
+| Brenda | ERP vendor's sales engineer at the Boise expo | MIS 10 |
+| Gene Palmer | Palmer's Feed & Seed, Kettle Falls; buying-group member | MIS 1 (as "Palmer's"), ITM Week 7 |
+| Linda Ostby | Grange Supply, Deer Park; buying-group member who drops out | ITM Week 7 |
+
+Two Dales (Hollister and Kowalchuk) already exist. Don't add a third.
+
 ## Timeline
 
 Facts that more than one chapter depends on. Check new chapters against this list, and

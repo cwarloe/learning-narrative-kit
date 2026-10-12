@@ -77,7 +77,13 @@ The contractor who wrote the billing program in 2004 had built in a username and
 
 "They found none," Teo said. He said he would have liked that sentence to be stronger than "found none."
 
-The second line explained something Teo had been blaming on old hardware. The feed-room server's processor had been pinned at ninety-eight percent since a public-facing service was exposed in December, because someone was using Tamarack's electricity and hardware to mine cryptocurrency for themselves. That was why the billing box had felt slow even before its disks started dying.
+The second line explained something Teo had been blaming on old hardware. The feed-room server's processor had been pinned at ninety-eight percent since a public-facing service was exposed in December, because someone was using Tamarack's electricity and hardware to mine cryptocurrency for themselves.
+
+"Mining what?" Walt asked.
+
+"Digital money," Teo said. "Computers make it by grinding through calculations, and whoever's computer does the grinding gets paid in it. Ours did the grinding. Somebody else got paid, and we bought the electricity."
+
+That was also why the billing box had felt slow even before its disks started dying.
 
 Walt spent the most time on the two store tests. At Deer Park, someone had found the payroll stick in the break room and plugged it in to see who was getting paid what. The bait was the promise of something worth having. At Chewelah, a tester had called pretending to be from the register vendor and offered the manager a free upgrade in exchange for his login, and the manager had read it to him over the phone. That one was a trade, a service for a credential, and it had worked because it sounded like a favor.
 

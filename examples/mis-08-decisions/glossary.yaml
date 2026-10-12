@@ -35,6 +35,7 @@ terms:
 - id: geographic_information_system_gis
   title: "geographic information system (GIS)"
   definition: "A geographic information system (GIS) captures, stores, processes, and displays geographic information or information in a geographic context. For example, a GIS can show the locations of all city streetlights on a map."
+  context: "Not the global information system from MIS 6. The course abbreviates both as GIS."
   tags:
   - mod-08
   tier: exam
