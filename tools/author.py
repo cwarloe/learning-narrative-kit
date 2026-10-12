@@ -396,7 +396,7 @@ def build_plan(b: Brief, terms: list[dict], previous: dict | None) -> dict:
         if texts else "not computed (no chapter text yet)",
     }
     foundational = sorted(dependents.items(), key=lambda kv: -kv[1])[:12]
-    return dict([
+    plan = dict([
         ("plan_id", b.id),
         ("brief", rel(b.path)),
         ("approved", (previous or {}).get("approved", False)),
@@ -416,6 +416,10 @@ def build_plan(b: Brief, terms: list[dict], previous: dict | None) -> dict:
         ("gaps", gaps),
         ("terms", term_map),
     ])
+    for k, v in (previous or {}).items():  # keep top-level fields the author added (approval_note, …)
+        if k not in plan:
+            plan[k] = v
+    return plan
 
 
 def plan_markdown(plan: dict) -> str:

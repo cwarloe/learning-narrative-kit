@@ -1,6 +1,6 @@
 # Plan: tamarack-mis-companion
 
-Brief: `briefs/tamarack-mis-companion.brief.yaml` · generated 2026-10-12 · **NOT YET APPROVED** by the author
+Brief: `briefs/tamarack-mis-companion.brief.yaml` · generated 2026-10-12 · **approved** by the author
 
 10 chapters · 264 terms · definitions: source 264, confirmed 0, proposed 0, missing 0 · 287 suggested dependencies
 
@@ -19,14 +19,14 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 |---|---|---|---|---|---|---|
 | ch01 | mis-01-information-systems | accepted | The Count That Didn't Match | 11 | 0 | 6 term(s) here depend on terms introduced later (see gaps.forward_references) |
 | ch02 | mis-02-computers | accepted | The Server in the Feed Room | 29 | 2 | 3 term(s) here depend on terms introduced later (see gaps.forward_references) |
-| ch03 | mis-03-data-bi | accepted | One Customer, Four Records | 47 | 4 | catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
+| ch03 | mis-03-data-bi | revise | One Customer, Four Records | 47 | 4 | catalog-chapter risk: 47 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
 | ch04 | mis-04-ethics-legal | accepted | The Video From the Kettle Falls Lot | 18 | 3 |  |
-| ch05 | mis-05-security | accepted | The Invoice That Changed Its Bank | 49 | 6 | catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
+| ch05 | mis-05-security | revise | The Invoice That Changed Its Bank | 49 | 6 | catalog-chapter risk: 49 terms (max 30); plan two scenes with different stakes, or split; 1 term(s) here depend on terms introduced later (see gaps.forward_references) |
 | ch06 | mis-06-global | accepted | The Rep Who Couldn't Say Yes | 9 | 3 | 3 term(s) here depend on terms introduced later (see gaps.forward_references) |
 | ch07 | mis-07-enterprise | accepted | Chick Days | 21 | 5 |  |
 | ch08 | mis-08-decisions | accepted | Where the Twelfth Store Goes | 16 | 4 |  |
 | ch09 | mis-09-ai | accepted | The Counter Assistant | 22 | 8 |  |
-| ch10 | mis-10-emerging | revise | The Closet Gets Too Hot | 42 | 5 | catalog-chapter risk: 42 terms (max 30); plan two scenes with different stakes, or split |
+| ch10 | mis-10-emerging | accepted | The Closet Gets Too Hot | 42 | 5 | catalog-chapter risk: 42 terms (max 30); plan two scenes with different stakes, or split |
 
 ### ch01 · The Count That Didn't Match
 
@@ -119,7 +119,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 - **Decision:** a hybrid: SaaS ERP in a public cloud, an edge server in each store, backup as a service; Walt does not sign with the association until the Republic edge server has been through a winter
 - **Cost:** Tamarack rents its core system every month from now on; the Republic ranch moves its show-cattle feed to a dealer in Omak that signed
 - **Carries forward:** the October Republic outage and eleven-hour sync; Walt's open question on the cattle association (revisit after a winter); membership in the dealers' community cloud. Author to decide: is that membership how the ITM Week 7 buying group first met?
-- **Notes:** Accepted version is a catalog: an expo tour, one booth per term (review r0: exposition run 5, 17 of 42 marks inline-glossed). Candidate: two scenes with different stakes. Scene 1 is the hosting decision (cloud models, deployment, pricing, edge). Scene 2 is Walt at the expo, where each emerging technology is judged by one question: does it still work at Republic when the line is down? Keep canon facts: July 97°F closet, Boise expo, October Republic outage with the edge server.
+- **Notes:** Published 2026-10-12 from the candidate (reviews r0-r4). Two scenes: the hosting decision, and Walt at the expo.
 
 ## Gaps and decisions for the author
 
@@ -151,7 +151,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 | Computer literacy | ch01 | computer, database |  |
 | data | ch01 | information |  |
 | Five Forces Model | ch01 | information |  |
-| Information | ch01 | process | ch02, ch03, ch04, ch05, ch06, ch08, ch09, ch10 |
+| Information | ch01 | process | ch02, ch03, ch04, ch05, ch06, ch08, ch09 |
 | Information literacy | ch01 | information, business_intelligence_bi |  |
 | information technologies | ch01 | information, computer, database, radio_frequency_identification_rfid |  |
 | management information system (MIS) | ch01 | data, information | ch02, ch03, ch04, ch05, ch06, ch07, ch08, ch09, ch10 |
@@ -204,7 +204,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 | data-driven Web site | ch03 | data, database |  |
 | Data-mining agents | ch03 | data, information, data_warehouse |  |
 | Data-mining analysis | ch03 | data |  |
-| database | ch03 | data | ch06, ch07, ch08, ch09, ch10 |
+| database | ch03 | data | ch06, ch07, ch08, ch09 |
 | database administrator (DBA) | ch03 | database |  |
 | database management system (DBMS) | ch03 | database | ch09 |
 | database marketing | ch03 | database |  |

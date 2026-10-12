@@ -2,7 +2,7 @@
 # gaps, terms. Author parts (kept on --refresh): approved, story, chapters[*].title/status/situation/notes.
 plan_id: tamarack-mis-companion
 brief: briefs/tamarack-mis-companion.brief.yaml
-approved: false
+approved: true
 generated: '2026-10-12'
 story:
   premise: 'Dana Okafor''s first year as Tamarack''s business systems analyst: eleven stores, a DC and
@@ -118,7 +118,7 @@ chapters:
 - id: ch03
   group: mis-03-data-bi
   unit_id: mis-03-data-bi
-  status: accepted
+  status: revise
   title: One Customer, Four Records
   terms_introduced:
   - allocation
@@ -225,7 +225,7 @@ chapters:
 - id: ch05
   group: mis-05-security
   unit_id: mis-05-security
-  status: accepted
+  status: revise
   title: The Invoice That Changed Its Bank
   terms_introduced:
   - access_controls
@@ -451,7 +451,7 @@ chapters:
 - id: ch10
   group: mis-10-emerging
   unit_id: mis-10-emerging
-  status: revise
+  status: accepted
   title: The Closet Gets Too Hot
   terms_introduced:
   - 3d_printing
@@ -515,11 +515,8 @@ chapters:
     carries_forward: 'the October Republic outage and eleven-hour sync; Walt''s open question on the cattle
       association (revisit after a winter); membership in the dealers'' community cloud. Author to decide:
       is that membership how the ITM Week 7 buying group first met?'
-  notes: 'Accepted version is a catalog: an expo tour, one booth per term (review r0: exposition run 5,
-    17 of 42 marks inline-glossed). Candidate: two scenes with different stakes. Scene 1 is the hosting
-    decision (cloud models, deployment, pricing, edge). Scene 2 is Walt at the expo, where each emerging
-    technology is judged by one question: does it still work at Republic when the line is down? Keep canon
-    facts: July 97°F closet, Boise expo, October Republic outage with the edge server.'
+  notes: 'Published 2026-10-12 from the candidate (reviews r0-r4). Two scenes: the hosting decision, and
+    Walt at the expo.'
   risks:
   - 'catalog-chapter risk: 42 terms (max 30); plan two scenes with different stakes, or split'
   candidate: workshop/tamarack-mis-companion/candidates/mis-10-emerging
@@ -825,7 +822,6 @@ terms:
     - ch06
     - ch08
     - ch09
-    - ch10
   information_literacy:
     title: Information literacy
     introduced_in: ch01
@@ -1259,7 +1255,6 @@ terms:
     - ch07
     - ch08
     - ch09
-    - ch10
   database_administrator_dba:
     title: database administrator (DBA)
     introduced_in: ch03
@@ -2707,3 +2702,5 @@ terms:
     status: source
     depends_on: []
     revisited_in: []
+approval_note: '2026-10-12: author accepted the ch10 candidate and directed rework of ch03 and ch05 (''accept
+  it and go live. then fix MIS 3 and 5'').'
