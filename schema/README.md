@@ -6,6 +6,8 @@ The **narrative** is the learning object. The glossary is the vocabulary that mu
 
 If you strip the marks and the sidebar, the story should still teach relationships among the ideas. If it doesn’t, you have a glossary with fiction garnish — the 8th-grade failure mode in reverse.
 
+**The story supports the course; it doesn't carry it.** Readers still have the textbook, the lectures, the slides, and whatever study tools they already use. A chapter's job is the thing those are worst at: showing why the ideas belong together and what they change in a decision. It doesn't have to teach every term from scratch, and a minor term can pass with a sentence of context. The cover test applies to the chapter's central relationships, not to every word on the list.
+
 ## Files
 
 | File | Role |
@@ -283,6 +285,18 @@ account, with what went wrong and how it was found, is in
    pull request first. Then take automated review seriously; it caught real errors in
    this track. When a fix changes structure, re-audit the whole unit, not just the
    flagged line.
+8. **Explaining is allowed when the story earns it.** Sometimes a character really does
+   need to explain something in technical detail, or the narrator does. That's fine when
+   the scene gives a reason (someone has to decide, someone pushes back, something is at
+   stake), and better as a back-and-forth than a lecture: a question, an answer, a
+   concrete case that tests it ("a rancher buys a truckload at ten, the line drops at ten
+   past; what does Colville see?"). What fails is the explanation nobody in the scene
+   asked for.
+9. **Metrics point; they don't decide.** The review heuristics (exposition runs, mark
+   clusters, inline glosses, voice numbers) say where to look. If the passage reads well
+   and is accurate, leave it, and say why in the review. Don't rewrite good prose to move
+   a number, and don't apply one principle so hard that it flattens every chapter into the
+   same shape. Variety is part of what makes a track readable.
 
 ## Ship steps (agents / LLMs)
 

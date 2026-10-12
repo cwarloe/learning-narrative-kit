@@ -177,7 +177,9 @@ Run all of these. Each one caught something real on the Tamarack track.
 Full text: `schema/README.md`. Non-negotiables:
 
 - Narrative is the learning object; glossary coheres inside it.
-- Cover test: strip `[[...]]`; story still teaches relationships.
+- The story supports the course (textbook, lectures, study tools); it doesn't carry it. Its job is connectedness.
+- Cover test: strip `[[...]]`; story still teaches the central relationships.
+- Technical explanation is fine when the scene earns it, preferably as a back-and-forth; metrics point, they don't decide (`schema/README.md` rules 8–9).
 - Tooltip = `definition` + optional `context` only; `refs` stay sidebar.
 - Two tiers when used: `exam` = study targets; `support` = readability jargon; flavor unmarked.
 - HTML is generated only via `tools/render_unit.py`.

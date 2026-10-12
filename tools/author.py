@@ -615,7 +615,8 @@ def cmd_review(args) -> int:
     out = [f"# Review: {meta.get('title', unit.name)}", "",
            f"Candidate: `{rel(unit)}` · {dt.date.today().isoformat()}", "",
            "This report separates three things. **Automated checks** are mechanical and either pass or fail. "
-           "**Heuristic flags** are patterns that often mean a problem; each one needs a person to look. "
+           "**Heuristic flags** are patterns that often mean a problem; each one needs a person to look, and a passage "
+           "that reads well and is accurate stays as it is (schema/README.md rule 9). "
            "**Editorial review** is judgment, and **learning effectiveness** is not measured here at all.", ""]
 
     # 1. Automated
@@ -683,10 +684,10 @@ def cmd_review(args) -> int:
             streak = 0
         seen_ids |= ids
     out += [f"- **Definition echo:** {len(echo)} mark(s) sit in a sentence that restates most of the glossary definition. "
-            "Some are fine (a character explaining to another); many in a row is the vocabulary-parade pattern."]
+            "Fine when a character explains because the scene needs it (schema/README.md rule 8); many in a row is the vocabulary-parade pattern."]
     out += [f"  - {e}" for e in echo[:15]]
     out += [f"- **Inline glosses:** {glossed} of {total_marks} marks ({gpct}%) are followed at once by their explanation "
-            "(\"X meant…\", \"X, a…\", \"X: …\"). A few help; a high share means the prose is defining terms rather than using them."]
+            "(\"X meant…\", \"X, a…\", \"X: …\"). Context only: this did not separate strong from weak chapters in calibration."]
     out += [f"- **Longest exposition run:** {best} consecutive paragraphs each introduce a new term with no dialogue. "
             "Five or more is the tour-guide pattern (a booth, a term, the next booth)."]
     out += [f"- **Mark clusters:** {len(cluster)} paragraph(s) with 4+ marked terms (a list wearing prose)."]
@@ -735,12 +736,14 @@ def cmd_review(args) -> int:
             "- [ ] **Concepts matter:** each major term changes a goal, complication, decision, or consequence; none is decoration.",
             "- [ ] **Instructional accuracy:** every claim about a concept matches its glossary definition or a cited source; nothing unverified is stated as fact.",
             "- [ ] **Continuity:** names, dates, numbers, and standing facts agree with the canon and accepted chapters.",
+            "- [ ] **Explanations are earned:** any technical explanation has a reason in the scene and reads as an exchange, not a lecture (schema/README.md rule 8).",
             "- [ ] **The pivot costs something,** and the ending doesn't explain the chapter.",
             "- [ ] **Voice:** reads like a person, not a generator (schema/VOICE.md).",
             "",
             "## 5. Not measured",
             "",
-            "Whether readers actually learn more from this chapter than from the glossary alone. That needs readers: "
+            "Whether readers learn more with this chapter alongside their course materials than without it. The chapter supports "
+            "the course; it doesn't replace it. Finding out needs readers: "
             "for example a short pre/post question set on the chapter's relationships, given to a few students.",
             ""]
     report = Path(args.out) if args.out else unit / "REVIEW.md"

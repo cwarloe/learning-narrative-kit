@@ -26,9 +26,31 @@ Every banner in the hall said [[cloud_computing|cloud computing]], and Brenda's 
 
 Brenda didn't pretend the answer was nothing. "We're a [[public_cloud|public cloud]]. If the store can't reach the Internet, it can't reach us."
 
-The fix was [[edge_computing|edge computing]]: a small server in the store's back room, so that the processing and the data sat at the near edge of the network, next to the registers. The registers would talk to it. It would talk to the cloud when it could, and hold the sales when it couldn't.
+"So Republic goes back to paper tickets," Dana said.
 
-"What about the banner?" Teo asked. The banner advertised [[distributed_cloud_computing|distributed cloud computing]], which meant the vendor placed pieces of its cloud services in data centers closer to customers so the round trip was shorter. The nearest one was Seattle. That would make head office faster. It did nothing for a store whose line was cut, because Seattle was still on the far side of the cut. Dana wrote *edge, not distributed* under her question.
+"Republic gets a box." Brenda turned her laptop around to a diagram with a small server drawn in a store's back room. "That's [[edge_computing|edge computing]]. You push the processing and the data out to the near edge of the network, next to the registers. The registers talk to the box. The box talks to us when it can."
+
+"And when it can't?" Teo said.
+
+"It keeps ringing sales and holds them. When the line comes back, it sends us everything it held."
+
+Teo gave her a real case. A rancher buys a truckload of range cubes at Republic at ten in the morning, the line goes down at ten past, and the rancher's son calls the Colville store at noon to ask whether the order went through. What does Colville see?
+
+Brenda thought about it before she answered, which Dana noticed. "Not that sale. Not until Republic syncs. Colville sees what the cloud has, and the cloud hasn't heard from Republic since ten."
+
+"And if somebody changes the same thing in both places while it's down? Points, a balance on his account?"
+
+"Then the sync has to sort out which change wins. It does that. It isn't always fast."
+
+Teo wrote that down. Then he pointed at the banner over her head, which advertised [[distributed_cloud_computing|distributed cloud computing]]. "Doesn't that fix it? You're putting your servers closer to us."
+
+"Pieces of the service, closer to the customer, so the round trip is shorter," Brenda said. "Our nearest one is Seattle. Your head office would feel it on every screen."
+
+"But Republic's line is cut on our side of the mountains," Dana said.
+
+"Then Seattle is as far away as anywhere else." Brenda shrugged. "Closer helps when the line is up. The box helps when it's down."
+
+Dana wrote *edge, not distributed* under her question and underlined *edge*.
 
 Teo drew what Tamarack would own on the back of the price sheet. The ERP would live in the vendor's public cloud. The edge servers in the eleven stores would be a [[private_cloud|private cloud]], services and hardware on a private network that Tamarack ran. One of each made a [[hybrid_cloud|hybrid cloud]].
 
@@ -118,7 +140,9 @@ He did stop for [[3d_printing|3D printing]]. A parts supplier was building a rep
 
 "Somebody asks for that gear every week," Walt said, and took the card. The research booth next to it had [[4d_printing|4D printing]], printed valves made of materials that changed shape on their own when the soil dried, and a wire maker said its [[nanotechnology|nanotechnology]] coating, engineered at a molecular scale, would double the life of galvanized wire. Dana wrote down the claim and not the number.
 
-Two booths she walked past. One was demonstrating [[contextual_computing|contextual computing]], a loyalty app that sensed a customer walking in, knew her purchases from last spring, and suggested a refill; Dana thought of the GDPR request still open in Teo's folder. The other sold [[implanted_microchips|implanted microchips]], rice-sized chips placed between the thumb and forefinger to hold an ID or a credit card. Walt said Tamarack already sold microchips, for horses. He also skipped the keynote on [[quantum_computing|quantum computing]], computers built on qubits for problems ordinary ones couldn't solve, after reading the first slide through the door.
+Two booths she walked past. One was demonstrating [[contextual_computing|contextual computing]], a loyalty app that sensed a customer walking in, knew her purchases from last spring, and suggested a refill; Dana thought of the GDPR request still open in Teo's folder. The other sold [[implanted_microchips|implanted microchips]], rice-sized chips placed between the thumb and forefinger to hold an ID or a credit card. Walt said Tamarack already sold microchips, for horses.
+
+The afternoon keynote was on [[quantum_computing|quantum computing]], computers built on qubits for problems ordinary ones couldn't solve. Walt left at the first equation.
 
 The cheapest thing they saw was a [[qr_quick_response_code|QR code]], a square of black modules on white, printed on a feed-bag tag. Scanning it opened the feeding guide.
 
