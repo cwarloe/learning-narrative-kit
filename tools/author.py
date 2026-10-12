@@ -528,7 +528,10 @@ def cmd_plan_check(args) -> int:
         problems.append("introduced in more than one chapter: " + ", ".join(f"{k} {v}" for k, v in twice.items()))
     if unknown:
         problems.append(f"chapter lists terms not in the inputs: {', '.join(unknown)}")
-    open_fw = [f for f in (plan.get("gaps") or {}).get("forward_references") or [] if not f.get("resolved")]
+    # Read decisions from the author's map, not from the copies the last --refresh wrote into gaps.
+    decided = plan.get("forward_references_resolved") or {}
+    open_fw = [f for f in (plan.get("gaps") or {}).get("forward_references") or []
+               if f"{f['term']}>{f['needs']}" not in decided]
     if open_fw:
         notes.append(f"{len(open_fw)} forward reference(s) without a recorded decision (plan.md → Gaps)")
     story_todo = [k for k, v in (plan.get("story") or {}).items() if v == TODO]
