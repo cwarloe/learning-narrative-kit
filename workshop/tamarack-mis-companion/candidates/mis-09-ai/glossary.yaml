@@ -1,0 +1,136 @@
+bank_id: mis-09-ai
+title: Tamarack — The Counter Assistant — glossary
+source: MindTap course glossary export (MIS), module '09. Artificial Intelligence and Automation'
+terms:
+- id: artificial_intelligence_ai
+  title: "Artificial intelligence (AI)"
+  definition: "Artificial intelligence (AI) consists of related technologies that try to simulate and reproduce human thought and behavior, including thinking, speaking, feeling, and reasoning. AI technologies apply computers to areas that require knowledge, perception, reasoning, understanding, and cognitive abilities."
+  tags:
+  - mod-09
+  tier: exam
+- id: artificial_neural_networks_anns
+  title: "Artificial neural networks (ANNs)"
+  definition: "Artificial neural networks (ANNs) are networks that learn and are capable of performing tasks that are difficult with conventional computers, such as playing chess, recognizing patterns in faces and objects, and filtering spam e-mail."
+  tags:
+  - mod-09
+  tier: exam
+- id: augmented_intelligence
+  title: "Augmented intelligence"
+  definition: "The goal of augmented intelligence is to complement decision makers, not replace them."
+  tags:
+  - mod-09
+  tier: exam
+- id: backward_chaining
+  title: "backward chaining"
+  definition: "In backward chaining, the expert system starts with the goal—the “then” part—and backtracks to find the right solution."
+  tags:
+  - mod-09
+  tier: exam
+- id: case_based_reasoning_cbr
+  title: "case-based reasoning (CBR)"
+  definition: "Case-based reasoning (CBR) is a problem-solving technique that matches a new case (problem) with a previously solved case and its solution, the details of which have been stored in a database. After finding a match, the CBR system offers a solution; if no match is found, even after more information is supplied, the human expert must solve the problem."
+  tags:
+  - mod-09
+  tier: exam
+- id: expert_systems
+  title: "Expert systems"
+  definition: "Expert systems mimic human expertise in a particular field to solve a problem in a well-defined area."
+  tags:
+  - mod-09
+  tier: exam
+- id: explanation_facility
+  title: "explanation facility"
+  definition: "An explanation facility performs tasks similar to what a human expert does by explaining to end users how recommendations are derived."
+  tags:
+  - mod-09
+  tier: exam
+- id: forward_chaining
+  title: "forward chaining"
+  definition: "In forward chaining, a series of “if–then–else” condition pairs is performed."
+  tags:
+  - mod-09
+  tier: exam
+- id: fuzzy_logic
+  title: "Fuzzy logic"
+  definition: "Fuzzy logic allows a smooth, gradual transition between human and computer vocabularies and deals with variations in linguistic terms by using a degree of membership."
+  tags:
+  - mod-09
+  tier: exam
+- id: genetic_algorithms_gas
+  title: "Genetic algorithms (GAs)"
+  definition: "Genetic algorithms (GAs) are search algorithms that mimic the process of natural evolution. They are used to generate solutions to optimization and search problems using such techniques as mutation, selection, crossover, and chromosome."
+  tags:
+  - mod-09
+  tier: exam
+- id: inference_engine
+  title: "inference engine"
+  definition: "An inference engine is similar to the model base component of a decision support system. By using different techniques such as forward and backward chaining, it manipulates a series of rules."
+  tags:
+  - mod-09
+  tier: exam
+- id: intelligent_agents
+  title: "Intelligent agents"
+  definition: "Intelligent agents are software capable of reasoning and following rule-based processes; they are becoming more popular, especially in e-commerce."
+  tags:
+  - mod-09
+  tier: exam
+- id: knowledge_acquisition_facility
+  title: "knowledge acquisition facility"
+  definition: "A knowledge acquisition facility is a software package with manual or automated methods for acquiring and incorporating new rules and facts, making the expert system capable of growth."
+  tags:
+  - mod-09
+  tier: exam
+- id: knowledge_base
+  title: "knowledge base"
+  definition: "A knowledge base is similar to a database, but in addition to storing facts and figures, it keeps track of rules and explanations associated with facts."
+  tags:
+  - mod-09
+  tier: exam
+- id: knowledge_base_management_system_kbms
+  title: "knowledge base management system (KBMS)"
+  definition: "A knowledge base management system (KBMS), similar to a DBMS, is used to keep the knowledge base updated with changes to facts, figures, and rules."
+  tags:
+  - mod-09
+  tier: exam
+- id: machine_learning
+  title: "Machine learning"
+  definition: "Machine learning is a process and procedure by which knowledge is gained through experience. In other words, computers learn without being explicitly programmed."
+  tags:
+  - mod-09
+  tier: exam
+- id: monitoring_and_surveillance_agents
+  title: "Monitoring and surveillance agents"
+  definition: "Monitoring and surveillance agents usually track and report on computer equipment and network systems to predict when a system crash or failure might occur."
+  tags:
+  - mod-09
+  tier: exam
+- id: natural_language_processing_nlp
+  title: "natural-language processing (NLP)"
+  definition: "Natural-language processing (NLP) was developed so users could communicate with computers in human language."
+  tags:
+  - mod-09
+  tier: exam
+- id: personal_agents
+  title: "Personal agents"
+  definition: "Personal agents perform specific tasks for a user, such as remembering information for filling out Web forms or completing e-mail addresses after the first few characters are typed."
+  tags:
+  - mod-09
+  tier: exam
+- id: robots
+  title: "Robots"
+  definition: "Robots are one of the most successful applications of AI. They perform well at simple, repetitive tasks and can be used to free workers from tedious or hazardous jobs."
+  tags:
+  - mod-09
+  tier: exam
+- id: shopping_and_information_agents
+  title: "Shopping and information agents"
+  definition: "Shopping and information agents help users navigate through the vast resources available on the Web and provide better results in finding information. These agents can navigate the Web much faster than humans and gather more consistent, detailed information. They can serve as search engines, site reminders, or personal surfing assistants."
+  tags:
+  - mod-09
+  tier: exam
+- id: soft_robot
+  title: "soft robot"
+  definition: "A soft robot is made of elastomer, is simpler to make and less expensive than conventional robots, and is used for an increasing number of applications."
+  tags:
+  - mod-09
+  tier: exam
