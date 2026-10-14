@@ -1,6 +1,7 @@
 # Tools
 
-Setup: `pip install -r requirements.txt` (repo root) or use any venv with PyYAML.
+Setup (from repo root): `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`.
+`.venv` at the repo root is the supported location (gitignored). If system `python3` already has PyYAML you can run the tools with `python3` directly.
 
 ## `validate_unit.py`
 
