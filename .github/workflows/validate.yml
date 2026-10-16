@@ -1,0 +1,47 @@
+name: Validate units
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - "examples/**"
+      - "tools/validate_unit.py"
+      - "requirements.txt"
+      - ".github/workflows/validate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install "PyYAML>=6.0"
+
+      - name: Validate every example unit
+        run: |
+          set -euo pipefail
+          fail=0
+          for d in examples/*/; do
+            echo "::group::$(basename "$d")"
+            if ! python tools/validate_unit.py "$d"; then
+              fail=1
+            fi
+            echo "::endgroup::"
+          done
+          if [ "$fail" -ne 0 ]; then
+            echo "One or more units failed validate_unit.py"
+            exit 1
+          fi
+          echo "All example units passed."
