@@ -550,4 +550,4 @@ Status:           ISOLATED / EMERGENCY SOC BRIDGE ENGAGED
 
 ---
 
-*Workbench complete. Proceed to test your knowledge against the interactive questions in [`review.yaml`](#) and review companion telemetry artifacts in [`artifacts/`](../artifacts/).*
+*Workbench complete. Proceed to test your knowledge against the interactive questions in `review.yaml` and review companion telemetry artifacts in [`artifacts/`](../artifacts/).*

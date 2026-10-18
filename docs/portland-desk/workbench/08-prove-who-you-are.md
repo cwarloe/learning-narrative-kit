@@ -485,4 +485,4 @@ Status:           RESOLVED
 
 ---
 
-*Workbench complete. Proceed to test your knowledge against the interactive questions in [`review.yaml`](#) and review companion datasets in [`artifacts/`](../artifacts/).*
+*Workbench complete. Proceed to test your knowledge against the interactive questions in `review.yaml` and review companion datasets in [`artifacts/`](../artifacts/).*

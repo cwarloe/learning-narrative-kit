@@ -4,7 +4,7 @@
 > **Unit Companion:** `secplus-ir-helpdesk` — *When the Ticket Escalates*  
 > **Environment:** Portland Operations Center Service Desk & Tier 1 CSIRT Triage Station  
 > **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
-> **Companion Artifacts:** [`narrative.md`](#/narrative/12-when-the-ticket-escalates.md) • [`glossary.yaml`](#) • [`unit.yaml`](#)  
+> **Companion Artifacts:** [`narrative.md`](#/narrative/12-when-the-ticket-escalates.md) • `glossary.yaml` • `unit.yaml`  
 > **Capstone Status:** Book 0 Final Capstone & Direct Bridge to Book 1 (*Network Analyst Development Framework*)
 
 ---

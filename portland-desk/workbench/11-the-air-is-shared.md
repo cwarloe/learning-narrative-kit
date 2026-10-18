@@ -505,4 +505,4 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
 
 ---
 
-*Workbench complete. Test your mastery against the interactive assessment scenarios in [`review.yaml`](#) and inspect companion network captures in [`artifacts/`](../artifacts/).*
+*Workbench complete. Test your mastery against the interactive assessment scenarios in `review.yaml` and inspect companion network captures in [`artifacts/`](../artifacts/).*

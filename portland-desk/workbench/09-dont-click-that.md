@@ -501,4 +501,4 @@ Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
 
 ---
 
-*Workbench complete. Test your mastery against the interactive assessment scenarios in [`review.yaml`](#) and inspect companion header artifacts in [`artifacts/`](../artifacts/).*
+*Workbench complete. Test your mastery against the interactive assessment scenarios in `review.yaml` and inspect companion header artifacts in [`artifacts/`](../artifacts/).*
