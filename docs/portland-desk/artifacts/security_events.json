@@ -1,0 +1,110 @@
+[
+  {
+    "event_id": 4624,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-20T08:14:22.108421Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "An account was successfully logged on.",
+    "data": {
+      "TargetUserName": "ethan",
+      "TargetDomainName": "PORTLAND-OPS",
+      "LogonType": 2,
+      "LogonTypeName": "Interactive",
+      "AuthenticationPackageName": "Negotiate",
+      "WorkstationName": "PORT-DESK-01",
+      "IpAddress": "127.0.0.1",
+      "IpPort": "0",
+      "ProcessName": "C:\\Windows\\System32\\winlogon.exe",
+      "Status": "0x0"
+    }
+  },
+  {
+    "event_id": 4624,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-20T08:35:40.412890Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "An account was successfully logged on.",
+    "data": {
+      "TargetUserName": "skelly.contractor",
+      "TargetDomainName": "PORTLAND-OPS",
+      "LogonType": 10,
+      "LogonTypeName": "RemoteInteractive",
+      "AuthenticationPackageName": "Negotiate",
+      "WorkstationName": "HOTEL-LAPTOP",
+      "IpAddress": "10.240.1.45",
+      "IpPort": "54210",
+      "ProcessName": "C:\\Windows\\System32\\svchost.exe",
+      "Status": "0x0"
+    }
+  },
+  {
+    "event_id": 4625,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-20T16:24:12.338210Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "An account failed to log on.",
+    "data": {
+      "TargetUserName": "dkim",
+      "TargetDomainName": "PORTLAND-OPS",
+      "LogonType": 3,
+      "LogonTypeName": "Network",
+      "AuthenticationPackageName": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+      "WorkstationName": "IPAD-DKIM-04",
+      "IpAddress": "192.168.20.114",
+      "IpPort": "49882",
+      "Status": "0xC000006D",
+      "SubStatus": "0xC000006A",
+      "FailureReason": "Unknown user name or bad password."
+    }
+  },
+  {
+    "event_id": 4625,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-20T16:26:05.109240Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "An account failed to log on.",
+    "data": {
+      "TargetUserName": "dkim",
+      "TargetDomainName": "PORTLAND-OPS",
+      "LogonType": 3,
+      "LogonTypeName": "Network",
+      "AuthenticationPackageName": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+      "WorkstationName": "IPAD-DKIM-04",
+      "IpAddress": "192.168.20.114",
+      "IpPort": "49888",
+      "Status": "0xC000006D",
+      "SubStatus": "0xC0000234",
+      "FailureReason": "The user account has been automatically locked because too many invalid logon attempts were made."
+    }
+  },
+  {
+    "event_id": 4740,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-20T16:26:05.115400Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "A user account was locked out.",
+    "data": {
+      "TargetUserName": "dkim",
+      "TargetDomainName": "PORTLAND-OPS",
+      "SubjectUserName": "dc01$",
+      "SubjectDomainName": "PORTLAND-OPS",
+      "CallerComputerName": "IPAD-DKIM-04",
+      "TargetSid": "S-1-5-21-3928174412-1082938471-2948192837-1402"
+    }
+  },
+  {
+    "event_id": 7045,
+    "provider_name": "Service Control Manager",
+    "time_created": "2026-10-20T17:15:30.984012Z",
+    "computer": "PORT-WS-1054.portland-ops.local",
+    "description": "A service was installed in the system.",
+    "data": {
+      "ServiceName": "PSEXESVC",
+      "ImagePath": "%SystemRoot%\\PSEXESVC.exe",
+      "ServiceType": "user mode service",
+      "StartType": "demand start",
+      "ServiceAccount": "LocalSystem",
+      "AuditNote": "Sysinternals PsExec remote execution service installed; frequently leveraged in lateral movement."
+    }
+  }
+]

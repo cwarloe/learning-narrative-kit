@@ -1,0 +1,68 @@
+[
+  {
+    "sample_id": "PHISH-01",
+    "filename": "sample_phish_invoice.eml",
+    "subject": "URGENT: Outstanding Balance Invoice #INV-98231 - Immediate Payment Required",
+    "sender_header": "billing@vendor-invoicing.net",
+    "reply_to": "collect@phish-drop.org",
+    "origin_ip": "198.51.100.84",
+    "authentication_results": {
+      "spf": "fail",
+      "dkim": "none",
+      "dmarc": "fail"
+    },
+    "attachment_name": "INV_Oct2026_9942.pdf.iso",
+    "is_phishing": true,
+    "indicators": [
+      "SPF failure: Sending IP not authorized by claimed domain",
+      "Mismatched Reply-To address pointing to external free/drop domain",
+      "Double camouflage file extension (.pdf.iso) concealing executable container",
+      "Artificial urgency and threat of service suspension"
+    ],
+    "recommended_triage_action": "Isolate recipient endpoint, quarantine message across gateway, extract hash for SIEM/EDR blocklist."
+  },
+  {
+    "sample_id": "PHISH-02",
+    "filename": "sample_spoofed_exec.eml",
+    "subject": "Confidential: Immediate vendor wire authorization required",
+    "sender_header": "walt@portland-ops.local",
+    "reply_to": "walt.executive.desk77@gmail.com",
+    "origin_ip": "159.135.225.12",
+    "authentication_results": {
+      "spf": "softfail",
+      "dkim": "fail",
+      "dmarc": "fail"
+    },
+    "attachment_name": null,
+    "is_phishing": true,
+    "indicators": [
+      "Executive impersonation / Business Email Compromise (BEC)",
+      "External Reply-To header pointing to personal Gmail address",
+      "DMARC failure on internal corporate domain header",
+      "Pressure to bypass established dual-control finance approval procedures"
+    ],
+    "recommended_triage_action": "Quarantine email, alert accounting team to verify out-of-band, report sender to mail gateway blacklist."
+  },
+  {
+    "sample_id": "LEGIT-01",
+    "filename": "sample_legit_payroll.eml",
+    "subject": "Annual Open Enrollment 2027: Confirmation of Current Health Selections",
+    "sender_header": "hr-benefits@portland-ops.local",
+    "reply_to": "hr-benefits@portland-ops.local",
+    "origin_ip": "192.168.10.72",
+    "authentication_results": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "attachment_name": null,
+    "is_phishing": false,
+    "indicators": [
+      "SPF pass: Internal server IP explicitly listed in SPF record",
+      "DKIM pass: Cryptographic signature verified against corporate DNS key",
+      "DMARC pass: Header matches envelope domain perfectly",
+      "Links point to authentic internal HTTPS resource on port 443"
+    ],
+    "recommended_triage_action": "Mark clean / Allow delivery."
+  }
+]

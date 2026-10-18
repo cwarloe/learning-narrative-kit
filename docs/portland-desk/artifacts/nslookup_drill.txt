@@ -1,0 +1,32 @@
+C:\Users\ethan> nslookup mail.portland-ops.local
+Server:  dc01.portland-ops.local
+Address:  192.168.10.10
+
+Name:    mail.portland-ops.local
+Address:  192.168.10.50
+
+C:\Users\ethan> nslookup -type=mx portland-ops.local
+Server:  dc01.portland-ops.local
+Address:  192.168.10.10
+
+portland-ops.local      MX preference = 10, mail exchanger = mail.portland-ops.local
+
+C:\Users\ethan> nslookup 192.168.10.20
+Server:  dc01.portland-ops.local
+Address:  192.168.10.10
+
+Name:    mgmt-sw-closetc.portland-ops.local
+Address:  192.168.10.20
+
+C:\Users\ethan> nslookup benefits.internal.corp
+Server:  dc01.portland-ops.local
+Address:  192.168.10.10
+
+Name:    benefits.internal.corp
+Address:  192.168.10.80
+
+C:\Users\ethan> nslookup evil-phish-domain.bad
+Server:  dc01.portland-ops.local
+Address:  192.168.10.10
+
+*** dc01.portland-ops.local can't find evil-phish-domain.bad: Non-existent domain

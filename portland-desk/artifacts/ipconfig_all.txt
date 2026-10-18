@@ -1,0 +1,28 @@
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : PORT-WS-1042
+   Primary Dns Suffix  . . . . . . . : portland-ops.local
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+   DNS Suffix Search List. . . . . . : portland-ops.local
+
+Ethernet adapter Local Area Connection 1:
+
+   Connection-specific DNS Suffix  . : portland-ops.local
+   Description . . . . . . . . . . . : Intel(R) Ethernet Connection (7) I219-LM
+   Physical Address. . . . . . . . . : 00-2B-67-14-99-4A
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::49b2:9408:2f41:178a%12(Preferred)
+   IPv4 Address. . . . . . . . . . . : 192.168.10.45(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Lease Obtained. . . . . . . . . . : Tuesday, October 20, 2026 7:45:10 AM
+   Lease Expires . . . . . . . . . . : Wednesday, October 21, 2026 7:45:10 AM
+   Default Gateway . . . . . . . . . : 192.168.10.1
+   DHCP Server . . . . . . . . . . . : 192.168.10.254
+   DHCPv6 IAID . . . . . . . . . . . : 201337447
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-29-7B-9A-00-2B-67-14-99-4A
+   DNS Servers . . . . . . . . . . . : 192.168.10.10
+                                       192.168.10.11
+   NetBIOS over Tcpip. . . . . . . . : Enabled

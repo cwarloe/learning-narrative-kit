@@ -1,0 +1,44 @@
+Microsoft (R) Windows (R) Operating System Group Policy Result tool v2.0
+c 2026 Microsoft Corporation. All rights reserved.
+
+Created on Tuesday, October 20, 2026 at 11:15:32 AM
+
+RSOP data for PORTLAND-OPS\ethan on PORT-WS-1042 : Logging Mode
+--------------------------------------------------------------
+
+OS Configuration:            Member Workstation
+OS Version:                  10.0.19045
+Site Name:                   Portland-Headquarters
+Roaming Profile:             N/A
+Local Profile:               C:\Users\ethan
+Connected over a slow link?: No
+
+USER SETTINGS
+--------------
+    CN=Ethan Brooks,OU=HelpDesk,OU=Staff,DC=portland-ops,DC=local
+    Last time Group Policy was applied: 10/20/2026 at 10:45:12 AM
+    Group Policy was applied from:      dc01.portland-ops.local
+    Group Policy slow link threshold:   500 kbps
+    Domain Name:                        portland-ops
+    Domain Type:                        Windows 2016 or newer
+
+    Applied Group Policy Objects
+    -----------------------------
+        Default Domain Policy
+        SecOps-Workstation-Hardening-2026
+        BitLocker-Enforcement-GPO
+        Edge-Browser-Enterprise-Baseline
+
+    The following GPOs were not applied because they were filtered out
+    -------------------------------------------------------------------
+        Domain Controllers Policy
+            Filtering:  Not Applied (Empty)
+        Restricted-Admin-Tier0
+            Filtering:  Denied (Security)
+
+    The user is a part of the following security groups
+    ---------------------------------------------------
+        Domain Users
+        Tier1-HelpDesk-Support
+        Remote Desktop Users
+        Local-Workstation-Admins

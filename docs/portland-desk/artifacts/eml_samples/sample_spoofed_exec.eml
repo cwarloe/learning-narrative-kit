@@ -1,0 +1,31 @@
+Delivered-To: mlin@portland-ops.local
+Received: from mail-relay.portland-ops.local (mail-relay.portland-ops.local [192.168.10.50])
+	by imap.portland-ops.local with ESMTP id 77C12EF1
+	for <mlin@portland-ops.local>; Tue, 20 Oct 2026 16:15:10 +0000
+Received: from out-relay-12.mailgun.org (out-relay-12.mailgun.org [159.135.225.12])
+	by mail-relay.portland-ops.local with ESMTP id 65B90AA2
+	for <mlin@portland-ops.local>; Tue, 20 Oct 2026 16:15:08 +0000
+Authentication-Results: mail-relay.portland-ops.local;
+	spf=softfail (portland-ops.local: domain of ceo-desk-office@gmail.com does not designate 159.135.225.12 as permitted sender);
+	dkim=fail (signature does not match header payload);
+	dmarc=fail (p=quarantine dis=quarantine) header.from=portland-ops.local
+From: "Walt Brandvold" <walt@portland-ops.local>
+Reply-To: "Walt Brandvold (Mobile Office)" <walt.executive.desk77@gmail.com>
+To: mlin@portland-ops.local
+Subject: Confidential: Immediate vendor wire authorization required
+Date: Tue, 20 Oct 2026 16:14:50 +0000
+Message-ID: <CA+V=8A9184B1028@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Maya,
+
+I am currently in an offsite partner negotiation with spotty cellular reception. 
+
+We need to finalize an emergency deposit for critical plant equipment before 5:00 PM today. Please process an expedited wire transfer of $78,400 to the attached escrow routing details. Keep this strictly between us until the contract announcement tomorrow.
+
+Reply here as soon as the wire tracking confirmation is issued.
+
+Walt Brandvold
+Chief Executive Officer

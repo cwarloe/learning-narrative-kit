@@ -1,0 +1,42 @@
+PS C:\Users\ebrooks> Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4740} -MaxEvents 1 | Format-List -Property *
+
+Message              : A user account was locked out.
+
+                       Subject:
+                           Security ID:        S-1-5-18
+                           Account Name:       DC01$
+                           Account Domain:     PORTLAND-OPS
+                           Logon ID:           0x3E7
+
+                       Account That Was Locked Out:
+                           Security ID:        S-1-5-21-3928174412-1082938471-2948192837-1402
+                           Account Name:       nhiggins
+
+                       Additional Information:
+                           Caller Computer Name:   IPAD-NORA-FIN
+
+Id                   : 4740
+Version              : 0
+Qualifiers           : 
+Level                : 0
+Task                 : 13824
+Opcode               : 0
+Keywords             : -9214364837600034816
+RecordId             : 4892104
+ProviderName         : Microsoft-Windows-Security-Auditing
+ProviderId           : 54849625-5478-4994-a5ba-3e3b0328c30d
+LogName              : Security
+ProcessId            : 712
+ThreadId             : 3940
+MachineName          : dc01.portland-ops.local
+UserId               : 
+TimeCreated          : 10/21/2026 8:34:18 AM
+ActivityId           : 00000000-0000-0000-0000-000000000000
+RelatedActivityId    : 
+MatchedQueryIds      : {}
+Bookmark             : System.Diagnostics.Eventing.Reader.EventBookmark
+LevelDisplayName     : Information
+OpcodeDisplayName    : Info
+TaskDisplayName      : User Account Management
+KeywordsDisplayNames : {Audit Success}
+Properties           : {nhiggins, PORTLAND-OPS, IPAD-NORA-FIN, S-1-5-21-3928174412-1082938471-2948192837-1402...}

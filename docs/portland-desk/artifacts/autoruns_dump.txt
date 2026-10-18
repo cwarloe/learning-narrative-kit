@@ -1,0 +1,50 @@
+================================================================================
+Sysinternals Autoruns Command-Line Dump (autorunsc.exe -a r -c)
+Host: MAYA-W11.portland-ops.local
+Timestamp: 2026-10-22 08:12:04 PST
+Operator: Ethan Brooks (Tier 1 Support)
+================================================================================
+
+Entry Location: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+--------------------------------------------------------------------------------
+Entry:         SecurityHealth
+Status:        Enabled
+ImagePath:     C:\Windows\System32\SecurityHealthSystray.exe
+Publisher:     Microsoft Windows
+Description:   Windows Security Health Systray
+MD5:           9A21B8F7C6E5D4A3B2C1D0E9F8A7B6C5
+SHA256:        e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+Entry:         RtkAudUService
+Status:        Enabled
+ImagePath:     C:\Program Files\Realtek\Audio\HDA\RtkAudUService64.exe
+Publisher:     Realtek Semiconductor Corp.
+Description:   Realtek HD Audio Universal Service
+SHA256:        4f53c89b12d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9
+
+Entry Location: HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+--------------------------------------------------------------------------------
+Entry:         OneDrive
+Status:        Enabled
+ImagePath:     C:\Users\maya\AppData\Local\Microsoft\OneDrive\OneDrive.exe /background
+Publisher:     Microsoft Corporation
+Description:   Microsoft OneDrive
+SHA256:        1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c
+
+Entry:         OptimizeRAM
+Status:        Enabled
+ImagePath:     C:\Users\maya\AppData\Local\Temp\optram.exe --silent --daemon
+Publisher:     (Not verified) Unknown
+Description:   Memory Boost Optimizer Utility
+SHA256:        9f2c8d1e3a4b5c6d7e8f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9bc41a
+VirusTotal:    54/71 Security Vendors Flagged as Malicious (Adware.Win32.Optimizer / PUP.Optional)
+
+Entry:         CouponBarEngine
+Status:        Enabled
+ImagePath:     C:\Users\maya\AppData\Local\CouponBar\couponbar.dll,RunEngine
+Publisher:     (Not verified) AdTrack Global Media
+Description:   Smart Coupon Delivery Agent
+SHA256:        7a8b9c0d1e2f3a4b5c6d7e8f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b
+VirusTotal:    61/71 Security Vendors Flagged as Malicious (Trojan.Win32.AdwareHelper)
+
+================================================================================

@@ -1,0 +1,157 @@
+# Portland Desk — Prove Who You Are
+
+*A Security+ identity-and-authentication precursor • Hover over highlighted terms for exam definitions and supporting desk jargon.*
+
+It had been raining on the east glass since before I sat down. Jules had already claimed the whiteboard. A bike helmet hung off her monitor arm, and the sticky under *which decision?* now said *which factor?*
+
+"Cards in the drawer are for ports," she said when I reached for a blank one. "Someone will swear two passwords are multifactor. Talk the habit into a decision."
+
+The first [[ticket|ticket]] in the [[help_desk|help desk]] queue was already yelling in all caps.
+
+## Nora and the policy that keeps changing the locks
+
+Nora in finance could not reset. She had tried her old favorite three times. The portal said no.
+
+"I always rotate the season and the year," she said on the phone. "Spring2024!, Summer2024! — that used to work everywhere. Now it hates me. Also it wants sixteen characters. Who remembers sixteen?"
+
+I pulled the account. [[password_age|Password age]] was ninety-one days. Policy max was ninety. Her last change had slid under the wire last quarter; today the portal was enforcing [[password_expiration|password expiration]] before it would talk about a reset path.
+
+"Expiration is why I'm calling," Nora said. "Every ninety days I invent a worse password and write it on a sticky. My cousin's home lab uses a [[passphrase|passphrase]] — four words, no sticky. Is that allowed, or do we still need the symbol salad?"
+
+Jules leaned in just enough to be heard. "Ask what we are optimizing for."
+
+"[[password_length|Length]] and uniqueness," I said. "[[password_complexity|Complexity]] rules still exist here — upper, lower, digit, symbol — but a long passphrase that clears length usually beats a short spicy one. And no [[password_reuse|password reuse]] across work and the streaming account you use at lunch. That Spring2024 pattern is reuse with a costume."
+
+Nora snorted. "Costume. Fine. What do I type?"
+
+We walked a passphrase she would actually remember, not a movie quote she had posted on socials. I reminded her the company [[password_manager|password manager]] would store a unique [[password|password]] for every app so she was not inventing seasons. She groaned about another vault, then admitted her browser had already offered to save three variants of the same secret.
+
+She set the passphrase. She did not install the manager on the call. "I'll do the vault later," she said. "I have a close." I put *manager still pending* in the ticket and left it open.
+
+## Ken and the MFA that is not MFA
+
+Ken in sales was locked out of the CRM after a phone wipe. He wanted a quick fix.
+
+"I already have multifactor," Ken said. "[[password|Password]] plus a [[pin|PIN]] on the laptop. Two things. That is MFA, right? My old shop said so."
+
+I felt the flashcard reflex and almost agreed because the sentence had two nouns.
+
+Jules's sticky was visible from my chair.
+
+"[[identification|Identification]] is you typing your username," I said. "[[authentication|Authentication]] is proving it. MFA means two different factor types. Password is [[something_you_know|something you know]]. PIN is also something you know. Same bucket. That is [[single_factor|single-factor]] with extra typing — not [[mfa|multifactor authentication]]."
+
+Ken was quiet for a second. "So what counts as the second thing?"
+
+"[[something_you_have|Something you have]] — phone app, hardware token, security key. Or [[something_you_are|something you are]] — fingerprint, face. Location can be [[somewhere_you_are|somewhere you are]], a context signal, not a substitute for a second factor when policy asks for MFA."
+
+"Password plus PIN was a house rule, then," he muttered. "Okay. Enroll me for real."
+
+## Soft tokens, SMS, and the Approve reflex
+
+The enrollment ticket for Ken turned into a hallway class for two other people who "just need the code thing."
+
+I started with the [[authenticator_app|authenticator app]]. The soft path is a [[soft_token|soft token]] on the phone that shows [[totp|TOTP]] codes — six digits, thirty seconds, clock-bound. We scanned the QR at his desk, not at the coffee bar. I mentioned [[shoulder_surfing|shoulder surfing]] once; he angled the screen.
+
+"What about texts?" Ken asked. "SMS is easier. I do not want another app."
+
+"[[sms_otp|SMS OTP]] is still a second factor," I said, "but it is the weaker possession story — SIM swap, intercepted texts. Policy allows it as a backup, not as the primary. App first."
+
+He installed the app. We generated [[backup_codes|backup codes]] and he put them in the password manager, not in a Notes file titled codes. Push was next: the IdP offered [[push_notification|push notification]] approve/deny.
+
+Jules walked past with a granola bar. "Tell him about fatigue before he trains his thumb."
+
+"[[mfa_fatigue|MFA fatigue]]," I said. "If you get a push you did not start, tap Deny and call us. Attackers spam Approve until someone gets bored."
+
+Ken nodded like a man who had tapped through terms of service. "Deny if I did not ask."
+
+Across the aisle, Rita from marketing wanted the same enrollment but "without the phone, I lose phones." We issued a loaner [[hard_token|hard token]] for her travel week and scheduled a [[security_key|security key]] once procurement finished arguing about USB-C.
+
+## Lockout, biometrics, and the laptop that thinks it knows a face
+
+Mid-morning: Dev from engineering, [[account_lockout|account lockout]] after a script retried a stale secret forty times. He was embarrassed and late for a stand-up.
+
+"I pointed a job at the old service password," Dev said. "It hammered. Now I cannot even get in to fix the hammer."
+
+"Lockout is doing its job," I said. "Failed [[authentication|authentication]] budget spent. I unlock after we rotate the secret in the vault, not before — otherwise the script just spends the budget again."
+
+He waited on the timer. He did not like waiting. The script stayed stopped until the secret lived in the vault.
+
+While Dev waited, Lila from HR stopped by with a laptop lid.
+
+"Windows Hello says my face," she said. "Is that real [[biometrics|biometrics]], or theater? Also can I turn off MFA if the laptop unlocks me?"
+
+"Biometrics are [[something_you_are|something you are]]," I said. "Fine for device unlock. Company apps still want MFA at the [[identity_provider|identity provider]]. Unlocking the lid is not the same as proving you to every SaaS tile."
+
+She kept the app. She looked like someone who had hoped for a shorter answer.
+
+## Offboarding leftovers and the admin sticky
+
+Afternoon started with HR pinging [[offboarding|offboarding]] for a contractor who had left Friday. Badge returned. Laptop wiped. Access had not followed.
+
+Jordan from IT ops shared a screen. The contractor still had a license on the design tool, a shared mailbox membership, and — Jules made a noise — a line in a wiki with a [[shared_admin_account|shared admin account]] password last rotated "sometime before the rebrand."
+
+"That is not a password," Jules said. "That is a campfire story."
+
+We treated it as a [[deprovisioning|deprovisioning]] failure. Disable the cloud login. Pull group memberships. Kill the API token someone had minted "temporarily" in March. For the shared admin: move the secret into [[vaulting|vaulting]], rotate it, and stop pretending six people can share one identity and still have [[accounting|accounting]] that means anything.
+
+"[[provisioning|Provisioning]] was fine on day one," Jordan said. "We created the account, put them in the contractor role, shipped the laptop. Day last is where we get sloppy."
+
+I opened a follow-up ticket to map the contractor role in [[rbac|RBAC]] so the next person inherited a bundle we could revoke in one motion — not a scavenger hunt across five admin consoles. Jules, still in the thread: "[[least_privilege|Least privilege]] on the way in. Same muscle on the way out."
+
+## Privileged shortcuts and break-glass myths
+
+Network dropped into the same thread. Jared — still proud of last week's SSH rewrite — wanted a standing domain admin for "closet emergencies."
+
+"I have a Pi at home that is basically god mode," he said. "At work I still type a normal user password and wait. If the [[identity_provider|IdP]] hiccups, how do we get in?"
+
+"Checkout, not a lifestyle," Jules said. "I've got a vendor call in ten. Walk him through PAM and then get off the thread."
+
+We walked the desk-level [[pam|PAM]] story without turning it into a product pitch: vault the break-glass path, do not laminate it. [[break_glass|Break-glass]] exists for when MFA and IdP paths are actually down — sealed, monitored, painful on purpose. Day to day, Jared requests [[just_in_time|just-in-time]] elevation for the change window, does the work, loses the rights when the window closes. [[authorization|Authorization]] for admin actions should not be a permanent personality trait on his account. [[privileged_access|Privileged access]] is a checkout.
+
+Jared sighed. "Fine. I will stop naming shared accounts after the street food cart." He did not get the standing admin. He opened a change ticket for the next window instead.
+
+## SSO ticket: the app that wants its own password
+
+Late afternoon. Vendor portal for facilities. Title: *need password for EnergyDash*. Description: *IT please create a login.*
+
+I called. Dana — same truck as the FTP week — was between buildings.
+
+"The portal has a Sign in with company button," Dana said. "Also a Register. Register asked me for a new password. I made one. Now Finance says that is wrong."
+
+"[[sso|SSO]]," I said. "We do not want a snowflake password in EnergyDash if we can help it. Our [[identity_provider|IdP]] already authenticated you this morning. The portal should trust a federation assertion, not a new local account."
+
+"They said SAML on the implementation call," Dana offered. "Or OAuth. They used both words like synonyms."
+
+Jules, still on her vendor call, muted long enough to say, "Desk translation, Ethan," and unmuted again.
+
+"[[federation|Federation]] means their app trusts our IdP. [[saml|SAML]] is the enterprise assertion pattern you will see on the wiki checklist. [[oauth|OAuth]] shows up when an app wants a token to call an API without eating your password — related paperwork, different shape. For this ticket, click Sign in with company, refuse Register, and if Register is the only path, we escalate — local passwords in vendor tools become [[password_reuse|reuse]] magnets and offboarding blind spots."
+
+Dana tapped something. "Sign in with company worked. It bounced me through the usual MFA push. I denied the first one because I forgot I had started it. Then I approved the second."
+
+"Good," I said. "Keep the local register button unemployed."
+
+## Passwordless rumor and the end of the shift
+
+Last ping was not a fire. It was a rumor. Someone in Slack asked when we would go [[passwordless|passwordless]] so they could throw their password manager into the river.
+
+Jules typed one line between vendor questions: *security keys and device-bound passkeys are on the roadmap; throwing secrets into the river is not a migration plan.*
+
+I added the desk version for the person who would still call: passwordless replaces the knowledge factor with possession and biometrics wired through the IdP — it does not mean no proof. Until then, unique passwords in the manager, MFA that is actually multifactor, and no PIN cosplay.
+
+At 5:35 the queue was down to noise. Nora's vault was still pending. Ken was enrolled. The contractor was deprovisioned. EnergyDash was on SSO. Jared did not have standing god mode.
+
+Jules clipped her bike lights on. "Tomorrow someone will call password-plus-PIN multifactor again."
+
+"I already have the line," I said.
+
+She almost smiled. I locked the drawer. The cards in it were still about ports. Today's tickets had been about proof — who you claim to be, how you show it, and what we revoke when the story ends. I went out into the rain to catch the MAX.
+
+```bridge-card
+title: Hands-On Lab: Identity, Authentication Factors, & Password Policy Triage
+target: workbench/08-prove-who-you-are.md
+domain: CompTIA Security+ SY0-701 • Domain 4.2 & 1.3
+badge: Hands-On Lab
+---
+Step onto Ethan's shift with interactive authentication factor classification drills, Event ID 4625/4740 Windows Event Viewer lockout triage, the 5-case CBYT prediction gate, and the Tier 1 Account Lockout & MFA Enrollment Resolution deliverable.
+```
+
