@@ -1,0 +1,54 @@
+{
+  "investigation_id": "SEC-PHISH-2026-1021",
+  "incident_date": "2026-10-21T08:12:12-07:00",
+  "target_organization": "Portland Municipal Utilities & Operations (portland-ops.gov)",
+  "indicators_of_compromise": {
+    "malicious_domains": [
+      {
+        "domain": "port1and-ops.com",
+        "category": "Typosquatting / Character Substitution (Digit '1' for Letter 'l')",
+        "threat_type": "Executive Impersonation / BEC",
+        "action": "Blocked at Perimeter Mail Gateway & DNS Resolver"
+      },
+      {
+        "domain": "login-micros0ft-secure.ru",
+        "category": "Typosquatting & Brand Impersonation (Numeral '0' for 'o' with .ru TLD)",
+        "threat_type": "Credential Harvesting / AiTM Phishing Proxy",
+        "action": "Blocked at Web Proxy & DNS RPZ"
+      },
+      {
+        "domain": "xn--prtland-ops-n8a.com",
+        "category": "IDN Homograph / Punycode Attack (Cyrillic Small Letter 'о' U+043E)",
+        "threat_type": "Deceptive Brand Impersonation",
+        "action": "Blocked via Punycode Disallow Rule"
+      }
+    ],
+    "originating_ips": [
+      {
+        "ip": "185.220.101.42",
+        "asn": "AS44194 (Host Europe / VPS)",
+        "reputation": "Known Malicious Bulletproof Hosting / Tor Relay",
+        "action": "Firewall Drop / Inbound SMTP Blocklist"
+      },
+      {
+        "ip": "194.26.29.114",
+        "asn": "AS209588 (NL Bulletproof Hosting)",
+        "reputation": "Active Credential Harvesting Campaign",
+        "action": "Firewall Drop / Inbound SMTP Blocklist"
+      }
+    ],
+    "file_hashes": [
+      {
+        "filename": "MayaLin_VoidedCheck_RoutingUpdate.pdf.exe",
+        "file_type": "Win32 PE Executable (Double Extension)",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "classification": "Stealer Trojan / Keylogger Dropper",
+        "action": "Detonated in Endpoint Sandbox; Hash Added to EDR Blocklist"
+      }
+    ],
+    "discrepant_reply_to_addresses": [
+      "maya.lin.executive78@gmail.com",
+      "verify-token@login-micros0ft-secure.ru"
+    ]
+  }
+}

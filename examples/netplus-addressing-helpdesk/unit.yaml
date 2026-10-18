@@ -1,0 +1,26 @@
+unit_id: netplus-addressing-helpdesk
+title: "Portland Desk — The Default Gateway Doesn't Care"
+audience: "Someone studying CompTIA Network+ N10-008/009 IP addressing, subnetting, ARP, and DHCP troubleshooting, or following Ethan's help-desk years in Book 0"
+purpose: "Ground IPv4 addressing, CIDR block boundaries, default gateway forwarding, ARP resolution, and DHCP DORA failures in an authentic municipal help-desk shift."
+estimated_minutes: 25
+sources:
+  - CompTIA Network+ N10-008 Domain 1.4 (Given a scenario, configure and troubleshoot IPv4 addressing, subnets, and default gateways)
+  - CompTIA Network+ N10-009 Domain 1.4 & 4.1 (Network addressing, routing concepts, and troubleshooting IP configuration failures)
+glossary: glossary.yaml
+narrative: narrative.md
+workbench: workbench.md
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Network+ study targets — primary examination concepts"
+  support: "Desk/network jargon marked for readability"
+tooltip_contract:
+  body: [definition, context]
+  exclude_from_hover: [refs, sources, related]
+  definition_style: "short 1–2 sentences; exam-faithful for tier exam"
+  context_style: "optional one clause when bare definition needs operational grounding"
+constraints:
+  - Every glossary term appears at least once in narrative marks
+  - Story must pass the cover test (readable with marks hidden)
+  - Grounded workplace realism; zero synthetic AI tells
+  - First person past tense narration; strictly no forbidden names
+  - Target 16-20 word sentence mean with full clauses and zero staccato

@@ -123,3 +123,13 @@ At 5:40 I closed notes: Maya reported, Sam did not open the zip, Avery's wire fr
 Jules clipped her bike lights on. "Tomorrow someone will call a [[spoofing|spoofed]] CFO probably real because the logo is crisp."
 
 I said I already had the line. I locked the drawer and went out into the rain.
+
+```bridge-card
+title: Hands-on Workbench: Email Header Decomposition & Phishing Triage
+target: workbench.md
+domain: CompTIA Security+ SY0-701 • Domain 1.2 & 2.4
+badge: Hands-on Workbench
+---
+Step onto Ethan's shift with raw RFC 5322 MIME header traces, SPF/DKIM/DMARC authentication triage, lookalike and punycode domain squatting analysis, the 5-case CBYT prediction gate, and the Tier 1 Phishing Incident Triage & Security Escalation deliverable.
+```
+
