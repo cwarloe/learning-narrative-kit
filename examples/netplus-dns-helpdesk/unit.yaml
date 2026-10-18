@@ -1,0 +1,26 @@
+unit_id: netplus-dns-helpdesk
+title: "Portland Desk — The Name Is Not the Number"
+audience: "Someone studying CompTIA Network+ N10-008 DNS, name resolution, and VPN plumbing, or following Ethan's help-desk years in Book 0"
+purpose: "Weave DNS resolution hierarchy, split-horizon architectures, hosts file priority, resolver caching, and VPN split-tunnel DNS leaks into an authentic help-desk shift."
+estimated_minutes: 25
+sources:
+  - CompTIA Network+ N10-008 Domain 1.5 (IP addressing and name resolution services)
+  - CompTIA Network+ N10-008 Domain 4.1 & 4.2 (Network troubleshooting methodologies and remote access issues)
+glossary: glossary.yaml
+narrative: narrative.md
+workbench: workbench.md
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Network+ study targets — primary examination concepts"
+  support: "Desk/network jargon marked for readability"
+tooltip_contract:
+  body: [definition, context]
+  exclude_from_hover: [refs, sources, related]
+  definition_style: "short 1–2 sentences; exam-faithful for tier exam"
+  context_style: "optional one clause when bare definition needs operational grounding"
+constraints:
+  - Every glossary term appears at least once in a ticket or decision
+  - Story must pass the cover test (readable with marks hidden)
+  - Precursor tone: Level 1 help desk troubleshooting, not abstract network theory
+  - Past tense narration, first person; strictly no forbidden names
+  - Target 16-20 word sentence mean with full clauses and zero staccato

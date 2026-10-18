@@ -1,0 +1,52 @@
+bank_id: a-plus-hardware-helpdesk
+title: "CompTIA A+ Core 1 (220-1101) — Hardware Fault Isolation & Layer 1 Diagnostics"
+source: "CompTIA A+ Core 1 (220-1101) Domain 3.0 Hardware and Network Troubleshooting"
+terms:
+  - id: post_code
+    title: POST Code
+    definition: "A hexadecimal diagnostic code output by system firmware during the Power-On Self-Test to identify hardware initialization progress and specific subsystem failures."
+    context: "Displayed on onboard seven-segment displays or port 80h diagnostic cards before video display drivers initialize."
+    refs:
+      - "CompTIA A+ Core 1 (220-1101) Objective 3.1: Given a scenario, resolve problems with motherboard, RAM, CPU, and power"
+    tags: [hardware, diagnostics]
+    tier: exam
+  - id: rs232_serial
+    title: RS-232 Serial
+    definition: "A legacy standard for serial binary data transmission between data terminal equipment (DTE) and data circuit-terminating equipment (DCE), commonly utilizing DB-9 connectors."
+    context: "Frequently deployed in rugged industrial equipment, automated weighing scales, barcode scanners, and network management consoles."
+    refs:
+      - "CompTIA A+ Core 1 (220-1101) Objective 3.4: Given a scenario, troubleshoot and resolve peripheral and display problems"
+    tags: [hardware, serial]
+    tier: exam
+  - id: baud_rate
+    title: Baud Rate
+    definition: "The rate at which signal states or electrical symbols change per second along a serial communication channel, requiring matching transmitter and receiver clocking."
+    context: "In binary serial links, a mismatch between sender and receiver baud rates creates severe frame desynchronization and unreadable garbled characters."
+    refs:
+      - "CompTIA A+ Core 1 (220-1101) Objective 3.4: Troubleshoot peripheral interfaces and communications"
+    tags: [serial, communication]
+    tier: exam
+  - id: multimeter
+    title: Multimeter
+    definition: "A handheld electronic test instrument used to measure electrical voltage (AC/DC), resistance (ohms), and current (amperes) across hardware circuits."
+    context: "Used by technicians to test power supply rail tolerances (+12V, +5V, +3.3V) and trace broken or grounded conductors."
+    refs:
+      - "CompTIA A+ Core 1 (220-1101) Objective 3.1: Power supply troubleshooting and voltage rail verification"
+    tags: [hardware, electrical]
+    tier: exam
+  - id: continuity_test
+    title: Continuity Test
+    definition: "An electrical test performed with a multimeter to verify an unbroken, low-resistance conduction path between two points in a circuit or conductor."
+    context: "Produces an audible tone when a continuous circuit exists, isolating severed copper traces, short circuits to chassis ground, or broken cable cores."
+    refs:
+      - "CompTIA A+ Core 1 (220-1101) Objective 3.1: Motherboard and cabling fault isolation"
+    tags: [hardware, electrical]
+    tier: exam
+  - id: dip_switch
+    title: DIP Switch
+    definition: "Dual in-line package manual electrical switches mounted on a printed circuit board to configure hardware parameters and operational modes directly."
+    context: "Commonly used on embedded motherboards, industrial scales, and expansion cards to configure baud rates, hardware addresses, or bus timings without software."
+    refs:
+      - "CompTIA A+ Core 1 (220-1101) Objective 3.1: Motherboard configuration and embedded jumpers"
+    tags: [hardware, embedded]
+    tier: support

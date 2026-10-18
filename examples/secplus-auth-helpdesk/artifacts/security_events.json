@@ -1,0 +1,131 @@
+[
+  {
+    "event_id": 4624,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-21T08:12:04.108421Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "An account was successfully logged on.",
+    "data": {
+      "TargetUserName": "ebrooks",
+      "TargetDomainName": "PORTLAND-OPS",
+      "LogonType": 2,
+      "LogonTypeName": "Interactive",
+      "AuthenticationPackageName": "Negotiate",
+      "WorkstationName": "PORT-DESK-01",
+      "IpAddress": "127.0.0.1",
+      "IpPort": "0",
+      "ProcessName": "C:\\Windows\\System32\\winlogon.exe",
+      "Status": "0x0"
+    }
+  },
+  {
+    "event_id": 4625,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-21T08:24:12.338210Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "An account failed to log on.",
+    "data": {
+      "TargetUserName": "nhiggins",
+      "TargetDomainName": "PORTLAND-OPS",
+      "LogonType": 3,
+      "LogonTypeName": "Network",
+      "AuthenticationPackageName": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+      "WorkstationName": "IPAD-NORA-FIN",
+      "IpAddress": "192.168.20.114",
+      "IpPort": "49882",
+      "Status": "0xC000006D",
+      "SubStatus": "0xC000006A",
+      "FailureReason": "Unknown user name or bad password."
+    }
+  },
+  {
+    "event_id": 4625,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-21T08:29:15.894102Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "An account failed to log on.",
+    "data": {
+      "TargetUserName": "nhiggins",
+      "TargetDomainName": "PORTLAND-OPS",
+      "LogonType": 3,
+      "LogonTypeName": "Network",
+      "AuthenticationPackageName": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+      "WorkstationName": "IPAD-NORA-FIN",
+      "IpAddress": "192.168.20.114",
+      "IpPort": "49885",
+      "Status": "0xC000006D",
+      "SubStatus": "0xC000006A",
+      "FailureReason": "Unknown user name or bad password."
+    }
+  },
+  {
+    "event_id": 4625,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-21T08:34:18.109240Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "An account failed to log on.",
+    "data": {
+      "TargetUserName": "nhiggins",
+      "TargetDomainName": "PORTLAND-OPS",
+      "LogonType": 3,
+      "LogonTypeName": "Network",
+      "AuthenticationPackageName": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+      "WorkstationName": "IPAD-NORA-FIN",
+      "IpAddress": "192.168.20.114",
+      "IpPort": "49888",
+      "Status": "0xC000006D",
+      "SubStatus": "0xC0000234",
+      "FailureReason": "The user account has been automatically locked because too many invalid logon attempts were made."
+    }
+  },
+  {
+    "event_id": 4740,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-21T08:34:18.115400Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "A user account was locked out.",
+    "data": {
+      "TargetUserName": "nhiggins",
+      "TargetDomainName": "PORTLAND-OPS",
+      "SubjectUserName": "dc01$",
+      "SubjectDomainName": "PORTLAND-OPS",
+      "CallerComputerName": "IPAD-NORA-FIN",
+      "TargetSid": "S-1-5-21-3928174412-1082938471-2948192837-1402"
+    }
+  },
+  {
+    "event_id": 4625,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-21T09:42:01.442190Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "An account failed to log on.",
+    "data": {
+      "TargetUserName": "dpatel",
+      "TargetDomainName": "PORTLAND-OPS",
+      "LogonType": 8,
+      "LogonTypeName": "NetworkCleartext",
+      "AuthenticationPackageName": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+      "WorkstationName": "ENG-SRV-DEV02",
+      "IpAddress": "10.0.12.88",
+      "IpPort": "51240",
+      "Status": "0xC000006D",
+      "SubStatus": "0xC000006A",
+      "FailureReason": "Unknown user name or bad password."
+    }
+  },
+  {
+    "event_id": 4740,
+    "provider_name": "Microsoft-Windows-Security-Auditing",
+    "time_created": "2026-10-21T09:42:05.102311Z",
+    "computer": "dc01.portland-ops.local",
+    "description": "A user account was locked out.",
+    "data": {
+      "TargetUserName": "dpatel",
+      "TargetDomainName": "PORTLAND-OPS",
+      "SubjectUserName": "dc01$",
+      "SubjectDomainName": "PORTLAND-OPS",
+      "CallerComputerName": "ENG-SRV-DEV02",
+      "TargetSid": "S-1-5-21-3928174412-1082938471-2948192837-1855"
+    }
+  }
+]
