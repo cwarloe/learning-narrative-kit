@@ -1,0 +1,74 @@
+{
+  "three_beat_engine": {
+    "title": "Three-Beat Pedagogical Engine",
+    "category": "pedagogy",
+    "definition": "A narrative learning structure (Goal → Complication → Pivot) ensuring technical vocabulary attaches directly to human decisions and real frictions rather than passive memorization.",
+    "context": "The habit is the complication; the replacement decision is the pivot. Terms must land on friction points."
+  },
+  "falsifiable_hypothesis": {
+    "title": "Falsifiable Hypothesis",
+    "category": "analytical",
+    "definition": "A precise, testable proposition specifying observable telemetry conditions that would prove an assumption false before investigation or execution begins.",
+    "context": "If you cannot name what disproves you before running queries, you are sightseeing rather than diagnosing."
+  },
+  "prediction_gate": {
+    "title": "Prediction Gate",
+    "category": "pedagogy",
+    "definition": "An interactive checkpoint requiring learners to commit to an observable outcome in writing before revealing telemetry or solution data.",
+    "context": "Combats the hindsight bias where observed outcomes feel retroactively obvious."
+  },
+  "bridge_card": {
+    "title": "Curriculum Bridge Card",
+    "category": "pedagogy",
+    "definition": "A visual and conceptual handoff component placed at the end of a narrative chapter that directs the learner to its companion workbench exercise.",
+    "context": "Connects conceptual tension in the story directly to hands-on muscle memory in the workbench."
+  },
+  "telemetry_stream": {
+    "title": "Telemetry Stream",
+    "category": "telemetry",
+    "definition": "A continuous, high-volume flow of timestamped diagnostic records, event logs, or metric samples emitted by operational systems.",
+    "context": "Raw telemetry requires normalization and structured scoping to prevent cognitive overload."
+  },
+  "baseline_drift": {
+    "title": "Baseline Drift",
+    "category": "telemetry",
+    "definition": "The gradual divergence of system metrics from historical norms caused by changing workloads, configuration drift, or stealthy adversary activity.",
+    "context": "Distinguishing seasonal organic drift from malicious degradation requires comparative peer clustering."
+  },
+  "cardinality": {
+    "title": "Cardinality",
+    "category": "telemetry",
+    "definition": "The uniqueness of data values contained in a particular column or field, such as unique IP addresses, session IDs, or transaction tags.",
+    "context": "High cardinality fields can overwhelm indexers but provide critical forensic discrimination."
+  },
+  "circuit_breaker": {
+    "title": "Circuit Breaker Pattern",
+    "category": "architecture",
+    "definition": "A defensive design pattern that automatically halts outbound calls to a failing remote dependency once an error threshold is crossed, allowing recovery.",
+    "context": "Prevents catastrophic cascading failures across microservices during network partition events."
+  },
+  "backpressure": {
+    "title": "Backpressure",
+    "category": "transport",
+    "definition": "A flow-control signaling mechanism where downstream consumers signal upstream producers to throttle ingestion rate when queues reach capacity.",
+    "context": "Without backpressure, buffering systems exhaust memory and drop packets under burst traffic."
+  },
+  "graceful_degradation": {
+    "title": "Graceful Degradation",
+    "category": "architecture",
+    "definition": "The ability of a system to maintain essential core functions when peripheral subsystems or downstream dependencies fail.",
+    "context": "Ensures critical operations continue with cached data or simplified interfaces during outages."
+  },
+  "least_frequency_analysis": {
+    "title": "Least-Frequency Analysis (Long Tail)",
+    "category": "analytical",
+    "definition": "A statistical investigation technique that aggregates events by occurrence count and sorts from least frequent to most frequent to expose rare outliers.",
+    "context": "Adversary implants often hide in the single 1-of-a-million connection rather than top-volume lists."
+  },
+  "synthetic_benchmark": {
+    "title": "Synthetic Benchmark",
+    "category": "telemetry",
+    "definition": "An artificially generated operational test workload used to measure reproducible system performance under controlled stress conditions.",
+    "context": "Guarantees deterministic comparative analysis without risking production system instability."
+  }
+}

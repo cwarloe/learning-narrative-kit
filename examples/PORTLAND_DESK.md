@@ -105,7 +105,19 @@ the author's call, not a tightening pass.
 | `secplus-crypto-helpdesk` | Trust on Paper |
 | `secplus-ir-helpdesk` | When the Ticket Escalates |
 
-Folder pattern: `examples/<unit_id>/{unit.yaml,glossary.yaml,narrative.md,review.yaml}`.
+Folder pattern: `examples/<unit_id>/{unit.yaml,glossary.yaml,narrative.md,workbench.md,review.yaml,artifacts/}`.
+
+## Dual-Track Architecture (Narrative + Hands-on Workbench)
+
+The Portland Desk units operate as a Dual-Track learning system:
+1. **Narrative Chapter (`narrative.md`)**: First-person, authentic help desk shift with Ethan and Jules. Focuses on the complication/pivot decision model and workplace dynamics. Linked to the workbench via `.bridge-card`.
+2. **Operational Workbench (`workbench.md`)**: Hands-on Level 1 technical workbench adhering to the NADF workbench standard:
+   - Metadata & CompTIA Security+ (SY0-701) domain alignment.
+   - Ground Truth & Operational Rules of Engagement.
+   - Technical Reference & Decision Matrix.
+   - Interactive Micro-Drills with "Commit Before You Touch" prediction gates.
+   - Performance Deliverables (Standard Ticket Resolutions and Formal Security Escalations).
+3. **Live Support Telemetry (`artifacts/`)**: Generated via `tools/generate_helpdesk_artifacts.py` containing realistic ServiceNow/Zendesk tickets, pre-recorded terminal dumps (`ipconfig /all`, `netstat -ano`, `nslookup`, `gpresult /r`, `route print`), Windows Event Viewer records (Event IDs 4624, 4625, 4740, 7045), and raw email MIME headers (`.eml`) for phishing triage.
 
 ## Sticky pedagogy check
 
