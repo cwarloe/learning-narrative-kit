@@ -204,7 +204,47 @@ Every episode must reflect the principles of industrial throughput and organizat
 
 ---
 
-## 6. Detailed Episode Architecture Cards (Episodes 1–12)
+## 6. Detailed Episode Architecture Cards (Episodes 0–12)
+
+---
+
+### Episode Architecture Card 00 (Prologue)
+**Title:** The Four Rubber Bands  
+**Arc Placement:** Prologue (Before the Badge — The Zero Foundation)  
+**Timeline:** Month 0 (May, Late Spring)  
+**Setting:** A cramped duplex kitchen in East Portland, Oregon; fluorescent tube humming overhead, box fan rattling in the window, greasy pizza box, cold instant coffee, linoleum table covered in 300 blank index cards and open 800-page CompTIA study guide.  
+**Point of View:** Ethan Brooks (Age 19).  
+
+#### Core Dilemma & Goldratt Friction
+Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loading lumber at a building supply warehouse in Gresham. His debit card shows $83 left after paying $246 for a CompTIA A+ exam voucher. If he fails, he cannot make rent. He is drowning in 800 pages of pedantic syllabus trivia—laser printer transfer rollers, DVI connector pinouts, SATA revisions, and RAM clock timings. When he fails an online practice exam with a 58%, he breaks down in exhaustion and cynical rage, throwing his index cards across the linoleum. He faces the beginner's ultimate gatekeeping trap: believing that because he cannot memorize a manufacturer parts catalog, he is too stupid to work in technology.
+
+#### Narrative Synopsis
+1. **Goal:** Ethan wants to pass the CompTIA A+ exam on Thursday to escape blue-collar manual labor and qualify for a $19.50/hr entry-level help desk position.
+2. **Complication:** The sheer volume of arbitrary trivia creates total cognitive overload. Every time he tries to remember DDR pin counts, he forgets the difference between a default gateway and a subnet mask. He feels like the exam is an expensive racket designed to test memorization rather than competence.
+3. **Pivot:** His father, a retired machinist who spent 35 years reading blueprints and running CNC milling machines, wanders into the kitchen in his socks looking for a glass of water. Looking at Ethan's flashcards, his dad cuts through the academic noise: *"Ethan, this is just a parts catalog. When an apprentice starts in the shop, he thinks he has to memorize every bolt in McMaster-Carr. Does it spin, does it leak, or is it jammed? What holds tension, and what moves?"* Ethan stops treating the exam like a spelling bee. He groups his cards into **Four Colored Rubber Bands**:
+   - **Red Band (The Exam Passport):** The disposable syllabus trivia (printer drums, pin counts, cable specs) that he will cram for 48 hours, spit back at the computer, and immediately forget.
+   - **Green Band (The Physical Invariants):** The lasting machine anatomy (CPU compute, RAM volatile memory, Disk non-volatile storage, Motherboard bus, NIC communication).
+   - **Yellow Band (The Identity Triad):** How systems know who they are (MAC hardware badge, IP temporary lease, Port the listening door).
+   - **Blue Band (The Diagnostic Reflex):** The systematic method of troubleshooting (*Symptom $\rightarrow$ Theory $\rightarrow$ Test $\rightarrow$ Verify*).
+4. **Resolution & Cost:** Ethan sits in a sterile strip-mall testing center in Beaverton between anxious strangers, clicks submit with sweating palms, and scores a 742/900. He walks out with a stamped paper score report in hand. His bank account is still drained and his hands are still rough from warehouse shifts, but he holds the passport that gets him past the automated HR resume filters.
+
+#### Mentorship / Heuristic Core
+- **Working Rule:** *The certification buys your ticket through the HR door; understanding the physical invariants keeps you from getting fired on your first shift.*
+- **Dialogue Realism:** Ethan's dad, looking at a memory timing card: *"If the engine won't crank, nobody asks what year the alternator was patented. Check if the battery has juice and the belt is tight."*
+
+#### CompTIA / Knowledge Load
+- **CompTIA A+ Core 1 & Core 2 Foundations:** Volatile vs. Non-volatile storage, CPU/RAM/Motherboard architecture, MAC vs. IP addressing, First terminal commands (`whoami`, `hostname`, `ipconfig`).
+
+#### Vocabulary Hovers & Target Marks
+- `ram_memory`: Volatile system memory that holds active program instructions and temporary data, cleared immediately when power is lost.
+- `non_volatile_storage`: Persistent magnetic or solid-state data storage that retains information across power cycles.
+- `mac_address`: Unique 48-bit physical hardware identifier burned into a network interface card at the factory (Layer 2).
+- `ip_address`: Logical network address assigned to an interface to allow routing across internetworks (Layer 3).
+- `network_interface_card`: Physical hardware expansion card or onboard controller that translates system data into electrical, optical, or radio network signals.
+- `post_routine`: Initial firmware diagnostic sequence executed by the motherboard upon receiving power to verify core hardware readiness.
+
+#### Companion Workbench Bridge
+- **Workbench Lab 00:** *The Beginner's Mental Model & Anatomy of a Computer.* Deconstructing a workstation into its 4 invariant components, executing first CLI commands, and establishing the Metacognitive Study Filter.
 
 ---
 
