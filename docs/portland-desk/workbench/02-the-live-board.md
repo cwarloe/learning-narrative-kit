@@ -566,3 +566,37 @@ Status:           RESOLVED & VERIFIED
 ---
 
 *Workbench complete. Review companion datasets and test your knowledge against the live triage scenarios.*
+
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 2.2: THE LIVE BOARD RESOLUTION"
+badge: "Shift Epilogue"
+caption: "Bullpen view: At 09:12 AM, workstation 14's dispatch ticket flips from amber to green. Outside the casement windows, rain sweeps across the Hawthorne Bridge as Jules Mercer signs the onboarding slip."
+prompt: "Clean graphic novel panel of an IT help desk office bullpen in the Pacific Northwest. Rain streaks against large casement windows overlooking an industrial river bridge. A computer monitor displays a green resolved ticket badge. On the laminate desk, a blue visitor badge slip sits signed next to a ceramic coffee mug. Ligne Claire style, crisp technical lines, no text, no words. 16:9 ratio."
+```
+
+By 09:05 AM, the terminal logs had told the full story. The overnight maintenance update had installed generic AMD Radeon graphics driver package `v31.0.12024.2005`, clashing directly with `PDXPayClient.exe`'s Direct3D hardware acceleration engine.
+
+Following the remediation plan, I opened the advanced client configuration file, disabled hardware acceleration to route chart rendering through the stable GDI+ CPU pipeline, and executed a clean driver rollback in Device Manager to enterprise build `v30.0.15021.1101`.
+
+"Maya, please go ahead and launch the payroll database," I said over the headset. "Enter your credentials and run a test calculation on the batch summary report."
+
+Across the remote desktop session, we watched the accounting matrices populate instantly. Thirty-six pages of wage distributions and one hundred forty-two employee records calculated in four seconds without dropping a single frame.
+
+"It works," Maya exclaimed, her voice flooding with relief over the softphone line. "The calculation finished, and both of my screens stayed on. You just saved our entire payroll run for the week, Ethan."
+
+"Thank you for your patience while we isolated the driver issue, Maya," I said. "I am updating ticket forty-two hundred with the driver rollback details right now so our desktop team can blacklist that update across your department."
+
+I clicked disconnect on the softphone, slid the headset off, and completed the standardized resolution note. Jules stood behind my chair, reading through each section: the symptom description, the Safe Mode boundary test, the Event ID 1000 and 4101 analysis, and the preventive escalation to engineering.
+
+"Your technical isolation was disciplined, Ethan," Jules said, setting her empty travel mug on the divider. "You didn't burn down the house with a re-image. You divided the problem in half with Safe Mode, let Event Viewer give you the exact driver module, and fixed the root cause without eighteen wasted reboots."
+
+She paused, pulling a blue visitor badge exchange slip from her desk drawer and signing her initials across the authorization line.
+
+"The job starts Monday morning at seven-thirty," she said. "Nineteen-fifty an hour to start. Bring your own coffee mug, and leave the flashcards in your backpack."
+
+I thanked her, shook her hand, and walked out into the cool Portland rain. Across the river, the steel arches of the Hawthorne Bridge emerged from the morning fog, and for the first time in eighteen months, I felt like I was standing on solid ground.

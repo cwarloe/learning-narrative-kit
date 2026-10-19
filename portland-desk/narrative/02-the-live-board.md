@@ -53,53 +53,21 @@ When the workstation rebooted, the UEFI firmware detected the altered boot confi
 
 The accounting database window initialized immediately on her screen. It displayed the login prompt and connected to the municipal database server without freezing or turning the displays black. By stripping away non-essential software, we proved that the motherboard, memory, processor, and core operating system files were completely healthy.
 
-## The clean boot and the graphics stack
+## The eighteen-service wall
 
-With the hardware and core Windows files eliminated from our suspect pool, the fault had to live in third-party software. It was hiding among background services, startup applications, or non-standard drivers that loaded during a normal boot. I had Maya restart her machine normally and used our remote assistance tool to share her desktop.
+With the hardware and core Windows files eliminated from our suspect pool by Safe Mode, the fault had to live in third-party software. It was hiding among background services, startup applications, or non-standard drivers that loaded during a normal boot. I had Maya restart her machine normally and used our remote assistance tool to share her desktop.
 
-"Now we need to isolate the background conflict without disabling operating system functions," I told Jules, opening the System Configuration utility and Task Manager.
+I opened the System Configuration utility and Task Manager. Under the Services tab, once I checked the box to hide certified Microsoft services, eighteen separate third-party vendor services stared back at me in a long, unbroken column: peripheral daemons, accounting database helpers, updater utilities, and custom graphics hooks.
 
-I performed a systematic [[clean_boot|clean boot]] by navigating to the Services tab in MSConfig. I checked the box to hide all certified Microsoft services from view. Then I disabled the remaining eighteen third-party vendor services and disabled the startup helper applications in Task Manager. When we rebooted into this clean state, Maya launched the payroll application, and it opened without a hitch.
+"We could run a [[clean_boot|clean boot]]," I said to Jules, pointing at the list. "Disable the whole batch, reboot, and see if the crash stops."
 
-"You know it is a third-party service or driver," Jules said, leaning forward to observe my screen. "How are you going to identify the specific culprit without rebooting eighteen separate times?"
+"And if it stops, then what?" Jules asked, leaning forward to observe workstation fourteen's screen. "You have eighteen services and startup helpers. Are you going to re-enable them one by one and reboot eighteen separate times while Maya's deadline slips away? It is eight-forty right now. At nine o'clock, twenty-eight departmental supervisors are going to start calling this desk about their paychecks."
 
-Rather than guessing among the disabled startup services, I opened the administrative management console and launched the Windows [[event_viewer|Event Viewer]]. I expanded the Windows Logs tree, selected the Application log, and filtered for Error and Critical events recorded between eight and nine o'clock.
+She stepped back and folded her arms, letting the silence sit between us in the bullpen.
 
-There, stamped with an exact timestamp of eight-fifteen, sat Event ID 1000. The faulting application was `PDXPayClient.exe`, and the faulting module was `amdkmdag.sys`, the kernel display driver for the workstation's Radeon graphics card. In the System log, three identical instances of Event ID 4101 confirmed that the display driver had stopped responding and failed to recover.
+"A clean boot divides the world, Ethan, but binary search only works when you inspect the evidence before you start turning knobs. Every time Windows or an application crashes, the kernel writes down the truth. What is your next move, and where do you look before you touch a single service?"
 
-The overnight maintenance update had installed an uncertified generic [[device_driver|device driver]] package. That driver conflicted directly with the payroll software's hardware acceleration engine, causing the GPU pipeline to deadlock whenever the application rendered high-resolution financial charts.
-
-"The driver update corrupted the graphics pipeline," I said, pointing to the faulting module path in the log details pane. "The application tries to offload chart rendering to the GPU, the driver crashes kernel execution, and the display output hangs."
-
-## The verification and the offer
-
-I walked through the remediation steps with steady hands, feeling the tension drain out of my shoulders. First, I opened the advanced configuration properties file for the PDX-Pay client. I disabled the hardware acceleration toggle, forcing the application to render interface elements using the stable CPU software pipeline. Next, I opened Device Manager, selected the display adapter, and executed a clean rollback to the certified enterprise graphics driver version.
-
-Once the display driver finished rolling back, I reopened MSConfig and re-enabled all of Maya's background business services. Then I restarted the workstation into its standard operating environment.
-
-"Maya, please go ahead and launch the payroll database," I said over the headset. "Enter your credentials and run a test calculation on the batch summary report."
-
-We watched the monitor across the remote desktop session as Maya logged into the secure database. The payroll client rendered the complex accounting matrices instantly, displaying thirty-six pages of employee wage distributions without dropping a single frame.
-
-"It works," Maya exclaimed, her voice filled with relief. "The batch calculation finished in four seconds, and both of my screens stayed on. You just saved our entire payroll run for the week, Ethan."
-
-"Thank you for your patience while we isolated the driver issue, Maya," I said, closing out the remote assistance session. "I am updating your ticket documentation with the driver rollback details right now so our desktop team can flag that update."
-
-I clicked the disconnect button on the softphone and slid the headset off my ears. I spent five minutes typing a detailed resolution note into ticket forty-two hundred. I documented the initial symptoms, the Safe Mode isolation steps, the Event ID 1000 and 4101 log entries, and the permanent driver remediation.
-
-Jules stood behind my chair, reviewing the ticket resolution text line by line on the monitor.
-
-"Your technical isolation was solid, Ethan," Jules said, setting her empty travel mug on the corner of the divider. "You divided the problem in half with Safe Mode. You used a clean boot to verify third-party conflict, and you let Event Viewer point you to the exact driver instead of guessing in the dark."
-
-She paused, pointing her finger at the elapsed time counter on the ticket header.
-
-"You got the right answer, Ethan, but you wandered around talking about a full re-image for ten minutes before you checked the event logs," Jules continued, her voice level and direct. "In this chair, wandering costs four incoming calls waiting on hold, and people notice every second of hesitation. But you listened, you adjusted your process under live pressure, and you documented the root cause cleanly."
-
-Jules reached into her desk drawer, pulled out a blue visitor badge exchange slip, and signed her initials across the authorization line.
-
-"The job starts Monday morning at seven-thirty," she said. "Nineteen-fifty an hour to start. Bring your own coffee mug, and leave the flashcards in your backpack."
-
-I thanked her, shook her hand, and walked out of the operations center into the cool Portland rain. I listened to the muffled rumble of traffic crossing the river, knowing that the real work had finally begun.
+I looked at the eighteen checkboxes on Maya's screen, then at the clock blinking on the dispatch board. My memorized flashcards didn't have the answer. I had to pull the black box recorder of the operating system and find the exact faulting module before the morning deadline expired.
 
 ## Vocabulary & Concepts
 
@@ -112,11 +80,13 @@ I thanked her, shook her hand, and walked out of the operations center into the 
 | **Event Viewer** | Centralized Microsoft Management Console snap-in logging administrative, operational, and security events generated by Windows and applications. | The black box recorder of the workstation; Event IDs 1000 and 41 pinpoint application crashes and kernel power cuts. |
 | **Device Driver** | Specialized software running in kernel or user mode that allows the operating system to communicate with physical hardware components. | Deeply privileged system code; corrupted graphics drivers clashing with hardware acceleration can freeze the entire desktop. |
 
+## The Handoff Gate
+
 ```bridge-card
-title: Portland Desk Workbench: OS Diagnostics, Event Log Triage, & Boot Recovery
+title: Portland Desk Lab: OS Diagnostics, Event Log Triage, & Boot Recovery
 target: workbench/02-the-live-board.md
-domain: CompTIA A+ Core 2 (220-1102) • Domain 1.0 & 2.0
+domain: CompTIA A+ Core 2 (220-1102) • Domain 1.0 & 3.0
 badge: Hands-On Lab
 ---
-Step onto Ethan's shift with interactive Windows Event Viewer dumps, clean boot triage matrices, five "Commit Before You Touch" diagnostic prediction gates, and the Tier 1 Workstation Diagnostic Deliverable.
+Take over Ethan's workstation at the live trial. Use Windows Event Viewer to triage Event ID 1000 and 4101 crash logs, isolate the faulting graphics driver module, configure the clean boot sequence, and commit your remediation before Maya Lin's payroll cutoff.
 ```
