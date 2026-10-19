@@ -23,7 +23,7 @@
     * [The Hands-On Lab](workbench/05-the-wire-has-two-ends.md)
   * **Episode 06: The Portland Flood**
     * [The Incident Story](narrative/06-the-portland-flood.md)
-    * [★ Midpoint Capstone: Campus Rebuild](workbench/06-the-portland-flood.md)
+    * [Midpoint Capstone: Campus Rebuild](workbench/06-the-portland-flood.md)
 
 * **Act III: Identity, Threats & Escalation (Security+)**
   * **Episode 07: The Port That Is Open**
@@ -43,4 +43,4 @@
     * [The Hands-On Lab](workbench/11-the-air-is-shared.md)
   * **Episode 12: When the Ticket Escalates**
     * [The Incident Story](narrative/12-when-the-ticket-escalates.md)
-    * [★ Final Capstone: Incident Handoff Dossier](workbench/12-when-the-ticket-escalates.md)
+    * [Final Capstone: Incident Handoff Dossier](workbench/12-when-the-ticket-escalates.md)

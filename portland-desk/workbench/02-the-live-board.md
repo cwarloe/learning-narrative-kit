@@ -1,23 +1,22 @@
 # Portland Desk Lab: OS Diagnostics, Event Log Triage, & Boot Recovery
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `a-plus-os-helpdesk` — *The Live Board*  
-> **Environment:** Tier 1 Service Desk Terminal & Diagnostic Queue  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
-> **Live Artifacts Directory:** [`artifacts/`](../artifacts/)
+> **The Situation:** Portland Regional Operations Center • Live service desk bullpen  
+> **Your Role:** Tier 1 Support Specialist (Practical Trial under Desk Lead Jules Mercer)  
+> **The Objective:** Troubleshoot live workstation freezes, OS crashes, and graphics driver conflicts using binary search, Safe Mode, and Windows Event Viewer logs.  
+> **Estimated Time:** 40–50 minutes • Operating System Triage  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Role** | Tier 1 Service Desk Specialist / Workstation Support Technician |
-| **Target Certification** | CompTIA A+ Core 2 (220-1102) |
-| **Primary Domains** | **Domain 1.0 Operating Systems**<br>• *1.1 Identify common features and functionality of the Microsoft Windows operating system (file systems, directory structures, user mode vs. kernel mode)*<br>• *1.2 Given a scenario, use the appropriate Microsoft command-line tool (`sfc`, `dism`, `chkdsk`, `taskkill`, `shutdown`, `manage-bde`)*<br>• *1.4 Given a scenario, use Microsoft operating system features and tools (Task Manager, Event Viewer, Services console, MSConfig, Device Manager, Safe Mode)*<br>**Domain 2.0 Security**<br>• *2.8 Given a scenario, implement workstation security best practices (BitLocker full-disk encryption, TPM PCR validation, out-of-band recovery procedures)* |
-| **Prerequisites** | Fundamental understanding of PC hardware architecture, storage volumes, basic command-line syntax, and user-space vs. kernel-space execution models. |
-| **Estimated Completion** | 45–60 minutes |
-| **Core Deliverables** | 1. CompTIA 6-Step OS Triage Matrix & Advanced Boot Mode Reference<br>2. Micro-Drill 1: Windows Event Log Decomposition (Event ID 1000 vs. Event ID 41)<br>3. Micro-Drill 2: Startup Service Isolation & Clean Boot Binary Search Matrix<br>4. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>5. Performance Deliverable: Tier 1 Workstation Diagnostic Ticket Resolution & Root Cause Note with Grading Rubric |
+* **Aligned Certification:** CompTIA A+ Core 2 (220-1102)
+* **Exam Domains:** Domain 1.0 (Operating Systems & Boot Architecture) & Domain 3.0 (Software Troubleshooting & Event Log Decomposition)
+* **Core Competencies & Deliverables:** Windows Boot & Safe Mode Matrix • Event Viewer Crash Analysis Drill • Clean Boot Service Isolation Drill • Call Your Shot 5-Case Gate • Departmental Resolution Ticket
+
+</details>
+
 
 ---
 
@@ -36,6 +35,7 @@ The temptation for every junior technician is the "nuclear option": reach for a 
 
 > *"A full OS wipe takes three hours, blows away departmental certificates and local database shortcuts, and leaves Maya stranded past her deadline. Worst of all, it tells you nothing about why the system failed. On this desk, troubleshooting is not intuition and it is not guessing. It is binary search. Every diagnostic test you run must eliminate half of the remaining failure domains."*
 
+
 ---
 
 ### The Ground Truth Rules of the Desk
@@ -45,6 +45,7 @@ The temptation for every junior technician is the "nuclear option": reach for a 
 2. **Never Re-image on First Contact:** Re-imaging an operating system is an admission of diagnostic defeat. It destroys event logs, user preferences, and forensic evidence, and often reintroduces the exact same crash when automatic updates reinstall the offending driver.
 3. **The Event Logs Are the Black Box Recorder:** Windows records every process crash, driver timeout, and kernel power disruption in `eventvwr.msc`. Read the logs before touching settings. Event IDs provide definitive timestamps and faulting module names that expose the exact root cause.
 4. **Cryptographic Integrity is Inviolable:** BitLocker full-disk encryption binds volume master keys to motherboard Platform Configuration Registers (PCRs). When diagnostic boot configurations (such as Safe Mode or BCD edits) trigger a BitLocker recovery challenge, never bypass identity policy. Releasing the 48-digit numerical recovery key requires strict out-of-band employee verification.
+
 
 ---
 
@@ -72,6 +73,7 @@ flowchart TD
 | **4. Plan of Action & Solution** | Formulate a minimal, reversible remediation plan: roll back corrupted device driver via Device Manager, disable application hardware acceleration, or run DISM/SFC. | Applying unverified registry hacks or third-party "cleaner" tools that destabilize the OS. |
 | **5. Verify Functionality** | Have the end-user perform their actual production task (e.g., launch `PDX-Pay`, compute batch reports). Monitor Event Viewer for recurring Event IDs. | Declaring the ticket resolved because the Windows desktop loaded, without testing the user's specific application. |
 | **6. Document Findings** | Record initial symptoms, diagnostic steps, faulting modules, driver versions, and preventive configurations in the service desk ticketing system. | Closing tickets with one-word summaries like *"fixed"* or *"rebooted"*, hiding recurring flaws from engineering. |
+
 
 ---
 
@@ -110,6 +112,7 @@ flowchart LR
 | **Event ID 4101** | `Display` | Warning / Error | **Timeout Detection & Recovery (TDR) Failure.** The GPU failed to respond to a scheduler preemption request within 2 seconds. The display driver (`nvlddmkm.sys`, `amdkmdag.sys`) crashed and attempted to reset. If TDR resets fail repeatedly, Windows hard-freezes the display pipeline. |
 | **Event ID 7001** | `Service Control Manager` | Error | **Service Dependency Failure.** A required system service failed to start because one or more dependent services were disabled, crashed, or missing. Critical for diagnosing Print Spooler and RPC service failures. |
 
+
 ---
 
 ### Windows Boot Modes, Recovery Environments, & System File Repair
@@ -146,6 +149,7 @@ flowchart TD
 2. **`sfc /scannow`**:
    - *Function:* Scans all protected operating system binaries (`System32`) and compares their cryptographic hashes against the clean copies in WinSxS. Replaces corrupted files on the fly.
 
+
 ---
 
 ### BitLocker Full-Disk Encryption & TPM Triage
@@ -177,6 +181,7 @@ manage-bde -protectors -enable C:
 
 > [!WARNING]
 > **Out-of-Band Identity Verification Rule:** Never release a 48-digit BitLocker recovery key based solely on an incoming email, chat message, or unverified caller. Attackers use social engineering to obtain recovery keys and bypass full-disk encryption on lost or stolen laptops. Always verify the employee's identity via manager confirmation, HR badge records, or out-of-band telephone callback.
+
 
 ---
 
@@ -233,7 +238,7 @@ Maya Lin's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML eve
 3. Why does Event ID 41 show `BugcheckCode 0`, and what does its timestamp (08:22:10) reveal relative to Event ID 1000 (08:15:22)?
 
 <details>
-<summary>🔍 Solution & Technical Analysis</summary>
+<summary>Solution & Technical Analysis</summary>
 
 1. **Root Cause Component:** The crash was triggered by `amdkmdag.sys`, the AMD kernel-mode graphics device driver. While `PDXPayClient.exe` was the host process, the fault occurred inside the driver's execution space (`FaultModuleName: amdkmdag.sys`) during hardware acceleration rendering.
 2. **Exception Code `0xc0000005`:** This is the standard Windows **Access Violation** status code. It indicates that a thread attempted to read or write to a memory virtual address for which it did not have appropriate architectural permissions (e.g., dereferencing a null pointer or accessing unmapped kernel space).
@@ -242,6 +247,7 @@ Maya Lin's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML eve
    - At **08:22:10** (seven minutes later), Maya crawled under the desk and pulled the power cord out of the wall.
    - `BugcheckCode 0` proves that Windows did **not** crash due to a Blue Screen / Bug Check; it was forcibly deprived of AC power while frozen. Event ID 41 was written when the workstation booted back up, logging the dirty shutdown that Maya initiated.
 </details>
+
 
 ---
 
@@ -272,13 +278,29 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 | **Run 3** | Enable Services 1–2<br>Disable Services 3–4 | **PASS** (No freeze) | Eliminates Services 1–2. Culprit lives in Pool 3–4. |
 | **Run 4** | Enable Service 3<br>Disable Service 4 | **FAIL** (Freeze reproduced) | **Culprit Isolated:** Service 3 (`OEM-GpuAssist.exe`) conflicts with production workload. |
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 > **The Rule of the Desk:** Before typing a command, changing an MSConfig checkbox, or giving advice to an end user, state your **Hypothesis**, **Primary Diagnostic Tool**, and **Planned Remediation**. Commit your answers mentally before expanding the solution.
 
+
 ---
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-02-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-02-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-02-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Case 1: Workstation BSOD Following Cumulative Windows Update
 *Scenario:* A civil engineer's workstation blue-screens during boot with `DRIVER_IRQL_NOT_LESS_OR_EQUAL` (`0x000000D1`). The crash screen references `storvsc.sys`. The issue began immediately after Tuesday night's cumulative Windows update.
@@ -287,13 +309,14 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** Boot into **Safe Mode**, then roll back or uninstall the conflicting storage controller driver update.
 * **Diagnostic Tool:** Windows Recovery Environment (WinRE) $\rightarrow$ Startup Settings $\rightarrow$ **Safe Mode** $\rightarrow$ **Device Manager** (Storage Controllers).
 * **Remediation Plan:** `storvsc.sys` is a storage virtualization / disk controller driver. Because the system cannot complete normal boot, boot into Safe Mode (which loads generic storage drivers). In Device Manager, right-click the storage controller and select **Roll Back Driver**. If unavailable, boot into WinRE and select **Uninstall Latest Quality Update**.
 * **Jules' Critique:** *"Do not run `sfc /scannow` when a specific driver is named on a BSOD screen. System files are fine; the update pushed an incompatible driver. Get into Safe Mode, pull the driver back to the certified OEM build, and resume normal boot."*
 </details>
+
 
 ---
 
@@ -304,13 +327,14 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** Execute out-of-band identity verification, retrieve the 48-digit **BitLocker Recovery Key** from Active Directory, and input the key to unlock the drive.
 * **Diagnostic Tool:** Active Directory Users & Computers (BitLocker Recovery Tab) or Microsoft Intune Admin Center.
 * **Remediation Plan:** Flashing the BIOS altered PCR 0/2 measurements, causing the TPM to withhold the Volume Master Key. Have the user verify their employee ID and badge number over a voice call. Read the 48-digit key. Once in Windows, run `manage-bde -protectors -enable C:` to reseal the TPM against the new BIOS firmware hash.
 * **Jules' Critique:** *"Never click 'Clear TPM' in the BIOS when BitLocker asks for a key! Clearing the TPM wipes the internal cryptographic hierarchy and turns a temporary unlock into a permanent catastrophe if the recovery key wasn't backed up in AD."*
 </details>
+
 
 ---
 
@@ -321,7 +345,7 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** Stop `spoolsv.exe`, purge the corrupted print queue files in `C:\Windows\System32\spool\PRINTERS\`, and restart the service.
 * **Diagnostic Tool:** PowerShell / Command Prompt (Admin) and Windows Services Console (`services.msc`).
@@ -335,6 +359,7 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Jules' Critique:** *"Don't reinstall print drivers until you empty the spool folder. Ninety percent of spooler crash loops are just a corrupted two-megabyte PDF that a user tried to print on a label printer."*
 </details>
 
+
 ---
 
 #### Case 4: Severe CPU Throttling and System Freezes Under CAD Load
@@ -344,13 +369,14 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** Inspect physical hardware thermals, blow out clogged chassis/heatsink dust, and check CPU heatsink mounting.
 * **Diagnostic Tool:** Task Manager (Performance tab) + Hardware Monitor / BIOS Thermal Telemetry.
 * **Remediation Plan:** Modern CPUs employ **PROCHOT** (Processor Hot) thermal throttling. When CPU core temperatures exceed critical thresholds (95–100°C), the embedded controller locks the CPU multiplier to its lowest power state (800 MHz / 0.79 GHz) to prevent silicon destruction. This causes massive instruction stalls, freezing the OS. Clean heatsink fins and replace dried thermal paste.
 * **Jules' Critique:** *"When Task Manager shows 0.79 GHz on a modern quad-core machine, don't waste time running malware scans or tweaking Windows power plans. The processor is screaming for cool air."*
 </details>
+
 
 ---
 
@@ -361,7 +387,7 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** Execute **DISM RestoreHealth** pointing to an external Windows ISO/WIM source, then re-execute `sfc /scannow`.
 * **Diagnostic Tool:** Elevated Command Prompt (`cmd.exe`).
@@ -376,9 +402,24 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Jules' Critique:** *"Running SFC five times in a row will never fix a machine whose WinSxS cache is broken. Repair the source first with DISM, then let SFC do its job."*
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-02-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-02-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-02-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Tier 1 Workstation Diagnostic Ticket Resolution & Root Cause Note
 
@@ -451,6 +492,7 @@ Status:           RESOLVED & VERIFIED
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like (Shift Quality Checklist)
@@ -461,6 +503,7 @@ Status:           RESOLVED & VERIFIED
 | **Event Log Analysis & Root Cause Accuracy** | Accurately identifies Event ID 1000 and 4101, correctly isolates the faulting module (`amdkmdag.sys`), and interprets Exception Code `0xc0000005`. | Identifies that a driver crashed in Event Viewer but confuses Application vs. System logs or misses the faulting module details. | Fails to inspect Event Viewer; misdiagnoses hardware failure or blames user error. |
 | **Operating System & Security Execution** | Flawlessly executes Safe Mode with Networking, MSConfig clean boot, DISM/SFC sequencing, and adheres strictly to out-of-band BitLocker verification. | Understands boot tools and BitLocker concepts but hesitates on exact command syntax or tool sequencing. | Violates security policy by clearing TPM without key backup or fails to understand Safe Mode boundary testing. |
 | **Ticket Documentation Quality** | Produces a comprehensive, professional enterprise resolution note with complete symptom analysis, root cause, remediation steps, and preventive escalation. | Documentation is accurate but lacks structured technical fields, faulting module names, or verification details. | Vague, single-sentence resolution notes (e.g., *"fixed display driver"*); fails to document root cause. |
+
 
 ---
 

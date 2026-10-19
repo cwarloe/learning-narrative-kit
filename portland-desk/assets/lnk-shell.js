@@ -236,6 +236,77 @@
   }
 
   /* ==========================================================================
+     Interactive Scratchpads (Hypothesis Prediction & Ticket Drafting)
+     ========================================================================== */
+
+  function initScratchpads() {
+    document.querySelectorAll('.scratchpad-body textarea').forEach(function (textarea) {
+      const id = textarea.id;
+      if (!id) return;
+      const storageKey = 'lnk_scratchpad_' + id;
+      const saved = localStorage.getItem(storageKey);
+      if (saved && !textarea.value) {
+        textarea.value = saved;
+      }
+
+      // Auto-save on input
+      textarea.addEventListener('input', function () {
+        localStorage.setItem(storageKey, textarea.value);
+        const container = textarea.closest('.scratchpad-container');
+        if (container) {
+          const indicator = container.querySelector('.scratchpad-save-indicator');
+          if (indicator) {
+            indicator.textContent = 'Saving…';
+            indicator.style.opacity = '1';
+            clearTimeout(textarea._saveTimer);
+            textarea._saveTimer = setTimeout(function () {
+              indicator.textContent = 'Saved to browser';
+              setTimeout(function () {
+                indicator.style.opacity = '0.7';
+              }, 1200);
+            }, 300);
+          }
+        }
+      });
+    });
+  }
+
+  window.copyScratchpad = function (id) {
+    const textarea = document.getElementById(id);
+    if (!textarea) return;
+    const text = textarea.value;
+    if (!text.trim()) {
+      alert('The scratchpad is empty. Type your notes or prediction first!');
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        const btn = event && event.target ? event.target : null;
+        if (btn) {
+          const orig = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(function () { btn.textContent = orig; }, 1800);
+        }
+      }).catch(function () {
+        fallbackCopy(textarea);
+      });
+    } else {
+      fallbackCopy(textarea);
+    }
+  };
+
+  function fallbackCopy(textarea) {
+    textarea.select();
+    document.execCommand('copy');
+    const btn = event && event.target ? event.target : null;
+    if (btn) {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(function () { btn.textContent = orig; }, 1800);
+    }
+  }
+
+  /* ==========================================================================
      Docsify Lifecycle Integration
      ========================================================================== */
 
@@ -245,6 +316,7 @@
       hook.doneEach(function () {
         mountModeSwitcher();
         mountGlossaryAside();
+        initScratchpads();
 
         // If glossary.json was in-flight, poll until populated
         if (!window.__GLOSSARY__ || Object.keys(window.__GLOSSARY__).length === 0) {
@@ -263,3 +335,4 @@
     }
   ]);
 })();
+

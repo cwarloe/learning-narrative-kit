@@ -1,22 +1,22 @@
 # Portland Desk Lab: TCP Sockets, Port States, & Handshake Diagnostics
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `netplus-transport-helpdesk` — *The Wire Has Two Ends*  
-> **Environment:** Level 1 Service Desk Diagnostic Terminal & Remote Server Management Console  
-> **Authors:** Ethan Brooks (under Desk Lead Jules Mercer & Network Ops Engineer Jared Vance)  
+> **The Situation:** Portland Operations Center Bullpen • Cold October rain, evening shift  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Mercer & Jared Vance)  
+> **The Objective:** Diagnose network connection refusals (RST) versus silent timeouts (firewall drops) using TCP three-way handshake mechanics and netstat socket inspections.  
+> **Estimated Time:** 45–50 minutes • Layer 4 Transport & Sockets  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Operational Role** | Tier 1 IT Support Specialist / Junior Network Infrastructure Technician |
-| **Target Certification** | CompTIA Network+ (N10-008 / N10-009) & CompTIA Security+ (SY0-701) |
-| **Primary Examination Domains** | **Network+ N10-008 Domain 1.0 Networking Fundamentals**<br>• *1.1 Compare and contrast the OSI model layers and encapsulation concepts (Transport Layer 4, TCP connection-oriented delivery, UDP connectionless delivery)*<br>• *1.4 Given a scenario, configure and troubleshoot common ports, protocols, and socket states*<br>**Network+ N10-008 Domain 4.0 Network Troubleshooting**<br>• *4.1 Explain the network troubleshooting methodology (Differentiating network drops from host rejections)*<br>• *4.2 Given a scenario, troubleshoot common service and connection failures*<br>**Network+ N10-009 Domain 1.1 & 4.1**<br>• *Transport protocols, TCP 3-way handshake mechanics, socket states (`LISTENING`, `ESTABLISHED`, `TIME_WAIT`, `CLOSE_WAIT`), ephemeral port exhaustion* |
-| **Prerequisites** | Understanding of IPv4 addressing, default gateway forwarding, OSI Layer 2/3 delivery, and command-line navigation. |
-| **Estimated Completion** | 45–60 minutes |
-| **Core Deliverables** | 1. TCP 3-Way Handshake & Connection Teardown State Transition Reference<br>2. Socket State Triage Matrix (`LISTENING`, `ESTABLISHED`, `TIME_WAIT`, `CLOSE_WAIT`)<br>3. Active Reset (RST) vs. Silent Drop / Timeout Diagnostic Flowchart<br>4. CLI Diagnostic Reference (`netstat -ano`, PowerShell `Test-NetConnection -Port`, `Get-NetTCPConnection`)<br>5. Micro-Drill 1: TCP Handshake Flags & Packet Mechanics<br>6. Micro-Drill 2: `netstat -ano` Socket Inspection & PID Mapping<br>7. Micro-Drill 3: "Call Your Shot: Predict Before You Look" 5-Case Prediction Gate<br>8. Performance Deliverables: Part A (Standard Incident Resolution Note), Part B (Infrastructure Escalation Note)<br>9. What Good Looks Like / Shift Checklist & Evaluation Rubric |
+* **Aligned Certification:** CompTIA Network+ (N10-008/009)
+* **Exam Domains:** Domain 1.1 (OSI Transport Layer & TCP vs UDP) & Domain 5.4 (Network Tools: netstat, port scanners)
+* **Core Competencies & Deliverables:** TCP Flag Reference & Socket State Flow • RST vs Drop Triage Matrix • Three-Way Handshake Wireshark Drill • Netstat Port & PID Inspection Drill • Call Your Shot 5-Case Gate • Socket Resolution & Escalation Note
+
+</details>
+
 
 ---
 
@@ -50,6 +50,7 @@ flowchart TD
    - Sockets stranded in `CLOSE_WAIT` indicate an application defect: the remote peer closed the connection (`FIN`), but the local application failed to call `close()` on the socket handle.
    - Sockets stranded in `TIME_WAIT` represent normal protocol operation: the local endpoint initiated an active close and must wait $2 \times \text{MSL}$ (Maximum Segment Lifetime, default 120 seconds in Windows) to ensure the remote host received the final ACK.
 5. **Rule 5: Ephemeral Ports Are Finite Resources.** When a client opens an outbound TCP connection, the operating system assigns a dynamic source port from the IANA ephemeral port range (`49152` to `65535`, comprising 16,384 ports). If an automated script or high-volume application opens and closes thousands of short-lived connections without socket reuse, all available ephemeral ports become trapped in `TIME_WAIT`, causing client-side ephemeral port exhaustion.
+
 
 ---
 
@@ -91,6 +92,7 @@ sequenceDiagram
     Note over Client: Timer expires -> Client enters CLOSED
 ```
 
+
 ---
 
 ### 2.2 TCP Socket State Triage Matrix
@@ -107,6 +109,7 @@ sequenceDiagram
 | **`LAST_ACK`** | Receiver | The local OS sent its own FIN segment and is waiting for the final ACK from the remote peer. | Ephemeral state during passive connection close. |
 | **`TIME_WAIT`** | Initiator | The local endpoint completed teardown and is waiting $2 \times \text{MSL}$ (120s) to clear delayed packets. | Normal state for active closers. However, accumulating thousands in seconds indicates **client-side port exhaustion**. |
 | **`CLOSED`** | Both | The connection has been completely released; the socket structure and port are deallocated. | Socket is closed and ready for memory deallocation. |
+
 
 ---
 
@@ -130,6 +133,7 @@ flowchart TD
     PathCheck -- Yes --> FirewallDrop["ROOT CAUSE: Firewall / Security Drop<br/>• Intermediate firewall dropped SYN<br/>• Host-based firewall (Windows Defender)<br/>• Remediation: Audit Firewall Rulebase"]
 ```
 
+
 ---
 
 ### 2.4 Ephemeral Port Exhaustion Mechanics
@@ -149,6 +153,7 @@ When a client initiates an outbound connection without explicitly binding to a l
      ```console
      netsh int ipv4 set dynamicport tcp start=1025 num=64511
      ```
+
 
 ---
 
@@ -174,6 +179,7 @@ Get-NetTCPConnection | Group-Object State
 tasklist /svc /FI "PID eq 4112"
 Get-Process -Id 4112
 ```
+
 
 ---
 
@@ -201,6 +207,7 @@ $$\text{[URG | ACK | PSH | RST | SYN | FIN]}$$
    - **Answer:** Seq=2501, Ack=7001, Flags `[ACK]`.
 2. A client transmits `[SYN]` to destination port 23. In less than 1 ms, the host responds with `[RST, ACK]`, Seq=0, Ack=1. What does this prove?
    - **Answer:** Layer 1, 2, and 3 connectivity is operational. The target operating system received the frame, but Telnet (port 23) has no active listening service running.
+
 
 ---
 
@@ -230,6 +237,7 @@ Active Connections
 2. **The Port 8080 Sessions:** What is happening to the web application process (PID 2196)?
    - *Analysis:* Sockets are accumulating in `CLOSE_WAIT`. Remote clients initiated connection teardowns (`FIN`), but application process 2196 is failing to call `close()` to release the socket handles. This represents an application socket leak that will eventually exhaust server memory and file descriptors.
 
+
 ---
 
 ### Micro-Drill 3: "Call Your Shot: Predict Before You Look" (5-Case Prediction Gate)
@@ -238,6 +246,7 @@ Before running any network command, enforce the CBYT protocol:
 1. **Layer & Subsystem:** What exact protocol, flag, or socket state governs this failure?
 2. **Predicted Output:** What specific CLI output or error code will appear?
 3. **Action & Remediation:** How do you verify and correct the root cause without guessing?
+
 
 ---
 
@@ -263,6 +272,7 @@ Before running any network command, enforce the CBYT protocol:
   5. Restart the service and verify `netstat -ano` shows `0.0.0.0:8443 LISTENING`.
 </details>
 
+
 ---
 
 #### Case 3.2: The Stealth Firewall Drop (21-Second Socket Timeout)
@@ -286,6 +296,7 @@ Before running any network command, enforce the CBYT protocol:
   3. Verify routing: execute `tracert -d 10.100.4.99` to identify the boundary router dropping the packet.
 </details>
 
+
 ---
 
 #### Case 3.3: Client-Side Ephemeral Port Exhaustion (`TIME_WAIT` Flood)
@@ -306,6 +317,7 @@ Before running any network command, enforce the CBYT protocol:
   2. Reduce `TcpTimedWaitDelay` in Windows registry from 120 seconds to 30 seconds (`HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters`).
   3. Expand ephemeral port range if high-churn testing is unavoidable.
 </details>
+
 
 ---
 
@@ -329,6 +341,7 @@ Before running any network command, enforce the CBYT protocol:
   3. Set a monitoring threshold on server socket states to alert when `CLOSE_WAIT` exceeds 50 sockets.
 </details>
 
+
 ---
 
 #### Case 3.5: Dual-Homed Server Listening on Loopback Only
@@ -350,9 +363,24 @@ Before running any network command, enforce the CBYT protocol:
   4. Verify socket binding shows `0.0.0.0:9000` or `*:9000`.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-05-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-05-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-05-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Part A: Standard Incident Resolution Note
 
@@ -405,6 +433,7 @@ Status:           RESOLVED
 ================================================================================
 ```
 
+
 ---
 
 ### Part B: Infrastructure Escalation Note
@@ -452,6 +481,7 @@ Subject:          Client-Side Ephemeral Port Exhaustion on Automated Backup Runs
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like / Shift Checklist
@@ -467,6 +497,7 @@ Subject:          Client-Side Ephemeral Port Exhaustion on Automated Backup Runs
   - Sockets piling up in `TIME_WAIT` $\rightarrow$ Rapid active teardowns; implement connection pooling.
 - [ ] **Audit Documentation Quality:** Ensure all ticket resolutions document exact timestamps, socket states, PIDs, root causes, and preventative controls.
 
+
 ---
 
 ### Evaluation Rubric & Criteria
@@ -478,6 +509,7 @@ Subject:          Client-Side Ephemeral Port Exhaustion on Automated Backup Runs
 | **Socket State Triage (`netstat`)** | Expertly parses `netstat -ano` and PowerShell cmdlets; identifies missing listeners, loopback bindings (`127.0.0.1`), `CLOSE_WAIT` leaks, and `TIME_WAIT` pileups; maps PIDs to processes. | Uses `netstat` to find listening ports and PIDs, but requires reference guidance to diagnose `CLOSE_WAIT` vs `TIME_WAIT`. | Relies solely on `ping`; unaware of socket states or how to inspect local listening ports. |
 | **Ephemeral Port Exhaustion** | Articulates ephemeral port allocation (49152–65535), $2 \times \text{MSL}$ duration, and socket exhaustion math; implements connection pooling and registry tuning. | Understands client-side port depletion and `TIME_WAIT`, but struggles to calculate maximum sustainable connection rates. | Assumes port exhaustion only occurs on servers; unaware that clients allocate dynamic source ports. |
 | **Documentation & Escalation Quality** | Submits audit-ready ticket notes and engineering escalation dossiers with precise socket metrics, PIDs, error velocity, and architectural remediations. | Ticket notes are accurate and complete, but omit preventative registry tuning or script refactoring recommendations. | Documentation is vague, omits technical evidence, lacks root-cause analysis, or recommends random reboots. |
+
 
 ---
 

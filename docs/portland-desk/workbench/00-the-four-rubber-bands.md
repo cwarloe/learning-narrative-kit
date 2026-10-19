@@ -1,23 +1,22 @@
 # Portland Desk Lab: The Beginner's Mental Model of a Computer
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `a-plus-foundations-prologue` — *The Four Rubber Bands*  
-> **Environment:** East Portland Kitchen Table & First-Contact Diagnostic Console  
-> **Author:** Ethan Brooks (Pre-Helpdesk, Gresham Warehouse Staging Associate)  
-> **Target Certification:** CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations  
+> **The Situation:** Ethan's kitchen table in East Portland • 11:30 PM with $83 in checking  
+> **Your Role:** Aspiring Technician (Pre-Helpdesk, Gresham Warehouse Associate)  
+> **The Objective:** Build the four physical machine invariants (CPU, RAM, Storage, Network) and study triage reflexes so you stop guessing and start diagnosing.  
+> **Estimated Time:** 45–60 minutes • Self-paced • Zero prerequisites  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Target Role** | Entry-Level Tier 1 Help Desk Technician / Desktop Support Specialist |
-| **Target Certification** | CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) |
-| **Primary Exam Domains** | **CompTIA A+ Core 1 (220-1101):**<br>• *Domain 2.0: Networking (TCP/IP, MAC, IP, Ports, Cables)*<br>• *Domain 3.0: Hardware and Network Troubleshooting (CPU, RAM, Storage, Motherboard, POST)*<br>**CompTIA A+ Core 2 (220-1102):**<br>• *Domain 1.0: Operating Systems (Command Line, Boot Processes, File Systems)*<br>• *Domain 3.0: Software Troubleshooting (OS Crashes, Services, Malware Isolation)* |
-| **Prerequisites** | None. Designed for complete beginners (zero-to-one). Basic familiarity with home computers and consumer internet routers. |
-| **Estimated Completion** | 45–60 minutes |
-| **Core Deliverables** | 1. The Four Invariants Computing Matrix & Architecture Map<br>2. The Identity Triad: MAC (L2), IP (L3), and Port (L4) Encapsulation Flow<br>3. Micro-Drill 1: Volatile vs. Non-Volatile Artifact Isolation (RAM vs. Disk)<br>4. Micro-Drill 2: Layer 2 vs. Layer 3 Identity & Default Gateway Decision Gate<br>5. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>6. Performance Deliverable: Beginner's Study Filter & First-Contact Diagnostic Checklist |
+* **Aligned Certification:** CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations
+* **Exam Domains:** Core 1 Domain 2.0 (Networking) & Domain 3.0 (Hardware Triage); Core 2 Domain 1.0 (OS & CLI) & Domain 3.0 (Troubleshooting)
+* **Core Competencies & Deliverables:** Computing Invariants Matrix • Identity Triad Flow • RAM vs Disk Isolation Drill • Local vs Gateway Triage Drill • Call Your Shot 5-Case Gate • First-Contact Diagnostic Checklist
+
+</details>
+
 
 ---
 
@@ -64,6 +63,7 @@ The certification voucher buys an HR passport. But once you walk through the cor
 4. **Ports Are Application Doorways, Not Physical Holes:** A network port number (such as Port 80 for HTTP or Port 443 for HTTPS) is a 16-bit software identifier inside the operating system network stack. It tells the operating system which background program receives the incoming packet.
 5. **Never Touch Without a Prediction (CBYT):** The amateur technician clicks random configuration buttons and reboots blindly, destroying diagnostic evidence. The professional technician forms a falsifiable hypothesis before touching a single wire: *"If the default gateway is down, `ping 192.168.1.1` will fail with Request Timed Out."*
 
+
 ---
 
 ## 2. Technical Reference & Triage Matrix
@@ -101,6 +101,7 @@ flowchart TD
 | **2. Memory (RAM)** | Dynamic Random Access Memory (DRAM) chips using microscopic transistor-capacitor pairs. | **Volatile** (Requires electrical recharge thousands of times per second; data lost on power loss). | Holds the running operating system kernel, active software execution threads, and open application working sets. | Blue Screen of Death (BSOD) with `MEMORY_MANAGEMENT`, random application crashes, POST memory beep codes (e.g., 3 long beeps). |
 | **3. Storage (Disk)** | NAND flash memory floating-gate/charge-trap cells (SSDs) or spinning magnetic platters (HDDs). | **Non-Volatile** (Retains electrical charges or magnetic polarity indefinitely without power). | Preserves persistent operating system binaries, system registry hives, installed applications, and user document files. | "Operating System Not Found", SMART storage drive read/write timeouts, clicking drive sounds, file corruption errors. |
 | **4. Communication (NIC)** | Integrated Ethernet controller chip, PCIe daughterboard, or Wi-Fi radio baseband transceiver. | **Mixed** (Firmware MAC is persistent; packet buffers in hardware FIFO are volatile). | Bridges the internal parallel system bus to serial physical network media (copper wire, fiber optics, radio frequencies). | "No Internet Access", link lights completely dark on RJ-45 port, self-assigned APIPA address (`169.254.x.x`), packet loss. |
+
 
 ---
 
@@ -147,6 +148,7 @@ When a user on Host A (`192.168.1.50`) requests a web page from Web Server B (`1
 > - Host A encapsulates the IP packet inside an Ethernet frame addressed to its **Default Gateway's MAC**.
 > - The router strips the incoming Ethernet frame, inspects the destination IP, consults its routing table, and encapsulates the packet into a brand-new Ethernet frame with its own outgoing MAC as the source and the next-hop router's MAC as the destination.
 
+
 ---
 
 ### 2.3 The First Command Line: Live System Telemetry
@@ -162,6 +164,7 @@ C:\> whoami
 PORTLAND-CORP\ebrooks
 
 C:\> whoami /priv
+
 PRIVILEGES INFORMATION
 ----------------------
 Privilege Name                Description                          State
@@ -214,6 +217,7 @@ Ethernet adapter Local Area Connection:
   4. `ping <Remote_IP>` (e.g., `8.8.8.8`): Verifies wide area routing and internet transit.
   5. `ping <Domain_Name>` (e.g., `google.com`): Verifies Domain Name System (DNS) name resolution.
 
+
 ---
 
 ### 2.4 The Triage Heuristic: Syllabus Trivia vs. Diagnostic Reality
@@ -250,6 +254,7 @@ Ethernet adapter Local Area Connection:
 │         │                      │                      │ and data loss.  │
 └─────────┴──────────────────────┴──────────────────────┴─────────────────┘
 ```
+
 
 ---
 
@@ -291,6 +296,7 @@ Ethernet adapter Local Area Connection:
 - **Analysis 3 (Reboot Behavior):** The moment power is restored and Windows boots, the operating system reads its non-volatile registry hives, executes the persistence keys, reloads the malicious executable from disk into RAM, and re-infects the active memory space.
 - **Correct Procedure:** Isolate the system physically from the network (unplug Ethernet, disable Wi-Fi) to stop C2 communication, but keep the machine powered on if live memory capture is required by security incident response protocols.
 </details>
+
 
 ---
 
@@ -346,11 +352,26 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
   - **Diagnostic Implication:** If a workstation can ping its coworkers on the same switch (`192.168.10.x`) but cannot open websites on the internet, the Layer 2 local switch is operational, but the Layer 3 Default Gateway configuration is broken or unreachable.
 </details>
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 *Strict Protocol:* Do not expand the verification box until you have written down your predicted failure layer, expected command output, and root cause hypothesis.
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-00-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-00-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-00-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Case 1: The Dead Screen After Moving Desks
 - **Symptom:** A desktop workstation was unplugged and moved across an office floor. When connected to power and turned on, the chassis fans spin loudly, the power LED turns on, but the monitor displays "No Signal" and the motherboard emits **one long beep followed by two short beeps**.
@@ -363,6 +384,7 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
 - **Diagnostic Cause:** Motherboard firmware POST beep codes indicate hardware failure during early bootstrap. One long and two short beeps on common AMI/Award BIOS configurations indicates a display adapter (GPU) or memory initialization failure. During the physical desk move, mechanical shock caused an unlatched PCIe graphics card or memory DIMM module to shift slightly in its socket.
 - **Immediate Action:** Disconnect AC power, hold the power button for 20 seconds to drain flea power, open the chassis side panel, and firmly reseat the graphics card and RAM modules into their motherboard retention slots until the plastic latches click shut.
 </details>
+
 
 ---
 
@@ -384,6 +406,7 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
 - **Falsifiable Test:** Execute `ipconfig /renew`. If the DHCP server is now online, the command will update the adapter with a valid corporate IP (e.g., `192.168.10.x`). If it times out again with "Unable to contact your DHCP server," verify the physical uplink to the switch or check if the DHCP server VM is halted.
 </details>
 
+
 ---
 
 #### Case 3: Local Network Functional, Internet Down
@@ -399,6 +422,7 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
 - **Verification:** Run `ipconfig`. Check the Default Gateway field. If it is blank or set incorrectly (e.g., `192.168.2.1` instead of `192.168.1.1`), correct the IP configuration. If correct, ping the default gateway (`ping 192.168.1.1`) to verify router responsiveness.
 </details>
 
+
 ---
 
 #### Case 4: Random Freezes 15 Minutes After Boot
@@ -413,6 +437,7 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
 - **Root Cause:** Failed CPU cooling fan, clogged heatsink cooling fins, or thermal paste that has dried out and cracked, eliminating heat transfer between the CPU heat spreader and copper heatsink.
 - **Immediate Action:** Boot into BIOS/UEFI setup to observe real-time hardware health telemetry (CPU temperature monitor). Inspect CPU fan rotation; clean dust from heatsink; reapply high-grade thermal compound.
 </details>
+
 
 ---
 
@@ -432,9 +457,24 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
   This command displays the listening socket and outputs the owning **Process Identifier (PID)** in the rightmost column. You can then cross-reference the PID in Task Manager or execute `tasklist /fi "PID eq <number>"` to identify and stop the conflicting service.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-00-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-00-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-00-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Part A: The Beginner's Study Filter (The Four Rubber Bands)
 When reviewing CompTIA A+ study objectives, use this classification template to filter syllabus noise from lasting diagnostic models:
@@ -446,6 +486,7 @@ When reviewing CompTIA A+ study objectives, use this classification template to 
 | **MAC Address vs Routable IP Address** | **YELLOW** | Trace packet encapsulation through switches and routers. | Essential: Solves 80% of office connectivity and gateway tickets. |
 | **Port Numbers (22 SSH, 80 HTTP, 443 HTTPS)** | **YELLOW** | Flashcard drill combined with `netstat -ano` verification. | Firewall rule analysis, service socket debugging, URL routing. |
 | **The 6-Step CompTIA Troubleshooting Model** | **BLUE** | Memorize formal terms for exam; practice CBYT in labs. | Prevents random guessing and unverified ticket closures. |
+
 
 ---
 
@@ -490,6 +531,7 @@ USER NAME    : ____________________________ ASSET TAG : ________________________
    - Preventative Advice Given to User: _______________________________________________
 ========================================================================================
 ```
+
 
 ---
 

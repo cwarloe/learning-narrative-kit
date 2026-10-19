@@ -1,23 +1,22 @@
 # Portland Desk Lab: Hardware Fault Isolation & Layer 1 Diagnostics
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `a-plus-hardware-helpdesk` — *The Paper Cert*  
-> **Environment:** Industrial Logistics Staging Floor & Hardware Repair Bench  
-> **Author:** Ethan Brooks (Graveyard Shift Triage, Gresham Freight Forwarding Terminal)  
-> **Target System:** Ruggedized Industrial Single-Board Computer (SBC) & Automated In-Line Scale Terminal  
+> **The Situation:** Gresham Freight Forwarding Terminal • Graveyard shift, industrial staging floor  
+> **Your Role:** Tier 1 Field / Hardware Bench Technician  
+> **The Objective:** Isolate hardware faults and Layer 1 physical failures on an automated shipping scale terminal before the 5:00 AM dispatch.  
+> **Estimated Time:** 40–50 minutes • Hardware Diagnostics  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Role** | Tier 1 Field / Hardware Bench Technician |
-| **Target Certification** | CompTIA A+ Core 1 (220-1101) & CompTIA Network+ (N10-008/009) |
-| **Primary Domains** | **CompTIA A+ Core 1 (220-1101)**<br>• *Domain 3.1: Given a scenario, resolve problems with motherboard, RAM, CPU, and power.*<br>• *Domain 3.4: Given a scenario, troubleshoot and resolve peripheral and display problems.*<br>**CompTIA Network+ (N10-008/009)**<br>• *Domain 5.2: Given a scenario, troubleshoot common physical connectivity problems (Layer 1 vs. Layer 2).* |
-| **Prerequisites** | Foundational knowledge of DC voltage, basic electrical circuit continuity, motherboard POST routines, and serial asynchronous communication principles. |
-| **Estimated Completion** | 40–50 minutes |
-| **Core Deliverables** | 1. Physical Layer Diagnostic Flow & POST Code Triage Matrix<br>2. Micro-Drill 1: Power Supply Voltage Rails & Multimeter Load Diagnostics<br>3. Micro-Drill 2: Asynchronous Serial Communications & Baud Rate Framing Calculations<br>4. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>5. Performance Deliverable: Tier 1 Physical Incident Triage Report & Passdown Note |
+* **Aligned Certification:** CompTIA A+ Core 1 (220-1101) & Network+ (N10-008/009)
+* **Exam Domains:** A+ Core 1 Domain 3.1 (Motherboard, RAM, CPU, Power) & 3.4 (Peripherals & Serial); Network+ Domain 5.2 (Physical Layer 1 Connectivity)
+* **Core Competencies & Deliverables:** Physical Diagnostic Flow • POST Code Triage Matrix • ATX Power Supply Voltage Drill • RS-232 Serial Framing Drill • Call Your Shot 5-Case Gate • Tier 1 Physical Passdown Note
+
+</details>
+
 
 ---
 
@@ -53,6 +52,7 @@ You are equipped with a digital multimeter, basic hand tools, vendor technical m
 4. **Serial Transmission Is Hard Real-Time Timing:** Asynchronous RS-232 communication contains no shared hardware clock wire. Both endpoints must agree identically on symbol timing (baud rate), data word length, parity checking, and stop framing bits (e.g., 9600 8-N-1). A mismatch guarantees immediate framing errors and unintelligible hex garbage.
 5. **Bleed Flea Power Before Physical Probing:** Switching power supply filter capacitors store lethal voltage and residual charge ("flea power") long after AC power is disconnected. Flea power can lock motherboard embedded controllers in an unbootable reset loop. Always disconnect AC mains and press the chassis power switch for twenty seconds to drain capacitors to zero before inspecting or servicing circuit boards.
 
+
 ---
 
 ## 2. Technical Reference & Triage Matrix
@@ -83,6 +83,7 @@ flowchart TD
     style O fill:#22543d,stroke:#38a169,color:#fff
 ```
 
+
 ---
 
 ### 2.2 Motherboard POST Code Lookup Table (Phoenix / AMI BIOS)
@@ -98,6 +99,7 @@ Motherboard firmware writes diagnostic progress bytes to I/O port `80h` during t
 | **`2A`** | Video Controller | Initializing primary display adapter and video BIOS ROM extension. | PCI/VGA daughtercard unseated; auxiliary $+12\text{V}$ GPU power lead disconnected. | Reseat display adapter. Inspect video interface cable for crushed pins or broken signal ground. |
 | **`45`** | Storage / Controller | Enumerating IDE, SATA, or embedded flash storage devices. | Defective drive controller; crushed 40-pin IDE ribbon cable; failing $+5\text{V}$ drive motor rail. | Disconnect storage cable. Verify drive spins up without head clicking sounds. Replace data ribbon. |
 | **`7F`** | POST Hand-Off | POST routines complete; firmware executing `INT 19h` boot loader bootstrap. | Non-bootable storage medium; corrupted Master Boot Record (MBR); missing partition table. | Enter BIOS setup. Confirm boot order lists primary system storage. Check storage interface health. |
+
 
 ---
 
@@ -125,6 +127,7 @@ The RS-232 standard defines asynchronous serial data communications between Data
 | **8** | **CTS** | Clear to Send | Input $\leftarrow$ DCE | Hardware flow control: scale signals it is ready to receive data. | Outbound commands queue up indefinitely in operating system buffer. |
 | **9** | **RI** | Ring Indicator | Input $\leftarrow$ DCE | Legacy modem signal (rarely connected in industrial scales). | Unused in standard scale telemetry; normally left floating. |
 
+
 ---
 
 ### 2.4 Power Supply Voltage Rails & Tolerances
@@ -140,6 +143,7 @@ $$\text{Allowable Range} = V_{\text{nominal}} \pm (V_{\text{nominal}} \times 0.0
 | **$+3.3\text{V}$** | **Orange** | $+3.30\text{V}$ | **$+3.135\text{V}$** | **$+3.465\text{V}$** | Modern DDR3/DDR4 SDRAM memory modules, PCIe slot logic, onboard microcontroller pins. | Memory bit flips; intermittent Blue Screens of Death (BSOD); POST halt code `C1`/`D3`. |
 | **$+5\text{VSB}$** | **Purple** | $+5.00\text{V}$ | **$+4.75\text{V}$** | **$+5.25\text{V}$** | Standby power circuitry, real-time clock (RTC), power button monitor, Wake-on-LAN. | System completely unresponsive to power switch toggle; motherboard power indicator LED dark. |
 | **`PWR_OK`** | **Gray** | $+5.00\text{V}$ | **$+4.75\text{V}$** | **$+5.25\text{V}$** | "Power Good" logic signal sent to CPU once all internal rails stabilize. | Fans spin continuously at 100% RPM but system never executes first BIOS instruction (POST `00`). |
+
 
 ---
 
@@ -170,6 +174,7 @@ Pin 8  (Gray PWR_OK)   1.45 V DC         -71.0% (Target: 4.75V - 5.25V)      LOG
 #### Diagnostic Evaluation
 - **Analysis:** While the $+5\text{V}$ and $+3.3\text{V}$ rails show nominal output, the primary $+12\text{V}$ yellow rail is severely depressed at $10.22\text{V}$ (well below the $11.40\text{V}$ cutoff limit). In response to the unstable 12V rail, the internal supervisory IC dropped the `PWR_OK` gray wire to $1.45\text{V}$. 
 - **Action:** Replace the power supply unit immediately. Do not attempt to boot the computer; undervoltage on the 12V rail starves the CPU voltage regulators and damages storage drive spindle motors.
+
 
 ---
 
@@ -221,11 +226,26 @@ Receiver (19200 Baud):
                                                                           FRAMING ERROR!
 ```
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 *Strict Protocol:* Do not expand the verification box until you have written down your predicted layer of failure, expected diagnostic measurement, and immediate corrective action.
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-01-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-01-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-01-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Case 1: Motherboard Halts at Hex POST `C1` After Line Relocation
 - **Observed Symptom:** A sorting terminal was relocated across the facility. On first power-up, the fans spin at maximum speed, the screen remains completely dark, and the onboard two-digit diagnostic LED freezes on code `C1`.
@@ -239,6 +259,7 @@ Receiver (19200 Baud):
 - **Root Cause:** POST code `C1` indicates early memory presence detection failure. During mechanical transport or vibration, the memory module was unseated from its socket latches, or oxidation/dust contaminated the gold edge contacts.
 - **Physical Action:** Disconnect AC power, discharge flea power by holding the power button for 20 seconds. Release memory retention clips, extract RAM module, inspect edge contacts, clean with isopropyl alcohol if oxidized, and firmly reseat into primary memory Channel A (Slot 1) until both side clips click shut.
 </details>
+
 
 ---
 
@@ -256,6 +277,7 @@ Receiver (19200 Baud):
 - **Physical Action:** Replace the failing power supply unit. Move the sensitive computing terminal to an isolated voltage-regulating uninterruptible power supply (UPS) to protect it from line-voltage brownouts caused by industrial motor starts.
 </details>
 
+
 ---
 
 #### Case 3: Serial Console Cascades Inverted Question Marks and Framing Errors
@@ -270,6 +292,7 @@ Receiver (19200 Baud):
 - **Physical Action:** Consult the peripheral hardware manual. Inspect the computer motherboard or expansion card DIP switches. Toggle the hardware clock divider switches to align the baud rate to exactly 9600 8-N-1 on both ends of the serial cable.
 </details>
 
+
 ---
 
 #### Case 4: Continuity Beeper Silent Between DB-9 Pin 5 and Chassis Earth
@@ -283,6 +306,7 @@ Receiver (19200 Baud):
 - **Root Cause:** Broken ground path (`O.L.` = infinite resistance). Pin 5 is the electrical signal ground for the entire RS-232 communication circuit. Without a solid ground path, the signal voltage has no zero-volt return reference. Ambient electromagnetic interference (EMI) generated by forklift electric motors induces stray AC voltages onto the floating data conductors, corrupting the delicate analog-to-digital converter telemetry.
 - **Physical Action:** Inspect the serial cable for a severed ground wire or broken pin solder joint at the connector shell. Replace the damaged serial cable with an industrial double-shielded cable, ensuring the metal DB-9 shell and Pin 5 are properly bonded to the central equipment ground bus.
 </details>
+
 
 ---
 
@@ -302,14 +326,30 @@ Receiver (19200 Baud):
   4. Release the button, reconnect AC mains power, and toggle the switch. The embedded controller resets cleanly and the system boots normally.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-01-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-01-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-01-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Tier 1 Physical Incident Triage Report & Equipment Passdown Note
 
 #### Scenario Assignment
 You are Ethan Brooks, Tier 1 Field Technician on the graveyard shift at the Gresham Freight Forwarding Terminal. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
+
 
 ---
 
@@ -383,6 +423,7 @@ SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
 ========================================================================================
 ```
 
+
 ---
 
 ### Part B: Equipment Passdown Note (Day Shift Board / Dispatch Radio Log)
@@ -412,9 +453,11 @@ Line 4 is FULLY OPERATIONAL. All cross-dock trailers departed on time.
 ACTION REQUIRED FOR DAY SHIFT:
 1. Do not touch DIP switch SW1 on Line 4 (leave switches 3-OFF, 4-ON).
 2. Permanent replacement 40-pin ribbon cable (Part #CBL-40P-IND) ordered from stockroom.
+
 3. Need facilities to install split-rubber grommets on sheet metal partition before Sunday.
 ----------------------------------------------------------------------------------------
 ```
+
 
 ---
 

@@ -59,6 +59,9 @@
         errorText: 'Error',
         successText: 'Copied'
       },
+      mermaidConfig: {
+        querySelector: ".mermaid"
+      },
       plugins: [
         function(hook) {
           // Parse [[term_id|Surface Text]] and [[term_id]] into interactive LNK spans
@@ -209,6 +212,26 @@
 
   <!-- Docsify v4 Core Engine -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+
+  <!-- Mermaid Diagram Engine -->
+  <script src="//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'dark',
+      themeVariables: {
+        darkMode: true,
+        background: '#0f172a',
+        primaryColor: '#1e293b',
+        primaryTextColor: '#f8fafc',
+        primaryBorderColor: '#38bdf8',
+        lineColor: '#38bdf8',
+        secondaryColor: '#334155',
+        tertiaryColor: '#1e293b'
+      }
+    });
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.js"></script>
 
   <!-- KaTeX Core Library & Docsify LaTeX Plugin -->
   <script src="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>

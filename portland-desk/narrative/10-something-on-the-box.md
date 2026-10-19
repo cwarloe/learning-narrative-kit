@@ -44,14 +44,13 @@ Maya winced. "So I got scammed by a checkbox."
 
 We stripped the junk while her standup Slack started to ping. [[antivirus|Antivirus]] quarantined one toolbar DLL on sight. A second helper only tripped after it started injecting ads.
 
-```table
-caption: What the scanner actually said
+**What the scanner actually said:**
+
 | Detection | What it caught | How it knew |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | [[signature_detection|Signature]] | `couponbar.dll` — known bad hash | Name already in the catalog |
 | [[heuristic|Heuristic]] | `OptimizeRAM.exe` injecting ads | Behavior, not a famous name yet |
 | Clean (so far) | `PDFMerge.exe` | Signed, and it actually merges PDFs |
-```
 
 Maya still wanted to keep the merger. I told her the portal had a licensed one. She said she would look after standup. I left the merger off the machine and the ticket open until she actually used the portal copy, because "I'll look later" is how toolbars come back on Friday.
 

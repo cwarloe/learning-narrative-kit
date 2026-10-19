@@ -1,22 +1,22 @@
 # Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `netplus-addressing-helpdesk` — *The Default Gateway Doesn't Care*  
-> **Environment:** Level 1 Service Desk Terminal & Remote Diagnostic Console  
-> **Authors:** Ethan Brooks (under Desk Lead Jules Mercer & Network Ops Engineer Jared Vance)  
+> **The Situation:** East Portland Pump Station & Annex • Operations Service Desk  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Mercer & Jared Vance)  
+> **The Objective:** Triage local IP addressing, APIPA 169.254.x.x link-local traps, subnet boundaries, and ARP resolution failures following a storm switch reboot.  
+> **Estimated Time:** 45–55 minutes • Local Network Addressing  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Operational Role** | Tier 1 IT Support Specialist / Junior Network Operations Technician |
-| **Target Certification** | CompTIA Network+ (N10-008 / N10-009) & CompTIA A+ Core 1 (220-1101) |
-| **Primary Examination Domains** | **Network+ N10-008 Domain 1.0 Networking Fundamentals**<br>• *1.4 Given a scenario, configure and troubleshoot IPv4 addressing, classless subnetting, and default gateways*<br>**Network+ N10-008 Domain 4.0 Network Troubleshooting**<br>• *4.1 Explain the network troubleshooting methodology*<br>• *4.2 Given a scenario, troubleshoot common IP configuration failures (APIPA, duplicate IP conflicts, incorrect subnet mask, unreachable gateway)*<br>**Network+ N10-009 Domain 1.4 & 4.1**<br>• *Network architecture concepts, Layer 2 vs. Layer 3 frame forwarding, ARP table dynamics, DHCP DORA mechanics, and relay agents* |
-| **Prerequisites** | Understanding of OSI layering (Physical Layer 1, Data Link Layer 2, Network Layer 3), binary place values, and command-line navigation. |
-| **Estimated Completion** | 45–60 minutes |
-| **Core Deliverables** | 1. Host-to-Gateway Packet Forwarding & Encapsulation Reference<br>2. Complete IPv4 Subnetting & CIDR Block Boundary Matrix (/24 through /30)<br>3. Command-Line Addressing Diagnostic Toolkit (`ipconfig`, `arp`, `ping`, PowerShell `Get-NetIPConfiguration`)<br>4. DHCP DORA State Machine & IP Helper (Relay Agent) Architecture<br>5. Micro-Drill 1: APIPA vs. DHCP DORA Protocol & VLAN Trunk Failure Analysis<br>6. Micro-Drill 2: CIDR Bitwise Subnet Boundary Math & Off-by-One Troubleshooting<br>7. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>8. Performance Deliverable: Tier 1 Addressing Triage & Network Passdown Note with Evaluation Rubric |
+* **Aligned Certification:** CompTIA Network+ (N10-008/009)
+* **Exam Domains:** Domain 1.4 (IPv4 Addressing, Subnetting & CIDR) & Domain 5.2 (Network Troubleshooting, ARP & Default Gateways)
+* **Core Competencies & Deliverables:** IP Addressing Ground Truth Reference • Subnet Boundary Math Matrix • APIPA & DORA Isolation Drill • ARP Frame Routing Drill • Call Your Shot 5-Case Gate • Network Addressing Passdown Note
+
+</details>
+
 
 ---
 
@@ -53,6 +53,7 @@ flowchart TD
    - `ping <Default_Gateway>`: Verifies Layer 1/2 physical cabling, switch port state, and local subnet reachability to the local router.
    - `ping <Remote_IP>` (e.g., `8.8.8.8`): Verifies Layer 3 inter-VLAN routing, WAN transport, and upstream ISP transit.
    - `ping <FQDN>` (e.g., `portal.portland.gov`): Verifies Layer 7 DNS name resolution.
+
 
 ---
 
@@ -120,6 +121,7 @@ sequenceDiagram
 3. **Scope Exhaustion:** The DHCP scope has leased all available addresses in the pool. The server receives Discover packets but sends no Offer, forcing clients into APIPA (`169.254.x.x`).
 4. **Rogue DHCP Server:** An unauthorized router or device on the local VLAN responds to Discover packets faster than the legitimate corporate DHCP server, leasing incorrect IP addresses, subnet masks, and rogue gateways.
 
+
 ---
 
 ### 2.3 IPv4 Subnetting & CIDR Block Boundary Reference Table
@@ -142,6 +144,7 @@ $$256 - \text{Mask Octet} = \text{Increment (Block Size)}$$
 - For `/26` (`255.255.255.192`): $256 - 192 = 64$. Subnets start at `.0`, `.64`, `.128`, `.192`.
 - For `/27` (`255.255.255.224`): $256 - 224 = 32$. Subnets start at `.0`, `.32`, `.64`, `.96`, etc.
 - For `/29` (`255.255.255.248`): $256 - 248 = 8$. Subnets start at `.0`, `.8`, `.16`, `.24`, etc.
+
 
 ---
 
@@ -173,6 +176,7 @@ Get-NetIPAddress -AddressFamily IPv4 | Format-Table InterfaceAlias, IPAddress, P
 # 8. Test TCP port reachability directly bypassing ICMP firewall blocks
 Test-NetConnection -ComputerName 10.100.1.1 -Port 80
 ```
+
 
 ---
 
@@ -228,6 +232,7 @@ Ethernet adapter Local Area Connection:
      ```
    - Verify client receives `10.100.4.x`, mask `255.255.255.0`, and gateway `10.100.4.1`.
 
+
 ---
 
 ### Micro-Drill 2: CIDR Bitwise Subnet Boundary Math & Off-by-One Troubleshooting
@@ -276,6 +281,7 @@ Pinging from Server B to Server A fails with request timeouts. Pinging from Serv
 | **Host X:** `172.16.8.94/27`<br>**Host Y:** `172.16.8.98/27` | Subnet 1: `.64`<br>Subnet 2: `.96` | Block 1: `.65`–`.94`<br>Block 2: `.97`–`.126` | Block 1 Bcast: `.95`<br>Block 2 Bcast: `.127` | N/A | **NO:** Host X is in `.64/27` (ends at `.94`); Host Y is in `.96/27` (starts at `.97`). Requires router. |
 | **Host X:** `192.168.1.140/29`<br>**Host Y:** `192.168.1.143/29` | `192.168.1.136` | `192.168.1.137` | `192.168.1.142` | `192.168.1.143` | **NO:** Host Y (`.143`) is the **broadcast address** for `192.168.1.136/29`. It cannot be assigned to an endpoint! |
 
+
 ---
 
 ### Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate
@@ -284,6 +290,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
 1. **Layer & Subsystem:** What exact layer (L1, L2, L3, L4, L7) and protocol is involved?
 2. **Predicted Output:** What concrete output, error code, or status do you anticipate seeing?
 3. **Action & Verification:** What specific command tests the hypothesis without destroying evidence?
+
 
 ---
 
@@ -306,6 +313,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
   2. Confirm router interface has `ip helper-address <DHCP_IP>` configured.
   3. Execute `ipconfig /renew` to force client DORA re-negotiation.
 </details>
+
 
 ---
 
@@ -331,6 +339,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
   4. Flush client ARP cache: `arp -d *` in elevated command prompt.
 </details>
 
+
 ---
 
 #### Case 3.3: Off-by-One CIDR Subnet Boundary Disconnect
@@ -354,6 +363,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
   3. Verify default gateway on both servers points to `192.168.10.1`.
   4. Re-test ping: latency drops to `<1ms`.
 </details>
+
 
 ---
 
@@ -381,6 +391,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
   4. Execute `ping 10.100.4.1` to verify gateway reachability, then test remote ping to `8.8.8.8`.
 </details>
 
+
 ---
 
 #### Case 3.5: Failed Local Loopback / Corrupted TCP/IP Stack
@@ -406,9 +417,24 @@ Before executing any diagnostic command or changing a system setting, enforce th
   4. Reboot the machine and re-test `ping 127.0.0.1`.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-03-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-03-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-03-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Part A: Tier 1 Standard Incident Resolution Note
 
@@ -462,6 +488,7 @@ Status:           RESOLVED
 ================================================================================
 ```
 
+
 ---
 
 ### Part B: Tier 2 Network Infrastructure Passdown Note
@@ -513,6 +540,7 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like (Shift Quality Checklist)
@@ -524,6 +552,7 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
 | **ARP Dynamics & Layer 2 Troubleshooting** | Flawlessly inspects and interprets `arp -a` output; detects MAC address flapping; isolates duplicate IP address conflicts; explains gratuitous ARP and switch CAM table poisoning. | Uses `arp -a` to find MAC addresses and recognizes duplicate IPs, but cannot explain how switch CAM tables learn and flap. | Relies solely on `ping` to troubleshoot connectivity; unaware of how Layer 2 MAC binding interacts with Layer 3 IP addressing. |
 | **Layer 2 vs. Layer 3 Encapsulation** | Clearly articulates how Ethernet frames are stripped and rewritten at each Layer 3 hop while the IP header remains intact. Explains why a host ARPs for the default gateway when destination is remote. | Understands that routers forward packets between subnets, but displays minor confusion regarding MAC address rewriting. | Asserts that a client ARPs for the destination MAC address of a remote web server on the public internet. |
 | **Documentation & Escalation Quality** | Submits pristine, audit-ready ticket notes and engineering escalation dossiers containing precise timestamps, root causes, Layer 2/3 evidence, remediation steps, and preventative controls. | Ticket notes are accurate and complete, but lack formal enterprise structure or omit preventative infrastructure controls. | Documentation is vague, omits technical evidence, lacks root-cause isolation, or suggests random trial-and-error actions. |
+
 
 ---
 

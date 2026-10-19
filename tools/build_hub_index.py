@@ -463,16 +463,16 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     <!-- Track Selector Tabs -->
     <div class="track-tabs" role="tablist">
       <button class="tab-btn active" id="tab-portland" onclick="selectTrack('portland')" role="tab">
-        🎯 Portland Desk (Book 0) <span class="tab-count">13</span>
+        Portland Desk (Book 0) <span class="tab-count">13</span>
       </button>
       <button class="tab-btn" id="tab-tamarack" onclick="selectTrack('tamarack')" role="tab">
-        📊 Tamarack Track <span class="tab-count">16</span>
+        Tamarack Track <span class="tab-count">16</span>
       </button>
       <button class="tab-btn" id="tab-operations" onclick="selectTrack('operations')" role="tab">
-        ⚙️ Operations & MIS <span class="tab-count">11</span>
+        Operations & MIS <span class="tab-count">11</span>
       </button>
       <button class="tab-btn" id="tab-all" onclick="selectTrack('all')" role="tab">
-        🌐 View All Curricula <span class="tab-count">40</span>
+        View All Curricula <span class="tab-count">40</span>
       </button>
     </div>
 
@@ -489,7 +489,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         </div>
       </div>
       <a class="launch-btn" href="portland-desk/#/">
-        <span>★ Launch Unified Courseware</span>
+        <span>Launch Unified Courseware</span>
         <span>→</span>
       </a>
     </section>
@@ -521,8 +521,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Late night at the kitchen table. Sifting through 800 pages of exam trivia to extract the four machine invariants (CPU, RAM, Disk, NIC) and study triage reflexes.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/00-the-four-rubber-bands">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/00-the-four-rubber-bands">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/00-the-four-rubber-bands">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/00-the-four-rubber-bands">The Lab</a>
           </div>
         </article>
 
@@ -539,8 +539,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Graveyard shift at the Gresham warehouse. Dead sorting terminal, hex POST codes, bent serial pins, and baud rate mismatches before the 5:00 AM dispatch.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/01-the-paper-cert">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/01-the-paper-cert">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/01-the-paper-cert">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/01-the-paper-cert">The Lab</a>
           </div>
         </article>
 
@@ -557,8 +557,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">First day on the live phone queue under Jules Mercer. Isolating Accounting PC freezes with Safe Mode, Clean Boot, and Windows Event Viewer crash logs.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/02-the-live-board">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/02-the-live-board">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/02-the-live-board">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/02-the-live-board">The Lab</a>
           </div>
         </article>
 
@@ -588,8 +588,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">East Portland pump station switch reboot. APIPA 169.254.x.x trap, /26 subnet boundaries, ARP cache inspection, and local vs gateway frame rewriting.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/03-the-default-gateway-doesnt-care">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/03-the-default-gateway-doesnt-care">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/03-the-default-gateway-doesnt-care">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/03-the-default-gateway-doesnt-care">The Lab</a>
           </div>
         </article>
 
@@ -606,8 +606,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Early spring downpour. Remote VPN workers fail to reach internal portals while in-office staff succeed. Split-horizon DNS, resolver caches, and rogue hosts overrides.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/04-the-name-is-not-the-number">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/04-the-name-is-not-the-number">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/04-the-name-is-not-the-number">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/04-the-name-is-not-the-number">The Lab</a>
           </div>
         </article>
 
@@ -624,8 +624,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Warehouse socket timeouts. Connection refused (RST) vs Connection timed out (Drop). TCP 3-way handshake mechanics, socket states, and ephemeral port exhaustion.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/05-the-wire-has-two-ends">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/05-the-wire-has-two-ends">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/05-the-wire-has-two-ends">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/05-the-wire-has-two-ends">The Lab</a>
           </div>
         </article>
 
@@ -634,7 +634,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div>
             <div class="card-top">
               <div class="num-tag-wrap">
-                <span class="incident-num">EP 06 ★</span>
+                <span class="incident-num">EP 06</span>
                 <span class="cert-tag" style="color: #c084fc; border-color: rgba(168,85,247,0.3);">Midpoint Capstone</span>
               </div>
             </div>
@@ -642,8 +642,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Pacific Northwest atmospheric river floods Building C basement at 04:00 AM. Physical switch swap, trunk VLAN configuration, and resolving a massive DHCP exhaustion storm.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/06-the-portland-flood">📖 Read Story</a>
-            <a class="action-btn btn-capstone" href="portland-desk/#/workbench/06-the-portland-flood">★ Midpoint Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/06-the-portland-flood">Read Story</a>
+            <a class="action-btn btn-capstone" href="portland-desk/#/workbench/06-the-portland-flood">Midpoint Lab</a>
           </div>
         </article>
 
@@ -673,8 +673,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Cleartext Telnet vs encrypted SSH, HTTP vs HTTPS, credential harvesting on unencrypted Wi-Fi, and firewall port boundary decisions.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/07-the-port-that-is-open">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/07-the-port-that-is-open">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/07-the-port-that-is-open">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/07-the-port-that-is-open">The Lab</a>
           </div>
         </article>
 
@@ -691,8 +691,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Authentication factors (know, have, are), TOTP vs SMS, Password+PIN confusion, and Active Directory lockout triage with Event ID 4625 & 4740 caller computer detection.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/08-prove-who-you-are">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/08-prove-who-you-are">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/08-prove-who-you-are">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/08-prove-who-you-are">The Lab</a>
           </div>
         </article>
 
@@ -709,8 +709,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Spear phishing and executive impersonation wire fraud. RFC 5322 MIME header dissection, SPF/DKIM/DMARC alignment checks, and typosquatted domains.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/09-dont-click-that">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/09-dont-click-that">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/09-dont-click-that">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/09-dont-click-that">The Lab</a>
           </div>
         </article>
 
@@ -727,8 +727,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Rogue USB drive and fan pegged at 100%. Windows host persistence (Registry Run keys, Event ID 7045 service creation, scheduled tasks) and Base64 LOLBins analysis.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/10-something-on-the-box">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/10-something-on-the-box">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/10-something-on-the-box">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/10-something-on-the-box">The Lab</a>
           </div>
         </article>
 
@@ -745,8 +745,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Rogue wireless router plugged into a warehouse cubicle. WPA2/WPA3-Enterprise 802.1X with RADIUS, EAP-TLS certificates vs PEAP passwords, and RSSI triangulation.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/11-the-air-is-shared">📖 Read Story</a>
-            <a class="action-btn btn-lab" href="portland-desk/#/workbench/11-the-air-is-shared">🔬 The Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/11-the-air-is-shared">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/11-the-air-is-shared">The Lab</a>
           </div>
         </article>
 
@@ -755,7 +755,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div>
             <div class="card-top">
               <div class="num-tag-wrap">
-                <span class="incident-num">EP 12 ★</span>
+                <span class="incident-num">EP 12</span>
                 <span class="cert-tag" style="color: #c084fc; border-color: rgba(168,85,247,0.3);">Final Capstone</span>
               </div>
             </div>
@@ -763,8 +763,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <p class="card-premise">Multi-stage incident across plant telemetry and finance. Chain of custody, order of volatility, memory capture, and assembling the professional CSIRT/SOC handoff dossier.</p>
           </div>
           <div class="card-actions">
-            <a class="action-btn btn-story" href="portland-desk/#/narrative/12-when-the-ticket-escalates">📖 Read Story</a>
-            <a class="action-btn btn-capstone" href="portland-desk/#/workbench/12-when-the-ticket-escalates">★ Final Capstone Lab</a>
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/12-when-the-ticket-escalates">Read Story</a>
+            <a class="action-btn btn-capstone" href="portland-desk/#/workbench/12-when-the-ticket-escalates">Final Capstone Lab</a>
           </div>
         </article>
 
