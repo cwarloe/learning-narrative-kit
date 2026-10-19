@@ -44,3 +44,6 @@
   * **Episode 12: When the Ticket Escalates**
     * [The Incident Story](narrative/12-when-the-ticket-escalates.md)
     * [Final Capstone: Incident Handoff Dossier](workbench/12-when-the-ticket-escalates.md)
+
+* **Master Reference**
+  * [Master Technical Glossary](glossary.md)

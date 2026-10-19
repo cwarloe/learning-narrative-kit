@@ -2,11 +2,11 @@
 
 *A Security+ wireless precursor • Hover over highlighted terms for exam definitions and supporting desk jargon.*
 
-The first [[ticket|ticket]] of Friday was *Can't join CorpWifi — worked yesterday — board meeting in 20.* Jules's sticky under *which decision?* said *which SSID am I actually on?*
+The first ticket of Friday was *Can't join CorpWifi — worked yesterday — board meeting in 20.* Jules's sticky under *which decision?* said *which SSID am I actually on?*
 
 "Wired has a cable you can point at," she said when I reached for a blank card. "Wireless has manners and math. Verify the network. Prefer enterprise over café vibes. Escalate anything that looks like a twin."
 
-I opened the [[help_desk|help desk]] queue.
+I opened the help desk queue.
 
 ## Maya and the password that is everyone
 
@@ -21,9 +21,9 @@ Maya from accounting was in the lobby with a loaner laptop.
 
 "It asks for a password," she said. "I type the one on the sticky under the monitor in Finance. Denied. Also there are two networks named almost the same. One has more bars."
 
-I walked out with a phone running our approved [[wifi_analyzer|Wi-Fi analyzer]] view. Official [[ssid|SSID]] was `CORP-EMPLOYEE`. Beside it, `CORP-EMPLOYEE_Guest` and a suspicious `CORP-EMPLOYE` with the last letter missing and a [[signal_strength|signal strength]] that was louder near the street than near the AP closet.
+I walked out with a phone running our approved [[wifi_analyzer|Wi-Fi analyzer]] view. Official [[ssid|SSID]] was `CORP-EMPLOYEE`. Beside it, `CORP-EMPLOYEE_Guest` and a suspicious `CORP-EMPLOYE` with the last letter missing and a signal strength that was louder near the street than near the AP closet.
 
-"The lobby sticky password is the old [[psk|PSK]] world," I said. "Shared key. Everyone knows it, which means everyone and their cousin know it. We moved employees to [[enterprise_wpa|WPA-Enterprise]] — [[ieee_8021x|802.1X]] with your badge account against [[radius|RADIUS]]. Join `CORP-EMPLOYEE`, use your user ID, trust the company [[certificate|certificate]] prompt we already documented, and do not join the loud almost-name."
+"The lobby sticky password is the old [[psk|PSK]] world," I said. "Shared key. Everyone knows it, which means everyone and their cousin know it. We moved employees to [[enterprise_wpa|WPA-Enterprise]] — [[ieee_8021x|802.1X]] with your badge account against [[radius|RADIUS]]. Join `CORP-EMPLOYEE`, use your user ID, trust the company certificate prompt we already documented, and do not join the loud almost-name."
 
 Maya squinted at the twin. "So the louder one is…?"
 
@@ -39,7 +39,7 @@ Ken from sales called from a hotel before a customer demo. He was proud of a wor
 
 I put him on speaker.
 
-"[[open_network|Open network]] means no encryption on the air," I said. "The [[captive_portal|captive portal]] is a gate for internet access, not a force field. Anyone on that same open SSID can try [[eavesdropping|wireless eavesdropping]] unless you wrap traffic in a [[vpn|VPN]]. Use the VPN before mail, before files, before just-quick Slack."
+"Open network means no encryption on the air," I said. "The [[captive_portal|captive portal]] is a gate for internet access, not a force field. Anyone on that same open SSID can try [[eavesdropping|wireless eavesdropping]] unless you wrap traffic in a VPN. Use the VPN before mail, before files, before just-quick Slack."
 
 "And WEP?" Ken asked.
 
@@ -51,11 +51,11 @@ Ken muttered something about customer politics and connected the VPN on the hote
 
 Mid-morning Facilities Slack: visitors could not reach the projector, so someone from Marketing had brought a travel router like they do at home. It was plugged into a wall jack under the credenza. SSID: `FreeConfQuick`. Security: none.
 
-"That is a [[rogue_ap|rogue access point]]," I said when I got to the room. "Unauthorized [[access_point|access point]]. Even if the intent is kindness, it bridges unknown phones onto our wall jack without the [[controller|wireless controller]] policies. Unplug it."
+"That is a [[rogue_ap|rogue access point]]," I said when I got to the room. "Unauthorized access point. Even if the intent is kindness, it bridges unknown phones onto our wall jack without the wireless controller policies. Unplug it."
 
 Rita blushed into her notebook. We unplugged. Network confirmed the jack was on a user VLAN that should never have been a free café. I filed the ticket with a photo, jack number, and "not malicious, still a rogue."
 
-While we were there, the analyzer showed our real APs plus a faint outside SSID that had been mapping the block for an hour — classic [[war_driving|war driving]] energy from a car with too many antennas. Not our emergency. Still a reminder that discovery is cheap.
+While we were there, the analyzer showed our real APs plus a faint outside SSID that had been mapping the block for an hour — classic war driving energy from a car with too many antennas. Not our emergency. Still a reminder that discovery is cheap.
 
 ## Disassociation, jamming, and the reconnect reflex
 
@@ -65,7 +65,7 @@ Afternoon: Dev from engineering pinged that his laptop kept dropping Wi-Fi every
 
 Wireless ops had a note on the bridge: bursts of [[disassociation|disassociation / deauthentication]] frames aimed at lobby clients. Not full [[jamming|jamming]] — the air still worked — but enough kicks to make laptops frantic. Frantic laptops are how evil twins collect friends.
 
-"When you get kicked, do not reconnect on autopilot," I said. "Check the SSID character by character. Prefer the dock. If the air is being rude on purpose, escalate — that is a [[soc|SOC]] and wireless hunt, not a forget-network ritual."
+"When you get kicked, do not reconnect on autopilot," I said. "Check the SSID character by character. Prefer the dock. If the air is being rude on purpose, escalate — that is a SOC and wireless hunt, not a forget-network ritual."
 
 Dev docked. The flapping stopped because copper does not care about deauth theater.
 
@@ -73,13 +73,13 @@ Dev docked. The flapping stopped because copper does not care about deauth theat
 
 Nora needed a vendor on site to update a badge printer. The vendor wanted Wi-Fi. Nora wanted them productive. Finance wanted them nowhere near file shares.
 
-"[[guest_wifi|Guest Wi-Fi]]," I said. "Different SSID, captive portal for AUP, and — this is the part people skip — [[segmentation|network segmentation]] so guest cannot route to payroll, cameras, or the help desk VLAN. Guest without segmentation is just hospitality for lateral movement."
+"Guest Wi-Fi," I said. "Different SSID, captive portal for AUP, and — this is the part people skip — network segmentation so guest cannot route to payroll, cameras, or the help desk VLAN. Guest without segmentation is just hospitality for lateral movement."
 
 We put the vendor on `CORP-GUEST`, watched them fail to ping an internal share, and succeed at the vendor's own update CDN. Nora asked if we should hide the employee SSID so guests were less confused.
 
-"[[hidden_ssid|Hidden SSID]] is obscurity," Jules said. "It still leaks in other frames. Real control is enterprise auth and segmentation."
+"Hidden SSID is obscurity," Jules said. "It still leaks in other frames. Real control is enterprise auth and segmentation."
 
-Someone in the thread suggested MAC allow-lists for the printer VLAN. I typed carefully: "[[mac_filtering|MAC filtering]] is a speed bump you can spoof with a screenshot."
+Someone in the thread suggested MAC allow-lists for the printer VLAN. I typed carefully: "MAC filtering is a speed bump you can spoof with a screenshot."
 
 ## WPA2, WPA3, WPS, and the survey that is not vibes
 
@@ -89,7 +89,7 @@ Network dropped by the desk with a short hallway class. They were rolling a pilo
 
 I asked about coverage complaints on the east cubes. They pulled last week's [[site_survey|site survey]]: heat map, channel overlap, one AP transmitting like it was trying to cover the MAX stop.
 
-"[[ap_placement|AP placement]] and power," the engineer said. "Too loud outside means easier eavesdropping and easier twins. Survey is how we know. Vibes are how we get tickets titled Wi-Fi bad."
+"AP placement and power," the engineer said. "Too loud outside means easier eavesdropping and easier twins. Survey is how we know. Vibes are how we get tickets titled Wi-Fi bad."
 
 I wrote it down.
 
@@ -105,7 +105,7 @@ I put that sentence in the ticket template.
 
 Late day, Lila's laptop kept pairing prompts for a keyboard she did not own. Jordan found a cheap earbud spam message that said *Hi cute phone.* Sam wanted to leave Bluetooth discovery on so his watch felt loved.
 
-"[[bluetooth|Bluetooth]] is a second air," I said. "Short range, real risk. Unsolicited messages are [[bluejacking|bluejacking]] — mostly rude. Actual data theft over weak pairing is [[bluesnarfing|bluesnarfing]]. Desk hygiene: [[bluetooth_pairing|pairing hygiene]] — only expected devices, confirm the code, discovery off when you are not actively pairing."
+"Bluetooth is a second air," I said. "Short range, real risk. Unsolicited messages are [[bluejacking|bluejacking]] — mostly rude. Actual data theft over weak pairing is [[bluesnarfing|bluesnarfing]]. Desk hygiene: pairing hygiene — only expected devices, confirm the code, discovery off when you are not actively pairing."
 
 Lila declined the ghost keyboard. Jordan turned discovery off. Sam looked betrayed by his watch and complied anyway.
 
@@ -113,7 +113,7 @@ Lila declined the ghost keyboard. Jordan turned discovery off. Sam looked betray
 
 End of day we closed a stubborn laptop that kept failing enterprise join. The user had installed a free "Wi-Fi booster" profile that pinned a wrong trust anchor. They were one impatient click from sending their password to a lookalike.
 
-"Enterprise helps only if you protect the certificate check," I said. "If the client ignores trust, [[replay_attack|replay]] and twin games get easier. Clicking through certificate warnings on Wi-Fi is the same sin as clicking through them on banks."
+"Enterprise helps only if you protect the certificate check," I said. "If the client ignores trust, replay and twin games get easier. Clicking through certificate warnings on Wi-Fi is the same sin as clicking through them on banks."
 
 I updated the wiki blurb: join the real SSID, prefer 802.1X over hallway PSK, VPN on open and portal networks, never WEP, unplug rogue travel routers, do not reconnect blind after weird drops, guest stays segmented, hide-SSID and MAC filters are not controls, WPS off, survey over vibes, and Bluetooth only for things you meant to invite.
 

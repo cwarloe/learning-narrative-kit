@@ -4,9 +4,9 @@
 
 Thursday's first subject line was already in all caps, which at this desk means either a real fire or someone whose standup starts in twelve minutes. Jules had rewritten the sticky under *which decision?* It now said *does this need to leave the network?*
 
-"[[malware|Malware]] is a category," she said when I reached for a blank card. "Your job is the decision — quarantine the file, isolate the box, escalate the weird outbound. Do not negotiate with a padlock, and do not hunt Latin names while the machine is still talking to the floor."
+"Malware is a category," she said when I reached for a blank card. "Your job is the decision — quarantine the file, isolate the box, escalate the weird outbound. Do not negotiate with a padlock, and do not hunt Latin names while the machine is still talking to the floor."
 
-I opened the [[help_desk|help desk]] queue.
+I opened the help desk queue.
 
 ```ticket
 id: HD-4419
@@ -43,7 +43,7 @@ actions: Remove | Keep for now
 New tabs open to coupons. Three toolbars. A helper named OptimizeRAM. The merger works. The rest of the machine is trying to sell her a vacation.
 ```
 
-"That cluster is [[pups|PUPs]] — potentially unwanted programs — riding a free install," I said. "The ad engine is [[adware|adware]]. Some of these bundles also drop [[spyware|spyware]] that phones home about where you browse. We do not tune it. We remove the bundle, reset the browser, and run a full [[malware_scan|malware scan]]."
+"That cluster is [[pups|PUPs]] — potentially unwanted programs — riding a free install," I said. "The ad engine is [[adware|adware]]. Some of these bundles also drop [[spyware|spyware]] that phones home about where you browse. We do not tune it. We remove the bundle, reset the browser, and run a full malware scan."
 
 Maya winced. "So I got scammed by a checkbox."
 
@@ -69,9 +69,9 @@ Sam dropped a branded USB on the counter like a person returning a library book 
 
 Jules appeared as if summoned by plastic. "Say the vector out loud."
 
-"[[removable_media|Removable media]]," I said. "USB as delivery. Could be a [[virus|virus]] that infects files when you open them. Could be a [[dropper|dropper]] that writes a second stage. Could be nothing but a false positive. We do not find out by curiosity on a domain laptop, and we do not find out by plugging it into the machine that just yelled."
+"Removable media," I said. "USB as delivery. Could be a [[virus|virus]] that infects files when you open them. Could be a [[dropper|dropper]] that writes a second stage. Could be nothing but a false positive. We do not find out by curiosity on a domain laptop, and we do not find out by plugging it into the machine that just yelled."
 
-We scanned the stick on a designated junk machine that does not mount [[network_share|network shares]]. The junk box lives under the counter with a strip of tape that says `NO DOMAIN / NO SHARES / YES YOU WAIT`. Sam waited. The scan did not.
+We scanned the stick on a designated junk machine that does not mount network shares. The junk box lives under the counter with a strip of tape that says `NO DOMAIN / NO SHARES / YES YOU WAIT`. Sam waited. The scan did not.
 
 ```console
 caption: junk-scan · PowerShell
@@ -121,9 +121,9 @@ powershell.exe  (signed, company cert)
     schtasks.exe /create /tn "CacheCleanup"
 ```
 
-"That spread pattern is [[worm|worm]] behavior," I said. "Self-replicating across the LAN. Even if the first foothold was a person, the second through twentieth do not need another click. Pull the cable — [[isolate|isolate]] the host. Do not finish the file copy first. Isolation is the desk move. Analysis is later, and it is not your analysis."
+"That spread pattern is [[worm|worm]] behavior," I said. "Self-replicating across the LAN. Even if the first foothold was a person, the second through twentieth do not need another click. Pull the cable — isolate the host. Do not finish the file copy first. Isolation is the desk move. Analysis is later, and it is not your analysis."
 
-Ken unplugged. He still had a file mid-copy and he said so, twice, because the file was for a client who bills in hours. I told him the copy could wait and the client could bill us for being alive. I opened an escalate [[ticket|ticket]] for the [[soc|SOC]] with hostnames, the scheduled-task name, and the outbound domains as light [[ioc|indicators of compromise]]. Jules, still on the Ops thread: "Good. Leave the shares dirty. We need them dirty."
+Ken unplugged. He still had a file mid-copy and he said so, twice, because the file was for a client who bills in hours. I told him the copy could wait and the client could bill us for being alive. I opened an escalate ticket for the SOC with hostnames, the scheduled-task name, and the outbound domains as light [[ioc|indicators of compromise]]. Jules, still on the Ops thread: "Good. Leave the shares dirty. We need them dirty."
 
 ## Ransomware at desk volume
 
@@ -144,9 +144,9 @@ actions: Do not pay | Disconnect
 Send Bitcoin to the address below within 72 hours. Open the chat if you want a 'test decrypt.' We are very professional.
 ```
 
-"[[ransomware|Ransomware]]," I said. "The encrypting engine is [[crypto_malware|crypto-malware]]. Desk order, out loud, so we both hear it: disconnect, isolate, do not run a decryptor from a forum, and [[do_not_pay|do not pay]]. Payment is not a restore button. The chat in the notepad is not support. It is a second chance to talk to the person who already has your files."
+"Ransomware," I said. "The encrypting engine is [[crypto_malware|crypto-malware]]. Desk order, out loud, so we both hear it: disconnect, isolate, do not run a decryptor from a forum, and do not pay. Payment is not a restore button. The chat in the notepad is not support. It is a second chance to talk to the person who already has your files."
 
-Dana unplugged. Jules was already on the bridge with SOC. They asked about backups before they asked about anything theatrical. Dana's team folder had overnight snapshots that lived where her laptop could not write — [[offline_backup|offline / immutable backup]] territory, not the other folder on the same PC, which would have been encrypted too and would have made this a much worse Thursday.
+Dana unplugged. Jules was already on the bridge with SOC. They asked about backups before they asked about anything theatrical. Dana's team folder had overnight snapshots that lived where her laptop could not write — offline / immutable backup territory, not the other folder on the same PC, which would have been encrypted too and would have made this a much worse Thursday.
 
 | Move | What it does | What it costs |
 | --- | --- | --- |
@@ -162,7 +162,7 @@ Dana asked if she should try the attacker's support chat anyway, "just to see if
 
 Afternoon was quieter and worse, which is a combination I am starting to recognize.
 
-Lila from HR noticed her password manager prompting more than usual. She had not typed those sites. She had typed a lot of other sites, which is the point. Task Manager showed a helper named like a font updater. The [[process_list|process list]] lied poorly if you looked twice.
+Lila from HR noticed her password manager prompting more than usual. She had not typed those sites. She had typed a lot of other sites, which is the point. Task Manager showed a helper named like a font updater. The process list lied poorly if you looked twice.
 
 ```console
 caption: LILA-HR · tasklist
@@ -248,7 +248,7 @@ The end-of-day bridge call was short, which I have learned is a compliment when 
 | Task name `CacheCleanup` | Worm commute |
 | "isolated at 14:12" | Clock for the people who were not in the room |
 
-I updated the wiki blurb the desk actually reads: portal software only; USB is guilty until scanned; weird share activity means isolate first; ransomware means isolate and do not pay; restore from backups attackers cannot touch; green AV is not a verdict; EDR orange is a verb; and when something on the box is lying — [[quarantine|quarantine]] the file, isolate the host, open the path to the SOC.
+I updated the wiki blurb the desk actually reads: portal software only; USB is guilty until scanned; weird share activity means isolate first; ransomware means isolate and do not pay; restore from backups attackers cannot touch; green AV is not a verdict; EDR orange is a verb; and when something on the box is lying — quarantine the file, isolate the host, open the path to the SOC.
 
 At 5:35 I closed what I could. Maya's toolbars were gone and her merger was still a fight. Sam's USB was contained. Ken had unplugged a worm commute and was still owed a file copy. Dana had not paid and was still on the slow printer. Lila was on a loaner rotating passwords she did not want to rotate. Dev was reimaging. Nora's beacon was starved. Jordan's timer was defused. Rita's RAT was escalated. The closet miner was cooling down, and the spare printer was doing two jobs badly.
 

@@ -2,7 +2,7 @@
 
 *A Security+ ports-and-protocols precursor • Hover over highlighted terms for exam definitions and supporting desk/network jargon.*
 
-It had been raining on the east side of the building since before I got in. I was three weeks into a job at a midsize [[msp|MSP]] — long enough to say "let me look into that" more often than anyone wanted to hear. I kept index cards in the top drawer, service on the front and port number on the back, and I'd been through them enough times to run the whole stack in the shower. Nobody ever asked me to.
+It had been raining on the east side of the building since before I got in. I was three weeks into a job at a midsize MSP — long enough to say "let me look into that" more often than anyone wanted to hear. I kept index cards in the top drawer, service on the front and port number on the back, and I'd been through them enough times to run the whole stack in the shower. Nobody ever asked me to.
 
 Jules worked two cubes over and had the desk lead title. Nine years there. A bike helmet hung off her monitor arm, rain pants dried over the back of her chair, and a note stuck to the edge of her screen said just *which decision?*
 
@@ -21,7 +21,7 @@ caption: "Schematic layout: The corporate perimeter firewall. Cleartext Telnet (
 prompt: "Clean technical schematic of a corporate network perimeter under bright, even lighting. Flowchart lines connect external internet router to internal firewall and server racks with port numbers highlighted in green and red. Crisp technical line art, no text, no words. 16:9 ratio."
 ```
 
-Jared from network ops pinged me before nine. A switch in a closet in Building C had a [[vlan|VLAN]] set wrong, and he already had the steps on a clipboard from years of doing exactly this.
+Jared from network ops pinged me before nine. A switch in a closet in Building C had a VLAN set wrong, and he already had the steps on a clipboard from years of doing exactly this.
 
 "I Telnet in, type the [[enable_password|enable password]], fix the VLAN, hang up," he said. "Ten minutes. My script expects [[telnet|Telnet]]. I wrote it back when I was still racking gear out in Hillsboro."
 
@@ -31,11 +31,11 @@ I was most of the way to saying *sure, twenty-three is open on that box* when Ju
 
 Jared answered before I could get the question out. "Packet capture on the management span. The enable password sitting there in the clear where anybody walking past the collector could read it. The boss made us rotate everything that week. I still flinch."
 
-"So which [[port|port]] do we allow on the management path," I said, "and which [[protocol|protocol]] is carrying that password? Telnet sends it in [[cleartext|cleartext]]."
+"So which port do we allow on the management path," I said, "and which protocol is carrying that password? Telnet sends it in [[cleartext|cleartext]]."
 
 He sighed at me. "You're going to say [[ssh|SSH]]. Same remote shell, encrypted, twenty-two. Fine. The script's mine, I can rewrite it. Just don't make me do it twice."
 
-"Then let's put [[key_auth|key auth]] on it now instead of passwords," I said. "You rewrite once. And we're fixing the script, not the [[firewall|firewall]]."
+"Then let's put [[key_auth|key auth]] on it now instead of passwords," I said. "You rewrite once. And we're fixing the script, not the firewall."
 
 Eleven minutes later he pasted a screenshot of a working SSH login and added, sounding almost proud, that keys felt weird after ten years of passwords but whatever. His clipboard was one line shorter.
 
@@ -53,7 +53,7 @@ Her outbound was pointed at [[smtp|SMTP]] on 25, which she told me IT had set ye
 
 Jules, from her cube, not looking away from whatever she was doing: "Twenty-five is how servers talk to each other. Back when clients used to submit there, we got yelled at by the ISP about once a quarter."
 
-"So we'll use [[smtp_submission|submission]] on 587 with [[starttls|STARTTLS]]," I said, slower this time, because Maya was writing it down. "Or [[smtps|SMTPS]] on 465 if the client wants [[implicit_tls|implicit TLS]] from the first byte. Either way it's authenticated submission, and neither one of them is an [[open_relay|open relay]]."
+"So we'll use [[smtp_submission|submission]] on 587 with [[starttls|STARTTLS]]," I said, slower this time, because Maya was writing it down. "Or [[smtps|SMTPS]] on 465 if the client wants [[implicit_tls|implicit TLS]] from the first byte. Either way it's authenticated submission, and neither one of them is an open relay."
 
 Maya laughed at me. "Say STARTTLS one more time and I'll click wherever you point. My brother runs a mail server on a Raspberry Pi and he is never going to hear about this."
 
@@ -73,23 +73,23 @@ I called instead of typing a lecture at them. Their engineer, Dana, sounded like
 
 Everybody mixes the letters up. I'd done it in front of Jules a month earlier and she drew me two arrows in red marker, helmet strap still looped around her wrist.
 
-"They're not the same," I said. "[[sftp|SFTP]] is file transfer running inside SSH, so it's usually port twenty-two, and it's a different protocol underneath. [[ftps|FTPS]] is the old FTP wrapped in TLS, which in implicit mode is often 990 for the control connection and 989 for data. Different ports, different firewall conversation. If your appliance speaks FTPS then we'll do FTPS. What we're not doing is plain FTP across the internet."
+"They're not the same," I said. "SFTP is file transfer running inside SSH, so it's usually port twenty-two, and it's a different protocol underneath. [[ftps|FTPS]] is the old FTP wrapped in TLS, which in implicit mode is often 990 for the control connection and 989 for data. Different ports, different firewall conversation. If your appliance speaks FTPS then we'll do FTPS. What we're not doing is plain FTP across the internet."
 
 Dana exhaled. "FTPS I can turn on. I got burned once when a firewall guy opened twenty-one and then couldn't work out why the data connection hung. Active mode, port twenty, whole mess. Where do you want me to land it?"
 
-"On a [[jump_host|jump host]] we control."
+"On a jump host we control."
 
 Before Dana's transfer finished, Leah Moreno from Portland plant operations called from the treatment facility down by the river. Leah ran plant ops with a steel clipboard and zero patience for corporate drift, and when plant operations called the desk, it was never about a jammed printer.
 
 "Ethan," Leah said, industrial pumps humming through the handset. "Our telemetry gateway stopped feeding sensor metrics to the central plant board. A field contractor wants an emergency firewall rule opening Modbus and DNP3 across the inter-site WAN so the overflow alarms stop chirping. Can you just punch the ports through?"
 
-I checked the protocol notes before answering. Port 502 for Modbus, 20000 for DNP3 — classic cleartext industrial [[protocol|protocols]] built for isolated control loops, not an open WAN span.
+I checked the protocol notes before answering. Port 502 for Modbus, 20000 for DNP3 — classic cleartext industrial protocols built for isolated control loops, not an open WAN span.
 
 "Those protocols have no encryption on the wire, Leah," I said. "If someone intercepts that WAN traffic, they aren't just reading tank levels — they could inject a malicious valve command."
 
 Jules leaned back from her monitor, listening with her coffee mug in hand. "Leah knows her plant," Jules murmured. "Give her the architecture, not just a no."
 
-"We can't open raw cleartext across the [[perimeter|perimeter]]," I told Leah. "What we can do is drop the telemetry into an encrypted [[vpn|VPN]] tunnel between the plant gateway and our [[concentrator|concentrator]]. Plant ops gets the telemetry stream, and nobody outside touches the pumps."
+"We can't open raw cleartext across the perimeter," I told Leah. "What we can do is drop the telemetry into an encrypted VPN tunnel between the plant gateway and our concentrator. Plant ops gets the telemetry stream, and nobody outside touches the pumps."
 
 Leah paused, the phone clicking as she made a sharp notation on her clipboard. "If the tunnel keeps the overflow alarms quiet without putting the treatment line at risk, build it. I'll hold the contractor at the gate."
 
@@ -97,13 +97,13 @@ I routed the request to network engineering, marked it operational priority, and
 
 ## HR's padlock and the contractor in a hotel
 
-HR pinged right after standup. The benefits portal still loaded over [[http|HTTP]] on 80, which meant people were typing open-enrollment information into a page with no padlock. Marketing had meant to fix it after benefits season. Benefits season was now.
+HR pinged right after standup. The benefits portal still loaded over HTTP on 80, which meant people were typing open-enrollment information into a page with no padlock. Marketing had meant to fix it after benefits season. Benefits season was now.
 
-The web ops channel was already half memes about certing it after open enrollment. I opened a [[change_ticket|change ticket]] to terminate [[https|HTTPS]] on 443, redirect eighty to four-forty-three, and get the certificate renewed before Friday. Somebody dropped in a gif of a padlock.
+The web ops channel was already half memes about certing it after open enrollment. I opened a change ticket to terminate HTTPS on 443, redirect eighty to four-forty-three, and get the certificate renewed before Friday. Somebody dropped in a gif of a padlock.
 
 While that worked its way through, a contractor named Sam wanted [[rdp|Remote Desktop]] from a hotel in Seattle to a finance workstation. He was polite about it, and late on a deliverable.
 
-"I only need the desktop for an hour," Sam said. "Hotel Wi-Fi, my laptop, their machine. It's [[tcp|TCP]] 3389, right? My last client just whitelisted my home address and called it done."
+"I only need the desktop for an hour," Sam said. "Hotel Wi-Fi, my laptop, their machine. It's TCP 3389, right? My last client just whitelisted my home address and called it done."
 
 I caught myself starting to draft a temporary allow rule.
 
@@ -111,9 +111,9 @@ Jules was already in the thread. "Read that request back to yourself as a decisi
 
 "Allow RDP from anywhere to finance-WS-14 on 3389."
 
-"Right. Now read the second half of it out loud," she said. "Our insurance questionnaire asks whether 3389 faces the internet. That's a renewal conversation, not a movie plot. [[ransomware|Ransomware]] crews scan that port all day long."
+"Right. Now read the second half of it out loud," she said. "Our insurance questionnaire asks whether 3389 faces the internet. That's a renewal conversation, not a movie plot. Ransomware crews scan that port all day long."
 
-I called Sam back. "We'll get you onto the [[vpn|VPN]] first, into our pool, and you'll RDP from in there. Better than that, we'll point you at a [[jump_host|jump box]]. We don't open raw 3389 to the internet, not even for an hour, for the same reason we don't hang [[smb|SMB]] on 445 off the outside of the building."
+I called Sam back. "We'll get you onto the VPN first, into our pool, and you'll RDP from in there. Better than that, we'll point you at a jump box. We don't open raw 3389 to the internet, not even for an hour, for the same reason we don't hang [[smb|SMB]] on 445 off the outside of the building."
 
 Sam groaned, then gave in. "I've already got the VPN from the last gig. Jump box is fine if somebody sends me the name. It's honestly nicer than hoping the hotel Wi-Fi is friendly."
 
@@ -121,23 +121,23 @@ The [[firewall_rule|firewall rule]] we submitted was narrow on purpose — sourc
 
 ## The new hire, the directory, and the quiet plumbing
 
-Early afternoon. A new hire in legal named Lena couldn't [[directory_bind|bind]] to the directory from the password reset tool. The app talked [[ldap|LDAP]] on 389, it worked from the wired desk VLAN, and it failed on [[guest_wifi|guest Wi-Fi]].
+Early afternoon. A new hire in legal named Lena couldn't bind to the directory from the password reset tool. The app talked [[ldap|LDAP]] on 389, it worked from the wired desk VLAN, and it failed on guest Wi-Fi.
 
 "I've been sitting in the lobby because my desk wasn't ready," Lena said. "And now the reset tool hates me. At my last internship everybody just said use guest, it's fine."
 
 "Guest is exactly where we don't want a directory bind crossing in cleartext," I said. "We'll move it to [[ldaps|LDAPS]] on 636. Same queries, TLS around them."
 
-While we were testing that, her laptop started failing [[kerberos|Kerberos]] to the [[domain|domain]] as well, tickets coming back rejected. Her clock was fourteen minutes off after a long sleep.
+While we were testing that, her laptop started failing [[kerberos|Kerberos]] to the domain as well, tickets coming back rejected. Her clock was fourteen minutes off after a long sleep.
 
 Jules went past with a granola bar. "I spent an entire Sunday once convinced I'd broken Active Directory in my home lab. It was the clock. Kerberos does not forgive you about the clock."
 
-I pointed Lena at our internal [[ntp|NTP]] on 123/[[udp|UDP]], her clock jumped, and Kerberos stopped sulking.
+I pointed Lena at our internal [[ntp|NTP]] on 123/UDP, her clock jumped, and Kerberos stopped sulking.
 
 She asked why the laptop couldn't find the internet at all until she rebooted earlier, which turned out to be ordinary desk noise sitting underneath the directory problem. [[dhcp|DHCP]] on 67 and 68 had handed her a [[dhcp_lease|lease]] that morning, [[dns|DNS]] on 53 was resolving fine for everybody else, and her adapter had simply wedged. We renewed the lease, flushed the [[resolver_cache|resolver cache]], and sent her back to onboarding.
 
 ## Monitoring, AAA, and the community string everybody knows
 
-Network monitoring opened a ticket that looked routine. Dee wanted to poll the access switches with [[snmp|SNMP]] on 161/UDP, traps on 162, using a [[community_string|community string]] of `public`.
+Network monitoring opened a ticket that looked routine. Dee wanted to poll the access switches with [[snmp|SNMP]] on 161/UDP, traps on 162, using a community string of `public`.
 
 "It's what the vendor template ships with," Dee said. "We just need graphs before the weekend change window. I've got a Raspberry Pi at home that still answers to `public`. Don't tell Jules."
 
@@ -149,7 +149,7 @@ Dee put her forehead down on her desk.
 
 Dee muttered something about templates, then asked for the v3 checklist, and Jules dropped it into the channel without saying anything else about it.
 
-Logging had the same habit attached to it. The closets were still forwarding [[syslog|syslog]] in cleartext to the collector on 514/UDP, and a technician named Marco wanted 514 opened from the guest SSID so he could finish a closet without walking upstairs.
+Logging had the same habit attached to it. The closets were still forwarding syslog in cleartext to the collector on 514/UDP, and a technician named Marco wanted 514 opened from the guest SSID so he could finish a closet without walking upstairs.
 
 "It's just for convenience," Marco said. "I used to debug printers that way at my last MSP."
 
@@ -157,19 +157,19 @@ Logging had the same habit attached to it. The closets were still forwarding [[s
 
 He took the walk upstairs, grumbling, and mentioned on the way that 6514 was the one he always forgot on flashcards. Same.
 
-VPN and device login questions piled onto the same thread. Remote users authenticate to the [[concentrator|concentrator]] through [[radius|RADIUS]] — 1812 for authentication, 1813 for accounting. The network team would rather use [[tacacs|TACACS+]] on 49/TCP for switch and firewall admin sessions, because it encrypts the whole payload and splits [[authz|authorization]] cleanly from authentication.
+VPN and device login questions piled onto the same thread. Remote users authenticate to the concentrator through [[radius|RADIUS]] — 1812 for authentication, 1813 for accounting. The network team would rather use [[tacacs|TACACS+]] on 49/TCP for switch and firewall admin sessions, because it encrypts the whole payload and splits authorization cleanly from authentication.
 
-"People say [[aaa|AAA]] like it's one port," Jared said, dropping into the thread still riding his SSH win. "RADIUS for the VPN crowd, TACACS for those of us touching the boxes. I had them mixed up for about a year."
+"People say AAA like it's one port," Jared said, dropping into the thread still riding his SSH win. "RADIUS for the VPN crowd, TACACS for those of us touching the boxes. I had them mixed up for about a year."
 
 I didn't configure either one from the desk. I named the ports when somebody asked.
 
 ## TFTP and the printer that will not wait
 
-The last real ping of the shift was Owen, a facilities tech who needed firmware onto a printer and wanted to push it with [[tftp|TFTP]] from his laptop on the user VLAN. No authentication, 69/UDP, tiny and trusting.
+The last real ping of the shift was Owen, a facilities tech who needed firmware onto a printer and wanted to push it with TFTP from his laptop on the user VLAN. No authentication, 69/UDP, tiny and trusting.
 
 "The MAX leaves in twenty minutes and the printer is dead," Owen said. "Just this once from here. I PXE boot lab gear with TFTP at home all the time, it's fine if you know the room."
 
-"Management segment only," I said. "Short window, and then we close it. TFTP doesn't cross a [[perimeter|perimeter]] and it doesn't belong on the desk VLAN next to people browsing the web. Your home lab is one room you know everything about. This floor isn't."
+"Management segment only," I said. "Short window, and then we close it. TFTP doesn't cross a perimeter and it doesn't belong on the desk VLAN next to people browsing the web. Your home lab is one room you know everything about. This floor isn't."
 
 Owen looked at the clock, then at me. "Is the staging switch still up? The one we used for the badge reader flash last month?"
 
