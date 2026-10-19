@@ -7,6 +7,9 @@ on:
     paths:
       - "examples/**"
       - "tools/validate_unit.py"
+      - "tools/build_hub_index.py"
+      - "tools/check_hub_links.py"
+      - "docs/**"
       - "requirements.txt"
       - ".github/workflows/validate.yml"
   workflow_dispatch:
@@ -45,3 +48,17 @@ jobs:
             exit 1
           fi
           echo "All example units passed."
+
+  landing-page:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Landing page matches builder; hub links resolve
+        run: python tools/check_hub_links.py

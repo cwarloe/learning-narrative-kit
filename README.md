@@ -44,7 +44,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python tools/render_unit.py examples/<unit_id>
 ```
 
-That writes `docs/<unit_id>/` (from `unit.yaml`’s `unit_id`). Then **manually** add a card to `docs/index.html` (the renderer does not update the landing page). Commit `examples/` + `docs/` and push `main`.
+That writes `docs/<unit_id>/` (from `unit.yaml`’s `unit_id`). Then add a card in `tools/build_hub_index.py` and run `python3 tools/build_hub_index.py` to rewrite `docs/index.html` (the renderer does not update the landing page); `python3 tools/check_hub_links.py` checks the result. Commit `examples/` + `docs/` and push `main`.
 
 Local scratch HTML under `examples/` stays gitignored; **`docs/` is committed** for GitHub Pages.
 
