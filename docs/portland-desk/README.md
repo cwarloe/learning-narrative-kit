@@ -16,7 +16,7 @@ Here, theory is never taught in a vacuum. You sit alongside **Ethan Brooks**—a
 Every module is structured as **an authentic workplace incident**:
 1. **The Incident Story:** Read the call, feel the operational pressure, and understand *why* the technology exists and what breaks when humans take shortcuts.
 2. **The Hands-On Lab:** Step onto the shift yourself. Examine real ticket queues, inspect terminal dumps (`ipconfig`, `netstat`, `nslookup`), trace Windows Security Event logs (Event IDs 4624, 4625, 4740, 7045), and decompose raw email MIME headers.
-3. **Call Your Shot:** Before looking at the solution, predict what the system should show. Great engineers don't guess after seeing the output—they test falsifiable theories.
+3. **Call Your Shot:** Before looking at the solution, predict what the system should show. Great engineers don't guess after seeing the output—they test testable theories.
 4. **Your Ticket Notes & What Good Looks Like:** Write professional resolution notes and security escalation dossiers evaluated against real senior technician benchmarks.
 
 ---

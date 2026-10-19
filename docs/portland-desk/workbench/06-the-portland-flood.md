@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 6.1: SUB-BASEMENT FLOOD & PATCH TRENCH"
+badge: "Disaster Recovery"
+caption: "Wide panoramic cutaway: The flooded Building C sub-basement. Murky water reflects emergency lights; bundles of blue Cat6 cables drip water above a wall-mounted 48-port patch panel and edge switch stack."
+prompt: "Clean technical cutaway illustration of a server room during a water leak under bright emergency lights. Bundles of blue network cables hang above a wall-mounted 48-port patch panel. A rackmount switch with glowing green port LEDs. Clean instructional drawing style, crisp fine lines, no text, no words. 21:9 ratio."
+```
+
+
 ### The Shift Crucible: Four Inches in Twelve Hours
 It is 04:00 AM on a freezing Monday in December. A severe Pacific Northwest atmospheric river has stalled over the Willamette Valley, dumping over four inches of driving rain in twelve hours. The Willamette River has breached low-lying revetments along the industrial corridor, backing up municipal storm drains.
 
@@ -46,7 +54,7 @@ timeline
 
 ---
 
-### The Five Invariant Ground Truths of Disaster Recovery
+### The Five Unbreakable Rules of Disaster Recovery
 
 ```mermaid
 flowchart TD
@@ -196,6 +204,54 @@ Switch-BuildingC(config-if)# exit
 Switch-BuildingC(config)# do write memory
 ```
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "SWITCH CONSOLE: CISCO IOS VLAN TRUNK & PORT CONFIG"
+shell: "serial"
+prompt: "Switch-BldgC# "
+replay: true
+objectives:
+  - id: "obj-vlan"
+    label: "Verify configured VLAN database"
+    trigger: "show vlan brief"
+  - id: "obj-trunk"
+    label: "Inspect 802.1Q trunk link to distribution switch"
+    trigger: "show interfaces trunk"
+  - id: "obj-mode"
+    label: "Set uplink interface to 802.1Q trunk mode"
+    trigger: "switchport mode trunk"
+---
+show vlan brief: |
+  VLAN Name                             Status    Ports
+  ---- -------------------------------- --------- -------------------------------
+  1    default                          active    Gi0/4 - Gi0/24
+  10   Corp_Workstations                active    Gi0/1, Gi0/2
+  20   Telemetry_Loggers                active    Gi0/3
+  30   Voice_VoIP                       active    
+  99   Management                       active    
+
+show interfaces trunk: |
+  Port        Mode             Encapsulation  Status        Native vlan
+  Gi0/24      on               802.1q         trunking      99
+  
+  Port        Vlans allowed on trunk
+  Gi0/24      1,10,20,30,99
+  [OK] Trunk uplink passing all building VLAN traffic.
+
+switchport mode trunk: |
+  Configuring Interface GigabitEthernet0/24...
+  Encapsulation set to 802.1Q.
+  Uplink set to unconditional trunking.
+  [OK] Port Gi0/24 forwarding all corporate VLANs. Line restored.
+
+```
 
 ---
 
@@ -566,7 +622,7 @@ pie title Midpoint Capstone Competency Evaluation Weighting
     "Audit-Ready Documentation & Post-Mortem" : 15
 ```
 
-### Lead Sign-Off Checklist & Evaluation Rubric
+### Lead Sign-Off Checklist & Scoring Standards
 
 | Competency Area | What Good Looks Like (Mastery Standards) | Lead Review Verification | Status |
 | :--- | :--- | :--- | :---: |

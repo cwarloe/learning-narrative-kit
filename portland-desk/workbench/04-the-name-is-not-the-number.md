@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 4.1: SPLIT-HORIZON RESOLVER & HOSTS OVERRIDE"
+badge: "DNS Architecture"
+caption: "Schematic cutaway: The local DNS resolution path. When the resolver queries 127.0.0.1 and hosts file before recursive forwarders, a stale hardcoded IP sends traffic to a retired server."
+prompt: "Clean technical cutaway diagram of a computer desktop screen displaying DNS resolution paths under bright, even lighting. Flowchart lines connect local hosts file to DNS resolver cache and recursive domain controllers. Clean instructional style, crisp fine lines, no text, no words. 16:9 ratio."
+```
+
+
 ### The Situation
 It is 08:30 on an overcast Tuesday morning in East Portland. Outside, rain streams down the high double-paned windows facing the river. Inside the operations center, the incoming service desk ticket queue has spiked with nine critical incidents within twenty minutes.
 
@@ -257,6 +265,54 @@ Notice the contradiction: `nslookup` reports `10.100.20.14`, but `ping` attempts
    ```
 5. Verify resolution with `ping` or `Resolve-DnsName`. The system should now resolve to `10.100.20.14`.
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "COMMAND PROMPT: DNS RESOLUTION & HOSTS FILE TRIAGE"
+shell: "cmd"
+prompt: "C:\Support> "
+replay: true
+objectives:
+  - id: "obj-nslookup"
+    label: "Query DNS for internal wiki portal"
+    trigger: "nslookup wiki.corp.local"
+  - id: "obj-hosts"
+    label: "Inspect local static hosts file overrides"
+    trigger: "type C:\Windows\System32\drivers\etc\hosts"
+  - id: "obj-flush"
+    label: "Flush local resolver cache"
+    trigger: "ipconfig /flushdns"
+---
+nslookup wiki.corp.local: |
+  Server:  UnKnown
+  Address:  192.168.1.1 (Home Wi-Fi Router)
+  
+  *** UnKnown can't find wiki.corp.local: Non-existent domain
+  Warning: Client is querying local home router DNS instead of internal VPN DC (10.0.0.2).
+
+type C:\Windows\System32\drivers\etc\hosts: |
+  # Copyright (c) 1993-2009 Microsoft Corp.
+  # Local static host overrides:
+  127.0.0.1       localhost
+  ::1             localhost
+  198.51.100.42   wiki.corp.local    # Stale contractor override from 2021!
+
+ipconfig /flushdns: |
+  Windows IP Configuration
+  
+  Successfully flushed the DNS Resolver Cache.
+  Re-querying over active VPN tunnel...
+  Name:    wiki.corp.local
+  Address: 10.0.0.85 (Internal Wiki DC)
+  [OK] Internal portal accessible.
+
+```
 
 ---
 

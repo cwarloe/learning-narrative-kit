@@ -12,6 +12,13 @@ I stood up, swallowed the lump in my throat, and walked over to workstation four
 
 ## Maya and the frozen ledger
 
+```callout-panel
+title: "FIGURE 2.1: MOTHERBOARD MEMORY SLOT & BROKEN LATCH"
+badge: "Motherboard Inspection"
+caption: "Macro view: On the circuit board, a dual-digit red LED displays code C1. Directly adjacent, the DDR4 RAM slot has a broken white plastic retention latch tilted at 15 degrees, with the memory stick slightly unseated."
+prompt: "Clean technical cutaway illustration of a computer motherboard RAM slot under bright, even inspection lighting. A dual-digit 7-segment red LED display reads C1. Beside it, the memory slot has its white plastic end-latch broken off and cocked at a 15-degree angle, with the gold contacts of the RAM module partially unseated. Sharp technical accuracy, no text, no words. 4:3 ratio."
+```
+
 I plugged the modular headset cord into the base station and adjusted the microphone boom. I took a deep breath to steady my voice, then clicked the green answer button on the softphone console. Maya Lin was already talking before I finished reciting my standard morning greeting. Her voice carried the sharp, brittle tension of a manager facing a hard financial deadline.
 
 "The whole system is locked solid again," Maya said, her voice echoing over the office line. "Every time I double-click the PDX-Pay payroll client, the blue pointer spins for three seconds. Then the mouse freezes in place, and both screens turn pitch black. The only way out is crawling under the desk to jerk the power cable from the wall."

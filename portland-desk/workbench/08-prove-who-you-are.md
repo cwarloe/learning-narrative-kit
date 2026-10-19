@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 8.1: AUTHENTICATION FACTORS & ACCOUNT LOCKOUT"
+badge: "Identity & Access"
+caption: "Macro technical view: A corporate smartphone on a clean desk displaying rapid push notifications alongside an Active Directory security event log on a monitor."
+prompt: "Clean technical illustration of a smartphone on an office desk next to a computer monitor under bright office lighting. The monitor displays security event logs with red warning highlights. Clean instructional manual style, crisp lines, no text, no words. 4:3 ratio."
+```
+
+
 ### The Situation
 It is 08:15 on a gusty Wednesday morning in East Portland. Low gray clouds drag across the Willamette, and the service desk floor smells of damp rain jackets and burnt roast coffee. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet clipped to her monitor arm, scanning the incoming identity dispatch queue.
 
@@ -293,6 +301,51 @@ Detailed Authentication Information:
    5. Toggle Airplane Mode OFF on the iPad and verify successful ActiveSync synchronization.
 </details>
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "POWERSHELL: ACTIVE DIRECTORY ACCOUNT LOCKOUT TRIAGE"
+shell: "powershell"
+prompt: "PS C:\Support> "
+replay: true
+objectives:
+  - id: "obj-lockout"
+    label: "Find account lockout events (Event ID 4740)"
+    trigger: "Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740}"
+  - id: "obj-unlock"
+    label: "Unlock Nora's domain account"
+    trigger: "Unlock-ADAccount -Identity nora.finance"
+  - id: "obj-caller"
+    label: "Identify caller computer causing stale password lockouts"
+    trigger: "Get-ADUser -Identity nora.finance -Properties *"
+---
+Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740}: |
+  TimeCreated          Id RecordId ProcessId Message
+  -----------          -- -------- --------- -------
+  10/18 03:17:42 AM  4740   149204       620 A user account was locked out.
+                                              Target Account Name: nora.finance
+                                              Caller Computer Name: WKS-NORA-PHONE (Stale Exchange ActiveSync creds)
+
+Unlock-ADAccount -Identity nora.finance: |
+  Unlocking Active Directory account 'nora.finance' on Domain Controller DC01...
+  Account unlocked successfully.
+  [OK] Account status: ACTIVE (Password expired flag: FALSE).
+
+Get-ADUser -Identity nora.finance -Properties *: |
+  DistinguishedName : CN=Nora Vance,OU=Finance,DC=corp,DC=local
+  Enabled           : True
+  LockedOut         : False
+  badPwdCount       : 0
+  LastBadPasswordAttempt : 10/18 03:17:41 AM
+  Root Cause: Nora's company iPhone was sending old password over Wi-Fi after password change.
+
+```
 
 ---
 

@@ -8,6 +8,13 @@ Jules's sticky still said *which decision?* I had not looked at it yet. I was lo
 
 ## Maya and the laptop that must die
 
+```callout-panel
+title: "FIGURE 12.1: INCIDENT COMMAND EVIDENCE & WRITE-BLOCKER"
+badge: "Incident Response"
+caption: "Forensic bench diagram: An extracted NVMe storage drive connected through a hardware write-blocker to the forensic acquisition laptop. Chain of custody tags and anti-static pouches in view."
+prompt: "Clean technical illustration of a computer forensic examination bench under bright laboratory lighting. An external storage drive connects through a small rectangular hardware write-blocker with a glowing green LED to a laptop. Anti-static bags and clean tools on an ESD mat. Sharp technical linework, no text, no words. 16:9 ratio."
+```
+
 The subject was *PC possessed — ads, slowness, standup in twelve — please wipe.*
 
 Maya stood at the glass with the machine under her arm. "Just reimage it. I have a meeting."

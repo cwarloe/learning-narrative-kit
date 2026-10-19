@@ -10,6 +10,13 @@ The first [[ticket|ticket]] in the [[help_desk|help desk]] queue was already yel
 
 ## Nora and the policy that keeps changing the locks
 
+```callout-panel
+title: "FIGURE 8.1: AUTHENTICATION FACTORS & ACCOUNT LOCKOUT"
+badge: "Identity & Access"
+caption: "Macro technical view: A corporate smartphone on a clean desk displaying rapid push notifications alongside an Active Directory security event log on a monitor."
+prompt: "Clean technical illustration of a smartphone on an office desk next to a computer monitor under bright office lighting. The monitor displays security event logs with red warning highlights. Clean instructional manual style, crisp lines, no text, no words. 4:3 ratio."
+```
+
 Nora in finance could not reset. She had tried her old favorite three times. The portal said no.
 
 "I always rotate the season and the year," she said on the phone. "Spring2024!, Summer2024! — that used to work everywhere. Now it hates me. Also it wants sixteen characters. Who remembers sixteen?"

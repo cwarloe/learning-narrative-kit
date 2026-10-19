@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 11.1: 2.4 GHZ VS 5 GHZ SPECTRUM & ROGUE INTERFERENCE"
+badge: "RF Wireless Analysis"
+caption: "Radio frequency spectrum diagram: The three non-overlapping 2.4 GHz channels (1, 6, 11). Shows an unshielded microwave oven emitting wideband RF interference centered on Channel 6."
+prompt: "Clean technical cutaway diagram of radio frequency spectrum channels under bright studio lighting. Bell curves represent Wi-Fi channels 1, 6, and 11 across the 2.4 GHz band, with interference spikes overlapping channel 6. Crisp technical line art, no text, no words. 16:9 ratio."
+```
+
+
 ### The Situation
 It is 08:35 on a brisk Friday morning on the east side of Portland. Mist clings to the brick facade of the industrial park near the Central Eastside railroad tracks. Inside the service desk bullpen, the morning coffee is fresh, but the dispatch dashboard is flashing amber. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet resting against her primary monitor arm, methodically parsing tickets.
 
@@ -168,6 +176,49 @@ $$\text{Path Loss Delta} \approx 20 \cdot \log_{10}\left(\frac{d_2}{d_1}\right)$
 
 If an AP detects a rogue transmitter at $-44\text{ dBm}$ and another detects it at $-68\text{ dBm}$ (a difference of $24\text{ dB}$), the second AP is approximately $2^{24/6} = 2^4 = 16\text{ times}$ farther away from the rogue device. By comparing RSSI readings across three managed APs (**Trilateration**) and walking with a directional Wi-Fi analyzer, technicians pinpoint the physical location of unauthorized transmitters.
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "COMMAND PROMPT: WI-FI SPECTRUM & ROGUE BSSID SCAN"
+shell: "cmd"
+prompt: "C:\Support> "
+replay: true
+objectives:
+  - id: "obj-scan"
+    label: "Scan surrounding wireless BSSIDs and channels"
+    trigger: "netsh wlan show networks mode=bssid"
+  - id: "obj-rogue"
+    label: "Identify rogue access point broadcasting on channel 6"
+    trigger: "netsh wlan show interfaces"
+---
+netsh wlan show networks mode=bssid: |
+  SSID 1 : PortlandOps-Corp (Corporate 802.1X)
+      Authentication : WPA2-Enterprise
+      BSSID 1        : 00-1A-2B-3C-4D-01 (Channel 1, Signal 92%)
+      BSSID 2        : 00-1A-2B-3C-4D-02 (Channel 11, Signal 88%)
+  
+  SSID 2 : NETGEAR_WAREHOUSE_ANNEX (ROGUE ACCESS POINT)
+      Authentication : WPA2-Personal
+      BSSID 1        : 50-C7-BF-11-22-33 (Channel 6, Signal 98%)
+      Warning: Rogue consumer router operating on Channel 6 with active DHCP server!
+
+netsh wlan show interfaces: |
+  There is 1 interface on the system:
+      Name                   : Wi-Fi
+      Description            : Intel(R) Wi-Fi 6 AX200 160MHz
+      State                  : connected
+      SSID                   : PortlandOps-Corp
+      Channel                : 6 (HIGH PACKET COLLISION FROM ROGUE AP)
+      Signal                 : 65%
+  Action: Physically unplug rogue Netgear router in breakroom. Re-assign APs to channels 1, 6, 11.
+
+```
 
 ---
 

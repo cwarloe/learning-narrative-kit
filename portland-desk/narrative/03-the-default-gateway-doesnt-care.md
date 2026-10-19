@@ -12,6 +12,13 @@ At twenty past eight, the wall monitor above our row shifted abruptly from stead
 
 ## The ghost in the sixteen-hundred block
 
+```callout-panel
+title: "FIGURE 3.1: RJ45 KEYSTONE JACK WITH BENT PIN 3"
+badge: "Physical Layer"
+caption: "Macro view looking directly into the open socket of an RJ45 modular jack. All 8 gold spring wire contacts are visible; pin 3 is flattened backward against the plastic slot wall, breaking physical link continuity."
+prompt: "Macro technical illustration looking into the front opening of an RJ45 ethernet wall jack under bright inspection lighting. All 8 gold spring wire contacts visible; pin 3 is visibly flattened backward against the white plastic slot wall. Sharp metallic reflections on the gold pins, crisp instructional manual style, no text, no letters. 1:1 ratio."
+```
+
 I answered the first ringing line, listening to Ken describe the failure on his loading dock. Three freight clerks could not open their morning delivery manifests because their browser screens displayed disconnected socket errors. Ken insisted that high winds along the river had snapped an overhead fiber cable. He believed his entire warehouse was isolated from the city network.
 
 "The upstream circuit is dead out at the river annex," I said, reaching for our carrier contact list. "Ken says every workstation in Building B lost network connectivity at once. I am calling CenturyLink to report a fiber cut."

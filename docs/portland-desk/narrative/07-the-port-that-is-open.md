@@ -14,6 +14,13 @@ It was an ordinary Tuesday queue. All day it was people carrying habits from som
 
 ## Jared and the script that still speaks Telnet
 
+```callout-panel
+title: "FIGURE 7.1: NETWORK PERIMETER & PORT SCAN VECTOR"
+badge: "Perimeter Architecture"
+caption: "Schematic layout: The corporate perimeter firewall. Cleartext Telnet (Port 23) and unencrypted HTTP (Port 80) bypass encrypted tunnels, exposing credentials on the wire."
+prompt: "Clean technical schematic of a corporate network perimeter under bright, even lighting. Flowchart lines connect external internet router to internal firewall and server racks with port numbers highlighted in green and red. Crisp technical line art, no text, no words. 16:9 ratio."
+```
+
 Jared from network ops pinged me before nine. A switch in a closet in Building C had a [[vlan|VLAN]] set wrong, and he already had the steps on a clipboard from years of doing exactly this.
 
 "I Telnet in, type the [[enable_password|enable password]], fix the VLAN, hang up," he said. "Ten minutes. My script expects [[telnet|Telnet]]. I wrote it back when I was still racking gear out in Hillsboro."

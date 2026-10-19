@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 9.1: EMAIL MIME ARCHITECTURE & SPF CHECK"
+badge: "Email Authentication"
+caption: "Schematic diagram: Email envelope sender (MAIL FROM) versus message header (From:). Demonstrates how SPF verifies sending IP while DKIM cryptographically signs body hashes."
+prompt: "Clean technical cutaway diagram of an email message header structure under bright lighting. Arrows connect sender IP address to DNS TXT record for SPF validation. Clean instructional manual style, crisp fine lines, no text, no words. 4:3 ratio."
+```
+
+
 ### The Situation
 It is 08:10 on a rain-lashed Wednesday morning on the east side of Portland. Low, charcoal-colored clouds hang heavy over the Hawthorne Bridge, and the service desk smells of damp wool coats, ozone from the server room exhaust, and dark roast coffee. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet clipped to her monitor arm, calmly triaging the morning ticket flood.
 
@@ -307,6 +315,48 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 4. **Legitimate:** An internal subdomain (`adp.workday`) residing securely under Portland's genuine organizational domain `portland-ops.gov`.
 </details>
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "CONSOLE: RAW MIME EMAIL HEADER & SPF/DKIM INSPECTION"
+shell: "cmd"
+prompt: "C:\Incident> "
+replay: true
+objectives:
+  - id: "obj-headers"
+    label: "Extract Received-SPF authentication result"
+    trigger: "findstr /i "Received-SPF Authentication-Results" invoice.eml"
+  - id: "obj-origin"
+    label: "Extract originating sender IP from hop chain"
+    trigger: "findstr /i "Received: from" invoice.eml"
+  - id: "obj-quarantine"
+    label: "Execute mail gateway rule to quarantine lookalike sender"
+    trigger: "quarantine-sender --domain port1and-ops.com"
+---
+findstr /i "Received-SPF Authentication-Results" invoice.eml: |
+  Received-SPF: Fail (protection.outlook.com: domain of port1and-ops.com does not designate 198.51.100.77 as permitted sender)
+  Authentication-Results: spf=fail (sender IP is 198.51.100.77); dkim=none; dmarc=fail action=none header.from=port1and-ops.com
+  [ALERT] SPF/DMARC hard failure. Sender domain is typosquatted (numeral 1 substituted for letter l).
+
+findstr /i "Received: from" invoice.eml: |
+  Received: from mail-relay.suspicious-host.net (198.51.100.77)
+  Received: from client-smtp-relay (192.0.2.14)
+  Originating IP: 198.51.100.77 (Bucharest, Romania)
+  Target: nora.finance@portland-ops.gov
+  Subject: URGENT: Wire Transfer Routing Change
+
+quarantine-sender --domain port1and-ops.com: |
+  Rule created: Block and quarantine all incoming mail from '@port1and-ops.com'.
+  Mailbox purge executed: 1 malicious phishing message moved to Junk/Quarantine.
+  [OK] Phishing threat contained before wire transfer executed.
+
+```
 
 ---
 

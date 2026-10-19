@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 12.1: INCIDENT COMMAND EVIDENCE & WRITE-BLOCKER"
+badge: "Incident Response"
+caption: "Forensic bench diagram: An extracted NVMe storage drive connected through a hardware write-blocker to the forensic acquisition laptop. Chain of custody tags and anti-static pouches in view."
+prompt: "Clean technical illustration of a computer forensic examination bench under bright laboratory lighting. An external storage drive connects through a small rectangular hardware write-blocker with a glowing green LED to a laptop. Anti-static bags and clean tools on an ESD mat. Sharp technical linework, no text, no words. 16:9 ratio."
+```
+
+
 ### The Situation
 It is 14:15 on a wind-whipped Thursday in late October. Outside the fourth-floor windows of the Portland Operations Center, sheets of gray rain sweep across the Willamette River, obscuring the Hawthorne Bridge and the steel industrial warehouses of the Central Eastside. Inside, the dispatch floor smells of wet wool jackets, ozone from the server room exhaust blowers, and Jules Mercer’s dark French roast coffee.
 
@@ -350,6 +358,40 @@ CUSTODY LOG:
 
 ---
 
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "POWERSHELL: FORENSIC INTEGRITY & SHA-256 HASH VERIFICATION"
+shell: "powershell"
+prompt: "PS C:\CSIRT> "
+replay: true
+objectives:
+  - id: "obj-hash"
+    label: "Calculate SHA-256 hash of extracted evidence image"
+    trigger: "Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd"
+  - id: "obj-verify"
+    label: "Verify forensic image hash matches chain of custody"
+    trigger: "Compare-Object -ReferenceObject $orig -DifferenceObject $new"
+---
+Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
+  Algorithm       Hash                                                             Path
+  ---------       ----                                                             ----
+  SHA256          A3F8B4C92E1045D87E6B9C1045F2A83C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A .\evidence_disk0.dd
+  [OK] Bit-for-bit forensic image acquired through hardware write-blocker.
+
+Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
+  Hash comparison: MATCH (0 differences).
+  Chain of Custody verified: Evidence integrity intact.
+  Formal handoff dossier packaged for Senior CSIRT Lead Jules Mercer.
+  [OK] Incident handoff complete.
+
+```
+
+---
+
 ### Quick Check 3: Call Your Shot: Predict Before You Look
 
 > **The Rule of the Desk:** Do not touch the console until you have committed your decision in your mind. Name the threat, select the containment action, and articulate your technical justification.
@@ -668,12 +710,12 @@ Before Ethan closes the red folder and hands the physical binder to Jules Mercer
 * [x] **Operational Silence Maintained:** Need-to-know principles were strictly enforced; no notifications were posted to public Slack channels or email distribution lists that could alert the adversary.
 * [x] **Cryptographic Hash Verification:** Every physical and virtual artifact possesses an immutable pre-acquisition and post-acquisition SHA-256 checksum proving 100% mathematical integrity.
 * [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Ken's USB drive was picked up to the dual-signature transfer to Jules Mercer.
-* [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, falsifiable IoCs (hashes, IP addresses, ports, task names) allowing Tier 2 analysts to hunt across enterprise telemetry immediately.
+* [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, testable IoCs (hashes, IP addresses, ports, task names) allowing Tier 2 analysts to hunt across enterprise telemetry immediately.
 
 
 ---
 
-### Shift Evaluation Rubric
+### Shift Scoring & Passing Standards
 
 | Performance Criterion | Exemplary (Full Lead Sign-Off) | Satisfactory (Minor Guidance Needed) | Needs Revision (Redo Ticket) |
 | :--- | :--- | :--- | :--- |

@@ -21,6 +21,13 @@ subject: PC slow + random ads + please help before standup
 
 ## Maya and the toolbar that was not on the invoice
 
+```callout-panel
+title: "FIGURE 10.1: PROCESS TREE & PERSISTENCE MECHANISM"
+badge: "Malware Analysis"
+caption: "Technical UI diagram: Sysinternals Process Explorer view. Legitimate svchost processes run under services.exe, while counterfeit svch0st runs out of AppData with an active TCP port 4444 socket."
+prompt: "Clean technical illustration of a computer monitor displaying a system process management tree under bright laboratory lighting. Process rows are neatly organized with one highlighted entry showing an anomalous socket connection. Clean line art, no text, no words. 16:9 ratio."
+```
+
 Maya from accounting was on the line sounding offended by her own browser. I remoted in with her permission while she narrated, which is how accounting people debug: out loud, in complete sentences, slightly betrayed.
 
 "I installed a PDF merger from a download site," she said. "The merger works. Also now every new tab is a coupon carnival. I have a standup in twelve minutes and I look like I collect toolbars as a hobby."

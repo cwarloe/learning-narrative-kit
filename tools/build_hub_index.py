@@ -502,7 +502,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         <div class="act-title-wrap">
           <span class="act-badge act-1">Act I</span>
           <h2 class="act-title">The Local Machine</h2>
-          <span class="act-sub">CompTIA A+ Core 1 & 2 • Hardware Invariants, OS Boot & Event Log Triage</span>
+          <span class="act-sub">CompTIA A+ Core 1 & 2 • Core Computer Hardware, OS Boot & Event Log Triage</span>
         </div>
       </div>
 

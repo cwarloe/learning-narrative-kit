@@ -47,7 +47,7 @@ You are equipped with a digital multimeter, basic hand tools, vendor technical m
 
 ### The Ground Truth Rules of Hardware Triage
 1. **Layer 1 First, Always:** Before touching firmware, drivers, operating system services, or application configurations, verify physical Layer 1 integrity. A severed conductor, a shorted chassis trace, a bent pin, or a loose power molex connector mimics software failure every time.
-2. **Formulate a Falsifiable Hypothesis ("Commit Before You Touch"):** Never power-cycle or alter hardware settings out of nervous action bias. State explicitly: *"If the 12V power rail has failed, my multimeter will read under 11.40V DC across the yellow wire."* Measure to test the hypothesis; do not guess.
+2. **Make a Testable Prediction ("Commit Before You Touch"):** Never power-cycle or alter hardware settings out of nervous action bias. State explicitly: *"If the 12V power rail has failed, my multimeter will read under 11.40V DC across the yellow wire."* Measure to test the hypothesis; do not guess.
 3. **Power Rails Have Tight Operating Tolerances:** Digital logic and high-draw motor controllers require clean, tightly regulated DC power. Standard ATX specifications mandate a strict $\pm 5\%$ tolerance on positive rails (+12V, +5V, +3.3V). A 12V line sagging to 10.2V will cause erratic system freezes, spontaneous restarts, and bus corruption.
 4. **Serial Transmission Is Hard Real-Time Timing:** Asynchronous RS-232 communication contains no shared hardware clock wire. Both endpoints must agree identically on symbol timing (baud rate), data word length, parity checking, and stop framing bits (e.g., 9600 8-N-1). A mismatch guarantees immediate framing errors and unintelligible hex garbage.
 5. **Bleed Flea Power Before Physical Probing:** Switching power supply filter capacitors store lethal voltage and residual charge ("flea power") long after AC power is disconnected. Flea power can lock motherboard embedded controllers in an unbootable reset loop. Always disconnect AC mains and press the chassis power switch for twenty seconds to drain capacitors to zero before inspecting or servicing circuit boards.
@@ -533,9 +533,9 @@ ACTION REQUIRED FOR DAY SHIFT:
 
 ---
 
-### Part C: Grading & Evaluation Rubric
+### Part C: Scoring & Passing Standards
 
-Use this objective scoring rubric to assess technician performance across the five core competency areas:
+Use this objective scoring guide to assess technician performance across the five core competency areas:
 
 | Competency Area | Points | Criteria for Full Credit (Pass) | Criteria for Partial Credit | Criteria for Zero Credit (Fail) |
 | :--- | :---: | :--- | :--- | :--- |

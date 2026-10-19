@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 7.1: NETWORK PERIMETER & PORT SCAN VECTOR"
+badge: "Perimeter Architecture"
+caption: "Schematic layout: The corporate perimeter firewall. Cleartext Telnet (Port 23) and unencrypted HTTP (Port 80) bypass encrypted tunnels, exposing credentials on the wire."
+prompt: "Clean technical schematic of a corporate network perimeter under bright, even lighting. Flowchart lines connect external internet router to internal firewall and server racks with port numbers highlighted in green and red. Crisp technical line art, no text, no words. 16:9 ratio."
+```
+
+
 ### The Situation
 It is 08:30 on a rain-soaked Tuesday morning on the east side of Portland. You are three weeks into your role on the Portland service desk. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet slung over her monitor arm, sipping black coffee. On the edge of her screen is a faded yellow sticky note:
 
@@ -63,7 +71,7 @@ The morning queue has 14 incoming tickets. Users and department heads are demand
 
 ---
 
-### Tier 1 Triage Decision Heuristic
+### Tier 1 Triage Decision Guide
 
 When reviewing a ticket or firewall change request, execute this 4-step decision tree before taking action:
 
@@ -212,6 +220,54 @@ TcpTestSucceeded : True
      - **Authentication:** Require authentication using incoming mail credentials.
 </details>
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "CONSOLE: PERIMETER PORT SCAN & BANNER INSPECTION"
+shell: "cmd"
+prompt: "C:\Security> "
+replay: true
+objectives:
+  - id: "obj-nmap"
+    label: "Scan open service ports on warehouse server"
+    trigger: "nmap -sS -p 21,22,23,80,443 192.168.10.50"
+  - id: "obj-banner"
+    label: "Test cleartext Telnet banner response"
+    trigger: "telnet 192.168.10.50 23"
+  - id: "obj-ssh"
+    label: "Verify encrypted SSH connectivity on Port 22"
+    trigger: "ssh admin@192.168.10.50"
+---
+nmap -sS -p 21,22,23,80,443 192.168.10.50: |
+  Starting Nmap scan on 192.168.10.50...
+  PORT     STATE SERVICE
+  21/tcp   OPEN  ftp (CLEAR TEXT)
+  22/tcp   OPEN  ssh (OpenSSH 8.9p1)
+  23/tcp   OPEN  telnet (CRITICAL: CLEARTEXT AUTH)
+  80/tcp   OPEN  http
+  443/tcp  OPEN  https
+  Warning: Port 23 is transmitting passwords in unencrypted ASCII frames.
+
+telnet 192.168.10.50 23: |
+  Connecting to 192.168.10.50...
+  Connected to Toledo Scale Controller.
+  Escape character is '^]'.
+  WARNING: Cleartext session active. Passwords visible to any packet capture on switch.
+  Action: Migrate to SSH (Port 22) immediately.
+
+ssh admin@192.168.10.50: |
+  admin@192.168.10.50's password: 
+  Linux scale-controller-04 5.15.0-generic #42-Ubuntu SMP
+  Encrypted session established with AES-256-GCM cipher.
+  [OK] Port 23 disabled. Secure management active.
+
+```
 
 ---
 

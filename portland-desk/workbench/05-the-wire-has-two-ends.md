@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 5.1: RS-232 TO RJ-45 CONSOLE PINOUT CROSSOVER"
+badge: "Serial Interface"
+caption: "Schematic wiring diagram: DB-9 female serial connector pinned to an RJ-45 rollover console cable. Pin 2 (RxD) and Pin 3 (TxD) cross over cleanly to pins 3 and 6 on the remote switch port."
+prompt: "Clean technical wiring schematic of a DB-9 to RJ-45 console adapter under bright inspection lighting. Precision pinout lines connecting DB-9 pins 2, 3, and 5 to RJ45 modular jack. Clean neutral background, crisp fine ink linework, no heavy shadows, no text, no words. 16:9 ratio."
+```
+
+
 ### The Situation
 It is 08:15 on a stormy Tuesday morning in late October. Cold rain lashes the fourth-floor glass of the Portland Regional Operations Center. Inside the facility bullpen, network infrastructure engineer Jared Vance is furiously pounding his keyboard. His automated configuration backup script failed at 03:15 AM, failing to archive 300 municipal field switches and throwing thousands of red errors across server `PDX-ARCHIVE01`. Jared is convinced that Central IT in Chicago pushed an unannounced perimeter firewall change that severed access to port 8443.
 
@@ -180,6 +188,52 @@ tasklist /svc /FI "PID eq 4112"
 Get-Process -Id 4112
 ```
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "POWERSHELL: TCP SOCKET & LISTENING PORT DIAGNOSTICS"
+shell: "powershell"
+prompt: "PS C:\Support> "
+replay: true
+objectives:
+  - id: "obj-netstat"
+    label: "Inspect active listening TCP ports and PIDs"
+    trigger: "netstat -ano | findstr 8080"
+  - id: "obj-testport"
+    label: "Test TCP handshake reachability on port 8080"
+    trigger: "Test-NetConnection -Port 8080"
+  - id: "obj-process"
+    label: "Identify daemon process bound to socket"
+    trigger: "Get-Process -Id 3412"
+---
+netstat -ano | findstr 8080: |
+    Proto  Local Address          Foreign Address        State           PID
+    TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       3412
+    TCP    192.168.10.45:8080     192.168.10.112:51244   TIME_WAIT       0
+  [OK] Port 8080 is actively LISTENING on PID 3412.
+
+Test-NetConnection -Port 8080: |
+  ComputerName     : localhost
+  RemoteAddress    : 127.0.0.1
+  RemotePort       : 8080
+  InterfaceAlias   : Loopback Pseudo-Interface 1
+  SourceAddress    : 127.0.0.1
+  TcpTestSucceeded : True
+  [OK] TCP 3-way handshake (SYN -> SYN-ACK -> ACK) verified.
+
+Get-Process -Id 3412: |
+  Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id ProcessName
+  -------  ------    -----      -----     ------     -- -----------
+      412      18    42100      51200       2.14   3412 InventorySyncDaemon
+  Status: Process active. Port open and receiving frames.
+
+```
 
 ---
 
@@ -500,7 +554,7 @@ Subject:          Client-Side Ephemeral Port Exhaustion on Automated Backup Runs
 
 ---
 
-### Evaluation Rubric & Criteria
+### Scoring & Passing Standards
 
 | Performance Criterion | Exemplary (Full Mastery) | Satisfactory (Competent) | Needs Revision (Deficient) |
 | :--- | :--- | :--- | :--- |

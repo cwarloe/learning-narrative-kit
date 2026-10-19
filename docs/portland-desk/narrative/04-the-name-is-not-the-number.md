@@ -12,6 +12,13 @@ By eight thirty, the incoming ticket board on our wall monitor began flashing am
 
 ## Jared and the ISP scapegoat
 
+```callout-panel
+title: "FIGURE 4.1: SPLIT-HORIZON RESOLVER & HOSTS OVERRIDE"
+badge: "DNS Architecture"
+caption: "Schematic cutaway: The local DNS resolution path. When the resolver queries 127.0.0.1 and hosts file before recursive forwarders, a stale hardcoded IP sends traffic to a retired server."
+prompt: "Clean technical cutaway diagram of a computer desktop screen displaying DNS resolution paths under bright, even lighting. Flowchart lines connect local hosts file to DNS resolver cache and recursive domain controllers. Clean instructional style, crisp fine lines, no text, no words. 16:9 ratio."
+```
+
 Jared Vance from network operations walked over from the bullpen holding a paper cup of lukewarm coffee. He had worked around regional fiber plants long enough to remember when frame relay was cutting edge. His first instinct during any distributed outage was to blame the carrier.
 
 "CenturyLink has a backhoe problem out in Beaverton, or Comcast pushed another broken routing update," Jared announced. He gestured vaguely toward the rain-streaked windows with his paper cup. "The office runs on a dedicated synchronous fiber loop with static routes. Those remote workers are sitting on domestic broadband connections that drop packets whenever the weather turns sour. Tell them to reboot their residential cable modems and flush their network stacks."

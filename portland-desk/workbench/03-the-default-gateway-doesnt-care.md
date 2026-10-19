@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 3.1: RJ45 KEYSTONE JACK WITH BENT PIN 3"
+badge: "Physical Layer"
+caption: "Macro view looking directly into the open socket of an RJ45 modular jack. All 8 gold spring wire contacts are visible; pin 3 is flattened backward against the plastic slot wall, breaking physical link continuity."
+prompt: "Macro technical illustration looking into the front opening of an RJ45 ethernet wall jack under bright inspection lighting. All 8 gold spring wire contacts visible; pin 3 is visibly flattened backward against the white plastic slot wall. Sharp metallic reflections on the gold pins, crisp instructional manual style, no text, no letters. 1:1 ratio."
+```
+
+
 ### The Situation
 It is 08:20 on a damp Tuesday morning in late September. Low clouds hang over the Willamette River, and early morning squalls have swept through East Portland. Outside the operations center, rainwater drains along the roof gutters. Inside the facility, the service desk ticket queue has spiked with fourteen critical incidents originating from Building B—the logistics annex and water pump station two miles south.
 
@@ -36,7 +44,7 @@ When apprentice technician Ethan Brooks instinctively grabs the telephone to rep
 flowchart TD
     Rule1["Rule 1: The Default Gateway Doesn't Care<br/><i>Layer 2 delivers locally; Layer 3 forwards across boundaries</i>"]
     Rule2["Rule 2: APIPA Is a Cry for Help<br/><i>169.254.x.x proves Layer 1 is alive but DHCP DORA timed out</i>"]
-    Rule3["Rule 3: Subnet Masks Draw Invariant Bitwise Borders<br/><i>Logical ANDing determines local ARP vs. remote gateway traversal</i>"]
+    Rule3["Rule 3: Subnet Masks Draw Strict, Fixed Network Borders<br/><i>Logical ANDing determines local ARP vs. remote gateway traversal</i>"]
     Rule4["Rule 4: Two Devices Cannot Share a Cubicle<br/><i>Duplicate IPs cause continuous ARP poisoning and MAC flapping</i>"]
     Rule5["Rule 5: Ping Inside-Out, Never Outside-In<br/><i>Loopback -> Local IP -> Gateway -> Remote IP -> DNS FQDN</i>"]
 
@@ -45,7 +53,7 @@ flowchart TD
 
 1. **Rule 1: The Default Gateway Doesn't Care.** A router does not evaluate user intent, operating system brand, or application urgency. It only checks two criteria: (a) was the incoming Layer 2 Ethernet frame addressed directly to the router's interface MAC address, and (b) does its Layer 3 routing table contain a valid path for the destination IP address? If an endpoint fails to encapsulate packets with the gateway's MAC address, the router never touches the frame.
 2. **Rule 2: APIPA Is a Cry for Help, Not an Address.** When an interface displays an IP address in the `169.254.0.1` to `169.254.255.254` range (RFC 3927) with a mask of `255.255.0.0`, the network adapter is physically connected, but the operating system received zero responses to its DHCP Discover broadcasts. An APIPA address cannot route past a router; it isolates the machine to link-local peer communication.
-3. **Rule 3: Subnet Masks Draw Invariant Bitwise Borders.** An operating system never looks at classful assumptions (Class A, B, or C). It performs a bitwise logical AND between the destination IP and its configured subnet mask. If the resulting network ID matches the local network ID, the client ARPs for the target host's MAC. If the network IDs differ, the client ARPs for the default gateway's MAC. An off-by-one error in the subnet mask strands devices on different broadcast domains even when they share a physical switch.
+3. **Rule 3: Subnet Masks Draw Strict, Fixed Network Borders.** An operating system never looks at classful assumptions (Class A, B, or C). It performs a bitwise logical AND between the destination IP and its configured subnet mask. If the resulting network ID matches the local network ID, the client ARPs for the target host's MAC. If the network IDs differ, the client ARPs for the default gateway's MAC. An off-by-one error in the subnet mask strands devices on different broadcast domains even when they share a physical switch.
 4. **Rule 4: Two Devices Cannot Share a Cubicle.** When two devices are assigned the same IPv4 address, each device emits gratuitous ARP announcements and replies. This poisons the ARP cache of neighboring endpoints and triggers MAC address flapping on switch ports. Traffic oscillates randomly between the two devices, causing intermittent TCP drops and session resets.
 5. **Rule 5: Ping Inside-Out, Never Outside-In.** Troubleshooting connectivity requires systematic variable isolation:
    - `ping 127.0.0.1`: Verifies that the local TCP/IP protocol stack is bound and functional.
@@ -138,7 +146,7 @@ Technicians must perform fast, accurate mental math to determine network IDs, br
 | **/29** | `255.255.255.248` | `11111000` | 8 | 8 | 6 | `.0`, `.8`, `.16`, `.24`, `.32`, `.40`, `.48`, etc.<br>*(Increment: 8; Usable: 6 hosts per block; common for small WAN pools)* |
 | **/30** | `255.255.255.252` | `11111100` | 4 | 4 | 2 | `.0` (Hosts: `.1`–`.2`, Bcast: `.3`)<br>*(Increment: 4; Usable: 2 hosts; standard point-to-point links)* |
 
-**The "Magic Number" Heuristic:**  
+**The "Magic Number" Shortcut:**  
 To find the block size (increment) of any subnet mask, subtract the non-zero octet from 256:  
 $$256 - \text{Mask Octet} = \text{Increment (Block Size)}$$  
 - For `/26` (`255.255.255.192`): $256 - 192 = 64$. Subnets start at `.0`, `.64`, `.128`, `.192`.

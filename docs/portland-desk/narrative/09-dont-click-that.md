@@ -10,6 +10,13 @@ The first [[ticket|ticket]] in the [[help_desk|help desk]] queue read *URGENT â€
 
 ## Maya and the padlock that is not ours
 
+```callout-panel
+title: "FIGURE 9.1: EMAIL MIME ARCHITECTURE & SPF CHECK"
+badge: "Email Authentication"
+caption: "Schematic diagram: Email envelope sender (MAIL FROM) versus message header (From:). Demonstrates how SPF verifies sending IP while DKIM cryptographically signs body hashes."
+prompt: "Clean technical cutaway diagram of an email message header structure under bright lighting. Arrows connect sender IP address to DNS TXT record for SPF validation. Clean instructional manual style, crisp fine lines, no text, no words. 4:3 ratio."
+```
+
 Maya from accounting forwarded a message with logos that looked expensive. The body said her mailbox would be deleted in two hours unless she "verified" at a link. She sounded embarrassed on the phone, which usually means she almost did the wrong thing and caught herself.
 
 "It looks like Microsoft," she said. "Same blue. Same wording as the real banner. I almost clicked on the MAX."

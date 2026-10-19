@@ -16,6 +16,13 @@ The dispatch board above our heads chimed with three sharp tones, flashing an am
 
 ## The firewall that did nothing wrong
 
+```callout-panel
+title: "FIGURE 5.1: RS-232 TO RJ-45 CONSOLE PINOUT CROSSOVER"
+badge: "Serial Interface"
+caption: "Schematic wiring diagram: DB-9 female serial connector pinned to an RJ-45 rollover console cable. Pin 2 (RxD) and Pin 3 (TxD) cross over cleanly to pins 3 and 6 on the remote switch port."
+prompt: "Clean technical wiring schematic of a DB-9 to RJ-45 console adapter under bright inspection lighting. Precision pinout lines connecting DB-9 pins 2, 3, and 5 to RJ45 modular jack. Clean neutral background, crisp fine ink linework, no heavy shadows, no text, no words. 16:9 ratio."
+```
+
 I pulled my headset on and answered the incoming line from the Gresham warehouse. Ken described the situation unfolding across his loading dock in a loud, frustrated voice. Down in the staging bay, five freight drivers were idling their diesel engines. The intake terminals could not retrieve delivery manifests from the primary database server. Ken believed that high winds along the river had snapped an aerial fiber drop.
 
 "The symptoms do not point to a broken cable, Ken," I explained, keeping my tone calm. "A severed fiber cable takes down every computer on the dock simultaneously. Your ticket shows that two clerks can still print local weight receipts, while two other desks are locked out."

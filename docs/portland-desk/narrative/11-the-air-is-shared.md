@@ -10,6 +10,13 @@ I opened the [[help_desk|help desk]] queue.
 
 ## Maya and the password that is everyone
 
+```callout-panel
+title: "FIGURE 11.1: 2.4 GHZ VS 5 GHZ SPECTRUM & ROGUE INTERFERENCE"
+badge: "RF Wireless Analysis"
+caption: "Radio frequency spectrum diagram: The three non-overlapping 2.4 GHz channels (1, 6, 11). Shows an unshielded microwave oven emitting wideband RF interference centered on Channel 6."
+prompt: "Clean technical cutaway diagram of radio frequency spectrum channels under bright studio lighting. Bell curves represent Wi-Fi channels 1, 6, and 11 across the 2.4 GHz band, with interference spikes overlapping channel 6. Crisp technical line art, no text, no words. 16:9 ratio."
+```
+
 Maya from accounting was in the lobby with a loaner laptop.
 
 "It asks for a password," she said. "I type the one on the sticky under the monitor in Finance. Denied. Also there are two networks named almost the same. One has more bars."

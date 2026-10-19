@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 10.1: PROCESS TREE & PERSISTENCE MECHANISM"
+badge: "Malware Analysis"
+caption: "Technical UI diagram: Sysinternals Process Explorer view. Legitimate svchost processes run under services.exe, while counterfeit svch0st runs out of AppData with an active TCP port 4444 socket."
+prompt: "Clean technical illustration of a computer monitor displaying a system process management tree under bright laboratory lighting. Process rows are neatly organized with one highlighted entry showing an anomalous socket connection. Clean line art, no text, no words. 16:9 ratio."
+```
+
+
 ### The Situation
 It is 08:45 on a gray Thursday morning in East Portland. Outside, rain needles the double-paned windows facing the Central Eastside Industrial District, and the desk floor hums with the electric drone of fluorescent lights and server rack blowers. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet clipped to her dual-monitor arm, steam curling off her dark roast coffee.
 
@@ -335,6 +343,49 @@ Message:  A service was installed in the system.
       Remove the staged executables and DLLs from `C:\Users\maya\AppData\Local\Temp\` and `C:\Users\maya\AppData\Local\CouponBar\`. Perform a full EDR anti-malware scan to ensure no additional dropped stages exist.
 </details>
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "POWERSHELL: HOST PROCESS & PERSISTENCE TRIAGE"
+shell: "powershell"
+prompt: "PS C:\Incident> "
+replay: true
+objectives:
+  - id: "obj-proc"
+    label: "Find high-CPU process running from temp directories"
+    trigger: "Get-Process | Where Path -like "*AppData*""
+  - id: "obj-tcp"
+    label: "Inspect outbound socket connections for rogue process"
+    trigger: "Get-NetTCPConnection -OwningProcess 4812"
+  - id: "obj-kill"
+    label: "Terminate malicious process and remove persistence key"
+    trigger: "Stop-Process -Id 4812 -Force"
+---
+Get-Process | Where Path -like "*AppData*": |
+  Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id ProcessName Path
+  -------  ------    -----      -----     ------     -- ----------- ----
+      842      45    98200     112400     412.18   4812 svch0st     C:\Users\Ken\AppData\Local\Temp\svch0st.exe
+  [CRITICAL] Rogue binary impersonating svchost running outside System32!
+
+Get-NetTCPConnection -OwningProcess 4812: |
+  LocalAddress    LocalPort RemoteAddress   RemotePort State       OwningProcess
+  ------------    --------- -------------   ---------- -----       -------------
+  192.168.10.74   49812     203.0.113.88    4444       ESTABLISHED 4812
+  Warning: Outbound TCP reverse shell established to remote C2 IP 203.0.113.88:4444.
+
+Stop-Process -Id 4812 -Force: |
+  Process 4812 (svch0st.exe) terminated.
+  Deleting registry key: HKCU\Software\Microsoft\Windows\CurrentVersion\Run\WindowsUpdateSync
+  Host isolated from network adapter.
+  [OK] Active malware beacon neutralized.
+
+```
 
 ---
 

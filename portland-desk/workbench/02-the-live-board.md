@@ -22,6 +22,14 @@
 
 ## 1. The Situation & Ground Truth
 
+```callout-panel
+title: "FIGURE 2.1: MOTHERBOARD MEMORY SLOT & BROKEN LATCH"
+badge: "Motherboard Inspection"
+caption: "Macro view: On the circuit board, a dual-digit red LED displays code C1. Directly adjacent, the DDR4 RAM slot has a broken white plastic retention latch tilted at 15 degrees, with the memory stick slightly unseated."
+prompt: "Clean technical cutaway illustration of a computer motherboard RAM slot under bright, even inspection lighting. A dual-digit 7-segment red LED display reads C1. Beside it, the memory slot has its white plastic end-latch broken off and cocked at a 15-degree angle, with the gold contacts of the RAM module partially unseated. Sharp technical accuracy, no text, no words. 4:3 ratio."
+```
+
+
 ### The Situation
 It is 08:15 on a rain-swept August morning on the fourth floor of the Portland Regional Operations Center. You are Ethan Brooks, sitting across from Help Desk Lead Jules Mercer for your practical hiring trial. Your knuckles are still scarred from eighteen months of moving freight across concrete warehouse docks, and your backpack holds freshly laminated CompTIA study sheets. 
 
@@ -278,6 +286,56 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 | **Run 3** | Enable Services 1–2<br>Disable Services 3–4 | **PASS** (No freeze) | Eliminates Services 1–2. Culprit lives in Pool 3–4. |
 | **Run 4** | Enable Service 3<br>Disable Service 4 | **FAIL** (Freeze reproduced) | **Culprit Isolated:** Service 3 (`OEM-GpuAssist.exe`) conflicts with production workload. |
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "POWERSHELL: EVENT VIEWER & STARTUP SERVICE TRIAGE"
+shell: "powershell"
+prompt: "PS C:\Support> "
+replay: true
+objectives:
+  - id: "obj-crash"
+    label: "Query Application crash logs (Event ID 1000)"
+    trigger: "Get-EventLog -LogName Application -InstanceId 1000"
+  - id: "obj-services"
+    label: "List third-party background services"
+    trigger: "Get-Service | Where Status -eq Running"
+  - id: "obj-disable"
+    label: "Disable crashing audio/display helper service"
+    trigger: "Stop-Service -Name NahimicService"
+---
+Get-EventLog -LogName Application -InstanceId 1000: |
+  TimeGenerated       Source           EventID Message
+  -------------       ------           ------- -------
+  10/18 09:14:22 AM   Application Error   1000 Faulting application name: QuickBooks.exe, version: 23.0.4
+                                               Faulting module name: NahimicOSD.dll, version: 2.1.8
+                                               Exception code: 0xc0000005 (Access Violation)
+                                               Fault offset: 0x00012a4f
+                                               Faulting process id: 0x18a4
+
+Get-Service | Where Status -eq Running: |
+  Status   Name               DisplayName
+  ------   ----               -----------
+  Running  Appinfo            Application Information
+  Running  AudioSrv           Windows Audio
+  Running  Dhcp               DHCP Client
+  Running  Dnscache           DNS Client
+  Running  NahimicService     Nahimic Audio Overlay Helper (Third-Party OSD)
+  Running  Spooler            Print Spooler
+  Running  WinDefend          Microsoft Defender Antivirus Service
+
+Stop-Service -Name NahimicService: |
+  Service 'Nahimic Audio Overlay Helper' (NahimicService) stopped.
+  Setting startup type to Disabled...
+  [OK] Background injection hook removed. Payroll application launches cleanly.
+
+```
 
 ---
 
