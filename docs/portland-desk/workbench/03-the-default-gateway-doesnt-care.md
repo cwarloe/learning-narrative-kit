@@ -565,3 +565,35 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
 ---
 
 *Workbench complete. Ensure all micro-drills and deliverables are reviewed against the evaluation rubric.*
+
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 3.2: THE RESOLVED WAREHOUSE DOCK"
+badge: "Shift Epilogue"
+caption: "Dock view: At 11:20 AM, intake scales and barcode scanners in Building B operate smoothly under clear skies as freight manifests stream across the restored network."
+prompt: "Clean graphic novel cutaway panel of a bustling freight warehouse shipping dock in the Pacific Northwest. Pallet jacks and freight scales operate under bright industrial overhead lighting. A desktop monitor displays an active green logistics manifest. Outside open bay doors, rain has cleared over the river. Clean line art, technical precision, no text, no words. 16:9 ratio."
+```
+
+Following the Layer 2 triage, I instructed Ken to check the warehouse floor for any newly relocated equipment. Ken groaned over the radio—facilities technician Owen had wheeled a legacy HP LaserJet 4050 into the breakroom yesterday afternoon, copying its static network settings from an outdated label beneath the paper tray.
+
+We unplugged the printer's network drop immediately. The ping replies on Frank's machine leveled out into an unbroken stream of clean two-millisecond responses. To prevent future scope collisions, I logged into the printer's web interface, shifted its addressing to dynamic DHCP reservation, and configured an explicit reservation in our Windows DHCP server at `10.100.4.240`, safely outside the dynamic client allocation pool.
+
+With the tickets resolved and the queues subsiding to their normal rhythm, Jules opened a packet capture file on her secondary monitor. The trace displayed an HTTP exchange originating from Frank's workstation and terminating at a cloud logistics portal in Seattle at `198.51.100.44`.
+
+"Let us review how that packet traversed the network, Ethan," Jules said, turning her chair toward me. "Frank's browser wanted to fetch a web page from `198.51.100.44`. When Frank's network adapter assembled the Ethernet frame on the wire, whose MAC address did it place in the destination field?"
+
+"Frank's computer applied its subnet mask to the target IP address first," I answered, following the logic step by step. "The bitwise comparison proved that `198.51.100.44` was on a remote network. Because the target was remote, the workstation looked up the Layer 2 address of its local default gateway in its ARP cache."
+
+"Exactly," Jules said, clicking on the detailed frame decode in Wireshark. "The destination IP address remained `198.51.100.44` throughout the entire journey across the internet. The time-to-live counter decremented at each hop, but the IP header stayed intact. The Layer 2 Ethernet frame was addressed directly to the gateway's router interface MAC at `10.100.4.1`. When the router received the frame, it stripped the Layer 2 header, evaluated its routing table, generated a brand new Layer 2 frame with its own source MAC, and forwarded the packet along the next hop."
+
+She gestured toward the packet trace on her screen with the tip of her pen.
+
+"The default gateway does not care what application you run, or what operating system you boot. It does not care how urgent your ticket feels. It only cares whether you addressed the Layer 2 frame to its physical MAC address. And it cares whether its routing table contains a valid route to forward your Layer 3 packet toward its destination."
+
+I nodded slowly, watching the encapsulation layers light up under her cursor. I opened my technical journal and recorded the lesson alongside my earlier subnet sketches.
+
+Outside our fourth-floor window, the low cloud deck began to lift over the Willamette. Pale patches of afternoon sky appeared above the river. Jared picked up his empty tea mug and headed toward the server room to audit switch configurations. Jules reached for her helmet, unhooking it from the monitor arm as the afternoon shift logged into the queue. I saved my incident notes into the ticketing system and closed my terminal sessions, standing on solid ground.
