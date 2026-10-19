@@ -223,13 +223,13 @@ Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loadi
 2. **Complication:** The sheer volume of arbitrary trivia creates total cognitive overload. Every time he tries to remember DDR pin counts, he forgets the difference between a default gateway and a subnet mask. He feels like the exam is an expensive racket designed to test memorization rather than competence.
 3. **Pivot:** His father, a retired machinist who spent 35 years reading blueprints and running CNC milling machines, wanders into the kitchen in his socks looking for a glass of water. Looking at Ethan's flashcards, his dad cuts through the academic noise: *"Ethan, this is just a parts catalog. When an apprentice starts in the shop, he thinks he has to memorize every bolt in McMaster-Carr. Does it spin, does it leak, or is it jammed? What holds tension, and what moves?"* Ethan stops treating the exam like a spelling bee. He groups his cards into **Four Colored Rubber Bands**:
    - **Red Band (The Exam Passport):** The disposable syllabus trivia (printer drums, pin counts, cable specs) that he will cram for 48 hours, spit back at the computer, and immediately forget.
-   - **Green Band (The Physical Invariants):** The lasting machine anatomy (CPU compute, RAM volatile memory, Disk non-volatile storage, Motherboard bus, NIC communication).
+   - **Green Band (The Physical Building Blocks):** The lasting machine anatomy (CPU compute, RAM volatile memory, Disk non-volatile storage, Motherboard bus, NIC communication).
    - **Yellow Band (The Identity Triad):** How systems know who they are (MAC hardware badge, IP temporary lease, Port the listening door).
    - **Blue Band (The Diagnostic Reflex):** The systematic method of troubleshooting (*Symptom $\rightarrow$ Theory $\rightarrow$ Test $\rightarrow$ Verify*).
 4. **Resolution & Cost:** Ethan sits in a sterile strip-mall testing center in Beaverton between anxious strangers, clicks submit with sweating palms, and scores a 742/900. He walks out with a stamped paper score report in hand. His bank account is still drained and his hands are still rough from warehouse shifts, but he holds the passport that gets him past the automated HR resume filters.
 
 #### Mentorship / Heuristic Core
-- **Working Rule:** *The certification buys your ticket through the HR door; understanding the physical invariants keeps you from getting fired on your first shift.*
+- **Working Rule:** *The certification buys your ticket through the HR door; understanding the physical building blocks keeps you from getting fired on your first shift.*
 - **Dialogue Realism:** Ethan's dad, looking at a memory timing card: *"If the engine won't crank, nobody asks what year the alternator was patented. Check if the battery has juice and the belt is tight."*
 
 #### CompTIA / Knowledge Load
@@ -244,7 +244,7 @@ Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loadi
 - `post_routine`: Initial firmware diagnostic sequence executed by the motherboard upon receiving power to verify core hardware readiness.
 
 #### Companion Workbench Bridge
-- **Workbench Lab 00:** *The Beginner's Mental Model & Anatomy of a Computer.* Deconstructing a workstation into its 4 invariant components, executing first CLI commands, and establishing the Metacognitive Study Filter.
+- **Workbench Lab 00:** *The Beginner's Mental Model & Anatomy of a Computer.* Deconstructing a workstation into its 4 core components, executing first CLI commands, and establishing the Metacognitive Study Filter.
 
 ---
 

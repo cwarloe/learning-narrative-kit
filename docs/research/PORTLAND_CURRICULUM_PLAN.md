@@ -174,7 +174,7 @@ gantt
 ---
 
 ### Module 00: The Zero Foundation (The Kitchen Table)
-*The Metacognitive Study Filter, Machine Invariants, The $500 Voucher Anxiety, and the Passport vs. the Instrument*
+*The Metacognitive Study Filter, Core Machine Building Blocks, The $500 Voucher Anxiety, and the Passport vs. the Instrument*
 
 #### 1. Context & Operational Domain Mapping
 - **Role:** Pre-IT Aspirant / Warehouse Freight Stocker (Gresham, Oregon).
@@ -182,20 +182,20 @@ gantt
 - **Setting:** Month 0 (May). Ethan's kitchen table in an East Portland duplex. $83 left in his checking account after purchasing a Pearson VUE exam voucher. An 800-page CompTIA study guide, 300 index cards, and total cognitive overwhelm.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
-- **Task 0.1 (The Study Panic & Practice Exam Failure):** Ethan scores 58% on a timed practice test, stumbling over laser printer corona wire voltages, DVI dual-link pinouts, and RAM clock timings. Learner must classify 40 practice exam questions into "Exam Passport Trivia" (ephemeral specs to cram for Thursday) vs. "Architectural Invariants" (enduring mental models needed on the job).
-- **Task 0.2 (The Machinist's Deconstruction):** Using Ethan's father's machinist heuristics ("What holds tension, what moves?"), learner maps an open PC chassis to the 4 Invariants of Computing: CPU (compute/engine), RAM (volatile scratchpad), Disk (non-volatile ledger), and NIC (external voice).
+- **Task 0.1 (The Study Panic & Practice Exam Failure):** Ethan scores 58% on a timed practice test, stumbling over laser printer corona wire voltages, DVI dual-link pinouts, and RAM clock timings. Learner must classify 40 practice exam questions into "Exam Passport Trivia" (ephemeral specs to cram for Thursday) vs. "Core Machine Principles" (enduring mental models needed on the job).
+- **Task 0.2 (The Machinist's Deconstruction):** Using Ethan's father's machinist heuristics ("What holds tension, what moves?"), learner maps an open PC chassis to the 4 Core Building Blocks of Computing: CPU (compute/engine), RAM (volatile scratchpad), Disk (non-volatile ledger), and NIC (external voice).
 - **Task 0.3 (First Contact with the Wire):** Learner launches a local terminal for the first time, executing `whoami`, `hostname`, and `ipconfig`, tracing how the OS queries local hardware identity (MAC address) and logical network identity (IP address).
 
 #### 3. Supportive Information (Cognitive Models)
 - **The Dual-Layer Learning Model (Passport vs. Instrument):**
   - *The Passport Layer:* Standardized syllabus terminology required to pass automated HR filters and industry exams.
-  - *The Instrument Layer:* The handful of physical and logical invariants that govern troubleshooting for the next decade.
+  - *The Instrument Layer:* The handful of physical and logical fundamentals that govern troubleshooting for the next decade.
 - **The Memory Hierarchy & Volatility Spectrum:** CPU Registers $\rightarrow$ L1/L2/L3 Cache $\rightarrow$ Volatile RAM $\rightarrow$ Non-Volatile NVMe/SSD/HDD. Why cutting power wipes RAM (and volatile adversary malware) but preserves the file system.
 - **The Identity Triad:** MAC (Hardware factory badge / Layer 2) $\rightarrow$ IP (Logical temporary cubicle / Layer 3) $\rightarrow$ Port (Application office door / Layer 4).
 
 ```mermaid
 flowchart TD
-    subgraph Machine_Invariants["The 4 Machine Invariants"]
+    subgraph Machine_Invariants["The 4 Machine Building Blocks"]
         CPU["1. CPU (Compute Engine)<br/>Executes instructions"]
         RAM["2. RAM (Volatile Scratchpad)<br/>Lost when power cuts"]
         DISK["3. Storage (Non-Volatile Ledger)<br/>Persists across reboots"]
@@ -217,7 +217,7 @@ flowchart TD
 #### 4. Procedural Information (JIT SOPs)
 - **The "Four Rubber Bands" Metacognitive Study Filter:**
   1. *Red Band (Passport Trivia):* Obsolete ports, legacy cable pinouts, printer mechanical steps. Cram 48 hours prior, spit out on exam, discard.
-  2. *Green Band (Machine Invariants):* Power rails, volatile vs non-volatile storage, CPU bus limits. Permanent foundation.
+  2. *Green Band (Core Machine Building Blocks):* Power rails, volatile vs non-volatile storage, CPU bus limits. Permanent foundation.
   3. *Yellow Band (Identity & Languages):* Core ports (22, 53, 80, 443), MAC vs IP, client vs daemon.
   4. *Blue Band (The Diagnostic Reflex):* Symptom $\rightarrow$ Theory $\rightarrow$ Test $\rightarrow$ Verify $\rightarrow$ Document.
 
