@@ -159,7 +159,12 @@ At 02:45, an auxiliary dispatch terminal on loading dock 2 refuses to boot. The 
 2. Perform the manual PSU jump test: connect a conductive paperclip between **Pin 16 (Green wire: `PS_ON#`)** and any adjacent **Ground pin (Black wire: `COM`)**.
 3. Plug the PSU into AC line power and flip the rocker switch to ON. The cooling fan begins spinning.
 4. Set the multimeter to **DC Volts ($V\text{=}$)** on the $20\text{V}$ manual range.
-5. Insert the black probe securely into a black ground terminal. Touch the sharp red probe tip into each active pin cavity while the supply is operating under load:
+```callout-panel
+title: "FIGURE 1.2: ATX 24-PIN BACKPROBE VOLTAGE DIAGNOSTIC"
+badge: "Hardware Telemetry"
+caption: "Diagnostic schematic: Ethan's multimeter backprobes Pin 10 (Yellow +12VDC rail) while mated to the industrial single-board computer under active load. Nominal ATX spec requires 11.40V - 12.60V."
+prompt: "Dramatic close-up isometric view in Pacific Northwest silicon noir style, high contrast hard black ink lines, cross-hatching, moody warehouse lighting, cool slate blue and rain-slicked dark grey palette (#0f172a, #1e293b). A technician's oil-stained hands wearing canvas work gloves with fingertips cut off, holding high-precision Fluke multimeter needle probes. The red needle probe is backprobing Pin 10 (Yellow +12VDC wire) of a mated ATX 24-pin motherboard power harness inside a scarred NEMA industrial steel cabinet. The black probe is clipped to a zinc ground bolt on the unpainted chassis frame. Multimeter LCD displays crisp amber numbers: 10.84 V. In the blurred background: high-bay warehouse metal-halide lamps, stacked wooden pallets, and an amber warning beacon flashing."
+```
 
 ```
 [DMM Multimeter Probing Display]
@@ -224,6 +229,73 @@ Receiver (19200 Baud):
 [S:52µs][B0:52µs][B1:52µs][B2:52µs][B3:52µs][B4:52µs][B5:52µs][B6:52µs][B7:52µs][STOP:52µs]
                                                                                   ▲
                                                                           FRAMING ERROR!
+```
+
+
+---
+
+### 2.3 Interactive Terminal: Live Serial Console & Clock Divider Triage
+
+Use the interactive serial console below to inspect the Toledo scale telemetry feed on `COM1` (`/dev/ttyS0`), check the current hardware UART clock divider, and identify the baud rate desynchronization causing framing errors.
+
+```lnk-terminal
+title: "CONSOLE: TOLEDO SCALE INTERFACE (COM1 /dev/ttyS0)"
+shell: "serial"
+prompt: "SCALE_04# "
+replay: true
+objectives:
+  - id: "obj-status"
+    label: "Inspect UART interface status and error counts"
+    trigger: "status"
+  - id: "obj-dips"
+    label: "Inspect SW1 DIP switch hardware clock divider"
+    trigger: "read-dips"
+  - id: "obj-baud"
+    label: "Recalibrate baud rate clock divider to 9600"
+    trigger: "set-baud 9600"
+---
+status: |
+  Interface: COM1 (RS-232 Asynchronous)
+  Hardware Address: 0x03F8 (IRQ 4)
+  Baud Rate: 19200
+  Data Bits: 8 | Parity: None | Stop Bits: 1 (8-N-1)
+  Interface Status: DSR=ON, CTS=ON, Carrier=DETECTED
+  Packet Diagnostics:
+    - Bytes Received: 14,892
+    - Framing Errors (FE): 14,892 (100% CORRUPTION)
+    - Buffer Contents: "\xFE\x00???\xFE\x12??~~\x00\xFF"
+  Warning: Framing rate desynchronized. Clock frequency exceeds sender symbol duration.
+
+read-dips: |
+  Motherboard Sub-Plate: DIP Switch Bank SW1 Status
+  [SW1-1: ON ] - Controller Bus Address: 0x01
+  [SW1-2: ON ] - Termination Resistor: 120 Ohm ENABLED
+  [SW1-3: ON ] - Clock Divider Prescaler A: 2x (19200 Baud)
+  [SW1-4: OFF] - Clock Divider Prescaler B: 1x (9600 Baud)
+  Diagnostics: Switch 3 is ON, locking the UART receiver to 19200 baud.
+  Scale transmitter hardware is calibrated for 9600 baud.
+  Action Required: Set Switch 3 OFF, Switch 4 ON.
+
+set-baud 9600: |
+  Executing clock divider adjustment:
+  Strapping SW1-3 -> OFF, SW1-4 -> ON...
+  UART Master Clock Divider set to: 12 (115200 / 12 = 9600 Baud)
+  Bit Duration recalibrated: 104.17 microseconds per bit cell.
+  Restarting Toledo polling daemon...
+  
+  [OK] Carrier Lock Established.
+  [OK] Framing Errors: 0 / 1000 packets.
+  Stream Telemetry:
+  SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL
+  SCALE_04: READY - 043.1 LBS - DIVERTER NORMAL
+  SCALE_04: READY - 042.5 LBS - DIVERTER NORMAL
+
+test-telemetry: |
+  Polling Toledo Model 8520 Scale Head...
+  Raw Serial Stream:
+  02 30 34 32 2E 38 20 4C 42 53 0D 0A
+  Parsed Decimal: 042.8 LBS (Gross Weight)
+  Status: NORMAL (Within 250 lb conveyor limit)
 ```
 
 
@@ -473,3 +545,34 @@ Use this objective scoring rubric to assess technician performance across the fi
 | **4. Asynchronous Serial & Clocking Triage** | **20** | Identifies bent DB-9 Pin 2 without breaking pin; diagnoses baud rate framing error (9600 vs 19200); correctly configures motherboard DIP switches to match scale timing parameters. | Straightens pin but cannot explain framing error cause; guesses baud rate without consulting scale manual. | Forces bent pin into socket causing permanent destruction; fails to match baud rate on terminal. |
 | **5. Operational Passdown & Root Cause Reporting** | **10** | Authors comprehensive incident report with quantitative voltage measurements, root-cause analysis, preventative actions, and clear day-shift passdown note. | Passdown note missing voltage data or preventative maintenance recommendations. | Submits vague passdown ("Line 4 fixed"); fails to document hardware changes or alert team to temporary patch. |
 | **TOTAL** | **100** | **Passing Score: 85 Points or higher** | | |
+
+
+---
+
+## 6. The Shift Resolution & Epilogue: 05:04 AM
+
+*The following operational debrief records the physical resolution on the warehouse floor once the clock divider fix is verified:*
+
+With the clock divider calculation verified on the console, I located DIP switch bank `SW1` in the lower corner of the motherboard. Using the fine flat tip of my father's jeweler's screwdriver, I reached into the chassis. I clicked switch 3 from ON down to OFF, and pushed switch 4 from OFF up to ON.
+
+The mechanical click of the miniature plastic toggles felt sharp and definitive in the quiet cabinet.
+
+I restarted the serial communication daemon from the terminal prompt. The torrent of garbled characters vanished instantly. It was replaced by a clean, rhythmic stream of formatted telemetry:
+
+```
+SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL
+SCALE_04: READY - 043.1 LBS - DIVERTER NORMAL
+```
+
+Ken did not waste time with compliments. He reached past my shoulder, jammed his thumb into the master green start button on the motor console, and let out a loud whistle down the main warehouse aisle.
+
+"Line four is live!" Ken shouted into his two-way radio. "Get the yard tractors moving! Load Seattle on bay seven and Boise on bay nine!"
+
+The heavy three-phase electric motors spooled up with an industrial groan. The rubber sorting belts accelerated to full operational speed, and the pneumatic diverter arms began their rhythmic clapping as parcel after parcel was weighed, scanned, and routed into the outgoing freight cages. The clock on the warehouse wall read 4:47 AM. When the final cross-dock trailer pulled away from loading bay nine, the time was 5:04 AM. The morning route was saved, and the warehouse avoided thousands of dollars in cancelled delivery fees.
+
+I sat down on an upturned wooden pallet behind the sorting enclosure. I rested my forearms against my knees and caught my breath. My hands were covered in black conveyor grease. My knuckles were bleeding where I had scraped them against the sharp chassis partition, and my fifty-dollar staging patch cable was ruined because I had stripped back its shielding to make temporary jumper leads.
+
+I pulled my smartphone from my jacket pocket and looked at the browser screen. My flashcard application was still running in the background, displaying a multiple-choice question about the maximum theoretical throughput of a PCI Express bus. The digital flashcards had felt authoritative and complete when I was sitting in my bedroom, but they had taught me nothing about the reality of industrial machinery. Those flashcards had not warned me that copper wires chafe against stamped steel. They had said nothing about serial pins bending when hurried workers yank on cables, or unmatched clock rates turning real operational data into noise.
+
+I had earned my certifications on paper, but out on the cold concrete floor of the warehouse, I had finally begun to learn the tradecraft of repair. That afternoon, before going to sleep, I opened my laptop, revised my resume to describe how physical layer diagnostics keep operations moving, and submitted an application for the Tier 1 Help Desk opening at the Portland Regional Operations Center.
+

@@ -11,8 +11,10 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   
-  <!-- LNK Custom Theme -->
+  <!-- LNK Custom Theme & Components -->
   <link rel="stylesheet" href="assets/lnk-theme.css">
+  <link rel="stylesheet" href="assets/lnk-terminal.css">
+  <link rel="stylesheet" href="assets/lnk-panel.css">
 </head>
 <body>
   <div id="app">Loading Learning Narrative Kit...</div>
@@ -94,6 +96,81 @@
               const cta = getField('cta') || 'Take the Ticket & Open the Lab \u2192';
               
               return `<div class="bridge-card">\n  <div class="bridge-label">${badge}${domain ? ' · ' + domain : ''}</div>\n  <div class="bridge-title">${title}</div>\n  <div class="bridge-desc">${desc}</div>\n  <a class="bridge-btn" href="#${target}">${cta}</a>\n</div>`;
+            });
+
+            // Parse ```callout-panel blocks into graphic novel schematic panels
+            content = content.replace(/```callout-panel\s*([\s\S]*?)```/g, function(match, block) {
+              function getVal(key) {
+                const m = block.match(new RegExp('^' + key + ':\\s*(.+)$', 'm'));
+                return m ? m[1].trim().replace(/^["']|["']$/g, '') : '';
+              }
+              const title = getVal('title') || 'TECHNICAL SCHEMATIC';
+              const badge = getVal('badge') || 'Graphic Panel';
+              const caption = getVal('caption') || '';
+              const image = getVal('image') || '';
+              const ratio = getVal('ratio') || '16-9';
+              const prompt = getVal('prompt') || '';
+
+              let visualHtml = '';
+              if (image) {
+                visualHtml = `<div class="panel-canvas ratio-${ratio}"><img class="panel-img" src="${image}" alt="${title}"></div>`;
+              } else {
+                visualHtml = `<div class="panel-placeholder">
+                  <div class="panel-placeholder-icon">&#9638; [ GRAPHIC NOVEL SCHEMATIC PANEL ]</div>
+                  <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">Concept Art Prompt Ready for Grok Imagine</div>
+                  ${prompt ? `<div class="panel-placeholder-prompt"><strong>Prompt:</strong> ${prompt}</div>` : ''}
+                </div>`;
+              }
+
+              return `<div class="panel-container">\n  <div class="panel-header">\n    <span class="panel-title">${title}</span>\n    <span class="panel-badge">${badge}</span>\n  </div>\n  ${visualHtml}\n  ${caption ? `<div class="panel-footer">${caption}</div>` : ''}\n</div>`;
+            });
+
+            // Parse ```lnk-terminal blocks into interactive micro-terminals
+            content = content.replace(/```lnk-terminal\s*([\s\S]*?)```/g, function(match, block) {
+              const parts = block.split(/\n---\s*\n/);
+              const header = parts[0] || '';
+              const body = parts[1] || '';
+
+              function getVal(key) {
+                const m = header.match(new RegExp('^' + key + ':\\s*(.+)$', 'm'));
+                return m ? m[1].trim().replace(/^["']|["']$/g, '') : '';
+              }
+
+              const title = getVal('title') || 'INTERACTIVE DIAGNOSTIC TERMINAL';
+              const prompt = getVal('prompt') || 'C:\\> ';
+              const shell = getVal('shell') || 'cmd';
+              const replay = getVal('replay') !== 'false';
+
+              // Parse objectives
+              const objectives = [];
+              const objMatches = header.matchAll(/-\s*id:\s*([^\n]+)\s*\n\s*label:\s*["']?([^"'\n]+)["']?\s*\n\s*trigger:\s*["']?([^"'\n]+)["']?/g);
+              for (const m of objMatches) {
+                objectives.push({ id: m[1].trim(), label: m[2].trim(), trigger: m[3].trim() });
+              }
+
+              // Parse commands from body
+              const commands = {};
+              const cmdBlocks = body.split(/\n(?=[a-zA-Z0-9_\-./ ]+:\s*\|)/);
+              cmdBlocks.forEach(function(b) {
+                const m = b.match(/^([a-zA-Z0-9_\-./ ]+):\s*\|\s*\n([\s\S]*)$/);
+                if (m) {
+                  const cmdKey = m[1].trim();
+                  const cmdOut = m[2].replace(/^[ ]{2}/gm, '').trimEnd();
+                  commands[cmdKey] = cmdOut;
+                }
+              });
+
+              const configStr = encodeURIComponent(JSON.stringify({ title, prompt, shell, objectives }));
+              const cmdStr = encodeURIComponent(JSON.stringify(commands));
+
+              let objPills = '';
+              if (objectives.length > 0) {
+                objPills = '<div class="lnk-term-objectives">' + objectives.map(function(o) {
+                  return `<div class="lnk-term-obj-pill" data-obj="${o.id}"><span class="lnk-term-obj-check">&#9675;</span> <span>${o.label}</span></div>`;
+                }).join('') + '</div>';
+              }
+
+              return `<div class="lnk-term-window lnk-terminal-instance" data-config="${configStr}" data-commands="${cmdStr}">\n  <div class="lnk-term-bar">\n    <div class="lnk-term-dots">\n      <span class="lnk-term-dot red"></span>\n      <span class="lnk-term-dot yellow"></span>\n      <span class="lnk-term-dot green"></span>\n    </div>\n    <div class="lnk-term-title">${title}</div>\n    <div class="lnk-term-actions">\n      ${replay ? '<button type="button" class="lnk-term-btn lnk-term-replay-btn">Replay Triage</button>' : ''}\n    </div>\n  </div>\n  <div class="lnk-term-screen">\n    <div class="lnk-term-line"><span style="color:#64748b;">// Type diagnostic commands or click 'Replay Triage'. Type 'help' for available commands.</span></div>\n    <div class="lnk-term-input-row">\n      <span class="lnk-term-prompt">${prompt}</span>\n      <input type="text" class="lnk-term-input" spellcheck="false" autocomplete="off" placeholder="...">\n    </div>\n  </div>\n  ${objPills}\n</div>`;
             });
 
             return content;
@@ -204,6 +281,11 @@
                 }
               });
             });
+
+            // Initialize interactive micro-terminals
+            if (window.initLnkTerminals) {
+              window.initLnkTerminals();
+            }
           });
         }
       ]
@@ -248,6 +330,9 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-http.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+
+  <!-- LNK Interactive Micro-Terminal Engine -->
+  <script src="assets/lnk-terminal.js"></script>
 
   <!-- LNK Custom Shell (Dual-Track Mode Switcher & Docked Aside) -->
   <script src="assets/lnk-shell.js"></script>
