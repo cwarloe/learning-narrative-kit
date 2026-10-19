@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Learning Narrative Kit (LNK)</title>
+  <title>Portland Desk (Book 0: Zero-to-One) — IT & Security Incident Courseware</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Operational narrative learning template combining story-first pedagogy with technical workbenches.">
+  <meta name="description" content="Portland Desk: An operational narrative courseware from Zero Knowledge to Tier 1 IT Support & Junior Security Analyst readiness across CompTIA A+, Network+, and Security+.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
   <!-- Core Docsify & Plugins CSS -->
@@ -63,12 +63,37 @@
         function(hook) {
           // Parse [[term_id|Surface Text]] and [[term_id]] into interactive LNK spans
           hook.beforeEach(function(content) {
-            return content.replace(/`?\[\[([a-zA-Z0-9_-]+)(?:\|([^\]]+))?\]\]`?/g, function(match, id, text) {
+            content = content.replace(/`?\[\[([a-zA-Z0-9_-]+)(?:\|([^\]]+))?\]\]`?/g, function(match, id, text) {
               const item = window.__GLOSSARY__[id];
               const displayText = text || (item && item.title ? item.title : id);
               const cat = (item && item.category) ? item.category : 'telemetry';
               return `<span class="term ${cat}" id="term-${id}" data-term="${id}">${displayText}</span>`;
             });
+
+            // Parse ```bridge-card blocks into interactive HTML cards matching lnk-theme.css
+            content = content.replace(/```bridge-card\s*([\s\S]*?)```/g, function(match, block) {
+              const parts = block.split(/\n---\s*\n/);
+              const header = parts[0] || '';
+              const desc = (parts[1] || '').trim();
+              
+              function getField(key) {
+                const m = header.match(new RegExp('^' + key + ':\\s*(.+)$', 'm'));
+                return m ? m[1].trim() : '';
+              }
+              
+              const title = getField('title');
+              let target = getField('target');
+              if (target.startsWith('../')) target = target.replace('../', '');
+              if (!target.startsWith('/')) target = '/' + target;
+              
+              const domain = getField('domain');
+              const badge = getField('badge') || 'Hands-On Lab';
+              const cta = getField('cta') || 'Take the Ticket & Open the Lab \u2192';
+              
+              return `<div class="bridge-card">\n  <div class="bridge-label">${badge}${domain ? ' · ' + domain : ''}</div>\n  <div class="bridge-title">${title}</div>\n  <div class="bridge-desc">${desc}</div>\n  <a class="bridge-btn" href="#${target}">${cta}</a>\n</div>`;
+            });
+
+            return content;
           });
 
           // Bind Hover Tooltip & Tap Popovers

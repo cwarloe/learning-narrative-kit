@@ -354,7 +354,7 @@ Message:  A service was installed in the system.
 ---
 
 #### Ticket 2: Dana Rostova (Facilities Lead) — `INC-2026-1182`
-*Request:* "All work orders and vendor contracts on my desktop have the extension `.locked`. A Notepad opened titled `README_RESTORE.txt` demanding $2,000 in Bitcoin within 72 hours. It says if I join their online customer chat they will decrypt one file for free as proof. Can I test the chat to get our building HVAC blueprints back?"
+*Request:* "All work orders and vendor contracts on my desktop have the extension `.locked`. A Notepad opened titled `README_RESTORE.txt` demanding \$2,000 in Bitcoin within 72 hours. It says if I join their online customer chat they will decrypt one file for free as proof. Can I test the chat to get our building HVAC blueprints back?"
 
 * **Your Action:** [ Test Decrypt Chat / Negotiate / Isolate Host & Engage Backups ]
 * **Threat Classification & Vector:**
