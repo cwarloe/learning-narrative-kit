@@ -184,6 +184,12 @@ Full text: `schema/README.md`. Non-negotiables:
 - Two tiers when used: `exam` = study targets; `support` = readability jargon; flavor unmarked.
 - HTML is generated only via `tools/render_unit.py`.
 
+## Playbooks
+
+Reusable how-tos that aren't tied to one track live in `playbooks/<name>/`.
+
+- **Instructions → training video:** `playbooks/instructions-to-training-video/README.md`. Turns a written procedure (docx, PDF, slides, web page, notes) into a short captioned walkthrough video. Needs `playwright`, `ffmpeg`, `pandoc` and `Pillow`; these are not in `requirements.txt`, because the kit itself doesn't need them.
+
 ## Track-specific canon
 
 - **Portland Desk (Sec+):** `examples/PORTLAND_DESK.md`
