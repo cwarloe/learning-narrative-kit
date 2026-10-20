@@ -13,10 +13,10 @@ That confidence evaporated when I clicked the final button on an online practice
 ## The Machinist's Water Glass
 
 ```callout-panel
-title: "FIGURE 0.1: THE GUTS OF THE OPTIPLEX"
+title: "FIGURE 0.1: THE MOTHERBOARD INSPECTION"
 badge: "Hardware Anatomy"
-caption: "Top-down cutaway: The open desktop PC chassis on the kitchen table. Inside: four brittle dry-rotted rubber bands holding the 3.5-inch IDE drive, swollen electrolytic capacitors, and dust-choked CPU cooler."
-prompt: "Clean technical cutaway illustration of an open desktop PC tower chassis on a workshop table under bright, even inspection lighting. Four brittle dry-rotted rubber bands hold a 3.5-inch IDE hard drive with a grey ribbon cable. Several bulging motherboard capacitors with dried brown crust. Dust-caked CPU heatsink fan. Clean ESD mat background, crisp fine ink linework, no heavy shadows, no text, no words. 4:3 ratio."
+caption: "Macro technical cutaway: A desktop motherboard on an ESD workbench mat. In the foreground, three cylindrical electrolytic capacitors: two are prominently swollen and domed with dried brown electrolyte residue leaking from the vent seams, beside one healthy flat capacitor. In the background, a dual-channel memory slot holding a green RAM stick with one broken retention latch."
+prompt: "Clean technical cutaway illustration in Pacific Northwest instructional manual style, crisp uniform ink linework, bright even inspection lighting, clean ESD mat background, no heavy dark shadows. Macro technical inspection shot of a desktop PC motherboard interior: in sharp foreground focus are three cylindrical electrolytic capacitors on the green PCB. Two capacitors have prominently domed, bulging silver tops with cracked score lines and dried crusty brown electrolyte residue leaking from the seam. The third capacitor is completely flat and healthy for visual contrast. Directly behind them is a dual-channel memory slot holding a green RAM module with one white plastic retention latch broken off at an angle. Crisp fine ink linework, true component colors, clean unlabeled surfaces, no text, no letters, no words. 4:3 ratio."
 ```
 
 The floorboards in the short hallway groaned under heavy footsteps. My father shuffled into the kitchen in worn wool socks and flannel sleep pants. His undershirt smelled faintly of cutting oil from decades around industrial machinery. He was sixty-one years old and had retired after thirty-four years as an East Portland toolmaker. He stopped in the kitchen doorway, rubbed his grey beard, and looked down at the three hundred cards carpeting the linoleum.
