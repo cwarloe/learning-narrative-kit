@@ -441,7 +441,7 @@ flowchart TD
 - **Setting:** Month 4. Ethan sits with 14 incoming tickets. Network engineers want Telnet opened to legacy switches; field crews want plain HTTP forms; external contractors request direct RDP access across the WAN.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
-- **Task 5.1 (The Cleartext Telnet Trap):** A senior network technician asks Ethan to temporarily open port 23 to an edge switch. Ethan must inspect a live packet capture ([`artifacts/terminal_dumps/netstat_ano.txt`](artifacts/terminal_dumps/netstat_ano.txt)), extract administrative credentials typed over cleartext Telnet, deny the request, and configure SSH (port 22).
+- **Task 5.1 (The Cleartext Telnet Trap):** A senior network technician asks Ethan to temporarily open port 23 to an edge switch. Ethan must inspect a live packet capture ([`jared-telnet-capture.pcap`](../../portland-desk/artifacts/jared-telnet-capture.pcap)), extract administrative credentials typed over cleartext Telnet, deny the request, and configure SSH (port 22).
 - **Task 5.2 (The Broken Mobile Mail Client):** An executive traveling internationally cannot send outbound email from their iPad. The client is misconfigured to use SMTP port 25. Ethan must identify hotel ISP port 25 filtering and reconfigure the client to use Submission (Port 587 with STARTTLS) or SMTPS (Port 465).
 - **Task 5.3 (The Exposed RDP Request):** A water treatment contractor requests port 3389 forwarded to a pump controller PC. Ethan must enforce desk policy: deny external port exposure, mandate VPN tunnel access, and require routing through an internal hardened Jump Host.
 
