@@ -101,102 +101,33 @@ HR pinged right after standup. The benefits portal still loaded over HTTP on 80,
 
 The web ops channel was already half memes about certing it after open enrollment. I opened a change ticket to terminate HTTPS on 443, redirect eighty to four-forty-three, and get the certificate renewed before Friday. Somebody dropped in a gif of a padlock.
 
-While that worked its way through, a contractor named Sam wanted [[rdp|Remote Desktop]] from a hotel in Seattle to a finance workstation. He was polite about it, and late on a deliverable.
+## The hotel room and the open perimeter
 
-"I only need the desktop for an hour," Sam said. "Hotel Wi-Fi, my laptop, their machine. It's TCP 3389, right? My last client just whitelisted my home address and called it done."
+While that worked its way through, a contractor named Sam wanted Remote Desktop from a hotel in Seattle to a finance workstation. He was polite about it, and late on a deliverable.
 
-I caught myself starting to draft a temporary allow rule.
+"I only need the desktop for an hour," Sam said over the phone line. "Hotel Wi-Fi, my laptop, their machine. It's TCP 3389, right? My last client just whitelisted my hotel IP on the edge firewall and called it done."
 
-Jules was already in the thread. "Read that request back to yourself as a decision."
+I caught myself reaching for the firewall change template, starting to draft a temporary thirty-day port forward.
 
-"Allow RDP from anywhere to finance-WS-14 on 3389."
+Jules reached over and tapped the edge of my monitor with her pen. "Read that request back to yourself as a decision, Ethan."
 
-"Right. Now read the second half of it out loud," she said. "Our insurance questionnaire asks whether 3389 faces the internet. That's a renewal conversation, not a movie plot. Ransomware crews scan that port all day long."
+"Allow inbound RDP from an unauthenticated public IP to finance-WS-14 on port 3389," I said, feeling the weight of the words.
 
-I called Sam back. "We'll get you onto the VPN first, into our pool, and you'll RDP from in there. Better than that, we'll point you at a jump box. We don't open raw 3389 to the internet, not even for an hour, for the same reason we don't hang [[smb|SMB]] on 445 off the outside of the building."
+"Right. Now read the second half of it out loud," Jules said, her voice quiet and direct. "Our cyber insurance renewal questionnaire asks whether port 3389 faces the public internet. That is a policy termination conversation, not a movie plot. Automated ransomware scripts scan that port every second of every day. And Sam is not the only ticket on the board right now."
 
-Sam groaned, then gave in. "I've already got the VPN from the last gig. Jump box is fine if somebody sends me the name. It's honestly nicer than hoping the hotel Wi-Fi is friendly."
+She pointed to the queue monitor above our heads. A facilities tech was asking for unauthenticated TFTP across the user VLAN, legal could not bind to LDAP across the guest SSID, and network monitoring was asking to poll edge switches using cleartext SNMP with a community string of `public`.
 
-The [[firewall_rule|firewall rule]] we submitted was narrow on purpose — source the VPN address group, destination the jump host, port 3389, TCP, allow — and everything else reaching that workstation on 3389 denied. Jules initialled it on her way past.
+"You have six different teams asking for convenience shortcuts, and automated port scanners probing our perimeter from the outside right now," Jules said, crossing her arms. "How do you lock down the perimeter, map every insecure legacy protocol to its hardened enterprise replacement, configure the jump host access rules, and draft the Tier 1 Security Escalation before the change window closes? Call your shot, Ethan."
 
-## The new hire, the directory, and the quiet plumbing
+I looked at the stack of port index cards on my desk. Memorizing port numbers was easy; the hard part was standing between busy people and bad habits. I needed to build the protocol defense matrix, lock down the open sockets, and prove the secure paths before someone punched a hole in our firewall.
 
-Early afternoon. A new hire in legal named Lena couldn't bind to the directory from the password reset tool. The app talked [[ldap|LDAP]] on 389, it worked from the wired desk VLAN, and it failed on guest Wi-Fi.
-
-"I've been sitting in the lobby because my desk wasn't ready," Lena said. "And now the reset tool hates me. At my last internship everybody just said use guest, it's fine."
-
-"Guest is exactly where we don't want a directory bind crossing in cleartext," I said. "We'll move it to [[ldaps|LDAPS]] on 636. Same queries, TLS around them."
-
-While we were testing that, her laptop started failing [[kerberos|Kerberos]] to the domain as well, tickets coming back rejected. Her clock was fourteen minutes off after a long sleep.
-
-Jules went past with a granola bar. "I spent an entire Sunday once convinced I'd broken Active Directory in my home lab. It was the clock. Kerberos does not forgive you about the clock."
-
-I pointed Lena at our internal [[ntp|NTP]] on 123/UDP, her clock jumped, and Kerberos stopped sulking.
-
-She asked why the laptop couldn't find the internet at all until she rebooted earlier, which turned out to be ordinary desk noise sitting underneath the directory problem. [[dhcp|DHCP]] on 67 and 68 had handed her a [[dhcp_lease|lease]] that morning, [[dns|DNS]] on 53 was resolving fine for everybody else, and her adapter had simply wedged. We renewed the lease, flushed the [[resolver_cache|resolver cache]], and sent her back to onboarding.
-
-## Monitoring, AAA, and the community string everybody knows
-
-Network monitoring opened a ticket that looked routine. Dee wanted to poll the access switches with [[snmp|SNMP]] on 161/UDP, traps on 162, using a community string of `public`.
-
-"It's what the vendor template ships with," Dee said. "We just need graphs before the weekend change window. I've got a Raspberry Pi at home that still answers to `public`. Don't tell Jules."
-
-"Jules already knows," Jules said, two cubes over, still typing.
-
-Dee put her forehead down on her desk.
-
-"We can poll," Jules said. "We're not doing it with `public` in the clear. Turn up [[snmpv3|SNMPv3]] with authentication and privacy. Same ports if we leave the defaults alone, completely different trust model. I found `public` on a customer's core switch during an after-hours walkthrough once. It was like finding the spare key under the mat."
-
-Dee muttered something about templates, then asked for the v3 checklist, and Jules dropped it into the channel without saying anything else about it.
-
-Logging had the same habit attached to it. The closets were still forwarding syslog in cleartext to the collector on 514/UDP, and a technician named Marco wanted 514 opened from the guest SSID so he could finish a closet without walking upstairs.
-
-"It's just for convenience," Marco said. "I used to debug printers that way at my last MSP."
-
-"Convenience for you is cleartext logs riding the guest network," I said. "Use [[syslog_tls|syslog over TLS]] on 6514/TCP. Jules already filed the long-term fix and this matches it."
-
-He took the walk upstairs, grumbling, and mentioned on the way that 6514 was the one he always forgot on flashcards. Same.
-
-VPN and device login questions piled onto the same thread. Remote users authenticate to the concentrator through [[radius|RADIUS]] — 1812 for authentication, 1813 for accounting. The network team would rather use [[tacacs|TACACS+]] on 49/TCP for switch and firewall admin sessions, because it encrypts the whole payload and splits authorization cleanly from authentication.
-
-"People say AAA like it's one port," Jared said, dropping into the thread still riding his SSH win. "RADIUS for the VPN crowd, TACACS for those of us touching the boxes. I had them mixed up for about a year."
-
-I didn't configure either one from the desk. I named the ports when somebody asked.
-
-## TFTP and the printer that will not wait
-
-The last real ping of the shift was Owen, a facilities tech who needed firmware onto a printer and wanted to push it with TFTP from his laptop on the user VLAN. No authentication, 69/UDP, tiny and trusting.
-
-"The MAX leaves in twenty minutes and the printer is dead," Owen said. "Just this once from here. I PXE boot lab gear with TFTP at home all the time, it's fine if you know the room."
-
-"Management segment only," I said. "Short window, and then we close it. TFTP doesn't cross a perimeter and it doesn't belong on the desk VLAN next to people browsing the web. Your home lab is one room you know everything about. This floor isn't."
-
-Owen looked at the clock, then at me. "Is the staging switch still up? The one we used for the badge reader flash last month?"
-
-"Still up."
-
-He moved fast. The firmware landed and I closed the port behind him. He made his train. In the ticket note he wrote *staging only, Owen knows why now*, which was more honest than most of the notes I'd written in week one.
-
-## Closing the queue
-
-By 5:40 the queue was down to noise. The index cards were still out on my desk, and I'd been pairing them off all afternoon without meaning to — Telnet next to SSH, HTTP next to HTTPS, FTP next to two answers that are not the same answer, POP and IMAP next to their TLS versions, LDAP next to LDAPS, SNMP next to v3, syslog next to 6514. None of the numbers had changed.
-
-Jules stopped at my cube on her way out, raincoat on, bike lights already clipped to the strap.
-
-"How many ports did you memorize today?"
-
-"None. I collected some war stories and made a few swaps."
-
-"Keep the cards if they help you get started," she said. "Throw them out when the person on the phone already knows the number, and what they actually need from you is the other half."
-
-That was the one I wrote down. I locked the drawer and went out into the rain to catch the MAX.
+## The Handoff Gate
 
 ```bridge-card
-title: Hands-On Lab: Level 1 Protocol Triage & Diagnostic Analysis
+title: Portland Desk Lab: Protocol Triage, Port Hardening, & Perimeter Defense
 target: workbench/07-the-port-that-is-open.md
 domain: CompTIA Security+ SY0-701 • Domain 1.4 & 2.5
-badge: Hands-On Lab
+badge: The Hands-On Lab
 ---
-Step onto Ethan's shift with interactive terminal dumps, packet captures of Jared's cleartext Telnet session, Maya's mail client configuration triage, and the Tier 1 Security Escalation deliverable.
+Take over Ethan's workstation. Triage cleartext Telnet, FTP, and HTTP traffic in packet capture drills, map insecure legacy services to encrypted replacements (SSH, SFTP, FTPS, LDAPS, SNMPv3), design the jump host firewall rule, and draft the Tier 1 Security Escalation Dossier.
 ```
-
