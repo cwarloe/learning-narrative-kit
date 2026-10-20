@@ -664,3 +664,40 @@ SIGNATURE:  [ Jared Vance, NetOps Infrastructure ]
 ---
 
 *Workbench complete. Ensure all deliverables, CLI commands, and incident reports are cataloged in the local engineering archive.*
+
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 6.2: THE RESTORED CAMPUS VAULT"
+badge: "Shift Epilogue"
+caption: "Sub-basement vault view: At 07:55 AM, the elevated switch stack hums with unbroken green link lights above the receding water line as the morning opening bell sounds."
+prompt: "Clean graphic novel cutaway panel of an industrial server rack inside an elevated telecommunications room. Outside the high clerestory windows, morning winter light reflects over a swollen river. Technicians in rain gear pack toolkits as green status lights glow steadily across mounted switch interfaces. Ligne Claire style, sharp technical precision, no text, no words. 16:9 ratio."
+```
+
+Following the PowerShell scope reconciliation, the DHCP server flushed eighty-four stale leases from memory in six seconds. Almost instantly, our monitoring dashboard showed client devices renewing their addresses across the building. 
+
+I consoled into a test workstation on the billing floor and executed `ipconfig /renew`. Within two seconds, the terminal returned a valid network configuration with IP address `10.20.10.74`, a subnet mask of `255.255.255.0`, and a default gateway pointing to `10.20.10.1`. The billing application splash screen loaded cleanly, authenticated against the database cluster, and displayed green status indicators across all transaction ledgers.
+
+By seven-fifty in the morning, the basement vault had quieted down. The sump pump had lowered the standing water to a shallow sheen across the low corners of the concrete floor. The newly mounted switches in the upper rack operated quietly, their link lights blinking in steady green unison across all forty-eight interfaces.
+
+Jules stood beside the rack with her clipboard in hand, verifying our post-restoration punch list. "Run the end-to-end verification across all four layers, Ethan. I want proof before the department director walks through the door."
+
+I opened four simultaneous terminal sessions on my laptop and executed our standard verification checklist:
+
+1. **Layer 1 (Physical):** Link status on both fiber transceivers and all forty-eight copper ports showed full-duplex operation at one gigabit per second, with zero CRC alignment errors on the counter registers.
+2. **Layer 2 (Data Link):** The LACP bundle showed both physical member links active in Port-Channel 1. Rapid Spanning Tree Protocol confirmed zero topology changes or blocked ports across all three active virtual networks.
+3. **Layer 3 (Network):** Default gateway pings to `10.20.10.1` (Billing), `10.20.20.1` (Telemetry), and `10.20.30.1` (VoIP) responded with consistent sub-millisecond round-trip times.
+4. **Layer 4 and Application:** Telemetry loggers on VLAN 20 successfully delivered Modbus sensor packets to the central SCADA database. VoIP phones on VLAN 30 registered with the call manager, and water billing terminals on VLAN 10 completed test database queries without packet loss.
+
+I closed my active terminal windows and reported that all three network segments were fully operational. The trunk was balanced, the DHCP pool had ninety free leases remaining, and the plant telemetry stream had been stable for twenty minutes.
+
+Jared latched his toolcase and slung his cable harness over his shoulder with a weary grin. "Not bad for four hours in rubber boots, kid. You handled that DHCP pool storm faster than our third-shift network admin did last winter."
+
+Outside the high basement windows, the rain had finally tapered off to a gentle Pacific Northwest drizzle. The dark storm clouds were breaking over the Willamette River. Pale winter morning light reflected across the wet asphalt of the loading bay. Upstairs, the faint chime of the municipal elevator signaled the arrival of the morning staff as the eight o'clock bell rang out across the campus.
+
+Jules switched off her halogen lantern and hooked her bicycle helmet to her pack. "You did not panic when the scope exhausted, Ethan," she said, looking at me with a quiet nod of approval. "You followed the protocol stack from the wet concrete up to the transport layer, and you committed your decisions before you typed them. That is the difference between guessing in the dark and doing the work."
+
+We hauled our empty cartons and spent gear up the stairwell to Jared's truck, leaving the basement telecommunications vault secure, elevated, and fully restored.

@@ -137,42 +137,11 @@ When the power cut during the storm, eighty desktop computers dropped off the ne
 
 "The scope ran out of leases because the lease duration is set to eight days," I explained to Jules and Jared, using the binary search method Jules had drilled into me. "Over one hundred offline leases from last week are locking up the pool. When all one hundred and fifty devices booted at once, the server exhausted its remaining twenty addresses in sixty seconds."
 
-"What is your plan of action, Ethan?" Jules asked, watching me carefully. "We have twenty-five minutes before the public service windows unlock upstairs."
+Jules set her flashlight down on the rack rail and looked directly at me.
 
-"First, I will export the active lease table to preserve an audit record of static hardware assignments," I said, executing the commands without hesitation. "Second, I will reconcile the scope by clearing all expired and inactive leases. Third, I will reduce the dynamic lease duration from eight days to eight hours, which matches our working shift schedule. Finally, I will expand the dynamic pool range from two hundred addresses to two hundred and thirty addresses, reserving the first twenty addresses for local switches and network printers."
+"We have twenty-five minutes before the public service windows unlock upstairs, Ethan," Jules said, her voice cutting through the hum of the cooling fans. "Eighty billing clerks are locked out, twenty printers are dead, and the dispatchers cannot place emergency calls. If this building is not fully online at eight o'clock, the city shuts down public intake. What is your plan of action? How do you flush the stale leases, re-architect the scope duration, expand the dynamic pool without colliding with static equipment, and verify the entire four-layer protocol stack before that bell rings? Call your shot, Ethan."
 
-```console
-PS C:\Users\ebrooks> Set-DhcpServerv4Scope -ScopeId 10.20.10.0 -LeaseDuration 08:00:00
-PS C:\Users\ebrooks> Set-DhcpServerv4OptionValue -ScopeId 10.20.10.0 -DnsServer 10.100.1.10, 10.100.1.11
-PS C:\Users\ebrooks> Get-DhcpServerv4Lease -ScopeId 10.20.10.0 -AllLeases | Where-Object {$_.AddressState -eq "Inactive"} | Remove-DhcpServerv4Lease
-```
-
-The script ran in six seconds, flushing eighty-four stale leases from the server memory. Almost instantly, the monitoring dashboard showed client devices renewing their addresses across the building. 
-
-I consoled into a test workstation on the billing floor and executed `ipconfig /renew`. Within two seconds, the terminal returned a valid configuration. The screen displayed a valid network configuration with IP address `10.20.10.74`, a subnet mask of `255.255.255.0`, and a default gateway pointing to `10.20.10.1`. The billing application splash screen loaded cleanly, authenticated against the database cluster, and displayed green status indicators across all transaction ledgers.
-
-## The eight o'clock bell
-
-By seven-fifty in the morning, the basement vault had quieted down. The sump pump had lowered the standing water to a shallow sheen across the low corners of the concrete floor. The newly mounted switches in the upper rack operated quietly. Their link lights blinked in steady green unison across all forty-eight interfaces.
-
-Jules stood beside the rack with her clipboard in hand, verifying our post-restoration punch list. "Run the end-to-end verification across all four layers, Ethan. I want proof before the department director walks through the door."
-
-I opened four simultaneous terminal sessions on my laptop and executed our standard verification checklist:
-
-1. **Layer 1 (Physical):** Link status on both fiber transceivers and all forty-eight copper ports showed full-duplex operation at one gigabit per second, with zero CRC alignment errors on the counter registers.
-2. **Layer 2 (Data Link):** The LACP bundle showed both physical member links active in Port-Channel 1. Rapid Spanning Tree Protocol confirmed zero topology changes or blocked ports across all three active virtual networks.
-3. **Layer 3 (Network):** Default gateway pings to `10.20.10.1` (Billing), `10.20.20.1` (Telemetry), and `10.20.30.1` (VoIP) responded with consistent sub-millisecond round-trip times.
-4. **Layer 4 and Application:** Telemetry loggers on VLAN 20 successfully delivered Modbus sensor packets to the central SCADA database. VoIP phones on VLAN 30 registered with the call manager, and water billing terminals on VLAN 10 completed test database queries without packet loss.
-
-I closed my active terminal windows and reported that all three network segments were fully operational. The trunk was balanced, the DHCP pool had ninety free leases remaining, and the plant telemetry stream had been stable for twenty minutes.
-
-Jared latched his toolcase and slung his cable harness over his shoulder with a weary grin. "Not bad for four hours in rubber boots, kid. You handled that DHCP pool storm faster than our third-shift network admin did last winter."
-
-Outside the high basement windows, the rain had finally tapered off to a gentle Pacific Northwest drizzle. The dark storm clouds were breaking over the Willamette River. Pale winter morning light reflected across the wet asphalt of the loading bay. Upstairs, the faint chime of the municipal elevator signaled the arrival of the morning staff as the eight o'clock bell rang out across the campus.
-
-Jules switched off her halogen lantern and hooked her bicycle helmet to her pack. "You did not panic when the scope exhausted, Ethan," she said, looking at me with a quiet nod of approval. "You followed the protocol stack from the wet concrete up to the transport layer, and you committed your decisions before you typed them. That is the difference between guessing in the dark and doing the work."
-
-We hauled our empty cartons and spent gear up the stairwell to Jared's truck, leaving the basement telecommunications vault secure, elevated, and fully restored.
+I looked at the red warning icons multiplying across the monitoring board. Four hours of sweating in rubber boots in an ankle-deep flood came down to the next twenty-five minutes. I needed to execute the DHCP reconciliation, restore address leases to one hundred and fifty endpoints, and run the end-to-end verification checklist before the doors unlocked.
 
 ## Desk Translation Table
 
@@ -185,13 +154,13 @@ We hauled our empty cartons and spent gear up the stairwell to Jared's truck, le
 | **[[spanning_tree|Spanning Tree Protocol (STP)]]** | A Layer 2 network protocol that monitors bridge topology and dynamically places redundant switch ports into blocking state to prevent catastrophic broadcast storms and switching loops. | The network traffic cop that turns off duplicate switch cables so broadcast loops do not circle endlessly and crash the entire building network. |
 | **[[link_aggregation|Link Aggregation (LACP)]]** | A networking standard (Link Aggregation Control Protocol) that bundles multiple physical Ethernet interfaces into a single logical channel to provide multiplied bandwidth and active redundancy. | The team-up protocol that binds two or more network cables together to act like one double-speed wire that stays up even if one cable snaps. |
 
+## The Handoff Gate
+
 ```bridge-card
 title: Portland Desk Lab: The Campus Flood & Disaster Recovery Crucible
 target: workbench/06-the-portland-flood.md
 domain: CompTIA Network+ N10-008/009 • Disaster Recovery & Layer 1-4 Rebuild
 badge: The Hands-On Lab
 ---
-Step into Ethan's rubber boots at 04:00 AM in the flooded Building C vault. Punch down damp patch cables, configure 802.1Q VLAN trunks and LACP link aggregation, mitigate a massive 150-device DHCP scope exhaustion storm, and complete the 5-case "Call Your Shot" prediction gate before the 08:00 AM opening.
+Take over Ethan's console at 07:35 AM in the flooded vault. Execute the PowerShell DHCP reconciliation to clear 84 stale leases, reduce lease durations, expand pool capacity, and run the Layer 1-4 verification checklist before the 08:00 AM municipal opening bell.
 ```
-
-[Take the Ticket & Open the Lab ->](../workbench/06-the-portland-flood.md)
