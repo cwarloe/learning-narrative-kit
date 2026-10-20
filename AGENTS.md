@@ -184,6 +184,10 @@ Full text: `schema/README.md`. Non-negotiables:
 - Two tiers when used: `exam` = study targets; `support` = readability jargon; flavor unmarked.
 - HTML is generated only via `tools/render_unit.py`.
 
+## Playbooks
+
+- **Instructions → training video** lives in the Knowledge Harvest repo: `playbooks/instructions-to-training-video/` in [cwarloe/knowledge-harvest](https://github.com/cwarloe/knowledge-harvest). Use it if a unit needs a captioned walkthrough video built from written steps. Not needed for normal units.
+
 ## Track-specific canon
 
 - **Portland Desk (Sec+):** `examples/PORTLAND_DESK.md`
