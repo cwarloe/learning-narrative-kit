@@ -1,6 +1,6 @@
 unit_id: secplus-crypto-helpdesk
 title: "Portland Desk — Trust on Paper"
-audience: "Someone studying Security+ cryptography / PKI basics, or a NADF precursor for Ethan's help-desk years"
+audience: "Someone studying Security+ cryptography / PKI basics"
 purpose: "Weave SY0-701 crypto basics that hit help-desk tickets — encryption vs hashing vs encoding, symmetric/asymmetric, signatures, certificates, CA/CSR, TLS errors users see — into one shift so definitions become desk decisions."
 estimated_minutes: 24
 sources:

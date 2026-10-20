@@ -50,7 +50,7 @@ flowchart TD
         M06 --> M07 --> M08 --> M09 --> M10 --> M11 --> M12
     end
 
-    M12 ==>|"Direct Bridge to Book 1"| NADF["NADF: Network Analyst Development Framework<br/>(Junior SOC Triage & Threat Hunting)"]
+    M12 -.->|"Optional next course"| NADF["Network Analyst Development Framework<br/>(separate course: reading packet captures)"]
 ```
 
 ---

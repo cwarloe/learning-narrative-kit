@@ -1,6 +1,6 @@
 unit_id: secplus-ir-helpdesk
 title: "Portland Desk — When the Ticket Escalates"
-audience: "Someone studying Security+ incident response basics, or a NADF precursor for Ethan's help-desk years"
+audience: "Someone studying Security+ incident response basics"
 purpose: "Weave the first-touch half of SY0-701 incident response — event vs incident, isolation before erasure, what makes an indicator worth writing down, when to escalate to CSIRT, and need-to-know — into one help-desk shift so definitions become desk decisions. The IR lifecycle, playbooks and live-incident coordination are a separate lesson; their terms are parked in glossary.deferred.yaml."
 estimated_minutes: 9
 sources:

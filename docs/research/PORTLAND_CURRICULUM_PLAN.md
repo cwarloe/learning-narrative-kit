@@ -5,7 +5,7 @@
 > **Course Setting:** Portland Regional Services IT Desk (Central Service Desk, East Portland Operations Center)  
 > **Protagonist:** Ethan Brooks (Narrator / Apprentice Desk Tech)  
 > **Mentor:** Jules Mercer (Desk Lead, 9-Year Veteran, Commuter Cyclist, Socratic Coach)  
-> **Downstream Target:** Central Security Operations Center (Central SOC / CSIRT / Incident Commander Nia Alvarez, NADF Book 1)  
+> **Downstream Target:** Central Security Operations Center (Central SOC / CSIRT / Incident Commander Nia Alvarez)  
 > **Target Certifications:** CompTIA A+ (Core 220-1101 & 220-1102), Network+ (N10-008/009), Security+ (SY0-701)  
 > **Target Role:** Tier 1 Help Desk Specialist $\rightarrow$ Lead Tier 1 Security Escalation Tech $\rightarrow$ Junior SOC Triage Analyst  
 
@@ -19,7 +19,7 @@ Traditional IT and cybersecurity curricula suffer from an acute pedagogical path
 When a novice technician faces their first production shift, they do not encounter clean multiple-choice questions. They encounter a frantic department head on the phone, a vague ticket stating *"the internet is down,"* an endpoint exhibiting unusual CPU spikes, and a corporate culture that pushes for rapid ticket closure. Under this cognitive overload, novices resort to random trial-and-error: swapping random cables, rebooting production appliances without collecting state, flushing DNS indiscriminately, or wiping infected endpoints before capturing critical volatile evidence.
 
 ### 1.2 The Book 0 Mandate: Zero-to-One
-**Book 0 (The Portland Help Desk Prequel)** bridges the chasm between raw high school graduation / non-IT employment and operational readiness for **Book 1 (The Central SOC / NADF Incident Response)**. 
+**Book 0 (The Portland Help Desk Prequel)** bridges the chasm between raw high school graduation / non-IT employment and operational readiness for **the Central SOC (incident response and escalation)**. 
 
 Rooted in the **Four-Component Instructional Design (4C/ID)** model and the authentic workspace reality of the Portland municipal/enterprise help desk, Book 0 charts Ethan Brooks's cognitive transformation from a retail worker studying flashcards in an east-side apartment to an analytically disciplined Lead Tier 1 technician. 
 
@@ -30,7 +30,7 @@ flowchart LR
     A["Stage 0: Non-IT Background<br/>(Retail / Food Service)"] --> B["Stage 1: Self-Study & A+<br/>(Physical Hardware & OS)"]
     B --> C["Stage 2: Year 1 Level 1 Desk<br/>(Network Plumbing & AD)"]
     C --> D["Stage 3: Year 2 Lead Tier 1<br/>(Sec+ Hardening & Triage)"]
-    D --> E["Stage 4: Central SOC Readiness<br/>(NADF Book 1 / Nia Alvarez Handoff)"]
+    D --> E["Stage 4: Central SOC Readiness<br/>(Nia Alvarez Handoff)"]
 
     style A fill:#2d3748,stroke:#4a5568,color:#fff
     style B fill:#1a365d,stroke:#2b6cb0,color:#fff
@@ -81,7 +81,7 @@ journey
 | **Stage 1**<br>*(Months 1 to 3)* | Level 1 Service Desk Specialist (Probationary) | **Procedural Novice:**<br>Follows runbooks literally. Prone to "action bias" (touching before thinking). Struggles to isolate variables. Learns Socratic discipline under Jules. | Multimeters, loopback plugs, peripheral drivers, `diskpart`, BitLocker recovery keys, Windows Services console, Event Viewer basics. | CompTIA A+ Core 2 (220-1102); Level 1 Ticket Hygiene; Hardware Break/Fix. |
 | **Stage 2**<br>*(Months 4 to 12)* | Level 1 Service Desk Specialist (Permanent) | **Systemic Causal Reasoning:**<br>Understands packet flow and OSI layering. Can differentiate client, local network, gateway, DNS, and server-side failures. Predicts output before running commands. | `ipconfig /all`, `arp -a`, `nslookup`, `netstat -ano`, PowerShell network cmdlets, Active Directory Users & Computers (ADUC), Group Policy (`gpresult`). | CompTIA Network+ (N10-008/009); Domain Networking; L2/L3 Troubleshooting. |
 | **Stage 3**<br>*(Months 13 to 20)* | Senior Tier 1 / Escalation Tech | **Security-Conscious Practitioner:**<br>Views every ticket through the lens of confidentiality, integrity, and availability. Understands that user-reported symptoms often mask malicious tradecraft. | Sysinternals Suite (Autoruns, Process Explorer), Wireshark capture analysis, EDR console alerts, email MIME header inspection, WPA3-Enterprise 802.1X. | CompTIA Security+ (SY0-701); Endpoint Hardening; Threat Surface Reduction. |
-| **Stage 4**<br>*(Months 21 to 24)* | Lead Tier 1 Security Liaison $\rightarrow$ SOC Junior Candidate | **Forensic First Responder:**<br>Operates with strict chain of custody, need-to-know communication, and evidence preservation. Can compile a professional incident triage package for CSIRT. | Volatile memory preservation concepts, live endpoint isolation, SIEM search triage, IOC extraction, structured handoff to Central SOC. | CompTIA Security+ (SY0-701) Certified; Ready for NADF Book 1 (Nia Alvarez SOC Triage). |
+| **Stage 4**<br>*(Months 21 to 24)* | Lead Tier 1 Security Liaison $\rightarrow$ SOC Junior Candidate | **Forensic First Responder:**<br>Operates with strict chain of custody, need-to-know communication, and evidence preservation. Can compile a professional incident triage package for CSIRT. | Volatile memory preservation concepts, live endpoint isolation, SIEM search triage, IOC extraction, structured handoff to Central SOC. | CompTIA Security+ (SY0-701) Certified; Ready for SOC triage work (Nia Alvarez handoff). |
 
 ---
 
@@ -441,7 +441,7 @@ flowchart TD
 - **Setting:** Month 4. Ethan sits with 14 incoming tickets. Network engineers want Telnet opened to legacy switches; field crews want plain HTTP forms; external contractors request direct RDP access across the WAN.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
-- **Task 5.1 (The Cleartext Telnet Trap):** A senior network technician asks Ethan to temporarily open port 23 to an edge switch. Ethan must inspect a live packet capture ([`artifacts/terminal_dumps/netstat_ano.txt`](artifacts/terminal_dumps/netstat_ano.txt)), extract administrative credentials typed over cleartext Telnet, deny the request, and configure SSH (port 22).
+- **Task 5.1 (The Cleartext Telnet Trap):** A senior network technician asks Ethan to temporarily open port 23 to an edge switch. Ethan must inspect a live packet capture ([`jared-telnet-capture.pcap`](../../portland-desk/artifacts/jared-telnet-capture.pcap)), extract administrative credentials typed over cleartext Telnet, deny the request, and configure SSH (port 22).
 - **Task 5.2 (The Broken Mobile Mail Client):** An executive traveling internationally cannot send outbound email from their iPad. The client is misconfigured to use SMTP port 25. Ethan must identify hotel ISP port 25 filtering and reconfigure the client to use Submission (Port 587 with STARTTLS) or SMTPS (Port 465).
 - **Task 5.3 (The Exposed RDP Request):** A water treatment contractor requests port 3389 forwarded to a pump controller PC. Ethan must enforce desk policy: deny external port exposure, mandate VPN tunnel access, and require routing through an internal hardened Jump Host.
 
@@ -819,7 +819,7 @@ flowchart TD
 - **Role:** Lead Tier 1 Security Escalation Technician (Apprentice SOC Triage).
 - **Certification Objectives:** CompTIA Security+ (SY0-701): Objectives 4.2, 4.4, 4.5 (Incident response lifecycle, Incident classification, Evidence preservation, Chain of custody, Communication plans).
 - **Track Companion Alignment:** Corresponds to `examples/secplus-ir-helpdesk/` (*When the Ticket Escalates*).
-- **Downstream Bridge:** Direct operational bridge to **NADF Book 1 (Central SOC Incident Response under Incident Commander Nia Alvarez)**.
+- **Downstream Bridge:** The handoff to the **Central SOC (incident response under Incident Commander Nia Alvarez)**.
 - **Setting:** Month 18. Ethan is now Lead Tier 1. A coordinated ransomware deployment disguised as a routine printer driver update spreads across municipal subnets. Ethan must manage the help desk response, prevent reckless actions, and assemble a formal security escalation package for the Central SOC.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
@@ -1156,13 +1156,13 @@ Simulated technical artifacts will be programmatically generated via `tools/gene
 - **Email Raw Files:** RFC 5322 compliant `.eml` files with complete `Received` headers, DKIM cryptographic headers, and defanged phishing links.
 - **Packet Captures:** Wireshark-compatible terminal text dumps showing TCP three-way handshakes, cleartext Telnet streams, DNS recursion queries, and 802.1X EAP authentication.
 
-### 8.3 The Bridge to NADF Book 1 (Central SOC)
-Module 12 serves as the direct launchpad into **NADF Book 1: Zero-to-One Incident Response**. 
+### 8.3 The Bridge to the Central SOC
+Module 12 serves as the launchpad into **Central SOC incident response**. The separate Network Analyst Development Framework course is an optional next step for reading packet captures. It tells a different story with different characters. 
 
 When students complete Module 12, they have not merely passed a certification test; they have stepped into the shoes of a seasoned Lead Tier 1 technician who understands how to operate in a high-stakes environment without panicking, how to defend their diagnostic choices using the CBYT algorithm, and how to deliver actionable, forensic-grade intelligence to Central SOC Commander **Nia Alvarez**.
 
 ---
 
 *Curriculum Architecture Document Author:* Senior Technical Instructional Designer & Curriculum Architect  
-*Reference Standard:* CompTIA A+ / Network+ / Security+ (SY0-701) & NADF 4C/ID Pedagogical Standard  
+*Reference Standard:* CompTIA A+ / Network+ / Security+ (SY0-701) & 4C/ID whole-task design  
 *Location:* `C:\Users\charl\learning-narrative-kit\docs\research\PORTLAND_CURRICULUM_PLAN.md`

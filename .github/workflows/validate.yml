@@ -7,6 +7,9 @@ on:
     paths:
       - "examples/**"
       - "tools/validate_unit.py"
+      - "tools/check_ep07_capture.py"
+      - "portland-desk/**"
+      - "docs/portland-desk/**"
       - "requirements.txt"
       - ".github/workflows/validate.yml"
   workflow_dispatch:
@@ -45,3 +48,6 @@ jobs:
             exit 1
           fi
           echo "All example units passed."
+
+      - name: Episode 7 capture matches its drill
+        run: python tools/check_ep07_capture.py

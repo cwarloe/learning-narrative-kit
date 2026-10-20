@@ -485,7 +485,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <span class="stat-pill">13 Incident Stories</span>
           <span class="stat-pill">13 Hands-On Labs</span>
           <span class="stat-pill">328 Verified Glossary Terms</span>
-          <span class="stat-pill">Direct Bridge to Book 1 SOC</span>
+          <span class="stat-pill">Capstone: SOC Handoff</span>
         </div>
       </div>
       <a class="launch-btn" href="portland-desk/#/">

@@ -97,7 +97,7 @@ flowchart TD
 #### The Scenario
 Jared Vance from Network Operations filed ticket **`INC-2026-1041`**. His legacy configuration script failed against switch `10.0.4.15` in Building C because port 23 was refused. He claims: *"I've used this script for ten years. Telnet is fine—it's inside our building on the wired management VLAN. Just open 23 for ten minutes so I can fix the trunk VLAN."*
 
-Before replying, you pull an actual packet capture ([`artifacts/terminal_dumps/netstat_ano.txt`](../artifacts/terminal_dumps/netstat_ano.txt)) taken from a span port on that management segment during Jared's previous run:
+Before replying, you pull an actual packet capture ([`artifacts/jared-telnet-capture.pcap`](../artifacts/jared-telnet-capture.pcap)) taken from a span port on that management segment during Jared's previous run. The table below shows frames 101 to 137 of it, filtered to port 23. You can read the table here, or open the file in Wireshark:
 
 ```console
 caption: Wireshark / tcpdump Stream Reassembly · Filter: tcp.port == 23
@@ -142,6 +142,16 @@ No.   Time        Source          Destination     Proto  Info
 136   08:44:16    192.168.10.45   10.0.4.15       TELNET Data: \r\n
 137   08:44:17    10.0.4.15       192.168.10.45   TELNET Switch-Closet-C#
 ```
+
+<video controls width="100%" src="assets/video/wireshark-find-the-conversation.mp4">Video: Wireshark, find one conversation (2:08)</video>
+
+> **New to Wireshark?** Watch the two-minute primer first: [Wireshark: find one conversation](../assets/video/wireshark-find-the-conversation.mp4). It uses the same capture file but a different conversation, so it won't give away your answers. If you'd rather read the steps:
+>
+> 1. **File → Open** the capture. The **Protocol** column tells you what kind of traffic each packet is.
+> 2. Type a filter in the bar and press **Enter**. `dns` shows name lookups. `udp.port == 514` shows log messages. Hidden packets aren't deleted, and **Clear** brings them back.
+> 3. Hide traffic you don't need, for example `not arp and not icmp`.
+> 4. Right-click a packet, then **Follow** and pick the stream type, to read a whole conversation as text.
+> 5. No screen to click on? `tshark -r artifacts/jared-telnet-capture.pcap -Y "udp.port == 514"` runs the same filter.
 
 #### Your Analysis Task
 1. What was the exact login password entered in lines 106–122?
