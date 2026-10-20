@@ -1,0 +1,20 @@
+# Character reference: Jules Mercer (3:4). Use as an image reference in every panel that shows Jules.
+image: jules-mercer-sheet.webp
+kind: character-reference
+ratio: "3:4"
+generator: Grok Bot image generator (GenerateImage), 2026-10-19
+source_prompt: docs/research/VISUAL_ART_DIRECTION.md, "Character Sheet: Jules Mercer"
+prompt: >-
+  Character concept sheet for Jules Mercer, 38-year-old help desk lead, clean ligne claire graphic
+  novel line art. Short dark hair with silver streaks, flannel shirt over black t-shirt, wired
+  headset pushed back over one ear, ceramic coffee mug. Calm observant expression. Three full-body
+  poses side by side: pointing at a blank monitor over someone's shoulder, listening on the headset,
+  drawing simple boxes and lines on a whiteboard. Even bright lighting, uniform black ink lines,
+  flat colors, plain off-white background, no text, no letters, no words, no watermarks.
+references: []
+source_photos: []
+license: Generated artwork; no third-party photo used.
+selection_notes: >-
+  Chosen over an alternate take with a large portrait plus two small vignettes, because this one
+  shows the full figure in all three poses at one scale. Note: the art doc does not state Jules's
+  gender; both generated takes read as a man. Confirm with the author before this becomes canon.

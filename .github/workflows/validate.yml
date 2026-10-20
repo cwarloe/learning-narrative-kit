@@ -6,6 +6,9 @@ on:
     branches: [main]
     paths:
       - "examples/**"
+      - "portland-desk/**"
+      - "docs/portland-desk/**"
+      - "tools/check_panels.py"
       - "tools/validate_unit.py"
       - "requirements.txt"
       - ".github/workflows/validate.yml"
@@ -45,3 +48,6 @@ jobs:
             exit 1
           fi
           echo "All example units passed."
+
+      - name: Check callout panels (alt text, art files, mirrors)
+        run: python tools/check_panels.py

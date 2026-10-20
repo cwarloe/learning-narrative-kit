@@ -1,0 +1,21 @@
+# Character reference: Ethan Brooks (3:4). Use as an image reference in every panel that shows Ethan.
+image: ethan-brooks-sheet.webp
+kind: character-reference
+ratio: "3:4"
+generator: Grok Bot image generator (GenerateImage), 2026-10-19
+source_prompt: docs/research/VISUAL_ART_DIRECTION.md, "Character Sheet: Ethan Brooks"
+prompt: >-
+  Character concept sheet for Ethan Brooks, 19-year-old help desk technician, clean technical
+  graphic novel line art, ligne claire style like Herge. Lanky, dark slightly messy hair, focused
+  tired eyes, dark canvas work jacket over grey hoodie, worn jeans, steel-toed boots, black lanyard
+  with blank ID badge, mechanical pencil in pocket. Three full-body poses side by side: checking a
+  network cable with a penlight, typing at a terminal, listening attentively. Even bright lighting,
+  uniform black ink lines, flat colors, plain off-white background, no text, no letters, no words,
+  no watermarks.
+references: []
+source_photos: []
+license: Generated artwork; no third-party photo used.
+selection_notes: >-
+  Chosen over an alternate take that drew a Carhartt-style logo patch on the jacket (a brand mark,
+  against the no-text rule). This take keeps the same face, jacket, lanyard, badge and pencil across
+  all three poses. Known drift: the "typing" pose holds a floating keyboard rather than sitting at a desk.
