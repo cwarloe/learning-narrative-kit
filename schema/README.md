@@ -291,7 +291,21 @@ account, with what went wrong and how it was found, is in
    stake), and better as a back-and-forth than a lecture: a question, an answer, a
    concrete case that tests it ("a rancher buys a truckload at ten, the line drops at ten
    past; what does Colville see?"). What fails is the explanation nobody in the scene
-   asked for.
+   asked for. Two tests make an exchange teach rather than decorate (MIS 8 and MIS 9 are
+   the worked examples):
+   - **Someone is reasonably wrong.** A character says what a student would assume ("so it's
+     a database of answers," "give it the four towns and let it pick") and gets corrected.
+     Hearing a misconception voiced and fixed beats hearing only the right answer (Muller et
+     al. 2008).
+   - **The question is why or how, never "what is."** "Why would you ever run it
+     backwards?" makes the scene reason; "what's backward chaining?" is a quiz in quotation
+     marks (Craig, Gholson et al. on deep-reasoning questions).
+
+   Spend dialogue on the chapter's three or four central relationships, where a
+   reasonable person would misunderstand or object. Leave mechanism steps and minor terms
+   in narration: dialogue takes about twice the words, and banter that doesn't carry the
+   point is a distraction, not color (Harp & Mayer 1998). The usual shape is to name the
+   term in a line of narration and let the exchange around it do the teaching.
 9. **Metrics point; they don't decide.** The review heuristics (exposition runs, mark
    clusters, inline glosses, voice numbers) say where to look. If the passage reads well
    and is accurate, leave it, and say why in the review. Don't rewrite good prose to move

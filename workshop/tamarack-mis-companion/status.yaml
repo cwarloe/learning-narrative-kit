@@ -20,10 +20,11 @@ stages:
 - {stage: ch03-ch05-revise, state: done, note: "candidates/mis-03-data-bi and mis-05-security: targeted revisions (last section of MIS 3; pen-test findings and PKI in MIS 5). Validate PASS; previews clean at 1280 and 390px. reviews/ch03-r1.md, ch05-r1.md (r0 = accepted baselines)"}
 - {stage: canon-and-forward-refs, state: done, note: "2026-10-12: recurring cast and store list added to the canon; 14 forward references resolved (PR #11)"}
 - {stage: ch03-ch05-accept, state: done, note: "2026-10-12: author accepted both and authorized going live; narrative.md copied into examples/, rendered"}
+- {stage: dialogue-trial, state: done, note: "2026-10-20: published on the author's go-ahead ('I trust your judgment as to the next steps'). MIS 8's decision-types exchange tightened first; pattern written into schema/README.md rule 8; review metric widened to see it. 2026-10-13: author asked to try the narration/dialogue balance (misconception + why-question exchanges at each chapter's 3-4 hinges) on MIS 8 and MIS 9. Candidates in candidates/mis-08-decisions and mis-09-ai; reviews ch08-r0 to r2, ch09-r0 to r2."}
 open_issues:
 - "ch10 (published) runs ~2,520 words vs the brief's ~1,800, kept on purpose: the added length is the earned explanation."
 - "New names in published ch10: Brenda (ERP sales engineer), a dealer in Omak (accepted with the chapter)."
 - "Resolved: recurring and minor characters added to examples/TAMARACK.md (18 people, each with the chapters that establish them)."
 - "Resolved: all 14 forward references decided and recorded in plan.yaml (forward_references_resolved); plan-check shows 0 open. Catalog risk in ch03 and ch05 addressed by the published revisions."
 - "Resolved: store list added to examples/TAMARACK.md (6 established, 5 named but unused, Davenport from May 2027; competitors in the same towns listed)."
-next_action: "Part 1 complete: no open plan items. Next work needs a new brief (e.g. Week 7 updates, Power BI screenshots, the EPUB book)."
+next_action: "No open plan items. Possible next: apply the rule-8 dialogue pattern to other chapters where a hinge is narrated, or a new brief (Week 7 updates, Power BI screenshots, EPUB)."

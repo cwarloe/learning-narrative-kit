@@ -109,7 +109,8 @@ The authoring workflow's bookkeeping: brief → plan → review → status. It n
 |---|---|
 | Longest exposition run (paragraphs in a row that each introduce a term with no dialogue) ≥ 5 | **Yes.** It flagged exactly MIS 5 and MIS 10, the two chapters already judged to be catalogs by reading them. |
 | Mark clusters (4+ marks in one paragraph) | Partly; MIS 5 had 4. |
-| Inline-gloss share, marks near decisions or dialogue | **No.** Week 7, the strongest chapter, scored 21% on decisions. Kept as context, not as a verdict. |
+| Inline-gloss share | **No.** Kept as context, not as a verdict. |
+| Marks in or next to a paragraph with dialogue or a decision word (widened October 2026 to count one paragraph either side) | **Partly.** Across sixteen chapters most score 62–100%. The two lowest were the old MIS 10 catalog (52%) and the pre-trial MIS 8 (44%), both already judged weak by reading; the old MIS 5 scored a normal 78% (its list problem shows in the exposition run). Before widening it didn't separate anything (Week 7 scored 21%), because it missed the rule-8 pattern of naming a term in narration and putting the exchange beside it. |
 | Definition echo | Low counts everywhere; useful for pointing at specific sentences. |
 
 The dependency map is a suggestion, not an analysis: it matches term titles inside definitions, so "data" and "information" dominate, and a dependency the definition doesn't spell out is missed.
