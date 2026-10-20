@@ -1,6 +1,6 @@
 unit_id: secplus-physical-helpdesk
 title: "Portland Desk — Badge, Lock, Eyes"
-audience: "Someone studying Security+ physical security topics, or a NADF precursor for Ethan's help-desk years"
+audience: "Someone studying Security+ physical security topics"
 purpose: "Weave SY0-701 physical security controls — badges, cameras, mantraps, clean desk, tailgating, Faraday/air gap, USB blockers, and visitor process — into one help-desk shift so definitions become desk decisions."
 estimated_minutes: 22
 sources:

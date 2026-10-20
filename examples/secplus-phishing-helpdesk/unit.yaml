@@ -1,6 +1,6 @@
 unit_id: secplus-phishing-helpdesk
 title: "Portland Desk — Don't Click That"
-audience: "Someone studying Security+ social engineering / phishing topics, or a NADF precursor for Ethan's help-desk years"
+audience: "Someone studying Security+ social engineering / phishing topics"
 purpose: "Weave SY0-701 social engineering, phishing variants, influence principles, and reporting habits into one help-desk shift so definitions become desk decisions."
 estimated_minutes: 22
 sources:

@@ -111,7 +111,7 @@ Folder pattern: `examples/<unit_id>/{unit.yaml,glossary.yaml,narrative.md,workbe
 
 The Portland Desk units operate as a Dual-Track learning system:
 1. **Narrative Chapter (`narrative.md`)**: First-person, authentic help desk shift with Ethan and Jules. Focuses on the complication/pivot decision model and workplace dynamics. Linked to the workbench via `.bridge-card`.
-2. **Operational Workbench (`workbench.md`)**: Hands-on Level 1 technical workbench adhering to the NADF workbench standard:
+2. **Operational Workbench (`workbench.md`)**: Hands-on Level 1 technical workbench with these parts:
    - Metadata & CompTIA Security+ (SY0-701) domain alignment.
    - Ground Truth & Operational Rules of Engagement.
    - Technical Reference & Decision Matrix.
