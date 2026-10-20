@@ -74,13 +74,21 @@ ratio: "1:1"
 caption: "Macro schematic: Ethan uses the 0.5mm hollow brass sleeve of his drafting pencil as a miniature lever to realign Pin 2 (Receive Data / RXD) without snapping the brittle copper pin."
 prompt: "Transform reference photo of a DB-9 male connector into a high-detail macro technical illustration..."
 image: "assets/panels/ep01-serial-pin.webp"
+alt: "Close-up drawing of a DB-9 serial connector. The second pin in the top row is bent sideways, and the brass tip of a mechanical pencil is easing it back upright."
 ```
 ```
 
 ### Parameter Reference
 * `title`: The figure header displayed in the top bar.
 * `badge`: Component category badge (e.g. `Physical Layer Schematic`, `Hardware Anatomy`).
-* `ratio`: Canvas aspect ratio (`16-9`, `21-9`, `4-3`, `1-1`).
+* `ratio`: Canvas aspect ratio (`16-9`, `21-9`, `4-3`, `1-1`, `3-4`).
 * `caption`: Explanatory text rendered in the panel footer.
 * `prompt`: The concept art generation prompt. Rendered in the placeholder box when `image` is omitted.
 * `image`: Relative path to the rendered artwork (e.g. `assets/panels/ep01-serial-pin.webp`).
+* `alt`: **Required whenever `image` is set.** Plain-English description of what the picture shows, for screen readers and for when the image fails to load. Say what a reader needs to see to follow the scene (which part is broken, where it sits); don't repeat the caption or the title, and don't start with "Image of". `tools/check_panels.py` fails if an `image:` has no `alt:` or points at a file that doesn't exist.
+
+### Panel files
+* Artwork lives in `assets/panels/` inside both `portland-desk/` and `docs/portland-desk/`, and the two folders must match exactly (see CLAUDE.md).
+* Episode art: `epNN-slug.webp` (two-digit episode, lowercase hyphenated slug), e.g. `ep00-optiplex-guts.webp`.
+* Character and style references: `ref/<slug>.webp`.
+* Every image has a sidecar `<same name>.yaml` next to it recording the prompt, the references used, and the license and attribution of any source photo. `check_panels.py` fails without it.

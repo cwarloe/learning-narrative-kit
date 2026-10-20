@@ -1,0 +1,37 @@
+# Episode 00 panel: The Guts of the OptiPlex (4:3)
+image: ep00-optiplex-guts.webp
+kind: episode-panel
+chapter: narrative/00-the-four-rubber-bands.md (FIGURE 0.1)
+ratio: "4:3"
+generator: Grok Bot image generator (GenerateImage), image-to-image from the reference photo, 2026-10-19
+source_prompt: docs/research/VISUAL_ART_DIRECTION.md, "Episode 00: The Guts of the OptiPlex"
+prompt: >-
+  Flat ligne claire technical service-manual illustration, crisp uniform black ink outlines, flat
+  true colors. Top-down view into an opened beige-grey desktop PC tower lying on its side on a plain
+  light-blue ESD mat. Large and prominent in the lower-right foreground: a bare 3.5-inch hard drive
+  with a plain blank silver top, strapped to the metal drive cage by four separate cracked,
+  dry-rotted brown rubber bands wrapped around it, a grey flat ribbon cable plugged into its end. On
+  the green motherboard in the center: a row of bulging domed electrolytic capacitors with dried
+  brown crust leaking from their tops. Upper left: a CPU heatsink and fan thickly caked in grey dust.
+  Bright even shadowless inspection lighting. All surfaces blank: no stickers, no labels, no text,
+  no letters, no words, no numbers, no barcodes, no logos, no watermarks.
+references:
+  - type: photo
+    used_for: chassis layout (hinged case, drive cage, ribbon cables, CPU shroud, rear I/O)
+    title: "Dell OptiPlex GX280, model DHS - case opened-2781.jpg"
+    url: https://commons.wikimedia.org/wiki/File:Dell_OptiPlex_GX280,_model_DHS_-_case_opened-2781.jpg
+    author: Raimond Spekking
+    license: CC BY-SA 4.0
+    license_url: https://creativecommons.org/licenses/by-sa/4.0
+    attribution: "Raimond Spekking / Wikimedia Commons, CC BY-SA 4.0"
+    modified: Yes. Used as an image-to-image reference and fully redrawn as line art.
+character_refs: none (no people in this panel)
+license: >-
+  Derived from a CC BY-SA 4.0 photo, so treat this image as CC BY-SA 4.0 with the attribution above
+  (ShareAlike). Credit line for the page: "Based on a photo by Raimond Spekking, CC BY-SA 4.0, via
+  Wikimedia Commons."
+selection_notes: >-
+  Third of three takes. The first two copied the photo too literally and kept barcode stickers with
+  fake lettering, and the second dropped the rubber bands. This one has no text. Known gaps: only
+  two or three rubber bands are clearly visible (not four), and the capacitors read as dark rather
+  than visibly bulging and crusted.

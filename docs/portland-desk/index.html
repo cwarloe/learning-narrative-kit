@@ -111,10 +111,13 @@
               const image = getVal('image') || '';
               const ratio = getVal('ratio') || '16-9';
               const prompt = getVal('prompt') || '';
+              // alt is required whenever image is set (tools/check_panels.py fails the build without it).
+              const alt = getVal('alt').replace(/"/g, '&quot;');
+              const credit = getVal('credit');
 
               let visualHtml = '';
               if (image) {
-                visualHtml = `<div class="panel-canvas ratio-${ratio}"><img class="panel-img" src="${image}" alt="${title}"></div>`;
+                visualHtml = `<div class="panel-canvas ratio-${ratio}"><img class="panel-img" src="${image}" alt="${alt}" loading="lazy"></div>`;
               } else {
                 visualHtml = `<div class="panel-placeholder">
                   <div class="panel-placeholder-icon">&#9638; [ GRAPHIC NOVEL SCHEMATIC PANEL ]</div>
@@ -123,7 +126,8 @@
                 </div>`;
               }
 
-              return `<div class="panel-container">\n  <div class="panel-header">\n    <span class="panel-title">${title}</span>\n    <span class="panel-badge">${badge}</span>\n  </div>\n  ${visualHtml}\n  ${caption ? `<div class="panel-footer">${caption}</div>` : ''}\n</div>`;
+              return `<div class="panel-container">\n  <div class="panel-header">\n    <span class="panel-title">${title}</span>\n    <span class="panel-badge">${badge}</span>\n  </div>\n  ${visualHtml}\n  ${caption ? `<div class="panel-footer">${caption}</div>` : ''}
+  ${credit ? `<div class="panel-credit">${credit}</div>` : ''}\n</div>`;
             });
 
             // Parse ```lnk-terminal blocks into interactive micro-terminals

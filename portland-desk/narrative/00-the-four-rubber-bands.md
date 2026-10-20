@@ -15,8 +15,12 @@ That confidence evaporated when I clicked the final button on an online practice
 ```callout-panel
 title: "FIGURE 0.1: THE GUTS OF THE OPTIPLEX"
 badge: "Hardware Anatomy"
+ratio: "4-3"
 caption: "Top-down cutaway: The open desktop PC chassis on the kitchen table. Inside: four brittle dry-rotted rubber bands holding the 3.5-inch IDE drive, swollen electrolytic capacitors, and dust-choked CPU cooler."
 prompt: "Clean technical cutaway illustration of an open desktop PC tower chassis on a workshop table under bright, even inspection lighting. Four brittle dry-rotted rubber bands hold a 3.5-inch IDE hard drive with a grey ribbon cable. Several bulging motherboard capacitors with dried brown crust. Dust-caked CPU heatsink fan. Clean ESD mat background, crisp fine ink linework, no heavy shadows, no text, no words. 4:3 ratio."
+image: "assets/panels/ep00-optiplex-guts.webp"
+alt: "Drawing looking down into an opened desktop PC on a blue anti-static mat. A hard drive in the front is held in its cage by brown rubber bands instead of screws. A dust-clogged fan sits over the processor, and a cluster of dark capacitors stands on the green motherboard beside it."
+credit: "Based on a photo by Raimond Spekking, CC BY-SA 4.0, via Wikimedia Commons"
 ```
 
 The floorboards in the short hallway groaned under heavy footsteps. My father shuffled into the kitchen in worn wool socks and flannel sleep pants. His undershirt smelled faintly of cutting oil from decades around industrial machinery. He was sixty-one years old and had retired after thirty-four years as an East Portland toolmaker. He stopped in the kitchen doorway, rubbed his grey beard, and looked down at the three hundred cards carpeting the linoleum.
