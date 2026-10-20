@@ -2,9 +2,9 @@
 
 *A Security+ ports-and-protocols precursor • Hover over highlighted terms for exam definitions and supporting desk/network jargon.*
 
-It had been raining on the east side of the building since before I got in. I was three weeks into a job at a midsize MSP — long enough to say "let me look into that" more often than anyone wanted to hear. I kept index cards in the top drawer, service on the front and port number on the back, and I'd been through them enough times to run the whole stack in the shower. Nobody ever asked me to.
+It had been raining on the east side of the building since before I got in. I was eight months into my run at the operations center — past the rookie freeze of my first payroll ticket, but still carrying the habit of checking twice before touching a firewall. In my top drawer sat the red-banded index cards I had drafted at my kitchen table before the A+ exam, service on the front and port number on the back. I knew the numbers by heart now, but when the queue started barking, holding the paper kept my hands from jumping.
 
-Jules worked two cubes over and had the desk lead title. Nine years there. A bike helmet hung off her monitor arm, rain pants dried over the back of her chair, and a note stuck to the edge of her screen said just *which decision?*
+Two cubes over, Jules's bicycle helmet hung from the monitor arm, her rain shell dripping onto the rubber mat. The faded yellow sticky note on the corner of her screen still asked the only question that mattered on a Tuesday morning: *which decision?*
 
 The first ticket came in and I reached for the cards, and she caught me at it.
 

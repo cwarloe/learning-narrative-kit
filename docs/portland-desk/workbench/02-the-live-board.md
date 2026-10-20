@@ -31,7 +31,7 @@ prompt: "Clean technical cutaway illustration of a computer motherboard RAM slot
 
 
 ### The Situation
-It is 08:15 on a rain-swept August morning on the fourth floor of the Portland Regional Operations Center. You are Ethan Brooks, sitting across from Help Desk Lead Jules Mercer for your practical hiring trial. Your knuckles are still scarred from eighteen months of moving freight across concrete warehouse docks, and your backpack holds freshly laminated CompTIA study sheets. 
+It is 08:15 on a rain-swept August morning on the fourth floor of the Portland Regional Operations Center. You are Ethan Brooks, sitting beside Help Desk Lead Jules Mercer for your second-round practical working trial. Your portfolio holds your CompTIA A+ certificate and a signed recommendation from supervisor Ken out at the Gresham freight terminal. You are patched into the station fourteen training bridge on a dual-headset splitter. 
 
 Two rows over, workstation fourteen displays a high-priority ticket flagged in glowing amber text:
 
