@@ -6,7 +6,7 @@ A woman came into the Chewelah store in May with a photo of a goat on her phone 
 
 It was a cattle product. The dose for a forty-pound goat was not on the label, the woman guessed, and the goat was sick for two days. She came back to complain, and the Chewelah manager called Ruth Halvorsen, and Ruth called Dana Okafor into her office and closed the door.
 
-"Arlo used to answer those," Ruth said. "Arlo's gone. Half our counter people have been here less than a year. What do we do?"
+"Arlo used to answer those," Ruth said. "Arlo retires in June. Half our counter people have been here less than a year. What do we do?"
 
 Dana had a vendor pitch in her inbox that was exactly about this, and she had been ignoring it because it said "AI" eleven times on the first page.
 
@@ -16,7 +16,13 @@ The vendor's product was called Counter Assistant. Dana and Teo Vasquez took the
 
 The core was an [[expert_systems|expert system]]: software that mimicked a human expert in one well-defined area, in this case livestock health products. It had three main parts, and the vendor's engineer drew them on the shared screen.
 
-The [[knowledge_base|knowledge base]] was like a database, but besides facts — product names, active ingredients, approved species — it held rules: if the animal is a goat, and the product is labeled for cattle only, then do not recommend without a veterinarian's instruction. The [[inference_engine|inference engine]] was the part that applied the rules to a question, the way a DSS's model base applied models to data. And the [[explanation_facility|explanation facility]] told the clerk why it had recommended what it did, in plain language, so the clerk could tell the customer.
+The first box was the [[knowledge_base|knowledge base]].
+
+"So it's a database of answers," Teo said. "The clerk types 'goat' and it looks up 'goat.'"
+
+"A database would give you every dewormer that mentions goats," the engineer said. "This has the facts, product names and active ingredients and approved species, and it keeps rules on top of them." He typed one into the box: *if the animal is a goat and the product is labeled for cattle only, then do not recommend without a veterinarian's instruction.* "A lookup can't tell your clerk not to sell something. A rule can."
+
+The second box was the [[inference_engine|inference engine]], the part that applied the rules to a question, the way a DSS's model base applied models to data. The third was the [[explanation_facility|explanation facility]], which told the clerk how the system had reached its recommendation, in plain language, so the clerk could tell the customer.
 
 "That last part is the one I care about," Dana said. "If it just says 'buy this,' the clerk learns nothing and we're liable for whatever it says."
 
@@ -24,7 +30,13 @@ He ran two demos to show how the inference engine worked.
 
 In the first, a clerk entered what they knew: goat, adult, about forty pounds, visible weight loss, pale gums. The engine used [[forward_chaining|forward chaining]], running through its if–then rules one condition at a time from the facts toward a conclusion. It ended at: possible barber pole worm; recommend a goat-labeled product from this list; recommend a fecal test through a vet; do not recommend the cattle product.
 
-In the second, the clerk started from a product: can this customer use this dewormer on her goat? The engine used [[backward_chaining|backward chaining]], starting from the goal and working back to see which facts would have to be true for the answer to be yes. It asked the clerk two questions — is the goat lactating, and does the customer have a vet's prescription for off-label use — and when both answers were no, it said no.
+"Why would you ever run it backwards?" Dana asked. "That got the right answer."
+
+"Because that's not how the question usually comes in," the engineer said. "Half your customers walk up already holding a bottle. They don't want a diagnosis. They want to know if this one is okay."
+
+In the second demo the clerk started from the product: can this customer use this dewormer on her goat? The engine used [[backward_chaining|backward chaining]], starting from the goal and working back to see which facts would have to be true for the answer to be yes. It asked the clerk two questions, whether the goat was lactating and whether the customer had a vet's prescription for off-label use, and when both answers were no, it said no.
+
+"The first one asked about everything," the engineer said. "This one only asked what it needed to answer the question she brought in."
 
 The rules couldn't handle everything crisply. "Heavy" infestation, "young" animal, "thin" body condition were not yes-or-no facts. The system used [[fuzzy_logic|fuzzy logic]] for those, treating a goat as, say, seventy percent "thin" rather than forcing a yes or no, so the clerk could enter what they saw in ordinary words.
 
@@ -48,9 +60,35 @@ The vendor's sales rep, sensing a big customer, pitched everything else in the c
 
 For the web store, a chat assistant using [[natural_language_processing_nlp|natural-language processing]], so customers could type "what do I feed ducklings" and get an answer in ordinary language. Marcy Lund liked the idea and asked who would review its answers.
 
-For forecasting, a demand model built on [[machine_learning|machine learning]], which learned from three years of sales history without anyone writing the rules. Underneath, it used [[artificial_neural_networks_anns|artificial neural networks]], networks that learned patterns conventional programs struggled with, including seasonal ones a spreadsheet would miss. Teo ran a trial on chick-starter sales. It did well until a late May cold snap, which wasn't in the history, and then badly for three weeks.
+For forecasting, the rep had a demand model built on [[machine_learning|machine learning]].
 
-For propane delivery routes, a route optimizer using [[genetic_algorithms_gas|genetic algorithms]]: it generated hundreds of possible routes, kept the best, combined and mutated them over many generations, and converged on routes that were shorter than the ones the dispatcher built by hand. The dispatcher said the optimizer didn't know which roads washed out in March.
+"Who writes its rules?" Hank asked. The expert system's rules came from veterinarians in Iowa, and Ruth had already asked for a local vet to read them. Hank wanted to know who would be reading these.
+
+"Nobody writes them," the rep said. "It learns them from your sales history. Three years of it." Underneath were [[artificial_neural_networks_anns|artificial neural networks]], networks that learned patterns conventional programs struggled with, including seasonal ones a spreadsheet would miss.
+
+"Then what does the vet read?"
+
+The rep said the model checked itself against what actually sold. Teo ran a trial on chick-starter sales. It did well until a late May cold snap, which wasn't anywhere in the three years, and then badly for three weeks. There was no rule to correct, because nobody had written one.
+
+For propane delivery routes, the rep had a route optimizer built on [[genetic_algorithms_gas|genetic algorithms]].
+
+"So it works out the best route," Walt said. "Checks them all and picks one."
+
+"Nobody checks them all," the rep said. "Forty stops can go in more orders than there are seconds left in the century. It starts with a few hundred routes, most of them bad, keeps the shortest, and builds the next batch from those. Half of one good route spliced onto half of another. And now and then it swaps two stops at random."
+
+"Why random?" Teo asked. "You'd think you'd want it to stick with what's working."
+
+"That's how it gets stuck. If it only ever combines the routes it already has, it polishes one idea forever. Most random swaps make a route worse and get thrown out. Once in a while one finds a shortcut nobody would have tried, and that one gets bred."
+
+Her slide named the three steps: selection, crossover, mutation. After a few hundred generations the routes stopped getting shorter, and on last winter's tickets they beat the ones the dispatcher built by hand on most days.
+
+Teo had asked the propane dispatcher to listen in. He hadn't said anything yet.
+
+"Does it know Wolfe Road washes out in March?"
+
+The rep said it used the distances in the map data.
+
+"Then it doesn't," the dispatcher said. "In March the shortest route has me pulling a truck out of the ditch."
 
 For the DC, the rep had a video of a palletizing [[robots|robot]] stacking feed bags, the kind of repetitive, heavy work that injured people's backs. Eli Mendez, the DC's shift lead, watched it twice. He said his crew could use it on the forty-pound bags and that it would never handle the torn ones. The rep had an answer for that too: a [[soft_robot|soft robot]] gripper made of elastomer, cheaper and gentler than a metal one, that could pick up a bag that had started to split. The price was not cheap.
 

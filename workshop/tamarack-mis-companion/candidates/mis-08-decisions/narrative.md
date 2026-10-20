@@ -12,17 +12,19 @@ She asked Dana Okafor to come up with a way to decide that Walt would accept, wh
 
 Walt's first idea was that the computer should decide. "Teo's system orders feed by itself," he said. "Give it the four towns and let it pick."
 
-Dana answered with the reorder screen, because Walt trusted things he had seen work. Reordering bagged feed was a [[structured_decisions|structured decision]]. It came up every week, and it had a standard procedure: when stock fell below a reorder point, order a set quantity. Someone had written that procedure down once, and the system had run it ever since.
+Dana pulled up the reorder screen, because Walt trusted things he had seen work. Reordering bagged feed was a [[structured_decisions|structured decision]]: it came up every week, and it had a standard procedure. When stock fell below a reorder point, the system ordered a set quantity. Someone had written that rule once, and it had run ever since.
 
 "So write one for stores," Walt said.
 
-"Out of what? We don't open stores often enough to have a procedure. We'd be writing the rule and using it on the same day."
+"From what? We've never had to pick a town twice."
 
-Weekly staffing sat in between. It was a [[semistructured_decisions|semistructured decision]]: part of it could be computed from sales history and the schedule, and part of it was a manager knowing that the high school's spring break meant two fewer clerks. Where to put a twelfth store was an [[unstructured_decisions|unstructured decision]]. It happened once, and there was no procedure for it.
+"Ruth's staffing sheet does clerks."
 
-"So there's no formula," Walt said.
+"Half of it does," Dana said. The sheet worked out each store's clerks from sales history, and then every manager changed it, because the sheet didn't know the high school's spring break took two clerks away. Staffing was a [[semistructured_decisions|semistructured decision]]: a part the computer could calculate and a part somebody had to know. Where to put a twelfth store was an [[unstructured_decisions|unstructured decision]]. It happened once, and there was no procedure for it at all.
 
-"There's no formula for the whole thing. There are formulas for pieces of it, and the computer can do those."
+Walt thought about that. "So the computer does the pieces."
+
+"The pieces it has numbers for."
 
 Ruth laid out the process in four phases, because the consultant she'd once worked with had, and because it kept people from skipping to the end.
 

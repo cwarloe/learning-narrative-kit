@@ -10,13 +10,21 @@ Ruth had been asked to open a twelfth store within eighteen months, and she had 
 
 She asked Dana Okafor to come up with a way to decide that Walt would accept, which Dana understood to mean a way that would let him keep the napkin if the answer turned out to be Sandpoint.
 
-Dana started by sorting the decisions Tamarack made into the kinds she'd been taught, mostly so she could explain why this one was going to take longer than Walt wanted.
+Walt's first idea was that the computer should decide. "Teo's system orders feed by itself," he said. "Give it the four towns and let it pick."
 
-Reordering bagged feed was a [[structured_decisions|structured decision]]: there was a standard procedure — when stock fell below a reorder point, order a set quantity — and the system already did it automatically. Weekly staffing at the stores was a [[semistructured_decisions|semistructured decision]]. Part of it could be computed from sales history and the schedule, and part of it was a manager knowing that the high school's spring break meant two fewer clerks. Where to put a twelfth store was an [[unstructured_decisions|unstructured decision]]. It happened once, and there was no procedure for it.
+Dana pulled up the reorder screen, because Walt trusted things he had seen work. Reordering bagged feed was a [[structured_decisions|structured decision]]: it came up every week, and it had a standard procedure. When stock fell below a reorder point, the system ordered a set quantity. Someone had written that rule once, and it had run ever since.
 
-"So there's no formula," Walt said.
+"So write one for stores," Walt said.
 
-"There's no formula for the whole thing. There are formulas for pieces of it."
+"From what? We've never had to pick a town twice."
+
+"Ruth's staffing sheet does clerks."
+
+"Half of it does," Dana said. The sheet worked out each store's clerks from sales history, and then every manager changed it, because the sheet didn't know the high school's spring break took two clerks away. Staffing was a [[semistructured_decisions|semistructured decision]]: a part the computer could calculate and a part somebody had to know. Where to put a twelfth store was an [[unstructured_decisions|unstructured decision]]. It happened once, and there was no procedure for it at all.
+
+Walt thought about that. "So the computer does the pieces."
+
+"The pieces it has numbers for."
 
 Ruth laid out the process in four phases, because the consultant she'd once worked with had, and because it kept people from skipping to the end.
 
@@ -34,7 +42,17 @@ Three people built it, and they kept getting in each other's way.
 
 Ruth acted as the [[managerial_designer|managerial designer]]. She decided what management needed from the tool: comparing five alternatives on the same criteria, with first-year revenue and payback period. She didn't care how it was built.
 
-Teo acted as the [[technical_designer|technical designer]]. He cared about exactly the things Ruth didn't: where the data was stored, who could log in, how fast it ran, and whether customer addresses were safe in a consultant's cloud account. He insisted the addresses be reduced to ZIP code counts before they left Tamarack's network, which made the map less precise.
+Teo acted as the [[technical_designer|technical designer]]. He cared about exactly the things Ruth didn't: where the data was stored, who could log in, how fast it ran, and whether customer addresses were safe in a consultant's cloud account. That was where they collided.
+
+"I need the addresses," Ruth said. "That's how we found the people driving past Davenport."
+
+"You need to know how many people drive past Davenport," Teo said. "You don't need to know which ones. If Corinne's account gets breached, I don't want four hundred customers' home addresses in it."
+
+"That's a technical question."
+
+"That's why it's mine."
+
+They settled on ZIP code counts. The addresses stayed on Tamarack's network, and the map got less precise.
 
 The consultant, a former regional planner named Corinne, acted as the [[model_builder|model builder]]. Her job was to explain what the forecasting model did, what inputs it accepted, how to read its output, and what it assumed. Its biggest assumption was that a new store would perform like the most similar existing store. Davenport's most similar store was Colville. Sandpoint's most similar store didn't exist; Tamarack had never had a store in a town with that many weekend horse owners and vacation homes.
 
@@ -46,13 +64,21 @@ Walt did not want to run the DSS. He wanted to look at it.
 
 Corinne built him a view in the company's [[executive_information_systems_eiss|executive information system]], which already showed him weekly sales. It had a [[digital_dashboard|digital dashboard]] up top, a single page of charts pulling from several sources: the five alternatives side by side, their projected first-year sales, and their payback periods. From there he could drill down: click Davenport, see the customer map; click the map, see the ZIP codes; click a ZIP code, see the livestock census.
 
+Walt clicked through it for twenty minutes and came out convinced. "Sandpoint holds up," he said. "I went all the way down to the ZIP codes."
+
+"Those are the census numbers," Corinne said. "They're real. The dashboard shows you what the model concluded and the data underneath it. It doesn't show you what the model assumed."
+
+"Which is?"
+
+"That Sandpoint will sell like whatever store it most resembles. And it doesn't resemble any of them." The assumption lived in the model base, two layers below anything Walt could click.
+
 Ruth told Dana afterward that the EIS, the DSS, and the reorder system were all one family of things, the [[management_support_systems_msss|management support systems]], each built to support one kind of decision. The trouble with the family, Ruth said, was that the one Walt saw most was the one with the least model behind it.
 
 * * *
 
 The [[choice_phase|choice phase]] came on a Thursday. Davenport led on every criterion except lease cost. Its payback period was under three years. Sandpoint's was five, with the widest error range of the five. The delivery route came in second, which Walt said proved the model was broken.
 
-He spent ten minutes drilling down on Sandpoint. Then he asked Corinne what would have to be true for Sandpoint to win. She ran it: Sandpoint's horse owners would have to spend like Colville's ranchers. Walt said that was possible. Corinne said it was possible.
+He went back to Sandpoint one more time. Then he asked Corinne what would have to be true for Sandpoint to win. She ran it: Sandpoint's horse owners would have to spend like Colville's ranchers. Walt said that was possible. Corinne said it was possible.
 
 Walt chose Davenport. He also asked that Sandpoint stay on the dashboard as a comparison, so that if Davenport underperformed, everyone would see what they'd passed up.
 

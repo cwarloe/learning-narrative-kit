@@ -1,6 +1,6 @@
 # Plan: tamarack-mis-companion
 
-Brief: `briefs/tamarack-mis-companion.brief.yaml` · generated 2026-10-12 · **approved** by the author
+Brief: `briefs/tamarack-mis-companion.brief.yaml` · generated 2026-10-20 · **approved** by the author
 
 10 chapters · 264 terms · definitions: source 264, confirmed 0, proposed 0, missing 0 · 287 suggested dependencies
 
@@ -101,6 +101,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 - **Decision:** Davenport
 - **Cost:** Walt's friend Jim Sorensen is told to wait a year
 - **Carries forward:** Davenport (Excel 8–10)
+- **Notes:** Revised 2026-10-20 with the rule-8 dialogue pattern (misconception voiced and corrected; why/how questions at the chapter's hinges).
 
 ### ch09 · The Counter Assistant
 
@@ -110,6 +111,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 - **Decision:** pilot it with human override
 - **Cost:** correct overrides are logged as errors
 - **Carries forward:** Counter Assistant lives in its own cloud (ch10 multicloud)
+- **Notes:** Revised 2026-10-20 with the rule-8 dialogue pattern (misconception voiced and corrected; why/how questions at the chapter's hinges).
 
 ### ch10 · The Closet Gets Too Hot
 
@@ -165,7 +167,7 @@ Most depended-on concepts (introduce them early and well): data (73), Informatio
 | bus | ch02 | computer |  |
 | cache RAM | ch02 | random_access_memory_ram |  |
 | central processing unit (CPU) | ch02 | arithmetic_logic_unit_alu, computer, control_unit |  |
-| computer | ch02 | data, information | ch04, ch05, ch07, ch10 |
+| computer | ch02 | data, information | ch04, ch05, ch07, ch08, ch10 |
 | control unit | ch02 | computer |  |
 | CPU case | ch02 | central_processing_unit_cpu, computer |  |
 | disk drive | ch02 | information |  |
