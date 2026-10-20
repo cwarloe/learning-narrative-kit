@@ -71,12 +71,12 @@ Character concept sheet for Ethan Brooks, 19-year-old frontline help desk techni
 
 ### Character Sheet: Jules Mercer (3:4 Ratio)
 ```text
-Character concept sheet for Jules Mercer, 38-year-old Level 1 Help Desk Lead, in clean technical graphic novel line art style. Practical, authoritative presence, short practical dark hair with silver streaks, wearing a comfortable flannel shirt over a black t-shirt, wired call-center headset pushed back over one ear, ceramic coffee mug in one hand. Calm, observant expression of an experienced systems troubleshooter. Three panel poses: leaning over a technician's shoulder pointing at a terminal screen, listening on headset, and sketching a network diagram on a whiteboard. Bright even lighting, clean lines, no text, no words. 3:4 ratio.
+Character concept sheet for Jules Mercer, 34-year-old female Level 1 Help Desk Lead, in clean technical graphic novel line art style. Practical, authoritative presence, sharp intelligent facial features, shoulder-length straight dark hair with subtle silver streaks tucked behind one ear, wearing a comfortable flannel shirt or dark blazer over a black t-shirt, wired call-center headset pushed back over one ear, ceramic coffee mug in one hand, matte silver commuter bicycle helmet nearby. Calm, observant mentor expression of an experienced systems troubleshooter. Three panel poses: leaning over a technician's shoulder pointing at a terminal screen, listening on headset, and sketching a network diagram on a whiteboard. Bright even lighting, clean lines, no text, no words. 3:4 ratio.
 ```
 
-### Episode 00: The Guts of the OptiPlex (4:3 Ratio)
+### Episode 00: The Swollen Capacitors & Unseated Memory (4:3 Ratio)
 ```text
-Clean technical cutaway illustration of an open desktop PC tower chassis on a workshop table under bright, even inspection lighting. Four brittle dry-rotted rubber bands hold a 3.5-inch IDE hard drive with a grey ribbon cable. Several bulging motherboard capacitors with dried brown crust. Dust-caked CPU heatsink fan. Clean ESD mat background, crisp fine ink linework, no heavy shadows, no text, no words. 4:3 ratio.
+Clean technical cutaway illustration in Pacific Northwest instructional manual style, crisp uniform ink linework, bright even inspection lighting, clean ESD mat background, no heavy dark shadows. Macro technical inspection shot of a desktop PC motherboard interior: in sharp foreground focus are three cylindrical electrolytic capacitors on the green PCB. Two capacitors have prominently domed, bulging silver tops with cracked score lines and dried crusty brown electrolyte residue leaking from the seam. The third capacitor is completely flat and healthy for visual contrast. Directly behind them is a dual-channel memory slot holding a green RAM module with one white plastic retention latch broken off at an angle. Crisp fine ink linework, true component colors, clean unlabeled surfaces, no text, no letters, no words. 4:3 ratio.
 ```
 
 ### Episode 01: The ATX 24-Pin Multimeter Probing (16:9 Ratio)
