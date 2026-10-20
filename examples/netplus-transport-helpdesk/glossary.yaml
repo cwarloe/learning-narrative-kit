@@ -1,0 +1,63 @@
+bank_id: netplus-n10-008-transport
+title: "Network+ N10-008/009 — TCP Transport Mechanics, Socket States, & Port Diagnostics (Help-Desk Precursor)"
+source: "CompTIA Network+ N10-008/009 objectives (TCP three-way handshake, socket states, listening ports, TCP reset vs timeout, ephemeral ports, and port exhaustion)"
+terms:
+  - id: tcp_handshake
+    title: TCP Three-Way Handshake
+    definition: "The connection establishment process in Transmission Control Protocol where a client and server exchange SYN, SYN-ACK, and ACK packets to synchronize sequence numbers and allocate resources before data transfer."
+    context: "Guarantees reliable bidirectional delivery and sequence synchronization; if the SYN packet drops or encounters no listening service, data exchange cannot begin."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 1.1 — OSI and TCP/IP transport models"
+      - "CompTIA Network+ N10-009 Domain 1.1 — Network protocols and TCP connection establishment"
+    tags: [tcp, transport, handshake, network-plus]
+    tier: exam
+
+  - id: socket_state
+    title: Socket State
+    definition: "The operational status of a network communication endpoint within the TCP state machine, such as LISTENING, ESTABLISHED, CLOSE_WAIT, or TIME_WAIT."
+    context: "Inspected via diagnostic utilities such as netstat or ss to verify whether a server daemon is awaiting connections or whether client sockets are stalled in teardown."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 1.4 — Ports, protocols, and socket states"
+      - "CompTIA Network+ N10-009 Domain 4.1 — Troubleshooting transport layer connectivity"
+    tags: [tcp, socket, netstat, network-plus]
+    tier: exam
+
+  - id: listening_port
+    title: Listening Port
+    definition: "A network port bound by a background server daemon or application process configured to accept incoming connection requests from remote clients."
+    context: "Represented in operating system tables as 0.0.0.0:<port> or [::]:<port> in the LISTENING state; connections to unbound ports are actively refused or dropped."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 1.4 — Network services and listening ports"
+      - "CompTIA Security+ SY0-701 Domain 2.1 — Port security and service exposure"
+    tags: [tcp, ports, services, network-plus]
+    tier: exam
+
+  - id: reset_packet
+    title: TCP Reset (RST)
+    definition: "A TCP control segment with the RST flag asserted, sent by a host to abruptly terminate a connection or actively reject an inbound packet directed to an unbound port."
+    context: "Causes client applications to report 'Connection refused', confirming that the physical link and routing are functional but no listening daemon accepted the SYN packet."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 4.1 — Network troubleshooting and packet analysis"
+      - "CompTIA Network+ N10-009 Domain 4.1 — Diagnosing TCP connection rejections and resets"
+    tags: [tcp, flags, troubleshooting, network-plus]
+    tier: exam
+
+  - id: ephemeral_port
+    title: Ephemeral Port
+    definition: "A dynamic, short-lived transport layer port assigned automatically by a client operating system from a high-numbered range (typically 49152 to 65535) to identify an outbound session."
+    context: "Combined with the client IP, destination IP, and destination port to forge the unique 4-tuple socket identifier required for bidirectional TCP session tracking."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 1.4 — Port ranges and ephemeral dynamic assignment"
+      - "CompTIA Network+ N10-009 Domain 1.4 — Transport layer addressing and port allocations"
+    tags: [tcp, ports, client, network-plus]
+    tier: exam
+
+  - id: port_exhaustion
+    title: Ephemeral Port Exhaustion
+    definition: "A state where a client operating system depletes its entire range of dynamic outbound ports, preventing any new outbound network connections from establishing."
+    context: "Frequently triggered by high-frequency scripts or automated backup jobs that rapidly open and close connections, stranding thousands of sockets in the TIME_WAIT state."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 4.1 — Diagnosing socket and resource exhaustion"
+      - "CompTIA Network+ N10-009 Domain 4.1 — Troubleshooting network performance and socket bottlenecks"
+    tags: [tcp, sockets, performance, troubleshooting, network-plus]
+    tier: exam

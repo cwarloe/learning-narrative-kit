@@ -1,0 +1,4054 @@
+{
+  "ram_memory": {
+    "id": "ram_memory",
+    "title": "RAM (Random Access Memory)",
+    "definition": "High-speed volatile semiconductor memory utilized by the processor to hold active program instructions, operating system kernel routines, and working data sets while powered.",
+    "context": "Loses all stored data instantly when electrical power is removed or interrupted during a reboot.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 3.1: Resolve problems with motherboard, RAM, CPU, and power"
+    ],
+    "tags": [
+      "hardware",
+      "memory",
+      "architecture"
+    ],
+    "tier": "exam"
+  },
+  "non_volatile_storage": {
+    "id": "non_volatile_storage",
+    "title": "Non-Volatile Storage",
+    "definition": "Secondary data persistence hardware such as solid-state drives, magnetic hard disks, or flash memory that retains stored binary data without continuous electrical power.",
+    "context": "Houses operating system installations, permanent application binaries, user documents, and system configuration registries across reboots.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 3.2: Troubleshoot storage drives and RAID arrays"
+    ],
+    "tags": [
+      "hardware",
+      "storage",
+      "architecture"
+    ],
+    "tier": "exam"
+  },
+  "post_routine": {
+    "id": "post_routine",
+    "title": "POST (Power-On Self-Test)",
+    "definition": "An initial diagnostic sequence executed by system firmware (BIOS or UEFI) immediately upon startup to verify and initialize core hardware components before loading the OS.",
+    "context": "Validates CPU registers, system memory integrity, display controllers, and bus interfaces, halting or emitting diagnostic beep/hex codes if essential hardware fails.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 3.1: Motherboard and boot sequence troubleshooting"
+    ],
+    "tags": [
+      "hardware",
+      "firmware",
+      "boot"
+    ],
+    "tier": "exam"
+  },
+  "network_interface_card": {
+    "id": "network_interface_card",
+    "title": "NIC (Network Interface Card)",
+    "definition": "A hardware expansion card or onboard controller that implements physical Layer 1 signaling and Layer 2 data link framing to connect a computer to a local network.",
+    "context": "Converts internal digital system bus transactions into serialized electrical, optical, or radio transmissions across physical network media.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 2.1: Compare and contrast network hardware devices"
+    ],
+    "tags": [
+      "networking",
+      "hardware",
+      "layer1"
+    ],
+    "tier": "exam"
+  },
+  "mac_address": {
+    "id": "mac_address",
+    "title": "MAC Address",
+    "definition": "A globally unique 48-bit physical identifier burned into the firmware of a network interface card by the manufacturer to facilitate Layer 2 frame delivery on local Ethernet segments.",
+    "context": "Operates exclusively within a single local broadcast domain, remaining unchanged across networks and never routing across internet boundaries.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 2.4: Summarize basic networking concepts"
+    ],
+    "tags": [
+      "networking",
+      "layer2",
+      "addressing"
+    ],
+    "tier": "exam"
+  },
+  "ip_address": {
+    "id": "ip_address",
+    "title": "IP Address",
+    "definition": "A logical 32-bit (IPv4) or 128-bit (IPv6) numerical identifier assigned to a network interface to enable routable packet delivery across interconnected Layer 3 network domains.",
+    "context": "Assigned dynamically via DHCP or statically by network administrators, reflecting the host's topological location on a logical subnet rather than its physical hardware identity.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 2.6: Configure basic networking host settings"
+    ],
+    "tags": [
+      "networking",
+      "layer3",
+      "addressing"
+    ],
+    "tier": "exam"
+  },
+  "post_code": {
+    "id": "post_code",
+    "title": "POST Code",
+    "definition": "A hexadecimal diagnostic code output by system firmware during the Power-On Self-Test to identify hardware initialization progress and specific subsystem failures.",
+    "context": "Displayed on onboard seven-segment displays or port 80h diagnostic cards before video display drivers initialize.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 3.1: Given a scenario, resolve problems with motherboard, RAM, CPU, and power"
+    ],
+    "tags": [
+      "hardware",
+      "diagnostics"
+    ],
+    "tier": "exam"
+  },
+  "rs232_serial": {
+    "id": "rs232_serial",
+    "title": "RS-232 Serial",
+    "definition": "A legacy standard for serial binary data transmission between data terminal equipment (DTE) and data circuit-terminating equipment (DCE), commonly utilizing DB-9 connectors.",
+    "context": "Frequently deployed in rugged industrial equipment, automated weighing scales, barcode scanners, and network management consoles.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 3.4: Given a scenario, troubleshoot and resolve peripheral and display problems"
+    ],
+    "tags": [
+      "hardware",
+      "serial"
+    ],
+    "tier": "exam"
+  },
+  "baud_rate": {
+    "id": "baud_rate",
+    "title": "Baud Rate",
+    "definition": "The rate at which signal states or electrical symbols change per second along a serial communication channel, requiring matching transmitter and receiver clocking.",
+    "context": "In binary serial links, a mismatch between sender and receiver baud rates creates severe frame desynchronization and unreadable garbled characters.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 3.4: Troubleshoot peripheral interfaces and communications"
+    ],
+    "tags": [
+      "serial",
+      "communication"
+    ],
+    "tier": "exam"
+  },
+  "multimeter": {
+    "id": "multimeter",
+    "title": "Multimeter",
+    "definition": "A handheld electronic test instrument used to measure electrical voltage (AC/DC), resistance (ohms), and current (amperes) across hardware circuits.",
+    "context": "Used by technicians to test power supply rail tolerances (+12V, +5V, +3.3V) and trace broken or grounded conductors.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 3.1: Power supply troubleshooting and voltage rail verification"
+    ],
+    "tags": [
+      "hardware",
+      "electrical"
+    ],
+    "tier": "exam"
+  },
+  "continuity_test": {
+    "id": "continuity_test",
+    "title": "Continuity Test",
+    "definition": "An electrical test performed with a multimeter to verify an unbroken, low-resistance conduction path between two points in a circuit or conductor.",
+    "context": "Produces an audible tone when a continuous circuit exists, isolating severed copper traces, short circuits to chassis ground, or broken cable cores.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 3.1: Motherboard and cabling fault isolation"
+    ],
+    "tags": [
+      "hardware",
+      "electrical"
+    ],
+    "tier": "exam"
+  },
+  "dip_switch": {
+    "id": "dip_switch",
+    "title": "DIP Switch",
+    "definition": "Dual in-line package manual electrical switches mounted on a printed circuit board to configure hardware parameters and operational modes directly.",
+    "context": "Commonly used on embedded motherboards, industrial scales, and expansion cards to configure baud rates, hardware addresses, or bus timings without software.",
+    "refs": [
+      "CompTIA A+ Core 1 (220-1101) Objective 3.1: Motherboard configuration and embedded jumpers"
+    ],
+    "tags": [
+      "hardware",
+      "embedded"
+    ],
+    "tier": "support"
+  },
+  "troubleshooting_methodology": {
+    "id": "troubleshooting_methodology",
+    "title": "Troubleshooting Methodology",
+    "definition": "The standardized six-step diagnostic framework used to identify, isolate, resolve, and document computing failures.",
+    "context": "On the desk, it is the discipline of binary search: eliminating half the potential failure domains with every test before touching settings.",
+    "refs": [
+      "CompTIA A+ Core 2 (220-1102) Objective 1.4"
+    ],
+    "tags": [
+      "methodology",
+      "diagnostic"
+    ],
+    "tier": "exam"
+  },
+  "safe_mode": {
+    "id": "safe_mode",
+    "title": "Safe Mode",
+    "definition": "A diagnostic boot state that loads Windows with a minimal set of essential drivers and system services.",
+    "context": "Used to determine whether a system crash or hang originates in base operating system files or third-party software and drivers.",
+    "refs": [
+      "CompTIA A+ Core 2 (220-1102) Objective 1.4"
+    ],
+    "tags": [
+      "boot",
+      "diagnostics"
+    ],
+    "tier": "exam"
+  },
+  "event_viewer": {
+    "id": "event_viewer",
+    "title": "Event Viewer",
+    "definition": "A Microsoft Management Console snap-in that logs system, application, and security messages, errors, and audit events.",
+    "context": "Provides authoritative timestamps and error codes (such as Event IDs 1000 and 41) that distinguish software crashes from kernel power cuts.",
+    "refs": [
+      "CompTIA A+ Core 2 (220-1102) Objective 1.4"
+    ],
+    "tags": [
+      "logging",
+      "triage"
+    ],
+    "tier": "exam"
+  },
+  "clean_boot": {
+    "id": "clean_boot",
+    "title": "Clean Boot",
+    "definition": "An operating system startup state achieved by disabling all non-Microsoft background services and startup applications.",
+    "context": "Isolates third-party software conflicts through systematic binary elimination without disabling essential Windows core functions.",
+    "refs": [
+      "CompTIA A+ Core 2 (220-1102) Objective 1.4"
+    ],
+    "tags": [
+      "troubleshooting",
+      "services"
+    ],
+    "tier": "exam"
+  },
+  "device_driver": {
+    "id": "device_driver",
+    "title": "Device Driver",
+    "definition": "A specialized software program that allows the operating system kernel to communicate with and control physical hardware components.",
+    "context": "Corrupted or mismatched graphics drivers running in kernel space can lock the entire desktop when applications invoke hardware acceleration.",
+    "refs": [
+      "CompTIA A+ Core 2 (220-1102) Objective 1.1"
+    ],
+    "tags": [
+      "hardware",
+      "kernel"
+    ],
+    "tier": "exam"
+  },
+  "bitlocker_recovery": {
+    "id": "bitlocker_recovery",
+    "title": "BitLocker Recovery Key",
+    "definition": "A 48-digit numerical password required to unlock a BitLocker-encrypted volume when platform configuration registers (PCRs) detect hardware or firmware changes.",
+    "context": "Stored in Active Directory or Azure AD and released to users only after out-of-band identity verification to prevent unauthorized data access.",
+    "refs": [
+      "CompTIA A+ Core 2 (220-1102) Objective 2.8"
+    ],
+    "tags": [
+      "security",
+      "encryption"
+    ],
+    "tier": "exam"
+  },
+  "apipa_address": {
+    "id": "apipa_address",
+    "title": "APIPA (Automatic Private IP Addressing)",
+    "definition": "A link-local IPv4 address autoconfiguration mechanism where a host assigns itself an address in the 169.254.0.1 to 169.254.255.254 range when a DHCP server fails to respond.",
+    "context": "Indicates that physical Layer 1 and 2 links are operational, but DHCP DORA broadcast discovery failed to cross the local broadcast domain or VLAN trunk.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 \u2014 IPv4 addressing and link-local autoconfiguration",
+      "CompTIA Network+ N10-009 Domain 4.1 \u2014 Troubleshooting IP configuration and DHCP failures"
+    ],
+    "tags": [
+      "ipv4",
+      "dhcp",
+      "troubleshooting",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "subnet_mask": {
+    "id": "subnet_mask",
+    "title": "Subnet Mask",
+    "definition": "A 32-bit bitmask that delineates the network prefix from the host identifier within an IPv4 address to determine whether a destination sits on the local or a remote subnet.",
+    "context": "Applied via bitwise logical ANDing by the host operating system to determine whether an IP packet can be delivered directly via local ARP or must be forwarded to the default gateway.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 \u2014 IPv4 subnetting and classless inter-domain routing",
+      "CompTIA Network+ N10-009 Domain 1.4 \u2014 Network addressing and subnet masks"
+    ],
+    "tags": [
+      "ipv4",
+      "subnetting",
+      "cidr",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "default_gateway": {
+    "id": "default_gateway",
+    "title": "Default Gateway",
+    "definition": "A Layer 3 router interface on the local subnet to which a host forwards IP packets destined for remote networks outside its own broadcast domain.",
+    "context": "Hosts resolve the default gateway's Layer 2 MAC address via ARP and encapsulate outbound remote packets in Ethernet frames directed to that router interface.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 \u2014 Default gateways and Layer 3 routing primitives",
+      "CompTIA Network+ N10-009 Domain 4.1 \u2014 Troubleshooting routing and gateway reachability"
+    ],
+    "tags": [
+      "routing",
+      "ipv4",
+      "gateway",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "arp_cache": {
+    "id": "arp_cache",
+    "title": "ARP Cache",
+    "definition": "A volatile local operating system table that maps Layer 3 IPv4 addresses to their corresponding Layer 2 physical MAC addresses for hosts on the local network segment.",
+    "context": "Inspected via `arp -a`, entries expire dynamically to reflect network changes, but can be poisoned or cause flapping during duplicate IP address conflicts.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 \u2014 Address Resolution Protocol and MAC binding",
+      "CompTIA Network+ N10-009 Domain 4.1 \u2014 Diagnosing duplicate IPs and Layer 2 flapping"
+    ],
+    "tags": [
+      "arp",
+      "layer2",
+      "layer3",
+      "troubleshooting",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "broadcast_domain": {
+    "id": "broadcast_domain",
+    "title": "Broadcast Domain",
+    "definition": "A logical division of a computer network within which all connected nodes can reach each other by Layer 2 broadcast transmission.",
+    "context": "Bounded by Layer 3 routers and separated by VLAN configurations on switches; DHCP Discover and ARP request broadcasts are confined within this boundary.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 \u2014 Broadcast domains, collision domains, and VLAN segmentation",
+      "CompTIA Network+ N10-009 Domain 2.1 \u2014 Switching features and VLAN trunking"
+    ],
+    "tags": [
+      "vlan",
+      "switching",
+      "layer2",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "dhcp_dora": {
+    "id": "dhcp_dora",
+    "title": "DHCP DORA Process",
+    "definition": "The four-step client-server state machine (Discover, Offer, Request, Acknowledge) used by Dynamic Host Configuration Protocol to automatically lease an IP address and network configuration to a client.",
+    "context": "Operates over UDP ports 67 (server) and 68 (client); requires a DHCP relay agent (ip helper-address) on routers when clients and DHCP servers occupy different broadcast domains.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 \u2014 DHCP operation and address allocation",
+      "CompTIA Network+ N10-009 Domain 1.4 \u2014 Network services and dynamic configuration"
+    ],
+    "tags": [
+      "dhcp",
+      "udp",
+      "protocols",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "split_dns": {
+    "id": "split_dns",
+    "title": "Split-Horizon DNS",
+    "definition": "A domain name system architecture where internal and external queries for the same domain receive different IP address answers based on the client's network vantage point.",
+    "context": "Resolves private RFC 1918 addresses to hosts on the corporate LAN while providing external gateways or public landing pages to queries originating from the public internet.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.5 \u2014 DNS services and architectures",
+      "CompTIA Security+ SY0-701 Domain 2.5 \u2014 Network architecture and segmentation"
+    ],
+    "tags": [
+      "dns",
+      "architecture",
+      "security"
+    ],
+    "tier": "exam"
+  },
+  "dns_leak": {
+    "id": "dns_leak",
+    "title": "DNS Leak",
+    "definition": "A network configuration flaw where DNS requests from a VPN-connected host are inadvertently transmitted across unencrypted local network adapters to a public resolver rather than through the secure VPN tunnel.",
+    "context": "Occurs frequently in split-tunneling VPN configurations when client multi-homed resolution logic prioritizes the local physical gateway over the virtual tunnel adapter.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 4.2 \u2014 Troubleshooting remote access and VPN issues",
+      "CompTIA Security+ SY0-701 Domain 2.5 \u2014 Secure remote access configurations"
+    ],
+    "tags": [
+      "vpn",
+      "dns",
+      "security"
+    ],
+    "tier": "exam"
+  },
+  "hosts_file": {
+    "id": "hosts_file",
+    "title": "Hosts File",
+    "definition": "An operating system text file that provides static, local mappings between hostnames and IP addresses, evaluated prior to querying external DNS servers.",
+    "context": "Located at C:\\Windows\\System32\\drivers\\etc\\hosts on Windows systems, often modified for temporary testing or exploited by malware to hijack web traffic.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 4.1 \u2014 Network troubleshooting tools and client resolver sequence",
+      "CompTIA A+ Core 2 220-1102 \u2014 Windows configuration and security files"
+    ],
+    "tags": [
+      "dns",
+      "troubleshooting",
+      "windows"
+    ],
+    "tier": "exam"
+  },
+  "recursive_resolver": {
+    "id": "recursive_resolver",
+    "title": "Recursive Resolver",
+    "definition": "A DNS server that accepts queries from client stub resolvers and traverses the hierarchical DNS tree to obtain and return the definitive answer to the requester.",
+    "context": "Caches resolution answers locally according to record time-to-live values to accelerate subsequent queries from corporate workstations.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.5 \u2014 DNS hierarchy and query flow"
+    ],
+    "tags": [
+      "dns",
+      "networking",
+      "infrastructure"
+    ],
+    "tier": "exam"
+  },
+  "dns_ttl": {
+    "id": "dns_ttl",
+    "title": "DNS TTL (Time-to-Live)",
+    "definition": "A numeric value configured in a DNS record that dictates the number of seconds a recursive resolver or client cache is permitted to store the record before requesting a fresh query.",
+    "context": "Lower values enable rapid zone updates during server migrations but increase server query load, while higher values prolong resolution delays during cutovers.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.5 \u2014 DNS record parameters and caching"
+    ],
+    "tags": [
+      "dns",
+      "caching",
+      "performance"
+    ],
+    "tier": "exam"
+  },
+  "cname_record": {
+    "id": "cname_record",
+    "title": "CNAME Record",
+    "definition": "A Canonical Name record in DNS that aliases one domain name or subdomain to another fully qualified domain name rather than directly pointing to an IP address.",
+    "context": "Requires the resolving client to perform an additional lookup step to resolve the canonical target name, widely used for cloud service and CDN routing.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.5 \u2014 Common DNS record types"
+    ],
+    "tags": [
+      "dns",
+      "records"
+    ],
+    "tier": "exam"
+  },
+  "tcp_handshake": {
+    "id": "tcp_handshake",
+    "title": "TCP Three-Way Handshake",
+    "definition": "The connection establishment process in Transmission Control Protocol where a client and server exchange SYN, SYN-ACK, and ACK packets to synchronize sequence numbers and allocate resources before data transfer.",
+    "context": "Guarantees reliable bidirectional delivery and sequence synchronization; if the SYN packet drops or encounters no listening service, data exchange cannot begin.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.1 \u2014 OSI and TCP/IP transport models",
+      "CompTIA Network+ N10-009 Domain 1.1 \u2014 Network protocols and TCP connection establishment"
+    ],
+    "tags": [
+      "tcp",
+      "transport",
+      "handshake",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "socket_state": {
+    "id": "socket_state",
+    "title": "Socket State",
+    "definition": "The operational status of a network communication endpoint within the TCP state machine, such as LISTENING, ESTABLISHED, CLOSE_WAIT, or TIME_WAIT.",
+    "context": "Inspected via diagnostic utilities such as netstat or ss to verify whether a server daemon is awaiting connections or whether client sockets are stalled in teardown.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 \u2014 Ports, protocols, and socket states",
+      "CompTIA Network+ N10-009 Domain 4.1 \u2014 Troubleshooting transport layer connectivity"
+    ],
+    "tags": [
+      "tcp",
+      "socket",
+      "netstat",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "listening_port": {
+    "id": "listening_port",
+    "title": "Listening Port",
+    "definition": "A network port bound by a background server daemon or application process configured to accept incoming connection requests from remote clients.",
+    "context": "Represented in operating system tables as 0.0.0.0:<port> or [::]:<port> in the LISTENING state; connections to unbound ports are actively refused or dropped.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 \u2014 Network services and listening ports",
+      "CompTIA Security+ SY0-701 Domain 2.1 \u2014 Port security and service exposure"
+    ],
+    "tags": [
+      "tcp",
+      "ports",
+      "services",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "reset_packet": {
+    "id": "reset_packet",
+    "title": "TCP Reset (RST)",
+    "definition": "A TCP control segment with the RST flag asserted, sent by a host to abruptly terminate a connection or actively reject an inbound packet directed to an unbound port.",
+    "context": "Causes client applications to report 'Connection refused', confirming that the physical link and routing are functional but no listening daemon accepted the SYN packet.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 4.1 \u2014 Network troubleshooting and packet analysis",
+      "CompTIA Network+ N10-009 Domain 4.1 \u2014 Diagnosing TCP connection rejections and resets"
+    ],
+    "tags": [
+      "tcp",
+      "flags",
+      "troubleshooting",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "ephemeral_port": {
+    "id": "ephemeral_port",
+    "title": "Ephemeral Port",
+    "definition": "A dynamic, short-lived transport layer port assigned automatically by a client operating system from a high-numbered range (typically 49152 to 65535) to identify an outbound session.",
+    "context": "Combined with the client IP, destination IP, and destination port to forge the unique 4-tuple socket identifier required for bidirectional TCP session tracking.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 \u2014 Port ranges and ephemeral dynamic assignment",
+      "CompTIA Network+ N10-009 Domain 1.4 \u2014 Transport layer addressing and port allocations"
+    ],
+    "tags": [
+      "tcp",
+      "ports",
+      "client",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "port_exhaustion": {
+    "id": "port_exhaustion",
+    "title": "Ephemeral Port Exhaustion",
+    "definition": "A state where a client operating system depletes its entire range of dynamic outbound ports, preventing any new outbound network connections from establishing.",
+    "context": "Frequently triggered by high-frequency scripts or automated backup jobs that rapidly open and close connections, stranding thousands of sockets in the TIME_WAIT state.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 4.1 \u2014 Diagnosing socket and resource exhaustion",
+      "CompTIA Network+ N10-009 Domain 4.1 \u2014 Troubleshooting network performance and socket bottlenecks"
+    ],
+    "tags": [
+      "tcp",
+      "sockets",
+      "performance",
+      "troubleshooting",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "authentication": {
+    "id": "authentication",
+    "title": "Authentication",
+    "definition": "Proving a claimed identity is genuine \u2014 typically with something you know, have, or are.",
+    "context": "Distinct from authorization (what you may do after you prove who you are).",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 authentication methods / identity"
+    ],
+    "tags": [
+      "aaa",
+      "identity"
+    ],
+    "tier": "exam"
+  },
+  "authorization": {
+    "id": "authorization",
+    "title": "Authorization",
+    "definition": "Deciding what an authenticated identity is allowed to do (permissions, roles, resources).",
+    "context": "Often shortened to authz; not the same as authentication.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 authorization / access control"
+    ],
+    "tags": [
+      "aaa",
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "accounting": {
+    "id": "accounting",
+    "title": "Accounting",
+    "definition": "Recording what an authenticated identity did \u2014 logs, sessions, and audit trails (the third A in AAA).",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 AAA / auditing"
+    ],
+    "tags": [
+      "aaa"
+    ],
+    "tier": "exam"
+  },
+  "identification": {
+    "id": "identification",
+    "title": "Identification",
+    "definition": "Claiming an identity (username, badge ID, email) before authentication proves it.",
+    "context": "Saying who you are is not the same as proving it.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 identity concepts"
+    ],
+    "tags": [
+      "identity"
+    ],
+    "tier": "exam"
+  },
+  "something_you_know": {
+    "id": "something_you_know",
+    "title": "Something you know",
+    "definition": "Knowledge factor \u2014 password, PIN, passphrase, or security question answer.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 authentication factors"
+    ],
+    "tags": [
+      "factors"
+    ],
+    "tier": "exam"
+  },
+  "something_you_have": {
+    "id": "something_you_have",
+    "title": "Something you have",
+    "definition": "Possession factor \u2014 phone authenticator, hardware token, security key, or smart card.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 authentication factors"
+    ],
+    "tags": [
+      "factors"
+    ],
+    "tier": "exam"
+  },
+  "something_you_are": {
+    "id": "something_you_are",
+    "title": "Something you are",
+    "definition": "Inherence factor \u2014 biometrics such as fingerprint, face, or iris.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 authentication factors / biometrics"
+    ],
+    "tags": [
+      "factors"
+    ],
+    "tier": "exam"
+  },
+  "somewhere_you_are": {
+    "id": "somewhere_you_are",
+    "title": "Somewhere you are",
+    "definition": "Location / context attribute \u2014 geo, network segment, or trusted site used as an additional signal.",
+    "context": "Often treated as a contextual attribute rather than a classic factor.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 authentication attributes / context"
+    ],
+    "tags": [
+      "factors"
+    ],
+    "tier": "exam"
+  },
+  "single_factor": {
+    "id": "single_factor",
+    "title": "Single-factor authentication",
+    "definition": "Using only one authentication factor type. Password plus PIN is still single-factor \u2014 both are something you know.",
+    "context": "Two knowledge secrets do not equal MFA.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 MFA vs single-factor"
+    ],
+    "tags": [
+      "factors",
+      "mfa"
+    ],
+    "tier": "exam"
+  },
+  "mfa": {
+    "id": "mfa",
+    "title": "Multifactor authentication (MFA)",
+    "definition": "Requiring two or more different factor types (know / have / are) before access is granted.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 multifactor authentication"
+    ],
+    "tags": [
+      "mfa"
+    ],
+    "tier": "exam"
+  },
+  "password": {
+    "id": "password",
+    "title": "Password",
+    "definition": "A secret string used as a knowledge factor for authentication.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 password security"
+    ],
+    "tags": [
+      "password"
+    ],
+    "tier": "exam"
+  },
+  "pin": {
+    "id": "pin",
+    "title": "PIN",
+    "definition": "Personal identification number \u2014 a short numeric knowledge factor, not a second factor type when paired with a password.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 authentication factors"
+    ],
+    "tags": [
+      "password",
+      "factors"
+    ],
+    "tier": "exam"
+  },
+  "passphrase": {
+    "id": "passphrase",
+    "title": "Passphrase",
+    "definition": "A longer memorable phrase used as a password; length often beats dense complexity rules.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 password security"
+    ],
+    "tags": [
+      "password"
+    ],
+    "tier": "exam"
+  },
+  "password_length": {
+    "id": "password_length",
+    "title": "Password length",
+    "definition": "How many characters a password has; modern guidance prioritizes sufficient length over ornate complexity alone.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 password best practices"
+    ],
+    "tags": [
+      "password",
+      "policy"
+    ],
+    "tier": "exam"
+  },
+  "password_complexity": {
+    "id": "password_complexity",
+    "title": "Password complexity",
+    "definition": "Rules requiring mixed character classes (upper, lower, digit, symbol). Helpful, but length and uniqueness matter more.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 password best practices"
+    ],
+    "tags": [
+      "password",
+      "policy"
+    ],
+    "tier": "exam"
+  },
+  "password_reuse": {
+    "id": "password_reuse",
+    "title": "Password reuse",
+    "definition": "Using the same password across systems or recycling recent passwords \u2014 spreads breach impact.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 password best practices"
+    ],
+    "tags": [
+      "password",
+      "policy"
+    ],
+    "tier": "exam"
+  },
+  "password_expiration": {
+    "id": "password_expiration",
+    "title": "Password expiration",
+    "definition": "Forcing periodic password changes on a schedule. Modern guidance often prefers change-on-compromise over short expiry cycles.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 password policies"
+    ],
+    "tags": [
+      "password",
+      "policy"
+    ],
+    "tier": "exam"
+  },
+  "password_age": {
+    "id": "password_age",
+    "title": "Password age",
+    "definition": "How long the current password has been in use; tracked so policy can enforce maximum age or detect stale secrets.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 password policies"
+    ],
+    "tags": [
+      "password",
+      "policy"
+    ],
+    "tier": "exam"
+  },
+  "password_manager": {
+    "id": "password_manager",
+    "title": "Password manager",
+    "definition": "Tool that stores unique strong passwords (and often autofills them) so users need not reuse secrets.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 password security / credential management"
+    ],
+    "tags": [
+      "password"
+    ],
+    "tier": "exam"
+  },
+  "passwordless": {
+    "id": "passwordless",
+    "title": "Passwordless",
+    "definition": "Authentication that replaces passwords with possession and/or biometrics (e.g. security keys, passkeys, device unlock).",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 authentication methods"
+    ],
+    "tags": [
+      "auth-methods"
+    ],
+    "tier": "exam"
+  },
+  "soft_token": {
+    "id": "soft_token",
+    "title": "Soft token",
+    "definition": "Software-based possession factor \u2014 typically an authenticator app generating one-time codes.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 MFA methods / tokens"
+    ],
+    "tags": [
+      "mfa",
+      "tokens"
+    ],
+    "tier": "exam"
+  },
+  "hard_token": {
+    "id": "hard_token",
+    "title": "Hard token",
+    "definition": "Hardware possession factor \u2014 a dedicated device that generates or stores one-time codes or cryptographic keys.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 MFA methods / tokens"
+    ],
+    "tags": [
+      "mfa",
+      "tokens"
+    ],
+    "tier": "exam"
+  },
+  "security_key": {
+    "id": "security_key",
+    "title": "Security key",
+    "definition": "Hardware authenticator (often USB/NFC) that proves possession via cryptography \u2014 phishing-resistant when used as a second factor or passwordless.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 MFA / hardware authenticators"
+    ],
+    "tags": [
+      "mfa",
+      "tokens"
+    ],
+    "tier": "exam"
+  },
+  "totp": {
+    "id": "totp",
+    "title": "TOTP",
+    "definition": "Time-based one-time password \u2014 short codes from a shared secret that rotate on a clock (common in authenticator apps).",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 MFA / OTP"
+    ],
+    "tags": [
+      "mfa",
+      "otp"
+    ],
+    "tier": "exam"
+  },
+  "sms_otp": {
+    "id": "sms_otp",
+    "title": "SMS OTP",
+    "definition": "One-time code delivered by text message. Better than password alone, but weaker than app or hardware factors (SIM swap, interception).",
+    "context": "Acceptable stopgap; prefer app or security key when policy allows.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 MFA methods / SMS risks"
+    ],
+    "tags": [
+      "mfa",
+      "otp"
+    ],
+    "tier": "exam"
+  },
+  "push_notification": {
+    "id": "push_notification",
+    "title": "Push notification (MFA)",
+    "definition": "Approve/deny prompt sent to a registered device as a possession check.",
+    "context": "Convenient, but users can be trained into tapping Approve under fatigue or social pressure.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 MFA methods"
+    ],
+    "tags": [
+      "mfa"
+    ],
+    "tier": "exam"
+  },
+  "biometrics": {
+    "id": "biometrics",
+    "title": "Biometrics (door)",
+    "definition": "Unlocking with something you are \u2014 fingerprint, face, iris \u2014 often combined with a badge or PIN.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 biometrics"
+    ],
+    "tags": [
+      "physical",
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "sso": {
+    "id": "sso",
+    "title": "Single sign-on (SSO)",
+    "definition": "Authenticate once to an identity provider, then access multiple apps without separate logins for each.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 SSO / federation"
+    ],
+    "tags": [
+      "federation"
+    ],
+    "tier": "exam"
+  },
+  "federation": {
+    "id": "federation",
+    "title": "Federation",
+    "definition": "Trust relationship that lets one organization's identity provider assert identity to another system's service provider.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 federation"
+    ],
+    "tags": [
+      "federation"
+    ],
+    "tier": "exam"
+  },
+  "saml": {
+    "id": "saml",
+    "title": "SAML",
+    "definition": "Security Assertion Markup Language \u2014 common enterprise SSO protocol exchanging XML assertions between IdP and service.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 federation protocols (SAML)"
+    ],
+    "tags": [
+      "federation"
+    ],
+    "tier": "exam"
+  },
+  "oauth": {
+    "id": "oauth",
+    "title": "OAuth",
+    "definition": "Authorization framework often used so apps get limited access tokens without sharing the user's password (desk tickets may say 'OAuth SSO' loosely).",
+    "context": "At the desk: usually means the app is wired to the company IdP for sign-in / consent, not a password paste.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 OAuth / federation-related access"
+    ],
+    "tags": [
+      "federation"
+    ],
+    "tier": "exam"
+  },
+  "least_privilege": {
+    "id": "least_privilege",
+    "title": "Least privilege",
+    "definition": "Grant only the access needed for the job \u2014 nothing extra 'just in case.'",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 least privilege"
+    ],
+    "tags": [
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "rbac": {
+    "id": "rbac",
+    "title": "Role-based access control (RBAC)",
+    "definition": "Assign permissions to roles (job functions), then assign users to roles \u2014 instead of one-off rights per person.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 access control models (RBAC)"
+    ],
+    "tags": [
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "account_lockout": {
+    "id": "account_lockout",
+    "title": "Account lockout",
+    "definition": "Temporarily disabling an account after too many failed authentication attempts to slow password guessing.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 account policies / lockout"
+    ],
+    "tags": [
+      "account",
+      "policy"
+    ],
+    "tier": "exam"
+  },
+  "provisioning": {
+    "id": "provisioning",
+    "title": "Provisioning",
+    "definition": "Creating accounts and assigning access when someone joins or changes roles.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 account management / provisioning"
+    ],
+    "tags": [
+      "lifecycle"
+    ],
+    "tier": "exam"
+  },
+  "deprovisioning": {
+    "id": "deprovisioning",
+    "title": "Deprovisioning",
+    "definition": "Removing or disabling accounts and access when someone leaves or no longer needs them.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 account management / offboarding"
+    ],
+    "tags": [
+      "lifecycle"
+    ],
+    "tier": "exam"
+  },
+  "privileged_access": {
+    "id": "privileged_access",
+    "title": "Privileged access",
+    "definition": "Elevated rights (admin, root, domain) that can change systems or read sensitive data \u2014 tightly controlled.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 privileged access management concepts"
+    ],
+    "tags": [
+      "privilege"
+    ],
+    "tier": "exam"
+  },
+  "pam": {
+    "id": "pam",
+    "title": "Privileged access management (PAM)",
+    "definition": "Controls for privileged accounts \u2014 vaulting shared secrets, just-in-time elevation, and session oversight.",
+    "context": "Desk-level: admins check out a vaulted password or request temporary elevation instead of sharing a sticky.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 privileged access management"
+    ],
+    "tags": [
+      "privilege"
+    ],
+    "tier": "exam"
+  },
+  "help_desk": {
+    "id": "help_desk",
+    "title": "Help desk",
+    "definition": "Front-line IT support that takes tickets, coaches users, and escalates security signals.",
+    "tags": [
+      "support",
+      "desk"
+    ],
+    "tier": "support"
+  },
+  "ticket": {
+    "id": "ticket",
+    "title": "Ticket",
+    "definition": "Tracked support request \u2014 the work unit the desk opens, updates, and closes.",
+    "tags": [
+      "support",
+      "desk"
+    ],
+    "tier": "support"
+  },
+  "identity_provider": {
+    "id": "identity_provider",
+    "title": "Identity provider (IdP)",
+    "definition": "System that authenticates users and issues assertions/tokens other apps trust (the 'sign in with company' brain).",
+    "tags": [
+      "support",
+      "federation"
+    ],
+    "tier": "support"
+  },
+  "authenticator_app": {
+    "id": "authenticator_app",
+    "title": "Authenticator app",
+    "definition": "Phone or desktop app that holds soft-token secrets and shows rotating TOTP codes (or push prompts).",
+    "tags": [
+      "support",
+      "mfa"
+    ],
+    "tier": "support"
+  },
+  "backup_codes": {
+    "id": "backup_codes",
+    "title": "Backup codes",
+    "definition": "One-time recovery codes issued at MFA enrollment for when the phone or token is unavailable.",
+    "tags": [
+      "support",
+      "mfa"
+    ],
+    "tier": "support"
+  },
+  "mfa_fatigue": {
+    "id": "mfa_fatigue",
+    "title": "MFA fatigue",
+    "definition": "Attack or habit where a user is spammed with push prompts until they approve one without thinking.",
+    "tags": [
+      "support",
+      "mfa",
+      "security"
+    ],
+    "tier": "support"
+  },
+  "shoulder_surfing": {
+    "id": "shoulder_surfing",
+    "title": "Shoulder surfing",
+    "definition": "Watching someone type a PIN, password, or badge code from nearby \u2014 eyes as the attack tool.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 shoulder surfing"
+    ],
+    "tags": [
+      "physical",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "shared_admin_account": {
+    "id": "shared_admin_account",
+    "title": "Shared admin account",
+    "definition": "One privileged login used by multiple people \u2014 breaks accountability and complicates offboarding.",
+    "tags": [
+      "support",
+      "privilege"
+    ],
+    "tier": "support"
+  },
+  "break_glass": {
+    "id": "break_glass",
+    "title": "Break-glass account",
+    "definition": "Emergency privileged account for outages when normal MFA/IdP paths fail \u2014 tightly vaulted and audited.",
+    "tags": [
+      "support",
+      "privilege"
+    ],
+    "tier": "support"
+  },
+  "just_in_time": {
+    "id": "just_in_time",
+    "title": "Just-in-time (JIT) access",
+    "definition": "Temporary elevation granted only when needed, then revoked \u2014 instead of standing admin rights.",
+    "tags": [
+      "support",
+      "privilege"
+    ],
+    "tier": "support"
+  },
+  "vaulting": {
+    "id": "vaulting",
+    "title": "Credential vaulting",
+    "definition": "Storing privileged passwords in a controlled vault with checkout, rotation, and audit \u2014 not a shared spreadsheet.",
+    "tags": [
+      "support",
+      "privilege"
+    ],
+    "tier": "support"
+  },
+  "offboarding": {
+    "id": "offboarding",
+    "title": "Offboarding",
+    "definition": "HR/IT process when someone leaves \u2014 disable accounts, reclaim devices, and strip residual access.",
+    "tags": [
+      "support",
+      "lifecycle"
+    ],
+    "tier": "support"
+  },
+  "encryption": {
+    "id": "encryption",
+    "title": "Encryption",
+    "definition": "Transforming readable data into ciphertext so only parties with the right key can recover the original.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 encryption"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "hashing": {
+    "id": "hashing",
+    "title": "Hashing",
+    "definition": "One-way fingerprint of data \u2014 fixed-length digest used to check integrity, not to hide and later reveal secrets.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 hashing"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "encoding": {
+    "id": "encoding",
+    "title": "Encoding",
+    "definition": "Reversible representation change (like Base64) for transport or display \u2014 not confidentiality; anyone can decode.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 encoding vs encryption"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "obfuscation": {
+    "id": "obfuscation",
+    "title": "Obfuscation",
+    "definition": "Making something harder to read or understand without providing real cryptographic strength by itself.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 obfuscation"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "steganography": {
+    "id": "steganography",
+    "title": "Steganography",
+    "definition": "Hiding a message inside other media (image, audio, file) so the secret's existence is less obvious.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 steganography"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "plaintext": {
+    "id": "plaintext",
+    "title": "Plaintext",
+    "definition": "Data in readable form before encryption \u2014 the thing you are trying not to leave lying around.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 plaintext / ciphertext"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "ciphertext": {
+    "id": "ciphertext",
+    "title": "Ciphertext",
+    "definition": "Encrypted output \u2014 unreadable without the correct cryptographic key.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 plaintext / ciphertext"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "symmetric": {
+    "id": "symmetric",
+    "title": "Symmetric encryption",
+    "definition": "Same key encrypts and decrypts \u2014 fast for bulk data; key distribution is the hard part.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 symmetric encryption"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "asymmetric": {
+    "id": "asymmetric",
+    "title": "Asymmetric encryption",
+    "definition": "Key pair model \u2014 public key encrypts or verifies; private key decrypts or signs.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 asymmetric / public-key cryptography"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "public_key": {
+    "id": "public_key",
+    "title": "Public key",
+    "definition": "Shareable half of a key pair \u2014 used to encrypt to someone or verify their digital signature.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 public/private keys"
+    ],
+    "tags": [
+      "crypto",
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "private_key": {
+    "id": "private_key",
+    "title": "Private key",
+    "definition": "Secret half of a key pair \u2014 decrypts or signs; must stay protected or the trust story collapses.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 public/private keys"
+    ],
+    "tags": [
+      "crypto",
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "key_exchange": {
+    "id": "key_exchange",
+    "title": "Key exchange",
+    "definition": "Method for agreeing on a shared secret over an untrusted channel (often using asymmetric math so symmetric keys can follow).",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 key exchange"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "perfect_forward_secrecy": {
+    "id": "perfect_forward_secrecy",
+    "title": "Perfect forward secrecy",
+    "definition": "Property where past session keys stay safe even if a long-term private key is later stolen \u2014 ephemeral session secrets.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 perfect forward secrecy / PFS"
+    ],
+    "tags": [
+      "crypto",
+      "tls"
+    ],
+    "tier": "exam"
+  },
+  "digital_signature": {
+    "id": "digital_signature",
+    "title": "Digital signature",
+    "definition": "Private-key operation that proves origin and integrity of data \u2014 verifiers use the matching public key.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 digital signatures"
+    ],
+    "tags": [
+      "crypto",
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "non_repudiation": {
+    "id": "non_repudiation",
+    "title": "Non-repudiation",
+    "definition": "Difficulty denying you signed or sent something when a valid signature and key custody support the claim.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 non-repudiation"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "salting": {
+    "id": "salting",
+    "title": "Salting",
+    "definition": "Random value mixed into password hashing so identical passwords do not produce identical hashes.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 salting"
+    ],
+    "tags": [
+      "crypto",
+      "auth"
+    ],
+    "tier": "exam"
+  },
+  "integrity": {
+    "id": "integrity",
+    "title": "Integrity",
+    "definition": "Assurance that data has not been altered \u2014 often checked with hashes or signatures.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 integrity"
+    ],
+    "tags": [
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "pki": {
+    "id": "pki",
+    "title": "PKI",
+    "definition": "Public key infrastructure \u2014 the people, policies, and systems that issue and manage certificates and trust.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 PKI"
+    ],
+    "tags": [
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "certificate": {
+    "id": "certificate",
+    "title": "Client/server certificate (Wi-Fi)",
+    "definition": "Credential material used in enterprise Wi-Fi so clients can verify the real RADIUS/network and not a twin.",
+    "tags": [
+      "support",
+      "auth"
+    ],
+    "tier": "support"
+  },
+  "ca": {
+    "id": "ca",
+    "title": "Certificate authority (CA)",
+    "definition": "Trusted issuer that signs certificates after validating identity \u2014 the root of many trust decisions.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 certificate authority"
+    ],
+    "tags": [
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "intermediate_ca": {
+    "id": "intermediate_ca",
+    "title": "Intermediate CA",
+    "definition": "CA beneath the root that issues end-entity certificates \u2014 keeps the root offline and the chain manageable.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 intermediate CA / certificate chain"
+    ],
+    "tags": [
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "csr": {
+    "id": "csr",
+    "title": "CSR",
+    "definition": "Certificate signing request \u2014 package with your public key and identity details sent to a CA for signing.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 CSR"
+    ],
+    "tags": [
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "self_signed": {
+    "id": "self_signed",
+    "title": "Self-signed certificate",
+    "definition": "Certificate signed by its own key instead of a trusted CA \u2014 fine for lab toys, scary in production browsers.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 self-signed certificates"
+    ],
+    "tags": [
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "expired_cert": {
+    "id": "expired_cert",
+    "title": "Expired certificate",
+    "definition": "Certificate past its validity dates \u2014 browsers and clients correctly refuse or warn because trust has a calendar.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 certificate expiration / validation"
+    ],
+    "tags": [
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "certificate_pinning": {
+    "id": "certificate_pinning",
+    "title": "Certificate / public-key pinning",
+    "definition": "Client remembers an expected cert or key and rejects surprises \u2014 stronger against some MitM, brittle when pins go stale.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 certificate pinning"
+    ],
+    "tags": [
+      "pki",
+      "tls"
+    ],
+    "tier": "exam"
+  },
+  "tls": {
+    "id": "tls",
+    "title": "TLS",
+    "definition": "Transport Layer Security \u2014 the encryption layer that wraps many application protocols into secure versions.",
+    "tags": [
+      "security"
+    ],
+    "tier": "exam"
+  },
+  "key_escrow": {
+    "id": "key_escrow",
+    "title": "Key escrow",
+    "definition": "Storing decryption keys with a trusted third party so data can be recovered under policy \u2014 powerful and controversial.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 key escrow"
+    ],
+    "tags": [
+      "crypto",
+      "keys"
+    ],
+    "tier": "exam"
+  },
+  "hsm": {
+    "id": "hsm",
+    "title": "HSM",
+    "definition": "Hardware security module \u2014 hardened device that generates and protects keys so private material rarely leaves the box.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 HSM"
+    ],
+    "tags": [
+      "crypto",
+      "keys"
+    ],
+    "tier": "exam"
+  },
+  "key_management": {
+    "id": "key_management",
+    "title": "Key management",
+    "definition": "Lifecycle of creating, storing, rotating, revoking, and destroying cryptographic keys without leaking them.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 key management"
+    ],
+    "tags": [
+      "crypto",
+      "keys"
+    ],
+    "tier": "exam"
+  },
+  "certificate_chain": {
+    "id": "certificate_chain",
+    "title": "Certificate chain",
+    "definition": "Path from end-entity certificate through intermediate CA(s) to a trusted root \u2014 missing links break trust.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 certificate chain / chaining"
+    ],
+    "tags": [
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "wildcard_cert": {
+    "id": "wildcard_cert",
+    "title": "Wildcard certificate",
+    "definition": "Certificate that covers many hostnames under one domain (like *.example.com) \u2014 convenient, broader blast radius if stolen.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 wildcard certificates"
+    ],
+    "tags": [
+      "pki"
+    ],
+    "tier": "exam"
+  },
+  "browser_padlock": {
+    "id": "browser_padlock",
+    "title": "Browser padlock",
+    "definition": "UI hint that the page is using HTTPS/TLS \u2014 not a guarantee the site is honest, only that the channel looks encrypted to a trusted name.",
+    "tags": [
+      "support",
+      "browser"
+    ],
+    "tier": "support"
+  },
+  "cert_warning": {
+    "id": "cert_warning",
+    "title": "Certificate warning dialog",
+    "definition": "Browser interstitial when TLS validation fails \u2014 expired, name mismatch, untrusted issuer, or broken chain.",
+    "tags": [
+      "support",
+      "browser"
+    ],
+    "tier": "support"
+  },
+  "trust_store": {
+    "id": "trust_store",
+    "title": "Trust store",
+    "definition": "Collection of root/intermediate CAs the OS or browser trusts by default \u2014 the quiet list behind the padlock.",
+    "tags": [
+      "support",
+      "pki"
+    ],
+    "tier": "support"
+  },
+  "base64": {
+    "id": "base64",
+    "title": "Base64",
+    "definition": "Common encoding that turns binary into ASCII-safe text \u2014 looks 'scrambled' but is not encryption.",
+    "tags": [
+      "support",
+      "crypto"
+    ],
+    "tier": "support"
+  },
+  "https": {
+    "id": "https",
+    "title": "HTTPS (443/TCP)",
+    "definition": "HTTP secured with TLS. Default for modern web traffic.",
+    "context": "Use instead of cleartext HTTP for any page that takes credentials or personal data.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 implement secure protocols (web)"
+    ],
+    "tags": [
+      "web",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "soc": {
+    "id": "soc",
+    "title": "SOC",
+    "definition": "Security operations center \u2014 team that monitors alerts, investigates wireless attacks, and coordinates response.",
+    "tags": [
+      "support",
+      "security"
+    ],
+    "tier": "support"
+  },
+  "event": {
+    "id": "event",
+    "title": "Event",
+    "definition": "An observable occurrence in a system or network \u2014 a login, alert, crash, or odd ticket \u2014 that may or may not be a security problem.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 events vs incidents"
+    ],
+    "tags": [
+      "ir"
+    ],
+    "tier": "exam"
+  },
+  "security_incident": {
+    "id": "security_incident",
+    "title": "Security incident",
+    "definition": "A violation or imminent threat of violation of security policy, acceptable use, or standard security practices \u2014 not every scary ticket qualifies.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 security incidents"
+    ],
+    "tags": [
+      "ir"
+    ],
+    "tier": "exam"
+  },
+  "escalation": {
+    "id": "escalation",
+    "title": "Escalation",
+    "definition": "Handing an issue to a higher or more specialized team when criteria are met \u2014 with clean facts, not a Slack panic dump.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 escalation"
+    ],
+    "tags": [
+      "ir"
+    ],
+    "tier": "exam"
+  },
+  "first_responder": {
+    "id": "first_responder",
+    "title": "First responder",
+    "definition": "First person or team to touch an incident \u2014 at many orgs the help desk is that first touch and must preserve options for IR.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 first responders"
+    ],
+    "tags": [
+      "ir"
+    ],
+    "tier": "exam"
+  },
+  "csirt": {
+    "id": "csirt",
+    "title": "CSIRT / IR team",
+    "definition": "Computer Security Incident Response Team (or equivalent IR team) \u2014 specialists who own analysis, forensics coordination, and incident command after escalation.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 CSIRT / incident response team"
+    ],
+    "tags": [
+      "ir"
+    ],
+    "tier": "exam"
+  },
+  "chain_of_custody": {
+    "id": "chain_of_custody",
+    "title": "Chain of custody",
+    "definition": "Documented control of evidence \u2014 who had it, when, and what changed \u2014 so findings stay credible and you do not casually wipe a laptop IR still needs.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 chain of custody"
+    ],
+    "tags": [
+      "ir",
+      "evidence"
+    ],
+    "tier": "exam"
+  },
+  "ioc": {
+    "id": "ioc",
+    "title": "Indicators of compromise (IoC)",
+    "definition": "Observable clues that a system or account may be compromised \u2014 hashes, domains, odd processes, weird outbound traffic.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 indicators of compromise / malicious activity"
+    ],
+    "tags": [
+      "detection"
+    ],
+    "tier": "exam"
+  },
+  "quarantine": {
+    "id": "quarantine",
+    "title": "Quarantine",
+    "definition": "Holding suspicious mail or files away from the inbox so users cannot open them until reviewed.",
+    "tags": [
+      "support",
+      "email"
+    ],
+    "tier": "support"
+  },
+  "isolation": {
+    "id": "isolation",
+    "title": "Isolation",
+    "definition": "Separating a system from the network or peers to stop spread \u2014 pull the cable, disable Wi-Fi, or VLAN-park the host.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 isolation"
+    ],
+    "tags": [
+      "ir",
+      "containment"
+    ],
+    "tier": "exam"
+  },
+  "need_to_know": {
+    "id": "need_to_know",
+    "title": "Need-to-know",
+    "definition": "Principle of sharing incident details only with people who require them to act \u2014 not blasting the whole company Slack.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 need-to-know / least privilege of information"
+    ],
+    "tags": [
+      "ir"
+    ],
+    "tier": "exam"
+  },
+  "malware": {
+    "id": "malware",
+    "title": "Malware",
+    "definition": "Malicious software \u2014 any program designed to harm, spy, extort, or take control of a system.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 malware"
+    ],
+    "tags": [
+      "malware"
+    ],
+    "tier": "exam"
+  },
+  "virus": {
+    "id": "virus",
+    "title": "Virus",
+    "definition": "Malware that attaches to files or programs and spreads when the host file runs or is shared.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 virus"
+    ],
+    "tags": [
+      "malware"
+    ],
+    "tier": "exam"
+  },
+  "worm": {
+    "id": "worm",
+    "title": "Worm",
+    "definition": "Self-replicating malware that spreads across networks without needing a user to open a file each time.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 worm"
+    ],
+    "tags": [
+      "malware",
+      "network"
+    ],
+    "tier": "exam"
+  },
+  "trojan": {
+    "id": "trojan",
+    "title": "Trojan",
+    "definition": "Malware disguised as something useful or expected so the user installs it willingly.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 trojan"
+    ],
+    "tags": [
+      "malware"
+    ],
+    "tier": "exam"
+  },
+  "ransomware": {
+    "id": "ransomware",
+    "title": "Ransomware",
+    "definition": "Malware that encrypts systems or data and demands payment; internet-exposed remote desktop is a common entry.",
+    "tags": [
+      "support",
+      "security"
+    ],
+    "tier": "support"
+  },
+  "crypto_malware": {
+    "id": "crypto_malware",
+    "title": "Crypto-malware",
+    "definition": "Malware that encrypts files or volumes so victims cannot use their data without a key the attacker controls.",
+    "context": "Often the technical engine inside a ransomware incident.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 crypto-malware / ransomware"
+    ],
+    "tags": [
+      "malware",
+      "ransomware"
+    ],
+    "tier": "exam"
+  },
+  "spyware": {
+    "id": "spyware",
+    "title": "Spyware",
+    "definition": "Malware that secretly collects information about users, systems, or activity and sends it to an attacker.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 spyware"
+    ],
+    "tags": [
+      "malware",
+      "privacy"
+    ],
+    "tier": "exam"
+  },
+  "adware": {
+    "id": "adware",
+    "title": "Adware",
+    "definition": "Unwanted software that pushes ads, redirects browsing, or tracks habits for advertising \u2014 often bundled with free installs.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 adware"
+    ],
+    "tags": [
+      "malware",
+      "pups"
+    ],
+    "tier": "exam"
+  },
+  "keylogger": {
+    "id": "keylogger",
+    "title": "Keylogger",
+    "definition": "Software or hardware that records keystrokes to steal passwords, messages, or other typed secrets.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 keylogger"
+    ],
+    "tags": [
+      "malware",
+      "credential-theft"
+    ],
+    "tier": "exam"
+  },
+  "rootkit": {
+    "id": "rootkit",
+    "title": "Rootkit",
+    "definition": "Malware that hides deep in the system (often kernel-level) to conceal processes, files, or persistence from normal tools.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 rootkit"
+    ],
+    "tags": [
+      "malware",
+      "stealth"
+    ],
+    "tier": "exam"
+  },
+  "bot": {
+    "id": "bot",
+    "title": "Bot",
+    "definition": "A compromised device under remote attacker control, waiting for commands.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 bots / botnets"
+    ],
+    "tags": [
+      "malware",
+      "botnet"
+    ],
+    "tier": "exam"
+  },
+  "botnet": {
+    "id": "botnet",
+    "title": "Botnet",
+    "definition": "A network of bots controlled together \u2014 used for spam, DDoS, crypto-mining, or further compromise.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 botnet"
+    ],
+    "tags": [
+      "malware",
+      "botnet"
+    ],
+    "tier": "exam"
+  },
+  "logic_bomb": {
+    "id": "logic_bomb",
+    "title": "Logic bomb",
+    "definition": "Malicious code that sits dormant until a condition or date triggers it (fire after layoff, delete after deadline).",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 logic bomb"
+    ],
+    "tags": [
+      "malware"
+    ],
+    "tier": "exam"
+  },
+  "fileless": {
+    "id": "fileless",
+    "title": "Fileless malware",
+    "definition": "Attacks that run in memory or abuse built-in tools so little or no new malware file lands on disk.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 fileless malware"
+    ],
+    "tags": [
+      "malware",
+      "stealth"
+    ],
+    "tier": "exam"
+  },
+  "pups": {
+    "id": "pups",
+    "title": "PUPs (potentially unwanted programs)",
+    "definition": "Software users may have 'agreed' to install that is unwanted, deceptive, or risky \u2014 toolbars, bundles, junk helpers.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 PUPs / potentially unwanted programs"
+    ],
+    "tags": [
+      "malware",
+      "pups"
+    ],
+    "tier": "exam"
+  },
+  "backdoor": {
+    "id": "backdoor",
+    "title": "Backdoor",
+    "definition": "A hidden way into a system that bypasses normal authentication \u2014 planted by malware or a malicious insider.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 backdoor"
+    ],
+    "tags": [
+      "malware",
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "rat": {
+    "id": "rat",
+    "title": "Remote access Trojan (RAT)",
+    "definition": "A trojan that gives an attacker interactive remote control of the victim machine.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 RAT / remote access trojan"
+    ],
+    "tags": [
+      "malware",
+      "remote"
+    ],
+    "tier": "exam"
+  },
+  "dropper": {
+    "id": "dropper",
+    "title": "Dropper",
+    "definition": "A small malicious program whose job is to deliver and install other malware payloads.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 dropper / malware delivery"
+    ],
+    "tags": [
+      "malware",
+      "delivery"
+    ],
+    "tier": "exam"
+  },
+  "payload": {
+    "id": "payload",
+    "title": "Payload",
+    "definition": "The harmful action malware is built to perform once it runs \u2014 encrypt, spy, open a shell, join a botnet.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 malware payload"
+    ],
+    "tags": [
+      "malware"
+    ],
+    "tier": "exam"
+  },
+  "cryptojacking": {
+    "id": "cryptojacking",
+    "title": "Cryptojacking",
+    "definition": "Hijacking a system's CPU/GPU to mine cryptocurrency for the attacker without consent.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 cryptomalware / cryptojacking"
+    ],
+    "tags": [
+      "malware",
+      "crypto"
+    ],
+    "tier": "exam"
+  },
+  "command_and_control": {
+    "id": "command_and_control",
+    "title": "Command and control (C2)",
+    "definition": "The channel attackers use to send orders to compromised hosts and pull stolen data back out.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 command and control"
+    ],
+    "tags": [
+      "c2",
+      "network"
+    ],
+    "tier": "exam"
+  },
+  "isolate": {
+    "id": "isolate",
+    "title": "Isolate (host isolation)",
+    "definition": "Pulling a suspect machine off the network (or into a tight VLAN) so malware cannot reach shares, peers, or C2.",
+    "context": "Desk-first move when ransomware or worm behavior shows up.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 isolation / incident response"
+    ],
+    "tags": [
+      "response"
+    ],
+    "tier": "exam"
+  },
+  "do_not_pay": {
+    "id": "do_not_pay",
+    "title": "Do not pay (ransomware)",
+    "definition": "Organizational stance: do not pay the ransom \u2014 payment funds crime, may not restore data, and is not a recovery plan.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 ransomware response concepts"
+    ],
+    "tags": [
+      "ransomware",
+      "response"
+    ],
+    "tier": "exam"
+  },
+  "offline_backup": {
+    "id": "offline_backup",
+    "title": "Offline / immutable backup",
+    "definition": "Backup copies that ransomware cannot reach or alter \u2014 offline media, immutable snapshots, or air-gapped stores.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 backups / ransomware recovery"
+    ],
+    "tags": [
+      "ransomware",
+      "recovery"
+    ],
+    "tier": "exam"
+  },
+  "antivirus": {
+    "id": "antivirus",
+    "title": "Antivirus / antimalware",
+    "definition": "Endpoint software that detects, blocks, quarantines, or removes known and suspicious malicious code.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 antivirus / antimalware"
+    ],
+    "tags": [
+      "defense"
+    ],
+    "tier": "exam"
+  },
+  "signature_detection": {
+    "id": "signature_detection",
+    "title": "Signature-based detection",
+    "definition": "Matching files or patterns against known malware fingerprints (hashes, byte patterns).",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 signature-based detection"
+    ],
+    "tags": [
+      "defense"
+    ],
+    "tier": "exam"
+  },
+  "heuristic": {
+    "id": "heuristic",
+    "title": "Heuristic detection",
+    "definition": "Detecting suspicious behavior or code traits even when the exact malware sample is new.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 heuristic / behavior-based detection"
+    ],
+    "tags": [
+      "defense"
+    ],
+    "tier": "exam"
+  },
+  "living_off_the_land": {
+    "id": "living_off_the_land",
+    "title": "Living off the land",
+    "definition": "Abusing built-in OS tools (PowerShell, WMI, scripts) so attacks blend in with admin work.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 living off the land / fileless"
+    ],
+    "tags": [
+      "malware",
+      "stealth"
+    ],
+    "tier": "exam"
+  },
+  "persistence": {
+    "id": "persistence",
+    "title": "Persistence",
+    "definition": "Techniques that keep malware running after reboot \u2014 startup entries, services, scheduled tasks, registry Run keys.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 persistence / malware characteristics"
+    ],
+    "tags": [
+      "malware"
+    ],
+    "tier": "exam"
+  },
+  "privilege_escalation": {
+    "id": "privilege_escalation",
+    "title": "Privilege escalation",
+    "definition": "Gaining higher rights than the initial foothold \u2014 user to admin, or admin to SYSTEM/kernel.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 privilege escalation"
+    ],
+    "tags": [
+      "malware",
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "lateral_movement": {
+    "id": "lateral_movement",
+    "title": "Lateral movement",
+    "definition": "Spreading from one compromised host to others on the same network \u2014 shares, remote tools, stolen creds.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 lateral movement"
+    ],
+    "tags": [
+      "malware",
+      "network"
+    ],
+    "tier": "exam"
+  },
+  "removable_media": {
+    "id": "removable_media",
+    "title": "Removable media risk",
+    "definition": "USB sticks and other portable media as a malware delivery path \u2014 plug in, autorun or open, infect.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 removable media / physical vectors"
+    ],
+    "tags": [
+      "delivery"
+    ],
+    "tier": "exam"
+  },
+  "edr": {
+    "id": "edr",
+    "title": "EDR",
+    "definition": "Endpoint detection and response \u2014 tooling that records process/network behavior and helps hunt or contain malware.",
+    "tags": [
+      "support",
+      "security"
+    ],
+    "tier": "support"
+  },
+  "network_share": {
+    "id": "network_share",
+    "title": "Network share",
+    "definition": "Folder or drive published on the LAN that many PCs can reach \u2014 a common path for worm or ransomware spread.",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "tier": "support"
+  },
+  "malware_scan": {
+    "id": "malware_scan",
+    "title": "Malware scan",
+    "definition": "On-demand or scheduled check by antimalware/EDR that looks for known and suspicious code on a host.",
+    "tags": [
+      "support",
+      "defense"
+    ],
+    "tier": "support"
+  },
+  "process_list": {
+    "id": "process_list",
+    "title": "Process list",
+    "definition": "Running programs visible in Task Manager or EDR \u2014 odd names, odd parents, or odd CPU can be early clues.",
+    "tags": [
+      "support",
+      "desk"
+    ],
+    "tier": "support"
+  },
+  "hash": {
+    "id": "hash",
+    "title": "File hash",
+    "definition": "Fingerprint of a file (MD5/SHA) used to match known-bad samples or prove two files are identical.",
+    "tags": [
+      "support",
+      "detection"
+    ],
+    "tier": "support"
+  },
+  "social_engineering": {
+    "id": "social_engineering",
+    "title": "Social engineering",
+    "definition": "Manipulating people into revealing information or taking unsafe actions \u2014 trust and pressure instead of breaking crypto.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 social engineering techniques"
+    ],
+    "tags": [
+      "social-engineering"
+    ],
+    "tier": "exam"
+  },
+  "phishing": {
+    "id": "phishing",
+    "title": "Phishing",
+    "definition": "Fraudulent messages (usually email) that trick users into clicking, opening, or giving up secrets.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 phishing"
+    ],
+    "tags": [
+      "phishing"
+    ],
+    "tier": "exam"
+  },
+  "spear_phishing": {
+    "id": "spear_phishing",
+    "title": "Spear phishing",
+    "definition": "Targeted phishing aimed at a specific person or small group, customized with personal or role details.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 spear phishing"
+    ],
+    "tags": [
+      "phishing"
+    ],
+    "tier": "exam"
+  },
+  "whaling": {
+    "id": "whaling",
+    "title": "Whaling",
+    "definition": "Phishing aimed at high-value targets such as executives or other senior decision-makers.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 whaling"
+    ],
+    "tags": [
+      "phishing"
+    ],
+    "tier": "exam"
+  },
+  "vishing": {
+    "id": "vishing",
+    "title": "Vishing",
+    "definition": "Voice phishing \u2014 social engineering over phone or voice calls.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 vishing"
+    ],
+    "tags": [
+      "phishing",
+      "voice"
+    ],
+    "tier": "exam"
+  },
+  "smishing": {
+    "id": "smishing",
+    "title": "Smishing",
+    "definition": "SMS phishing \u2014 fraudulent texts that push links, codes, or urgent actions.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 smishing"
+    ],
+    "tags": [
+      "phishing",
+      "sms"
+    ],
+    "tier": "exam"
+  },
+  "phishing_url": {
+    "id": "phishing_url",
+    "title": "Phishing URL",
+    "definition": "A link designed to look legitimate while sending the victim to an attacker-controlled site.",
+    "context": "Hover, expand, or check the real host before you click.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 indicators of phishing"
+    ],
+    "tags": [
+      "phishing",
+      "indicators"
+    ],
+    "tier": "exam"
+  },
+  "spoofing": {
+    "id": "spoofing",
+    "title": "Spoofing",
+    "definition": "Faking a sender identity \u2014 display name, email address, caller ID, or site look \u2014 to appear trusted.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 spoofing / impersonation"
+    ],
+    "tags": [
+      "indicators"
+    ],
+    "tier": "exam"
+  },
+  "impersonation": {
+    "id": "impersonation",
+    "title": "Impersonation",
+    "definition": "Pretending to be a trusted person or role (boss, IT, vendor, bank) to get compliance.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 impersonation"
+    ],
+    "tags": [
+      "social-engineering"
+    ],
+    "tier": "exam"
+  },
+  "pretexting": {
+    "id": "pretexting",
+    "title": "Pretexting",
+    "definition": "Inventing a believable story or role to justify asking for information or access.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 pretexting"
+    ],
+    "tags": [
+      "social-engineering"
+    ],
+    "tier": "exam"
+  },
+  "quid_pro_quo": {
+    "id": "quid_pro_quo",
+    "title": "Quid pro quo",
+    "definition": "Offering a benefit (help, gift, refund, free support) in exchange for information or a risky action.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 quid pro quo"
+    ],
+    "tags": [
+      "social-engineering"
+    ],
+    "tier": "exam"
+  },
+  "tailgating": {
+    "id": "tailgating",
+    "title": "Tailgating",
+    "definition": "Following an authorized person through a door without badging yourself \u2014 exploiting politeness.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 tailgating"
+    ],
+    "tags": [
+      "physical",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "dumpster_diving": {
+    "id": "dumpster_diving",
+    "title": "Dumpster diving",
+    "definition": "Searching discarded paper or media for secrets \u2014 passwords, org charts, invoices, badges.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 dumpster diving"
+    ],
+    "tags": [
+      "physical"
+    ],
+    "tier": "exam"
+  },
+  "watering_hole": {
+    "id": "watering_hole",
+    "title": "Watering hole",
+    "definition": "Compromising a site a target group already trusts, then waiting for victims to visit.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 watering hole"
+    ],
+    "tags": [
+      "phishing",
+      "web"
+    ],
+    "tier": "exam"
+  },
+  "influence_campaigns": {
+    "id": "influence_campaigns",
+    "title": "Influence campaigns",
+    "definition": "Coordinated efforts to shape opinions or behavior at scale \u2014 often mixing social pressure with deceptive content.",
+    "context": "On the exam: social engineering at organizational or public scale, not just one inbox.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 influence campaigns"
+    ],
+    "tags": [
+      "social-engineering"
+    ],
+    "tier": "exam"
+  },
+  "urgency": {
+    "id": "urgency",
+    "title": "Urgency",
+    "definition": "Pressure to act immediately so the victim skips verification.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 social engineering principles (urgency)"
+    ],
+    "tags": [
+      "principles"
+    ],
+    "tier": "exam"
+  },
+  "familiarity": {
+    "id": "familiarity",
+    "title": "Familiarity",
+    "definition": "Using known names, slang, or shared context so a request feels like it comes from 'someone like us.'",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 social engineering principles (familiarity)"
+    ],
+    "tags": [
+      "principles"
+    ],
+    "tier": "exam"
+  },
+  "authority": {
+    "id": "authority",
+    "title": "Authority",
+    "definition": "Claiming power (executive, IT admin, law enforcement, vendor) so people comply without checking.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 social engineering principles (authority)"
+    ],
+    "tags": [
+      "principles"
+    ],
+    "tier": "exam"
+  },
+  "scarcity": {
+    "id": "scarcity",
+    "title": "Scarcity",
+    "definition": "Claiming limited time, seats, or stock so the victim rushes a decision.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 social engineering principles (scarcity)"
+    ],
+    "tags": [
+      "principles"
+    ],
+    "tier": "exam"
+  },
+  "consensus": {
+    "id": "consensus",
+    "title": "Consensus (social proof)",
+    "definition": "Implying everyone else already complied \u2014 'your teammates already clicked / updated / paid.'",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 social engineering principles (consensus / social proof)"
+    ],
+    "tags": [
+      "principles"
+    ],
+    "tier": "exam"
+  },
+  "bec": {
+    "id": "bec",
+    "title": "Business email compromise (BEC)",
+    "definition": "Fraud that hijacks or fakes business email threads \u2014 often to redirect payments or steal wire instructions.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 BEC / business email compromise"
+    ],
+    "tags": [
+      "phishing",
+      "fraud"
+    ],
+    "tier": "exam"
+  },
+  "credential_harvesting": {
+    "id": "credential_harvesting",
+    "title": "Credential harvesting",
+    "definition": "Collecting usernames and passwords (or tokens) via fake login pages or forms.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 phishing / credential harvesting"
+    ],
+    "tags": [
+      "phishing"
+    ],
+    "tier": "exam"
+  },
+  "malware_attachment": {
+    "id": "malware_attachment",
+    "title": "Malware attachment",
+    "definition": "A file (or archive) delivered to install malware when opened \u2014 often paired with a urgent story.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 malicious attachments / phishing"
+    ],
+    "tags": [
+      "phishing",
+      "malware"
+    ],
+    "tier": "exam"
+  },
+  "typo_squatting": {
+    "id": "typo_squatting",
+    "title": "Typosquatting",
+    "definition": "Registering lookalike domains with typos or near-miss spellings of a trusted brand.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 typosquatting / URL indicators"
+    ],
+    "tags": [
+      "indicators"
+    ],
+    "tier": "exam"
+  },
+  "brand_impersonation": {
+    "id": "brand_impersonation",
+    "title": "Brand impersonation",
+    "definition": "Copying logos, themes, and wording of a known company so a fake message or site feels official.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 brand impersonation / phishing indicators"
+    ],
+    "tags": [
+      "indicators"
+    ],
+    "tier": "exam"
+  },
+  "hoax": {
+    "id": "hoax",
+    "title": "Hoax",
+    "definition": "A false warning or rumor spread to cause panic, wasted effort, or unsafe 'fixes.'",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 hoax"
+    ],
+    "tags": [
+      "social-engineering"
+    ],
+    "tier": "exam"
+  },
+  "invoice_scam": {
+    "id": "invoice_scam",
+    "title": "Invoice scam",
+    "definition": "Fraudulent billing or payment-change request that looks like a normal vendor or finance workflow.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 invoice scams / BEC-related fraud"
+    ],
+    "tags": [
+      "fraud"
+    ],
+    "tier": "exam"
+  },
+  "mfa_fatigue_attack": {
+    "id": "mfa_fatigue_attack",
+    "title": "MFA fatigue attack",
+    "definition": "Spamming MFA push prompts until the user approves one without thinking.",
+    "context": "Same muscle as ch2 MFA habits \u2014 here it rides a phishing or password-spray path.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 MFA / social engineering related attacks"
+    ],
+    "tags": [
+      "mfa",
+      "phishing"
+    ],
+    "tier": "exam"
+  },
+  "reporting_path": {
+    "id": "reporting_path",
+    "title": "Reporting path",
+    "definition": "The official way to report suspected phishing or social engineering (button, mailbox, SOC, ticket) so response can start.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 reporting / incident awareness"
+    ],
+    "tags": [
+      "response"
+    ],
+    "tier": "exam"
+  },
+  "mail_gateway": {
+    "id": "mail_gateway",
+    "title": "Mail gateway",
+    "definition": "Email security filter that scans, tags, quarantines, or blocks messages before they reach users.",
+    "tags": [
+      "support",
+      "email"
+    ],
+    "tier": "support"
+  },
+  "user_reported": {
+    "id": "user_reported",
+    "title": "User-reported",
+    "definition": "Phish or suspicious message flagged by an employee (report button or forward) rather than only by automated filters.",
+    "tags": [
+      "support",
+      "response"
+    ],
+    "tier": "support"
+  },
+  "phish_report_button": {
+    "id": "phish_report_button",
+    "title": "Phish report button",
+    "definition": "Client add-in that sends a suspected message to security for analysis without the user forwarding raw risk elsewhere.",
+    "tags": [
+      "support",
+      "response"
+    ],
+    "tier": "support"
+  },
+  "sandbox": {
+    "id": "sandbox",
+    "title": "Sandbox",
+    "definition": "Isolated analysis environment where attachments or links can be opened safely for detonation checks.",
+    "tags": [
+      "support",
+      "security"
+    ],
+    "tier": "support"
+  },
+  "physical_controls": {
+    "id": "physical_controls",
+    "title": "Physical security controls",
+    "definition": "Tangible barriers and processes that protect facilities, people, and hardware \u2014 fences, locks, cameras, badges, and the habits that make them work.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 physical security controls"
+    ],
+    "tags": [
+      "physical"
+    ],
+    "tier": "exam"
+  },
+  "fencing": {
+    "id": "fencing",
+    "title": "Fencing",
+    "definition": "Perimeter barrier that deters and delays casual entry \u2014 height, materials, and gates matter more than looking serious.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 fencing / perimeter"
+    ],
+    "tags": [
+      "physical",
+      "perimeter"
+    ],
+    "tier": "exam"
+  },
+  "bollards": {
+    "id": "bollards",
+    "title": "Bollards",
+    "definition": "Short posts that stop or slow vehicles from ramming doors, glass, or loading docks.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 bollards"
+    ],
+    "tags": [
+      "physical",
+      "perimeter"
+    ],
+    "tier": "exam"
+  },
+  "barricade": {
+    "id": "barricade",
+    "title": "Barricade",
+    "definition": "Temporary or permanent obstacle used to control vehicle or crowd movement around a site.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 barricades"
+    ],
+    "tags": [
+      "physical",
+      "perimeter"
+    ],
+    "tier": "exam"
+  },
+  "lighting": {
+    "id": "lighting",
+    "title": "Lighting (security)",
+    "definition": "Illumination that reduces dark hiding spots and improves camera usefulness \u2014 a cheap control that attackers hate.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 lighting"
+    ],
+    "tags": [
+      "physical"
+    ],
+    "tier": "exam"
+  },
+  "industrial_camouflage": {
+    "id": "industrial_camouflage",
+    "title": "Industrial camouflage",
+    "definition": "Making a facility blend into the neighborhood so it draws less attention as a high-value target.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 industrial camouflage"
+    ],
+    "tags": [
+      "physical"
+    ],
+    "tier": "exam"
+  },
+  "signage": {
+    "id": "signage",
+    "title": "Signage",
+    "definition": "Posted notices that warn, direct, or mark restricted areas \u2014 supporting control, not a substitute for locks.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 signage"
+    ],
+    "tags": [
+      "physical"
+    ],
+    "tier": "exam"
+  },
+  "cctv": {
+    "id": "cctv",
+    "title": "CCTV / cameras",
+    "definition": "Video surveillance that records and deters \u2014 useful for investigation when retention and coverage are planned.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 cameras / CCTV"
+    ],
+    "tags": [
+      "physical",
+      "detection"
+    ],
+    "tier": "exam"
+  },
+  "motion_detection": {
+    "id": "motion_detection",
+    "title": "Motion detection",
+    "definition": "Sensors that alert when movement occurs in a watched zone \u2014 often paired with cameras or alarms.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 motion detection"
+    ],
+    "tags": [
+      "physical",
+      "detection"
+    ],
+    "tier": "exam"
+  },
+  "alarm_system": {
+    "id": "alarm_system",
+    "title": "Alarm system",
+    "definition": "Sensors and signaling that notify people of unauthorized entry, door forced open, or other physical events.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 alarms"
+    ],
+    "tags": [
+      "physical",
+      "detection"
+    ],
+    "tier": "exam"
+  },
+  "security_guard": {
+    "id": "security_guard",
+    "title": "Security guard",
+    "definition": "Human presence that can challenge, escort, and respond \u2014 flexible where cameras only watch.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 security guards / personnel"
+    ],
+    "tags": [
+      "physical",
+      "personnel"
+    ],
+    "tier": "exam"
+  },
+  "reception": {
+    "id": "reception",
+    "title": "Reception / access desk",
+    "definition": "Front-desk checkpoint that verifies visitors, issues badges, and is the first human filter into the building.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 reception / access control personnel"
+    ],
+    "tags": [
+      "physical",
+      "personnel"
+    ],
+    "tier": "exam"
+  },
+  "access_badge": {
+    "id": "access_badge",
+    "title": "Access badge",
+    "definition": "Credential (card, fob, or phone token) presented to readers to open doors for authorized people.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 badges / access cards"
+    ],
+    "tags": [
+      "physical",
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "proximity_card": {
+    "id": "proximity_card",
+    "title": "Proximity / RFID badge",
+    "definition": "Badge that unlocks when held near a reader \u2014 convenient, and clonable if not paired with PIN or biometrics.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 proximity cards / RFID"
+    ],
+    "tags": [
+      "physical",
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "cable_lock": {
+    "id": "cable_lock",
+    "title": "Cable lock",
+    "definition": "Physical lock that tethers a laptop to furniture so walk-away theft is harder.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 cable locks"
+    ],
+    "tags": [
+      "physical",
+      "endpoint"
+    ],
+    "tier": "exam"
+  },
+  "door_lock": {
+    "id": "door_lock",
+    "title": "Locks (doors)",
+    "definition": "Mechanical or electronic door hardware \u2014 deadbolts, electric strikes, cipher locks \u2014 that enforce who may enter.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 locks"
+    ],
+    "tags": [
+      "physical",
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "mantrap": {
+    "id": "mantrap",
+    "title": "Mantrap",
+    "definition": "Two-door vestibule that only opens one door at a time so people cannot slip through with someone else.",
+    "context": "Also called an access control vestibule on some exams.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 mantrap / access control vestibule"
+    ],
+    "tags": [
+      "physical",
+      "access"
+    ],
+    "tier": "exam"
+  },
+  "secure_area": {
+    "id": "secure_area",
+    "title": "Secure area",
+    "definition": "Restricted space (server room, wiring closet, records vault) with stronger controls than the open floor.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 secure areas"
+    ],
+    "tags": [
+      "physical"
+    ],
+    "tier": "exam"
+  },
+  "visitor_log": {
+    "id": "visitor_log",
+    "title": "Visitor log",
+    "definition": "Record of who entered, when, and who escorted them \u2014 accountability for guests and contractors.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 visitor logs / escorts"
+    ],
+    "tags": [
+      "physical",
+      "personnel"
+    ],
+    "tier": "exam"
+  },
+  "clean_desk": {
+    "id": "clean_desk",
+    "title": "Clean desk policy",
+    "definition": "Requirement to clear sensitive papers and lock screens when leaving a workstation \u2014 no leftover secrets on the blotter.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 clean desk"
+    ],
+    "tags": [
+      "physical",
+      "policy"
+    ],
+    "tier": "exam"
+  },
+  "privacy_filter": {
+    "id": "privacy_filter",
+    "title": "Privacy / screen filter",
+    "definition": "Overlay that narrows the viewing angle so neighbors and caf\u00e9 eyes cannot easily read the display.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 privacy screens / filters"
+    ],
+    "tags": [
+      "physical",
+      "endpoint"
+    ],
+    "tier": "exam"
+  },
+  "piggybacking": {
+    "id": "piggybacking",
+    "title": "Piggybacking",
+    "definition": "Entering with consent of the person who opened the door \u2014 they held it; you still did not authenticate.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 piggybacking"
+    ],
+    "tags": [
+      "physical",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "usb_data_blocker": {
+    "id": "usb_data_blocker",
+    "title": "USB data blocker",
+    "definition": "Inline adapter that passes power only \u2014 blocks data lines so a public charge port cannot talk to the phone.",
+    "context": "Often nicknamed a USB condom.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 USB data blockers"
+    ],
+    "tags": [
+      "physical",
+      "endpoint"
+    ],
+    "tier": "exam"
+  },
+  "faraday_cage": {
+    "id": "faraday_cage",
+    "title": "Faraday cage / bag",
+    "definition": "Conductive enclosure that blocks RF \u2014 used for evidence phones, test devices, or shielding sensitive gear.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 Faraday cages / bags"
+    ],
+    "tags": [
+      "physical"
+    ],
+    "tier": "exam"
+  },
+  "air_gap": {
+    "id": "air_gap",
+    "title": "Air gap",
+    "definition": "Keeping a system physically isolated from other networks \u2014 no cable, no Wi-Fi, no convenient USB bridge.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 air gap"
+    ],
+    "tags": [
+      "physical",
+      "architecture"
+    ],
+    "tier": "exam"
+  },
+  "protected_distribution": {
+    "id": "protected_distribution",
+    "title": "Protected cable distribution",
+    "definition": "Hardened or monitored pathways for sensitive cabling so taps and tampering are harder.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 protected cable distribution"
+    ],
+    "tags": [
+      "physical"
+    ],
+    "tier": "exam"
+  },
+  "hot_aisle": {
+    "id": "hot_aisle",
+    "title": "Hot / cold aisle (awareness)",
+    "definition": "Data-center layout that separates hot exhaust and cold intake \u2014 operational design that also shapes who can walk where.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 hot/cold aisle (physical / environmental)"
+    ],
+    "tags": [
+      "physical",
+      "datacenter"
+    ],
+    "tier": "exam"
+  },
+  "badge_reader": {
+    "id": "badge_reader",
+    "title": "Badge reader",
+    "definition": "Door hardware that accepts a badge or PIN and signals the lock to open when policy allows.",
+    "tags": [
+      "support",
+      "physical"
+    ],
+    "tier": "support"
+  },
+  "server_room": {
+    "id": "server_room",
+    "title": "Server room",
+    "definition": "Secure area housing critical compute and network gear \u2014 usually badge-plus and camera-covered.",
+    "tags": [
+      "support",
+      "physical"
+    ],
+    "tier": "support"
+  },
+  "facilities": {
+    "id": "facilities",
+    "title": "Facilities",
+    "definition": "Building ops team that owns doors, cameras, lighting, and badge hardware alongside IT policy.",
+    "tags": [
+      "support",
+      "physical"
+    ],
+    "tier": "support"
+  },
+  "lobby": {
+    "id": "lobby",
+    "title": "Lobby",
+    "definition": "Public-facing entry where visitors meet reception \u2014 highest tailgating risk zone.",
+    "tags": [
+      "support",
+      "physical"
+    ],
+    "tier": "support"
+  },
+  "escort": {
+    "id": "escort",
+    "title": "Escort",
+    "definition": "Authorized person who accompanies a visitor in restricted space so guests are never unattended.",
+    "tags": [
+      "support",
+      "physical"
+    ],
+    "tier": "support"
+  },
+  "port": {
+    "id": "port",
+    "title": "Port",
+    "definition": "A 16-bit number (0\u201365535) that multiplexes traffic to a specific service or process on a host.",
+    "tags": [
+      "basics"
+    ],
+    "tier": "exam"
+  },
+  "protocol": {
+    "id": "protocol",
+    "title": "Protocol",
+    "definition": "A formal set of message formats and rules that networked systems use to exchange data.",
+    "tags": [
+      "basics"
+    ],
+    "tier": "exam"
+  },
+  "tcp": {
+    "id": "tcp",
+    "title": "TCP",
+    "definition": "Connection-oriented transport that sequences and acknowledges data so lost packets can be recovered.",
+    "tags": [
+      "transport"
+    ],
+    "tier": "exam"
+  },
+  "udp": {
+    "id": "udp",
+    "title": "UDP",
+    "definition": "Connectionless transport that sends datagrams without guaranteed delivery; used when speed or simplicity matters more than recovery.",
+    "tags": [
+      "transport"
+    ],
+    "tier": "exam"
+  },
+  "cleartext": {
+    "id": "cleartext",
+    "title": "Cleartext",
+    "definition": "Data sent without encryption so anyone on the path can read or alter it, including credentials.",
+    "tags": [
+      "security"
+    ],
+    "tier": "exam"
+  },
+  "http": {
+    "id": "http",
+    "title": "HTTP (80/TCP)",
+    "definition": "Cleartext web protocol. Replaced in production by HTTPS.",
+    "tags": [
+      "web",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "ftp": {
+    "id": "ftp",
+    "title": "FTP (20/21/TCP)",
+    "definition": "File transfer with cleartext commands and credentials. Port 21 is control; 20 is active-mode data. Replace with SFTP or FTPS.",
+    "tags": [
+      "file",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "sftp": {
+    "id": "sftp",
+    "title": "SFTP (22/TCP)",
+    "definition": "File transfer tunneled inside SSH. Different protocol from FTP; uses port 22, not 20/21.",
+    "context": "Not the same as FTPS \u2014 file transfer inside SSH, usually port 22.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 secure file transfer alternatives to FTP"
+    ],
+    "tags": [
+      "file",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "ftps": {
+    "id": "ftps",
+    "title": "FTPS (989/990/TCP)",
+    "definition": "FTP wrapped in TLS (implicit mode commonly 990 control / 989 data). Not the same as SFTP.",
+    "context": "Classic FTP wrapped in TLS; different ports and firewall story than SFTP.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 secure file transfer alternatives to FTP"
+    ],
+    "tags": [
+      "file",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "telnet": {
+    "id": "telnet",
+    "title": "Telnet (23/TCP)",
+    "definition": "Remote shell that sends everything \u2014 including passwords \u2014 in cleartext. Replace with SSH.",
+    "context": "Do not allow on management paths; replace with SSH.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 insecure protocols / secure alternatives"
+    ],
+    "tags": [
+      "remote",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "ssh": {
+    "id": "ssh",
+    "title": "SSH (22/TCP)",
+    "definition": "Encrypted remote shell and tunnel. Also carries SFTP and SCP. The standard Telnet replacement.",
+    "context": "Secure replacement for cleartext Telnet on remote admin paths.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 implement secure protocols (remote access)"
+    ],
+    "tags": [
+      "remote",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "smtp": {
+    "id": "smtp",
+    "title": "SMTP (25/TCP)",
+    "definition": "Server-to-server mail relay, historically cleartext. Clients should submit on 587 or 465 instead.",
+    "tags": [
+      "email",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "smtp_submission": {
+    "id": "smtp_submission",
+    "title": "SMTP submission (587/TCP)",
+    "definition": "Authenticated client mail submission, typically upgraded with STARTTLS. Modern send port.",
+    "tags": [
+      "email",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "smtps": {
+    "id": "smtps",
+    "title": "SMTPS (465/TCP)",
+    "definition": "SMTP wrapped in TLS from the first byte (implicit TLS).",
+    "tags": [
+      "email",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "pop3": {
+    "id": "pop3",
+    "title": "POP3 (110/TCP)",
+    "definition": "Downloads mail to the client in cleartext. Secure version is POP3S on 995.",
+    "tags": [
+      "email",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "pop3s": {
+    "id": "pop3s",
+    "title": "POP3S (995/TCP)",
+    "definition": "POP3 wrapped in TLS.",
+    "tags": [
+      "email",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "imap": {
+    "id": "imap",
+    "title": "IMAP (143/TCP)",
+    "definition": "Server-side mailbox access in cleartext. Secure version is IMAPS on 993.",
+    "tags": [
+      "email",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "imaps": {
+    "id": "imaps",
+    "title": "IMAPS (993/TCP)",
+    "definition": "IMAP wrapped in TLS \u2014 keeps mail on the server with encryption in transit.",
+    "tags": [
+      "email",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "dns": {
+    "id": "dns",
+    "title": "DNS (53/UDP/TCP)",
+    "definition": "Resolves names to addresses. UDP 53 for normal lookups; TCP 53 for zone transfers and large responses. Classic DNS is unencrypted.",
+    "tags": [
+      "name",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "dhcp": {
+    "id": "dhcp",
+    "title": "DHCP (67/68/UDP)",
+    "definition": "Assigns IP configuration. Server listens on 67; client on 68.",
+    "tags": [
+      "network"
+    ],
+    "tier": "exam"
+  },
+  "ntp": {
+    "id": "ntp",
+    "title": "NTP (123/UDP)",
+    "definition": "Synchronizes clocks. Accurate time matters for logs, Kerberos tickets, and certificate validation.",
+    "tags": [
+      "network"
+    ],
+    "tier": "exam"
+  },
+  "ldap": {
+    "id": "ldap",
+    "title": "LDAP (389/TCP/UDP)",
+    "definition": "Directory lookups and authentication in cleartext. Secure version is LDAPS on 636.",
+    "tags": [
+      "directory",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "ldaps": {
+    "id": "ldaps",
+    "title": "LDAPS (636/TCP)",
+    "definition": "LDAP wrapped in TLS.",
+    "context": "Directory binds with passwords should not ride cleartext LDAP on untrusted segments.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 implement secure protocols (directory services)"
+    ],
+    "tags": [
+      "directory",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "kerberos": {
+    "id": "kerberos",
+    "title": "Kerberos (88/TCP/UDP)",
+    "definition": "Ticket-based authentication used by Active Directory. Issues time-limited tickets instead of sending reusable passwords repeatedly.",
+    "tags": [
+      "directory"
+    ],
+    "tier": "exam"
+  },
+  "snmp": {
+    "id": "snmp",
+    "title": "SNMP (161/162/UDP)",
+    "definition": "Device monitoring. 161 polls agents; 162 receives traps. v1/v2c send community strings in cleartext \u2014 prefer SNMPv3.",
+    "tags": [
+      "monitor",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "snmpv3": {
+    "id": "snmpv3",
+    "title": "SNMPv3",
+    "definition": "SNMP with authentication and encryption. Same ports as classic SNMP, but credentials are no longer cleartext community strings.",
+    "tags": [
+      "monitor",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "syslog": {
+    "id": "syslog",
+    "title": "Syslog (514/UDP)",
+    "definition": "Cleartext log forwarding to a collector. Secure with syslog over TLS on 6514.",
+    "tags": [
+      "monitor",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "syslog_tls": {
+    "id": "syslog_tls",
+    "title": "Syslog over TLS (6514/TCP)",
+    "definition": "Syslog carried inside TLS so log data stays confidential and intact in transit.",
+    "tags": [
+      "monitor",
+      "secure"
+    ],
+    "tier": "exam"
+  },
+  "smb": {
+    "id": "smb",
+    "title": "SMB (445/TCP)",
+    "definition": "Windows file and printer sharing. Never expose to the Internet; a frequent worm and ransomware path.",
+    "tags": [
+      "file"
+    ],
+    "tier": "exam"
+  },
+  "rdp": {
+    "id": "rdp",
+    "title": "RDP (3389/TCP)",
+    "definition": "Microsoft Remote Desktop. Encrypted in modern use, but Internet-exposed RDP is a leading ransomware entry \u2014 keep it behind a VPN.",
+    "context": "Do not expose raw 3389 to the internet; prefer VPN then jump host.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 firewall ports/protocols; secure remote access"
+    ],
+    "tags": [
+      "remote"
+    ],
+    "tier": "exam"
+  },
+  "radius": {
+    "id": "radius",
+    "title": "RADIUS",
+    "definition": "Authentication server protocol commonly behind enterprise Wi-Fi \u2014 checks user/device credentials for 802.1X.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 RADIUS / AAA"
+    ],
+    "tags": [
+      "wireless",
+      "auth"
+    ],
+    "tier": "exam"
+  },
+  "tacacs": {
+    "id": "tacacs",
+    "title": "TACACS+ (49/TCP)",
+    "definition": "Cisco AAA protocol that encrypts the full payload and separates authentication, authorization, and accounting.",
+    "tags": [
+      "aaa"
+    ],
+    "tier": "exam"
+  },
+  "tftp": {
+    "id": "tftp",
+    "title": "TFTP (69/UDP)",
+    "definition": "Tiny file transfer with no authentication. Acceptable only on trusted networks for device configs or PXE \u2014 never across a perimeter.",
+    "tags": [
+      "file",
+      "insecure"
+    ],
+    "tier": "exam"
+  },
+  "firewall_rule": {
+    "id": "firewall_rule",
+    "title": "Firewall rule (ports/protocols)",
+    "definition": "An allow or deny decision keyed to source, destination, port, and protocol \u2014 the operational place Security+ port knowledge gets used.",
+    "tags": [
+      "ops"
+    ],
+    "tier": "exam"
+  },
+  "msp": {
+    "id": "msp",
+    "title": "MSP",
+    "definition": "Managed Service Provider; a company that runs IT support for other businesses.",
+    "tags": [
+      "support",
+      "desk"
+    ],
+    "tier": "support"
+  },
+  "vlan": {
+    "id": "vlan",
+    "title": "VLAN",
+    "definition": "Virtual LAN; a logical network segment that isolates traffic without separate physical wiring.",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "tier": "support"
+  },
+  "enable_password": {
+    "id": "enable_password",
+    "title": "Enable password",
+    "definition": "Privileged password on network gear that unlocks administrative (enable) mode.",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "tier": "support"
+  },
+  "key_auth": {
+    "id": "key_auth",
+    "title": "Key authentication",
+    "definition": "Logging in with a cryptographic key pair instead of (or in addition to) a password.",
+    "tags": [
+      "support",
+      "security"
+    ],
+    "tier": "support"
+  },
+  "starttls": {
+    "id": "starttls",
+    "title": "STARTTLS",
+    "definition": "A command that upgrades an existing cleartext connection to TLS mid-session (common on mail submission).",
+    "context": "Upgrades an existing cleartext mail session mid-stream (common on submission port 587).",
+    "tags": [
+      "support",
+      "email",
+      "security"
+    ],
+    "tier": "support"
+  },
+  "open_relay": {
+    "id": "open_relay",
+    "title": "Open relay",
+    "definition": "A mail server that accepts and forwards mail from anyone; abused by spammers.",
+    "tags": [
+      "support",
+      "email"
+    ],
+    "tier": "support"
+  },
+  "jump_host": {
+    "id": "jump_host",
+    "title": "Jump host / jump box",
+    "definition": "A hardened intermediate server you remote into first, then reach internal systems from there.",
+    "context": "Intermediate hop so workstations are not directly reachable from remote clients.",
+    "tags": [
+      "support",
+      "remote",
+      "network"
+    ],
+    "tier": "support"
+  },
+  "vpn": {
+    "id": "vpn",
+    "title": "VPN",
+    "definition": "Encrypted tunnel for traffic \u2014 still wise on untrusted Wi-Fi even when the caf\u00e9 page looks friendly.",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "tier": "support"
+  },
+  "directory_bind": {
+    "id": "directory_bind",
+    "title": "Directory bind",
+    "definition": "An application authenticating/connecting to a directory service (like LDAP) to look up or validate accounts.",
+    "tags": [
+      "support",
+      "directory"
+    ],
+    "tier": "support"
+  },
+  "domain": {
+    "id": "domain",
+    "title": "Domain",
+    "definition": "An administrative realm (often Active Directory) that shares authentication and policy.",
+    "tags": [
+      "support",
+      "directory"
+    ],
+    "tier": "support"
+  },
+  "dhcp_lease": {
+    "id": "dhcp_lease",
+    "title": "DHCP lease",
+    "definition": "Temporary IP configuration handed out by DHCP for a limited time.",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "tier": "support"
+  },
+  "resolver_cache": {
+    "id": "resolver_cache",
+    "title": "Resolver cache",
+    "definition": "Local store of recent DNS answers; flushing it forces fresh lookups.",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "tier": "support"
+  },
+  "community_string": {
+    "id": "community_string",
+    "title": "Community string",
+    "definition": "A shared secret in SNMPv1/v2c that acts like a password and is sent in cleartext.",
+    "tags": [
+      "support",
+      "monitor",
+      "security"
+    ],
+    "tier": "support"
+  },
+  "aaa": {
+    "id": "aaa",
+    "title": "AAA",
+    "definition": "Authentication, Authorization, and Accounting \u2014 proving identity, deciding what you may do, and logging what you did.",
+    "tags": [
+      "support",
+      "aaa"
+    ],
+    "tier": "support"
+  },
+  "authz": {
+    "id": "authz",
+    "title": "Authorization (authz)",
+    "definition": "What an authenticated user or device is allowed to do (distinct from authentication).",
+    "tags": [
+      "support",
+      "aaa"
+    ],
+    "tier": "support"
+  },
+  "concentrator": {
+    "id": "concentrator",
+    "title": "VPN concentrator",
+    "definition": "Device/service that terminates many VPN tunnels for remote users.",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "tier": "support"
+  },
+  "perimeter": {
+    "id": "perimeter",
+    "title": "Network perimeter",
+    "definition": "Boundary between trusted internal networks and untrusted external networks.",
+    "tags": [
+      "support",
+      "network"
+    ],
+    "tier": "support"
+  },
+  "guest_wifi": {
+    "id": "guest_wifi",
+    "title": "Guest Wi-Fi",
+    "definition": "Separate wireless access for visitors \u2014 should not freely reach internal servers or employee laptops.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 guest network"
+    ],
+    "tags": [
+      "wireless",
+      "guest"
+    ],
+    "tier": "exam"
+  },
+  "implicit_tls": {
+    "id": "implicit_tls",
+    "title": "Implicit TLS",
+    "definition": "Wrapping a protocol in TLS from the first byte (e.g. SMTPS 465, FTPS 990) rather than upgrading mid-session with STARTTLS.",
+    "tags": [
+      "support",
+      "security"
+    ],
+    "tier": "support"
+  },
+  "change_ticket": {
+    "id": "change_ticket",
+    "title": "Change (change ticket)",
+    "definition": "Tracked request to modify production systems (firewall rules, certs, configs) with review/approval.",
+    "tags": [
+      "support",
+      "ops"
+    ],
+    "tier": "support"
+  },
+  "firewall": {
+    "id": "firewall",
+    "title": "Firewall",
+    "definition": "Device or software that allows or denies traffic based on rules (addresses, ports, protocols).",
+    "tags": [
+      "support",
+      "network",
+      "ops"
+    ],
+    "tier": "support"
+  },
+  "ssid": {
+    "id": "ssid",
+    "title": "SSID",
+    "definition": "Service set identifier \u2014 the network name a wireless network advertises (or tries to hide).",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 SSID / wireless basics"
+    ],
+    "tags": [
+      "wireless"
+    ],
+    "tier": "exam"
+  },
+  "wep": {
+    "id": "wep",
+    "title": "WEP",
+    "definition": "Wired Equivalent Privacy \u2014 obsolete Wi-Fi encryption that is easily broken; treat as insecure legacy.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 WEP (insecure)"
+    ],
+    "tags": [
+      "wireless",
+      "encryption"
+    ],
+    "tier": "exam"
+  },
+  "wpa2": {
+    "id": "wpa2",
+    "title": "WPA2",
+    "definition": "Wi-Fi Protected Access 2 \u2014 widely deployed Wi-Fi security using strong encryption (AES-CCMP) when configured correctly.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 WPA2"
+    ],
+    "tags": [
+      "wireless",
+      "encryption"
+    ],
+    "tier": "exam"
+  },
+  "wpa3": {
+    "id": "wpa3",
+    "title": "WPA3",
+    "definition": "Newer Wi-Fi security standard with stronger protections (including SAE) against offline password attacks and better open-network options.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 WPA3"
+    ],
+    "tags": [
+      "wireless",
+      "encryption"
+    ],
+    "tier": "exam"
+  },
+  "sae": {
+    "id": "sae",
+    "title": "SAE",
+    "definition": "Simultaneous Authentication of Equals \u2014 WPA3 handshake that resists offline dictionary attacks better than WPA2-PSK.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 WPA3 / SAE"
+    ],
+    "tags": [
+      "wireless",
+      "encryption"
+    ],
+    "tier": "exam"
+  },
+  "psk": {
+    "id": "psk",
+    "title": "PSK (pre-shared key)",
+    "definition": "Shared Wi-Fi password mode \u2014 everyone uses the same key; fine for small spaces, weak for accountability and rotation.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 PSK / personal mode"
+    ],
+    "tags": [
+      "wireless",
+      "auth"
+    ],
+    "tier": "exam"
+  },
+  "enterprise_wpa": {
+    "id": "enterprise_wpa",
+    "title": "WPA-Enterprise (802.1X)",
+    "definition": "Wi-Fi that authenticates each user/device via 802.1X (usually RADIUS) instead of one shared password.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 WPA2/WPA3-Enterprise / 802.1X"
+    ],
+    "tags": [
+      "wireless",
+      "auth"
+    ],
+    "tier": "exam"
+  },
+  "ieee_8021x": {
+    "id": "ieee_8021x",
+    "title": "802.1X",
+    "definition": "Port-based network access control \u2014 authenticate before full network access; used for enterprise Wi-Fi and wired NAC.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 802.1X"
+    ],
+    "tags": [
+      "wireless",
+      "auth"
+    ],
+    "tier": "exam"
+  },
+  "open_network": {
+    "id": "open_network",
+    "title": "Open network",
+    "definition": "Wi-Fi with no encryption on the air \u2014 anyone nearby can join and often eavesdrop unless a higher layer protects traffic.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 open / insecure wireless"
+    ],
+    "tags": [
+      "wireless",
+      "risk"
+    ],
+    "tier": "exam"
+  },
+  "captive_portal": {
+    "id": "captive_portal",
+    "title": "Captive portal",
+    "definition": "Web login/splash page before internet access \u2014 common on guest Wi-Fi; not a substitute for strong link encryption by itself.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 captive portal / guest access"
+    ],
+    "tags": [
+      "wireless",
+      "guest"
+    ],
+    "tier": "exam"
+  },
+  "wps": {
+    "id": "wps",
+    "title": "WPS",
+    "definition": "Wi-Fi Protected Setup \u2014 convenience pairing feature with a history of brute-force weaknesses; disable when possible.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 WPS risks"
+    ],
+    "tags": [
+      "wireless",
+      "risk"
+    ],
+    "tier": "exam"
+  },
+  "evil_twin": {
+    "id": "evil_twin",
+    "title": "Evil twin",
+    "definition": "Attacker access point that mimics a trusted SSID to trick clients into connecting and exposing traffic or credentials.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 evil twin"
+    ],
+    "tags": [
+      "wireless",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "rogue_ap": {
+    "id": "rogue_ap",
+    "title": "Rogue access point",
+    "definition": "Unauthorized AP on the network or in range \u2014 intentional attack gear or a well-meaning employee 'helping' coverage.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 rogue access point"
+    ],
+    "tags": [
+      "wireless",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "disassociation": {
+    "id": "disassociation",
+    "title": "Disassociation / deauthentication",
+    "definition": "Wireless frames that kick clients off an AP \u2014 used in DoS or to force reconnects toward an evil twin.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 disassociation / deauthentication attacks"
+    ],
+    "tags": [
+      "wireless",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "jamming": {
+    "id": "jamming",
+    "title": "Jamming",
+    "definition": "Flooding RF so legitimate Wi-Fi cannot communicate \u2014 a denial-of-service against the air itself.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 jamming / RF interference (attack)"
+    ],
+    "tags": [
+      "wireless",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "war_driving": {
+    "id": "war_driving",
+    "title": "War driving",
+    "definition": "Roaming an area to discover and map Wi-Fi networks \u2014 often looking for weak or open targets.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 war driving"
+    ],
+    "tags": [
+      "wireless",
+      "recon"
+    ],
+    "tier": "exam"
+  },
+  "eavesdropping": {
+    "id": "eavesdropping",
+    "title": "Wireless eavesdropping",
+    "definition": "Capturing Wi-Fi frames from the air \u2014 catastrophic on open/WEP, still a concern if clients join the wrong network.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 eavesdropping / sniffing"
+    ],
+    "tags": [
+      "wireless",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "replay_attack": {
+    "id": "replay_attack",
+    "title": "Replay attack",
+    "definition": "Capturing valid wireless or auth traffic and re-sending it later to gain access or disrupt sessions.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 replay attacks"
+    ],
+    "tags": [
+      "wireless",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "iv_attack": {
+    "id": "iv_attack",
+    "title": "IV attack (WEP)",
+    "definition": "Exploiting WEP's weak initialization vectors to recover the key \u2014 one reason WEP is retired.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 IV attack / WEP weaknesses"
+    ],
+    "tags": [
+      "wireless",
+      "attack"
+    ],
+    "tier": "exam"
+  },
+  "site_survey": {
+    "id": "site_survey",
+    "title": "Site survey",
+    "definition": "Measuring coverage, interference, and dead zones so APs are placed and tuned for both performance and security boundaries.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 site survey"
+    ],
+    "tags": [
+      "wireless",
+      "design"
+    ],
+    "tier": "exam"
+  },
+  "segmentation": {
+    "id": "segmentation",
+    "title": "Network segmentation",
+    "definition": "Splitting networks so a compromise or guest device cannot freely reach sensitive systems.",
+    "context": "Guest Wi-Fi without segmentation is a hallway into the building.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 network segmentation"
+    ],
+    "tags": [
+      "wireless",
+      "architecture"
+    ],
+    "tier": "exam"
+  },
+  "hidden_ssid": {
+    "id": "hidden_ssid",
+    "title": "Hidden SSID",
+    "definition": "Not broadcasting the network name \u2014 weak obscurity; determined clients and attackers can still discover it.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 SSID suppression"
+    ],
+    "tags": [
+      "wireless"
+    ],
+    "tier": "exam"
+  },
+  "mac_filtering": {
+    "id": "mac_filtering",
+    "title": "MAC filtering",
+    "definition": "Allow/deny Wi-Fi by hardware address \u2014 easily spoofed; not a real access-control substitute.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 MAC filtering"
+    ],
+    "tags": [
+      "wireless"
+    ],
+    "tier": "exam"
+  },
+  "ap_placement": {
+    "id": "ap_placement",
+    "title": "AP placement",
+    "definition": "Where access points sit and how loud they transmit \u2014 affects coverage, leakage outside the building, and attack surface.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 access point placement / power levels"
+    ],
+    "tags": [
+      "wireless",
+      "design"
+    ],
+    "tier": "exam"
+  },
+  "wifi_analyzer": {
+    "id": "wifi_analyzer",
+    "title": "Wi-Fi analyzer",
+    "definition": "Tool that shows SSIDs, channels, signal strength, and sometimes security modes \u2014 useful for survey and spotting twins.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 wireless analyzers / site survey tools"
+    ],
+    "tags": [
+      "wireless",
+      "tools"
+    ],
+    "tier": "exam"
+  },
+  "bluetooth": {
+    "id": "bluetooth",
+    "title": "Bluetooth",
+    "definition": "Short-range wireless for peripherals and phones \u2014 convenient, and a side channel if pairing is careless.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 Bluetooth risks"
+    ],
+    "tags": [
+      "bluetooth"
+    ],
+    "tier": "exam"
+  },
+  "bluejacking": {
+    "id": "bluejacking",
+    "title": "Bluejacking",
+    "definition": "Sending unsolicited messages to nearby Bluetooth devices \u2014 annoying spam more than full takeover.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 bluejacking"
+    ],
+    "tags": [
+      "bluetooth"
+    ],
+    "tier": "exam"
+  },
+  "bluesnarfing": {
+    "id": "bluesnarfing",
+    "title": "Bluesnarfing",
+    "definition": "Unauthorized access to data on a Bluetooth device \u2014 contacts, messages, files \u2014 when pairing/security is weak.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 bluesnarfing"
+    ],
+    "tags": [
+      "bluetooth"
+    ],
+    "tier": "exam"
+  },
+  "bluetooth_pairing": {
+    "id": "bluetooth_pairing",
+    "title": "Bluetooth pairing hygiene",
+    "definition": "Only pair expected devices, prefer confirm codes, turn discovery off when idle \u2014 desk-level Bluetooth risk control.",
+    "refs": [
+      "CompTIA Security+ SY0-701 \u2014 Bluetooth security practices"
+    ],
+    "tags": [
+      "bluetooth"
+    ],
+    "tier": "exam"
+  },
+  "access_point": {
+    "id": "access_point",
+    "title": "Access point (AP)",
+    "definition": "Device that bridges wireless clients onto the wired LAN \u2014 the radio end of corporate Wi-Fi.",
+    "tags": [
+      "support",
+      "wireless"
+    ],
+    "tier": "support"
+  },
+  "controller": {
+    "id": "controller",
+    "title": "Wireless controller",
+    "definition": "Central brain that manages many APs \u2014 SSIDs, encryption mode, rogue detection, guest policy.",
+    "tags": [
+      "support",
+      "wireless"
+    ],
+    "tier": "support"
+  },
+  "signal_strength": {
+    "id": "signal_strength",
+    "title": "Signal strength",
+    "definition": "How loud the AP looks to a client \u2014 useful for coverage tickets and for noticing a twin that is 'too strong' in the wrong place.",
+    "tags": [
+      "support",
+      "wireless"
+    ],
+    "tier": "support"
+  },
+  "vlan_trunking": {
+    "id": "vlan_trunking",
+    "title": "VLAN Trunking (802.1Q)",
+    "definition": "A Layer 2 bridging mechanism allowing multiple virtual local area networks to traverse a single physical link by inserting a 4-byte 802.1Q VLAN tag into the Ethernet frame header.",
+    "context": "Carries isolated traffic classes\u2014including Corporate, Telemetry, and VoIP\u2014across campus backbone links without requiring dedicated physical cables for each broadcast domain.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 2.1 \u2014 Configure and apply switching features (VLANs, 802.1Q trunking, native VLAN)",
+      "CompTIA Network+ N10-009 Domain 2.1 \u2014 Network switching concepts and inter-VLAN transport"
+    ],
+    "tags": [
+      "vlan",
+      "switching",
+      "layer2",
+      "802.1q",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "dhcp_exhaustion": {
+    "id": "dhcp_exhaustion",
+    "title": "DHCP Scope Exhaustion",
+    "definition": "A network denial-of-service condition where a Dynamic Host Configuration Protocol scope has leased all available IP addresses in its configured allocation pool, preventing new or reconnecting devices from acquiring valid Layer 3 network parameters.",
+    "context": "Forces booting clients into APIPA link-local addresses (169.254.x.x); commonly occurs when massive device reconnect storms collide with excessively long lease durations.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.4 & 4.1 \u2014 IPv4 addressing, DHCP pools, and troubleshooting IP assignment",
+      "CompTIA Network+ N10-009 Domain 4.1 \u2014 Troubleshooting common network service failures"
+    ],
+    "tags": [
+      "dhcp",
+      "ipv4",
+      "troubleshooting",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "patch_panel": {
+    "id": "patch_panel",
+    "title": "Patch Panel",
+    "definition": "A passive, rack-mounted structural interconnect device containing female RJ-45 modular jacks on the front faceplate and 110-style insulation displacement contact punchdown blocks on the rear to terminate horizontal structured cabling.",
+    "context": "Protects fragile horizontal solid-core cabling from mechanical wear and tear by allowing technicians to cross-connect ports using flexible stranded patch cables.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 1.2 \u2014 Cable management, patch panels, punchdown blocks, and Layer 1 physical infrastructure",
+      "CompTIA Network+ N10-009 Domain 1.2 \u2014 Physical media and structured cabling distribution"
+    ],
+    "tags": [
+      "hardware",
+      "cabling",
+      "layer1",
+      "physical",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "flea_power": {
+    "id": "flea_power",
+    "title": "Flea Power (Residual Energy)",
+    "definition": "The residual static electrical charge stored in motherboard capacitors, power supply filter stages, and integrated circuits after primary electrical power is disconnected.",
+    "context": "Must be fully discharged by disconnecting power cords and depressing the power button for thirty seconds to clear corrupt memory registers before replacing hardware.",
+    "refs": [
+      "CompTIA A+ Core 1 220-1101 Domain 3.0 \u2014 Hardware break/fix and power triage",
+      "CompTIA Network+ N10-008 Domain 4.1 \u2014 Physical hardware troubleshooting methodology"
+    ],
+    "tags": [
+      "hardware",
+      "power",
+      "electrical",
+      "troubleshooting",
+      "network-plus"
+    ],
+    "tier": "support"
+  },
+  "spanning_tree": {
+    "id": "spanning_tree",
+    "title": "Spanning Tree Protocol (STP / 802.1D / 802.1w)",
+    "definition": "A Layer 2 network protocol that monitors bridge topology and dynamically places redundant switch ports into blocking state to prevent catastrophic broadcast storms and switching loops.",
+    "context": "Transitions ports through listening, learning, and forwarding states (or rapid sync) to ensure a single, loop-free active path exists across redundant campus switches.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 2.1 \u2014 Switching features, loop prevention, and Spanning Tree Protocol",
+      "CompTIA Network+ N10-009 Domain 2.1 \u2014 Layer 2 protocols and high-availability switching"
+    ],
+    "tags": [
+      "switching",
+      "layer2",
+      "stp",
+      "loops",
+      "network-plus"
+    ],
+    "tier": "exam"
+  },
+  "link_aggregation": {
+    "id": "link_aggregation",
+    "title": "Link Aggregation (LACP / 802.3ad)",
+    "definition": "A networking standard (Link Aggregation Control Protocol) that bundles multiple physical Ethernet interfaces into a single logical channel to provide multiplied bandwidth and active-active hardware redundancy.",
+    "context": "Protects critical inter-switch uplinks against single-cable failures while preventing Spanning Tree Protocol from blocking the parallel physical links.",
+    "refs": [
+      "CompTIA Network+ N10-008 Domain 2.1 \u2014 Port bonding, link aggregation, and LACP",
+      "CompTIA Network+ N10-009 Domain 2.1 \u2014 High availability, trunking, and NIC teaming"
+    ],
+    "tags": [
+      "switching",
+      "layer2",
+      "lacp",
+      "redundancy",
+      "network-plus"
+    ],
+    "tier": "exam"
+  }
+}

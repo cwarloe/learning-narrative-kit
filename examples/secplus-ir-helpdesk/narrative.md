@@ -59,3 +59,16 @@ I told her: I had nearly wiped a loud nothing. I had stopped a quiet something w
 She nodded once, then remembered the USB on her wall. "Keep asking what it did before you decide what it is."
 
 The queue showed one more URGENT. I opened it anyway — criteria first, adrenaline second. The subject was louder than the evidence. I left it in the queue with a note, and I left the imaging USB where she had put it.
+
+```bridge-card
+title: Portland Desk Lab: The Incident Escalation & SOC Handoff Crucible
+target: workbench.md
+domain: CompTIA Security+ SY0-701 • Domain 4.0 Incident Response & Operations
+badge: Final Capstone Lab
+cta: Take the Ticket & Open the Lab ->
+---
+Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Jules Mercer.
+
+[Take the Ticket & Open the Lab ->](workbench.md)
+```
+

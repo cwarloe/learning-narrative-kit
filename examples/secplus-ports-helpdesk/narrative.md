@@ -72,6 +72,22 @@ Dana exhaled. "FTPS I can turn on. I got burned once when a firewall guy opened 
 
 "On a [[jump_host|jump host]] we control."
 
+Before Dana's transfer finished, Leah Moreno from Portland plant operations called from the treatment facility down by the river. Leah ran plant ops with a steel clipboard and zero patience for corporate drift, and when plant operations called the desk, it was never about a jammed printer.
+
+"Ethan," Leah said, industrial pumps humming through the handset. "Our telemetry gateway stopped feeding sensor metrics to the central plant board. A field contractor wants an emergency firewall rule opening Modbus and DNP3 across the inter-site WAN so the overflow alarms stop chirping. Can you just punch the ports through?"
+
+I checked the protocol notes before answering. Port 502 for Modbus, 20000 for DNP3 — classic cleartext industrial [[protocol|protocols]] built for isolated control loops, not an open WAN span.
+
+"Those protocols have no encryption on the wire, Leah," I said. "If someone intercepts that WAN traffic, they aren't just reading tank levels — they could inject a malicious valve command."
+
+Jules leaned back from her monitor, listening with her coffee mug in hand. "Leah knows her plant," Jules murmured. "Give her the architecture, not just a no."
+
+"We can't open raw cleartext across the [[perimeter|perimeter]]," I told Leah. "What we can do is drop the telemetry into an encrypted [[vpn|VPN]] tunnel between the plant gateway and our [[concentrator|concentrator]]. Plant ops gets the telemetry stream, and nobody outside touches the pumps."
+
+Leah paused, the phone clicking as she made a sharp notation on her clipboard. "If the tunnel keeps the overflow alarms quiet without putting the treatment line at risk, build it. I'll hold the contractor at the gate."
+
+I routed the request to network engineering, marked it operational priority, and Jules gave me a quick nod before turning back to her queue.
+
 ## HR's padlock and the contractor in a hotel
 
 HR pinged right after standup. The benefits portal still loaded over [[http|HTTP]] on 80, which meant people were typing open-enrollment information into a page with no padlock. Marketing had meant to fix it after benefits season. Benefits season was now.
@@ -167,3 +183,13 @@ Jules stopped at my cube on her way out, raincoat on, bike lights already clippe
 "Keep the cards if they help you get started," she said. "Throw them out when the person on the phone already knows the number, and what they actually need from you is the other half."
 
 That was the one I wrote down. I locked the drawer and went out into the rain to catch the MAX.
+
+```bridge-card
+title: Hands-on Workbench: Level 1 Protocol Triage & Diagnostic Analysis
+target: workbench.md
+domain: CompTIA Security+ SY0-701 • Domain 1.4 & 2.5
+badge: Hands-on Workbench
+---
+Step onto Ethan's shift with interactive terminal dumps, packet captures of Jared's cleartext Telnet session, Maya's mail client configuration triage, and the Tier 1 Security Escalation deliverable.
+```
+

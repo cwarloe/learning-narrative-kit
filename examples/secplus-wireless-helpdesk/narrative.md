@@ -115,3 +115,14 @@ At 5:40 I closed notes. Maya was on enterprise and late. Ken was on VPN and not 
 Jules clipped her bike lights on. "Monday someone will join the loud lookalike because the meeting started."
 
 I already had the line. I went out into the mist.
+
+```bridge-card
+title: Portland Desk Lab: Wireless Security, 802.1X Enterprise, & Rogue AP Triage
+target: workbench.md
+domain: CompTIA Security+ SY0-701 • Domain 2.1 & 3.2
+badge: Hands-on Workbench
+cta: Take the Ticket & Open the Lab ->
+---
+Step onto Ethan's shift with interactive 802.11 association and RADIUS packet decodes, signal strength (RSSI) rogue AP triangulation, the 5-case Call Your Shot prediction gate, and the Tier 1 Rogue AP Containment & Wireless Remediation deliverable.
+```
+

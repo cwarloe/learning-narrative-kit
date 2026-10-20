@@ -1,0 +1,63 @@
+bank_id: netplus-flood-capstone-glossary
+title: "Network+ N10-008/009 — Campus Flood & Disaster Recovery Midpoint Capstone"
+source: "CompTIA Network+ N10-008/009 objectives (Physical Layer 1 structured cabling, 802.1Q trunking, DHCP pool exhaustion, Spanning Tree loop prevention, LACP link aggregation, and hardware triage)"
+terms:
+  - id: vlan_trunking
+    title: VLAN Trunking (802.1Q)
+    definition: "A Layer 2 bridging mechanism allowing multiple virtual local area networks to traverse a single physical link by inserting a 4-byte 802.1Q VLAN tag into the Ethernet frame header."
+    context: "Carries isolated traffic classes—including Corporate, Telemetry, and VoIP—across campus backbone links without requiring dedicated physical cables for each broadcast domain."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 2.1 — Configure and apply switching features (VLANs, 802.1Q trunking, native VLAN)"
+      - "CompTIA Network+ N10-009 Domain 2.1 — Network switching concepts and inter-VLAN transport"
+    tags: [vlan, switching, layer2, 802.1q, network-plus]
+    tier: exam
+
+  - id: dhcp_exhaustion
+    title: DHCP Scope Exhaustion
+    definition: "A network denial-of-service condition where a Dynamic Host Configuration Protocol scope has leased all available IP addresses in its configured allocation pool, preventing new or reconnecting devices from acquiring valid Layer 3 network parameters."
+    context: "Forces booting clients into APIPA link-local addresses (169.254.x.x); commonly occurs when massive device reconnect storms collide with excessively long lease durations."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 1.4 & 4.1 — IPv4 addressing, DHCP pools, and troubleshooting IP assignment"
+      - "CompTIA Network+ N10-009 Domain 4.1 — Troubleshooting common network service failures"
+    tags: [dhcp, ipv4, troubleshooting, network-plus]
+    tier: exam
+
+  - id: patch_panel
+    title: Patch Panel
+    definition: "A passive, rack-mounted structural interconnect device containing female RJ-45 modular jacks on the front faceplate and 110-style insulation displacement contact punchdown blocks on the rear to terminate horizontal structured cabling."
+    context: "Protects fragile horizontal solid-core cabling from mechanical wear and tear by allowing technicians to cross-connect ports using flexible stranded patch cables."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 1.2 — Cable management, patch panels, punchdown blocks, and Layer 1 physical infrastructure"
+      - "CompTIA Network+ N10-009 Domain 1.2 — Physical media and structured cabling distribution"
+    tags: [hardware, cabling, layer1, physical, network-plus]
+    tier: exam
+
+  - id: flea_power
+    title: Flea Power (Residual Energy)
+    definition: "The residual static electrical charge stored in motherboard capacitors, power supply filter stages, and integrated circuits after primary electrical power is disconnected."
+    context: "Must be fully discharged by disconnecting power cords and depressing the power button for thirty seconds to clear corrupt memory registers before replacing hardware."
+    refs:
+      - "CompTIA A+ Core 1 220-1101 Domain 3.0 — Hardware break/fix and power triage"
+      - "CompTIA Network+ N10-008 Domain 4.1 — Physical hardware troubleshooting methodology"
+    tags: [hardware, power, electrical, troubleshooting, network-plus]
+    tier: support
+
+  - id: spanning_tree
+    title: Spanning Tree Protocol (STP / 802.1D / 802.1w)
+    definition: "A Layer 2 network protocol that monitors bridge topology and dynamically places redundant switch ports into blocking state to prevent catastrophic broadcast storms and switching loops."
+    context: "Transitions ports through listening, learning, and forwarding states (or rapid sync) to ensure a single, loop-free active path exists across redundant campus switches."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 2.1 — Switching features, loop prevention, and Spanning Tree Protocol"
+      - "CompTIA Network+ N10-009 Domain 2.1 — Layer 2 protocols and high-availability switching"
+    tags: [switching, layer2, stp, loops, network-plus]
+    tier: exam
+
+  - id: link_aggregation
+    title: Link Aggregation (LACP / 802.3ad)
+    definition: "A networking standard (Link Aggregation Control Protocol) that bundles multiple physical Ethernet interfaces into a single logical channel to provide multiplied bandwidth and active-active hardware redundancy."
+    context: "Protects critical inter-switch uplinks against single-cable failures while preventing Spanning Tree Protocol from blocking the parallel physical links."
+    refs:
+      - "CompTIA Network+ N10-008 Domain 2.1 — Port bonding, link aggregation, and LACP"
+      - "CompTIA Network+ N10-009 Domain 2.1 — High availability, trunking, and NIC teaming"
+    tags: [switching, layer2, lacp, redundancy, network-plus]
+    tier: exam

@@ -216,3 +216,27 @@ Do not invent port numbers or exam definitions that contradict the course source
 ## Done definition
 
 A unit is done when: validate PASS, render succeeded, landing card present, cover test passes, sticky teaching beats can be named in one sentence each, and `docs/` is pushed for Pages.
+
+
+---
+
+## Core Standards & Production Knowledge Base
+
+When authoring narrative stories, hands-on workbenches, terminal simulations, or art briefs, all agents must adhere to the foundational research standards in `docs/research/`:
+
+1. **Plain-English & Vocabulary Standard (`docs/research/PLAIN_ENGLISH_STYLE_GUIDE.md`):**
+   - Strictly prohibits L&D, educational psychology, and software architect jargon ("invariants", "falsifiable hypothesis", "rubric", "pedagogical", "heuristic" in general prose, "scaffolding").
+   - Enforces U.S. high-school graduate readability and in-context technical vocabulary introduction.
+2. **Visual Art Direction & Technical Panels (`docs/research/VISUAL_ART_DIRECTION.md`):**
+   - Governs the "Clear Technical Cutaway" (Ligne Claire) art style and Pacific Northwest atmosphere.
+   - Enforces the **Zero-Text Rule** on all AI image generation to eliminate hallucinated lettering.
+   - Mandates Image-to-Image (Img2Img) workflow with real reference photos for hardware precision.
+   - Contains the master aspect ratio directory (`16:9`, `21:9`, `4:3`, `1:1`, `3:4`) and full episode prompt catalogue.
+3. **Pedagogical Agency Architecture (`docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`):**
+   - Resolves the "Already Solved" dilemma (Dramatic vs. Pedagogical Fallacy).
+   - Enforces the **Dynamic Fading Apprenticeship** across the 13 episodes (Symmetrical Tickets $\rightarrow$ Interleaved Cliffhanger Handoffs $\rightarrow$ Co-Pilot Dispatcher $\rightarrow$ Incident Commander).
+4. **Interactive Components Specification (`docs/research/INTERACTIVE_COMPONENTS_SPEC.md`):**
+   - Syntax and client-side behavior for ````lnk-terminal` (zero-backend in-browser CLI simulation) and ````callout-panel` (responsive graphic novel schematics).
+5. **Track Canon & Author Bibles:**
+   - `docs/research/PORTLAND_AUTHOR_BIBLE.md`: Character arcs, 3-act story snowflake, episode causal beat matrix.
+   - `docs/research/PORTLAND_CURRICULUM_PLAN.md`: Whole-task 4C/ID competency progression across CompTIA A+, Network+, and Security+.

@@ -1,0 +1,110 @@
+{
+  "bank_id": "netplus-n10-008-addressing",
+  "title": "Network+ N10-008/009 — IPv4 Addressing, Subnet Boundaries, ARP Dynamics, & Local Delivery (Help-Desk Precursor)",
+  "source": "CompTIA Network+ N10-008/009 objectives (IPv4 addressing, subnet masks, default gateways, ARP cache, broadcast domains, and DHCP DORA process)",
+  "terms": [
+    {
+      "id": "apipa_address",
+      "title": "APIPA (Automatic Private IP Addressing)",
+      "definition": "A link-local IPv4 address autoconfiguration mechanism where a host assigns itself an address in the 169.254.0.1 to 169.254.255.254 range when a DHCP server fails to respond.",
+      "context": "Indicates that physical Layer 1 and 2 links are operational, but DHCP DORA broadcast discovery failed to cross the local broadcast domain or VLAN trunk.",
+      "refs": [
+        "CompTIA Network+ N10-008 Domain 1.4 — IPv4 addressing and link-local autoconfiguration",
+        "CompTIA Network+ N10-009 Domain 4.1 — Troubleshooting IP configuration and DHCP failures"
+      ],
+      "tags": [
+        "ipv4",
+        "dhcp",
+        "troubleshooting",
+        "network-plus"
+      ],
+      "tier": "exam"
+    },
+    {
+      "id": "subnet_mask",
+      "title": "Subnet Mask",
+      "definition": "A 32-bit bitmask that delineates the network prefix from the host identifier within an IPv4 address to determine whether a destination sits on the local or a remote subnet.",
+      "context": "Applied via bitwise logical ANDing by the host operating system to determine whether an IP packet can be delivered directly via local ARP or must be forwarded to the default gateway.",
+      "refs": [
+        "CompTIA Network+ N10-008 Domain 1.4 — IPv4 subnetting and classless inter-domain routing",
+        "CompTIA Network+ N10-009 Domain 1.4 — Network addressing and subnet masks"
+      ],
+      "tags": [
+        "ipv4",
+        "subnetting",
+        "cidr",
+        "network-plus"
+      ],
+      "tier": "exam"
+    },
+    {
+      "id": "default_gateway",
+      "title": "Default Gateway",
+      "definition": "A Layer 3 router interface on the local subnet to which a host forwards IP packets destined for remote networks outside its own broadcast domain.",
+      "context": "Hosts resolve the default gateway's Layer 2 MAC address via ARP and encapsulate outbound remote packets in Ethernet frames directed to that router interface.",
+      "refs": [
+        "CompTIA Network+ N10-008 Domain 1.4 — Default gateways and Layer 3 routing primitives",
+        "CompTIA Network+ N10-009 Domain 4.1 — Troubleshooting routing and gateway reachability"
+      ],
+      "tags": [
+        "routing",
+        "ipv4",
+        "gateway",
+        "network-plus"
+      ],
+      "tier": "exam"
+    },
+    {
+      "id": "arp_cache",
+      "title": "ARP Cache",
+      "definition": "A volatile local operating system table that maps Layer 3 IPv4 addresses to their corresponding Layer 2 physical MAC addresses for hosts on the local network segment.",
+      "context": "Inspected via `arp -a`, entries expire dynamically to reflect network changes, but can be poisoned or cause flapping during duplicate IP address conflicts.",
+      "refs": [
+        "CompTIA Network+ N10-008 Domain 1.4 — Address Resolution Protocol and MAC binding",
+        "CompTIA Network+ N10-009 Domain 4.1 — Diagnosing duplicate IPs and Layer 2 flapping"
+      ],
+      "tags": [
+        "arp",
+        "layer2",
+        "layer3",
+        "troubleshooting",
+        "network-plus"
+      ],
+      "tier": "exam"
+    },
+    {
+      "id": "broadcast_domain",
+      "title": "Broadcast Domain",
+      "definition": "A logical division of a computer network within which all connected nodes can reach each other by Layer 2 broadcast transmission.",
+      "context": "Bounded by Layer 3 routers and separated by VLAN configurations on switches; DHCP Discover and ARP request broadcasts are confined within this boundary.",
+      "refs": [
+        "CompTIA Network+ N10-008 Domain 1.4 — Broadcast domains, collision domains, and VLAN segmentation",
+        "CompTIA Network+ N10-009 Domain 2.1 — Switching features and VLAN trunking"
+      ],
+      "tags": [
+        "vlan",
+        "switching",
+        "layer2",
+        "network-plus"
+      ],
+      "tier": "exam"
+    },
+    {
+      "id": "dhcp_dora",
+      "title": "DHCP DORA Process",
+      "definition": "The four-step client-server state machine (Discover, Offer, Request, Acknowledge) used by Dynamic Host Configuration Protocol to automatically lease an IP address and network configuration to a client.",
+      "context": "Operates over UDP ports 67 (server) and 68 (client); requires a DHCP relay agent (ip helper-address) on routers when clients and DHCP servers occupy different broadcast domains.",
+      "refs": [
+        "CompTIA Network+ N10-008 Domain 1.4 — DHCP operation and address allocation",
+        "CompTIA Network+ N10-009 Domain 1.4 — Network services and dynamic configuration"
+      ],
+      "tags": [
+        "dhcp",
+        "udp",
+        "protocols",
+        "network-plus"
+      ],
+      "tier": "exam"
+    }
+  ]
+}

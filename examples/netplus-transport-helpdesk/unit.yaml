@@ -1,0 +1,26 @@
+unit_id: netplus-transport-helpdesk
+title: "Portland Desk — The Wire Has Two Ends"
+audience: "Someone studying CompTIA Network+ N10-008/009 transport layer mechanics, TCP 3-way handshakes, socket states, and port troubleshooting, or following Ethan's help-desk years in Book 0"
+purpose: "Ground TCP three-way handshake mechanics, socket states, RST versus drop timeouts, netstat diagnostics, and client ephemeral port exhaustion in an authentic municipal help-desk shift."
+estimated_minutes: 25
+sources:
+  - CompTIA Network+ N10-008 Domain 1.1 & 1.4 (OSI transport layer, TCP/UDP protocols, ports, and socket states)
+  - CompTIA Network+ N10-009 Domain 1.1 & 4.1 (Transport protocols, connection mechanics, and troubleshooting connection failures)
+glossary: glossary.yaml
+narrative: narrative.md
+workbench: workbench.md
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Network+ study targets — primary examination concepts"
+  support: "Desk/network jargon marked for readability"
+tooltip_contract:
+  body: [definition, context]
+  exclude_from_hover: [refs, sources, related]
+  definition_style: "short 1–2 sentences; exam-faithful for tier exam"
+  context_style: "optional one clause when bare definition needs operational grounding"
+constraints:
+  - Every glossary term appears at least once in narrative marks
+  - Story must pass the cover test (readable with marks hidden)
+  - Grounded workplace realism; zero synthetic AI tells
+  - First person past tense narration; strictly no forbidden names
+  - Target 16-20 word sentence mean with full clauses and zero staccato

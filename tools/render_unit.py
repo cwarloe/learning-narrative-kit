@@ -120,6 +120,10 @@ KNOWN_FIELDS = {
     "label",
     "value",
     "note",
+    "target",
+    "domain",
+    "badge",
+    "workbench",
 }
 
 
@@ -456,6 +460,34 @@ def render_steps(fields: dict[str, str], body: str, terms: dict, used_ids: list)
     )
 
 
+def render_bridge(fields: dict[str, str], body: str, terms: dict, used_ids: list) -> str:
+    title = fields.get("title") or "Companion Workbench"
+    domain = fields.get("domain") or "CompTIA Security+ SY0-701"
+    target = fields.get("target") or fields.get("workbench") or fields.get("url") or "workbench.md"
+    badge = fields.get("badge") or "Hands-on Workbench"
+    cta_raw = fields.get("cta") or fields.get("action") or "Launch Workbench &rarr;"
+    if cta_raw.endswith("->"):
+        cta_text = html.escape(cta_raw[:-2].rstrip()) + " &rarr;"
+    elif "&rarr;" in cta_raw:
+        cta_text = cta_raw
+    else:
+        cta_text = html.escape(cta_raw)
+    desc = body.strip() or "Launch the companion workbench for interactive micro-drills and operational deliverables."
+    return (
+        f'<aside class="artifact bridge-card">'
+        f'<div class="bridge-header">'
+        f'<span class="bridge-badge">{html.escape(badge)}</span>'
+        f'<span class="bridge-domain">{html.escape(domain)}</span>'
+        f'</div>'
+        f'<h3 class="bridge-title"><a href="{html.escape(target)}">{inline_md(title, terms, used_ids)}</a></h3>'
+        f'<p class="bridge-desc">{inline_md(desc, terms, used_ids)}</p>'
+        f'<div class="bridge-actions">'
+        f'<a class="bridge-btn" href="{html.escape(target)}">{cta_text}</a>'
+        f'</div>'
+        f'</aside>'
+    )
+
+
 def render_fence(kind: str, block: str, terms: dict, used_ids: list) -> str:
     tokens = kind.split()
     ftype = (tokens[0] if tokens else "code").lower()
@@ -475,6 +507,8 @@ def render_fence(kind: str, block: str, terms: dict, used_ids: list) -> str:
         return render_tree(fields, body, terms, used_ids)
     if ftype == "chain":
         return render_chain(fields, body, terms, used_ids)
+    if ftype in ("bridge", "bridge-card", "workbench"):
+        return render_bridge(fields, body, terms, used_ids)
     if ftype in ("formula", "dax"):
         return render_formula(fields, body, terms, used_ids)
     if ftype in ("steps", "applied-steps"):

@@ -1,0 +1,30 @@
+================================================================================
+Windows System Event Log - Service Installation Record (Event ID 7045)
+Host: MAYA-W11.portland-ops.local
+Log: System
+Event ID: 7045
+Level: Information
+Time Created: 2026-10-22T08:08:14.218940Z
+Source: Service Control Manager
+================================================================================
+
+A service was installed in the system.
+
+Service Information:
+    Service Name:          OptimizeRAMSvc
+    Service File Name:     C:\Users\maya\AppData\Local\Temp\optram.exe --service
+    Service Type:          user mode service (0x10)
+    Service Start Type:    auto start (2)
+    Service Account:       LocalSystem
+
+Subject Information:
+    Security ID:           S-1-5-21-3928174412-1082938471-2948192837-1402
+    Account Name:          maya.lin
+    Account Domain:        PORTLAND-OPS
+    Logon ID:              0x1B842A
+
+Audit Analysis:
+    - Service installed by standard user context elevating via UAC prompt during PDF merger bundle install.
+    - ImagePath points directly to user temporary directory (%TEMP%), violating corporate executable location policy.
+    - Start Type 2 (Auto Start) ensures binary executes at system boot before user interactive logon.
+================================================================================

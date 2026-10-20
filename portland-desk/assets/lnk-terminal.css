@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Learning Narrative Kit (LNK) — Micro-Terminal Styles
+   ========================================================================== */
+
+.lnk-term-window {
+  margin: 1.75rem 0;
+  background: #090d16;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+  font-family: ui-monospace, "Cascadia Code", "Fira Code", Menlo, Consolas, monospace;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.lnk-term-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.95rem;
+  background: #030712;
+  border-bottom: 1px solid #1e293b;
+  user-select: none;
+}
+
+.lnk-term-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.lnk-term-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #334155;
+}
+
+.lnk-term-dot.red { background: #ef4444; }
+.lnk-term-dot.yellow { background: #f59e0b; }
+.lnk-term-dot.green { background: #10b981; }
+
+.lnk-term-title {
+  font-size: 0.74rem;
+  color: #94a3b8;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lnk-term-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lnk-term-btn {
+  background: #1e293b;
+  color: #38bdf8;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  font-size: 0.70rem;
+  padding: 0.2rem 0.55rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.lnk-term-btn:hover {
+  background: #38bdf8;
+  color: #090d16;
+}
+
+.lnk-term-screen {
+  padding: 1.15rem;
+  min-height: 180px;
+  max-height: 420px;
+  overflow-y: auto;
+  position: relative;
+  background: #070b13;
+  cursor: text;
+}
+
+.lnk-term-screen::before {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.lnk-term-line {
+  margin: 0.3rem 0;
+  position: relative;
+  z-index: 3;
+}
+
+.lnk-term-prompt {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.lnk-term-cmd {
+  color: #f8fafc;
+}
+
+.lnk-term-output-block {
+  margin: 0.35rem 0 0.75rem 0;
+  position: relative;
+  z-index: 3;
+}
+
+.lnk-term-output {
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  background: rgba(15, 23, 42, 0.6);
+  border-left: 2px solid #38bdf8;
+  color: #cbd5e1;
+  font-family: inherit;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.lnk-term-output.error {
+  border-left-color: #ef4444;
+  color: #fca5a5;
+}
+
+.lnk-term-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  position: relative;
+  z-index: 3;
+}
+
+.lnk-term-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  caret-color: #38bdf8;
+  padding: 0;
+}
+
+.lnk-term-objectives {
+  padding: 0.6rem 1rem;
+  background: #030712;
+  border-top: 1px solid #1e293b;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  font-size: 0.74rem;
+}
+
+.lnk-term-obj-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #94a3b8;
+  background: #0f172a;
+  border: 1px solid #334155;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.lnk-term-obj-pill.completed {
+  border-color: #10b981;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.lnk-term-obj-check {
+  font-weight: bold;
+}

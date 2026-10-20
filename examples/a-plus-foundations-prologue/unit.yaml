@@ -1,0 +1,29 @@
+unit_id: a-plus-foundations-prologue
+title: "Portland Desk — The Four Rubber Bands"
+audience: "Someone beginning IT technical preparation, seeking to filter CompTIA A+ exam trivia from permanent computing mental models"
+purpose: "Establish the foundational mental model of computing (the Four Rubber Bands) to survive the CompTIA A+ exam without losing sight of empirical diagnostics."
+estimated_minutes: 25
+sources:
+  - CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations
+  - Portland Help Desk Author Bible (Module 00: Prologue Architecture Card)
+glossary: glossary.yaml
+narrative: narrative.md
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "CompTIA A+ Core 1 & Core 2 exam targets — foundational computing and networking concepts"
+  support: "Diagnostic and shop-floor hardware jargon marked for readability"
+review_filters:
+  - "Exam-only: cards with tier: exam"
+  - "All: exam + support cards"
+tooltip_contract:
+  body: [definition, context]
+  exclude_from_hover: [refs, sources, related]
+  definition_style: "short 1–2 sentences; exam-faithful for tier exam, plain gloss for tier support"
+  context_style: "optional one clause when bare definition would not land mid-scene"
+constraints:
+  - Every glossary term appears at least once in narrative marks
+  - Story must pass the cover test (readable with marks hidden)
+  - Grounded workplace realism; zero synthetic AI tells
+  - First person past tense narration
+  - Average sentence length between 16 and 20 words
+  - Do NOT use Priya or Harrowmere in narrative text

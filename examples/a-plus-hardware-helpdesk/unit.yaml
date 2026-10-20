@@ -1,0 +1,30 @@
+unit_id: a-plus-hardware-helpdesk
+title: "Portland Desk — The Paper Cert"
+audience: "Someone studying CompTIA A+ Core 1 hardware troubleshooting, or a foundational precursor for Ethan's help-desk years"
+purpose: "Ground theoretical hardware flashcards into empirical Layer 1 physical triage on an industrial sorting line."
+estimated_minutes: 25
+sources:
+  - CompTIA A+ Core 1 (220-1101) Domain 3.0 Hardware and Network Troubleshooting
+  - Portland Help Desk Author Bible (Episode Architecture Card 01)
+glossary: glossary.yaml
+narrative: narrative.md
+review: review.yaml
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "CompTIA A+ Core 1 exam targets — primary hardware diagnostics"
+  support: "Shop floor and embedded hardware jargon marked for readability"
+review_filters:
+  - "Exam-only: cards with tier: exam"
+  - "All: exam + support cards"
+tooltip_contract:
+  body: [definition, context]
+  exclude_from_hover: [refs, sources, related]
+  definition_style: "short 1–2 sentences; exam-faithful for tier exam, plain gloss for tier support"
+  context_style: "optional one clause when bare definition would not land mid-scene"
+constraints:
+  - Every glossary term appears at least once in narrative marks
+  - Story must pass the cover test (readable with marks hidden)
+  - Grounded workplace realism; zero synthetic AI tells
+  - First person past tense narration
+  - Average sentence length between 16 and 20 words
+  - Do NOT use Priya or Harrowmere in narrative text

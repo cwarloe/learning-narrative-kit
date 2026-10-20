@@ -145,3 +145,13 @@ Jules clipped her bike lights on. "Tomorrow someone will call password-plus-PIN 
 "I already have the line," I said.
 
 She almost smiled. I locked the drawer. The cards in it were still about ports. Today's tickets had been about proof — who you claim to be, how you show it, and what we revoke when the story ends. I went out into the rain to catch the MAX.
+
+```bridge-card
+title: Hands-on Workbench: Identity, Authentication Factors, & Password Policy Triage
+target: workbench.md
+domain: CompTIA Security+ SY0-701 • Domain 4.2 & 1.3
+badge: Hands-on Workbench
+---
+Step onto Ethan's shift with interactive authentication factor classification drills, Event ID 4625/4740 Windows Event Viewer lockout triage, the 5-case CBYT prediction gate, and the Tier 1 Account Lockout & MFA Enrollment Resolution deliverable.
+```
+

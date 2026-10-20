@@ -1,0 +1,1196 @@
+"""Builds the modern, responsive, breadcrumb-equipped root landing page (docs/index.html)."""
+
+import os
+from pathlib import Path
+
+HTML_CONTENT = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Narrative Kit (LNK) — Interactive Story-First Technical Courseware</title>
+  <meta name="description" content="Story-first technical curricula combining workplace narratives with hands-on diagnostic labs. Portland Desk (CompTIA A+, Network+, Security+) to SOC Triage.">
+  <style>
+    :root {
+      --bg: #0b1120;
+      --surface: #1e293b;
+      --surface-hover: #273549;
+      --surface-border: #334155;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-dim: rgba(56, 189, 248, 0.15);
+      --accent: #f59e0b;
+      --accent-dim: rgba(245, 158, 11, 0.15);
+      --success: #10b981;
+      --success-dim: rgba(16, 185, 129, 0.15);
+      --purple: #a855f7;
+      --purple-dim: rgba(168, 85, 247, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: 4rem;
+    }
+
+    /* Top Sticky Navigation & Dynamic Breadcrumbs */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 17, 32, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--surface-border);
+      padding: 0.75rem 1.5rem;
+    }
+    .top-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .brand-badge {
+      background: var(--primary);
+      color: #0b1120;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .breadcrumbs a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumbs .sep { color: #64748b; }
+    .breadcrumbs .active-crumb {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Search & Filter Bar */
+    .search-input {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 0.45rem 0.85rem;
+      color: #fff;
+      font-size: 0.88rem;
+      width: 240px;
+      transition: border-color 0.15s;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Main Container */
+    .wrap {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    /* Hero Banner for Flagship */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border: 1px solid var(--surface-border);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-info h1 {
+      font-size: 1.85rem;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-info p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 680px;
+      line-height: 1.55;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .launch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: #0b1120;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+    }
+    .launch-btn:hover {
+      background: #7dd3fc;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35);
+    }
+
+    /* Track Filter Pills */
+    .track-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--surface-border);
+      padding-bottom: 0.75rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover {
+      border-color: #64748b;
+      color: var(--text-main);
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #0b1120;
+      border-color: var(--primary);
+    }
+    .tab-count {
+      font-size: 0.75rem;
+      opacity: 0.8;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+    }
+    .tab-btn.active .tab-count {
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    /* Act / Category Headers */
+    .act-header {
+      margin: 2.25rem 0 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--surface-border);
+      padding-bottom: 0.6rem;
+    }
+    .act-title-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .act-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+    .act-badge.act-1 { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .act-badge.act-2 { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .act-badge.act-3 { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .act-badge.act-misc { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+    
+    .act-title {
+      font-size: 1.25rem;
+      color: #fff;
+      font-weight: 700;
+    }
+    .act-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Grid of Incident Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .incident-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.15s, transform 0.15s;
+      position: relative;
+    }
+    .incident-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .incident-card.is-capstone {
+      border-color: rgba(168, 85, 247, 0.5);
+      background: linear-gradient(145deg, #1e293b 0%, rgba(168, 85, 247, 0.08) 100%);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.6rem;
+      gap: 0.5rem;
+    }
+    .num-tag-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .incident-num {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .incident-card.is-capstone .incident-num {
+      color: #c084fc;
+      background: rgba(168, 85, 247, 0.15);
+      border-color: rgba(168, 85, 247, 0.35);
+    }
+    .cert-tag {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: #0f172a;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.45rem;
+      line-height: 1.35;
+    }
+    .card-premise {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    /* Dual Action Buttons */
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(51, 65, 85, 0.5);
+    }
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.5rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.15s;
+    }
+    .btn-story {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .btn-story:hover {
+      background: rgba(56, 189, 248, 0.25);
+      color: #fff;
+    }
+    .btn-lab {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .btn-lab:hover {
+      background: rgba(16, 185, 129, 0.25);
+      color: #fff;
+    }
+    .btn-capstone {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+    }
+    .btn-capstone:hover {
+      background: rgba(168, 85, 247, 0.3);
+      color: #fff;
+    }
+    .card-single-action {
+      display: block;
+      width: 100%;
+    }
+    .btn-single {
+      background: #0f172a;
+      color: var(--text-main);
+      border: 1px solid var(--surface-border);
+      padding: 0.55rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      transition: all 0.15s;
+    }
+    .btn-single:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #141e30;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding: 1.5rem 1.5rem 0;
+      border-top: 1px solid var(--surface-border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .hero-banner { flex-direction: column; align-items: flex-start; }
+      .search-input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <div class="brand-wrap">
+        <span class="brand-badge">LNK</span>
+        <span class="brand-title">Learning Narrative Kit</span>
+      </div>
+
+      <!-- Dynamic Visual Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="#all" onclick="selectTrack('all')">Kit Hub</a>
+        <span class="sep">/</span>
+        <span class="active-crumb" id="current-crumb">Portland Desk (Book 0)</span>
+      </nav>
+
+      <!-- Real-Time Search -->
+      <input type="text" id="live-search" class="search-input" placeholder="Filter incidents or topics..." oninput="handleSearch(this.value)">
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Track Selector Tabs -->
+    <div class="track-tabs" role="tablist">
+      <button class="tab-btn active" id="tab-portland" onclick="selectTrack('portland')" role="tab">
+        Portland Desk (Book 0) <span class="tab-count">13</span>
+      </button>
+      <button class="tab-btn" id="tab-tamarack" onclick="selectTrack('tamarack')" role="tab">
+        Tamarack Track <span class="tab-count">16</span>
+      </button>
+      <button class="tab-btn" id="tab-operations" onclick="selectTrack('operations')" role="tab">
+        Operations & MIS <span class="tab-count">11</span>
+      </button>
+      <button class="tab-btn" id="tab-all" onclick="selectTrack('all')" role="tab">
+        View All Curricula <span class="tab-count">40</span>
+      </button>
+    </div>
+
+    <!-- Flagship Hero Launchpad Banner -->
+    <section class="hero-banner" id="hero-banner">
+      <div class="hero-info">
+        <h1>Portland Desk (Book 0: Zero-to-One)</h1>
+        <p>From zero knowledge to Tier 1 IT support and Junior Security Analyst readiness. Follow Ethan Brooks through 13 workplace incidents covering CompTIA A+, Network+, and Security+ operations.</p>
+        <div class="hero-stats">
+          <span class="stat-pill">13 Incident Stories</span>
+          <span class="stat-pill">13 Hands-On Labs</span>
+          <span class="stat-pill">328 Verified Glossary Terms</span>
+          <span class="stat-pill">Direct Bridge to Book 1 SOC</span>
+        </div>
+      </div>
+      <a class="launch-btn" href="portland-desk/#/">
+        <span>Launch Unified Courseware</span>
+        <span>→</span>
+      </a>
+    </section>
+
+    <!-- TRACK: PORTLAND DESK (BOOK 0) -->
+    <div id="section-portland" class="track-section">
+
+      <!-- ACT I -->
+      <div class="act-header">
+        <div class="act-title-wrap">
+          <span class="act-badge act-1">Act I</span>
+          <h2 class="act-title">The Local Machine</h2>
+          <span class="act-sub">CompTIA A+ Core 1 & 2 • Core Computer Hardware, OS Boot & Event Log Triage</span>
+        </div>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- Episode 00 -->
+        <article class="incident-card" data-search="00 four rubber bands comptia a+ ram cpu storage post foundations">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 00</span>
+                <span class="cert-tag">A+ Foundations</span>
+              </div>
+            </div>
+            <h3 class="card-title">The Four Rubber Bands</h3>
+            <p class="card-premise">Late night at the kitchen table. Sifting through 800 pages of exam trivia to extract the four machine invariants (CPU, RAM, Disk, NIC) and study triage reflexes.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/00-the-four-rubber-bands">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/00-the-four-rubber-bands">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 01 -->
+        <article class="incident-card" data-search="01 paper cert hardware serial rs232 post code multimeter baud rate gresham warehouse">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 01</span>
+                <span class="cert-tag">A+ Core 1</span>
+              </div>
+            </div>
+            <h3 class="card-title">The Paper Cert</h3>
+            <p class="card-premise">Graveyard shift at the Gresham warehouse. Dead sorting terminal, hex POST codes, bent serial pins, and baud rate mismatches before the 5:00 AM dispatch.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/01-the-paper-cert">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/01-the-paper-cert">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 02 -->
+        <article class="incident-card" data-search="02 live board os boot safe mode event viewer event id 1000 event id 41 bitlocker clean boot">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 02</span>
+                <span class="cert-tag">A+ Core 2</span>
+              </div>
+            </div>
+            <h3 class="card-title">The Live Board</h3>
+            <p class="card-premise">First day on the live phone queue under Jules Mercer. Isolating Accounting PC freezes with Safe Mode, Clean Boot, and Windows Event Viewer crash logs.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/02-the-live-board">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/02-the-live-board">The Lab</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ACT II -->
+      <div class="act-header">
+        <div class="act-title-wrap">
+          <span class="act-badge act-2">Act II</span>
+          <h2 class="act-title">The Wire & The Boundary</h2>
+          <span class="act-sub">CompTIA Network+ • Subnetting, DNS Plumbing, TCP Sockets & Disaster Recovery</span>
+        </div>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- Episode 03 -->
+        <article class="incident-card" data-search="03 default gateway doesnt care apipa 169.254 subnet mask arp cache broadcast domain dhcp dora">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 03</span>
+                <span class="cert-tag">Network+ N10</span>
+              </div>
+            </div>
+            <h3 class="card-title">The Default Gateway Doesn't Care</h3>
+            <p class="card-premise">East Portland pump station switch reboot. APIPA 169.254.x.x trap, /26 subnet boundaries, ARP cache inspection, and local vs gateway frame rewriting.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/03-the-default-gateway-doesnt-care">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/03-the-default-gateway-doesnt-care">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 04 -->
+        <article class="incident-card" data-search="04 name is not number dns split-horizon recursive resolver hosts file nslookup cname vpn leak">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 04</span>
+                <span class="cert-tag">Network+ N10</span>
+              </div>
+            </div>
+            <h3 class="card-title">The Name Is Not the Number</h3>
+            <p class="card-premise">Early spring downpour. Remote VPN workers fail to reach internal portals while in-office staff succeed. Split-horizon DNS, resolver caches, and rogue hosts overrides.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/04-the-name-is-not-the-number">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/04-the-name-is-not-the-number">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 05 -->
+        <article class="incident-card" data-search="05 wire has two ends tcp handshake socket state syn ack rst reset listening port exhaustion">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 05</span>
+                <span class="cert-tag">Network+ N10</span>
+              </div>
+            </div>
+            <h3 class="card-title">The Wire Has Two Ends</h3>
+            <p class="card-premise">Warehouse socket timeouts. Connection refused (RST) vs Connection timed out (Drop). TCP 3-way handshake mechanics, socket states, and ephemeral port exhaustion.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/05-the-wire-has-two-ends">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/05-the-wire-has-two-ends">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 06 (Capstone) -->
+        <article class="incident-card is-capstone" data-search="06 portland flood capstone disaster recovery vlan trunking dhcp exhaustion switch rebuild spanning tree">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 06</span>
+                <span class="cert-tag" style="color: #c084fc; border-color: rgba(168,85,247,0.3);">Midpoint Capstone</span>
+              </div>
+            </div>
+            <h3 class="card-title">The Portland Flood</h3>
+            <p class="card-premise">Pacific Northwest atmospheric river floods Building C basement at 04:00 AM. Physical switch swap, trunk VLAN configuration, and resolving a massive DHCP exhaustion storm.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/06-the-portland-flood">Read Story</a>
+            <a class="action-btn btn-capstone" href="portland-desk/#/workbench/06-the-portland-flood">Midpoint Lab</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ACT III -->
+      <div class="act-header">
+        <div class="act-title-wrap">
+          <span class="act-badge act-3">Act III</span>
+          <h2 class="act-title">Identity, Threats & Escalation</h2>
+          <span class="act-sub">CompTIA Security+ SY0-701 • Attack Surfaces, Phishing, Malware, 802.1X & SOC Dossiers</span>
+        </div>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- Episode 07 -->
+        <article class="incident-card" data-search="07 port that is open cleartext telnet ssh https unencrypted packet capture firewall">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 07</span>
+                <span class="cert-tag">Security+ SY0</span>
+              </div>
+            </div>
+            <h3 class="card-title">The Port That Is Open</h3>
+            <p class="card-premise">Cleartext Telnet vs encrypted SSH, HTTP vs HTTPS, credential harvesting on unencrypted Wi-Fi, and firewall port boundary decisions.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/07-the-port-that-is-open">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/07-the-port-that-is-open">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 08 -->
+        <article class="incident-card" data-search="08 prove who you are identity mfa totp active directory lockout event id 4625 event id 4740">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 08</span>
+                <span class="cert-tag">Security+ SY0</span>
+              </div>
+            </div>
+            <h3 class="card-title">Prove Who You Are</h3>
+            <p class="card-premise">Authentication factors (know, have, are), TOTP vs SMS, Password+PIN confusion, and Active Directory lockout triage with Event ID 4625 & 4740 caller computer detection.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/08-prove-who-you-are">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/08-prove-who-you-are">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 09 -->
+        <article class="incident-card" data-search="09 dont click that phishing mime headers spf dkim dmarc alignment spear phishing typosquatting">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 09</span>
+                <span class="cert-tag">Security+ SY0</span>
+              </div>
+            </div>
+            <h3 class="card-title">Don't Click That</h3>
+            <p class="card-premise">Spear phishing and executive impersonation wire fraud. RFC 5322 MIME header dissection, SPF/DKIM/DMARC alignment checks, and typosquatted domains.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/09-dont-click-that">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/09-dont-click-that">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 10 -->
+        <article class="incident-card" data-search="10 something on the box host malware persistence registry run keys event id 7045 lolbins powershell edr">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 10</span>
+                <span class="cert-tag">Security+ SY0</span>
+              </div>
+            </div>
+            <h3 class="card-title">Something on the Box</h3>
+            <p class="card-premise">Rogue USB drive and fan pegged at 100%. Windows host persistence (Registry Run keys, Event ID 7045 service creation, scheduled tasks) and Base64 LOLBins analysis.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/10-something-on-the-box">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/10-something-on-the-box">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 11 -->
+        <article class="incident-card" data-search="11 air is shared wireless security 802.1x enterprise radius eap-tls peap rogue ap rssi">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 11</span>
+                <span class="cert-tag">Security+ SY0</span>
+              </div>
+            </div>
+            <h3 class="card-title">The Air Is Shared</h3>
+            <p class="card-premise">Rogue wireless router plugged into a warehouse cubicle. WPA2/WPA3-Enterprise 802.1X with RADIUS, EAP-TLS certificates vs PEAP passwords, and RSSI triangulation.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/11-the-air-is-shared">Read Story</a>
+            <a class="action-btn btn-lab" href="portland-desk/#/workbench/11-the-air-is-shared">The Lab</a>
+          </div>
+        </article>
+
+        <!-- Episode 12 (Final Capstone) -->
+        <article class="incident-card is-capstone" data-search="12 when ticket escalates final capstone incident response csirt soc handoff volatility chain of custody">
+          <div>
+            <div class="card-top">
+              <div class="num-tag-wrap">
+                <span class="incident-num">EP 12</span>
+                <span class="cert-tag" style="color: #c084fc; border-color: rgba(168,85,247,0.3);">Final Capstone</span>
+              </div>
+            </div>
+            <h3 class="card-title">When the Ticket Escalates</h3>
+            <p class="card-premise">Multi-stage incident across plant telemetry and finance. Chain of custody, order of volatility, memory capture, and assembling the professional CSIRT/SOC handoff dossier.</p>
+          </div>
+          <div class="card-actions">
+            <a class="action-btn btn-story" href="portland-desk/#/narrative/12-when-the-ticket-escalates">Read Story</a>
+            <a class="action-btn btn-capstone" href="portland-desk/#/workbench/12-when-the-ticket-escalates">Final Capstone Lab</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Supplementary Security Units -->
+      <div class="act-header" style="margin-top: 2rem;">
+        <div class="act-title-wrap">
+          <span class="act-badge act-misc">Deep Dives</span>
+          <h3 class="act-title" style="font-size: 1.1rem;">Supplementary Security Modules</h3>
+          <span class="act-sub">Stand-alone focused deep dives</span>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <article class="incident-card" data-search="physical security badge lock eyes mantrap tailgating secplus-physical-helpdesk">
+          <div>
+            <div class="card-top">
+              <span class="cert-tag">Security+ Physical</span>
+            </div>
+            <h4 class="card-title">Badge, Lock, Eyes</h4>
+            <p class="card-premise">Physical access control, mantrap tailgating, CCTV verification, and server room badge access telemetry.</p>
+          </div>
+          <div class="card-single-action">
+            <a class="btn-single" href="secplus-physical-helpdesk/">Open Standalone Unit →</a>
+          </div>
+        </article>
+
+        <article class="incident-card" data-search="cryptography pki certificates trust on paper ca x509 secplus-crypto-helpdesk">
+          <div>
+            <div class="card-top">
+              <span class="cert-tag">Security+ PKI</span>
+            </div>
+            <h4 class="card-title">Trust on Paper</h4>
+            <p class="card-premise">Public key infrastructure, certificate authority trust chains, X.509 validity dates, and private key security.</p>
+          </div>
+          <div class="card-single-action">
+            <a class="btn-single" href="secplus-crypto-helpdesk/">Open Standalone Unit →</a>
+          </div>
+        </article>
+
+        <article class="incident-card" data-search="incident response lifecycle order you do it in preparation containment secplus-ir-lifecycle">
+          <div>
+            <div class="card-top">
+              <span class="cert-tag">Security+ IR</span>
+            </div>
+            <h4 class="card-title">The Order You Do It In</h4>
+            <p class="card-premise">Step-by-step walkthrough of the NIST/SANS 6-phase incident response lifecycle from preparation to post-mortem.</p>
+          </div>
+          <div class="card-single-action">
+            <a class="btn-single" href="secplus-ir-lifecycle/">Open Standalone Unit →</a>
+          </div>
+        </article>
+      </div>
+
+    </div>
+
+    <!-- TRACK: TAMARACK TRACK (EXCEL / BI) -->
+    <div id="section-tamarack" class="track-section" style="display: none;">
+      <div class="act-header">
+        <div class="act-title-wrap">
+          <span class="act-badge act-misc">Business Systems</span>
+          <h2 class="act-title">Tamarack Track: Excel & Power BI</h2>
+          <span class="act-sub">Operational business data modeling, inventory audit, and analytics</span>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <article class="incident-card" data-search="tamarack reader course narrative index">
+          <div>
+            <div class="card-top"><span class="cert-tag">Overview</span></div>
+            <h3 class="card-title">Tamarack Overview & Reader Track</h3>
+            <p class="card-premise">Comprehensive overview of the Tamarack feed-mill case study and curriculum structure.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="tamarack/">Open Reader Track →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 01 getting started the count tamarack audit">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 01</span></div>
+            <h3 class="card-title">The Count</h3>
+            <p class="card-premise">Getting started with Excel: cell references, formatting, and the physical warehouse inventory count.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-01-getting-started/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 02 formatting thirty drums tamarack formulas">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 02</span></div>
+            <h3 class="card-title">Thirty Drums</h3>
+            <p class="card-premise">Mathematical formulas and functions: unit conversions, shipping volume, and drum density calculations.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-02-formatting/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 03 formulas functions the short pallet tamarack layout">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 03</span></div>
+            <h3 class="card-title">The Short Pallet</h3>
+            <p class="card-premise">Expanding a workbook: multiple worksheets, 3D formulas, and cross-departmental reconciliation.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-03-formulas-functions/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 04 charts financial twenty dollars a ton tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 04</span></div>
+            <h3 class="card-title">Twenty Dollars a Ton</h3>
+            <p class="card-premise">Visualizing data with charts: freight pricing trends, tonnage curves, and presentation graphics.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-04-charts-financial/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 05 multiple workbooks the feed room tamarack tables">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 05</span></div>
+            <h3 class="card-title">The Feed Room</h3>
+            <p class="card-premise">Working with Excel tables: structured references, dynamic sorting, and multi-column filtering.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-05-multiple-workbooks/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 06 data tools the damage log tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 06</span></div>
+            <h3 class="card-title">The Damage Log</h3>
+            <p class="card-premise">Data tools: conditional formatting, data validation rules, and error-proofing user inputs.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-06-data-tools/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 07 pivottables did the coupon work tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 07</span></div>
+            <h3 class="card-title">Did the Coupon Work?</h3>
+            <p class="card-premise">Summarizing data with PivotTables: promotion effectiveness, product category slicing, and revenue attribution.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-07-pivottables/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 08 what-if what deavenport has to sell tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 08</span></div>
+            <h3 class="card-title">What Davenport Has to Sell</h3>
+            <p class="card-premise">What-if analysis: Goal Seek, Scenario Manager, and margin optimization under supply constraints.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-08-what-if/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 09 financial tools hanks year-end financial tools tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 09</span></div>
+            <h3 class="card-title">Hank's Year-End</h3>
+            <p class="card-premise">Financial tools and functions: amortization, depreciation, NPV, and capital expenditure planning.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-09-financial-tools/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 10 bi tools davenports first month bi tools tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 10</span></div>
+            <h3 class="card-title">Davenport's First Month</h3>
+            <p class="card-premise">Business intelligence tools: data modeling, relationships, and multi-table business KPIs.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-10-bi-tools/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 11 pivottable design eleven packets then twelve tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 11</span></div>
+            <h3 class="card-title">Eleven Packets, Then Twelve</h3>
+            <p class="card-premise">Advanced PivotTable design: custom calculations, calculated items, and dashboard integration.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-11-pivottable-design/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="excel 12 excel application the receiving app tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Excel 12</span></div>
+            <h3 class="card-title">The Receiving App</h3>
+            <p class="card-premise">Developing an operational Excel application: automated macros, form controls, and validation locks.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="excel-12-excel-application/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="bi power query fifteen-minute readings tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Power Query</span></div>
+            <h3 class="card-title">Fifteen-Minute Readings</h3>
+            <p class="card-premise">Power Query and big data pipelines: ETL transformations, unpivoting columns, and automated ingestion.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="bi-power-query/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="bi power bi dashboard ruth could share tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">Power BI</span></div>
+            <h3 class="card-title">The Dashboard Ruth Could Share</h3>
+            <p class="card-premise">Introducing Power BI: interactive visual filtering, DAX measures, and mobile dashboard delivery.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="bi-power-bi/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="itm310 week 7 the buying group power bi crisp-dm tamarack">
+          <div>
+            <div class="card-top"><span class="cert-tag">ITM 310 W7</span></div>
+            <h3 class="card-title">The Buying Group</h3>
+            <p class="card-premise">CRISP-DM data methodology and executive Power BI reporting for purchasing consortia.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="itm310-wk07-power-bi/">Open Module →</a></div>
+        </article>
+      </div>
+    </div>
+
+    <!-- TRACK: OPERATIONS & MIS -->
+    <div id="section-operations" class="track-section" style="display: none;">
+      <div class="act-header">
+        <div class="act-title-wrap">
+          <span class="act-badge act-misc">IT Management</span>
+          <h2 class="act-title">Operations & MIS Curricula</h2>
+          <span class="act-sub">Systems thinking, Theory of Constraints, and business enterprise architecture</span>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <article class="incident-card" data-search="itm310 vanguard edge goal process constraint">
+          <div>
+            <div class="card-top"><span class="cert-tag">ITM 310</span></div>
+            <h3 class="card-title">The Goal of Vanguard Edge</h3>
+            <p class="card-premise">Applying Eliyahu Goldratt's Theory of Constraints to information flow and factory dispatch bottlenecks.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="itm310-vanguard-edge/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 01 information systems business">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 01</span></div>
+            <h3 class="card-title">Information Systems in Business</h3>
+            <p class="card-premise">Foundation of enterprise information systems, organizational value creation, and IT strategy.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-01-information-systems/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 02 computers hardware software">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 02</span></div>
+            <h3 class="card-title">Computers: Hardware & Software</h3>
+            <p class="card-premise">Enterprise computing infrastructure, server virtualization, and software licensing models.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-02-computers/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 03 data bi business intelligence databases">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 03</span></div>
+            <h3 class="card-title">Data and Business Intelligence</h3>
+            <p class="card-premise">Relational database systems, SQL foundations, data warehousing, and business intelligence reporting.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-03-data-bi/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 04 ethics privacy legal compliance">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 04</span></div>
+            <h3 class="card-title">Ethics, Privacy, and Legal Issues</h3>
+            <p class="card-premise">Information governance, corporate privacy policies, regulatory compliance (GDPR/HIPAA), and intellectual property.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-04-ethics-legal/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 05 security information security cyber">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 05</span></div>
+            <h3 class="card-title">Protecting Information Resources</h3>
+            <p class="card-premise">Corporate cybersecurity architecture, defense-in-depth, disaster recovery, and organizational risk management.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-05-security/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 06 global information systems supply chain">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 06</span></div>
+            <h3 class="card-title">Global Information Systems</h3>
+            <p class="card-premise">Transnational systems architectures, global supply chain telecommunications, and offshore data transfer.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-06-global/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 07 enterprise systems erp crm scm">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 07</span></div>
+            <h3 class="card-title">Enterprise Systems (ERP, SCM, CRM)</h3>
+            <p class="card-premise">Enterprise Resource Planning, supply chain management integration, and customer relationship platforms.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-07-enterprise/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 08 decisions dss decision support systems analytics">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 08</span></div>
+            <h3 class="card-title">Decision Support Systems</h3>
+            <p class="card-premise">Executive information dashboards, predictive modeling, and quantitative decision analysis frameworks.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-08-decisions/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 09 artificial intelligence ai machine learning">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 09</span></div>
+            <h3 class="card-title">Artificial Intelligence & Automation</h3>
+            <p class="card-premise">Enterprise application of machine learning, automated process robotics, and natural language analytics.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-09-ai/">Open Module →</a></div>
+        </article>
+
+        <article class="incident-card" data-search="mis 10 emerging technologies cloud blockchain quantum">
+          <div>
+            <div class="card-top"><span class="cert-tag">MIS 10</span></div>
+            <h3 class="card-title">Emerging Technologies</h3>
+            <p class="card-premise">Cloud virtualization shifts, distributed ledgers, IoT edge computing, and infrastructure trends.</p>
+          </div>
+          <div class="card-single-action"><a class="btn-single" href="mis-10-emerging/">Open Module →</a></div>
+        </article>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div>
+      <strong>Learning Narrative Kit (LNK)</strong> • Zero-Build Static Courseware Architecture
+    </div>
+    <div>
+      Hosted via GitHub Pages • <a href="https://github.com/cwarloe/learning-narrative-kit">Repository Source</a>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching & dynamic breadcrumb management
+    function selectTrack(track) {
+      const crumbEl = document.getElementById('current-crumb');
+      const heroEl = document.getElementById('hero-banner');
+      const secPortland = document.getElementById('section-portland');
+      const secTamarack = document.getElementById('section-tamarack');
+      const secOps = document.getElementById('section-operations');
+      
+      const tabPortland = document.getElementById('tab-portland');
+      const tabTamarack = document.getElementById('tab-tamarack');
+      const tabOps = document.getElementById('tab-operations');
+      const tabAll = document.getElementById('tab-all');
+
+      // Reset tabs
+      [tabPortland, tabTamarack, tabOps, tabAll].forEach(t => t.classList.remove('active'));
+
+      if (track === 'portland') {
+        tabPortland.classList.add('active');
+        crumbEl.textContent = 'Portland Desk (Book 0)';
+        heroEl.style.display = 'flex';
+        secPortland.style.display = 'block';
+        secTamarack.style.display = 'none';
+        secOps.style.display = 'none';
+        window.location.hash = 'portland';
+      } else if (track === 'tamarack') {
+        tabTamarack.classList.add('active');
+        crumbEl.textContent = 'Tamarack Track';
+        heroEl.style.display = 'none';
+        secPortland.style.display = 'none';
+        secTamarack.style.display = 'block';
+        secOps.style.display = 'none';
+        window.location.hash = 'tamarack';
+      } else if (track === 'operations') {
+        tabOps.classList.add('active');
+        crumbEl.textContent = 'Operations & MIS';
+        heroEl.style.display = 'none';
+        secPortland.style.display = 'none';
+        secTamarack.style.display = 'none';
+        secOps.style.display = 'block';
+        window.location.hash = 'operations';
+      } else {
+        tabAll.classList.add('active');
+        crumbEl.textContent = 'All Curricula';
+        heroEl.style.display = 'flex';
+        secPortland.style.display = 'block';
+        secTamarack.style.display = 'block';
+        secOps.style.display = 'block';
+        window.location.hash = 'all';
+      }
+    }
+
+    // Real-time search filter across cards
+    function handleSearch(query) {
+      const q = query.toLowerCase().trim();
+      const cards = document.querySelectorAll('.incident-card');
+      cards.forEach(card => {
+        const text = (card.getAttribute('data-search') || '') + ' ' + card.innerText.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Restore track from hash on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (['portland', 'tamarack', 'operations', 'all'].includes(hash)) {
+        selectTrack(hash);
+      } else {
+        selectTrack('portland'); // Default flagship view
+      }
+    });
+  </script>
+</body>
+</html>
+'''
+
+def main():
+    repo_root = Path(__file__).resolve().parent.parent
+    docs_index = repo_root / 'docs' / 'index.html'
+    
+    print(f"Writing redesigned landing page to: {docs_index}")
+    with open(docs_index, 'w', encoding='utf-8') as f:
+        f.write(HTML_CONTENT)
+    
+    print(f"Success! {docs_index} written ({len(HTML_CONTENT)} characters).")
+
+if __name__ == '__main__':
+    main()
