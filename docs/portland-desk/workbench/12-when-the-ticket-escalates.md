@@ -728,6 +728,29 @@ Before Ethan closes the red folder and hands the physical binder to Jules Mercer
 
 ---
 
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 12.2: CSIRT INCIDENT HANDOFF & THE BRIDGE TO BOOK 1"
+badge: "Shift Epilogue"
+caption: "Operations bullpen: At 05:45 PM, the autumn rain eases over the Willamette River. Jules Mercer hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
+prompt: "Clean graphic novel cutaway panel of an IT support operations floor at twilight. Warm indoor desk light contrasts with blue twilight outside the floor-to-ceiling windows showing city bridges and river. A senior technician hands a new security access keycard lanyard to a junior technician across an open incident binder. Clean ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
+```
+
+## After the rain
+
+At 5:45 the queue was quieter. Jules clipped her bike lights on.
+
+"Tell Wednesday," she said, "without listing a lifecycle."
+
+I told her: I had nearly wiped a loud nothing. I had stopped a quiet something without turning it into a parade. I am [[first_responder|first touch]], not freelance forensics.
+
+She nodded once, then remembered the USB on her wall. "Keep asking what it did before you decide what it is."
+
+The queue showed one more URGENT. I opened it anyway — criteria first, adrenaline second. The subject was louder than the evidence. I left it in the queue with a note, and I left the imaging USB where she had put it.
+
 ## The Bridge to Book 1: The Step Beyond the Desk
 
 At 16:30, the autumn rain finally eases to a mist over the Willamette. The river reflects the amber streetlights turning on along the Eastbank Esplanade. In the quiet of the fourth-floor dispatch bullpen, Jules Mercer signs her name on the receiving line of Evidence Pouch `#EVD-2026-1022-01`, slides the red binder into the CSIRT handoff rack, and turns her desk chair toward Ethan.
@@ -742,3 +765,4 @@ She reaches into her desk drawer and pulls out a new lanyard—dark navy blue wi
 ---
 
 *This concludes **Book 0: Zero-to-One (Portland Desk)**. Continue Ethan Brooks' journey in **Book 1: NADF — Network Analyst Development Framework**, where incident response shifts from endpoint triage to live network packet analysis, SIEM threat detection, and intrusion hunting across the Pacific Northwest operations grid.*
+

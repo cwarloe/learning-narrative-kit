@@ -589,3 +589,72 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
 ---
 
 *Workbench complete. Test your mastery against the interactive assessment scenarios in `review.yaml` and inspect companion network captures in [`artifacts/`](../artifacts/).*
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 11.2: WIRELESS HEATMAP & ROGUE AP LOCALIZATION"
+badge: "Shift Epilogue"
+caption: "Operations floor: At 05:40 PM, the wireless controller console displays 100% green enterprise authentication. The rogue AP on port Gi1/0/14 has been administratively disabled, and lobby clients authenticate cleanly over 802.1X RADIUS."
+prompt: "Clean graphic novel cutaway panel of an IT support technician reviewing a wireless heat map on a wall-mounted monitor in an operations office. The heat map shows clean green RF signal distributions across building zones, with an unauthorized red hotspot marked as deactivated. Crisp ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
+```
+
+With the rogue AP located under the conference credenza and its switch port administratively disabled in Cisco IOS, warehouse barcode scanners reassociated smoothly with the legitimate corporate radios. The deauthentication bursts targeting lobby clients subsided once the rogue BSSID was silenced, and Dev's laptop reconnected over authenticated 802.1X RADIUS.
+
+Across the rest of the facility, wireless architecture and hygiene fell into place.
+
+## Guest Wi-Fi, segmentation, and the printer that should not see payroll
+
+Nora needed a vendor on site to update a badge printer. The vendor wanted Wi-Fi. Nora wanted them productive. Finance wanted them nowhere near file shares.
+
+"Guest Wi-Fi," I said. "Different SSID, captive portal for AUP, and — this is the part people skip — network segmentation so guest cannot route to payroll, cameras, or the help desk VLAN. Guest without segmentation is just hospitality for lateral movement."
+
+We put the vendor on `CORP-GUEST`, watched them fail to ping an internal share, and succeed at the vendor's own update CDN. Nora asked if we should hide the employee SSID so guests were less confused.
+
+"Hidden SSID is obscurity," Jules said. "It still leaks in other frames. Real control is enterprise auth and segmentation."
+
+Someone in the thread suggested MAC allow-lists for the printer VLAN. I typed carefully: "MAC filtering is a speed bump you can spoof with a screenshot."
+
+## WPA2, WPA3, WPS, and the survey that is not vibes
+
+Network dropped by the desk with a short hallway class. They were rolling a pilot.
+
+"Employees stay on [[wpa2|WPA2]]-Enterprise today," the engineer said. "Pilot floor gets [[wpa3|WPA3]]-Enterprise with [[sae|SAE]] for the personal SSID we still keep for a few IoT leftovers. SAE is why WPA3-PSK is less embarrassed about offline password guessing than WPA2-PSK. And turn [[wps|WPS]] off on anything that still admits it exists — convenience pairing with a brute-force hobby."
+
+I asked about coverage complaints on the east cubes. They pulled last week's [[site_survey|site survey]]: heat map, channel overlap, one AP transmitting like it was trying to cover the MAX stop.
+
+"AP placement and power," the engineer said. "Too loud outside means easier eavesdropping and easier twins. Survey is how we know. Vibes are how we get tickets titled Wi-Fi bad."
+
+I wrote it down.
+
+## Controllers, certificates, and the Monday meeting reflex
+
+Before Bluetooth ate the last hour, I rewrote one more wiki line the desk will actually use. The wireless controller is where SSID policy lives — encryption mode, guest splash, rogue detection flags — not in a sticky under someone's monitor. When a laptop fails enterprise join, we check whether the user clicked past a certificate warning, whether they are on the right SSID, and whether a booster app installed a fake trust store.
+
+Jules made me say it once for the queue: "If the meeting started, that is not permission to join the loud lookalike. Dock, hotspot from a known phone through VPN, or wait."
+
+I put that sentence in the ticket template.
+
+## Bluetooth in the cube farm
+
+Late day, Lila's laptop kept pairing prompts for a keyboard she did not own. Jordan found a cheap earbud spam message that said *Hi cute phone.* Sam wanted to leave Bluetooth discovery on so his watch felt loved.
+
+"Bluetooth is a second air," I said. "Short range, real risk. Unsolicited messages are [[bluejacking|bluejacking]] — mostly rude. Actual data theft over weak pairing is [[bluesnarfing|bluesnarfing]]. Desk hygiene: pairing hygiene — only expected devices, confirm the code, discovery off when you are not actively pairing."
+
+Lila declined the ghost keyboard. Jordan turned discovery off. Sam looked betrayed by his watch and complied anyway.
+
+## Replay, certificates, and the line that sticks
+
+End of day we closed a stubborn laptop that kept failing enterprise join. The user had installed a free "Wi-Fi booster" profile that pinned a wrong trust anchor. They were one impatient click from sending their password to a lookalike.
+
+"Enterprise helps only if you protect the certificate check," I said. "If the client ignores trust, replay and twin games get easier. Clicking through certificate warnings on Wi-Fi is the same sin as clicking through them on banks."
+
+I updated the wiki blurb: join the real SSID, prefer 802.1X over hallway PSK, VPN on open and portal networks, never WEP, unplug rogue travel routers, do not reconnect blind after weird drops, guest stays segmented, hide-SSID and MAC filters are not controls, WPS off, survey over vibes, and Bluetooth only for things you meant to invite.
+
+At 5:40 I closed notes. Maya was on enterprise and late. Ken was on VPN and not on WEP. Rita's rogue was unplugged. Dev was docked through deauth. The vendor was on guest with walls. Lila's ghost keyboard was declined. The twin in the lobby was still Network's problem.
+
+Jules clipped her bike lights on. "Monday someone will join the loud lookalike because the meeting started."
+
+I already had the line. I went out into the mist.

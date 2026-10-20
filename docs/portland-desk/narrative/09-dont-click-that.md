@@ -83,60 +83,16 @@ Afternoon: Dev from engineering pinged that his phone was buzzing Approve/Deny e
 
 We walked Deny, report, password rotate, then checked recent user-reported mail for his address. Nothing from Maya's campaign sat in his inbox, but a lookalike travel portal did. Dev put the phone face-down. "Deny if I did not ask. I already had that line once. Apparently I needed it twice."
 
-## Doors, shoulders, and the recycling bin
+Jules stepped over to my terminal. "We have a spoofed CFO email demanding a forty-eight-thousand-dollar wire change, Sam hovering over an archive attachment, and Dev's phone buzzing with credential stuffing MFA fatigue pushes. You have ten minutes before AP cuts the afternoon batch wire. Pull the raw RFC 5322 MIME headers, trace the originating IP, verify SPF, DKIM, and DMARC alignment, and get the quarantine hash to the mail gateway before money walks out the door."
 
-Facilities walked a visitor past the badge reader. The visitor smiled, held a coffee tray for three, and waited for someone to beep in. Two people held the door because manners. One of them was me for half a second.
-
-Jules did not raise her voice. She still stopped the line.
-
-"Tailgating," she said to me, not as a lecture to the lobby. "Ask them to sign in. Be polite. Be annoying on purpose."
-
-The visitor signed in. The coffee still got delivered.
-
-At the standing desk near the printer, I caught a contractor reading over Lila's shoulder while she typed a temporary password into a shared screen. I angled my body and said, "Shoulder surfing works in offices too. Screens have sides." Lila turned the laptop. The contractor found somewhere else to be.
-
-Later Jordan from ops dumped a box of old printouts next to the open recycling — org chart with cellphone scribbles, a page with a VPN URL and a handwritten password scratched out but still readable under the scribble, a badge access list from a retired closet.
-
-Jules looked in the box. "Shredder for anything that still has a secret, even a dead one. Dumpster diving is that bin."
-
-Jordan took the box back. He left a sticky on the shredder that said *if you can still read it, it still counts.*
-
-## Quid pro quo and the watering hole rumor
-
-A caller offered me a "free security scan gift card" if I confirmed our external mail gateway brand and the name of our sandbox vendor. Helpful tone. Soft sell. He even offered to "credit the help desk team" in a write-up.
-
-"[[quid_pro_quo|Quid pro quo]]," I said after I hung up and typed the note. "Gift for a detail. We do not trade architecture for coupons. If he needs a vendor list, he can go through procurement like a person."
-
-Slack, meanwhile, was circulating a blog post from a niche local-devops forum everyone here actually reads. Commenters claimed a browser extension "everyone on the floor already installed" fixed a fake outage. The site looked familiar because it was familiar — until Security flagged the admin account takeover from last night.
-
-"[[watering_hole|Watering hole]]," Jules said. "Poison the place the herd already drinks. That is why 'I only click things from our forum' is not a strategy." She posted the official advisory and killed the extension rumor before it became policy by screenshot.
-
-Someone replied with a chain-letter PDF about "FBI mandatory password reset tonight or criminal liability." No ticket. No SOC banner. Just panic fuel.
-
-"Hoax," I wrote in the channel. "If it mattered, it would arrive on the reporting path we already trust — not a viral PDF."
-
-Jules pinned one more line: coordinated scare-posts and fake consensus threads are how light influence campaigns show up at desk scale. We are still a hallway where social engineering rumors try to become policy.
-
-## Quarantine, gateway, and the path that counts
-
-End of day we sat with a SOC analyst on a short bridge call. Not because I was becoming an investigator. Because the desk is where the humans land.
-
-"Mail gateway caught a sibling of Maya's message after her report," the analyst said. "We dropped the campaign into quarantine, detonated the zip in the sandbox, and tuned the rule. User-reported beat the first filter by twelve minutes. Filters are late sometimes. People who hover are early."
-
-I updated the wiki blurb the desk actually reads: hover the link, check the real host, never read codes to callers, never approve surprise MFA, never change wire instructions from a thread, badge your own door, shred the bin, and when something feels like borrowed manners, use the report button. That is the reporting path.
-
-At 5:40 I closed notes: Maya reported, Sam did not open the zip, Avery's wire frozen, Nora hung up on the pretext, Ken ignored the text, Dev denied the pushes, the lobby stopped a tailgate, Jordan shredded, the gift-card caller got nothing.
-
-Jules clipped her bike lights on. "Tomorrow someone will call a spoofed CFO probably real because the logo is crisp."
-
-I said I already had the line. I locked the drawer and went out into the rain.
+## The Handoff Gate
 
 ```bridge-card
-title: Hands-On Lab: Email Header Decomposition & Phishing Triage
+title: Portland Desk Lab: Email Header Decomposition & Phishing Triage
 target: workbench/09-dont-click-that.md
 domain: CompTIA Security+ SY0-701 • Domain 1.2 & 2.4
-badge: Hands-On Lab
+badge: The Hands-On Lab
+cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift with raw RFC 5322 MIME header traces, SPF/DKIM/DMARC authentication triage, lookalike and punycode domain squatting analysis, the 5-case CBYT prediction gate, and the Tier 1 Phishing Incident Triage & Security Escalation deliverable.
+Step onto Ethan's shift. Deconstruct raw RFC 5322 email headers, trace IP hops in `Received:` lines, verify SPF/DKIM/DMARC alignment against DNS TXT records, uncover typosquatted domains, and draft the Tier 1 Phishing Incident Triage & Security Escalation dossier before the wire transfer executes.
 ```
-

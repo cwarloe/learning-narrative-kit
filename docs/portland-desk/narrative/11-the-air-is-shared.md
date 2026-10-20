@@ -69,67 +69,16 @@ Wireless ops had a note on the bridge: bursts of [[disassociation|disassociation
 
 Dev docked. The flapping stopped because copper does not care about deauth theater.
 
-## Guest Wi-Fi, segmentation, and the printer that should not see payroll
+Jules leaned over from the wireless management console. "We have a rogue consumer router bridging unknown devices straight onto the corporate data VLAN in conference room 3B, an active Evil Twin spoofing our SSID in the lobby, and deauthentication flood attacks kicking laptops off the air. If those barcode scanners in the warehouse lose connection or authenticate to the rogue, shipping stops. Grab the Wi-Fi analyzer, decode the 802.11 association frames, triangulate the rogue BSSID signal, and trace the physical switch port to shut down the rogue AP before the morning standup."
 
-Nora needed a vendor on site to update a badge printer. The vendor wanted Wi-Fi. Nora wanted them productive. Finance wanted them nowhere near file shares.
-
-"Guest Wi-Fi," I said. "Different SSID, captive portal for AUP, and — this is the part people skip — network segmentation so guest cannot route to payroll, cameras, or the help desk VLAN. Guest without segmentation is just hospitality for lateral movement."
-
-We put the vendor on `CORP-GUEST`, watched them fail to ping an internal share, and succeed at the vendor's own update CDN. Nora asked if we should hide the employee SSID so guests were less confused.
-
-"Hidden SSID is obscurity," Jules said. "It still leaks in other frames. Real control is enterprise auth and segmentation."
-
-Someone in the thread suggested MAC allow-lists for the printer VLAN. I typed carefully: "MAC filtering is a speed bump you can spoof with a screenshot."
-
-## WPA2, WPA3, WPS, and the survey that is not vibes
-
-Network dropped by the desk with a short hallway class. They were rolling a pilot.
-
-"Employees stay on [[wpa2|WPA2]]-Enterprise today," the engineer said. "Pilot floor gets [[wpa3|WPA3]]-Enterprise with [[sae|SAE]] for the personal SSID we still keep for a few IoT leftovers. SAE is why WPA3-PSK is less embarrassed about offline password guessing than WPA2-PSK. And turn [[wps|WPS]] off on anything that still admits it exists — convenience pairing with a brute-force hobby."
-
-I asked about coverage complaints on the east cubes. They pulled last week's [[site_survey|site survey]]: heat map, channel overlap, one AP transmitting like it was trying to cover the MAX stop.
-
-"AP placement and power," the engineer said. "Too loud outside means easier eavesdropping and easier twins. Survey is how we know. Vibes are how we get tickets titled Wi-Fi bad."
-
-I wrote it down.
-
-## Controllers, certificates, and the Monday meeting reflex
-
-Before Bluetooth ate the last hour, I rewrote one more wiki line the desk will actually use. The wireless controller is where SSID policy lives — encryption mode, guest splash, rogue detection flags — not in a sticky under someone's monitor. When a laptop fails enterprise join, we check whether the user clicked past a certificate warning, whether they are on the right SSID, and whether a booster app installed a fake trust store.
-
-Jules made me say it once for the queue: "If the meeting started, that is not permission to join the loud lookalike. Dock, hotspot from a known phone through VPN, or wait."
-
-I put that sentence in the ticket template.
-
-## Bluetooth in the cube farm
-
-Late day, Lila's laptop kept pairing prompts for a keyboard she did not own. Jordan found a cheap earbud spam message that said *Hi cute phone.* Sam wanted to leave Bluetooth discovery on so his watch felt loved.
-
-"Bluetooth is a second air," I said. "Short range, real risk. Unsolicited messages are [[bluejacking|bluejacking]] — mostly rude. Actual data theft over weak pairing is [[bluesnarfing|bluesnarfing]]. Desk hygiene: pairing hygiene — only expected devices, confirm the code, discovery off when you are not actively pairing."
-
-Lila declined the ghost keyboard. Jordan turned discovery off. Sam looked betrayed by his watch and complied anyway.
-
-## Replay, certificates, and the line that sticks
-
-End of day we closed a stubborn laptop that kept failing enterprise join. The user had installed a free "Wi-Fi booster" profile that pinned a wrong trust anchor. They were one impatient click from sending their password to a lookalike.
-
-"Enterprise helps only if you protect the certificate check," I said. "If the client ignores trust, replay and twin games get easier. Clicking through certificate warnings on Wi-Fi is the same sin as clicking through them on banks."
-
-I updated the wiki blurb: join the real SSID, prefer 802.1X over hallway PSK, VPN on open and portal networks, never WEP, unplug rogue travel routers, do not reconnect blind after weird drops, guest stays segmented, hide-SSID and MAC filters are not controls, WPS off, survey over vibes, and Bluetooth only for things you meant to invite.
-
-At 5:40 I closed notes. Maya was on enterprise and late. Ken was on VPN and not on WEP. Rita's rogue was unplugged. Dev was docked through deauth. The vendor was on guest with walls. Lila's ghost keyboard was declined. The twin in the lobby was still Network's problem.
-
-Jules clipped her bike lights on. "Monday someone will join the loud lookalike because the meeting started."
-
-I already had the line. I went out into the mist.
+## The Handoff Gate
 
 ```bridge-card
 title: Portland Desk Lab: Wireless Security, 802.1X Enterprise, & Rogue AP Triage
 target: workbench/11-the-air-is-shared.md
 domain: CompTIA Security+ SY0-701 • Domain 2.1 & 3.2
-badge: Hands-On Lab
+badge: The Hands-On Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift with interactive 802.11 association and RADIUS packet decodes, signal strength (RSSI) rogue AP triangulation, the 5-case Call Your Shot prediction gate, and the Tier 1 Rogue AP Containment & Wireless Remediation deliverable.
+Step onto Ethan's shift. Decode 802.11 association frames and RADIUS Access-Request packets, triangulate rogue BSSID signal strength (RSSI), locate the unauthorized switch port, and submit the Tier 1 Rogue AP Containment & Wireless Remediation note.
 ```
-

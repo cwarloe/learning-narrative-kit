@@ -580,3 +580,82 @@ Status:           RESOLVED
 ---
 
 *Workbench complete. Proceed to test your knowledge against the interactive questions in `review.yaml` and review companion datasets in [`artifacts/`](../artifacts/).*
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 8.2: IDENTITY BOUNDARIES & OFFBOARDING ENFORCEMENT"
+badge: "Shift Epilogue"
+caption: "Operations floor: At 05:35 PM, the identity queue clears. Ken's phone displays a verified authenticator token, Dev's script runs cleanly against the vault, and offboarding revokes the last orphaned credentials."
+prompt: "Clean graphic novel cutaway panel of an IT support technician desk at late afternoon. Warm desk lamp light mixes with rainy window reflection. On the desk, an authenticator app shows a glowing security key verification symbol next to an Active Directory management console showing green status ticks. Ligne Claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
+```
+
+With Dev's caller computer identified and silenced in Event Viewer, we cleared the lockout in Active Directory and watched the bad password counter stay at zero. Dev updated his test script to pull credentials directly from the secrets vault, and his stand-up deployment cleared cleanly.
+
+Across the aisle, Ken was back at his desk, staring at his phone. "Sign in with company worked," he called over. "It bounced me through the push prompt, matched the two digits, and let me straight into the CRM. No SMS codes, no password plus PIN."
+
+"Told you," I said. "Two distinct factor types. Identification is claiming who you are; authentication is proving it."
+
+## Offboarding leftovers and the admin sticky
+
+Afternoon started with HR pinging offboarding for a contractor who had left Friday. Badge returned. Laptop wiped. Access had not followed.
+
+Jordan from IT ops shared a screen. The contractor still had a license on the design tool, a shared mailbox membership, and — Jules made a noise — a line in a wiki with a shared admin account password last rotated "sometime before the rebrand."
+
+"That is not a password," Jules said. "That is a campfire story."
+
+We treated it as a deprovisioning failure. Disable the cloud login. Pull group memberships. Kill the API token someone had minted "temporarily" in March. For the shared admin: move the secret into vaulting, rotate it, and stop pretending six people can share one identity and still have accounting that means anything.
+
+"Provisioning was fine on day one," Jordan said. "We created the account, put them in the contractor role, shipped the laptop. Day last is where we get sloppy."
+
+I opened a follow-up ticket to map the contractor role in [[rbac|RBAC]] so the next person inherited a bundle we could revoke in one motion — not a scavenger hunt across five admin consoles. Jules, still in the thread: "[[least_privilege|Least privilege]] on the way in. Same muscle on the way out."
+
+## Privileged shortcuts and break-glass myths
+
+Network dropped into the same thread. Jared — still proud of last week's SSH rewrite — wanted a standing domain admin for "closet emergencies."
+
+"I have a Pi at home that is basically god mode," he said. "At work I still type a normal user password and wait. If the IdP hiccups, how do we get in?"
+
+"Checkout, not a lifestyle," Jules said. "I've got a vendor call in ten. Walk him through PAM and then get off the thread."
+
+We walked the desk-level [[pam|PAM]] story without turning it into a product pitch: vault the break-glass path, do not laminate it. Break-glass exists for when MFA and IdP paths are actually down — sealed, monitored, painful on purpose. Day to day, Jared requests just-in-time elevation for the change window, does the work, loses the rights when the window closes. Authorization for admin actions should not be a permanent personality trait on his account. Privileged access is a checkout.
+
+Jared sighed. "Fine. I will stop naming shared accounts after the street food cart." He did not get the standing admin. He opened a change ticket for the next window instead.
+
+## SSO ticket: the app that wants its own password
+
+Late afternoon. Vendor portal for facilities. Title: *need password for EnergyDash*. Description: *IT please create a login.*
+
+I called. Dana — same truck as the FTP week — was between buildings.
+
+"The portal has a Sign in with company button," Dana said. "Also a Register. Register asked me for a new password. I made one. Now Finance says that is wrong."
+
+"[[sso|SSO]]," I said. "We do not want a snowflake password in EnergyDash if we can help it. Our IdP already authenticated you this morning. The portal should trust a federation assertion, not a new local account."
+
+"They said SAML on the implementation call," Dana offered. "Or OAuth. They used both words like synonyms."
+
+Jules, still on her vendor call, muted long enough to say, "Desk translation, Ethan," and unmuted again.
+
+"Federation means their app trusts our IdP. [[saml|SAML]] is the enterprise assertion pattern you will see on the wiki checklist. [[oauth|OAuth]] shows up when an app wants a token to call an API without eating your password — related paperwork, different shape. For this ticket, click Sign in with company, refuse Register, and if Register is the only path, we escalate — local passwords in vendor tools become reuse magnets and offboarding blind spots."
+
+Dana tapped something. "Sign in with company worked. It bounced me through the usual MFA push. I denied the first one because I forgot I had started it. Then I approved the second."
+
+"Good," I said. "Keep the local register button unemployed."
+
+## Passwordless rumor and the end of the shift
+
+Last ping was not a fire. It was a rumor. Someone in Slack asked when we would go passwordless so they could throw their password manager into the river.
+
+Jules typed one line between vendor questions: *security keys and device-bound passkeys are on the roadmap; throwing secrets into the river is not a migration plan.*
+
+I added the desk version for the person who would still call: passwordless replaces the knowledge factor with possession and biometrics wired through the IdP — it does not mean no proof. Until then, unique passwords in the manager, MFA that is actually multifactor, and no PIN cosplay.
+
+At 5:35 the queue was down to noise. Nora's vault was still pending. Ken was enrolled. The contractor was deprovisioned. EnergyDash was on SSO. Jared did not have standing god mode.
+
+Jules clipped her bike lights on. "Tomorrow someone will call password-plus-PIN multifactor again."
+
+"I already have the line," I said.
+
+She almost smiled. I locked the drawer. The cards in it were still about ports. Today's tickets had been about proof — who you claim to be, how you show it, and what we revoke when the story ends. I went out into the rain to catch the MAX.

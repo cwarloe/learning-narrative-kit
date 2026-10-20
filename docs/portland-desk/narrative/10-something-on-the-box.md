@@ -158,109 +158,16 @@ Dana unplugged. Jules was already on the bridge with SOC. They asked about backu
 
 Dana asked if she should try the attacker's support chat anyway, "just to see if the test file comes back." I said no. She asked when her files would be back. I said after SOC and backups, not this afternoon. She stayed on the slow spare printer for the rest of the day and was not polite about it. I wrote that in the ticket because politeness is not a restore code either.
 
-## Keyboards, roots, and the process that hides
+Jules turned from the ops bridge, her headset resting around her collar. "Ken's laptop is spinning fans at 100% executing encoded PowerShell payloads across warehouse shares, an unknown USB dropper sits on the scan bench, and Dana's endpoint is locked with a crypto-malware demand. If you let that PowerShell beacon run another thirty seconds, the entire warehouse VLAN is toast. Isolate the network endpoints, decode that Base64 payload, hunt down the persistence run keys in Autoruns, and log Event ID 7045 before lateral movement takes down the domain."
 
-Afternoon was quieter and worse, which is a combination I am starting to recognize.
-
-Lila from HR noticed her password manager prompting more than usual. She had not typed those sites. She had typed a lot of other sites, which is the point. Task Manager showed a helper named like a font updater. The process list lied poorly if you looked twice.
-
-```console
-caption: LILA-HR · tasklist
-C:\Users\lila> tasklist /v | findstr /i "font helper chrome"
-chrome.exe           4412  Console  1    210,332 K  Running
-FontUpdateHelper.exe 5088  Console  1     14,108 K  Running
-```
-
-"That is a [[keylogger|keylogger]]," I said after EDR flagged keystroke hooks. "Spyware family. Steal what you type. We rotate credentials from a clean path — not from that laptop — and we rebuild, not clean until it feels better. If I sit here deleting helpers until Task Manager looks friendly, I have taught the next helper how long we are willing to bargain."
-
-She did not love the loaner. She used it. She asked whether her passwords from the morning were still good. I said we would rotate the ones that had been typed while the helper was running, which was most of them, and that she should not rotate them from the infected box. She made a face I deserved.
-
-While Lila was on the loaner, Dev from engineering pinged that his box looked clean in Explorer but EDR said a kernel driver was unsigned and hooking disk calls. Explorer is a terrible witness. It reports what it is allowed to see.
-
-"[[rootkit|Rootkit]]," Jules said, without coming over, which meant she had already read the alert. "Hides under the tools you trust. Desk does not hunt that with a free utility from a blog. Image the disk if SOC asks, then reimage. If you cannot trust `dir`, you do not negotiate with the filesystem."
-
-Dev exhaled. "Reimage is the product." He would be down until evening. He said so twice, once to me and once to the sprint channel, where it landed less well.
-
-## Fileless, land tools, and the bot that phones home
-
-Nora in finance forwarded a screenshot: a PowerShell window flash, then nothing. No new file on the desktop. Her antivirus was green. Her EDR was not. Green AV is a mood. EDR orange is a verb.
-
-"[[fileless|Fileless malware]]," I said. "Or at least file-light. [[living_off_the_land|Living off the land]] — abusing PowerShell and friends so it looks like admin work. Signature scanners that only chase new EXEs arrive late. Behavior is the clue, and the clue here is a window that had no business opening itself."
-
-SOC had already marked the parent process and the beacon URL. Outbound HTTPS to a freshly registered domain every five minutes.
-
-```console
-caption: NORA-FIN · netstat (SOC paste)
-PS C:\> Get-NetTCPConnection -RemotePort 443 | ? State -eq Established
-LocalAddress   RemoteAddress        RemotePort  OwningProcess
-10.12.8.41     185.22.xx.14         443         6412   powershell.exe
-
-# every ~300s since 11:04 — same host, same interval
-```
-
-Textbook [[command_and_control|command and control (C2)]]. Nora's PC was not a masterpiece APT story. It was a [[bot|bot]] waiting for instructions, one more node that could join a [[botnet|botnet]] if nobody pulled the cord. I said that more slowly than I needed to, because "bot" still sounds like a cartoon until you watch it keep a schedule.
-
-We pulled Nora off Wi-Fi and wired both. She worked from a clean kiosk on mail-only for the hour. She did not love it. She asked whether she could "just finish the one spreadsheet." I said the spreadsheet could live on the kiosk or it could live on a machine that was still phoning home, and those were different spreadsheets.
-
-## Logic bombs, RATs, backdoors, and the miner in the closet
-
-Late tickets arrived in a pile that would have been funny if any of them had been theoretical.
-
-Jordan from ops admitted a departing contractor had once joked about a script that "deletes the staging share if my account ever goes disabled." Nobody had filed it, because it had been a joke in a channel that jokes. Jordan found a scheduled task with a date trigger and a spiteful comment. The comment was the least professional part, which is saying something.
-
-```console
-caption: staging-host · schtasks
-PS C:\> schtasks /query /tn "StagingMaintenance" /v /fo LIST
-TaskName:        StagingMaintenance
-Last Run Time:   Never
-Next Run Time:   2026-09-22 02:00:00
-Trigger:         At logon of contractor-id — if account disabled, run
-Comment:         don't be a stranger
-Task To Run:     powershell.exe -File C:\stage\cleanup.ps1
-```
-
-We disabled the task, preserved it for HR and legal, and I finally got to say [[logic_bomb|logic bomb]] out loud. Condition plus payload. Malice on a timer. Jules told Jordan to stop narrating the joke in Slack and start attaching the export.
-
-Rita in marketing somehow had a remote support tool she did not remember installing. It listened. It waited. EDR called it a [[rat|remote access Trojan]] — a trojan whose payload is interactive control. Beside it, a service that should not exist smelled like a [[backdoor|backdoor]] planted for later. Same ticket family: isolate, do not just uninstall and hope, rebuild from known-good. Rita asked if she could keep the tool "because sometimes vendors need it." I said vendors can open a ticket like everyone else, and that a listener she did not install is not a vendor relationship.
-
-The warehouse closet PC that drives a label printer was burning CPU at 100 percent. No ransomware note. No ads. Just heat, and a fan that had opinions about remaining employed. SOC named it [[cryptojacking|cryptojacking]]: mining for someone else on our electricity.
-
-```meter
-caption: WH-LABEL-01 · CPU
-label: CPU
-value: 100
-note: No user at the console. Process name looks like a Windows update. It is not. Miner talking to a broker.
-```
-
-We isolated anyway. Miners talk to brokers. Brokers are C2 with a timesheet. The spare printer from Dana's morning inherited a second job and made a sound I will remember.
-
-## Persistence, privileges, and the commute across the floor
-
-The end-of-day bridge call was short, which I have learned is a compliment when SOC is on it.
-
-"What we saw today starts as one host and tries to become a floor," the analyst said. "Watch for [[persistence|persistence]] — Run keys, services, tasks that survive reboot. Watch for [[privilege_escalation|privilege escalation]] — suddenly the malware is SYSTEM. Watch for [[lateral_movement|lateral movement]] — same hash on the next PC, same share writes, same stolen creds. Your IoCs do not need to be poetry."
-
-| IoC we actually wrote down | Why it still matters tomorrow |
-| --- | --- |
-| Hosts: KEN-SALES-14, WH-PACK-02, MAYA-W11 | Pattern, not a one-off |
-| [[hash|SHA256]] on the USB dropper | Catalog already knew it; next USB might |
-| Domain `185.22.xx.14` on 443 / 5 min | Nora's beacon |
-| Task name `CacheCleanup` | Worm commute |
-| "isolated at 14:12" | Clock for the people who were not in the room |
-
-I updated the wiki blurb the desk actually reads: portal software only; USB is guilty until scanned; weird share activity means isolate first; ransomware means isolate and do not pay; restore from backups attackers cannot touch; green AV is not a verdict; EDR orange is a verb; and when something on the box is lying — quarantine the file, isolate the host, open the path to the SOC.
-
-At 5:35 I closed what I could. Maya's toolbars were gone and her merger was still a fight. Sam's USB was contained. Ken had unplugged a worm commute and was still owed a file copy. Dana had not paid and was still on the slow printer. Lila was on a loaner rotating passwords she did not want to rotate. Dev was reimaging. Nora's beacon was starved. Jordan's timer was defused. Rita's RAT was escalated. The closet miner was cooling down, and the spare printer was doing two jobs badly.
-
-Jules clipped her bike lights on. "Tomorrow someone will ask if paying just this once is faster."
-
-I already had the line. I went out into the rain.
+## The Handoff Gate
 
 ```bridge-card
-title: Hands-On Lab: Host Malware Triage, Persistence Mechanisms, & EDR Analysis
+title: Portland Desk Lab: Host Malware Triage, Persistence Mechanisms, & EDR Analysis
 target: workbench/10-something-on-the-box.md
 domain: CompTIA Security+ SY0-701 • Domain 2.1 & 4.1
-badge: Hands-On Lab
+badge: The Hands-On Lab
+cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift with interactive encoded PowerShell payload decoding, Windows persistence triage (Registry Run Keys, Event ID 7045 services, Event ID 4698 scheduled tasks), the 5-case CBYT prediction gate, and the Tier 1 Host Infection Isolation & Containment deliverable.
+Take over Ethan's workstation. Decode obfuscated Base64 PowerShell scripts, inspect Sysinternals Autoruns and Windows Security logs for Event ID 7045 and registry persistence, isolate infected endpoints from the network, and submit the Tier 1 Host Infection Containment Dossier.
 ```
