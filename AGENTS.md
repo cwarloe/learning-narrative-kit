@@ -186,9 +186,7 @@ Full text: `schema/README.md`. Non-negotiables:
 
 ## Playbooks
 
-Reusable how-tos that aren't tied to one track live in `playbooks/<name>/`.
-
-- **Instructions → training video:** `playbooks/instructions-to-training-video/README.md`. Turns a written procedure (docx, PDF, slides, web page, notes) into a short captioned walkthrough video. Needs `playwright`, `ffmpeg`, `pandoc` and `Pillow`; these are not in `requirements.txt`, because the kit itself doesn't need them.
+- **Instructions → training video** lives in the Knowledge Harvest repo: `playbooks/instructions-to-training-video/` in [cwarloe/knowledge-harvest](https://github.com/cwarloe/knowledge-harvest). Use it if a unit needs a captioned walkthrough video built from written steps. Not needed for normal units.
 
 ## Track-specific canon
 
