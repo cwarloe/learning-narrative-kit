@@ -21,6 +21,7 @@ constraints:
   - Story must pass the cover test (readable with marks hidden)
   - Third-person past tense; same company and cast as the rest of the Tamarack track
 source_notes:
-  - "The slides name the Week 7 technical assignment 'Star Schema and Visualization' but do not define star schema, fact table, or dimension table. Those three are tier support with plain-language glosses, not exam definitions. Replace them if the assignment or textbook gives wording."
+  - "Star schema, fact table, and dimension table are defined in the Week 7 technical assignment ('Star Schema and Visualization'), not the slides: 'A star schema is a type of relational data structure optimized for analytics. In a star schema, the central entity is called the Fact table. All other tables are called Dimension tables and are directly connected to the Fact table.' Those sentences are the definitions (tier exam); the earlier plain-language glosses are kept as context."
+  - "Power BI screen names follow Microsoft Learn as of October 2026: Power Query Editor (opened with Transform data), Get data, Table view. The slides say Data view; Microsoft's Table view page (learn.microsoft.com/power-bi/connect-data/desktop-data-view) describes the same view, though it doesn't state the rename."
   - "Slide 13 expands ETL as 'Explore, Transform, Load'; slide 10 and the MindTap glossary expand it as 'Extraction, Transformation, and Loading'. The glossary uses the latter."
 heading_rule: scene

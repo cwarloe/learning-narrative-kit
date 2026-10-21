@@ -45,7 +45,7 @@ Linda read it twice and asked who would see the dealer-by-dealer numbers. Dana s
 
 The three exports came in over the next week, and on Thursday night Dana brought them down to the DC office, where Eli Mendez had stayed after his shift to help. Eli had built Ruth's Power BI report in September and was the only person at Tamarack who had used it for more than an afternoon.
 
-They started with [[data_understanding|data understanding]]: before changing anything, get familiar with the data and find out what was wrong with it. Eli opened each file in Power BI Desktop with [[get_data|Get Data]] and looked at the first rows.
+They started with [[data_understanding|data understanding]]: before changing anything, get familiar with the data and find out what was wrong with it. Eli opened each file in Power BI Desktop with [[get_data|Get data]] and looked at the first rows.
 
 ```table
 caption: The first row of each dealer's export
@@ -66,10 +66,10 @@ Dana kept a list as they went, because data understanding was supposed to produc
 
 [[data_preparation|Data preparation]] took the rest of that night and most of the next. The course slides warned that this phase could eat eighty or ninety percent of a project. Dana had thought that was an exaggeration until about nine-thirty on Thursday.
 
-The work happened in the [[query_editor|Query Editor]], Power BI's tool for [[etl|ETL]]: extract the data from each file, transform it into one shape, and load it into the model. Eli did Palmer's first, because it was the worst. Each thing he did became a line in the query's [[applied_steps|Applied Steps]], which Power BI would replay every time the data refreshed.
+The work happened in [[query_editor|Power Query Editor]], which the slides called the Query Editor, Power BI's tool for [[etl|ETL]]: extract the data from each file, transform it into one shape, and load it into the model. Eli did Palmer's first, because it was the worst. Each thing he did became a line in the query's [[applied_steps|Applied Steps]], which Power BI would replay every time the data refreshed.
 
 ```steps
-caption: Query Editor · Palmer's query · Applied Steps
+caption: Power Query Editor · Palmer's query · Applied Steps
 Source
 Promoted Headers
 Removed Columns (Price): Gene's rule, before anything else
@@ -79,13 +79,21 @@ Added Custom: Pounds = Qty × the number in Unit
 Changed Type: Month to a date
 ```
 
-The split was the step Dana watched most closely. Every dealer's product field started with the mill's name, then a space, a hyphen, and a space, then the product. Telling the Query Editor that " - " was the [[delimiter|delimiter]] cut the field cleanly into two columns, Mill and Product, and the Mill column made it easy to drop the handful of rows that came from other mills.
+The split was the step Dana watched most closely. Every dealer's product field started with the mill's name, then a space, a hyphen, and a space, then the product. Telling Power Query Editor that " - " was the [[delimiter|delimiter]] cut the field cleanly into two columns, Mill and Product, and the Mill column made it easy to drop the handful of rows that came from other mills.
 
 Then he did the same for Tamarack and Deer Park, renamed the columns to match, and appended all three into a single table called FeedSales. [[close_and_load|Close & Load]] put it into the model. It was 11:40 p.m. Eli went home.
 
 * * *
 
-Friday night was [[modeling_phase|modeling]]. Dana had been thinking about the model's shape all day, and she drew it for Eli before he touched anything.
+Friday night was [[modeling_phase|modeling]]. Dana had been thinking about the model's shape all day, and she drew it for Eli before he touched anything: one box in the middle and three around it.
+
+"Why four tables?" Eli asked. "I've already got it all in one. Dealer, product, month, pounds. I can pivot that."
+
+"You can, until Gene renames a product," Dana said. "Then you're changing that name on every row he ever sold it on, and you'll miss one, and the report will show two products that are really the same feed."
+
+"So where does the name go?"
+
+"In one place. The Products table. The big table just says which product, by its ID." She tapped the middle box. "This one only keeps the numbers, and the IDs that point at everything else."
 
 ```tree
 caption: Model view · the buying group's star schema
@@ -99,10 +107,10 @@ It was a [[star_schema|star schema]]: one [[fact_table|fact table]] in the middl
 
 It quietly failed. The Products table used Tamarack's item numbers, like 40817, as its key. Palmer's rows carried Gene's codes, like PAL-17, and Deer Park's carried Linda's. When Eli put a bar chart on the page, there was a bar labeled "(Blank)" holding 750 tons that belonged to products the model couldn't find. Fixing it meant going back to data preparation, which the slides also said would happen. Marcy built a small mapping table that night, matching every Palmer's and Deer Park code to a Tamarack item number, and Eli merged it into the two queries. The blank bar went away.
 
-Then the calculations. Power BI used [[dax|DAX]], a formula language that started out looking like Excel's and went much further. The course's best practice was to write calculations from the [[data_view|Data view]], on the Modeling tab, and to let the pick-list fill in table and column names so nothing was misspelled. The first one was simple. The mill priced in tons, the files were in pounds, and every row needed converting.
+Then the calculations. Power BI used [[dax|DAX]], a formula language that started out looking like Excel's and went much further. The course's best practice was to write calculations from the [[data_view|Table view]], which the slides still called the Data view, on the Modeling tab, and to let the pick-list fill in table and column names so nothing was misspelled. The first one was simple. The mill priced in tons, the files were in pounds, and every row needed converting.
 
 ```formula
-caption: Power BI Desktop · Data view · FeedSales · New column
+caption: Power BI Desktop · Table view · FeedSales · New column
 Tons = FeedSales[Pounds] / 2000
 → First row: 5,000 pounds of layer pellets becomes 2.5 tons.
 ```
