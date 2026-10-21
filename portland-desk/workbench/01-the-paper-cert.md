@@ -1,23 +1,22 @@
 # Portland Desk Lab: Hardware Fault Isolation & Layer 1 Diagnostics
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `a-plus-hardware-helpdesk` — *The Paper Cert*  
-> **Environment:** Industrial Logistics Staging Floor & Hardware Repair Bench  
-> **Author:** Ethan Brooks (Graveyard Shift Triage, Gresham Freight Forwarding Terminal)  
-> **Target System:** Ruggedized Industrial Single-Board Computer (SBC) & Automated In-Line Scale Terminal  
+> **The Situation:** Gresham Freight Forwarding Terminal • Graveyard shift, industrial staging floor  
+> **Your Role:** Tier 1 Field / Hardware Bench Technician  
+> **The Objective:** Isolate hardware faults and Layer 1 physical failures on an automated shipping scale terminal before the 5:00 AM dispatch.  
+> **Estimated Time:** 40–50 minutes • Hardware Diagnostics  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Role** | Tier 1 Field / Hardware Bench Technician |
-| **Target Certification** | CompTIA A+ Core 1 (220-1101) & CompTIA Network+ (N10-008/009) |
-| **Primary Domains** | **CompTIA A+ Core 1 (220-1101)**<br>• *Domain 3.1: Given a scenario, resolve problems with motherboard, RAM, CPU, and power.*<br>• *Domain 3.4: Given a scenario, troubleshoot and resolve peripheral and display problems.*<br>**CompTIA Network+ (N10-008/009)**<br>• *Domain 5.2: Given a scenario, troubleshoot common physical connectivity problems (Layer 1 vs. Layer 2).* |
-| **Prerequisites** | Foundational knowledge of DC voltage, basic electrical circuit continuity, motherboard POST routines, and serial asynchronous communication principles. |
-| **Estimated Completion** | 40–50 minutes |
-| **Core Deliverables** | 1. Physical Layer Diagnostic Flow & POST Code Triage Matrix<br>2. Micro-Drill 1: Power Supply Voltage Rails & Multimeter Load Diagnostics<br>3. Micro-Drill 2: Asynchronous Serial Communications & Baud Rate Framing Calculations<br>4. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>5. Performance Deliverable: Tier 1 Physical Incident Triage Report & Passdown Note |
+* **Aligned Certification:** CompTIA A+ Core 1 (220-1101) & Network+ (N10-008/009)
+* **Exam Domains:** A+ Core 1 Domain 3.1 (Motherboard, RAM, CPU, Power) & 3.4 (Peripherals & Serial); Network+ Domain 5.2 (Physical Layer 1 Connectivity)
+* **Core Competencies & Deliverables:** Physical Diagnostic Flow • POST Code Triage Matrix • ATX Power Supply Voltage Drill • RS-232 Serial Framing Drill • Call Your Shot 5-Case Gate • Tier 1 Physical Passdown Note
+
+</details>
+
 
 ---
 
@@ -48,10 +47,11 @@ You are equipped with a digital multimeter, basic hand tools, vendor technical m
 
 ### The Ground Truth Rules of Hardware Triage
 1. **Layer 1 First, Always:** Before touching firmware, drivers, operating system services, or application configurations, verify physical Layer 1 integrity. A severed conductor, a shorted chassis trace, a bent pin, or a loose power molex connector mimics software failure every time.
-2. **Formulate a Falsifiable Hypothesis ("Commit Before You Touch"):** Never power-cycle or alter hardware settings out of nervous action bias. State explicitly: *"If the 12V power rail has failed, my multimeter will read under 11.40V DC across the yellow wire."* Measure to test the hypothesis; do not guess.
+2. **Make a Testable Prediction ("Commit Before You Touch"):** Never power-cycle or alter hardware settings out of nervous action bias. State explicitly: *"If the 12V power rail has failed, my multimeter will read under 11.40V DC across the yellow wire."* Measure to test the hypothesis; do not guess.
 3. **Power Rails Have Tight Operating Tolerances:** Digital logic and high-draw motor controllers require clean, tightly regulated DC power. Standard ATX specifications mandate a strict $\pm 5\%$ tolerance on positive rails (+12V, +5V, +3.3V). A 12V line sagging to 10.2V will cause erratic system freezes, spontaneous restarts, and bus corruption.
 4. **Serial Transmission Is Hard Real-Time Timing:** Asynchronous RS-232 communication contains no shared hardware clock wire. Both endpoints must agree identically on symbol timing (baud rate), data word length, parity checking, and stop framing bits (e.g., 9600 8-N-1). A mismatch guarantees immediate framing errors and unintelligible hex garbage.
 5. **Bleed Flea Power Before Physical Probing:** Switching power supply filter capacitors store lethal voltage and residual charge ("flea power") long after AC power is disconnected. Flea power can lock motherboard embedded controllers in an unbootable reset loop. Always disconnect AC mains and press the chassis power switch for twenty seconds to drain capacitors to zero before inspecting or servicing circuit boards.
+
 
 ---
 
@@ -83,6 +83,7 @@ flowchart TD
     style O fill:#22543d,stroke:#38a169,color:#fff
 ```
 
+
 ---
 
 ### 2.2 Motherboard POST Code Lookup Table (Phoenix / AMI BIOS)
@@ -98,6 +99,7 @@ Motherboard firmware writes diagnostic progress bytes to I/O port `80h` during t
 | **`2A`** | Video Controller | Initializing primary display adapter and video BIOS ROM extension. | PCI/VGA daughtercard unseated; auxiliary $+12\text{V}$ GPU power lead disconnected. | Reseat display adapter. Inspect video interface cable for crushed pins or broken signal ground. |
 | **`45`** | Storage / Controller | Enumerating IDE, SATA, or embedded flash storage devices. | Defective drive controller; crushed 40-pin IDE ribbon cable; failing $+5\text{V}$ drive motor rail. | Disconnect storage cable. Verify drive spins up without head clicking sounds. Replace data ribbon. |
 | **`7F`** | POST Hand-Off | POST routines complete; firmware executing `INT 19h` boot loader bootstrap. | Non-bootable storage medium; corrupted Master Boot Record (MBR); missing partition table. | Enter BIOS setup. Confirm boot order lists primary system storage. Check storage interface health. |
+
 
 ---
 
@@ -125,6 +127,7 @@ The RS-232 standard defines asynchronous serial data communications between Data
 | **8** | **CTS** | Clear to Send | Input $\leftarrow$ DCE | Hardware flow control: scale signals it is ready to receive data. | Outbound commands queue up indefinitely in operating system buffer. |
 | **9** | **RI** | Ring Indicator | Input $\leftarrow$ DCE | Legacy modem signal (rarely connected in industrial scales). | Unused in standard scale telemetry; normally left floating. |
 
+
 ---
 
 ### 2.4 Power Supply Voltage Rails & Tolerances
@@ -141,6 +144,7 @@ $$\text{Allowable Range} = V_{\text{nominal}} \pm (V_{\text{nominal}} \times 0.0
 | **$+5\text{VSB}$** | **Purple** | $+5.00\text{V}$ | **$+4.75\text{V}$** | **$+5.25\text{V}$** | Standby power circuitry, real-time clock (RTC), power button monitor, Wake-on-LAN. | System completely unresponsive to power switch toggle; motherboard power indicator LED dark. |
 | **`PWR_OK`** | **Gray** | $+5.00\text{V}$ | **$+4.75\text{V}$** | **$+5.25\text{V}$** | "Power Good" logic signal sent to CPU once all internal rails stabilize. | Fans spin continuously at 100% RPM but system never executes first BIOS instruction (POST `00`). |
 
+
 ---
 
 ## 3. Quick Checks & Skill Reps
@@ -155,7 +159,12 @@ At 02:45, an auxiliary dispatch terminal on loading dock 2 refuses to boot. The 
 2. Perform the manual PSU jump test: connect a conductive paperclip between **Pin 16 (Green wire: `PS_ON#`)** and any adjacent **Ground pin (Black wire: `COM`)**.
 3. Plug the PSU into AC line power and flip the rocker switch to ON. The cooling fan begins spinning.
 4. Set the multimeter to **DC Volts ($V\text{=}$)** on the $20\text{V}$ manual range.
-5. Insert the black probe securely into a black ground terminal. Touch the sharp red probe tip into each active pin cavity while the supply is operating under load:
+```callout-panel
+title: "FIGURE 1.2: ATX 24-PIN BACKPROBE VOLTAGE DIAGNOSTIC"
+badge: "Hardware Telemetry"
+caption: "Diagnostic schematic: Ethan's multimeter backprobes Pin 10 (Yellow +12VDC rail) while mated to the industrial single-board computer under active load. Nominal ATX spec requires 11.40V - 12.60V."
+prompt: "Dramatic close-up isometric view in Pacific Northwest silicon noir style, high contrast hard black ink lines, cross-hatching, moody warehouse lighting, cool slate blue and rain-slicked dark grey palette (#0f172a, #1e293b). A technician's oil-stained hands wearing canvas work gloves with fingertips cut off, holding high-precision Fluke multimeter needle probes. The red needle probe is backprobing Pin 10 (Yellow +12VDC wire) of a mated ATX 24-pin motherboard power harness inside a scarred NEMA industrial steel cabinet. The black probe is clipped to a zinc ground bolt on the unpainted chassis frame. Multimeter LCD displays crisp amber numbers: 10.84 V. In the blurred background: high-bay warehouse metal-halide lamps, stacked wooden pallets, and an amber warning beacon flashing."
+```
 
 ```
 [DMM Multimeter Probing Display]
@@ -170,6 +179,7 @@ Pin 8  (Gray PWR_OK)   1.45 V DC         -71.0% (Target: 4.75V - 5.25V)      LOG
 #### Diagnostic Evaluation
 - **Analysis:** While the $+5\text{V}$ and $+3.3\text{V}$ rails show nominal output, the primary $+12\text{V}$ yellow rail is severely depressed at $10.22\text{V}$ (well below the $11.40\text{V}$ cutoff limit). In response to the unstable 12V rail, the internal supervisory IC dropped the `PWR_OK` gray wire to $1.45\text{V}$. 
 - **Action:** Replace the power supply unit immediately. Do not attempt to boot the computer; undervoltage on the 12V rail starves the CPU voltage regulators and damages storage drive spindle motors.
+
 
 ---
 
@@ -221,11 +231,93 @@ Receiver (19200 Baud):
                                                                           FRAMING ERROR!
 ```
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+### 2.3 Interactive Terminal: Live Serial Console & Clock Divider Triage
+
+Use the interactive serial console below to inspect the Toledo scale telemetry feed on `COM1` (`/dev/ttyS0`), check the current hardware UART clock divider, and identify the baud rate desynchronization causing framing errors.
+
+```lnk-terminal
+title: "CONSOLE: TOLEDO SCALE INTERFACE (COM1 /dev/ttyS0)"
+shell: "serial"
+prompt: "SCALE_04# "
+replay: true
+objectives:
+  - id: "obj-status"
+    label: "Inspect UART interface status and error counts"
+    trigger: "status"
+  - id: "obj-dips"
+    label: "Inspect SW1 DIP switch hardware clock divider"
+    trigger: "read-dips"
+  - id: "obj-baud"
+    label: "Recalibrate baud rate clock divider to 9600"
+    trigger: "set-baud 9600"
+---
+status: |
+  Interface: COM1 (RS-232 Asynchronous)
+  Hardware Address: 0x03F8 (IRQ 4)
+  Baud Rate: 19200
+  Data Bits: 8 | Parity: None | Stop Bits: 1 (8-N-1)
+  Interface Status: DSR=ON, CTS=ON, Carrier=DETECTED
+  Packet Diagnostics:
+    - Bytes Received: 14,892
+    - Framing Errors (FE): 14,892 (100% CORRUPTION)
+    - Buffer Contents: "\xFE\x00???\xFE\x12??~~\x00\xFF"
+  Warning: Framing rate desynchronized. Clock frequency exceeds sender symbol duration.
+
+read-dips: |
+  Motherboard Sub-Plate: DIP Switch Bank SW1 Status
+  [SW1-1: ON ] - Controller Bus Address: 0x01
+  [SW1-2: ON ] - Termination Resistor: 120 Ohm ENABLED
+  [SW1-3: ON ] - Clock Divider Prescaler A: 2x (19200 Baud)
+  [SW1-4: OFF] - Clock Divider Prescaler B: 1x (9600 Baud)
+  Diagnostics: Switch 3 is ON, locking the UART receiver to 19200 baud.
+  Scale transmitter hardware is calibrated for 9600 baud.
+  Action Required: Set Switch 3 OFF, Switch 4 ON.
+
+set-baud 9600: |
+  Executing clock divider adjustment:
+  Strapping SW1-3 -> OFF, SW1-4 -> ON...
+  UART Master Clock Divider set to: 12 (115200 / 12 = 9600 Baud)
+  Bit Duration recalibrated: 104.17 microseconds per bit cell.
+  Restarting Toledo polling daemon...
+  
+  [OK] Carrier Lock Established.
+  [OK] Framing Errors: 0 / 1000 packets.
+  Stream Telemetry:
+  SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL
+  SCALE_04: READY - 043.1 LBS - DIVERTER NORMAL
+  SCALE_04: READY - 042.5 LBS - DIVERTER NORMAL
+
+test-telemetry: |
+  Polling Toledo Model 8520 Scale Head...
+  Raw Serial Stream:
+  02 30 34 32 2E 38 20 4C 42 53 0D 0A
+  Parsed Decimal: 042.8 LBS (Gross Weight)
+  Status: NORMAL (Within 250 lb conveyor limit)
+```
+
+
+---
+
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 *Strict Protocol:* Do not expand the verification box until you have written down your predicted layer of failure, expected diagnostic measurement, and immediate corrective action.
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-01-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-01-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-01-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Case 1: Motherboard Halts at Hex POST `C1` After Line Relocation
 - **Observed Symptom:** A sorting terminal was relocated across the facility. On first power-up, the fans spin at maximum speed, the screen remains completely dark, and the onboard two-digit diagnostic LED freezes on code `C1`.
@@ -239,6 +331,7 @@ Receiver (19200 Baud):
 - **Root Cause:** POST code `C1` indicates early memory presence detection failure. During mechanical transport or vibration, the memory module was unseated from its socket latches, or oxidation/dust contaminated the gold edge contacts.
 - **Physical Action:** Disconnect AC power, discharge flea power by holding the power button for 20 seconds. Release memory retention clips, extract RAM module, inspect edge contacts, clean with isopropyl alcohol if oxidized, and firmly reseat into primary memory Channel A (Slot 1) until both side clips click shut.
 </details>
+
 
 ---
 
@@ -256,6 +349,7 @@ Receiver (19200 Baud):
 - **Physical Action:** Replace the failing power supply unit. Move the sensitive computing terminal to an isolated voltage-regulating uninterruptible power supply (UPS) to protect it from line-voltage brownouts caused by industrial motor starts.
 </details>
 
+
 ---
 
 #### Case 3: Serial Console Cascades Inverted Question Marks and Framing Errors
@@ -270,6 +364,7 @@ Receiver (19200 Baud):
 - **Physical Action:** Consult the peripheral hardware manual. Inspect the computer motherboard or expansion card DIP switches. Toggle the hardware clock divider switches to align the baud rate to exactly 9600 8-N-1 on both ends of the serial cable.
 </details>
 
+
 ---
 
 #### Case 4: Continuity Beeper Silent Between DB-9 Pin 5 and Chassis Earth
@@ -283,6 +378,7 @@ Receiver (19200 Baud):
 - **Root Cause:** Broken ground path (`O.L.` = infinite resistance). Pin 5 is the electrical signal ground for the entire RS-232 communication circuit. Without a solid ground path, the signal voltage has no zero-volt return reference. Ambient electromagnetic interference (EMI) generated by forklift electric motors induces stray AC voltages onto the floating data conductors, corrupting the delicate analog-to-digital converter telemetry.
 - **Physical Action:** Inspect the serial cable for a severed ground wire or broken pin solder joint at the connector shell. Replace the damaged serial cable with an industrial double-shielded cable, ensuring the metal DB-9 shell and Pin 5 are properly bonded to the central equipment ground bus.
 </details>
+
 
 ---
 
@@ -302,14 +398,30 @@ Receiver (19200 Baud):
   4. Release the button, reconnect AC mains power, and toggle the switch. The embedded controller resets cleanly and the system boots normally.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-01-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-01-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-01-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Tier 1 Physical Incident Triage Report & Equipment Passdown Note
 
 #### Scenario Assignment
 You are Ethan Brooks, Tier 1 Field Technician on the graveyard shift at the Gresham Freight Forwarding Terminal. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
+
 
 ---
 
@@ -383,6 +495,7 @@ SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
 ========================================================================================
 ```
 
+
 ---
 
 ### Part B: Equipment Passdown Note (Day Shift Board / Dispatch Radio Log)
@@ -412,15 +525,17 @@ Line 4 is FULLY OPERATIONAL. All cross-dock trailers departed on time.
 ACTION REQUIRED FOR DAY SHIFT:
 1. Do not touch DIP switch SW1 on Line 4 (leave switches 3-OFF, 4-ON).
 2. Permanent replacement 40-pin ribbon cable (Part #CBL-40P-IND) ordered from stockroom.
+
 3. Need facilities to install split-rubber grommets on sheet metal partition before Sunday.
 ----------------------------------------------------------------------------------------
 ```
 
+
 ---
 
-### Part C: Grading & Evaluation Rubric
+### Part C: Scoring & Passing Standards
 
-Use this objective scoring rubric to assess technician performance across the five core competency areas:
+Use this objective scoring guide to assess technician performance across the five core competency areas:
 
 | Competency Area | Points | Criteria for Full Credit (Pass) | Criteria for Partial Credit | Criteria for Zero Credit (Fail) |
 | :--- | :---: | :--- | :--- | :--- |
@@ -430,3 +545,34 @@ Use this objective scoring rubric to assess technician performance across the fi
 | **4. Asynchronous Serial & Clocking Triage** | **20** | Identifies bent DB-9 Pin 2 without breaking pin; diagnoses baud rate framing error (9600 vs 19200); correctly configures motherboard DIP switches to match scale timing parameters. | Straightens pin but cannot explain framing error cause; guesses baud rate without consulting scale manual. | Forces bent pin into socket causing permanent destruction; fails to match baud rate on terminal. |
 | **5. Operational Passdown & Root Cause Reporting** | **10** | Authors comprehensive incident report with quantitative voltage measurements, root-cause analysis, preventative actions, and clear day-shift passdown note. | Passdown note missing voltage data or preventative maintenance recommendations. | Submits vague passdown ("Line 4 fixed"); fails to document hardware changes or alert team to temporary patch. |
 | **TOTAL** | **100** | **Passing Score: 85 Points or higher** | | |
+
+
+---
+
+## 6. The Shift Resolution & Epilogue: 05:04 AM
+
+*The following operational debrief records the physical resolution on the warehouse floor once the clock divider fix is verified:*
+
+With the clock divider calculation verified on the console, I located DIP switch bank `SW1` in the lower corner of the motherboard. Using the fine flat tip of my father's jeweler's screwdriver, I reached into the chassis. I clicked switch 3 from ON down to OFF, and pushed switch 4 from OFF up to ON.
+
+The mechanical click of the miniature plastic toggles felt sharp and definitive in the quiet cabinet.
+
+I restarted the serial communication daemon from the terminal prompt. The torrent of garbled characters vanished instantly. It was replaced by a clean, rhythmic stream of formatted telemetry:
+
+```
+SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL
+SCALE_04: READY - 043.1 LBS - DIVERTER NORMAL
+```
+
+Ken did not waste time with compliments. He reached past my shoulder, jammed his thumb into the master green start button on the motor console, and let out a loud whistle down the main warehouse aisle.
+
+"Line four is live!" Ken shouted into his two-way radio. "Get the yard tractors moving! Load Seattle on bay seven and Boise on bay nine!"
+
+The heavy three-phase electric motors spooled up with an industrial groan. The rubber sorting belts accelerated to full operational speed, and the pneumatic diverter arms began their rhythmic clapping as parcel after parcel was weighed, scanned, and routed into the outgoing freight cages. The clock on the warehouse wall read 4:47 AM. When the final cross-dock trailer pulled away from loading bay nine, the time was 5:04 AM. The morning route was saved, and the warehouse avoided thousands of dollars in cancelled delivery fees.
+
+I sat down on an upturned wooden pallet behind the sorting enclosure. I rested my forearms against my knees and caught my breath. My hands were covered in black conveyor grease. My knuckles were bleeding where I had scraped them against the sharp chassis partition, and my fifty-dollar staging patch cable was ruined because I had stripped back its shielding to make temporary jumper leads.
+
+I pulled my smartphone from my jacket pocket and looked at the browser screen. My flashcard application was still running in the background, displaying a multiple-choice question about the maximum theoretical throughput of a PCI Express bus. The digital flashcards had felt authoritative and complete when I was sitting in my bedroom, but they had taught me nothing about the reality of industrial machinery. Those flashcards had not warned me that copper wires chafe against stamped steel. They had said nothing about serial pins bending when hurried workers yank on cables, or unmatched clock rates turning real operational data into noise.
+
+I had earned my certifications on paper, but out on the cold concrete floor of the warehouse, I had finally begun to learn the tradecraft of repair. That afternoon, before going to sleep, I opened my laptop, revised my resume to describe how physical layer diagnostics keep operations moving, and submitted an application for the Tier 1 Help Desk opening at the Portland Regional Operations Center.
+

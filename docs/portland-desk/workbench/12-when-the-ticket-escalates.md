@@ -1,28 +1,34 @@
 # Portland Desk Lab: The Incident Escalation & SOC Handoff Crucible
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `secplus-ir-helpdesk` — *When the Ticket Escalates*  
-> **Environment:** Portland Operations Center Service Desk & Tier 1 CSIRT Triage Station  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
-> **Companion Artifacts:** [`narrative.md`](#/narrative/12-when-the-ticket-escalates.md) • `glossary.yaml` • `unit.yaml`  
-> **Capstone Status:** Book 0 Final Capstone & Direct Bridge to Book 1 (*Network Analyst Development Framework*)
+> **The Situation:** Portland Operations Center Service Desk • Tier 1 CSIRT Incident Station  
+> **Your Role:** Tier 1 Support Specialist / Junior CSIRT Responder (Final Capstone under Jules Mercer)  
+> **The Objective:** Correlate a multi-stage enterprise intrusion spanning finance phishing, USB dropper execution, lateral pivot, and industrial OT egress into a definitive CSIRT handoff dossier.  
+> **Estimated Time:** 60–75 minutes • Book 0 Final Capstone (Handoff to the SOC)  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Role** | Tier 1 Service Desk Specialist / Incident First Responder |
-| **Target Certification** | CompTIA Security+ (SY0-701) |
-| **Primary Domain** | **Domain 4.0 Operations and Incident Response**<br>• *4.1 Given a scenario, apply common security techniques to computing resources / incident response activities (Incident response lifecycle, chain of custody, evidence preservation, order of volatility, containment vs. eradication, formal CSIRT/SOC handoff)* |
-| **Prerequisites** | Completion of Modules 00–11 (Windows/Linux OS internals, IPv4/IPv6 subnetting, TCP socket states, authentication protocols, phishing header analysis, host malware & EDR persistence). |
-| **Estimated Completion** | 45–60 minutes |
-| **Core Deliverables** | 1. Multi-Stage Incident Correlation & Triage Matrix<br>2. Quick Check 1: Order of Volatility Memory & Storage Sorting<br>3. Quick Check 2: Cryptographic Evidence Integrity & SHA-256 Chain of Custody<br>4. Quick Check 3: 🎯 Call Your Shot — 5-Case Incident Escalation Gate<br>5. Performance Deliverable: Formal CSIRT Incident Escalation Dossier & Handoff Package<br>6. Lead Tech Sign-Off Checklist & Evaluation Rubric |
+* **Aligned Certification:** CompTIA Security+ (SY0-701) Capstone & Incident Response
+* **Exam Domains:** Domain 4.0 (Incident Response Lifecycle 4.1, Order of Volatility, Chain of Custody & CSIRT Escalation)
+* **Core Competencies & Deliverables:** Incident Lifecycle & Volatility Hierarchy Matrix • Live Memory Acquisition & Chain of Custody Drill • Multi-Stage Attack Correlation Drill • Call Your Shot 5-Case Gate • Definitive CSIRT Incident Handoff Dossier
+
+</details>
+
 
 ---
 
 ## 1. The Situation & Ground Truth
+
+```callout-panel
+title: "FIGURE 12.1: INCIDENT COMMAND EVIDENCE & WRITE-BLOCKER"
+badge: "Incident Response"
+caption: "Forensic bench diagram: An extracted NVMe storage drive connected through a hardware write-blocker to the forensic acquisition laptop. Chain of custody tags and anti-static pouches in view."
+prompt: "Clean technical illustration of a computer forensic examination bench under bright laboratory lighting. An external storage drive connects through a small rectangular hardware write-blocker with a glowing green LED to a laptop. Anti-static bags and clean tools on an ESD mat. Sharp technical linework, no text, no words. 16:9 ratio."
+```
+
 
 ### The Situation
 It is 14:15 on a wind-whipped Thursday in late October. Outside the fourth-floor windows of the Portland Operations Center, sheets of gray rain sweep across the Willamette River, obscuring the Hawthorne Bridge and the steel industrial warehouses of the Central Eastside. Inside, the dispatch floor smells of wet wool jackets, ozone from the server room exhaust blowers, and Jules Mercer’s dark French roast coffee.
@@ -53,6 +59,7 @@ Jules Mercer stands behind Ethan’s chair, sets her ceramic mug down without ma
 > If you do that today, you destroy the only evidence of a coordinated intrusion campaign. Nora's stolen credentials opened the door; Ken's USB dropped the staging script; the script hopped to the staging jump box; and now an adversary is probing our municipal water treatment telemetry.  
 > You are the first responder on this desk. That means your first job is not heroics and it is not freelance forensics. Your job is preservation, containment, and chain of custody. You are going to assemble the formal CSIRT Escalation Dossier under my eye. If it isn't documented with a timestamp and a SHA-256 hash, it didn't happen."*
 
+
 ---
 
 ### The Ground Truth Rules of the Desk
@@ -71,6 +78,7 @@ Jules Mercer stands behind Ethan’s chair, sets her ceramic mug down without ma
 
 5. **The Dossier Is the Evidence:**  
    In enterprise incident response and legal proceedings, unrecorded actions do not exist. Every file touched, every cable disconnected, every hash calculated, and every custody transfer executed must be recorded with an immutable timestamp, technician identity, and cryptographic checksum. The handoff dossier you deliver to the Computer Security Incident Response Team (CSIRT) dictates whether the enterprise recovers cleanly or suffers a catastrophic blind spot.
+
 
 ---
 
@@ -110,6 +118,7 @@ flowchart TD
 | **5. Recovery** | Return compromised systems to production securely, ensuring no residual compromise remains. | Restore databases from clean immutable offline backups; reimage endpoints using verified baseline images; validate operational telemetry; test systems in isolated staging. | Reconnecting systems to the production subnet without patching the initial vulnerability or rotating credentials. |
 | **6. Lessons Learned** | Conduct a post-incident retrospective to analyze root causes, response efficacy, and update policies. | Participate in CSIRT debrief within 14 days; document total mean time to detect (MTTD) and mean time to respond (MTTR); update help desk triage playbooks. | Skipping the retrospective to "get back to tickets"; blaming individual users rather than remediating systemic control failures. |
 
+
 ---
 
 ### The Order of Volatility (RFC 3227 & CompTIA SY0-701)
@@ -148,6 +157,7 @@ flowchart TD
 
 > [!CAUTION]
 > **Never Pull the Plug as Default Action:** Modern operating systems hold critical forensic artifacts—including unencrypted BitLocker keys, injected shellcode, and C2 network sockets—exclusively in RAM. Yanking the power cable destroys all Level 1 and Level 2 evidence. Perform live volatile acquisition or engage EDR network isolation before touching the power switch.
+
 
 ---
 
@@ -198,6 +208,7 @@ Every entry in a formal chain of custody log must contain:
 * **Storage Location:** Secure evidence locker ID, safe combination holder, or chain-of-custody room rack.
 * **Tamper-Evident Seal ID:** Barcode or serial number of the tamper-evident security tape.
 
+
 ---
 
 ### Containment Decision Matrix: Isolation vs. Live Capture vs. Power Pull
@@ -211,6 +222,7 @@ First responders must make split-second containment decisions. The wrong choice 
 | **Suspected Rootkit or Kernel Evasion** (e.g., unsigned kernel driver hooking disk I/O) | **Hypervisor Snapshot / Live Memory Dump under Isolation** | Suspend VM or take live hypervisor snapshot; for bare-metal, isolate network and run hardware-based/live memory capture tool. | **Userland tools cannot be trusted.** If the kernel is compromised, userland executables (`tasklist`, `netstat`) return falsified data. Hypervisor-level or raw memory capture bypasses kernel hooks. |
 | **Unauthorized Cloud Mailbox Rule / Stolen Session Token** | **Revoke Active Tokens & Purge Mailbox Forwarding** | Execute `Revoke-AzureADUserAllRefreshToken`; delete malicious inbox rule via Exchange PowerShell; force password reset. | **Host isolation does not fix cloud exfiltration.** If the attacker possesses an OAuth token or session cookie, pulling the user's laptop cable accomplishes nothing. Remediation must occur at the identity provider (IdP) layer. |
 | **Routine Adware / False Positive Alert** | **Local File Quarantine & Ticket Observation** | Move file to AV/EDR quarantine vault; observe host process behavior. | **Avoid unnecessary disruption.** Overreacting to routine adware by pulling cables or wiping machines disrupts legitimate business operations without justification. |
+
 
 ---
 
@@ -251,7 +263,7 @@ Your Ranking Order:
 2. Why is Item F (TCP network sockets and ARP cache) ranked higher in volatility than Item G (swap / pagefile)?
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 **Correct Volatility Sequence:**
 
@@ -271,6 +283,7 @@ Your Ranking Order:
 2. **Why Sockets Precede Swap:** Active TCP sockets and ARP cache tables are live kernel state structures. A network reset, interface flap, or connection termination from the remote server clears the socket state in milliseconds. The swap file (`pagefile.sys`) sits on physical disk media; while dynamic, remnants of swapped memory can persist on disk sectors even across reboots until overwritten by new memory demands.
 </details>
 
+
 ---
 
 ### Quick Check 2: Evidence Integrity & Hash Verification
@@ -286,6 +299,7 @@ Ethan executes a bit-stream raw disk acquisition to create an exact forensic dis
 # Step 1: Compute baseline SHA-256 hash of original physical media via write blocker
 # Media ID: PhysicalDrive2 (Vendor: SanDisk Ultra 32GB, S/N: 4C530001220914112102)
 PS C:\Forensics> Get-FileHash -Path "\\.\PhysicalDrive2" -Algorithm SHA256
+
 Algorithm       Hash                                                               Path
 ---------       ----                                                               ----
 SHA256          A4F2C9901B34E57D890AA71B994E10F823CD456188902A3CDEF1192837462B10   \\.\PhysicalDrive2
@@ -299,6 +313,7 @@ output hash (sha256): a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837
 
 # Step 3: Ethan mounts the raw image as a read-only loopback device to extract the dropper
 PS C:\Forensics> Get-FileHash -Path "D:\MountedEvidence\SOW_final.pdf.exe" -Algorithm SHA256
+
 Algorithm       Hash                                                               Path
 ---------       ----                                                               ----
 SHA256          9F2C8D1E3A4B5C6D7E8F0A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9BC41A   D:\MountedEvidence\SOW_final.pdf.exe
@@ -320,7 +335,7 @@ CUSTODY LOG:
 ```
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
 
@@ -340,13 +355,63 @@ CUSTODY LOG:
    - *Missing Releasing Signature*: Ethan Brooks failed to sign the transfer block at 15:30 PST; a valid chain of custody requires dual signatures (releasing party and receiving party) at every handoff.
 </details>
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "POWERSHELL: FORENSIC INTEGRITY & SHA-256 HASH VERIFICATION"
+shell: "powershell"
+prompt: "PS C:\CSIRT> "
+replay: true
+objectives:
+  - id: "obj-hash"
+    label: "Calculate SHA-256 hash of extracted evidence image"
+    trigger: "Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd"
+  - id: "obj-verify"
+    label: "Verify forensic image hash matches chain of custody"
+    trigger: "Compare-Object -ReferenceObject $orig -DifferenceObject $new"
+---
+Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
+  Algorithm       Hash                                                             Path
+  ---------       ----                                                             ----
+  SHA256          A3F8B4C92E1045D87E6B9C1045F2A83C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A .\evidence_disk0.dd
+  [OK] Bit-for-bit forensic image acquired through hardware write-blocker.
+
+Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
+  Hash comparison: MATCH (0 differences).
+  Chain of Custody verified: Evidence integrity intact.
+  Formal handoff dossier packaged for Senior CSIRT Lead Jules Mercer.
+  [OK] Incident handoff complete.
+
+```
+
+---
+
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 > **The Rule of the Desk:** Do not touch the console until you have committed your decision in your mind. Name the threat, select the containment action, and articulate your technical justification.
 
+
 ---
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-12-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-12-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-12-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Case 1: Nora Higgins (Finance Specialist) — `INC-2026-1201`
 *Telemetry & Symptoms:* Nora's account underwent an MFA reset at 02:13 a.m. from an external German hosting provider IP (`198.51.100.77`). An Exchange inbox rule (`InvoiceProcess`) is silently forwarding all finance emails to an external drop address. Meanwhile, host telemetry on `FIN-NORA-02` indicates an injected PowerShell process establishing recurring HTTPS connections to `185.22.112.14:443` every 300 seconds and attempting to access `lsass.exe`. Nora says she has payroll to disburse in 45 minutes and asks if she can just change her password and keep working on her laptop.
@@ -357,7 +422,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **B. Isolate Host via EDR, Revoke Cloud Refresh Tokens, Purge Malicious Rule, and Issue Clean Hardened Loaner.**
 * **Threat Classification & IR Phase:** **Account Hijacking / C2 Beaconing / Credential Dumping**; Lifecycle Phase: **Containment & Identification**.
@@ -367,6 +432,7 @@ CUSTODY LOG:
   2. *Endpoint Layer:* Workstation `FIN-NORA-02` is infected with an in-memory C2 beacon targeting `lsass.exe`. If you let her keep typing on that machine, the attacker harvests every new credential she enters.
   Isolate the laptop via EDR (retaining memory for the CSIRT), revoke all cloud sessions, delete the forwarding rule, and hand Nora an uncompromised loaner laptop so payroll can proceed safely."
 </details>
+
 
 ---
 
@@ -379,7 +445,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **C. Isolate Host Immediately, Confiscate Physical USB Drive for Chain of Custody, and Audit Target Network Shares.**
 * **Threat Classification & IR Phase:** **Trojan Dropper / Worm-like Lateral Movement / Persistence**; Lifecycle Phase: **Containment & Identification**.
@@ -387,6 +453,7 @@ CUSTODY LOG:
   "Ken thinks because the USB is sitting on his mousepad and AV popped a green box, the problem is gone. The green box is a lie. The dropper had four seconds of life before AV intervened, and in those four seconds it spawned a detached PowerShell worker, established machine persistence via `CacheCleanup`, and reached across the warehouse subnet.  
   Sever Ken's network connection immediately. Place the USB in a tamper-evident evidence pouch. Then immediately notify Storage Engineering to inspect `\\WH-PACK-02\share$` for newly dropped payload files. Never let a user convince you an infection is dead just because they pulled the plastic."
 </details>
+
 
 ---
 
@@ -399,7 +466,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **B. Emergency Isolation of Staging Jump Box, Block Outbound Port 8443 at OT Firewall Boundary, and Engage Industrial CSIRT.**
 * **Threat Classification & IR Phase:** **Pivoting / Unauthorized Network Egress / Critical Infrastructure Threat**; Lifecycle Phase: **Containment & Escalation**.
@@ -407,6 +474,7 @@ CUSTODY LOG:
   "This is where help desk responsibilities end and emergency CSIRT protocols begin. Gateway `GW-PLANT-04` sits on the boundary between corporate IT and municipal water control. The external destination IP (`185.22.112.14`) is the exact same C2 address communicating with Nora's infected PC in Finance.  
   The attacker is attempting to pivot from corporate IT through staging jump box `SRV-STAGE-01` into the plant network. Sever the staging box's network links instantly. Implement an immediate egress drop rule on the OT perimeter firewall for port 8443 and IP `185.22.112.14`. Do NOT reboot the gateway or PLCs—call the Industrial Incident Commander immediately."
 </details>
+
 
 ---
 
@@ -419,7 +487,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **B. Treat Maya as an Event (Verify Adware Quarantine) & Escalate Nora as a Severe Security Incident.**
 * **Threat Classification & IR Phase:** **Event vs. Incident Triage / Prioritization**; Lifecycle Phase: **Identification & Triage**.
@@ -428,6 +496,7 @@ CUSTODY LOG:
   Maya has adware (`couponbar.dll`). The AV log showed quarantine completed at 07:41, no network beaconing, and no lateral spread. Maya’s issue is an **Event**—scary to an untrained human, but contained. Wiping her machine would have wasted two hours of desk time and destroyed her meeting.  
   Nora was quiet and polite, but her ticket represented an active **Security Incident**—an unauthorized foreign logon, automated exfiltration of financial wire transfers, and in-memory credential harvesting. Criteria must always beat adrenaline."
 </details>
+
 
 ---
 
@@ -440,7 +509,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **C. Freeze Virtual Machine / Capture Live Memory via Hypervisor, Disconnect Network, and Prepare for Bare-Metal Rebuild.**
 * **Threat Classification & IR Phase:** **Rootkit / Kernel-Level Hooking**; Lifecycle Phase: **Containment & Eradication**.
@@ -449,9 +518,24 @@ CUSTODY LOG:
   Never run unvetted 'cleaner tools'—they cannot be trusted and frequently introduce secondary backdoors. Capture memory from outside the OS (via hypervisor snapshot) so forensics can analyze the hooked driver, isolate the host from the network, and plan a complete reimage from trusted, known-good installation media."
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes / Formal Security Escalation Dossier
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-12-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-12-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-12-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 Below is the definitive, audit-grade Incident Escalation Dossier assembled by Ethan Brooks and reviewed by Desk Lead Jules Mercer for formal handoff to the Portland Operations Center CSIRT and Incident Commander.
 
@@ -612,6 +696,7 @@ DOSSIER STATUS: SIGNED & TRANSFERRED TO CSIRT INCIDENT COMMANDER (2026-10-22 15:
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like (Shift Quality Checklist)
@@ -625,11 +710,12 @@ Before Ethan closes the red folder and hands the physical binder to Jules Mercer
 * [x] **Operational Silence Maintained:** Need-to-know principles were strictly enforced; no notifications were posted to public Slack channels or email distribution lists that could alert the adversary.
 * [x] **Cryptographic Hash Verification:** Every physical and virtual artifact possesses an immutable pre-acquisition and post-acquisition SHA-256 checksum proving 100% mathematical integrity.
 * [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Ken's USB drive was picked up to the dual-signature transfer to Jules Mercer.
-* [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, falsifiable IoCs (hashes, IP addresses, ports, task names) allowing Tier 2 analysts to hunt across enterprise telemetry immediately.
+* [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, testable IoCs (hashes, IP addresses, ports, task names) allowing Tier 2 analysts to hunt across enterprise telemetry immediately.
+
 
 ---
 
-### Shift Evaluation Rubric
+### Shift Scoring & Passing Standards
 
 | Performance Criterion | Exemplary (Full Lead Sign-Off) | Satisfactory (Minor Guidance Needed) | Needs Revision (Redo Ticket) |
 | :--- | :--- | :--- | :--- |
@@ -639,9 +725,33 @@ Before Ethan closes the red folder and hands the physical binder to Jules Mercer
 | **Containment Precision & Need-to-Know** | Selects the exact containment tool (EDR isolation, token revocation, firewall drop) matching the threat; enforces strict operational secrecy across all user interactions. | Contains the threat successfully, but causes unnecessary business downtime by disconnecting unaffected infrastructure; shares minor details with unvetted staff. | Fails to isolate infected endpoints while investigating; alerts general company Slack channels, compromising investigative integrity. |
 | **CSIRT Escalation Dossier Quality** | Delivers an audit-grade, professional technical dossier complete with executive summary, IoCs, attack path timeline, and prioritized remediation actions. | Writes clear ticket notes with accurate technical data, but lacks formal structure, executive summary, or standardized IoC formatting. | Submits vague, unstructured notes ("laptop was acting weird, ran AV, escalated to SOC"); omits hashes, IPs, and timestamps. |
 
+
 ---
 
-## The Bridge to Book 1: The Step Beyond the Desk
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 12.2: CSIRT INCIDENT HANDOFF & THE BRIDGE TO BOOK 1"
+badge: "Shift Epilogue"
+caption: "Operations bullpen: At 05:45 PM, the autumn rain eases over the Willamette River. Jules Mercer hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
+prompt: "Clean graphic novel cutaway panel of an IT support operations floor at twilight. Warm indoor desk light contrasts with blue twilight outside the floor-to-ceiling windows showing city bridges and river. A senior technician hands a new security access keycard lanyard to a junior technician across an open incident binder. Clean ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
+```
+
+## After the rain
+
+At 5:45 the queue was quieter. Jules clipped her bike lights on.
+
+"Tell Wednesday," she said, "without listing a lifecycle."
+
+I told her: I had nearly wiped a loud nothing. I had stopped a quiet something without turning it into a parade. I am [[first_responder|first touch]], not freelance forensics.
+
+She nodded once, then remembered the USB on her wall. "Keep asking what it did before you decide what it is."
+
+The queue showed one more URGENT. I opened it anyway — criteria first, adrenaline second. The subject was louder than the evidence. I left it in the queue with a note, and I left the imaging USB where she had put it.
+
+## The Step Beyond the Desk
 
 At 16:30, the autumn rain finally eases to a mist over the Willamette. The river reflects the amber streetlights turning on along the Eastbank Esplanade. In the quiet of the fourth-floor dispatch bullpen, Jules Mercer signs her name on the receiving line of Evidence Pouch `#EVD-2026-1022-01`, slides the red binder into the CSIRT handoff rack, and turns her desk chair toward Ethan.
 
@@ -651,6 +761,8 @@ She reaches into her desk drawer and pulls out a new lanyard—dark navy blue wi
 
 "Book 0 is over, Ethan. You're done pulling cables and resetting passwords on the help desk. On Monday morning, you sit on the Tier 1 SOC bridge. You're going to learn how to hunt what you just contained."
 
+
 ---
 
-*This concludes **Book 0: Zero-to-One (Portland Desk)**. Continue Ethan Brooks' journey in **Book 1: NADF — Network Analyst Development Framework**, where incident response shifts from endpoint triage to live network packet analysis, SIEM threat detection, and intrusion hunting across the Pacific Northwest operations grid.*
+*This concludes **Book 0: Zero-to-One (Portland Desk)**. Want more practice reading network traffic? The separate [Network Analyst Development Framework](https://github.com/cwarloe/network-analyst-development-framework) course starts with packet captures and analyst judgment. It tells a different story with different characters.*
+

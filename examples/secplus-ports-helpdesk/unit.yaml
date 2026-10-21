@@ -1,6 +1,6 @@
 unit_id: secplus-ports-helpdesk
 title: "Portland Desk — The Port That Is Open"
-audience: "Someone studying Security+ ports/protocols, or a NADF precursor for Ethan's help-desk years"
+audience: "Someone studying Security+ ports/protocols"
 purpose: "Weave the SY0-701 secure-vs-insecure port/protocol pairs into one help-desk shift so memorized numbers become decisions."
 estimated_minutes: 20
 sources:

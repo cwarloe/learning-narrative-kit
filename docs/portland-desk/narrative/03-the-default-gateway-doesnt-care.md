@@ -12,6 +12,13 @@ At twenty past eight, the wall monitor above our row shifted abruptly from stead
 
 ## The ghost in the sixteen-hundred block
 
+```callout-panel
+title: "FIGURE 3.1: RJ45 KEYSTONE JACK WITH BENT PIN 3"
+badge: "Physical Layer"
+caption: "Macro view looking directly into the open socket of an RJ45 modular jack. All 8 gold spring wire contacts are visible; pin 3 is flattened backward against the plastic slot wall, breaking physical link continuity."
+prompt: "Macro technical illustration looking into the front opening of an RJ45 ethernet wall jack under bright inspection lighting. All 8 gold spring wire contacts visible; pin 3 is visibly flattened backward against the white plastic slot wall. Sharp metallic reflections on the gold pins, crisp instructional manual style, no text, no letters. 1:1 ratio."
+```
+
 I answered the first ringing line, listening to Ken describe the failure on his loading dock. Three freight clerks could not open their morning delivery manifests because their browser screens displayed disconnected socket errors. Ken insisted that high winds along the river had snapped an overhead fiber cable. He believed his entire warehouse was isolated from the city network.
 
 "The upstream circuit is dead out at the river annex," I said, reaching for our carrier contact list. "Ken says every workstation in Building B lost network connectivity at once. I am calling CenturyLink to report a fiber cut."
@@ -115,7 +122,7 @@ I opened a remote desktop session to Frank's machine at `10.100.4.55`. I initiat
 
 "Inspect your Layer 2 tables before you send a technician into a crawlspace, Ethan," Jules cautioned. She glanced up from her secondary monitor. "A damaged copper cable usually produces continuous frame check errors or drops carrier completely. Frank's machine maintains solid link carrier on the switch port. Inspect the [[arp_cache|ARP cache]] while pinging an adjacent workstation."
 
-I executed `arp -a` in the command prompt on Frank's machine. I noted the hardware address mapped to adjacent desktop `10.100.4.56`. Then I opened a terminal on my administrative station. I ran `arp -a 10.100.4.55` to observe how our network viewed Frank's machine from the distribution layer.
+I executed `arp -a` in the command prompt on Frank's machine. Then I opened a terminal on my administrative station. I ran `arp -a 10.100.4.55` to observe how our network viewed Frank's machine from the distribution layer.
 
 ```console
 C:\Users\admin.ebrooks> arp -a 10.100.4.55
@@ -129,41 +136,17 @@ C:\Users\admin.ebrooks> arp -a 10.100.4.55
   10.100.4.55           00-25-b3-18-c2-90     dynamic
 ```
 
-"Look at the physical MAC address bound to ten-one-hundred-four-fifty-five," I said. I highlighted the two alternating lines. "The first hardware address belongs to Frank's Dell OptiPlex desktop. Fifteen seconds later, the address flips to an identifier registered to Hewlett-Packard. Two physical network interfaces are claiming ownership of the exact same IP address."
+"Look at the physical MAC address bound to ten-one-hundred-four-fifty-five," I said, pointing at the alternating lines on my screen. "The first hardware address belongs to Frank's Dell OptiPlex desktop. Fifteen seconds later, the address flips to an identifier registered to Hewlett-Packard. Two physical network interfaces are claiming ownership of the exact same IP address."
 
 "A classic duplicate IP address conflict," Jules observed, leaning back in her chair. "Every time one device transmits a frame, it emits an Address Resolution Protocol announcement. That announcement overwrites the switch MAC table and poisons the ARP cache of neighboring workstations. Frank's machine and the mystery device are waging an endless Layer 2 war over that IP address."
 
-Jared Vance checked our centralized DHCP scope logs on his workstation. "Our DHCP server assigned `10.100.4.55` to Frank's Dell workstation during the lease renewal earlier this morning. That means the second device was configured with a static IP address inside our dynamic pool."
+Jared Vance checked our centralized DHCP scope logs on his workstation. "Our DHCP server assigned `10.100.4.55` to Frank's Dell workstation during the lease renewal earlier this morning. That means the second device was configured with a static IP address inside our dynamic pool. If that rogue host keeps broadcasting, it will poison the entire warehouse switch stack before the noon freight trucks arrive."
 
-"Did someone install new hardware in Building B recently?" I asked Ken over the line.
+Jules looked at me, her pen hovering over the ticket queue.
 
-Ken went quiet for several moments before letting out an apologetic groan. "Facilities rolled an old HP LaserJet 4050 into our breakroom yesterday afternoon. They wanted the shipping clerks to print hazardous material placards without walking across the annex. Owen plugged it into the wall jack behind the coffee maker. He told me he copied the network settings from an old label taped beneath the paper tray."
+"You have two physical devices fighting over one Layer 3 identity, Ethan. One of them is shutting down shipping operations right now, and the other is hiding somewhere on that warehouse floor. How do you isolate the conflict, identify the rogue hardware, and permanently fix the DHCP architecture before Ken shuts down the loading dock?"
 
-I instructed Ken to disconnect the printer's network patch cable immediately. The moment the RJ-45 plug was pulled, the continuous ping stream on Frank's machine leveled out. Unbroken two-millisecond replies filled the window. Frank shouted in the background that his shipping software had reconnected without error.
-
-"Now fix the underlying cause so this does not recur tomorrow," Jules reminded me.
-
-I logged into the embedded web management interface of the HP printer. I changed its network mode from manual static to dynamic DHCP reservation. I created an explicit reservation in our Windows DHCP server at `10.100.4.240`. That address sat safely outside our dynamic allocation pool, which ranged from `10.100.4.50` to `10.100.4.200`. Once Owen reconnected the cable, the printer pulled its reserved address cleanly. Frank's workstation remained in stable possession of `10.100.4.55`.
-
-## The letter on the wire
-
-With the tickets resolved and the queues subsiding to their normal rhythm, Jules opened a packet capture file on her secondary monitor. The trace displayed an HTTP exchange originating from Frank's workstation and terminating at a cloud logistics portal in Seattle at `198.51.100.44`.
-
-"Let us review how that packet traversed the network, Ethan," Jules said, turning her chair toward me. "Frank's browser wanted to fetch a web page from `198.51.100.44`. When Frank's network adapter assembled the Ethernet frame on the wire, whose MAC address did it place in the destination field?"
-
-I hesitated for a moment, visualizing the packet header structure from my study guides. "The destination IP address in the Layer 3 header was `198.51.100.44`. So did the client put the cloud web server's MAC address in the Layer 2 frame header?"
-
-"How could Frank's computer know the MAC address of a server located in Seattle?" Jules asked. Her tone was steady and inviting. "MAC addresses operate strictly within a single local [[broadcast_domain|broadcast domain]]. An Address Resolution Protocol broadcast cannot cross a Layer 3 boundary. If Frank's computer broadcasted an ARP request for `198.51.100.44`, no machine on his local switch would answer."
-
-"Frank's computer applied its [[subnet_mask|subnet mask]] to the target IP address first," I corrected myself. I followed the logic step by step. "The bitwise comparison proved that `198.51.100.44` was on a remote network. Because the target was remote, the workstation looked up the Layer 2 address of its local [[default_gateway|default gateway]] in its [[arp_cache|ARP cache]]."
-
-"Exactly," Jules said, clicking on the detailed frame decode in Wireshark. "The destination IP address remained `198.51.100.44` throughout the entire journey across the internet. The time-to-live counter decremented at each hop, but the IP header stayed intact. The Layer 2 Ethernet frame was addressed directly to the gateway's router interface MAC at `10.100.4.1`. When the router received the frame, it stripped the Layer 2 header and evaluated its routing table. It generated a brand new Layer 2 frame with its own source MAC, and forwarded the packet along the next hop."
-
-She gestured toward the packet trace on her screen with the tip of her pen. "The [[default_gateway|default gateway]] does not care what application you run, or what operating system you boot. It does not care how urgent your ticket feels. It only cares whether you addressed the Layer 2 frame to its physical MAC address. And it cares whether its routing table contains a valid route to forward your Layer 3 packet toward its destination."
-
-I nodded slowly, watching the encapsulation layers light up under her cursor. I opened my technical journal and recorded the lesson alongside my earlier subnet sketches. I captured the distinction between local Layer 2 frame delivery and remote Layer 3 packet forwarding.
-
-Outside our fourth-floor window, the low cloud deck began to lift over the Willamette. Pale patches of afternoon sky appeared above the river. Jared picked up his empty tea mug and headed toward the server room to audit switch configurations. Jules reached for her helmet, unhooking it from the monitor arm as the afternoon shift logged into the queue. I saved my incident notes into the ticketing system and closed my terminal sessions. I turned back to the incoming queue with the quiet satisfaction of a morning's work understood from the ground up.
+I stared at the alternating MAC addresses on my terminal. I needed to isolate the Layer 2 traffic, hunt down the rogue device, and reconfigure our address reservations before the entire freight line collapsed.
 
 ## Vocabulary & Concepts
 
@@ -176,11 +159,13 @@ Outside our fourth-floor window, the low cloud deck began to lift over the Willa
 | **[[default_gateway|Default Gateway]]** | A Layer 3 router interface on the local subnet to which a host forwards IP packets destined for remote networks outside its own broadcast domain. | The local exit door for traffic leaving the local subnet; without it, a computer cannot reach any server across the router or on the internet. |
 | **[[arp_cache|ARP Cache]]** | A volatile local operating system table that maps Layer 3 IPv4 addresses to their corresponding Layer 2 physical MAC addresses for hosts on the local network segment. | The computer temporary lookup table linking IP addresses to physical network cards; if corrupted or conflicting, traffic goes to the wrong machine. |
 
+## The Handoff Gate
+
 ```bridge-card
-title: Portland Desk Workbench: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
+title: Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
 target: workbench/03-the-default-gateway-doesnt-care.md
 domain: CompTIA Network+ N10-008/009 • Domain 1.4 & 4.1
 badge: Hands-On Lab
 ---
-Step onto Ethan's shift with live command-line artifacts, diagnose APIPA link-local traps, calculate bitwise /26 subnet boundaries, isolate MAC address flapping in the ARP cache, master the Commit Before You Touch prediction gate, and submit a Tier 1 Addressing Triage and Network Passdown Note.
+Take over Ethan's triage console. Isolate the Layer 2 MAC address flapping war between Frank's shipping PC and the rogue device, resolve the DHCP dynamic pool collision, audit the /26 subnet boundaries, and draft the Tier 1 Addressing Passdown Note.
 ```

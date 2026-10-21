@@ -6,7 +6,7 @@
 ## 1. Executive Summary & Series Overview
 
 ### 1.1 Premise and Mandate
-The Portland Help Desk Prequel (*Book 0: Zero-to-One*) is a twelve-episode narrative learning track that bridges foundational IT support and practical cybersecurity operations. Situated chronologically before the events of the National Agro-Distribution Federation (NADF) enterprise security saga (*Book 1*), this series chronicles the professional formation of Ethan Brooks as he evolves from an eighteen-year-old high school graduate trapped in rote certification memorization into a battle-tested Tier 2 Help Desk Lead at the Portland Regional Operations Center.
+The Portland Help Desk Prequel (*Book 0: Zero-to-One*) is a twelve-episode narrative learning track that bridges foundational IT support and practical cybersecurity operations. This series chronicles the professional formation of Ethan Brooks as he evolves from an eighteen-year-old high school graduate trapped in rote certification memorization into a battle-tested Tier 2 Help Desk Lead at the Portland Regional Operations Center.
 
 Where standard certification prep materials treat IT concepts as isolated flashcard definitions, *Book 0* demonstrates how technical protocols, access controls, physical infrastructure, and incident response lifecycles interact within messy, high-pressure human organizations. Every episode operates under the tradition of Eliyahu M. Goldratt’s *The Goal*: technology is never an end in itself, but rather a mechanism for maintaining operational throughput in the face of competing business incentives, organizational friction, and technical debt.
 
@@ -15,12 +15,14 @@ In the Learning Narrative Kit (LNK) framework, the narrative is not decorative f
 
 When a character chooses between opening port 23 versus port 22, the learning objective is not simply the integers `23` and `22`. The learning objective is the consequence: cleartext administrative credentials traversing a shared network span versus encrypted SSH sessions with cryptographic key authentication. By embedding every CompTIA A+, Network+, and Security+ concept within an authentic workplace dilemma where someone has a train to catch, an accounting run to finish, or a wastewater pump to keep running, the technical concept becomes an indelible operational memory.
 
-### 1.3 Continuity with the NADF Universe (Book 1)
-*Book 0* establishes the regional operational roots that underpin the broader enterprise architecture of *Book 1*. The Portland site serves as a vital logistics, distribution, and processing hub. Key characters, technical environments, and operational tensions introduced here directly establish the stakes for Book 1:
+### 1.3 Where Book 0 Stands
+*Book 0* stands on its own. It does not depend on any other course or story. The Portland site serves as a logistics, distribution, and processing hub, and the characters, environments, and tensions below belong to Portland:
 - **Leah Moreno** appears as the Senior Plant Systems Specialist at the Willamette River treatment and processing plant, establishing the high-friction boundary between corporate enterprise IT and operational technology (OT/ICS).
 - The **Chicago Central IT and Security Operations Center (SOC)** exists as an intimidating, distant corporate presence whose top-down policies frequently clash with regional operational realities.
 - **Nia Alvarez**, Senior Incident Response Lead at Chicago HQ, makes her pivotal first appearance in Episode 12, where Ethan’s meticulous Tier 1/2 escalation dossier catches her attention and earns him a seat at the enterprise security table.
 - Legacy architectural quirks—such as unsegmented field networks, unmanaged warehouse switches, and fragmented identity directories—provide the exact historical vulnerabilities that adversaries exploit in subsequent storylines.
+
+**Relationship to NADF.** The separate Network Analyst Development Framework (NADF) course has its own story: Ethan Mercer at Harrowmere Equipment Group, mentored by Dana Shah. It is not a sequel to this track, and Ethan Brooks is not Ethan Mercer. A few names overlap (Nia Alvarez, Leah Moreno), but the roles differ, so don't carry details from one story into the other. Learners can use NADF as an optional next course for reading packet captures.
 
 ---
 
@@ -113,7 +115,7 @@ graph LR
 - **Role:** Senior Controls & SCADA Technician, Willamette River Treatment & Processing Facility (Portland Operations).
 - **Age:** 38.
 - **Visuals & Habits:** Carries a scratched aluminum clipboard stuffed with piping and instrumentation diagrams (P&IDs). Wears a high-visibility ANSI Class 2 vest, steel-toed boots, and safety glasses with side shields. Carries an armored Panasonic Toughbook running specialized PLC ladder logic software.
-- **Canon Bridge to Book 1:** Leah is the foundational bridge between *Book 0* and *Book 1*. She represents the critical, unforgiving reality of Operational Technology (OT) and Industrial Control Systems (ICS). Her plant processes hundreds of thousands of gallons of liquid daily; an unexpected valve trip or network latency spike does not result in a 404 error—it results in physical effluent overflow, environmental fines, or blown pump seals.
+- **Why Leah matters:** Leah brings the plant-floor side of the story into the help desk. She represents the critical, unforgiving reality of Operational Technology (OT) and Industrial Control Systems (ICS). Her plant processes hundreds of thousands of gallons of liquid daily; an unexpected valve trip or network latency spike does not result in a 404 error—it results in physical effluent overflow, environmental fines, or blown pump seals.
 - **Relationship with Ethan:** Initially hostile toward "carpet-land IT" technicians who push Windows security patches that reboot telemetry servers mid-cycle. She tests Ethan mercilessly in Episode 4. When Ethan demonstrates that he respects her physical operational constraints and devises an encrypted site-to-site VPN solution that protects her sensors without touching the pumps, Leah becomes his staunchest operational ally. She teaches Ethan how to read physical industrial failure modes.
 
 #### Jared Vance — Network Operations Engineer
@@ -158,7 +160,7 @@ To prevent the narrative from devolving into episodic "vocabulary parades" where
 | **9** | **The Quiet Mailbox** | Routine log reviews from the hardened staging network reveal suspicious external SMTP forwards. | Maya’s mailbox contains an unauthorized forwarding rule created via a stolen session token; stealthy BEC in progress. | Ethan executes silent containment, revokes tokens, and preserves chain of custody without alerting the adversary or terrifying accounting. | Hardening corporate identity controls requires an emergency enterprise-wide TLS certificate renewal. |
 | **10** | **The Certificate Winter** | Chicago Central IT issues a mandatory wildcard TLS certificate renewal to fix token exchange flaws. | The new SHA-256 certificate breaks thirty legacy warehouse barcode scanners and HVAC monitoring units that cannot validate modern roots. | Ethan and Jared build an isolated legacy proxy VLAN; critical services recover, but technical debt is permanently codified. | Managing the proxy VLAN requires Jared to run massive network-wide endpoint discovery scripts. |
 | **11** | **The Living Off the Land Scare** | Jared runs an unannounced 2:00 AM PowerShell script across 300 workstations to audit network adapters. | The automated script mimics adversary lateral movement (LOLBins), triggering a massive regional SOC alert. | Ethan investigates the alert; distinguishes benign administrative misuse from an active threat, establishing behavioral baselines. | The refined behavioral baseline immediately flags a genuine, targeted intrusion attempt hiding in plain sight. |
-| **12** | **The Rivergate Handshake** | The refined baseline detects an external spearphishing payload attempting to pivot into the plant network. | An adversary attempts to compromise Leah’s SCADA jump host; Ethan coordinates local containment with Leah and Chicago SOC. | Ethan isolates the attack path, documents the forensic timeline, and hands off a flawless escalation dossier to Nia Alvarez. | Nia Alvarez validates Ethan’s operational competence, setting the stage for his recruitment into Book 1. |
+| **12** | **The Rivergate Handshake** | The refined baseline detects an external spearphishing payload attempting to pivot into the plant network. | An adversary attempts to compromise Leah’s SCADA jump host; Ethan coordinates local containment with Leah and Chicago SOC. | Ethan isolates the attack path, documents the forensic timeline, and hands off a flawless escalation dossier to Nia Alvarez. | Nia Alvarez validates Ethan’s operational competence, setting the stage for his move to the SOC. |
 
 ---
 
@@ -223,13 +225,13 @@ Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loadi
 2. **Complication:** The sheer volume of arbitrary trivia creates total cognitive overload. Every time he tries to remember DDR pin counts, he forgets the difference between a default gateway and a subnet mask. He feels like the exam is an expensive racket designed to test memorization rather than competence.
 3. **Pivot:** His father, a retired machinist who spent 35 years reading blueprints and running CNC milling machines, wanders into the kitchen in his socks looking for a glass of water. Looking at Ethan's flashcards, his dad cuts through the academic noise: *"Ethan, this is just a parts catalog. When an apprentice starts in the shop, he thinks he has to memorize every bolt in McMaster-Carr. Does it spin, does it leak, or is it jammed? What holds tension, and what moves?"* Ethan stops treating the exam like a spelling bee. He groups his cards into **Four Colored Rubber Bands**:
    - **Red Band (The Exam Passport):** The disposable syllabus trivia (printer drums, pin counts, cable specs) that he will cram for 48 hours, spit back at the computer, and immediately forget.
-   - **Green Band (The Physical Invariants):** The lasting machine anatomy (CPU compute, RAM volatile memory, Disk non-volatile storage, Motherboard bus, NIC communication).
+   - **Green Band (The Physical Building Blocks):** The lasting machine anatomy (CPU compute, RAM volatile memory, Disk non-volatile storage, Motherboard bus, NIC communication).
    - **Yellow Band (The Identity Triad):** How systems know who they are (MAC hardware badge, IP temporary lease, Port the listening door).
    - **Blue Band (The Diagnostic Reflex):** The systematic method of troubleshooting (*Symptom $\rightarrow$ Theory $\rightarrow$ Test $\rightarrow$ Verify*).
 4. **Resolution & Cost:** Ethan sits in a sterile strip-mall testing center in Beaverton between anxious strangers, clicks submit with sweating palms, and scores a 742/900. He walks out with a stamped paper score report in hand. His bank account is still drained and his hands are still rough from warehouse shifts, but he holds the passport that gets him past the automated HR resume filters.
 
 #### Mentorship / Heuristic Core
-- **Working Rule:** *The certification buys your ticket through the HR door; understanding the physical invariants keeps you from getting fired on your first shift.*
+- **Working Rule:** *The certification buys your ticket through the HR door; understanding the physical building blocks keeps you from getting fired on your first shift.*
 - **Dialogue Realism:** Ethan's dad, looking at a memory timing card: *"If the engine won't crank, nobody asks what year the alternator was patented. Check if the battery has juice and the belt is tight."*
 
 #### CompTIA / Knowledge Load
@@ -244,7 +246,7 @@ Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loadi
 - `post_routine`: Initial firmware diagnostic sequence executed by the motherboard upon receiving power to verify core hardware readiness.
 
 #### Companion Workbench Bridge
-- **Workbench Lab 00:** *The Beginner's Mental Model & Anatomy of a Computer.* Deconstructing a workstation into its 4 invariant components, executing first CLI commands, and establishing the Metacognitive Study Filter.
+- **Workbench Lab 00:** *The Beginner's Mental Model & Anatomy of a Computer.* Deconstructing a workstation into its 4 core components, executing first CLI commands, and establishing the Metacognitive Study Filter.
 
 ---
 
@@ -671,7 +673,7 @@ A highly targeted spearphishing attack compromises a logistics shipping clerk’
 1. **Goal:** Ethan must detect the lateral pivot, isolate the compromised administrative host, protect Leah’s treatment plant control network from unauthorized tampering, and escalate the incident to Chicago.
 2. **Complication:** The adversary has gained legitimate domain credentials and is attempting to access the SCADA gateway jump host. A clumsy network disconnect would disrupt Leah’s active pump sequences, while hesitation will allow the attacker to manipulate critical valve controls. Ethan must execute surgical, targeted containment under extreme pressure.
 3. **Pivot:** Utilizing the baseline models built in Episode 11, Ethan identifies the anomalous jump host login within ninety seconds of execution. He immediately contacts Leah via radio, having her switch the plant control loops to manual physical override at the local PLC cabinets. Ethan then isolates the infected logistics host, dumps volatile memory for forensic analysis, and extracts the adversary’s command-and-control indicators. Instead of filing an emotional, messy ticket, Ethan compiles a mathematically rigorous, chronological incident dossier complete with IOC hashes, network flow timestamps, and MITRE ATT&CK mapping.
-4. **Resolution & Cost:** The attack is completely thwarted; plant operations remain safe and uninterrupted. Ethan uploads the incident dossier to the corporate portal. Thirty minutes later, his direct desk line rings: it is Nia Alvarez, Senior Incident Response Lead at Chicago Central IT. Impressed by a level of technical rigor rarely seen from regional help desks, Nia validates Ethan’s operational competence, telling him he has outgrown the help desk. The book concludes with Ethan looking at Jules’ sticky note (*Which decision?*), knowing he has crossed the threshold from apprentice to defender, setting up the events of Book 1.
+4. **Resolution & Cost:** The attack is completely thwarted; plant operations remain safe and uninterrupted. Ethan uploads the incident dossier to the corporate portal. Thirty minutes later, his direct desk line rings: it is Nia Alvarez, Senior Incident Response Lead at Chicago Central IT. Impressed by a level of technical rigor rarely seen from regional help desks, Nia validates Ethan’s operational competence, telling him he has outgrown the help desk. The book concludes with Ethan looking at Jules’ sticky note (*Which decision?*), knowing he has crossed the threshold from apprentice to defender, setting up his move to the SOC.
 
 #### Mentorship / Heuristic Core
 - **Jules' Heuristic:** *You don't earn a seat at the defense table by having the certs. You earn it by delivering facts that hold up when everything else is on fire.*

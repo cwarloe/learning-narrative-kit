@@ -9,6 +9,8 @@ on:
       - "tools/validate_unit.py"
       - "tools/build_hub_index.py"
       - "tools/check_hub_links.py"
+      - "tools/check_ep07_capture.py"
+      - "portland-desk/**"
       - "docs/**"
       - "requirements.txt"
       - ".github/workflows/validate.yml"
@@ -48,6 +50,9 @@ jobs:
             exit 1
           fi
           echo "All example units passed."
+
+      - name: Episode 7 capture matches its drill
+        run: python tools/check_ep07_capture.py
 
   landing-page:
     runs-on: ubuntu-latest

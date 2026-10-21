@@ -12,6 +12,13 @@ By eight thirty, the incoming ticket board on our wall monitor began flashing am
 
 ## Jared and the ISP scapegoat
 
+```callout-panel
+title: "FIGURE 4.1: SPLIT-HORIZON RESOLVER & HOSTS OVERRIDE"
+badge: "DNS Architecture"
+caption: "Schematic cutaway: The local DNS resolution path. When the resolver queries 127.0.0.1 and hosts file before recursive forwarders, a stale hardcoded IP sends traffic to a retired server."
+prompt: "Clean technical cutaway diagram of a computer desktop screen displaying DNS resolution paths under bright, even lighting. Flowchart lines connect local hosts file to DNS resolver cache and recursive domain controllers. Clean instructional style, crisp fine lines, no text, no words. 16:9 ratio."
+```
+
 Jared Vance from network operations walked over from the bullpen holding a paper cup of lukewarm coffee. He had worked around regional fiber plants long enough to remember when frame relay was cutting edge. His first instinct during any distributed outage was to blame the carrier.
 
 "CenturyLink has a backhoe problem out in Beaverton, or Comcast pushed another broken routing update," Jared announced. He gestured vaguely toward the rain-streaked windows with his paper cup. "The office runs on a dedicated synchronous fiber loop with static routes. Those remote workers are sitting on domestic broadband connections that drop packets whenever the weather turns sour. Tell them to reboot their residential cable modems and flush their network stacks."
@@ -82,10 +89,6 @@ I typed `nslookup wiki.portland-ops.com` into the terminal. This time, the query
 
 ## The leak in the tunnel
 
-The core puzzle was why a workstation connected to our secure corporate VPN tunnel was sending internal queries to a domestic broadband router in the first place.
-
-"The VPN client is supposed to assign our internal name servers when the tunnel establishes," I said. I pulled up the network interface settings on Greg's laptop. I ran `Get-NetIPConfiguration` in PowerShell to inspect both active adapters side by side.
-
 The diagnostic output laid the entire breakdown bare:
 
 ```console
@@ -108,19 +111,11 @@ DNSServer                    : 10.100.10.2, 10.100.10.3
 
 "To make matters worse, look at the negative response caching," I added. I checked the record properties. "The local resolver caches those failed lookups according to the zone [[dns_ttl|DNS TTL]]. That means even if the employee restarts their browser or reconnects the tunnel, the operating system keeps feeding them the cached failure for the next fifteen minutes."
 
-Maya pulled up the centralized VPN gateway management console on her workstation. "I can push a mandatory client configuration profile update to the VPN gateway right now. We will force the virtual adapter metric to a lower priority number. We will also enable the DNS domain suffix binding for `portland-ops.local`, and enforce tunnel-only resolution for all internal zones. But every user currently stranded on the queue will need to flush their resolver cache once the profile updates."
+Jules set her mug down and leaned over the cubicle partition, her eyes scanning the board where eighteen tickets continued to flash amber.
 
-"I will handle the queue," I said. I opened our mass notification template. "We can give them the exact three-step fix: disconnect the VPN client, reconnect to pull the revised profile from the gateway, and run `ipconfig /flushdns` in their command prompt to wipe the stale negative cache."
+"You have eighty-two tunnels open, eighteen tickets blinking amber, and seventy remote workers locked out of payroll by their own home routers," Jules said quietly. "Jared is ready to call the ISP, and our users are rebooting cable modems for nothing. How do you re-architect the client resolution priority, eliminate the negative cache trap, and prove the fix across these remote endpoints without dropping their live sessions? Call your shot, Ethan."
 
-Maya initiated the profile deployment across the cluster. Within twelve minutes, the gateway logs confirmed that seventy-five remote endpoints had downloaded the corrected configuration. I called Greg back in Hillsboro. I walked him through the reconnection and cache flush, and watched his screen over remote control as he refreshed the browser.
-
-The bright orange registrar landing page vanished immediately. It was replaced by the green-and-white portal header of our internal payroll application. Greg let out an audible sigh of relief over the telephone line. He muttered that he could finally submit his department's morning timesheets, and thanked us before hanging up. One by one, the remaining seventeen tickets on the board were updated, verified, and resolved.
-
-Jared walked back past our row with a fresh cup of coffee. He glanced at the green status board, and gave a brief, sheepish shrug before heading back toward the network closet. He did not say another word about CenturyLink backhoes.
-
-Jules smiled faintly and set her empty mug down on the edge of the partition. She unclipped her helmet from the display arm. "You spent two hours chasing down someone else's bad configuration, Ethan, but you did not spend it guessing. Remember this shift the next time someone tells you an application is broken. The application is almost never broken. Most of the time, the client is just asking the wrong stranger for directions."
-
-I wrote her words down in my technical journal. I saved the ticket escalation notes for Maya's post-incident review, and turned back to the queue as the rain outside softened into a quiet, steady mist.
+I looked at the terminal output and the dual adapter configuration. The tunnel was wide open, but the packets were flying blind. I needed to isolate the DNS leak, calculate the corrected adapter metrics, and draft the infrastructure escalation before the morning payroll deadline expired.
 
 ## Vocabulary & Concepts
 
@@ -133,11 +128,13 @@ I wrote her words down in my technical journal. I saved the ticket escalation no
 | **[[dns_ttl|DNS TTL]]** | A 32-bit integer in a DNS resource record determining the duration in seconds that intermediate resolvers and client caches may retain the record before re-querying. | The expiration timer that tells your laptop how long to remember a good or bad answer; if set too high, it traps users on stale or broken addresses after an outage. |
 | **[[cname_record|CNAME Record]]** | A DNS Canonical Name resource record that establishes an alias from one domain name to another fully qualified domain name rather than to an IP address. | An alias pointer that routes a friendly hostname (like `wiki.portland-ops.com`) to an external cloud or vendor URL where the real web application lives. |
 
+## The Handoff Gate
+
 ```bridge-card
-title: Portland Desk Workbench: DNS Plumbing, Name Resolution Triage, & Split-Horizon Analysis
+title: Portland Desk Lab: DNS Plumbing, Name Resolution Triage, & Split-Horizon Analysis
 target: workbench/04-the-name-is-not-the-number.md
 domain: CompTIA Network+ N10-008 • Domain 1.0 & 4.0
 badge: Hands-On Lab
 ---
-Step onto Ethan's shift with live command-line artifacts, inspect split-horizon nslookup outputs, hunt down rogue hosts file overrides, master the Commit Before You Touch prediction gate, and submit a Tier 1 DNS resolution ticket.
+Take over Ethan's workstation. Triage the multi-homed VPN DNS leak in interactive terminal drills, correct the interface metrics and domain suffix bindings, wipe the stale negative cache, and draft the Tier 2 Infrastructure Escalation Note.
 ```

@@ -50,7 +50,7 @@ cards:
   - power-bi
   tier: exam
 - id: query_editor
-  prompt: Query Editor
+  prompt: Power Query Editor (Query Editor)
   answer: Power BI's ETL tool, used for shaping and mashing up data. It can import and merge data from a variety of sources, append tables together, and set table and column properties such as data types.
   tags:
   - power-bi
@@ -136,7 +136,7 @@ cards:
   - etl
   tier: exam
 - id: get_data
-  prompt: Get Data
+  prompt: Get data
   answer: The Power BI command that connects to a data source and starts an import.
   tags:
   - support
@@ -158,27 +158,24 @@ cards:
   tier: support
 - id: star_schema
   prompt: Star schema
-  answer: A way of arranging a data model with one central table of transactions surrounded by lookup tables, each joined to it by a key.
+  answer: 'A star schema is a type of relational data structure optimized for analytics.'
   tags:
-  - support
   - modeling
-  tier: support
+  tier: exam
 - id: fact_table
   prompt: Fact table
-  answer: 'The central table in a star schema: one row per transaction or event, holding the numbers being measured and keys to the lookup tables.'
+  answer: 'In a star schema, the central entity is called the Fact table.'
   tags:
-  - support
   - modeling
-  tier: support
+  tier: exam
 - id: dimension_table
   prompt: Dimension table
-  answer: A lookup table in a star schema, such as products, stores, or dates, that describes the rows in the fact table.
+  answer: 'In a star schema, the central entity is called the Fact table. All other tables are called Dimension tables and are directly connected to the Fact table.'
   tags:
-  - support
   - modeling
-  tier: support
+  tier: exam
 - id: data_view
-  prompt: Data view
+  prompt: Table view
   answer: The Power BI Desktop view that shows the rows of each table. The course recommends creating calculations here, from the Modeling tab.
   tags:
   - support

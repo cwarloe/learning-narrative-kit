@@ -1,26 +1,34 @@
 # Portland Desk Lab: DNS Plumbing, Name Resolution Triage, & Split-Horizon Analysis
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `netplus-dns-helpdesk` — *The Name Is Not the Number*  
-> **Environment:** Level 1 Service Desk Terminal & Remote Diagnostic Console  
-> **Authors:** Ethan Brooks (under Desk Lead Jules Mercer & Sysadmin Maya Chen)  
+> **The Situation:** Portland Operations Center • Spring downpour, remote VPN support queue  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Mercer & Maya Chen)  
+> **The Objective:** Trace why remote VPN users fail to access internal company services while in-office users succeed, resolving split-horizon DNS and rogue hosts file overrides.  
+> **Estimated Time:** 40–50 minutes • Name Resolution & DNS Plumbing  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Operational Role** | Tier 1 IT Support Specialist / Junior Network Analyst |
-| **Target Certification** | CompTIA Network+ (N10-008 / N10-009) & CompTIA Security+ (SY0-701) |
-| **Primary Examination Domains** | **Network+ N10-008 Domain 1.0 Networking Fundamentals**<br>• *1.5 Explain common ports and protocols, their application and operation (DNS UDP/TCP 53, record types: A, AAAA, CNAME, MX, TXT, PTR, SRV, SOA)*<br>**Network+ N10-008 Domain 4.0 Network Troubleshooting**<br>• *4.1 Explain the network troubleshooting methodology*<br>• *4.2 Given a scenario, troubleshoot common cable and connectivity issues (name resolution issues, DNS server unavailable, stale cache, IP configuration)*<br>**Security+ SY0-701 Domain 2.5**<br>• *Given a scenario, apply network architecture concepts (split-horizon DNS, DNS sinkholing, DNS leaks, secure remote access)* |
-| **Prerequisites** | Understanding of OSI Layer 3 IPv4 addressing, Layer 4 UDP/TCP transport, and basic command-line navigation. |
-| **Estimated Completion** | 40–50 minutes |
-| **Core Deliverables** | 1. Client-Side Name Resolution Hierarchy & Order of Precedence Reference<br>2. Comprehensive DNS Record Type Matrix & Functional Application<br>3. Command-Line DNS Triage Toolkit (`ipconfig`, `nslookup`, `Resolve-DnsName`)<br>4. Split-Horizon DNS Architecture & VPN Split-Tunnel Leak Anatomy<br>5. Micro-Drill 1: `nslookup` Output Inspection & Internal vs. External IP Comparison<br>6. Micro-Drill 2: Rogue Hosts File Override Hunting & Remediation<br>7. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>8. Performance Deliverable: Tier 1 DNS Resolution Ticket & VPN Split-Tunnel Escalation Note with Evaluation Rubric |
+* **Aligned Certification:** CompTIA Network+ (N10-008/009)
+* **Exam Domains:** Domain 1.5 (DNS Services, Record Types, Zones) & Domain 5.2 (Troubleshooting Name Resolution & Client Caching)
+* **Core Competencies & Deliverables:** DNS Hierarchy & Record Matrix • Command Triage Flow (nslookup vs ping) • Stale Cache Flushing Drill • Rogue Hosts File Hunting Drill • Call Your Shot 5-Case Gate • DNS Resolution & VPN Escalation Note
+
+</details>
+
 
 ---
 
 ## 1. The Situation & Ground Truth
+
+```callout-panel
+title: "FIGURE 4.1: SPLIT-HORIZON RESOLVER & HOSTS OVERRIDE"
+badge: "DNS Architecture"
+caption: "Schematic cutaway: The local DNS resolution path. When the resolver queries 127.0.0.1 and hosts file before recursive forwarders, a stale hardcoded IP sends traffic to a retired server."
+prompt: "Clean technical cutaway diagram of a computer desktop screen displaying DNS resolution paths under bright, even lighting. Flowchart lines connect local hosts file to DNS resolver cache and recursive domain controllers. Clean instructional style, crisp fine lines, no text, no words. 16:9 ratio."
+```
+
 
 ### The Situation
 It is 08:30 on an overcast Tuesday morning in East Portland. Outside, rain streams down the high double-paned windows facing the river. Inside the operations center, the incoming service desk ticket queue has spiked with nine critical incidents within twenty minutes.
@@ -50,6 +58,7 @@ flowchart TD
 3. **Rule 3: Split-Horizon Demands Vantage Point Awareness.** Enterprise networks often maintain two distinct versions of the same DNS zone. An internal employee querying `wiki.portland-ops.com` receives a private RFC 1918 IP address (`10.100.40.8`), while an external user on the public internet receives a public CDN proxy IP (`198.51.100.24`). You cannot troubleshoot a resolution ticket without knowing which authoritative zone answered the client.
 4. **Rule 4: Multi-Homed VPN Endpoints Are Prone to DNS Leaks.** Modern client operating systems utilize Smart Multi-Homed Name Resolution. When connected to a VPN, the OS sends DNS queries across all network adapters simultaneously. If the physical Wi-Fi interface responds faster than the encrypted virtual adapter, the OS accepts the home router's response, leaking corporate DNS queries to public ISPs and dropping private `.local` lookups.
 5. **Rule 5: Negative Caching Persists by TTL.** When a recursive resolver returns an NXDOMAIN (non-existent domain) response, the client stub resolver caches that negative answer for the duration specified in the zone's SOA Minimum TTL. Reconnecting the VPN or refreshing the browser will continue to fail until the client cache is purged via `ipconfig /flushdns`.
+
 
 ---
 
@@ -88,6 +97,7 @@ Every network technician must distinguish between DNS resource records by transp
 | **SRV** | RFC 2782 | Service locator; defines hostname, port number, priority, and weight for specific services (Active Directory, SIP, Kerberos). | `_ldap._tcp.dc._msdcs.portland.local. IN SRV 0 100 389 pdx-dc01.portland.local.` | Missing SRV records prevent domain join operations and trigger "No logon servers available" errors. |
 | **SOA** | RFC 1035 | Start of Authority; specifies authoritative server, administrator email, serial number, refresh intervals, and minimum TTL. | `portland.local. IN SOA ns1.portland.local. admin.portland.local. (2026101801 7200 3600 1209600 900)` | Serial number mismatches cause secondary DNS servers to serve stale zone data. Minimum TTL governs negative caching. |
 
+
 ---
 
 ### 2.3 Command-Line DNS Triage Toolkit
@@ -117,6 +127,7 @@ nslookup
 Resolve-DnsName -Name "payroll.portland-ops.local" -Server 10.100.10.2
 Resolve-DnsName -Name "wiki.portland-ops.com" -Type CNAME
 ```
+
 
 ---
 
@@ -171,6 +182,7 @@ sequenceDiagram
     Stub-->>App: Return Error: Server Address Not Found
 ```
 
+
 ---
 
 ## 3. Quick Checks & Skill Reps
@@ -206,6 +218,7 @@ Address:  10.100.40.8
    * *Answer:* It proves that the VPN tunnel is fully passing traffic, routing to `10.100.10.2` is healthy, and the corporate authoritative DNS server has a valid, active A record mapping `wiki.portland-ops.local` to `10.100.40.8`.
 3. **What is the root cause of the supervisor's failure?**
    * *Answer:* The client system is routing DNS queries to its local home router rather than the VPN adapter's assigned DNS servers (a DNS leak in the split-tunnel profile).
+
 
 ---
 
@@ -252,16 +265,80 @@ Notice the contradiction: `nslookup` reports `10.100.20.14`, but `ping` attempts
    ```
 5. Verify resolution with `ping` or `Resolve-DnsName`. The system should now resolve to `10.100.20.14`.
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "COMMAND PROMPT: DNS RESOLUTION & HOSTS FILE TRIAGE"
+shell: "cmd"
+prompt: "C:\Support> "
+replay: true
+objectives:
+  - id: "obj-nslookup"
+    label: "Query DNS for internal wiki portal"
+    trigger: "nslookup wiki.corp.local"
+  - id: "obj-hosts"
+    label: "Inspect local static hosts file overrides"
+    trigger: "type C:\Windows\System32\drivers\etc\hosts"
+  - id: "obj-flush"
+    label: "Flush local resolver cache"
+    trigger: "ipconfig /flushdns"
+---
+nslookup wiki.corp.local: |
+  Server:  UnKnown
+  Address:  192.168.1.1 (Home Wi-Fi Router)
+  
+  *** UnKnown can't find wiki.corp.local: Non-existent domain
+  Warning: Client is querying local home router DNS instead of internal VPN DC (10.0.0.2).
+
+type C:\Windows\System32\drivers\etc\hosts: |
+  # Copyright (c) 1993-2009 Microsoft Corp.
+  # Local static host overrides:
+  127.0.0.1       localhost
+  ::1             localhost
+  198.51.100.42   wiki.corp.local    # Stale contractor override from 2021!
+
+ipconfig /flushdns: |
+  Windows IP Configuration
+  
+  Successfully flushed the DNS Resolver Cache.
+  Re-querying over active VPN tunnel...
+  Name:    wiki.corp.local
+  Address: 10.0.0.85 (Internal Wiki DC)
+  [OK] Internal portal accessible.
+
+```
+
+---
+
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 Before running any diagnostic command or altering endpoint configuration, state your prediction:
 - **Layer & Failure Point:** What subsystem is failing?
 - **Expected CLI Output:** What exact error code or response do you anticipate?
 - **Triage Action:** What specific command verifies your hypothesis without destroying evidence?
 
+
 ---
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-04-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-04-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-04-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Case 3.1: The Stale Local Cache After Server Migration
 **Scenario:** The server team migrated `intranet.portland-ops.local` from legacy server `10.100.10.80` to cluster `10.100.10.95`. Users who kept their laptops powered on overnight see a 404 error. Users who just booted their laptops access the new cluster without error.
@@ -286,6 +363,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
   3. Verify client connects to `10.100.10.95`.
 </details>
 
+
 ---
 
 #### Case 3.2: Multi-Homed VPN Split-Tunnel DNS Leak
@@ -306,6 +384,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
   2. Configure DNS suffix search list in VPN connection profile: `Set-DnsClientGlobalSetting -SuffixSearchList @("portland-ops.local")`.
   3. Execute `ipconfig /flushdns` and test lookup.
 </details>
+
 
 ---
 
@@ -329,6 +408,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
   3. Re-run `nslookup -type=SRV _ldap._tcp.dc._msdcs.portland.local` to confirm SRV record resolves to `pdx-dc01.portland.local` on port 389.
 </details>
 
+
 ---
 
 #### Case 3.4: Reverse DNS (PTR) Lookup Failure on Outbound Mail
@@ -351,6 +431,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
   3. Verify FCrDNS (Forward-Confirmed Reverse DNS) matches in both directions.
 </details>
 
+
 ---
 
 #### Case 3.5: Zone Apex CNAME Restriction
@@ -367,9 +448,24 @@ Before running any diagnostic command or altering endpoint configuration, state 
   2. Implement an **ALIAS / ANAME** pseudo-record (if supported by DNS provider) or deploy an HTTP 301 redirection service at the apex (`portland-ops.com` $\rightarrow$ `www.portland-ops.com`), placing the CNAME record on the `www` subdomain.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-04-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-04-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-04-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Tier 1 DNS Resolution Ticket & VPN Split-Tunnel Escalation Note
 
@@ -421,6 +517,7 @@ Status:           RESOLVED
 ================================================================================
 ```
 
+
 ---
 
 #### Part B: Tier 2 Infrastructure Escalation Note
@@ -469,6 +566,7 @@ Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDO
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like (Shift Quality Checklist)
@@ -481,6 +579,35 @@ Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDO
 | **Split-Horizon & VPN Architecture** | Completely articulates the mechanics of split-horizon DNS, split-tunneling trade-offs, interface metrics, multi-homed parallel resolution, and DNS leaks. Explains negative caching TTL impact. | Understands that internal and external views differ, but struggles to explain why multi-homed Windows endpoints prioritize domestic Wi-Fi over the VPN adapter. | Fails to recognize split-horizon architecture; assumes external DNS failure is an ISP fiber outage or web server crash. |
 | **Documentation & Escalation Quality** | Submits professional, mathematically precise, audit-ready ticket notes and escalation dossiers with clear root causes, observable IoCs/evidence, remediation steps, and preventative controls. | Ticket notes are accurate and complete, but lack formal enterprise structure or omit key troubleshooting outputs. | Documentation is vague, lacks technical detail, omits root-cause analysis, or advises unverified actions (e.g., rebooting client hardware). |
 
+
 ---
 
 *Workbench complete. Ensure all micro-drills and deliverables are reviewed against the evaluation rubric.*
+
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 4.2: RESOLVED REMOTE ACCESS RESOLUTION"
+badge: "Shift Epilogue"
+caption: "Operations center bullpen: At 10:15 AM, the remote dispatch queue returns to green. On Greg's remote desktop, the internal payroll timesheet portal renders cleanly over the encrypted tunnel."
+prompt: "Clean graphic novel cutaway panel of a municipal IT help desk operations center. Outside the panoramic windows, morning rain clears over the Willamette River. On a large wall-mounted operations monitor, a network traffic graph displays balanced green metrics. A technician types at a dual-monitor workstation. Ligne Claire style, sharp technical lines, no text, no words. 16:9 ratio."
+```
+
+With the root cause identified, Maya Chen pulled up the centralized VPN gateway management console on her workstation. She pushed a mandatory client profile revision across the cluster, enforcing an interface metric of 10 on the virtual tunnel adapter, appending `portland-ops.local` to the suffix search list, and disabling multi-homed smart resolution.
+
+"I will handle the queue," I told Maya, opening our mass notification template. I broadcasted the three-step resolution instructions to affected staff: disconnect the client session, reconnect to pull the revised profile from the gateway cluster, and run `ipconfig /flushdns` in an elevated prompt to wipe the negative NXDOMAIN cache.
+
+Within twelve minutes, the gateway logs confirmed that seventy-five remote endpoints had downloaded the corrected configuration. I called Greg back in Hillsboro. I walked him through the reconnection and cache flush, and watched his screen over remote control as he refreshed the browser.
+
+The bright orange GoDaddy parked domain page vanished immediately. It was replaced by the clean green-and-white header of our internal payroll application. Greg let out an audible sigh of relief over the line, murmuring that he could finally submit his department's morning timesheets, and thanked us before hanging up. One by one, the remaining seventeen tickets on the board were updated, verified, and resolved.
+
+Jared walked back past our row with a fresh cup of coffee. He glanced at the green status board, and gave a brief, sheepish shrug before heading back toward the network closet. He did not say another word about CenturyLink backhoes.
+
+Jules smiled faintly and set her empty mug down on the edge of the partition. She unclipped her helmet from the display arm.
+
+"You spent two hours chasing down someone else's bad configuration, Ethan, but you did not spend it guessing," Jules said. "Remember this shift the next time someone tells you an application is broken. The application is almost never broken. Most of the time, the client is just asking the wrong stranger for directions."
+
+I wrote her words down in my technical journal. I saved the ticket escalation notes for Maya's post-incident review, and turned back to the queue as the rain outside softened into a quiet, steady mist.

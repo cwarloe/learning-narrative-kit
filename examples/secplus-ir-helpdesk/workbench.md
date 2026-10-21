@@ -5,7 +5,7 @@
 > **Environment:** Portland Operations Center Service Desk & Tier 1 CSIRT Triage Station  
 > **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
 > **Companion Artifacts:** [`narrative.md`](narrative.md) • [`glossary.yaml`](glossary.yaml) • [`unit.yaml`](unit.yaml)  
-> **Capstone Status:** Book 0 Final Capstone & Direct Bridge to Book 1 (*Network Analyst Development Framework*)
+> **Capstone Status:** Book 0 Final Capstone (Handoff to the SOC)
 
 ---
 
@@ -641,7 +641,7 @@ Before Ethan closes the red folder and hands the physical binder to Jules Mercer
 
 ---
 
-## The Bridge to Book 1: The Step Beyond the Desk
+## The Step Beyond the Desk
 
 At 16:30, the autumn rain finally eases to a mist over the Willamette. The river reflects the amber streetlights turning on along the Eastbank Esplanade. In the quiet of the fourth-floor dispatch bullpen, Jules Mercer signs her name on the receiving line of Evidence Pouch `#EVD-2026-1022-01`, slides the red binder into the CSIRT handoff rack, and turns her desk chair toward Ethan.
 
@@ -653,4 +653,4 @@ She reaches into her desk drawer and pulls out a new lanyard—dark navy blue wi
 
 ---
 
-*This concludes **Book 0: Zero-to-One (Portland Desk)**. Continue Ethan Brooks' journey in **Book 1: NADF — Network Analyst Development Framework**, where incident response shifts from endpoint triage to live network packet analysis, SIEM threat detection, and intrusion hunting across the Pacific Northwest operations grid.*
+*This concludes **Book 0: Zero-to-One (Portland Desk)**. Want more practice reading network traffic? The separate [Network Analyst Development Framework](https://github.com/cwarloe/network-analyst-development-framework) course starts with packet captures and analyst judgment. It tells a different story with different characters.*

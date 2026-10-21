@@ -16,7 +16,7 @@ Here, theory is never taught in a vacuum. You sit alongside **Ethan Brooks**—a
 Every module is structured as **an authentic workplace incident**:
 1. **The Incident Story:** Read the call, feel the operational pressure, and understand *why* the technology exists and what breaks when humans take shortcuts.
 2. **The Hands-On Lab:** Step onto the shift yourself. Examine real ticket queues, inspect terminal dumps (`ipconfig`, `netstat`, `nslookup`), trace Windows Security Event logs (Event IDs 4624, 4625, 4740, 7045), and decompose raw email MIME headers.
-3. **🎯 Call Your Shot:** Before looking at the solution, predict what the system should show. Great engineers don't guess after seeing the output—they test falsifiable theories.
+3. **Call Your Shot:** Before looking at the solution, predict what the system should show. Great engineers don't guess after seeing the output—they test testable theories.
 4. **Your Ticket Notes & What Good Looks Like:** Write professional resolution notes and security escalation dossiers evaluated against real senior technician benchmarks.
 
 ---
@@ -36,7 +36,7 @@ flowchart TD
         M03["Episode 03: The Default Gateway Doesn't Care<br/>(IP Subnetting, APIPA & ARP Dynamics)"]
         M04["Episode 04: The Name Is Not the Number<br/>(DNS Plumbing, Caching & Split-Horizon)"]
         M05["Episode 05: The Wire Has Two Ends<br/>(TCP Ports, Sockets & Handshakes)"]
-        M06["Episode 06: The Portland Flood<br/>★ MIDPOINT CAPSTONE: Campus Disaster Rebuild"]
+        M06["Episode 06: The Portland Flood<br/>CAPSTONE: MIDPOINT CAPSTONE: Campus Disaster Rebuild"]
         M02 --> M03 --> M04 --> M05 --> M06
     end
 
@@ -46,11 +46,11 @@ flowchart TD
         M09["Episode 09: Don't Click That<br/>(Phishing, MIME Headers & DMARC Alignment)"]
         M10["Episode 10: Something on the Box<br/>(Host Malware, LOLBins & EDR Persistence)"]
         M11["Episode 11: The Air Is Shared<br/>(Wireless 802.1X Enterprise & Rogue APs)"]
-        M12["Episode 12: When the Ticket Escalates<br/>★ FINAL CAPSTONE: Incident Handoff Dossier"]
+        M12["Episode 12: When the Ticket Escalates<br/>CAPSTONE: FINAL CAPSTONE: Incident Handoff Dossier"]
         M06 --> M07 --> M08 --> M09 --> M10 --> M11 --> M12
     end
 
-    M12 ==>|"Direct Bridge to Book 1"| NADF["NADF: Network Analyst Development Framework<br/>(Junior SOC Triage & Threat Hunting)"]
+    M12 -.->|"Optional next course"| NADF["Network Analyst Development Framework<br/>(separate course: reading packet captures)"]
 ```
 
 ---

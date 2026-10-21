@@ -1,27 +1,34 @@
 # Portland Desk Lab: Email Header Decomposition & Phishing Triage
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `secplus-phishing-helpdesk` — *Don't Click That*  
-> **Environment:** Level 1 Service Desk Terminal & Mail Defense Queue  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
-> **Live Artifacts Directory:** [`artifacts/`](../artifacts/)
+> **The Situation:** Level 1 Service Desk Terminal • Mail Defense Queue  
+> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)  
+> **The Objective:** Dissect RFC 5322 raw email MIME headers, verify SPF, DKIM, and DMARC cryptographic alignment, and identify typosquatted domains in executive wire fraud attempts.  
+> **Estimated Time:** 40–50 minutes • Email Security & Phishing Analysis  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Role** | Tier 1 Service Desk Specialist / Email Security Analyst |
-| **Target Certification** | CompTIA Security+ (SY0-701) |
-| **Primary Domains** | **Domain 1.0 General Security Concepts & Threats**<br>• *1.2 Compare and contrast types of social engineering and phishing attacks (phishing, spear phishing, whaling, business email compromise [BEC], vishing, smishing, pretexting, typosquatting, credential harvesting)*<br>**Domain 2.0 Security Architecture & Concepts**<br>• *2.4 Compare and contrast cryptographic authentication protocols in email (SPF, DKIM, DMARC, S/MIME)* |
-| **Prerequisites** | Understanding of RFC 5321 (SMTP envelope) vs. RFC 5322 (message headers), DNS resource records (TXT, MX), public-key cryptography (asymmetric key pairs, digital signatures, hashing), and web URL structures. |
-| **Estimated Completion** | 35–45 minutes |
-| **Core Deliverables** | 1. RFC 5322 MIME & Email Authentication Triad (SPF / DKIM / DMARC) Matrix<br>2. Micro-Drill 1: Raw MIME Header Trace (`Received:` hop analysis, extracting originator IP, SPF pass/fail)<br>3. Micro-Drill 2: Domain Squatting & Typosquatting Recognition (e.g. `port1and-ops.com` vs `portland-ops.gov`)<br>4. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>5. Performance Deliverable: Formal Tier 1 Phishing Incident Triage & Security Escalation Note |
+* **Aligned Certification:** CompTIA Security+ (SY0-701)
+* **Exam Domains:** Domain 1.0 (Social Engineering & BEC) & Domain 2.0 (Cryptographic Email Verification: SPF, DKIM, DMARC)
+* **Core Competencies & Deliverables:** MIME Header Anatomy & Authentication Triad • Raw Email Hop Inspection Drill • Domain Squatting & Typosquatting Recognition • Call Your Shot 5-Case Gate • Formal Phishing Incident Escalation Note
+
+</details>
+
 
 ---
 
 ## 1. The Situation & Ground Truth
+
+```callout-panel
+title: "FIGURE 9.1: EMAIL MIME ARCHITECTURE & SPF CHECK"
+badge: "Email Authentication"
+caption: "Schematic diagram: Email envelope sender (MAIL FROM) versus message header (From:). Demonstrates how SPF verifies sending IP while DKIM cryptographically signs body hashes."
+prompt: "Clean technical cutaway diagram of an email message header structure under bright lighting. Arrows connect sender IP address to DNS TXT record for SPF validation. Clean instructional manual style, crisp fine lines, no text, no words. 4:3 ratio."
+```
+
 
 ### The Situation
 It is 08:10 on a rain-lashed Wednesday morning on the east side of Portland. Low, charcoal-colored clouds hang heavy over the Hawthorne Bridge, and the service desk smells of damp wool coats, ozone from the server room exhaust, and dark roast coffee. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet clipped to her monitor arm, calmly triaging the morning ticket flood.
@@ -47,6 +54,7 @@ Jules spins slowly in her chair, holding her ceramic mug. She gestures toward Et
 3. **Visual Fidelity Has Zero Cryptographic Value:** High-resolution corporate logos, legal confidentiality footers, and crisp executive headshots can be copied from public websites in seconds. Visual polish is trivial to fabricate; only public-key cryptographic signatures (**DKIM**) and domain alignment (**DMARC**) prove that a message genuinely originated from the declared organization.
 4. **Out-of-Band (OOB) Verification is Mandatory for Financial Directives:** Never confirm wire instructions, vendor banking changes, or payroll updates using the communication channel that delivered the request. If an email requests a funds transfer or account modification, verify the directive using a pre-established, trusted telephone number from the corporate directory or through an in-person meeting—never via phone numbers, reply email addresses, or links contained within the suspect email.
 5. **Preserve and Report; Never Forward Raw Phishing Bait:** Forwarding a raw phishing email across internal distribution lists ("Hey team, is this real?") duplicates the attack payload, exposes colleagues to accidental clicks, and strips original SMTP transport headers. Train users to click the **Report Phish** button, or save the message as an RFC 822 `.eml` artifact so Tier 1 and SOC analysts can examine intact MIME headers safely in an isolated text viewer.
+
 
 ---
 
@@ -84,6 +92,7 @@ sequenceDiagram
 * **RFC 5321 Envelope (`MAIL FROM` / `Return-Path`):** Used by mail transfer agents (MTAs) for routing and non-delivery reports (bounces). This is the identity evaluated by basic **SPF**.
 * **RFC 5322 Message Header (`From:`):** The human-readable header parsed and displayed by client software (Outlook, Apple Mail, Gmail). This is what the recipient reads on screen.
 * **The Vulnerability:** Without DMARC alignment, an attacker can specify a disposable domain in `MAIL FROM` to pass SPF, while placing an executive's spoofed address in the RFC 5322 `From:` header.
+
 
 ---
 
@@ -157,6 +166,7 @@ flowchart TD
   * `p=quarantine`: Delivers failed mail to recipient's Junk/Spam folder or quarantine queue.
   * `p=reject`: Instructs receiving gateways to drop failed mail at SMTP handshake (`550 5.7.1 Message rejected`).
 
+
 ---
 
 ### Comparison: The Email Authentication Triad
@@ -170,6 +180,7 @@ flowchart TD
 | **Forwarding Resilient** | No (breaks when forwarded through relays) | Yes (signature survives intermediate hops) | Yes (if DKIM signature remains valid and aligned) |
 | **Enforcement Actions** | Neutral, SoftFail, HardFail | Pass or Fail | `p=none`, `p=quarantine`, `p=reject` |
 | **Core Vulnerability** | Ignores visible `From:` header | Signing domain can differ from `From:` | High deployment complexity; strict alignment misconfig |
+
 
 ---
 
@@ -216,6 +227,7 @@ mindmap
    * **Double Extensions:** Exploiting default Windows file explorer settings that hide known extensions (e.g., `VoidedCheck.pdf.exe`).
    * **Container Archives:** Delivering `.iso`, `.vhd`, `.zip`, or `.img` files to evade email gateway static inspection and bypass Windows Mark of the Web (MOTW) security controls.
 
+
 ---
 
 ## 3. Quick Checks & Skill Reps
@@ -256,7 +268,7 @@ Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 5. What is the security risk of the attached file `MayaLin_VoidedCheck_RoutingUpdate.pdf.exe`?
 
 <details>
-<summary>🔍 Drill 1 Forensic Findings & Jules' Debrief</summary>
+<summary>Drill 1 Forensic Findings & Lead Review</summary>
 
 * **Hop Analysis (Read Bottom to Top):**
   1. **Hop 1 (Origin):** Server `out-relay04.fake-bulletin-mailer.net` at IP `185.220.101.42` connected to Portland's perimeter mail gateway (`mail-gateway02.portland-ops.gov`) at 08:12:12. This is the untrusted external entry point.
@@ -270,6 +282,7 @@ Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 * **Malicious Executable Dropper:**
   The attachment uses a **double extension** (`.pdf.exe`). On Windows systems with default explorer settings ("Hide extensions for known file types"), the `.exe` extension is hidden, displaying only `MayaLin_VoidedCheck_RoutingUpdate.pdf` with a PDF document icon. Opening this file executes binary shellcode (trojan/stealer) rather than displaying a document.
 </details>
+
 
 ---
 
@@ -294,7 +307,7 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 4. `https://adp.workday.portland-ops.gov/payroll/`
 
 <details>
-<summary>🔍 Solution & Jules' Technique Breakdown</summary>
+<summary>Solution & Lead Technique Breakdown</summary>
 
 1. **Legitimate:** Official Microsoft 365 OAuth 2.0 authorization endpoint under apex domain `microsoftonline.com`.
 2. **Malicious (Credential Harvesting Phish):** Typosquatting (numeral `0` for letter `o`), brand impersonation, and untrusted foreign country-code top-level domain (`.ru`).
@@ -302,11 +315,68 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 4. **Legitimate:** An internal subdomain (`adp.workday`) residing securely under Portland's genuine organizational domain `portland-ops.gov`.
 </details>
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "CONSOLE: RAW MIME EMAIL HEADER & SPF/DKIM INSPECTION"
+shell: "cmd"
+prompt: "C:\Incident> "
+replay: true
+objectives:
+  - id: "obj-headers"
+    label: "Extract Received-SPF authentication result"
+    trigger: "findstr /i "Received-SPF Authentication-Results" invoice.eml"
+  - id: "obj-origin"
+    label: "Extract originating sender IP from hop chain"
+    trigger: "findstr /i "Received: from" invoice.eml"
+  - id: "obj-quarantine"
+    label: "Execute mail gateway rule to quarantine lookalike sender"
+    trigger: "quarantine-sender --domain port1and-ops.com"
+---
+findstr /i "Received-SPF Authentication-Results" invoice.eml: |
+  Received-SPF: Fail (protection.outlook.com: domain of port1and-ops.com does not designate 198.51.100.77 as permitted sender)
+  Authentication-Results: spf=fail (sender IP is 198.51.100.77); dkim=none; dmarc=fail action=none header.from=port1and-ops.com
+  [ALERT] SPF/DMARC hard failure. Sender domain is typosquatted (numeral 1 substituted for letter l).
+
+findstr /i "Received: from" invoice.eml: |
+  Received: from mail-relay.suspicious-host.net (198.51.100.77)
+  Received: from client-smtp-relay (192.0.2.14)
+  Originating IP: 198.51.100.77 (Bucharest, Romania)
+  Target: nora.finance@portland-ops.gov
+  Subject: URGENT: Wire Transfer Routing Change
+
+quarantine-sender --domain port1and-ops.com: |
+  Rule created: Block and quarantine all incoming mail from '@port1and-ops.com'.
+  Mailbox purge executed: 1 malicious phishing message moved to Junk/Quarantine.
+  [OK] Phishing threat contained before wire transfer executed.
+
+```
+
+---
+
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 > **The Rule of the Desk:** Before clicking any button, moving a ticket, or responding to a department lead, write down your decision, the cryptographic indicator, and your operational rationale. Commit your answer before expanding the analysis.
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-09-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-09-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-09-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Case 1: Nora Vasquez (Finance) — `INC-2026-1051`
 * **Incoming Message:** "Urgent direct deposit bank update for CEO Maya Lin before 10:00 AM payroll cutoff."
@@ -316,12 +386,13 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **DROP & ESCALATE IMMEDIATELY** to Tier 2 Security / SOC.
 * **Authentication Status:** SPF SoftFail, DKIM Fail (unaligned), DMARC Fail (`p=quarantine`).
 * **Rationale:** Classic **Business Email Compromise (BEC)** / **Whaling** attack employing an executive impersonation pretext, typosquatted domain (`port1and-ops.com`), Reply-To discrepancy, and a malicious Win32 PE binary payload disguised as a PDF document. Instruct Nora via phone/in-person to make no payroll changes. Submit attachment hash to EDR blocklist.
 </details>
+
 
 ---
 
@@ -333,12 +404,13 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **QUARANTINE & DETONATE IN SECURE SANDBOX**.
 * **Authentication Status:** SPF Pass, DKIM Pass, DMARC Pass.
 * **Rationale:** A passing authentication triad only confirms that the email originated from the legitimate server of `consulting-partner.com`—it does **not** guarantee the message is benign. The partner's email account may be compromised (Account Takeover / BEC). The attachment exhibits a nested archive container pattern (`.iso.zip`). Adversaries distribute `.iso` images to bypass Windows Mark of the Web (MOTW) smart-screen filters. Isolate file in a malware analysis sandbox prior to release.
 </details>
+
 
 ---
 
@@ -349,12 +421,13 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **FILE SMISHING INCIDENT TICKET & BLOCK DESTINATION URL**.
 * **Threat Classification:** **Smishing (SMS Phishing)** with URL shortening and artificial urgency / scarcity.
 * **Rationale:** IT service desks do not notify users of storage quotas via third-party commercial SMS links using URL shorteners (`bit.ly`). Expanding the URL reveals a credential-harvesting reverse-proxy page designed to steal username, password, and session cookies. Block the expanded destination domain at the enterprise web proxy and firewall. Remind Ken to never click links in unexpected text messages.
 </details>
+
 
 ---
 
@@ -366,12 +439,13 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **HOLD PAYMENT & ENFORCE OUT-OF-BAND (OOB) VERIFICATION**.
 * **Authentication Status:** SPF Pass, DKIM Pass, DMARC Pass, BUT glaring `Reply-To` discrepancy.
 * **Rationale:** This is an **Invoice Fraud / BEC Vendor Compromise** scenario. Even though the sender domain authenticated cleanly (suggesting the vendor's primary email system or compromised mailbox sent the message), the `Reply-To` header shifts communications to an unmonitored consumer webmail account (`@outlook.com`). Dana must place an out-of-band telephone call to the vendor's verified Accounts Receivable controller using the known phone number from the original contract—never using numbers listed on the new invoice.
 </details>
+
 
 ---
 
@@ -382,16 +456,31 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **IMMEDIATELY REVOKE ALL ACTIVE SESSIONS & FORCE PASSWORD ROTATION**.
 * **Threat Classification:** **MFA Fatigue Attack (Prompt Bombing)** resulting from compromised primary credentials.
 * **Rationale:** An attacker already possesses Dev's username and password (harvested via a prior phishing attack or credential stuffing) and is flooding his authenticator app with push requests in hopes that he will tap "Approve" out of frustration or distraction. Telling the user to "keep pressing Deny" is unacceptable—one accidental tap compromises the corporate network. Terminate all active OAuth refresh tokens, change his Active Directory password immediately, and transition Dev to FIDO2 WebAuthn phishing-resistant hardware keys or number-matching MFA.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-09-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-09-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-09-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Tier 1 Phishing Incident Triage & Security Escalation Note
 
@@ -488,6 +577,7 @@ Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like (Shift Quality Checklist)
@@ -499,6 +589,70 @@ Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
 | **Domain Squatting & Social Engineering Vector Identification** | Rapidly spots typosquatting, character substitution (e.g., `1` for `l`), combosquatting, Punycode/IDN homographs, and weaponized influence principles (urgency, authority, secrecy). | Identifies obvious typosquatting but misses advanced homoglyphs, Punycode indicators, or subtle Reply-To discrepancies. | Fails to detect typosquatted domains; falls victim to visual branding and superficial email formatting. |
 | **Incident Documentation, IOC Extraction & SOC Escalation Quality** | Delivers structured, professional ticket notes and escalation advisories complete with extracted IOCs (IPs, domains, hashes), MITRE ATT&CK mapping, and actionable containment steps. | Notes are accurate but lack standardized enterprise formatting, omission of critical IOCs (hashes/ASNs), or unclear remediation steps. | Ticket documentation is vague, lacks forensic evidence, or recommends unsafe actions (e.g., forwarding raw malware). |
 
+
 ---
 
 *Workbench complete. Test your mastery against the interactive assessment scenarios in `review.yaml` and inspect companion header artifacts in [`artifacts/`](../artifacts/).*
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 9.2: MAIL GATEWAY QUARANTINE & GATEWAY TELEMETRY"
+badge: "Shift Epilogue"
+caption: "Operations center: At 05:40 PM, the rain clears over the Willamette River. On the security monitor, the perimeter mail gateway displays zero accepted connections from the typosquatted domain as AP confirms the payment wire was frozen."
+prompt: "Clean graphic novel cutaway panel of an IT support technician desk at twilight. Outside the window, city lights reflect on rain-slicked asphalt. On the monitor, a secure email gateway console displays green accepted logs and bold red quarantined lines. Clean ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
+```
+
+With the malicious header trace verified and the originating IP and typosquatted domain blocked at the perimeter gateway, AP confirmed that the fraudulent wire update had been cancelled. Maya Lin's real executive assistant confirmed the legitimate payroll routing was untouched, and Sam's double-extension zip dropper was safely purged from the mail spool.
+
+Across the floor, the human layer kept moving.
+
+## Doors, shoulders, and the recycling bin
+
+Facilities walked a visitor past the badge reader. The visitor smiled, held a coffee tray for three, and waited for someone to beep in. Two people held the door because manners. One of them was me for half a second.
+
+Jules did not raise her voice. She still stopped the line.
+
+"Tailgating," she said to me, not as a lecture to the lobby. "Ask them to sign in. Be polite. Be annoying on purpose."
+
+The visitor signed in. The coffee still got delivered.
+
+At the standing desk near the printer, I caught a contractor reading over Lila's shoulder while she typed a temporary password into a shared screen. I angled my body and said, "Shoulder surfing works in offices too. Screens have sides." Lila turned the laptop. The contractor found somewhere else to be.
+
+Later Jordan from ops dumped a box of old printouts next to the open recycling — org chart with cellphone scribbles, a page with a VPN URL and a handwritten password scratched out but still readable under the scribble, a badge access list from a retired closet.
+
+Jules looked in the box. "Shredder for anything that still has a secret, even a dead one. Dumpster diving is that bin."
+
+Jordan took the box back. He left a sticky on the shredder that said *if you can still read it, it still counts.*
+
+## Quid pro quo and the watering hole rumor
+
+A caller offered me a "free security scan gift card" if I confirmed our external mail gateway brand and the name of our sandbox vendor. Helpful tone. Soft sell. He even offered to "credit the help desk team" in a write-up.
+
+"[[quid_pro_quo|Quid pro quo]]," I said after I hung up and typed the note. "Gift for a detail. We do not trade architecture for coupons. If he needs a vendor list, he can go through procurement like a person."
+
+Slack, meanwhile, was circulating a blog post from a niche local-devops forum everyone here actually reads. Commenters claimed a browser extension "everyone on the floor already installed" fixed a fake outage. The site looked familiar because it was familiar — until Security flagged the admin account takeover from last night.
+
+"[[watering_hole|Watering hole]]," Jules said. "Poison the place the herd already drinks. That is why 'I only click things from our forum' is not a strategy." She posted the official advisory and killed the extension rumor before it became policy by screenshot.
+
+Someone replied with a chain-letter PDF about "FBI mandatory password reset tonight or criminal liability." No ticket. No SOC banner. Just panic fuel.
+
+"Hoax," I wrote in the channel. "If it mattered, it would arrive on the reporting path we already trust — not a viral PDF."
+
+Jules pinned one more line: coordinated scare-posts and fake consensus threads are how light influence campaigns show up at desk scale. We are still a hallway where social engineering rumors try to become policy.
+
+## Quarantine, gateway, and the path that counts
+
+End of day we sat with a SOC analyst on a short bridge call. Not because I was becoming an investigator. Because the desk is where the humans land.
+
+"Mail gateway caught a sibling of Maya's message after her report," the analyst said. "We dropped the campaign into quarantine, detonated the zip in the sandbox, and tuned the rule. User-reported beat the first filter by twelve minutes. Filters are late sometimes. People who hover are early."
+
+I updated the wiki blurb the desk actually reads: hover the link, check the real host, never read codes to callers, never approve surprise MFA, never change wire instructions from a thread, badge your own door, shred the bin, and when something feels like borrowed manners, use the report button. That is the reporting path.
+
+At 5:40 I closed notes: Maya reported, Sam did not open the zip, Avery's wire frozen, Nora hung up on the pretext, Ken ignored the text, Dev denied the pushes, the lobby stopped a tailgate, Jordan shredded, the gift-card caller got nothing.
+
+Jules clipped her bike lights on. "Tomorrow someone will call a spoofed CFO probably real because the logo is crisp."
+
+I said I already had the line. I locked the drawer and went out into the rain.

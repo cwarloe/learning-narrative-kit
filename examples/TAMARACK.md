@@ -36,14 +36,14 @@ renamed until one does.
 | Chewelah | WA | Established | The Counter Assistant clerk (MIS 9). The manager who read his login to a "vendor" (MIS 5). |
 | Deer Park | WA | Established | The "Q2 Payroll" USB stick (MIS 5). Monthly count file (Excel 5). |
 | Spokane Valley | WA | Established | Same town as the DC and head office. Got 100 of the 300 chicks it ordered in the Chick Days mix-up (MIS 7). Leaky time-clock app (MIS 5). |
-| Newport | WA | Named, not yet used | |
+| Springdale | WA | Named, not yet used | |
 | Cheney | WA | Named, not yet used | |
 | Rathdrum | ID | Named, not yet used | |
 | Priest River | ID | Named, not yet used | |
 | Bonners Ferry | ID | Named, not yet used | |
 | Davenport | WA | Established, opens May 4, 2027 | Chosen over Sandpoint (MIS 8). Break-even (Excel 8). Opening and first-month sales (Excel 10). |
 
-There is no store in Sandpoint (MIS 8: Walt's napkin lost to the model).
+There is no store in Sandpoint, Newport, or Ritzville: all three were candidates for the twelfth store that lost to Davenport (MIS 8), and Newport already had a competitor.
 
 **Other dealers in the same towns.** Small towns hold competitors, so a Tamarack store and an
 independent dealer can share a town:
@@ -98,7 +98,7 @@ each is established.
 | Karen | Accounts-receivable manager at the seed company; six years of invoices with Hank | MIS 5 |
 | Dale Kowalchuk | Prairie Wire's fencing rep, Marcy's call for eleven years, until approvals moved to Saskatoon | MIS 6 |
 | Corinne | Former regional planner; the site-selection consultant who built the model | MIS 8 |
-| Jim Sorensen | Walt's contact in Sandpoint, with a building he'd lease; told to give it a year | MIS 8 |
+| Jim Sorensen | Walt's friend in Sandpoint (the fishing trip and the napkin), with a building he'd lease; told to give it a year | MIS 8 |
 | Kip Andersen | Reads the board packet and asks about every number in parentheses | Excel 2, Excel 4 |
 | Brenda | ERP vendor's sales engineer at the Boise expo | MIS 10 |
 | Gene Palmer | Palmer's Feed & Seed, Kettle Falls; buying-group member | MIS 1 (as "Palmer's"), ITM Week 7 |

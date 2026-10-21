@@ -1,26 +1,34 @@
 # Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `netplus-addressing-helpdesk` — *The Default Gateway Doesn't Care*  
-> **Environment:** Level 1 Service Desk Terminal & Remote Diagnostic Console  
-> **Authors:** Ethan Brooks (under Desk Lead Jules Mercer & Network Ops Engineer Jared Vance)  
+> **The Situation:** East Portland Pump Station & Annex • Operations Service Desk  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Mercer & Jared Vance)  
+> **The Objective:** Triage local IP addressing, APIPA 169.254.x.x link-local traps, subnet boundaries, and ARP resolution failures following a storm switch reboot.  
+> **Estimated Time:** 45–55 minutes • Local Network Addressing  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Operational Role** | Tier 1 IT Support Specialist / Junior Network Operations Technician |
-| **Target Certification** | CompTIA Network+ (N10-008 / N10-009) & CompTIA A+ Core 1 (220-1101) |
-| **Primary Examination Domains** | **Network+ N10-008 Domain 1.0 Networking Fundamentals**<br>• *1.4 Given a scenario, configure and troubleshoot IPv4 addressing, classless subnetting, and default gateways*<br>**Network+ N10-008 Domain 4.0 Network Troubleshooting**<br>• *4.1 Explain the network troubleshooting methodology*<br>• *4.2 Given a scenario, troubleshoot common IP configuration failures (APIPA, duplicate IP conflicts, incorrect subnet mask, unreachable gateway)*<br>**Network+ N10-009 Domain 1.4 & 4.1**<br>• *Network architecture concepts, Layer 2 vs. Layer 3 frame forwarding, ARP table dynamics, DHCP DORA mechanics, and relay agents* |
-| **Prerequisites** | Understanding of OSI layering (Physical Layer 1, Data Link Layer 2, Network Layer 3), binary place values, and command-line navigation. |
-| **Estimated Completion** | 45–60 minutes |
-| **Core Deliverables** | 1. Host-to-Gateway Packet Forwarding & Encapsulation Reference<br>2. Complete IPv4 Subnetting & CIDR Block Boundary Matrix (/24 through /30)<br>3. Command-Line Addressing Diagnostic Toolkit (`ipconfig`, `arp`, `ping`, PowerShell `Get-NetIPConfiguration`)<br>4. DHCP DORA State Machine & IP Helper (Relay Agent) Architecture<br>5. Micro-Drill 1: APIPA vs. DHCP DORA Protocol & VLAN Trunk Failure Analysis<br>6. Micro-Drill 2: CIDR Bitwise Subnet Boundary Math & Off-by-One Troubleshooting<br>7. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>8. Performance Deliverable: Tier 1 Addressing Triage & Network Passdown Note with Evaluation Rubric |
+* **Aligned Certification:** CompTIA Network+ (N10-008/009)
+* **Exam Domains:** Domain 1.4 (IPv4 Addressing, Subnetting & CIDR) & Domain 5.2 (Network Troubleshooting, ARP & Default Gateways)
+* **Core Competencies & Deliverables:** IP Addressing Ground Truth Reference • Subnet Boundary Math Matrix • APIPA & DORA Isolation Drill • ARP Frame Routing Drill • Call Your Shot 5-Case Gate • Network Addressing Passdown Note
+
+</details>
+
 
 ---
 
 ## 1. The Situation & Ground Truth
+
+```callout-panel
+title: "FIGURE 3.1: RJ45 KEYSTONE JACK WITH BENT PIN 3"
+badge: "Physical Layer"
+caption: "Macro view looking directly into the open socket of an RJ45 modular jack. All 8 gold spring wire contacts are visible; pin 3 is flattened backward against the plastic slot wall, breaking physical link continuity."
+prompt: "Macro technical illustration looking into the front opening of an RJ45 ethernet wall jack under bright inspection lighting. All 8 gold spring wire contacts visible; pin 3 is visibly flattened backward against the white plastic slot wall. Sharp metallic reflections on the gold pins, crisp instructional manual style, no text, no letters. 1:1 ratio."
+```
+
 
 ### The Situation
 It is 08:20 on a damp Tuesday morning in late September. Low clouds hang over the Willamette River, and early morning squalls have swept through East Portland. Outside the operations center, rainwater drains along the roof gutters. Inside the facility, the service desk ticket queue has spiked with fourteen critical incidents originating from Building B—the logistics annex and water pump station two miles south.
@@ -36,7 +44,7 @@ When apprentice technician Ethan Brooks instinctively grabs the telephone to rep
 flowchart TD
     Rule1["Rule 1: The Default Gateway Doesn't Care<br/><i>Layer 2 delivers locally; Layer 3 forwards across boundaries</i>"]
     Rule2["Rule 2: APIPA Is a Cry for Help<br/><i>169.254.x.x proves Layer 1 is alive but DHCP DORA timed out</i>"]
-    Rule3["Rule 3: Subnet Masks Draw Invariant Bitwise Borders<br/><i>Logical ANDing determines local ARP vs. remote gateway traversal</i>"]
+    Rule3["Rule 3: Subnet Masks Draw Strict, Fixed Network Borders<br/><i>Logical ANDing determines local ARP vs. remote gateway traversal</i>"]
     Rule4["Rule 4: Two Devices Cannot Share a Cubicle<br/><i>Duplicate IPs cause continuous ARP poisoning and MAC flapping</i>"]
     Rule5["Rule 5: Ping Inside-Out, Never Outside-In<br/><i>Loopback -> Local IP -> Gateway -> Remote IP -> DNS FQDN</i>"]
 
@@ -45,7 +53,7 @@ flowchart TD
 
 1. **Rule 1: The Default Gateway Doesn't Care.** A router does not evaluate user intent, operating system brand, or application urgency. It only checks two criteria: (a) was the incoming Layer 2 Ethernet frame addressed directly to the router's interface MAC address, and (b) does its Layer 3 routing table contain a valid path for the destination IP address? If an endpoint fails to encapsulate packets with the gateway's MAC address, the router never touches the frame.
 2. **Rule 2: APIPA Is a Cry for Help, Not an Address.** When an interface displays an IP address in the `169.254.0.1` to `169.254.255.254` range (RFC 3927) with a mask of `255.255.0.0`, the network adapter is physically connected, but the operating system received zero responses to its DHCP Discover broadcasts. An APIPA address cannot route past a router; it isolates the machine to link-local peer communication.
-3. **Rule 3: Subnet Masks Draw Invariant Bitwise Borders.** An operating system never looks at classful assumptions (Class A, B, or C). It performs a bitwise logical AND between the destination IP and its configured subnet mask. If the resulting network ID matches the local network ID, the client ARPs for the target host's MAC. If the network IDs differ, the client ARPs for the default gateway's MAC. An off-by-one error in the subnet mask strands devices on different broadcast domains even when they share a physical switch.
+3. **Rule 3: Subnet Masks Draw Strict, Fixed Network Borders.** An operating system never looks at classful assumptions (Class A, B, or C). It performs a bitwise logical AND between the destination IP and its configured subnet mask. If the resulting network ID matches the local network ID, the client ARPs for the target host's MAC. If the network IDs differ, the client ARPs for the default gateway's MAC. An off-by-one error in the subnet mask strands devices on different broadcast domains even when they share a physical switch.
 4. **Rule 4: Two Devices Cannot Share a Cubicle.** When two devices are assigned the same IPv4 address, each device emits gratuitous ARP announcements and replies. This poisons the ARP cache of neighboring endpoints and triggers MAC address flapping on switch ports. Traffic oscillates randomly between the two devices, causing intermittent TCP drops and session resets.
 5. **Rule 5: Ping Inside-Out, Never Outside-In.** Troubleshooting connectivity requires systematic variable isolation:
    - `ping 127.0.0.1`: Verifies that the local TCP/IP protocol stack is bound and functional.
@@ -53,6 +61,7 @@ flowchart TD
    - `ping <Default_Gateway>`: Verifies Layer 1/2 physical cabling, switch port state, and local subnet reachability to the local router.
    - `ping <Remote_IP>` (e.g., `8.8.8.8`): Verifies Layer 3 inter-VLAN routing, WAN transport, and upstream ISP transit.
    - `ping <FQDN>` (e.g., `portal.portland.gov`): Verifies Layer 7 DNS name resolution.
+
 
 ---
 
@@ -120,6 +129,7 @@ sequenceDiagram
 3. **Scope Exhaustion:** The DHCP scope has leased all available addresses in the pool. The server receives Discover packets but sends no Offer, forcing clients into APIPA (`169.254.x.x`).
 4. **Rogue DHCP Server:** An unauthorized router or device on the local VLAN responds to Discover packets faster than the legitimate corporate DHCP server, leasing incorrect IP addresses, subnet masks, and rogue gateways.
 
+
 ---
 
 ### 2.3 IPv4 Subnetting & CIDR Block Boundary Reference Table
@@ -136,12 +146,13 @@ Technicians must perform fast, accurate mental math to determine network IDs, br
 | **/29** | `255.255.255.248` | `11111000` | 8 | 8 | 6 | `.0`, `.8`, `.16`, `.24`, `.32`, `.40`, `.48`, etc.<br>*(Increment: 8; Usable: 6 hosts per block; common for small WAN pools)* |
 | **/30** | `255.255.255.252` | `11111100` | 4 | 4 | 2 | `.0` (Hosts: `.1`–`.2`, Bcast: `.3`)<br>*(Increment: 4; Usable: 2 hosts; standard point-to-point links)* |
 
-**The "Magic Number" Heuristic:**  
+**The "Magic Number" Shortcut:**  
 To find the block size (increment) of any subnet mask, subtract the non-zero octet from 256:  
 $$256 - \text{Mask Octet} = \text{Increment (Block Size)}$$  
 - For `/26` (`255.255.255.192`): $256 - 192 = 64$. Subnets start at `.0`, `.64`, `.128`, `.192`.
 - For `/27` (`255.255.255.224`): $256 - 224 = 32$. Subnets start at `.0`, `.32`, `.64`, `.96`, etc.
 - For `/29` (`255.255.255.248`): $256 - 248 = 8$. Subnets start at `.0`, `.8`, `.16`, `.24`, etc.
+
 
 ---
 
@@ -173,6 +184,7 @@ Get-NetIPAddress -AddressFamily IPv4 | Format-Table InterfaceAlias, IPAddress, P
 # 8. Test TCP port reachability directly bypassing ICMP firewall blocks
 Test-NetConnection -ComputerName 10.100.1.1 -Port 80
 ```
+
 
 ---
 
@@ -228,6 +240,7 @@ Ethernet adapter Local Area Connection:
      ```
    - Verify client receives `10.100.4.x`, mask `255.255.255.0`, and gateway `10.100.4.1`.
 
+
 ---
 
 ### Micro-Drill 2: CIDR Bitwise Subnet Boundary Math & Off-by-One Troubleshooting
@@ -276,6 +289,7 @@ Pinging from Server B to Server A fails with request timeouts. Pinging from Serv
 | **Host X:** `172.16.8.94/27`<br>**Host Y:** `172.16.8.98/27` | Subnet 1: `.64`<br>Subnet 2: `.96` | Block 1: `.65`–`.94`<br>Block 2: `.97`–`.126` | Block 1 Bcast: `.95`<br>Block 2 Bcast: `.127` | N/A | **NO:** Host X is in `.64/27` (ends at `.94`); Host Y is in `.96/27` (starts at `.97`). Requires router. |
 | **Host X:** `192.168.1.140/29`<br>**Host Y:** `192.168.1.143/29` | `192.168.1.136` | `192.168.1.137` | `192.168.1.142` | `192.168.1.143` | **NO:** Host Y (`.143`) is the **broadcast address** for `192.168.1.136/29`. It cannot be assigned to an endpoint! |
 
+
 ---
 
 ### Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate
@@ -284,6 +298,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
 1. **Layer & Subsystem:** What exact layer (L1, L2, L3, L4, L7) and protocol is involved?
 2. **Predicted Output:** What concrete output, error code, or status do you anticipate seeing?
 3. **Action & Verification:** What specific command tests the hypothesis without destroying evidence?
+
 
 ---
 
@@ -306,6 +321,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
   2. Confirm router interface has `ip helper-address <DHCP_IP>` configured.
   3. Execute `ipconfig /renew` to force client DORA re-negotiation.
 </details>
+
 
 ---
 
@@ -331,6 +347,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
   4. Flush client ARP cache: `arp -d *` in elevated command prompt.
 </details>
 
+
 ---
 
 #### Case 3.3: Off-by-One CIDR Subnet Boundary Disconnect
@@ -354,6 +371,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
   3. Verify default gateway on both servers points to `192.168.10.1`.
   4. Re-test ping: latency drops to `<1ms`.
 </details>
+
 
 ---
 
@@ -381,6 +399,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
   4. Execute `ping 10.100.4.1` to verify gateway reachability, then test remote ping to `8.8.8.8`.
 </details>
 
+
 ---
 
 #### Case 3.5: Failed Local Loopback / Corrupted TCP/IP Stack
@@ -406,9 +425,24 @@ Before executing any diagnostic command or changing a system setting, enforce th
   4. Reboot the machine and re-test `ping 127.0.0.1`.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-03-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-03-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-03-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Part A: Tier 1 Standard Incident Resolution Note
 
@@ -462,6 +496,7 @@ Status:           RESOLVED
 ================================================================================
 ```
 
+
 ---
 
 ### Part B: Tier 2 Network Infrastructure Passdown Note
@@ -513,6 +548,7 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like (Shift Quality Checklist)
@@ -525,6 +561,39 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
 | **Layer 2 vs. Layer 3 Encapsulation** | Clearly articulates how Ethernet frames are stripped and rewritten at each Layer 3 hop while the IP header remains intact. Explains why a host ARPs for the default gateway when destination is remote. | Understands that routers forward packets between subnets, but displays minor confusion regarding MAC address rewriting. | Asserts that a client ARPs for the destination MAC address of a remote web server on the public internet. |
 | **Documentation & Escalation Quality** | Submits pristine, audit-ready ticket notes and engineering escalation dossiers containing precise timestamps, root causes, Layer 2/3 evidence, remediation steps, and preventative controls. | Ticket notes are accurate and complete, but lack formal enterprise structure or omit preventative infrastructure controls. | Documentation is vague, omits technical evidence, lacks root-cause isolation, or suggests random trial-and-error actions. |
 
+
 ---
 
 *Workbench complete. Ensure all micro-drills and deliverables are reviewed against the evaluation rubric.*
+
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 3.2: THE RESOLVED WAREHOUSE DOCK"
+badge: "Shift Epilogue"
+caption: "Dock view: At 11:20 AM, intake scales and barcode scanners in Building B operate smoothly under clear skies as freight manifests stream across the restored network."
+prompt: "Clean graphic novel cutaway panel of a bustling freight warehouse shipping dock in the Pacific Northwest. Pallet jacks and freight scales operate under bright industrial overhead lighting. A desktop monitor displays an active green logistics manifest. Outside open bay doors, rain has cleared over the river. Clean line art, technical precision, no text, no words. 16:9 ratio."
+```
+
+Following the Layer 2 triage, I instructed Ken to check the warehouse floor for any newly relocated equipment. Ken groaned over the radio—facilities technician Owen had wheeled a legacy HP LaserJet 4050 into the breakroom yesterday afternoon, copying its static network settings from an outdated label beneath the paper tray.
+
+We unplugged the printer's network drop immediately. The ping replies on Frank's machine leveled out into an unbroken stream of clean two-millisecond responses. To prevent future scope collisions, I logged into the printer's web interface, shifted its addressing to dynamic DHCP reservation, and configured an explicit reservation in our Windows DHCP server at `10.100.4.240`, safely outside the dynamic client allocation pool.
+
+With the tickets resolved and the queues subsiding to their normal rhythm, Jules opened a packet capture file on her secondary monitor. The trace displayed an HTTP exchange originating from Frank's workstation and terminating at a cloud logistics portal in Seattle at `198.51.100.44`.
+
+"Let us review how that packet traversed the network, Ethan," Jules said, turning her chair toward me. "Frank's browser wanted to fetch a web page from `198.51.100.44`. When Frank's network adapter assembled the Ethernet frame on the wire, whose MAC address did it place in the destination field?"
+
+"Frank's computer applied its subnet mask to the target IP address first," I answered, following the logic step by step. "The bitwise comparison proved that `198.51.100.44` was on a remote network. Because the target was remote, the workstation looked up the Layer 2 address of its local default gateway in its ARP cache."
+
+"Exactly," Jules said, clicking on the detailed frame decode in Wireshark. "The destination IP address remained `198.51.100.44` throughout the entire journey across the internet. The time-to-live counter decremented at each hop, but the IP header stayed intact. The Layer 2 Ethernet frame was addressed directly to the gateway's router interface MAC at `10.100.4.1`. When the router received the frame, it stripped the Layer 2 header, evaluated its routing table, generated a brand new Layer 2 frame with its own source MAC, and forwarded the packet along the next hop."
+
+She gestured toward the packet trace on her screen with the tip of her pen.
+
+"The default gateway does not care what application you run, or what operating system you boot. It does not care how urgent your ticket feels. It only cares whether you addressed the Layer 2 frame to its physical MAC address. And it cares whether its routing table contains a valid route to forward your Layer 3 packet toward its destination."
+
+I nodded slowly, watching the encapsulation layers light up under her cursor. I opened my technical journal and recorded the lesson alongside my earlier subnet sketches.
+
+Outside our fourth-floor window, the low cloud deck began to lift over the Willamette. Pale patches of afternoon sky appeared above the river. Jared picked up his empty tea mug and headed toward the server room to audit switch configurations. Jules reached for her helmet, unhooking it from the monitor arm as the afternoon shift logged into the queue. I saved my incident notes into the ticketing system and closed my terminal sessions, standing on solid ground.

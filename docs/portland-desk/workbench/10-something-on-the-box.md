@@ -1,27 +1,34 @@
 # Portland Desk Lab: Host Malware Triage, Persistence Mechanisms, & EDR Analysis
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `secplus-malware-helpdesk` — *Something on the Box*  
-> **Environment:** Level 1 Service Desk Terminal & Endpoint Detection (EDR) Console  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
-> **Live Artifacts Directory:** [`artifacts/`](../artifacts/)
+> **The Situation:** Level 1 Service Desk Terminal • Endpoint Detection (EDR) Console  
+> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)  
+> **The Objective:** Investigate host malware infections, calculate cryptographic file hashes, decode Base64 living-off-the-land PowerShell commands, and isolate persistence mechanisms.  
+> **Estimated Time:** 45–55 minutes • Endpoint Security & Malware Persistence  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Role** | Tier 1 Service Desk Specialist / Junior Incident Response Technician |
-| **Target Certification** | CompTIA Security+ (SY0-701) |
-| **Primary Domains** | **Domain 2.0 Threats, Vulnerabilities, and Mitigations**<br>• *2.1 Compare and contrast common threat types (Malware: trojans, ransomware, spyware, rootkits, worms, keyloggers, logic bombs, cryptojackers)*<br>**Domain 4.0 Operations and Incident Response**<br>• *4.1 Given a scenario, apply common security techniques to computing resources (Host forensics, Event ID 7045 service creation, scheduled tasks, registry run keys, quarantine, isolation)* |
-| **Prerequisites** | Understanding of Windows operating system architecture, process trees, basic command line / PowerShell scripting (`Get-FileHash`, `Get-WinEvent`), and client-server network concepts. |
-| **Estimated Completion** | 35–45 minutes |
-| **Core Deliverables** | 1. Host Persistence Mechanisms & LOLBin Triage Matrix<br>2. Micro-Drill 1: Deciphering Encoded PowerShell Payloads (Base64 & Event ID 4104)<br>3. Micro-Drill 2: Sysinternals Autoruns & Registry Run Key Inspection<br>4. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>5. Performance Deliverable: Tier 1 Host Infection Isolation & Containment Ticket Note & Escalation |
+* **Aligned Certification:** CompTIA Security+ (SY0-701)
+* **Exam Domains:** Domain 2.0 (Malware Types & Mitigations) & Domain 4.0 (Host Forensics, Services Event ID 7045, Tasks 4698)
+* **Core Competencies & Deliverables:** Host Persistence & LOLBin Triage Matrix • Encoded PowerShell Payload Decoding Drill • Sysinternals Autoruns & Registry Key Drill • Call Your Shot 5-Case Gate • Host Infection Containment & Escalation Note
+
+</details>
+
 
 ---
 
 ## 1. The Situation & Ground Truth
+
+```callout-panel
+title: "FIGURE 10.1: PROCESS TREE & PERSISTENCE MECHANISM"
+badge: "Malware Analysis"
+caption: "Technical UI diagram: Sysinternals Process Explorer view. Legitimate svchost processes run under services.exe, while counterfeit svch0st runs out of AppData with an active TCP port 4444 socket."
+prompt: "Clean technical illustration of a computer monitor displaying a system process management tree under bright laboratory lighting. Process rows are neatly organized with one highlighted entry showing an anomalous socket connection. Clean line art, no text, no words. 16:9 ratio."
+```
+
 
 ### The Situation
 It is 08:45 on a gray Thursday morning in East Portland. Outside, rain needles the double-paned windows facing the Central Eastside Industrial District, and the desk floor hums with the electric drone of fluorescent lights and server rack blowers. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet clipped to her dual-monitor arm, steam curling off her dark roast coffee.
@@ -47,6 +54,7 @@ Jules spins her ceramic mug and fixes her eyes on Ethan:
 3. **Killing the Process Does Not Kill the Persistence:** Terminating an active executable in Task Manager or via `Stop-Process` clears the memory buffer, but leaves host persistence intact. If an adversary installed a Registry Run Key (`HKCU\...\Run`), a malicious Windows Service (Event ID 7045), a Scheduled Task (Event ID 4698), or a Startup folder shortcut, the malware will resurrect upon the next reboot or user logon.
 4. **Cryptographic Hashes Are the Definitive File Identity:** File names, extensions, and icons are cosmetic illusions (e.g., `SOW_final.pdf.exe`). Always compute the SHA-256 cryptographic digest via `Get-FileHash` and verify against global threat intelligence repositories (VirusTotal / internal IoC catalogs) before touching or whitelisting unknown binaries.
 5. **Never Pay the Notepad & Never Negotiate with Ransomware:** Paying a ransom subsidizes international criminal syndicates, marks the enterprise as a compliant target for future attacks, and provides zero cryptographic guarantee that files can be decrypted. The only professional response is immediate isolation, triage artifact preservation for SOC/forensics, and restoration from clean, immutable offline backups.
+
 
 ---
 
@@ -129,6 +137,7 @@ flowchart TD
   (`C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup`)
 * Any executable, script (`.vbs`, `.ps1`, `.bat`), or shortcut (`.lnk`) placed in these folders runs automatically upon interactive logon.
 
+
 ---
 
 ### Living-off-the-Land Binaries (LOLBins)
@@ -142,6 +151,7 @@ Adversaries routinely leverage legitimate, signed Windows utilities already pres
 | **`mshta.exe`** | Executing Microsoft HTML Applications (.hta) and legacy HTML-wrapped tools. | Direct execution of malicious inline VBScript/JScript or fetching remote `.hta` payload cradles without invoking the browser or PowerShell. | Command lines containing `mshta.exe vbscript:` or pointing to external HTTP/HTTPS endpoints; parent processes like Word, Excel, or PDF readers. |
 | **`bitsadmin.exe`** | Background Intelligent Transfer Service administration for asynchronous file downloads. | Asynchronous, resilient downloading of secondary malware payloads that survive reboots and pause during network loss. | `bitsadmin.exe /transfer` jobs pointing to non-internal IP addresses or domain names. |
 | **`rundll32.exe`** | Executing 32-bit and 64-bit dynamic link libraries (.dll). | Loading malicious DLL payloads directly into memory or invoking malicious exported functions without dropping an EXE. | `rundll32.exe` executing DLLs from `%TEMP%`, `%APPDATA%`, or calling ordinal numbers or unusual exported names. |
+
 
 ---
 
@@ -174,6 +184,7 @@ Get-FileHash -Path "C:\junk-scan\SOW_final.pdf.exe" -Algorithm SHA256 | Format-L
   - *Signature Detection:* Matches static, exact byte sequences or hashes against a catalog of previously cataloged threats. Rapid, but blind to new variants or modified binaries.
   - *Heuristic / Behavioral Detection:* Analyzes code patterns, API call sequences, memory injection attempts, and sandbox runtime behavior. Flags unknown threats performing suspicious actions (e.g., keyboard hooking, shadow copy deletion).
 
+
 ---
 
 ### Master Host Malware & Persistence Triage Matrix
@@ -188,6 +199,7 @@ Get-FileHash -Path "C:\junk-scan\SOW_final.pdf.exe" -Algorithm SHA256 | Format-L
 | **Fileless Malware / C2 Bot** | Living-off-the-land scripts, malicious macros spawning `powershell.exe -enc`, memory injection. | WMI event subscriptions, Registry Run keys storing encoded scripts, scheduled tasks executing LOLBins. | Event ID 4104 script block execution, periodic outbound TCP 443 beacons on fixed intervals (e.g., every 300s). | Isolate endpoint, terminate owning process ID, extract C2 IP/domain for perimeter firewall blocking, inspect WMI/Registry persistence. |
 | **Logic Bomb** | Malicious insider, rogue contractor script, dormant scheduled task with date/event trigger. | Scheduled Tasks (Event ID 4698), Windows Services with delayed start triggers. | Event ID 4698 with conditional triggers (e.g., account disabled check), unauthorized script files on staging servers. | Disable scheduled task immediately, export task XML for HR/Legal audit, preserve filesystem audit logs. |
 | **Cryptojacker** | Drive-by web download, unauthorized background daemon, Trojan bundle. | Windows Services (Event ID 7045), scheduled tasks, masquerading as legitimate Windows update binaries. | Continuous 100% CPU/GPU utilization, thermal fan alerts, outbound mining pool connections over non-standard ports. | Terminate mining process, eradicate service/task persistence, identify ingress vector, clean system temp directories. |
+
 
 ---
 
@@ -231,7 +243,7 @@ You open a PowerShell terminal on your management workstation to de-obfuscate th
 5. How does PowerShell Script Block Logging (**Event ID 4104**) overcome Base64 obfuscation?
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
 1. **PowerShell Decoding Command:**
@@ -251,6 +263,7 @@ You open a PowerShell terminal on your management workstation to de-obfuscate th
 5. **Event ID 4104 Superiority:**  
    PowerShell Script Block Logging (Event ID 4104) hooks into the PowerShell engine itself at the execution layer. When PowerShell parses code to be executed—regardless of whether it arrived Base64-encoded, concatenated, or downloaded from the web—the engine reconstructs the raw abstract syntax tree (AST) in memory right before execution. Event ID 4104 logs this complete, de-obfuscated script block directly to the `Microsoft-Windows-PowerShell/Operational` log.
 </details>
+
 
 ---
 
@@ -301,7 +314,7 @@ Message:  A service was installed in the system.
 4. Outline the exact 4-step technical eradication sequence to permanently remove this persistence without rebooting into an infected state.
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
 1. **Dual Persistence Mechanisms:**
@@ -330,11 +343,69 @@ Message:  A service was installed in the system.
       Remove the staged executables and DLLs from `C:\Users\maya\AppData\Local\Temp\` and `C:\Users\maya\AppData\Local\CouponBar\`. Perform a full EDR anti-malware scan to ensure no additional dropped stages exist.
 </details>
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "POWERSHELL: HOST PROCESS & PERSISTENCE TRIAGE"
+shell: "powershell"
+prompt: "PS C:\Incident> "
+replay: true
+objectives:
+  - id: "obj-proc"
+    label: "Find high-CPU process running from temp directories"
+    trigger: "Get-Process | Where Path -like "*AppData*""
+  - id: "obj-tcp"
+    label: "Inspect outbound socket connections for rogue process"
+    trigger: "Get-NetTCPConnection -OwningProcess 4812"
+  - id: "obj-kill"
+    label: "Terminate malicious process and remove persistence key"
+    trigger: "Stop-Process -Id 4812 -Force"
+---
+Get-Process | Where Path -like "*AppData*": |
+  Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id ProcessName Path
+  -------  ------    -----      -----     ------     -- ----------- ----
+      842      45    98200     112400     412.18   4812 svch0st     C:\Users\Ken\AppData\Local\Temp\svch0st.exe
+  [CRITICAL] Rogue binary impersonating svchost running outside System32!
+
+Get-NetTCPConnection -OwningProcess 4812: |
+  LocalAddress    LocalPort RemoteAddress   RemotePort State       OwningProcess
+  ------------    --------- -------------   ---------- -----       -------------
+  192.168.10.74   49812     203.0.113.88    4444       ESTABLISHED 4812
+  Warning: Outbound TCP reverse shell established to remote C2 IP 203.0.113.88:4444.
+
+Stop-Process -Id 4812 -Force: |
+  Process 4812 (svch0st.exe) terminated.
+  Deleting registry key: HKCU\Software\Microsoft\Windows\CurrentVersion\Run\WindowsUpdateSync
+  Host isolated from network adapter.
+  [OK] Active malware beacon neutralized.
+
+```
+
+---
+
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 > **The Rule of the Desk:** Before typing a command, terminating a process, or replying to a ticket, commit your decision in your mind: name the threat category, state your containment action, and provide your technical justification.
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-10-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-10-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-10-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Ticket 1: Ken Vance (Sales / Warehouse) — `INC-2026-1181`
 *Request:* "Found an unlabeled USB stick in the shipping bay. Plugged it in to see who owns it, and my laptop fans immediately spun up to 100%. Antivirus quarantined `SOW_final.pdf.exe`. Can I just unplug the USB, empty my recycle bin, and keep working on my sales forecast?"
@@ -344,29 +415,31 @@ Message:  A service was installed in the system.
 * **Technical Step & Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **ISOLATE HOST IMMEDIATELY & AUDIT NETWORK SHARES**.
 * **Threat Classification & Vector:** **Trojan / Worm** delivered via **Removable Media (USB)**.
 * **Justification:** Even though the local AV quarantined the initial dropper file (`SOW_final.pdf.exe`), Ken's roaring fans indicate secondary payload execution. The process tree confirmed `powershell.exe` executing lateral enumeration commands (`net view /all`) and attempting to replicate to warehouse shares. Disconnect the Ethernet cable and disable Wi-Fi immediately. The USB drive must be confiscated and audited only on an isolated, non-domain analysis rig. The network shares must be audited for unauthorized file drops.
 </details>
 
+
 ---
 
 #### Ticket 2: Dana Rostova (Facilities Lead) — `INC-2026-1182`
-*Request:* "All work orders and vendor contracts on my desktop have the extension `.locked`. A Notepad opened titled `README_RESTORE.txt` demanding $2,000 in Bitcoin within 72 hours. It says if I join their online customer chat they will decrypt one file for free as proof. Can I test the chat to get our building HVAC blueprints back?"
+*Request:* "All work orders and vendor contracts on my desktop have the extension `.locked`. A Notepad opened titled `README_RESTORE.txt` demanding \$2,000 in Bitcoin within 72 hours. It says if I join their online customer chat they will decrypt one file for free as proof. Can I test the chat to get our building HVAC blueprints back?"
 
 * **Your Action:** [ Test Decrypt Chat / Negotiate / Isolate Host & Engage Backups ]
 * **Threat Classification & Vector:**
 * **Technical Step & Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **ISOLATE HOST & ENGAGE OFFLINE BACKUPS; DO NOT PAY OR CHAT**.
 * **Threat Classification & Vector:** **Ransomware / Crypto-Malware**.
 * **Justification:** Enterprise policy strictly prohibits communicating with extortionists or paying ransoms. Testing the chat confirms to the threat actor that the victim is engaged and responsive, inviting aggressive extortion tactics. Furthermore, uploading sensitive corporate files (HVAC blueprints) to an attacker web portal constitutes an unauthorized data exfiltration breach. Disconnect the host from the network immediately to prevent network-mapped SMB drives from being encrypted. Escalate to the SOC and initiate file restoration from immutable/offline backups.
 </details>
+
 
 ---
 
@@ -378,12 +451,13 @@ Message:  A service was installed in the system.
 * **Technical Step & Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **QUERY NETWORK TELEMETRY & ISOLATE HOST**.
 * **Threat Classification & Vector:** **Fileless Malware / Command-and-Control (C2) Bot**.
 * **Justification:** A green antivirus widget is completely blind to fileless memory execution and living-off-the-land scripts. Querying EDR and network telemetry reveals regular outbound TCP port 443 connections to external IP `185.22.112.14` occurring strictly every 300 seconds (5 minutes). This beacon cadence is indicative of a compromised host functioning as a bot waiting for C2 instructions. Isolate Nora's endpoint from the network, issue her a clean loaner laptop to complete payroll, and escalate the process tree to the SOC.
 </details>
+
 
 ---
 
@@ -395,12 +469,13 @@ Message:  A service was installed in the system.
 * **Technical Step & Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **DISABLE TASK, PRESERVE EVIDENCE, & ESCALATE TO HR / LEGAL**.
 * **Threat Classification & Vector:** **Logic Bomb** (Malicious Insider Threat).
 * **Justification:** Never execute an unknown or suspicious script to "see what it does." A logic bomb is designed to execute destructive payloads (such as wiping directories or dropping backdoors) when specific conditions are met. Immediately disable the scheduled task via `schtasks.exe /change /tn "StagingMaintenance" /disable` so it cannot trigger. Export the task definition XML and copy `cleanup.ps1` to a secure hash-verified forensic share. Notify Jules, the SOC, and Human Resources for formal incident handling.
 </details>
+
 
 ---
 
@@ -412,16 +487,31 @@ Message:  A service was installed in the system.
 * **Technical Step & Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **REIMAGE HOST FROM KNOWN-GOOD MEDIA; DO NOT RUN UNTRUSTED CLEANERS**.
 * **Threat Classification & Vector:** **Rootkit** (Kernel-Level Evasion).
 * **Justification:** Rootkits operate at Ring 0 (kernel space), allowing them to intercept system calls and lie directly to userland utilities like `dir`, `tasklist`, and Windows Explorer. If the operating system cannot be trusted to report its own filesystem, third-party userland cleaning utilities downloaded from the internet cannot be trusted to remediate it (and often carry secondary malware). The only valid remediation for a confirmed rootkit is gathering memory/disk forensics for the SOC, followed by wiping the drive and reimaging the workstation from bare-metal installation media.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-10-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-10-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-10-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Tier 1 Host Infection Isolation & Containment Ticket Note
 
@@ -487,6 +577,7 @@ Status:           CONTAINED / ESCALATED TO SOC
 ================================================================================
 ```
 
+
 ---
 
 #### Part B: High-Severity Ransomware Incident Escalation Note
@@ -537,6 +628,7 @@ Status:           ISOLATED / EMERGENCY SOC BRIDGE ENGAGED
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like (Shift Quality Checklist)
@@ -548,6 +640,126 @@ Status:           ISOLATED / EMERGENCY SOC BRIDGE ENGAGED
 | **In-Memory & LOLBin De-obfuscation** | Fluently decodes Base64 UTF-16LE PowerShell cradles; articulates the role of `IEX` and WebClient; explains how Event ID 4104 Script Block Logging captures de-obfuscated script code. | Decodes Base64 strings using automated tools, but struggles to explain UTF-16LE formatting or why file-based antivirus misses in-memory execution. | Fails to recognize LOLBin abuse; treats `powershell.exe` as benign because it is signed by Microsoft. |
 | **Containment Execution & Audit Documentation** | Strictly enforces the "Isolate First" principle. Rejects ransom negotiation unconditionally. Produces audit-grade Tier 1 ticket notes with precise hashes, event IDs, and IoCs. | Isolates systems after minor delay; documents basic incident details, but omits critical forensic hashes or specific event IDs. | Pokes at infected systems before network isolation; considers paying ransoms; writes vague, unhelpful ticket notes. |
 
+
 ---
 
 *Workbench complete. Proceed to test your knowledge against the interactive questions in `review.yaml` and review companion telemetry artifacts in [`artifacts/`](../artifacts/).*
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 10.2: PERSISTENCE HUNT & HOST CONTAINMENT"
+badge: "Shift Epilogue"
+caption: "Operations bullpen: At 05:45 PM, the terminal fans spin down to a whisper. On Ethan's dual monitor setup, Sysinternals Autoruns shows the malicious Run key stripped, and Ken's laptop sits isolated on the quarantine bench awaiting a bare-metal reimage."
+prompt: "Clean graphic novel cutaway panel of an IT support technician workbench in the late afternoon. An open laptop with its Ethernet cable unplugged sits on an anti-static mat next to a monitor displaying a process management console with clean status indicators. Ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
+```
+
+With Ken's laptop disconnected and the obfuscated PowerShell payload decoded, SOC pushed an enterprise rule blocking the C2 domain. We extracted the malicious scheduled task `CacheCleanup`, purged the persistence Run keys in Autoruns, and scheduled both endpoints for a clean bare-metal reimage. Dana's locked files were queued for an offline snapshot restore from the immutable backup vault.
+
+Across the bullpen, the rest of the shift brought the quieter, deeper variants of persistence.
+
+## Keyboards, roots, and the process that hides
+
+Afternoon was quieter and worse, which is a combination I am starting to recognize.
+
+Lila from HR noticed her password manager prompting more than usual. She had not typed those sites. She had typed a lot of other sites, which is the point. Task Manager showed a helper named like a font updater. The process list lied poorly if you looked twice.
+
+```console
+caption: LILA-HR · tasklist
+C:\Users\lila> tasklist /v | findstr /i "font helper chrome"
+chrome.exe           4412  Console  1    210,332 K  Running
+FontUpdateHelper.exe 5088  Console  1     14,108 K  Running
+```
+
+"That is a [[keylogger|keylogger]]," I said after EDR flagged keystroke hooks. "Spyware family. Steal what you type. We rotate credentials from a clean path — not from that laptop — and we rebuild, not clean until it feels better. If I sit here deleting helpers until Task Manager looks friendly, I have taught the next helper how long we are willing to bargain."
+
+She did not love the loaner. She used it. She asked whether her passwords from the morning were still good. I said we would rotate the ones that had been typed while the helper was running, which was most of them, and that she should not rotate them from the infected box. She made a face I deserved.
+
+While Lila was on the loaner, Dev from engineering pinged that his box looked clean in Explorer but EDR said a kernel driver was unsigned and hooking disk calls. Explorer is a terrible witness. It reports what it is allowed to see.
+
+"[[rootkit|Rootkit]]," Jules said, without coming over, which meant she had already read the alert. "Hides under the tools you trust. Desk does not hunt that with a free utility from a blog. Image the disk if SOC asks, then reimage. If you cannot trust `dir`, you do not negotiate with the filesystem."
+
+Dev exhaled. "Reimage is the product." He would be down until evening. He said so twice, once to me and once to the sprint channel, where it landed less well.
+
+## Fileless, land tools, and the bot that phones home
+
+Nora in finance forwarded a screenshot: a PowerShell window flash, then nothing. No new file on the desktop. Her antivirus was green. Her EDR was not. Green AV is a mood. EDR orange is a verb.
+
+"[[fileless|Fileless malware]]," I said. "Or at least file-light. [[living_off_the_land|Living off the land]] — abusing PowerShell and friends so it looks like admin work. Signature scanners that only chase new EXEs arrive late. Behavior is the clue, and the clue here is a window that had no business opening itself."
+
+SOC had already marked the parent process and the beacon URL. Outbound HTTPS to a freshly registered domain every five minutes.
+
+```console
+caption: NORA-FIN · netstat (SOC paste)
+PS C:\> Get-NetTCPConnection -RemotePort 443 | ? State -eq Established
+LocalAddress   RemoteAddress        RemotePort  OwningProcess
+10.12.8.41     185.22.xx.14         443         6412   powershell.exe
+
+# every ~300s since 11:04 — same host, same interval
+```
+
+Textbook [[command_and_control|command and control (C2)]]. Nora's PC was not a masterpiece APT story. It was a [[bot|bot]] waiting for instructions, one more node that could join a [[botnet|botnet]] if nobody pulled the cord. I said that more slowly than I needed to, because "bot" still sounds like a cartoon until you watch it keep a schedule.
+
+We pulled Nora off Wi-Fi and wired both. She worked from a clean kiosk on mail-only for the hour. She did not love it. She asked whether she could "just finish the one spreadsheet." I said the spreadsheet could live on the kiosk or it could live on a machine that was still phoning home, and those were different spreadsheets.
+
+## Logic bombs, RATs, backdoors, and the miner in the closet
+
+Late tickets arrived in a pile that would have been funny if any of them had been theoretical.
+
+Jordan from ops admitted a departing contractor had once joked about a script that "deletes the staging share if my account ever goes disabled." Nobody had filed it, because it had been a joke in a channel that jokes. Jordan found a scheduled task with a date trigger and a spiteful comment. The comment was the least professional part, which is saying something.
+
+```console
+caption: staging-host · schtasks
+PS C:\> schtasks /query /tn "StagingMaintenance" /v /fo LIST
+TaskName:        StagingMaintenance
+Last Run Time:   Never
+Next Run Time:   2026-09-22 02:00:00
+Trigger:         At logon of contractor-id — if account disabled, run
+Comment:         don't be a stranger
+Task To Run:     powershell.exe -File C:\stage\cleanup.ps1
+```
+
+We disabled the task, preserved it for HR and legal, and I finally got to say [[logic_bomb|logic bomb]] out loud. Condition plus payload. Malice on a timer. Jules told Jordan to stop narrating the joke in Slack and start attaching the export.
+
+Rita in marketing somehow had a remote support tool she did not remember installing. It listened. It waited. EDR called it a [[rat|remote access Trojan]] — a trojan whose payload is interactive control. Beside it, a service that should not exist smelled like a [[backdoor|backdoor]] planted for later. Same ticket family: isolate, do not just uninstall and hope, rebuild from known-good. Rita asked if she could keep the tool "because sometimes vendors need it." I said vendors can open a ticket like everyone else, and that a listener she did not install is not a vendor relationship.
+
+The warehouse closet PC that drives a label printer was burning CPU at 100 percent. No ransomware note. No ads. Just heat, and a fan that had opinions about remaining employed. SOC named it [[cryptojacking|cryptojacking]]: mining for someone else on our electricity.
+
+```meter
+caption: WH-LABEL-01 · CPU
+label: CPU
+value: 100
+note: No user at the console. Process name looks like a Windows update. It is not. Miner talking to a broker.
+```
+
+We isolated anyway. Miners talk to brokers. Brokers are C2 with a timesheet. The spare printer from Dana's morning inherited a second job and made a sound I will remember.
+
+## Persistence, privileges, and the commute across the floor
+
+The end-of-day bridge call was short, which I have learned is a compliment when SOC is on it.
+
+"What we saw today starts as one host and tries to become a floor," the analyst said. "Watch for [[persistence|persistence]] — Run keys, services, tasks that survive reboot. Watch for [[privilege_escalation|privilege escalation]] — suddenly the malware is SYSTEM. Watch for [[lateral_movement|lateral movement]] — same hash on the next PC, same share writes, same stolen creds. Your IoCs do not need to be poetry."
+
+| IoC we actually wrote down | Why it still matters tomorrow |
+| --- | --- |
+| Hosts: KEN-SALES-14, WH-PACK-02, MAYA-W11 | Pattern, not a one-off |
+| [[hash|SHA256]] on the USB dropper | Catalog already knew it; next USB might |
+| Domain `185.22.xx.14` on 443 / 5 min | Nora's beacon |
+| Task name `CacheCleanup` | Worm commute |
+| "isolated at 14:12" | Clock for the people who were not in the room |
+
+I updated the wiki blurb the desk actually reads: portal software only; USB is guilty until scanned; weird share activity means isolate first; ransomware means isolate and do not pay; restore from backups attackers cannot touch; green AV is not a verdict; EDR orange is a verb; and when something on the box is lying — quarantine the file, isolate the host, open the path to the SOC.
+
+At 5:35 I closed what I could. Maya's toolbars were gone and her merger was still a fight. Sam's USB was contained. Ken had unplugged a worm commute and was still owed a file copy. Dana had not paid and was still on the slow printer. Lila was on a loaner rotating passwords she did not want to rotate. Dev was reimaging. Nora's beacon was starved. Jordan's timer was defused. Rita's RAT was escalated. The closet miner was cooling down, and the spare printer was doing two jobs badly.
+
+Jules clipped her bike lights on. "Tomorrow someone will ask if paying just this once is faster."
+
+I already had the line. I went out into the rain.
+
+Jules shut her laptop and stretched. "Tomorrow someone will bring a branded flash drive from a conference and swear it is just drivers."
+
+"I will put it on the junk scan box," I said.
+
+"Good," Jules said. "That box is lonely." I locked the drawer and went out to catch the MAX.

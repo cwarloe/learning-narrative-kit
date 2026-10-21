@@ -3,7 +3,7 @@
 plan_id: tamarack-mis-companion
 brief: briefs/tamarack-mis-companion.brief.yaml
 approved: true
-generated: '2026-10-12'
+generated: '2026-10-20'
 story:
   premise: 'Dana Okafor''s first year as Tamarack''s business systems analyst: eleven stores, a DC and
     a propane division running on systems nobody chose on purpose.'
@@ -407,8 +407,10 @@ chapters:
     decision: Davenport
     cost: Walt's friend Jim Sorensen is told to wait a year
     carries_forward: Davenport (Excel 8–10)
-  notes: ''
+  notes: Revised 2026-10-20 with the rule-8 dialogue pattern (misconception voiced and corrected; why/how
+    questions at the chapter's hinges).
   risks: []
+  candidate: workshop/tamarack-mis-companion/candidates/mis-08-decisions
 - id: ch09
   group: mis-09-ai
   unit_id: mis-09-ai
@@ -453,8 +455,10 @@ chapters:
     decision: pilot it with human override
     cost: correct overrides are logged as errors
     carries_forward: Counter Assistant lives in its own cloud (ch10 multicloud)
-  notes: ''
+  notes: Revised 2026-10-20 with the rule-8 dialogue pattern (misconception voiced and corrected; why/how
+    questions at the chapter's hinges).
   risks: []
+  candidate: workshop/tamarack-mis-companion/candidates/mis-09-ai
 - id: ch10
   group: mis-10-emerging
   unit_id: mis-10-emerging
@@ -972,6 +976,7 @@ terms:
     - ch04
     - ch05
     - ch07
+    - ch08
     - ch10
   control_unit:
     title: control unit

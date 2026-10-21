@@ -87,7 +87,7 @@ flowchart TD
 #### The Scenario
 Jared Vance from Network Operations filed ticket **`INC-2026-1041`**. His legacy configuration script failed against switch `10.0.4.15` in Building C because port 23 was refused. He claims: *"I've used this script for ten years. Telnet is fine—it's inside our building on the wired management VLAN. Just open 23 for ten minutes so I can fix the trunk VLAN."*
 
-Before replying, you pull an actual packet capture ([`artifacts/terminal_dumps/netstat_ano.txt`](artifacts/terminal_dumps/netstat_ano.txt)) taken from a span port on that management segment during Jared's previous run:
+Before replying, you pull an actual packet capture ([`jared-telnet-capture.pcap`](../../portland-desk/artifacts/jared-telnet-capture.pcap)) taken from a span port on that management segment during Jared's previous run. The table below shows frames 101 to 137 of it, filtered to port 23. New to Wireshark? Watch the [two-minute primer](../../portland-desk/assets/video/wireshark-find-the-conversation.mp4) first. It uses a different conversation from the same file, so it won't give away your answers.
 
 ```console
 caption: Wireshark / tcpdump Stream Reassembly · Filter: tcp.port == 23

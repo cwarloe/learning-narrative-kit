@@ -1,27 +1,34 @@
 # Portland Desk Lab: The Beginner's Mental Model of a Computer
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `a-plus-foundations-prologue` — *The Four Rubber Bands*  
-> **Environment:** East Portland Kitchen Table & First-Contact Diagnostic Console  
-> **Author:** Ethan Brooks (Pre-Helpdesk, Gresham Warehouse Staging Associate)  
-> **Target Certification:** CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations  
+> **The Situation:** Ethan's kitchen table in East Portland • 11:30 PM with $83 in checking  
+> **Your Role:** Aspiring Technician (Pre-Helpdesk, Gresham Warehouse Associate)  
+> **The Objective:** Build the four physical computer building blocks (CPU, RAM, Storage, Network) and study triage reflexes so you stop guessing and start diagnosing.  
+> **Estimated Time:** 45–60 minutes • Self-paced • Zero prerequisites  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Target Role** | Entry-Level Tier 1 Help Desk Technician / Desktop Support Specialist |
-| **Target Certification** | CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) |
-| **Primary Exam Domains** | **CompTIA A+ Core 1 (220-1101):**<br>• *Domain 2.0: Networking (TCP/IP, MAC, IP, Ports, Cables)*<br>• *Domain 3.0: Hardware and Network Troubleshooting (CPU, RAM, Storage, Motherboard, POST)*<br>**CompTIA A+ Core 2 (220-1102):**<br>• *Domain 1.0: Operating Systems (Command Line, Boot Processes, File Systems)*<br>• *Domain 3.0: Software Troubleshooting (OS Crashes, Services, Malware Isolation)* |
-| **Prerequisites** | None. Designed for complete beginners (zero-to-one). Basic familiarity with home computers and consumer internet routers. |
-| **Estimated Completion** | 45–60 minutes |
-| **Core Deliverables** | 1. The Four Invariants Computing Matrix & Architecture Map<br>2. The Identity Triad: MAC (L2), IP (L3), and Port (L4) Encapsulation Flow<br>3. Micro-Drill 1: Volatile vs. Non-Volatile Artifact Isolation (RAM vs. Disk)<br>4. Micro-Drill 2: Layer 2 vs. Layer 3 Identity & Default Gateway Decision Gate<br>5. Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate<br>6. Performance Deliverable: Beginner's Study Filter & First-Contact Diagnostic Checklist |
+* **Aligned Certification:** CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations
+* **Exam Domains:** Core 1 Domain 2.0 (Networking) & Domain 3.0 (Hardware Triage); Core 2 Domain 1.0 (OS & CLI) & Domain 3.0 (Troubleshooting)
+* **Core Competencies & Deliverables:** Computer Core Systems Matrix • Identity Triad Flow • RAM vs Disk Isolation Drill • Local vs Gateway Triage Drill • Call Your Shot 5-Case Gate • First-Contact Diagnostic Checklist
+
+</details>
+
 
 ---
 
 ## 1. The Situation & Ground Truth
+
+```callout-panel
+title: "FIGURE 0.1: THE MOTHERBOARD INSPECTION"
+badge: "Hardware Anatomy"
+caption: "Macro technical cutaway: A desktop motherboard on an ESD workbench mat. In the foreground, three cylindrical electrolytic capacitors: two are prominently swollen and domed with dried brown electrolyte residue leaking from the vent seams, beside one healthy flat capacitor. In the background, a dual-channel memory slot holding a green RAM stick with one broken retention latch."
+prompt: "Clean technical cutaway illustration in Pacific Northwest instructional manual style, crisp uniform ink linework, bright even inspection lighting, clean ESD mat background, no heavy dark shadows. Macro technical inspection shot of a desktop PC motherboard interior: in sharp foreground focus are three cylindrical electrolytic capacitors on the green PCB. Two capacitors have prominently domed, bulging silver tops with cracked score lines and dried crusty brown electrolyte residue leaking from the seam. The third capacitor is completely flat and healthy for visual contrast. Directly behind them is a dual-channel memory slot holding a green RAM module with one white plastic retention latch broken off at an angle. Crisp fine ink linework, true component colors, clean unlabeled surfaces, no text, no letters, no words. 4:3 ratio."
+```
+
 
 ### The $500 Voucher Anxiety
 To an eighteen- or nineteen-year-old working an hourly retail, staging, or warehouse job, the CompTIA A+ certification is not an abstract professional milestone; it is an immense financial gamble. 
@@ -62,13 +69,14 @@ The certification voucher buys an HR passport. But once you walk through the cor
 2. **State Is Either Energized or Written:** If data lives in dynamic RAM, cutting electrical power purges it in milliseconds. If data lives on non-volatile NAND flash or magnetic platters, it survives across power cycles. Always distinguish between in-memory execution state and on-disk persistent state.
 3. **Layer 2 Stays on the Wire; Layer 3 Crosses the World:** MAC addresses belong to the local Ethernet switch segment. A router never forwards a local MAC address across a wide area network. IP addresses provide the routable logical envelope that navigates across networks.
 4. **Ports Are Application Doorways, Not Physical Holes:** A network port number (such as Port 80 for HTTP or Port 443 for HTTPS) is a 16-bit software identifier inside the operating system network stack. It tells the operating system which background program receives the incoming packet.
-5. **Never Touch Without a Prediction (CBYT):** The amateur technician clicks random configuration buttons and reboots blindly, destroying diagnostic evidence. The professional technician forms a falsifiable hypothesis before touching a single wire: *"If the default gateway is down, `ping 192.168.1.1` will fail with Request Timed Out."*
+5. **Never Touch Without a Prediction (CBYT):** The amateur technician clicks random configuration buttons and reboots blindly, destroying diagnostic evidence. The professional technician forms a testable prediction before touching a single wire: *"If the default gateway is down, `ping 192.168.1.1` will fail with Request Timed Out."*
+
 
 ---
 
 ## 2. Technical Reference & Triage Matrix
 
-### 2.1 The 4 Invariants of Computing
+### 2.1 The 4 Core Building Blocks of a Computer
 Across microcontrollers, smartphones, enterprise servers, and industrial sorting terminals, all von Neumann digital computers consist of four immutable subsystems:
 
 ```mermaid
@@ -101,6 +109,7 @@ flowchart TD
 | **2. Memory (RAM)** | Dynamic Random Access Memory (DRAM) chips using microscopic transistor-capacitor pairs. | **Volatile** (Requires electrical recharge thousands of times per second; data lost on power loss). | Holds the running operating system kernel, active software execution threads, and open application working sets. | Blue Screen of Death (BSOD) with `MEMORY_MANAGEMENT`, random application crashes, POST memory beep codes (e.g., 3 long beeps). |
 | **3. Storage (Disk)** | NAND flash memory floating-gate/charge-trap cells (SSDs) or spinning magnetic platters (HDDs). | **Non-Volatile** (Retains electrical charges or magnetic polarity indefinitely without power). | Preserves persistent operating system binaries, system registry hives, installed applications, and user document files. | "Operating System Not Found", SMART storage drive read/write timeouts, clicking drive sounds, file corruption errors. |
 | **4. Communication (NIC)** | Integrated Ethernet controller chip, PCIe daughterboard, or Wi-Fi radio baseband transceiver. | **Mixed** (Firmware MAC is persistent; packet buffers in hardware FIFO are volatile). | Bridges the internal parallel system bus to serial physical network media (copper wire, fiber optics, radio frequencies). | "No Internet Access", link lights completely dark on RJ-45 port, self-assigned APIPA address (`169.254.x.x`), packet loss. |
+
 
 ---
 
@@ -147,6 +156,7 @@ When a user on Host A (`192.168.1.50`) requests a web page from Web Server B (`1
 > - Host A encapsulates the IP packet inside an Ethernet frame addressed to its **Default Gateway's MAC**.
 > - The router strips the incoming Ethernet frame, inspects the destination IP, consults its routing table, and encapsulates the packet into a brand-new Ethernet frame with its own outgoing MAC as the source and the next-hop router's MAC as the destination.
 
+
 ---
 
 ### 2.3 The First Command Line: Live System Telemetry
@@ -162,6 +172,7 @@ C:\> whoami
 PORTLAND-CORP\ebrooks
 
 C:\> whoami /priv
+
 PRIVILEGES INFORMATION
 ----------------------
 Privilege Name                Description                          State
@@ -214,9 +225,10 @@ Ethernet adapter Local Area Connection:
   4. `ping <Remote_IP>` (e.g., `8.8.8.8`): Verifies wide area routing and internet transit.
   5. `ping <Domain_Name>` (e.g., `google.com`): Verifies Domain Name System (DNS) name resolution.
 
+
 ---
 
-### 2.4 The Triage Heuristic: Syllabus Trivia vs. Diagnostic Reality
+### 2.4 The Technician's Filter: Exam Trivia vs. Diagnostic Reality
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -232,8 +244,8 @@ Ethernet adapter Local Area Connection:
 │         │                      │   USB 3.0 (3m) limits│ escalate to     │
 │         │                      │ • DVI-D vs DVI-I pins│ vendor support. │
 ├─────────┼──────────────────────┼──────────────────────┼─────────────────┤
-│ GREEN   │ Machine Anatomy      │ • DDR4 288-pin vs    │ CRITICAL.       │
-│         │ Invariants           │   DDR3 240-pin counts│ Distinguishes   │
+│ GREEN   │ Core Machine         │ • DDR4 288-pin vs    │ CRITICAL.       │
+│         │ Anatomy (Hardware)   │   DDR3 240-pin counts│ Distinguishes   │
 │         │ (Compute, Memory,    │ • CPU socket numbers │ RAM lockup from │
 │         │ Storage, Bus)        │ • Form factors (ATX) │ storage failure │
 │         │                      │ • POST beep codes    │ and POST abort. │
@@ -250,6 +262,7 @@ Ethernet adapter Local Area Connection:
 │         │                      │                      │ and data loss.  │
 └─────────┴──────────────────────┴──────────────────────┴─────────────────┘
 ```
+
 
 ---
 
@@ -291,6 +304,7 @@ Ethernet adapter Local Area Connection:
 - **Analysis 3 (Reboot Behavior):** The moment power is restored and Windows boots, the operating system reads its non-volatile registry hives, executes the persistence keys, reloads the malicious executable from disk into RAM, and re-infects the active memory space.
 - **Correct Procedure:** Isolate the system physically from the network (unplug Ethernet, disable Wi-Fi) to stop C2 communication, but keep the machine powered on if live memory capture is required by security incident response protocols.
 </details>
+
 
 ---
 
@@ -346,23 +360,92 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
   - **Diagnostic Implication:** If a workstation can ping its coworkers on the same switch (`192.168.10.x`) but cannot open websites on the internet, the Layer 2 local switch is operational, but the Layer 3 Default Gateway configuration is broken or unreachable.
 </details>
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "CONSOLE: FIRST CONTACT DIAGNOSTIC TERMINAL"
+shell: "cmd"
+prompt: "C:\> "
+replay: true
+objectives:
+  - id: "obj-whoami"
+    label: "Identify current user context"
+    trigger: "whoami"
+  - id: "obj-host"
+    label: "Verify machine hostname"
+    trigger: "hostname"
+  - id: "obj-loopback"
+    label: "Test internal TCP/IP network stack"
+    trigger: "ping 127.0.0.1"
+  - id: "obj-ip"
+    label: "Inspect active network adapter settings"
+    trigger: "ipconfig"
+---
+whoami: |
+  desktop-workbench\ethan
+
+hostname: |
+  DESKTOP-STAGE01
+
+ping 127.0.0.1: |
+  Pinging 127.0.0.1 with 32 bytes of data:
+  Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
+  Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
+  
+  Ping statistics for 127.0.0.1:
+      Packets: Sent = 2, Received = 2, Lost = 0 (0% loss)
+  [OK] Internal TCP/IP loopback stack is healthy.
+
+ipconfig: |
+  Windows IP Configuration
+  
+  Ethernet adapter Local Area Connection:
+     Connection-specific DNS Suffix  . : 
+     Link-local IPv6 Address . . . . . : fe80::d50b:8134:2e9b:4a12%12
+     IPv4 Address. . . . . . . . . . . : 192.168.1.105
+     Subnet Mask . . . . . . . . . . . : 255.255.255.0
+     Default Gateway . . . . . . . . . : 192.168.1.1
+
+```
+
+---
+
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 *Strict Protocol:* Do not expand the verification box until you have written down your predicted failure layer, expected command output, and root cause hypothesis.
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-00-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-00-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-00-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Case 1: The Dead Screen After Moving Desks
 - **Symptom:** A desktop workstation was unplugged and moved across an office floor. When connected to power and turned on, the chassis fans spin loudly, the power LED turns on, but the monitor displays "No Signal" and the motherboard emits **one long beep followed by two short beeps**.
-- **Your Task:** Identify which of the 4 invariants has failed, determine the layer of failure, and specify the physical action required before replacing any components.
+- **Your Task:** Identify which of the 4 core components has failed, determine the layer of failure, and specify the physical action required before replacing any components.
 
 <details>
 <summary>Prediction & Verification (Click to Expand)</summary>
 
-- **Invariant / Layer:** Invariant 2/3 (Memory or Video Expansion Bus / Layer 1 Physical).
+- **Failed Component / Layer:** Component 2/3 (Memory or Video Expansion Bus / Layer 1 Physical).
 - **Diagnostic Cause:** Motherboard firmware POST beep codes indicate hardware failure during early bootstrap. One long and two short beeps on common AMI/Award BIOS configurations indicates a display adapter (GPU) or memory initialization failure. During the physical desk move, mechanical shock caused an unlatched PCIe graphics card or memory DIMM module to shift slightly in its socket.
 - **Immediate Action:** Disconnect AC power, hold the power button for 20 seconds to drain flea power, open the chassis side panel, and firmly reseat the graphics card and RAM modules into their motherboard retention slots until the plastic latches click shut.
 </details>
+
 
 ---
 
@@ -373,16 +456,17 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
   Subnet Mask  . . . . . . . . . . . : 255.255.0.0
   Default Gateway  . . . . . . . . . : 
   ```
-- **Your Task:** Explain why this specific IP address exists, identify which network service has failed, and formulate a falsifiable diagnostic test.
+- **Your Task:** Explain why this specific IP address exists, identify which network service has failed, and formulate a testable diagnostic test.
 
 <details>
 <summary>Prediction & Verification (Click to Expand)</summary>
 
-- **Invariant / Layer:** Invariant 4 (Network Communication / Layer 3 Logical Addressing).
+- **Failed Component / Layer:** Component 4 (Network Communication / Layer 3 Logical Addressing).
 - **Diagnostic Cause:** The address `169.254.x.x` with subnet mask `255.255.0.0` is an Automatic Private IP Addressing (APIPA) address assigned automatically by Windows when an adapter is configured for DHCP but fails to receive a response to its DHCP Discover broadcast requests.
 - **Root Cause Hypothesis:** Following the power outage, the local workstation booted up faster than the central DHCP server or network router, causing DHCP requests to time out.
-- **Falsifiable Test:** Execute `ipconfig /renew`. If the DHCP server is now online, the command will update the adapter with a valid corporate IP (e.g., `192.168.10.x`). If it times out again with "Unable to contact your DHCP server," verify the physical uplink to the switch or check if the DHCP server VM is halted.
+- **Test to Prove It:** Execute `ipconfig /renew`. If the DHCP server is now online, the command will update the adapter with a valid corporate IP (e.g., `192.168.10.x`). If it times out again with "Unable to contact your DHCP server," verify the physical uplink to the switch or check if the DHCP server VM is halted.
 </details>
+
 
 ---
 
@@ -393,11 +477,12 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
 <details>
 <summary>Prediction & Verification (Click to Expand)</summary>
 
-- **Invariant / Layer:** Invariant 4 (Communication / Layer 3 Routing).
+- **Failed Component / Layer:** Component 4 (Communication / Layer 3 Routing).
 - **Diagnostic Cause:** The workstation successfully executes Layer 2 ARP lookups and delivers frames to hosts on its local subnet (`192.168.1.0/24`). However, it cannot deliver packets outside its subnet.
 - **Root Cause:** The **Default Gateway** is either missing, configured with an incorrect IP address, or the gateway router's internal interface is offline.
 - **Verification:** Run `ipconfig`. Check the Default Gateway field. If it is blank or set incorrectly (e.g., `192.168.2.1` instead of `192.168.1.1`), correct the IP configuration. If correct, ping the default gateway (`ping 192.168.1.1`) to verify router responsiveness.
 </details>
+
 
 ---
 
@@ -408,11 +493,12 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
 <details>
 <summary>Prediction & Verification (Click to Expand)</summary>
 
-- **Invariant / Layer:** Invariant 1 (Compute / CPU Physical Thermals).
+- **Failed Component / Layer:** Component 1 (Compute / CPU Physical Thermals).
 - **Diagnostic Cause:** A computer that powers off abruptly under a consistent time interval without creating an OS BSOD crash dump is tripping a physical hardware thermal protection cutoff. The CPU has exceeded its maximum operational junction temperature ($T_{\text{junc}} \approx 95^\circ\text{C}$–$100^\circ\text{C}$), and the motherboard firmware automatically cuts power to prevent silicon degradation.
 - **Root Cause:** Failed CPU cooling fan, clogged heatsink cooling fins, or thermal paste that has dried out and cracked, eliminating heat transfer between the CPU heat spreader and copper heatsink.
 - **Immediate Action:** Boot into BIOS/UEFI setup to observe real-time hardware health telemetry (CPU temperature monitor). Inspect CPU fan rotation; clean dust from heatsink; reapply high-grade thermal compound.
 </details>
+
 
 ---
 
@@ -423,7 +509,7 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
 <details>
 <summary>Prediction & Verification (Click to Expand)</summary>
 
-- **Invariant / Layer:** Invariant 4 / Layer 4 (Transport / Socket Port Binding).
+- **Failed Component / Layer:** Component 4 / Layer 4 (Transport / Socket Port Binding).
 - **Diagnostic Cause:** Network sockets require a unique combination of Protocol (TCP/UDP), IP Address, and Port Number. Port 80 (standard HTTP) can only be bound by a single listening process per IP address. The error indicates another background service (such as World Wide Web Publishing Service / IIS or Skype) has already bound to Port 80 on all local interfaces (`0.0.0.0`).
 - **Command to Execute:**
   ```cmd
@@ -432,9 +518,24 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
   This command displays the listening socket and outputs the owning **Process Identifier (PID)** in the rightmost column. You can then cross-reference the PID in Task Manager or execute `tasklist /fi "PID eq <number>"` to identify and stop the conflicting service.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-00-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-00-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-00-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Part A: The Beginner's Study Filter (The Four Rubber Bands)
 When reviewing CompTIA A+ study objectives, use this classification template to filter syllabus noise from lasting diagnostic models:
@@ -446,6 +547,7 @@ When reviewing CompTIA A+ study objectives, use this classification template to 
 | **MAC Address vs Routable IP Address** | **YELLOW** | Trace packet encapsulation through switches and routers. | Essential: Solves 80% of office connectivity and gateway tickets. |
 | **Port Numbers (22 SSH, 80 HTTP, 443 HTTPS)** | **YELLOW** | Flashcard drill combined with `netstat -ano` verification. | Firewall rule analysis, service socket debugging, URL routing. |
 | **The 6-Step CompTIA Troubleshooting Model** | **BLUE** | Memorize formal terms for exam; practice CBYT in labs. | Prevents random guessing and unverified ticket closures. |
+
 
 ---
 
@@ -460,11 +562,11 @@ TICKET REF   : T1-INIT-2026-001             DATE/TIME : 2026-07-16 09:30 PDT
 TECHNICIAN   : Ethan Brooks                 STATUS    : UNDER INVESTIGATION
 USER NAME    : ____________________________ ASSET TAG : _______________________________
 
-1. INVARIANT & SUBSYSTEM ISOLATION (Which invariant is misbehaving?):
-   [ ] Invariant 1: COMPUTE (CPU / Thermal / Hardware freeze / Instant shutdown)
-   [ ] Invariant 2: VOLATILE MEMORY (RAM / BSOD / Application memory crash)
-   [ ] Invariant 3: NON-VOLATILE STORAGE (Disk / Boot failure / File corruption)
-   [ ] Invariant 4: COMMUNICATION (NIC / Network / Switch / Gateway / DNS)
+1. SUBSYSTEM ISOLATION (Which core component is failing?):
+   [ ] Component 1: COMPUTE (CPU / Thermal / Hardware freeze / Instant shutdown)
+   [ ] Component 2: MEMORY (RAM / BSOD / Application memory crash)
+   [ ] Component 3: STORAGE (Disk / Boot failure / File corruption)
+   [ ] Component 4: COMMUNICATION (NIC / Network / Switch / Gateway / DNS)
 
 2. LAYER TRIAGE & IDENTITY CHECK:
    [ ] Physical (Layer 1): Link lights lit on NIC? Power LEDs on? Cables seated?
@@ -481,7 +583,7 @@ USER NAME    : ____________________________ ASSET TAG : ________________________
 
 4. COMMIT BEFORE YOU TOUCH (CBYT) HYPOTHESIS:
    - Proposed Theory of Cause: _________________________________________________________
-   - Falsifiable Verification Test: ____________________________________________________
+   - Verification Test (How to prove it): ____________________________________________________
    - Predicted Test Result If True: ___________________________________________________
 
 5. VERIFICATION & DOCUMENTATION:
@@ -491,16 +593,17 @@ USER NAME    : ____________________________ ASSET TAG : ________________________
 ========================================================================================
 ```
 
+
 ---
 
-### Part C: Evaluation Rubric
+### Part C: Scoring & Passing Standards
 
-Use this objective rubric to evaluate entry-level diagnostic performance across four core competencies:
+Use this objective scoring guide to evaluate entry-level diagnostic performance across four core competencies:
 
 | Competency Area | Points | Criteria for Full Credit (Pass) | Criteria for Partial Credit | Criteria for Zero Credit (Fail) |
 | :--- | :---: | :--- | :--- | :--- |
-| **1. Invariant Identification** | **25** | Correctly distinguishes between volatile memory (RAM) and non-volatile persistence (storage); explains why rebooting purges memory state but preserves disk persistence. | Identifies RAM as memory but cannot articulate volatility implications during an active infection or crash. | Confuses RAM with disk storage capacity (e.g., "I need more RAM to save my photos"). |
+| **1. Component Identification** | **25** | Correctly distinguishes between volatile memory (RAM) and non-volatile persistence (storage); explains why rebooting purges memory state but preserves disk persistence. | Identifies RAM as memory but cannot articulate volatility implications during an active infection or crash. | Confuses RAM with disk storage capacity (e.g., "I need more RAM to save my photos"). |
 | **2. Layer Isolation & Identity** | **25** | Accurately explains why MAC addresses are stripped at the default gateway while IP addresses persist; calculates whether an IP is local or remote using the subnet mask. | Understands MAC vs IP roles but fails to explain what happens to Layer 2 frames at a router boundary. | Believes MAC addresses route across the internet; unable to define default gateway purpose. |
 | **3. Command Telemetry Literacy** | **25** | Correctly interprets outputs from `whoami`, `hostname`, `ipconfig /all`, and `netstat`; identifies an APIPA address (`169.254.x.x`) as a DHCP failure. | Runs command-line tools but requires assistance interpreting subnet masks or process identifier (PID) outputs. | Relies solely on GUI menus; cannot interpret command-line network configuration outputs. |
-| **4. Diagnostic Discipline (CBYT)** | **25** | Formulates a clear, falsifiable hypothesis before altering any hardware or software setting; follows the structured 5-step ping ladder sequentially. | Troubleshoots methodically but occasionally reboots or alters configurations without stating a hypothesis. | Clicks random settings, reboots frantically, or replaces hardware components without testing. |
+| **4. Diagnostic Discipline (CBYT)** | **25** | Formulates a clear, testable prediction before altering any hardware or software setting; follows the structured 5-step ping ladder sequentially. | Troubleshoots methodically but occasionally reboots or alters configurations without stating a hypothesis. | Clicks random settings, reboots frantically, or replaces hardware components without testing. |
 | **TOTAL** | **100** | **Passing Score: 85 Points or higher** | | |

@@ -591,7 +591,7 @@ def run(cmd: list[str]) -> tuple[int, str]:
 
 
 def sentences(text: str) -> list[str]:
-    return [s.strip() for s in re.split(r"(?<=[.!?\"”])\s+(?=[A-Z\"“\[])", text) if s.strip()]
+    return [s.strip() for s in re.split(r"(?<=[.!?\"”*])\s+(?=[A-Z\"“\[*_])", text) if s.strip()]
 
 
 def known_names(canon: Path | None, exclude_unit: str | None, manifest: Path | None) -> dict[str, str]:
@@ -672,12 +672,16 @@ def cmd_review(args) -> int:
     # 2. Heuristics
     out += ["## 2. Heuristic flags (need a person to look)", ""]
     echo, cluster, decision_marks, total_marks = [], [], 0, 0
-    for para in prose_paras:
+    has_talk = ['"' in p or "“" in p for p in prose_paras]
+    for i, para in enumerate(prose_paras):
         marks = list(MARK_RE.finditer(para))
         total_marks += len(marks)
         if len(marks) >= 4:
             cluster.append(cover_strip(para)[:110])
-        if marks and DECISION_CUES.search(cover_strip(para)) or (marks and '"' in para):
+        # A term named in narration with the exchange beside it counts (schema/README.md rule 8),
+        # so look one paragraph either side for dialogue, not only inside the term's own paragraph.
+        near_talk = any(has_talk[max(0, i - 1):i + 2])
+        if marks and (DECISION_CUES.search(cover_strip(para)) or near_talk):
             decision_marks += len(marks)
         for s in sentences(para):
             for m in MARK_RE.finditer(s):
@@ -711,7 +715,7 @@ def cmd_review(args) -> int:
             "Five or more is the tour-guide pattern (a booth, a term, the next booth)."]
     out += [f"- **Mark clusters:** {len(cluster)} paragraph(s) with 4+ marked terms (a list wearing prose)."]
     out += [f"  - {c}…" for c in cluster[:8]]
-    out += [f"- **Marks near decisions or dialogue:** {pct}% of marks are in paragraphs with dialogue or a decision word. "
+    out += [f"- **Marks near decisions or dialogue:** {pct}% of marks are in or next to a paragraph with dialogue, or in one with a decision word. "
             "Low numbers suggest terms in exposition rather than at the complication or pivot (schema/README.md → Beat structure)."]
     last = [p for p in prose_paras][-1:] if prose_paras else []
     if last:

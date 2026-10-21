@@ -1,27 +1,34 @@
 # Portland Desk Lab: Level 1 Protocol Triage & Diagnostic Analysis
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `secplus-ports-helpdesk` — *The Port That Is Open*  
-> **Environment:** Level 1 Service Desk Terminal & Diagnostic Queue  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
-> **Live Artifacts Directory:** [`artifacts/`](../artifacts/)
+> **The Situation:** Level 1 Service Desk Terminal • Operational Queue  
+> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)  
+> **The Objective:** Identify and replace unencrypted, cleartext legacy protocols (Telnet, HTTP, POP3, SMTP) with modern TLS encrypted standards across email, administration, and plant telemetry.  
+> **Estimated Time:** 40–50 minutes • Network Security & Protocol Hardening  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Role** | Tier 1 Service Desk Specialist / IT Support Technician |
-| **Target Certification** | CompTIA Security+ (SY0-701) |
-| **Primary Domains** | **Domain 1.0 General Security Concepts**<br>• *1.2 Compare and contrast types of security controls*<br>• *1.4 Compare and contrast cryptography concepts (in-transit encryption, TLS, key exchange)*<br>**Domain 2.0 Threats, Vulnerabilities, and Mitigations**<br>• *2.1 Compare and contrast common threat types (sniffing, cleartext harvesting, rogue APs, phishing)*<br>• *2.5 Given a scenario, implement secure network architecture concepts (port filtering, secure protocols, jump hosts, segmentation)* |
-| **Prerequisites** | Understanding of OSI Layer 4 transport protocols (TCP vs. UDP), IP addressing, and basic terminal commands (`ipconfig`, `netstat`, `nslookup`). |
-| **Estimated Completion** | 35–45 minutes |
-| **Core Deliverables** | 1. Cleartext vs. Encrypted Protocol Matrix & Triage Heuristic<br>2. Micro-Drill 1: Packet Sniffing & Credential Harvesting Analysis<br>3. Micro-Drill 2: Mobile Mail Client Diagnostic & Port Remediation<br>4. Micro-Drill 3: "Commit Before You Touch" 5-Ticket Prediction Gate<br>5. Performance Deliverable: Tier 1 Ticket Resolution and Security Escalation Note |
+* **Aligned Certification:** CompTIA Security+ (SY0-701)
+* **Exam Domains:** Domain 1.0 (Threats & Protocol Vulnerabilities) & Domain 3.0 (Security Architecture: Secure Transit Protocols)
+* **Core Competencies & Deliverables:** Cleartext vs Encrypted Protocol Matrix • Packet Capture Credential Extraction Drill • Mail Client Port & STARTTLS Drill • Call Your Shot 5-Case Gate • Standard Resolution & Security Escalation Note
+
+</details>
+
 
 ---
 
 ## 1. The Situation & Ground Truth
+
+```callout-panel
+title: "FIGURE 7.1: NETWORK PERIMETER & PORT SCAN VECTOR"
+badge: "Perimeter Architecture"
+caption: "Schematic layout: The corporate perimeter firewall. Cleartext Telnet (Port 23) and unencrypted HTTP (Port 80) bypass encrypted tunnels, exposing credentials on the wire."
+prompt: "Clean technical schematic of a corporate network perimeter under bright, even lighting. Flowchart lines connect external internet router to internal firewall and server racks with port numbers highlighted in green and red. Crisp technical line art, no text, no words. 16:9 ratio."
+```
+
 
 ### The Situation
 It is 08:30 on a rain-soaked Tuesday morning on the east side of Portland. You are three weeks into your role on the Portland service desk. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet slung over her monitor arm, sipping black coffee. On the edge of her screen is a faded yellow sticky note:
@@ -38,6 +45,7 @@ The morning queue has 14 incoming tickets. Users and department heads are demand
 2. **Never Open Management Ports to the Public Internet:** Raw management ports—RDP (3389), Telnet (23), SMB (445), SSH (22)—must never be reachable from the external WAN. Remote administrative access requires an encrypted tunnel (**VPN**) terminating at an internal concentrator, followed by access restricted to a hardened **Jump Host**.
 3. **Availability Never Excuses Cleartext in Transit:** When an appliance or remote facility (such as Leah Moreno's telemetry loggers in Portland plant operations) cannot establish a secure session natively, we do not downgrade the enterprise perimeter to cleartext. We encapsulate, proxy, or isolate on a dedicated staging network.
 4. **Client Submission $\neq$ Server Relay:** Mail clients must never send mail on port 25. Port 25 is unauthenticated server-to-server relay. End-user mail submission must use **Submission (Port 587 with STARTTLS)** or **SMTPS (Port 465 with implicit TLS)**.
+
 
 ---
 
@@ -60,9 +68,10 @@ The morning queue has 14 incoming tickets. Users and department heads are demand
 | **Remote Desktop** | — | **RDP** (TCP 3389) | TLS / Network Level Authentication (NLA) | **Never expose 3389 to internet.** RDP is a prime ransomware attack vector. Place strictly behind VPN concentrator and jump host. |
 | **Industrial / Plant Telemetry** | **Modbus/TCP** (TCP 502) / **DNP3** (TCP 20000) | **IPsec Encapsulated Tunnel** | IPsec ESP (Encapsulating Security Payload) Tunnel Mode | **Isolate OT subnets.** Industrial control protocols have no native encryption. Route across WAN only within an encrypted IPsec tunnel. |
 
+
 ---
 
-### Tier 1 Triage Decision Heuristic
+### Tier 1 Triage Decision Guide
 
 When reviewing a ticket or firewall change request, execute this 4-step decision tree before taking action:
 
@@ -78,6 +87,7 @@ flowchart TD
     F -- No --> I["Validate TLS certificate & cipher suite.<br/>Permit hardened encrypted session."]
 ```
 
+
 ---
 
 ## 3. Quick Checks & Skill Reps
@@ -87,10 +97,11 @@ flowchart TD
 #### The Scenario
 Jared Vance from Network Operations filed ticket **`INC-2026-1041`**. His legacy configuration script failed against switch `10.0.4.15` in Building C because port 23 was refused. He claims: *"I've used this script for ten years. Telnet is fine—it's inside our building on the wired management VLAN. Just open 23 for ten minutes so I can fix the trunk VLAN."*
 
-Before replying, you pull an actual packet capture ([`artifacts/terminal_dumps/netstat_ano.txt`](../artifacts/terminal_dumps/netstat_ano.txt)) taken from a span port on that management segment during Jared's previous run:
+Before replying, you pull an actual packet capture ([`artifacts/jared-telnet-capture.pcap`](../artifacts/jared-telnet-capture.pcap)) taken from a span port on that management segment during Jared's previous run. The table below shows frames 101 to 137 of it, filtered to port 23. You can read the table here, or open the file in Wireshark:
 
 ```console
 caption: Wireshark / tcpdump Stream Reassembly · Filter: tcp.port == 23
+
 No.   Time        Source          Destination     Proto  Info
 -----------------------------------------------------------------------------------------
 101   08:44:12    192.168.10.45   10.0.4.15       TCP    51240 > 23 [SYN] Seq=0 Win=64240
@@ -132,6 +143,16 @@ No.   Time        Source          Destination     Proto  Info
 137   08:44:17    10.0.4.15       192.168.10.45   TELNET Switch-Closet-C#
 ```
 
+<video controls width="100%" src="assets/video/wireshark-find-the-conversation.mp4">Video: Wireshark, find one conversation (2:08)</video>
+
+> **New to Wireshark?** Watch the two-minute primer first: [Wireshark: find one conversation](../assets/video/wireshark-find-the-conversation.mp4). It uses the same capture file but a different conversation, so it won't give away your answers. If you'd rather read the steps:
+>
+> 1. **File → Open** the capture. The **Protocol** column tells you what kind of traffic each packet is.
+> 2. Type a filter in the bar and press **Enter**. `dns` shows name lookups. `udp.port == 514` shows log messages. Hidden packets aren't deleted, and **Clear** brings them back.
+> 3. Hide traffic you don't need, for example `not arp and not icmp`.
+> 4. Right-click a packet, then **Follow** and pick the stream type, to read a whole conversation as text.
+> 5. No screen to click on? `tshark -r artifacts/jared-telnet-capture.pcap -Y "udp.port == 514"` runs the same filter.
+
 #### Your Analysis Task
 1. What was the exact login password entered in lines 106–122?
 2. What was the privileged enable password entered in lines 126–135?
@@ -139,7 +160,7 @@ No.   Time        Source          Destination     Proto  Info
 4. What is the immediate remediation for the script and the switch?
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
 1. **Login Password:** `C1sco_Sw!tch_2026`
@@ -150,6 +171,7 @@ No.   Time        Source          Destination     Proto  Info
    - Reconfigure switch daemon: `crypto key generate rsa modulus 4096` and `transport input ssh` on line vty 0 15 (disabling Telnet entirely).
    - Rewrite Jared's Python script to use `paramiko` or `netmiko` targeting **TCP Port 22** with public-key authentication (`id_ed25519`).
 </details>
+
 
 ---
 
@@ -191,7 +213,7 @@ TcpTestSucceeded : True
 3. Specify the exact modern, encrypted server settings you will configure in Maya's Outlook profile.
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
 1. **Port 25 Failure:** Standard residential ISPs and mobile carriers block outbound TCP Port 25 by default to prevent compromised endpoints from acting as spam zombie relays. Port 25 is meant exclusively for MTA-to-MTA routing.
@@ -208,11 +230,74 @@ TcpTestSucceeded : True
      - **Authentication:** Require authentication using incoming mail credentials.
 </details>
 
+
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "CONSOLE: PERIMETER PORT SCAN & BANNER INSPECTION"
+shell: "cmd"
+prompt: "C:\Security> "
+replay: true
+objectives:
+  - id: "obj-nmap"
+    label: "Scan open service ports on warehouse server"
+    trigger: "nmap -sS -p 21,22,23,80,443 192.168.10.50"
+  - id: "obj-banner"
+    label: "Test cleartext Telnet banner response"
+    trigger: "telnet 192.168.10.50 23"
+  - id: "obj-ssh"
+    label: "Verify encrypted SSH connectivity on Port 22"
+    trigger: "ssh admin@192.168.10.50"
+---
+nmap -sS -p 21,22,23,80,443 192.168.10.50: |
+  Starting Nmap scan on 192.168.10.50...
+  PORT     STATE SERVICE
+  21/tcp   OPEN  ftp (CLEAR TEXT)
+  22/tcp   OPEN  ssh (OpenSSH 8.9p1)
+  23/tcp   OPEN  telnet (CRITICAL: CLEARTEXT AUTH)
+  80/tcp   OPEN  http
+  443/tcp  OPEN  https
+  Warning: Port 23 is transmitting passwords in unencrypted ASCII frames.
+
+telnet 192.168.10.50 23: |
+  Connecting to 192.168.10.50...
+  Connected to Toledo Scale Controller.
+  Escape character is '^]'.
+  WARNING: Cleartext session active. Passwords visible to any packet capture on switch.
+  Action: Migrate to SSH (Port 22) immediately.
+
+ssh admin@192.168.10.50: |
+  admin@192.168.10.50's password: 
+  Linux scale-controller-04 5.15.0-generic #42-Ubuntu SMP
+  Encrypted session established with AES-256-GCM cipher.
+  [OK] Port 23 disabled. Secure management active.
+
+```
+
+---
+
+### Quick Check 3: Call Your Shot: Predict Before You Look
 
 > **The Rule of the Desk:** Before clicking "Approve" on a firewall ticket or giving advice to a department lead, you must write down your decision, the required ports, and the architectural defense. Commit your answer in your mind before clicking to expand.
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Interactive Hypothesis Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-07-cbyt">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-07-cbyt" placeholder="Type your predicted failure layer, expected command output, and root cause hypothesis here before opening solutions..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-07-cbyt')">Copy Notes</button>
+  </div>
+</div>
+
 
 #### Ticket 1: Dana Okafor (Facilities HVAC Vendor) — `INC-2026-1043`
 *Request:* "Open FTP (Port 21) inbound through the perimeter firewall to internal server `192.168.10.85` so our diagnostic laptop can push building HVAC controller firmware."
@@ -222,12 +307,13 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **DENY** direct FTP request; **REDIRECT** to FTPS / SFTP via Jump Host.
 * **Target Protocol & Port:** **FTPS** (TCP 990 control / 989 data) or **SFTP** (TCP 22).
 * **Rationale:** FTP sends credentials and firmware snapshots in cleartext. Furthermore, FTP active mode requires the server to establish an inbound data connection on port 20, creating stateful firewall traversal failures. Vendor appliance supports FTPS; route through an authenticated jump host in the DMZ.
 </details>
+
 
 ---
 
@@ -239,12 +325,13 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **DENY** public firewall exception.
 * **Target Protocol & Port:** **VPN Concentrator** (SSL/TLS 443 or IPsec IKE/ESP) $\rightarrow$ Internal RDP (TCP 3389) to **Jump Host**.
 * **Rationale:** Internet-exposed RDP is the #1 vector for initial access by ransomware syndicates. Our cyber insurance questionnaire explicitly prohibits public 3389 listeners. Sam must connect via corporate VPN with MFA, then RDP to a hardened jump host.
 </details>
+
 
 ---
 
@@ -256,12 +343,13 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** Reconfigure client to **LDAPS (TCP 636)**; resynchronize clock via **NTP (UDP 123)**.
 * **Target Protocol & Port:** LDAPS (TCP 636) + NTP (UDP 123).
 * **Rationale:** Cleartext LDAP (389) is blocked from Guest Wi-Fi to prevent credential eavesdropping across guest networks. For Kerberos, Active Directory enforces a maximum timestamp variance of 5 minutes (RFC 4120 replay defense). Her clock was 14 minutes slow. Running `w32tm /resync` against the internal NTP server resolved the Kerberos ticket rejection.
 </details>
+
 
 ---
 
@@ -273,12 +361,13 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **DENY** use of `public` string; upgrade to **SNMPv3**.
 * **Target Protocol & Port:** **SNMPv3** on UDP 161 (polling) / UDP 162 (traps).
 * **Rationale:** SNMPv1 and v2c transmit community strings in cleartext. Anyone with a packet capture tool learns switch interfaces, routing tables, and device models. SNMPv3 `authPriv` provides message integrity, authentication (SHA-256), and encryption (AES-128).
 </details>
+
 
 ---
 
@@ -290,16 +379,31 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **DENY** unencrypted Modbus/DNP3 over WAN; **ESCALATE** to NetOps for **IPsec ESP Tunnel** termination.
 * **Target Protocol & Port:** Encapsulate Modbus (502) and DNP3 (20000) inside an **IPsec VPN Tunnel (UDP 500 / 4500, IP Protocol 50 ESP)**.
 * **Rationale:** Leah Moreno is managing physical plant infrastructure. Industrial protocols (Modbus, DNP3) have no built-in encryption or authentication; sending raw port 502 across an untrusted WAN allows malicious actors to issue unauthorized valve open/close commands or falsify sensor telemetry. The traffic must be strictly isolated on an industrial OT VLAN and encrypted across the link via IPsec tunnel.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-07-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-07-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-07-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Tier 1 Ticket Resolution and Security Escalation Note
 
@@ -384,6 +488,7 @@ Classification:   OT/SCADA Perimeter Traversal Exception Request
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like (Shift Quality Checklist)
@@ -395,6 +500,39 @@ Classification:   OT/SCADA Perimeter Traversal Exception Request
 | **Architectural Decision-Making** | Enforces perimeter boundaries, defense-in-depth, VPN jump hosts, and network segmentation (e.g., isolating OT telemetry). | Proposes secure protocols but overlooks architecture (e.g., suggests SSH directly to the internet without a jump host). | Approves insecure firewall exceptions for convenience or user pressure. |
 | **Documentation & Escalation Quality** | Delivers clear, professional, concise ticket notes using standard enterprise formatting, root-cause analysis, and actionable escalation data. | Notes are accurate but lack standardized structure or technical depth. | Ticket notes are vague, missing root causes, or omit critical remediation steps. |
 
+
 ---
 
 *Workbench complete. Proceed to test your knowledge against the interactive questions in `review.yaml` and review companion datasets in [`artifacts/`](../artifacts/).*
+
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 7.2: HARDENED PROTOCOL ARCHITECTURE"
+badge: "Shift Epilogue"
+caption: "Operations center: At 05:40 PM, the rain clears over the Willamette River. On Ethan's desk, index cards sit neatly paired in secure couples as external port 3389 and 445 scanners hit zero open sockets."
+prompt: "Clean graphic novel cutaway panel of an IT support technician desk at twilight. Rain streaks down the window behind the desk, showing twilight city lights over an industrial river. On the laminate desk, index cards are neatly stacked in pairs beside an empty coffee mug. A dual-monitor display shows green firewall access rule tables. Ligne Claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
+```
+
+With the security matrix completed, I called Sam back in Seattle. "We will get you onto the corporate VPN first, and from there you will remote into a dedicated jump host. We do not open raw port 3389 to the public internet, not even for an hour, for the same reason we do not expose SMB on port 445 off the outside of the building."
+
+Sam groaned over the line, then gave in. "I already have the VPN profile from the last gig. A jump box is fine if somebody sends me the hostname. It is honestly nicer than hoping the hotel Wi-Fi is friendly."
+
+The firewall rule we submitted was narrow on purpose: source the VPN client address pool, destination the hardened jump host, port 3389, TCP, allow—with all direct internet access to internal workstations blocked. Jules initialed the ticket on her way past.
+
+Across the rest of the queue, the legacy cleartext protocols fell into line. We moved the legal directory tool from LDAP on 389 to LDAPS on 636, synchronized Lena's skewed clock with internal NTP on UDP 123 to restore Kerberos ticket validation, and rejected unauthenticated SNMP `public` polling in favor of SNMPv3 with SHA authentication and AES encryption. When facilities tech Owen needed printer firmware, we restricted TFTP to a transient staging segment and closed the port behind him.
+
+By 5:40 PM the queue was down to noise. The index cards were still out on my desk, and I had been pairing them off all afternoon without meaning to: Telnet next to SSH, HTTP next to HTTPS, FTP next to SFTP and FTPS, POP and IMAP next to their TLS versions, LDAP next to LDAPS, SNMP next to SNMPv3, syslog next to 6514. None of the port numbers had changed.
+
+Jules stopped at my cube on her way out, raincoat on, bike lights already clipped to her pack strap.
+
+"How many ports did you memorize today, Ethan?"
+
+"None," I answered with a tired grin. "I collected some war stories and made a few swaps."
+
+"Keep the cards if they help you get started," Jules said, giving my desk partition a nod of approval. "Throw them out when the person on the phone already knows the number, and what they actually need from you is the other half."
+
+That was the one I wrote down in my technical notebook. I locked the drawer and went out into the rain to catch the MAX.

@@ -1,27 +1,34 @@
 # Portland Desk Lab: Wireless Security, 802.1X Enterprise, & Rogue AP Triage
 
-> **Track:** Portland Desk (Book 0: Zero-to-One)  
-> **Unit Companion:** `secplus-wireless-helpdesk` — *The Air Is Shared*  
-> **Environment:** Level 1 Service Desk Terminal, Wireless Controller (WLC) Console, & RF Triage Queue  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
-> **Live Artifacts Directory:** [`artifacts/`](../artifacts/)
+> **The Situation:** Level 1 Service Desk Terminal & Wireless LAN Controller (WLC)  
+> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)  
+> **The Objective:** Isolate unauthorized rogue wireless access points using RSSI signal triangulation and enforce WPA2/WPA3-Enterprise 802.1X with RADIUS and EAP-TLS certificate validation.  
+> **Estimated Time:** 45–55 minutes • Wireless Security & RF Diagnostics  
+
 
 ---
 
-## At a Glance
+<details class="instructor-ref">
+<summary>Instructor & Certification Reference (Click to Expand)</summary>
 
-| Attribute | Specification |
-| :--- | :--- |
-| **Role** | Tier 1 Service Desk Specialist / Junior Network Security Analyst |
-| **Target Certification** | CompTIA Security+ (SY0-701) |
-| **Primary Domains** | **Domain 2.0 Threats, Vulnerabilities, and Mitigations**<br>• *2.1 Compare and contrast common threat types (Rogue Access Points, Evil Twins, Deauthentication / Disassociation attacks, RF Jamming, Wireless Eavesdropping, War Driving, Replay attacks, Bluejacking, Bluesnarfing)*<br>**Domain 3.0 Security Architecture**<br>• *3.2 Compare and contrast wireless security settings (WPA2-PSK vs. WPA3-SAE, WPA2/WPA3-Enterprise, 802.1X port-based Network Access Control [NAC], EAP methods: EAP-TLS with mutual X.509 PKI certificates vs. PEAP/EAP-MSCHAPv2 with encrypted tunnelled passwords, RADIUS authentication backend, AP placement, power levels, captive portals, guest network segmentation, WPS vulnerabilities, MAC filtering flaws, hidden SSID obscurity)* |
-| **Prerequisites** | Understanding of OSI Layer 2 802.11 framing (Management, Control, Data frames), IP networking fundamentals (DHCP DORA lease allocation, Default Gateway routing), Layer 4 UDP transport (RADIUS ports 1812/1813), and Public Key Infrastructure (PKI X.509 server/client certificates). |
-| **Estimated Completion** | 35–45 minutes |
-| **Core Deliverables** | 1. Wireless Security Architecture & Triage Matrix (WPA2/WPA3 Personal vs. Enterprise, EAP-TLS vs. PEAP, Rogue AP vs. Evil Twin vs. Karma)<br>2. Quick Check / Micro-Drill 1: Decoding 802.11 Association Frames & RADIUS Access-Request Packets<br>3. Quick Check / Micro-Drill 2: Triangulating Rogue BSSID Signal Strength (RSSI / dBm Free Space Path Loss)<br>4. Quick Check / Micro-Drill 3: "Call Your Shot" (CBYT) 5-Case Wireless Incident Prediction Gate<br>5. Performance Deliverable: Formal Tier 1 Rogue AP Containment & Wireless Remediation Ticket Note |
+* **Aligned Certification:** CompTIA Security+ (SY0-701)
+* **Exam Domains:** Domain 2.0 (Rogue APs, Evil Twins) & Domain 3.0 (Wireless Architecture: WPA3, 802.1X, EAP-TLS vs PEAP)
+* **Core Competencies & Deliverables:** Wireless Authentication Matrix • 802.11 Association & RADIUS Frame Drill • RSSI Triangulation & Rogue Hunting Drill • Call Your Shot 5-Case Gate • Rogue AP Containment & Remediation Note
+
+</details>
+
 
 ---
 
 ## 1. The Situation & Ground Truth
+
+```callout-panel
+title: "FIGURE 11.1: 2.4 GHZ VS 5 GHZ SPECTRUM & ROGUE INTERFERENCE"
+badge: "RF Wireless Analysis"
+caption: "Radio frequency spectrum diagram: The three non-overlapping 2.4 GHz channels (1, 6, 11). Shows an unshielded microwave oven emitting wideband RF interference centered on Channel 6."
+prompt: "Clean technical cutaway diagram of radio frequency spectrum channels under bright studio lighting. Bell curves represent Wi-Fi channels 1, 6, and 11 across the 2.4 GHz band, with interference spikes overlapping channel 6. Crisp technical line art, no text, no words. 16:9 ratio."
+```
+
 
 ### The Situation
 It is 08:35 on a brisk Friday morning on the east side of Portland. Mist clings to the brick facade of the industrial park near the Central Eastside railroad tracks. Inside the service desk bullpen, the morning coffee is fresh, but the dispatch dashboard is flashing amber. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet resting against her primary monitor arm, methodically parsing tickets.
@@ -40,6 +47,7 @@ Three critical wireless incidents have hit the board simultaneously:
 Jules spins her coffee mug and looks directly at Ethan:
 > *"Wired networking has a plastic jack and copper patch cord you can trace with your fingers. Wireless has manners, radio physics, and mathematics. When an employee plugs a rogue consumer box into a warehouse drop because their Wi-Fi was weak, or an attacker stands up an evil twin in the parking lot with an amplified antenna, the air does not care who has permission. The air is shared. On this desk, we don't guess SSIDs, we don't click past certificate warnings, and we contain rogues at the switch port before we ask who bought them."*
 
+
 ---
 
 ### The Ground Truth Rules of the Desk
@@ -51,6 +59,7 @@ Jules spins her coffee mug and looks directly at Ethan:
    - An **Evil Twin** is an RF impersonation attack. An adversary configures a rogue radio with the *exact same SSID* or a deceptive typosquatted lookalike (e.g., `CORP-EMPLOYE`), broadcasting at higher signal strength or transmitting deauthentication frames to force clients off legitimate APs and trick them into connecting to the attacker's interception proxy.
 4. **Containment Precedes Investigation:** When an unauthorized access point is bridging untrusted wireless traffic onto the wired enterprise network, do not wander the hallways conducting interviews. Immediately locate the upstream switch port and **shut the interface down administratively** (`shutdown`), or physically yank the cable. Stop the breach and DHCP pollution first; interview the user second.
 5. **Certificate Validation Is Non-Negotiable:** When connecting to an 802.1X Enterprise network using PEAP or EAP-TLS, the client operating system must cryptographically validate the RADIUS server's X.509 certificate against the corporate Trusted Root Certification Authority. Clicking "Accept Untrusted Certificate" or bypassing validation surrenders user credentials directly to an evil twin running an EAP proxy.
+
 
 ---
 
@@ -81,6 +90,7 @@ flowchart TD
 | **WPA2-Personal (WPA2-PSK)** | Pre-Shared Key (PSK) | AES-CCMP (Counter Mode CBC-MAC Protocol, 128-bit) | Robust on-the-air encryption, but vulnerable to **offline dictionary attacks**: attackers capture the 4-way handshake using deauth frames and crack the passphrase offline without touching the network. | **Unacceptable for Enterprise Employees.** Acceptable only for isolated IoT devices or small branch offices lacking RADIUS infrastructure. |
 | **WPA3-Personal (WPA3-SAE)** | **SAE (Simultaneous Authentication of Equals)** / Dragonfly Handshake | AES-GCMP-128 / AES-GCMP-256 | Replaces PSK with a zero-knowledge password proof (Dragonfly). **Resistant to offline dictionary attacks**; provides **Forward Secrecy** (compromised password cannot decrypt past recorded sessions). | **Current Standard for Personal / IoT.** Mandatory on modern Wi-Fi 6/6E/7 deployments. |
 | **WPA2/WPA3-Enterprise (802.1X)** | **IEEE 802.1X** with **RADIUS** authentication backend | AES-CCMP (WPA2) or AES-GCMP (WPA3) + Dynamic per-user Pairwise Master Keys (PMK) | Requires central authentication server (RADIUS) and PKI. Delivers individual user accountability, centralized credential revocation, and per-session dynamic keys. | **Mandatory Enterprise Standard.** Corporate laptops, smartphones, and managed endpoints must use 802.1X. |
+
 
 ---
 
@@ -115,6 +125,7 @@ sequenceDiagram
 | **EAP-TTLS**<br>*(Tunneled TLS)* | Server Certificate + Flexible Inner Authentication | Server-side Certificate required; client can use PAP, CHAP, MS-CHAP, or tokens inside tunnel. | Similar to PEAP, but supports non-Microsoft directory services and legacy authentication backends. Vulnerable to user certificate bypass. | Moderate. Frequently used in cross-platform / Linux enterprise environments. |
 | **EAP-FAST**<br>*(Flexible Auth via Secure Tunneling)* | Protected Access Credential (PAC) key exchange | Dynamic PAC key distribution; does not mandate PKI certificates. | Developed by Cisco to replace insecure LEAP. Vulnerable if PAC keys are provisioned anonymously (in-band) without PKI validation. | Moderate. Largely phased out in favor of PEAP and EAP-TLS. |
 
+
 ---
 
 ### Attack Mechanics: Rogue AP vs. Evil Twin vs. Karma vs. Deauth
@@ -142,6 +153,7 @@ flowchart TD
 * **Karma Attack (Probe Harvesting):** Mobile devices frequently broadcast 802.11 Probe Request frames asking for networks in their Preferred Network List (PNL). A Karma-enabled rogue device listens for these queries and instantly spoofs an answer for *any* requested SSID, silently associating the victim's device without user interaction.
 * **RF Jamming:** An intentional denial-of-service attack transmitting continuous high-power noise, carrier waves, or malformed frames across the 2.4 GHz or 5 GHz band, degrading the Signal-to-Noise Ratio (SNR) to zero so legitimate transceivers cannot arbitrate the medium.
 
+
 ---
 
 ### RF Triage & RSSI Triangulation
@@ -164,6 +176,50 @@ $$\text{Path Loss Delta} \approx 20 \cdot \log_{10}\left(\frac{d_2}{d_1}\right)$
 
 If an AP detects a rogue transmitter at $-44\text{ dBm}$ and another detects it at $-68\text{ dBm}$ (a difference of $24\text{ dB}$), the second AP is approximately $2^{24/6} = 2^4 = 16\text{ times}$ farther away from the rogue device. By comparing RSSI readings across three managed APs (**Trilateration**) and walking with a directional Wi-Fi analyzer, technicians pinpoint the physical location of unauthorized transmitters.
 
+
+---
+
+
+### 2.3 Interactive Diagnostic Console: Live Telemetry & Triage
+
+Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
+
+```lnk-terminal
+title: "COMMAND PROMPT: WI-FI SPECTRUM & ROGUE BSSID SCAN"
+shell: "cmd"
+prompt: "C:\Support> "
+replay: true
+objectives:
+  - id: "obj-scan"
+    label: "Scan surrounding wireless BSSIDs and channels"
+    trigger: "netsh wlan show networks mode=bssid"
+  - id: "obj-rogue"
+    label: "Identify rogue access point broadcasting on channel 6"
+    trigger: "netsh wlan show interfaces"
+---
+netsh wlan show networks mode=bssid: |
+  SSID 1 : PortlandOps-Corp (Corporate 802.1X)
+      Authentication : WPA2-Enterprise
+      BSSID 1        : 00-1A-2B-3C-4D-01 (Channel 1, Signal 92%)
+      BSSID 2        : 00-1A-2B-3C-4D-02 (Channel 11, Signal 88%)
+  
+  SSID 2 : NETGEAR_WAREHOUSE_ANNEX (ROGUE ACCESS POINT)
+      Authentication : WPA2-Personal
+      BSSID 1        : 50-C7-BF-11-22-33 (Channel 6, Signal 98%)
+      Warning: Rogue consumer router operating on Channel 6 with active DHCP server!
+
+netsh wlan show interfaces: |
+  There is 1 interface on the system:
+      Name                   : Wi-Fi
+      Description            : Intel(R) Wi-Fi 6 AX200 160MHz
+      State                  : connected
+      SSID                   : PortlandOps-Corp
+      Channel                : 6 (HIGH PACKET COLLISION FROM ROGUE AP)
+      Signal                 : 65%
+  Action: Physically unplug rogue Netgear router in breakroom. Re-assign APs to channels 1, 6, 11.
+
+```
+
 ---
 
 ## 3. Quick Checks & Skill Reps
@@ -175,6 +231,7 @@ Maya Lin's loaner laptop (`00:1A:2B:3C:4D:5E`) attempted to join the corporate n
 
 ```console
 caption: Wireshark / tcpdump Trace · Filters: wlan.addr == 00:1a:2b:3c:4d:5e || udp.port == 1812
+
 No.  Time      Source         Destination    Proto    Info
 ------------------------------------------------------------------------------------------------------------------------
 01   08:22:10  00:1a:2b:3c:4d:5e  70:69:79:01:aa:04  802.11   Authentication Request, Open System, Seq=1
@@ -204,7 +261,7 @@ No.  Time      Source         Destination    Proto    Info
 4. If this were WPA2-Personal (PSK) instead of WPA2-Enterprise, which frames (05 through 10) would be absent, and what handshake would take their place?
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
 1. **Security Mode & Cipher:** Frame 03 contains the RSN IE (Robust Security Network Information Element) specifying **WPA2-Enterprise** with **802.1X Authentication Key Management (AKM)** and **AES-CCMP** encryption.
@@ -216,6 +273,7 @@ No.  Time      Source         Destination    Proto    Info
 4. **WPA2-Personal Difference:** In WPA2-Personal, EAP and RADIUS packets (Frames 05–10) do not exist. Instead, immediately following Association Response (Frame 04), the AP and client execute the **802.11 4-Way Handshake** (EAPoL-Key frames 1 through 4) using the pre-shared key to generate session keys.
 </details>
 
+
 ---
 
 ### Drill 2: Triangulating Rogue BSSID Signal Strength
@@ -225,6 +283,7 @@ Zebra barcode scanners across the Warehouse Annex are disconnected. The WLC rogu
 
 ```console
 caption: WLC Rogue AP Telemetry Monitor · Filter: State == Uncontained
+
 Rogue MAC (BSSID)    SSID Advertised         Channel   Security   Detected By AP   Reported RSSI
 --------------------------------------------------------------------------------------------------
 94:10:3e:aa:bb:cc    Warehouse_Annex_Fast    6         None       AP-WH-02 (Dock)  -82 dBm
@@ -243,6 +302,7 @@ Behind a metal filing cabinet under the wooden supervisor desk at Shelf B-12, yo
 ```console
 caption: Switchport Status · Closet 2B Access Switch (10.10.20.2)
 Switch-WH-Closet2B# show mac address-table interface GigabitEthernet 1/0/18
+
           Mac Address Table
 -------------------------------------------
 Vlan    Mac Address       Type        Ports
@@ -260,7 +320,7 @@ Total Mac Addresses for this criterion: 3
 4. What is the immediate, mandatory Tier 1 physical and administrative action you must take?
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
 1. **RSSI Proximity:** At $-82\text{ dBm}$, the signal is near the noise floor (30+ meters away through warehouse racking). At $-44\text{ dBm}$, the transmitter is within a few yards. At $-31\text{ dBm}$, the receiver is practically touching the transmitter antennas (under 1–2 feet). The inverse square law and free-space path loss confirm the source is physically situated under the supervisor desk at Shelf B-12.
@@ -272,11 +332,13 @@ Total Mac Addresses for this criterion: 3
    - **Endpoint Remediation:** Issue DHCP lease release and renew commands on the affected forklift barcode scanners (`ipconfig /release` && `ipconfig /renew` or power-cycle) so they acquire legitimate leases from the corporate DHCP server.
 </details>
 
+
 ---
 
 ### Drill 3: "Call Your Shot" (CBYT) 5-Case Wireless Incident Prediction Gate
 
 Do not look at the answers first. Read each incident, commit to your decision and technical rationale, and verify your prediction against Jules' review.
+
 
 ---
 
@@ -295,12 +357,13 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **ISOLATE ROGUE DHCP SERVER & SHUT DOWN UPSTREAM SWITCH PORT**.
 * **Threat Classification:** **Rogue Access Point / Rogue DHCP Server Contamination**.
 * **Rationale:** Rebooting the scanner or re-entering the Wi-Fi password does nothing—the scanner will simply broadcast another DHCP Discover and receive another poisoned lease from `192.168.1.1`. An unauthorized consumer router has been plugged into the warehouse VLAN. Identify the rogue server's MAC address from the scanner's ARP cache (`arp -a`), trace it to the access switch port via the MAC address table, administratively shut down the port, and renew leases on affected endpoints.
 </details>
+
 
 ---
 
@@ -311,12 +374,13 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **STRICTLY FORBID CONNECTION; INSPECT FOR EVIL TWIN / ROGUE RADIUS PROXY**.
 * **Threat Classification:** **Evil Twin / Rogue RADIUS Impersonation / Credential Harvesting**.
 * **Rationale:** In an 802.1X PEAP network, the server certificate is the *only* barrier protecting the user's credentials. If Maya clicks "Connect Anyway," her laptop will establish a TLS tunnel with an attacker-controlled RADIUS server (notice the typosquatted domain `port1and-ops.com` with a `1` instead of an `l`!). Her client will then transmit her MS-CHAPv2 password hash into the attacker's tunnel, allowing the adversary to crack her domain password offline or execute a pass-the-hash relay. Direct Maya to use a wired dock or mobile hotspot through corporate VPN until the rogue radio is hunted down.
 </details>
+
 
 ---
 
@@ -331,12 +395,13 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **ESCALATE ACTIVE EVIL TWIN & DEAUTH ATTACK TO TIER 2 SOC / WIRELESS OPS; DOCK ENDPOINT**.
 * **Threat Classification:** **802.11 Deauthentication Denial-of-Service / Evil Twin Baiting**.
 * **Rationale:** An attacker within radio range of the lobby is transmitting spoofed 802.11 management deauthentication frames (Reason Code 7) using the real corporate AP's BSSID as the source MAC. The objective is to kick legitimate clients off the secure 802.1X network and force their devices to associate with the louder, unencrypted Evil Twin lookalike (`CORP-EMPLOYEE_Fast`). Moving Dev to a wired Ethernet dock bypasses the RF interference entirely. Escalate the incident to the SOC with physical coordinates to conduct a physical directional RF sweep.
 </details>
+
 
 ---
 
@@ -347,7 +412,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **DENY REQUEST; EXPLAIN SECURITY BY OBSCURITY; IMPLEMENT SEGMENTED 802.1X / WPA3-ENTERPRISE**.
 * **Threat Classification:** **Security through Obscurity Flaw / Ineffective Controls (SSID Suppression & MAC Spoofing)**.
@@ -356,6 +421,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
   2. **MAC Filtering is trivial to bypass:** MAC addresses are transmitted unencrypted in every 802.11 frame header. An attacker simply sniffs traffic with Wireshark, identifies an authorized MAC address, and spoofs their own network adapter using `macchanger` or Windows registry settings.
   3. **Correct Architecture:** Deploy a segmented VLAN with **WPA3-Enterprise (802.1X)** requiring user authentication, or a dedicated Guest SSID with an isolated client VLAN and captive portal terms-of-service.
 </details>
+
 
 ---
 
@@ -366,7 +432,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Lead Tech Review</summary>
 
 * **Action:** **DECLINE PAIRING; DISABLE BLUETOOTH DISCOVERABLE MODE; ENFORCE PAIRING HYGIENE**.
 * **Threat Classification:** **Bluejacking (Spam / Harassment) with attempted Bluesnarfing / Rogue Peripheral Hijack**.
@@ -376,9 +442,24 @@ Do not look at the answers first. Read each incident, commit to your decision an
   - Triage protocol: Immediately click "Cancel/Decline" on the pairing request, disable Bluetooth discovery mode ("Make this device discoverable to nearby devices" $\rightarrow$ OFF), and instruct users to keep Bluetooth disabled when not actively pairing approved peripherals.
 </details>
 
+
 ---
 
 ## 4. Your Ticket Notes (What to Put in the Ticket)
+
+<div class="scratchpad-container">
+  <div class="scratchpad-header">
+    <span class="scratchpad-title">Your Ticket Draft & Resolution Scratchpad</span>
+    <span class="scratchpad-save-indicator" id="save-ind-11-ticket">Saved in browser</span>
+  </div>
+  <div class="scratchpad-body">
+    <textarea id="notes-11-ticket" style="min-height: 140px;" placeholder="Draft your ticket notes, diagnosis, and resolution steps here before comparing with the reference standard below..."></textarea>
+  </div>
+  <div class="scratchpad-footer">
+    <span>Private notes saved locally in your browser. Not graded.</span>
+    <button type="button" class="scratchpad-copy-btn" onclick="copyScratchpad('notes-11-ticket')">Copy Notes</button>
+  </div>
+</div>
 
 ### Tier 1 Rogue AP Containment & Wireless Remediation Note
 
@@ -492,6 +573,7 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
 ================================================================================
 ```
 
+
 ---
 
 ## 5. What Good Looks Like (Shift Quality Checklist)
@@ -503,6 +585,76 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
 | **RF Triage & RSSI Triangulation** | Accurately interprets negative logarithmic dBm scale ($-30\text{ dBm}$ near vs. $-80\text{ dBm}$ far); applies inverse square law and free-space path loss principles to triangulate transmitter locations using multi-AP telemetry and handheld walk tests. | Understands that higher negative numbers mean weaker signal, but cannot estimate physical proximity or explain triangulation principles. | Believes $-80\text{ dBm}$ is stronger than $-40\text{ dBm}$; cannot interpret Wi-Fi analyzer signal telemetry to locate a physical device. |
 | **Documentation, Containment & Architectural Remediation** | Delivers structured, professional ticket resolution notes and SOC security escalations; executes immediate port containment (`shutdown`); identifies root cause (rogue DHCP clash); recommends enterprise controls (DHCP Snooping, 802.11w PMF, Port Security). | Notes are accurate but lack standardized enterprise formatting, omission of critical forensic telemetry (BSSIDs/RSSIs), or vague remediation steps. | Fails to shut down switch port; leaves rogue DHCP device running on corporate VLAN; writes vague or uninformative ticket documentation. |
 
+
 ---
 
 *Workbench complete. Test your mastery against the interactive assessment scenarios in `review.yaml` and inspect companion network captures in [`artifacts/`](../artifacts/).*
+
+---
+
+## 6. Shift Resolution Epilogue
+
+```callout-panel
+title: "FIGURE 11.2: WIRELESS HEATMAP & ROGUE AP LOCALIZATION"
+badge: "Shift Epilogue"
+caption: "Operations floor: At 05:40 PM, the wireless controller console displays 100% green enterprise authentication. The rogue AP on port Gi1/0/14 has been administratively disabled, and lobby clients authenticate cleanly over 802.1X RADIUS."
+prompt: "Clean graphic novel cutaway panel of an IT support technician reviewing a wireless heat map on a wall-mounted monitor in an operations office. The heat map shows clean green RF signal distributions across building zones, with an unauthorized red hotspot marked as deactivated. Crisp ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
+```
+
+With the rogue AP located under the conference credenza and its switch port administratively disabled in Cisco IOS, warehouse barcode scanners reassociated smoothly with the legitimate corporate radios. The deauthentication bursts targeting lobby clients subsided once the rogue BSSID was silenced, and Dev's laptop reconnected over authenticated 802.1X RADIUS.
+
+Across the rest of the facility, wireless architecture and hygiene fell into place.
+
+## Guest Wi-Fi, segmentation, and the printer that should not see payroll
+
+Nora needed a vendor on site to update a badge printer. The vendor wanted Wi-Fi. Nora wanted them productive. Finance wanted them nowhere near file shares.
+
+"Guest Wi-Fi," I said. "Different SSID, captive portal for AUP, and — this is the part people skip — network segmentation so guest cannot route to payroll, cameras, or the help desk VLAN. Guest without segmentation is just hospitality for lateral movement."
+
+We put the vendor on `CORP-GUEST`, watched them fail to ping an internal share, and succeed at the vendor's own update CDN. Nora asked if we should hide the employee SSID so guests were less confused.
+
+"Hidden SSID is obscurity," Jules said. "It still leaks in other frames. Real control is enterprise auth and segmentation."
+
+Someone in the thread suggested MAC allow-lists for the printer VLAN. I typed carefully: "MAC filtering is a speed bump you can spoof with a screenshot."
+
+## WPA2, WPA3, WPS, and the survey that is not vibes
+
+Network dropped by the desk with a short hallway class. They were rolling a pilot.
+
+"Employees stay on [[wpa2|WPA2]]-Enterprise today," the engineer said. "Pilot floor gets [[wpa3|WPA3]]-Enterprise with [[sae|SAE]] for the personal SSID we still keep for a few IoT leftovers. SAE is why WPA3-PSK is less embarrassed about offline password guessing than WPA2-PSK. And turn [[wps|WPS]] off on anything that still admits it exists — convenience pairing with a brute-force hobby."
+
+I asked about coverage complaints on the east cubes. They pulled last week's [[site_survey|site survey]]: heat map, channel overlap, one AP transmitting like it was trying to cover the MAX stop.
+
+"AP placement and power," the engineer said. "Too loud outside means easier eavesdropping and easier twins. Survey is how we know. Vibes are how we get tickets titled Wi-Fi bad."
+
+I wrote it down.
+
+## Controllers, certificates, and the Monday meeting reflex
+
+Before Bluetooth ate the last hour, I rewrote one more wiki line the desk will actually use. The wireless controller is where SSID policy lives — encryption mode, guest splash, rogue detection flags — not in a sticky under someone's monitor. When a laptop fails enterprise join, we check whether the user clicked past a certificate warning, whether they are on the right SSID, and whether a booster app installed a fake trust store.
+
+Jules made me say it once for the queue: "If the meeting started, that is not permission to join the loud lookalike. Dock, hotspot from a known phone through VPN, or wait."
+
+I put that sentence in the ticket template.
+
+## Bluetooth in the cube farm
+
+Late day, Lila's laptop kept pairing prompts for a keyboard she did not own. Jordan found a cheap earbud spam message that said *Hi cute phone.* Sam wanted to leave Bluetooth discovery on so his watch felt loved.
+
+"Bluetooth is a second air," I said. "Short range, real risk. Unsolicited messages are [[bluejacking|bluejacking]] — mostly rude. Actual data theft over weak pairing is [[bluesnarfing|bluesnarfing]]. Desk hygiene: pairing hygiene — only expected devices, confirm the code, discovery off when you are not actively pairing."
+
+Lila declined the ghost keyboard. Jordan turned discovery off. Sam looked betrayed by his watch and complied anyway.
+
+## Replay, certificates, and the line that sticks
+
+End of day we closed a stubborn laptop that kept failing enterprise join. The user had installed a free "Wi-Fi booster" profile that pinned a wrong trust anchor. They were one impatient click from sending their password to a lookalike.
+
+"Enterprise helps only if you protect the certificate check," I said. "If the client ignores trust, replay and twin games get easier. Clicking through certificate warnings on Wi-Fi is the same sin as clicking through them on banks."
+
+I updated the wiki blurb: join the real SSID, prefer 802.1X over hallway PSK, VPN on open and portal networks, never WEP, unplug rogue travel routers, do not reconnect blind after weird drops, guest stays segmented, hide-SSID and MAC filters are not controls, WPS off, survey over vibes, and Bluetooth only for things you meant to invite.
+
+At 5:40 I closed notes. Maya was on enterprise and late. Ken was on VPN and not on WEP. Rita's rogue was unplugged. Dev was docked through deauth. The vendor was on guest with walls. Lila's ghost keyboard was declined. The twin in the lobby was still Network's problem.
+
+Jules clipped her bike lights on. "Monday someone will join the loud lookalike because the meeting started."
+
+I already had the line. I went out into the mist.

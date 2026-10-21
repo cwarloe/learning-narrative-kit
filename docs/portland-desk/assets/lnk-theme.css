@@ -426,6 +426,44 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
   font-style: italic;
 }
 
+#lnk-tooltip .tt-link {
+  color: var(--primary);
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.glossary-entry-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.glossary-entry-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.glossary-card-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--primary);
+  margin-left: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+
 /* ==========================================================================
    Docked Right Aside Glossary Drawer
    ========================================================================== */
@@ -893,4 +931,139 @@ code, pre {
   color: var(--text-main);
   font-weight: 500;
   margin: 0;
+}
+
+
+/* ==========================================================================
+   Interactive Scratchpads & Shift Briefing Cards
+   ========================================================================== */
+
+/* Shift Briefing Card */
+.shift-briefing {
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+  border: 1px solid var(--surface-border);
+  border-left: 4px solid var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.shift-briefing-header {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.shift-briefing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.6rem;
+}
+
+.shift-briefing-item {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.shift-briefing-item strong {
+  color: #fff;
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+/* In-Browser Interactive Scratchpad */
+.scratchpad-container {
+  margin: 1.25rem 0 1.75rem;
+  background: #0b1220;
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.scratchpad-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.9rem;
+  background: #111827;
+  border-bottom: 1px solid var(--surface-border);
+  font-size: 0.80rem;
+  color: var(--text-muted);
+}
+
+.scratchpad-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.scratchpad-save-indicator {
+  font-size: 0.72rem;
+  color: #10b981;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.scratchpad-save-indicator.active {
+  opacity: 1;
+}
+
+.scratchpad-body textarea {
+  width: 100%;
+  min-height: 110px;
+  background: #0b1220;
+  border: none;
+  padding: 0.85rem 1rem;
+  color: #f1f5f9;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.scratchpad-body textarea:focus {
+  outline: none;
+  background: #0f172a;
+}
+
+.scratchpad-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0.9rem;
+  background: #111827;
+  border-top: 1px solid rgba(51, 65, 85, 0.6);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.scratchpad-copy-btn {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--primary);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.scratchpad-copy-btn:hover {
+  background: var(--primary);
+  color: #0b1220;
 }

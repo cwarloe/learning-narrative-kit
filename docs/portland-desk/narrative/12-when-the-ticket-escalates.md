@@ -8,6 +8,13 @@ Jules's sticky still said *which decision?* I had not looked at it yet. I was lo
 
 ## Maya and the laptop that must die
 
+```callout-panel
+title: "FIGURE 12.1: INCIDENT COMMAND EVIDENCE & WRITE-BLOCKER"
+badge: "Incident Response"
+caption: "Forensic bench diagram: An extracted NVMe storage drive connected through a hardware write-blocker to the forensic acquisition laptop. Chain of custody tags and anti-static pouches in view."
+prompt: "Clean technical illustration of a computer forensic examination bench under bright laboratory lighting. An external storage drive connects through a small rectangular hardware write-blocker with a glowing green LED to a laptop. Anti-static bags and clean tools on an ESD mat. Sharp technical linework, no text, no words. 16:9 ratio."
+```
+
 The subject was *PC possessed — ads, slowness, standup in twelve — please wipe.*
 
 Maya stood at the glass with the machine under her arm. "Just reimage it. I have a meeting."
@@ -48,17 +55,9 @@ Jules had me bag the laptop she had also brought, "just in case." Tag, time, who
 
 I almost said I had learned the phases. I did not. I had learned that my first useful move of the day was an undo.
 
-## After the rain
+Jules set a red binder and an anti-static evidence pouch onto my desk. "We have an active credential compromise, unauthorized cloud mailbox rule exfiltration, and a live compromised laptop sitting on the counter. If you reboot or shut it down, volatile RAM evidence evaporates. If you leave it connected, data leaks out. You have twenty minutes to execute the Order of Volatility, pull the live memory capture, compute the SHA-256 hash, establish chain of custody, and draft the formal CSIRT Escalation Dossier before the incident response team steps onto the floor."
 
-At 5:45 the queue was quieter. Jules clipped her bike lights on.
-
-"Tell Wednesday," she said, "without listing a lifecycle."
-
-I told her: I had nearly wiped a loud nothing. I had stopped a quiet something without turning it into a parade. I am [[first_responder|first touch]], not freelance forensics.
-
-She nodded once, then remembered the USB on her wall. "Keep asking what it did before you decide what it is."
-
-The queue showed one more URGENT. I opened it anyway — criteria first, adrenaline second. The subject was louder than the evidence. I left it in the queue with a note, and I left the imaging USB where she had put it.
+## The Handoff Gate
 
 ```bridge-card
 title: Portland Desk Lab: The Incident Escalation & SOC Handoff Crucible
@@ -68,7 +67,4 @@ badge: Final Capstone Lab
 cta: Take the Ticket & Open the Lab ->
 ---
 Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Jules Mercer.
-
-[Take the Ticket & Open the Lab ->](../workbench/12-when-the-ticket-escalates.md)
 ```
-

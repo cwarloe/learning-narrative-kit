@@ -1,0 +1,282 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Portland Desk Ep 7 primer: Wireshark, find one conversation. Render: CHROMIUM_PATH=... python3 render.py scenes.html out.mp4 (render.py is in the instructions-to-training-video playbook, cwarloe/knowledge-harvest). Packet rows and log text come from tshark on portland-desk/artifacts/jared-telnet-capture.pcap, built by tools/generate_ep07_telnet_capture.py. -->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0e1829;--panel:#16233a;--panel2:#1d2d49;--line:#2c3f63;--yel:#f5c518;--txt:#e9eef7;--mut:#93a3bf;--ok:#22c38e;--bad:#ff6b6b;--blue:#4ea1ff}
+body{width:1280px;height:720px;overflow:hidden;background:var(--bg);font-family:"Segoe UI","DejaVu Sans",Arial,sans-serif;color:var(--txt)}
+.scene{position:absolute;inset:0;display:none}
+.hdr{position:absolute;left:40px;top:26px;display:flex;align-items:center;gap:14px}
+.chip{background:var(--yel);color:#1a1300;font-weight:800;font-size:15px;padding:5px 12px;border-radius:14px;letter-spacing:.5px}
+.htitle{font-size:28px;font-weight:700}
+.cap{position:absolute;left:0;right:0;bottom:0;height:70px;background:#081020;border-top:2px solid var(--line);display:flex;align-items:center;padding:0 40px;font-size:20px;color:#dfe7f5}
+.cap b{color:var(--yel)}
+.prog{position:absolute;left:0;bottom:0;height:4px;background:var(--yel)}
+.steps{position:absolute;list-style:none}
+.steps li{display:flex;gap:12px;align-items:flex-start;font-size:20px;line-height:1.35;margin-bottom:16px;opacity:0}
+.n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--yel);color:#1a1300;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px;margin-top:1px}
+.mono{font-family:"Consolas","DejaVu Sans Mono",monospace;color:var(--yel)}
+.lbl{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:1px}
+/* model view */
+.canvas{position:absolute;left:40px;top:90px;width:760px;height:548px;background:#e6e4e2;border-radius:10px;overflow:hidden}
+.card{position:absolute;width:200px;background:#fff;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.18);color:#222;font-size:14px}
+.card h4{font-size:16px;font-weight:600;padding:9px 12px;border-bottom:1px solid #ddd}
+.card div{padding:4px 14px;color:#444}
+.card div.hl{background:#fff3b0;color:#000;font-weight:600}
+.tag{position:absolute;background:var(--bad);color:#fff;font-size:13px;font-weight:700;padding:4px 10px;border-radius:12px}
+.ghost{position:absolute;background:#fff3b0;border:2px solid #c9a200;color:#000;font-size:14px;font-weight:600;padding:3px 10px;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+svg.ov{position:absolute;inset:0;width:100%;height:100%}
+/* build pane */
+.pane{position:absolute;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.well{border:1.5px dashed #4a5f86;border-radius:6px;min-height:44px;padding:6px;margin:6px 0 14px}
+.fld{background:#2a3d61;border-radius:4px;padding:6px 10px;font-size:15px;margin:4px 0;display:flex;justify-content:space-between}
+.fld i{font-style:normal;color:var(--mut);font-size:12px}
+.shot{position:absolute;background:#fff;border-radius:8px;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.45)}
+.shot img{display:block}
+.shotlbl{position:absolute;font-size:14px;color:var(--mut)}
+.callout{position:absolute;width:34px;height:34px;border-radius:50%;background:var(--yel);color:#1a1300;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:17px;border:3px solid #fff;box-shadow:0 0 0 4px rgba(245,197,24,.35);transform:translate(-50%,-50%)}
+.ring{position:absolute;border:3px solid var(--yel);border-radius:8px;box-shadow:0 0 0 5px rgba(245,197,24,.25)}
+.click{position:absolute;width:40px;height:40px;border-radius:50%;border:3px solid var(--yel);transform:translate(-50%,-50%)}
+table.mx{border-collapse:collapse;font-size:16px;color:#222;background:#fff}
+table.mx th{font-weight:600;text-align:right;padding:8px 14px;border-bottom:2px solid #4ea1ff;position:relative}
+table.mx th:first-child,table.mx td:first-child{text-align:left}
+table.mx td{padding:6px 14px;text-align:right;border-bottom:1px solid #eee}
+.note{position:absolute;background:#3a2a05;border:2px solid var(--yel);border-radius:10px;padding:16px 20px;font-size:18px;line-height:1.4}
+.ddl{background:#fff;color:#222;border:1px solid #999;border-radius:3px;padding:7px 10px;font-size:16px;height:36px;margin:4px 0 14px;position:relative}
+.ddl:after{content:"⌄";position:absolute;right:10px;top:4px;color:#555}
+.ddl.inp:after{content:""}
+.btn{display:inline-block;padding:8px 18px;border-radius:4px;font-size:16px;font-weight:600}
+
+/* ---- Wireshark first look: additions ---- */
+.win{position:absolute;background:#f3f3f3;border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.5);color:#222;overflow:hidden}
+.fb{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#e4e4e4;border-bottom:1px solid #c9c9c9}
+.fin{flex:1;height:30px;border:1.5px solid #999;border-radius:4px;background:#fff;font-family:"Consolas","DejaVu Sans Mono",monospace;font-size:16px;display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden}
+.fin.ok{background:#d9f7d9;border-color:#3aa33a}.fin.bad{background:#ffd9d9;border-color:#d33}
+.fbtn{height:30px;padding:0 12px;border:1px solid #aaa;border-radius:4px;background:#fafafa;font-size:14px;display:flex;align-items:center}
+.car{display:inline-block;width:2px;height:18px;background:#222;margin-left:1px}
+table.pl{border-collapse:collapse;width:100%;font-size:12.5px;font-family:"Consolas","DejaVu Sans Mono",monospace;background:#fff}
+table.pl th{background:#e9e9e9;text-align:left;font-weight:600;padding:3px 6px;border-bottom:1px solid #bbb;font-family:"Segoe UI","DejaVu Sans",Arial,sans-serif;font-size:12px}
+table.pl td{padding:2px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:330px}
+table.pl tr.sel td{background:#3b82f6;color:#fff}
+table.pl tr.hi td{background:#fff3b0}
+.tree{background:#fff;border-top:1px solid #bbb;padding:6px 10px;font-size:13px;line-height:1.55;font-family:"Segoe UI","DejaVu Sans",Arial,sans-serif}
+.tree div.on{background:#bcd7ff}
+.hex{background:#fff;border-top:1px solid #bbb;padding:6px 10px;font-family:"Consolas","DejaVu Sans Mono",monospace;font-size:12.5px;line-height:1.5;white-space:pre}
+.hex b{background:#bcd7ff;font-weight:400}
+.plab{position:absolute;right:8px;font-size:11px;color:#888;font-family:"Segoe UI",Arial,sans-serif;text-transform:uppercase;letter-spacing:.8px}
+.cm{position:absolute;background:#fff;color:#222;border-radius:6px;box-shadow:0 8px 28px rgba(0,0,0,.55);padding:5px 0;font-size:15px;width:230px;font-family:"Segoe UI","DejaVu Sans",Arial,sans-serif}
+.cm div{padding:6px 14px}.cm div.hl{background:#3b82f6;color:#fff}
+.call{position:absolute;background:#3a2a05;border:2px solid var(--yel);border-radius:10px;padding:12px 16px;font-size:18px;line-height:1.4}
+.term{position:absolute;background:#0b1424;border:1px solid var(--line);border-radius:8px;padding:16px 18px;font-family:"Consolas","DejaVu Sans Mono",monospace;font-size:17px;line-height:1.8;color:#dfe7f5;white-space:pre}
+.term .p{color:var(--yel)}
+table.cs{border-collapse:collapse;width:100%;font-size:19px;color:#dfe7f5}
+table.cs td{padding:9px 12px;border-bottom:1px solid #2c3f63}
+table.cs td:first-child{color:var(--yel);font-family:"Consolas","DejaVu Sans Mono",monospace;width:610px;font-size:17px}
+</style></head><body>
+<section class="scene" id="s0">
+  <div style="position:absolute;left:110px;top:190px;width:10px;height:270px;background:var(--yel)" id="s0bar"></div>
+  <div style="position:absolute;left:150px;top:195px" id="s0txt">
+    <div style="font-size:54px;font-weight:800">Wireshark: find one conversation</div>
+    <div style="font-size:28px;color:var(--yel);margin-top:14px">A short primer before the Cleartext Telnet Trap</div>
+    <div style="font-size:20px;color:var(--mut);margin-top:40px">Open a capture &nbsp;•&nbsp; Cut the noise &nbsp;•&nbsp; Follow a stream</div>
+    <div style="font-size:16px;color:var(--mut);margin-top:10px">Episode 7 · The Port That Is Open</div>
+  </div>
+  <div class="cap">Jared's ticket comes with a capture file. This video shows how to find the one conversation you need in it.</div>
+</section>
+
+<section class="scene" id="s1">
+  <div class="hdr"><span class="chip">THE FILE</span><span class="htitle">A busy capture</span></div>
+  <div class="pane" id="s1a" style="left:60px;top:120px;width:560px;height:340px">
+    <div class="lbl">Capture file</div>
+    <div style="font-size:29px;font-weight:800;margin:12px 0 4px" class="mono">jared-telnet-capture.pcap</div>
+    <div style="font-size:20px;color:#dfe7f5;margin-bottom:18px">137 packets &nbsp;·&nbsp; copied from a span port</div>
+    <div id="s1m" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
+    <div style="font-size:15px;color:var(--mut);margin-top:16px">One square = one packet (colors are only for this picture)</div>
+  </div>
+  <ul class="steps" style="left:690px;top:130px;width:550px">
+    <li><span class="n">1</span><span>A <b>span port</b> is a switch port that gets a copy of the traffic passing through.</span></li>
+    <li><span class="n">2</span><span>Everything on the wire lands in the file: name lookups, pings, log messages, and Jared's session.</span></li>
+    <li><span class="n">3</span><span>Your job: pull the one conversation you need out of the rest.</span></li>
+  </ul>
+  <div class="cap">Open the file in Wireshark with File → Open, or drag it onto the window.</div>
+</section>
+
+<section class="scene" id="s2">
+  <div class="hdr"><span class="chip">STEP 1</span><span class="htitle">Read the Protocol column</span></div>
+  <div class="win" id="s2w" style="left:40px;top:90px;width:800px;height:548px"></div>
+  <ul class="steps" style="left:880px;top:110px;width:370px">
+    <li><span class="n">1</span><span>Each row is one packet, in the order it arrived.</span></li>
+    <li><span class="n">2</span><span>The <b>Protocol</b> column says what kind of traffic it is: ARP, DNS, ICMP, NTP, Syslog…</span></li>
+    <li><span class="n">3</span><span>The <b>Info</b> column gives a one-line summary.</span></li>
+  </ul>
+  <div class="cap">With 137 packets mixed together, scrolling isn't the way to find one conversation.</div>
+</section>
+
+<section class="scene" id="s3">
+  <div class="hdr"><span class="chip">STEP 2</span><span class="htitle">Filter by protocol name</span></div>
+  <div class="win" id="s3w" style="left:40px;top:90px;width:800px;height:548px"></div>
+  <ul class="steps" style="left:880px;top:110px;width:370px">
+    <li><span class="n">1</span><span>Type the protocol name in lowercase in the filter bar.</span></li>
+    <li><span class="n">2</span><span>Press <b>Enter</b>. Only that protocol's packets stay on screen.</span></li>
+  </ul>
+  <div class="call" id="s3n" style="left:880px;top:330px;width:370px;font-size:17px"><span id="s3c">137</span> packets in the file<br><b style="color:var(--yel)">Showing: <span id="s3d">137</span></b></div>
+  <div class="cap">Example: <span class="mono">dns</span> shows only the name lookups. The other packets are hidden, not deleted.</div>
+</section>
+
+<section class="scene" id="s4">
+  <div class="hdr"><span class="chip">STEP 3</span><span class="htitle">Filter by port</span></div>
+  <div class="win" id="s4w" style="left:40px;top:90px;width:800px;height:548px"></div>
+  <ul class="steps" style="left:880px;top:110px;width:370px">
+    <li><span class="n">1</span><span>A <b>port</b> number says which service the traffic belongs to.</span></li>
+    <li><span class="n">2</span><span><span class="mono">udp.port == 514</span> keeps UDP packets to or from port 514, which is where syslog (log messages) travels.</span></li>
+    <li><span class="n">3</span><span>Use <span class="mono">tcp.port</span> the same way for TCP traffic.</span></li>
+  </ul>
+  <div class="cap">Here the switch is sending its log messages to a log server.</div>
+</section>
+
+<section class="scene" id="s5">
+  <div class="hdr"><span class="chip">STEP 4</span><span class="htitle">Hide the noise with not</span></div>
+  <div class="win" id="s5w" style="left:40px;top:90px;width:800px;height:548px"></div>
+  <ul class="steps" style="left:880px;top:110px;width:370px">
+    <li><span class="n">1</span><span><span class="mono">not</span> (or <span class="mono">!</span>) hides a protocol.</span></li>
+    <li><span class="n">2</span><span>Join several with <span class="mono">and</span> to hide more than one kind. Here the ARP and ping packets are gone.</span></li>
+  </ul>
+  <div class="call" id="s5n" style="left:880px;top:330px;width:370px;font-size:17px"><span id="s5c">137</span> packets in the file<br><b style="color:var(--yel)">Showing: <span id="s5d">137</span></b></div>
+  <div class="cap">Hide what you know you don't need until what's left is small enough to read.</div>
+</section>
+
+<section class="scene" id="s6">
+  <div class="hdr"><span class="chip">STEP 5</span><span class="htitle">Follow a stream</span></div>
+  <div class="win" id="s6w" style="left:40px;top:90px;width:520px;height:548px"></div>
+  <div class="cm" id="s6m" style="left:215px;top:236px"><div>Mark Packet</div><div>Apply as Filter</div><div>Conversation Filter</div><div class="hl" id="s6h">Follow ▸ UDP Stream</div><div>Copy</div></div>
+  <div class="win" id="s6f" style="left:590px;top:110px;width:650px;height:390px;background:#fff"><div style="background:#e4e4e4;padding:6px 12px;font-size:13px;border-bottom:1px solid #c9c9c9">Follow UDP Stream (syslog from the switch)</div><div id="s6t" style="padding:10px 14px;font-family:Consolas,'DejaVu Sans Mono',monospace;font-size:12.5px;line-height:1.5;white-space:pre"></div></div>
+  <div class="call" id="s6n" style="left:590px;top:520px;width:650px;font-size:16px">Right-click a packet → <b>Follow</b> → the stream type. The whole conversation opens as readable text, in the order it happened. <span style="color:#ffb3b3">Red</span> is client to server; <span style="color:#9ec2ff">blue</span> is server to client.</div>
+  <div class="cap">Following a stream also sets a display filter. Click Back to restore the filter you had.</div>
+</section>
+
+<section class="scene" id="s7">
+  <div class="hdr"><span class="chip">NO GUI?</span><span class="htitle">The same filter at the command line</span></div>
+  <div class="term" id="s7t" style="left:40px;top:120px;width:1200px;font-size:15px"></div>
+  <ul class="steps" style="left:40px;top:340px;width:1200px">
+    <li><span class="n">1</span><span><span class="mono">-r</span> names the capture file. <span class="mono">-Y</span> takes a display filter, the same kind you typed in Wireshark.</span></li>
+    <li><span class="n">2</span><span>Same filter, same packets. These are the first three of the 30 syslog messages.</span></li>
+  </ul>
+  <div class="cap">No screen to click on? <span class="mono">tshark -Y</span> does the filtering for you.</div>
+</section>
+
+<section class="scene" id="s8">
+  <div class="hdr"><span class="chip">RECAP</span><span class="htitle">Five moves</span></div>
+  <div class="pane" style="left:90px;top:100px;width:1100px;padding:12px 16px"><table class="cs"><tbody id="s8t">
+    <tr><td>File → Open</td><td>Load the capture</td></tr>
+    <tr><td>dns</td><td>Show one protocol</td></tr>
+    <tr><td>udp.port == 514</td><td>Show one port</td></tr>
+    <tr><td>not arp and not icmp</td><td>Hide traffic you don't need</td></tr>
+    <tr><td>Follow → stream type</td><td>Read one conversation as text</td></tr>
+  </tbody></table></div>
+  <div class="cap">That's enough Wireshark to start the Cleartext Telnet Trap.</div>
+</section>
+
+<section class="scene" id="s9">
+  <div class="hdr"><span class="chip">YOUR TURN</span><span class="htitle">Now find Jared's session</span></div>
+  <ul class="steps" style="left:120px;top:140px;width:1040px;font-size:24px">
+    <li><span class="n">1</span><span>Open <span class="mono">jared-telnet-capture.pcap</span>.</span></li>
+    <li><span class="n">2</span><span>Jared's script used port 23. Filter to it with <span class="mono">tcp.port == 23</span>.</span></li>
+    <li><span class="n">3</span><span>Follow that TCP stream and read what's in it.</span></li>
+    <li><span class="n">4</span><span>Then answer the questions in the Cleartext Telnet Trap.</span></li>
+  </ul>
+  <div class="note" id="s9n" style="left:120px;top:440px;width:1040px;font-size:20px">This video used the log messages and name lookups. The conversation you need is yours to find.</div>
+  <div class="cap">The lesson shows these same packets as a text table. This file is the capture behind it.</div>
+</section>
+
+<div class="prog" id="prog"></div>
+
+<script>
+const D={"rows": [["1", "0.000000", "10.0.4.15", "192.168.10.5", "Syslog", "102", "LOCAL7.NOTICE: Oct 13 08:43:32 Switch-Closet-C: port Gi1/0/12 link up"], ["2", "0.503923", "10.0.4.15", "192.168.10.5", "Syslog", "104", "LOCAL7.NOTICE: Oct 13 08:43:32 Switch-Closet-C: port Gi1/0/12 link down"], ["3", "0.656793", "02:00:c0:a8:0a:05", "Broadcast", "ARP", "42", "Who has 192.168.10.45? Tell 192.168.10.5"], ["4", "0.657193", "02:00:c0:a8:0a:2d", "02:00:c0:a8:0a:05", "ARP", "42", "192.168.10.45 is at 02:00:c0:a8:0a:2d"], ["5", "1.780204", "02:00:c0:a8:0a:02", "Broadcast", "ARP", "42", "Who has 192.168.10.45? Tell 192.168.10.2"], ["6", "1.780604", "02:00:c0:a8:0a:2d", "02:00:c0:a8:0a:02", "ARP", "42", "192.168.10.45 is at 02:00:c0:a8:0a:2d"], ["7", "1.888179", "10.0.4.15", "192.168.10.5", "Syslog", "102", "LOCAL7.NOTICE: Oct 13 08:43:34 Switch-Closet-C: port Gi1/0/12 link up"], ["8", "4.587107", "10.0.4.15", "192.168.10.5", "Syslog", "101", "LOCAL7.NOTICE: Oct 13 08:43:36 Switch-Closet-C: port Gi1/0/7 link up"], ["9", "4.600380", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=8/2048, ttl=64"], ["10", "4.600980", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=8/2048, ttl=64 (request in 9)"], ["11", "5.971999", "10.0.4.15", "192.168.10.5", "Syslog", "101", "LOCAL7.NOTICE: Oct 13 08:43:38 Switch-Closet-C: port Gi1/0/7 link up"], ["12", "6.675675", "10.0.4.15", "192.168.10.5", "Syslog", "104", "LOCAL7.NOTICE: Oct 13 08:43:38 Switch-Closet-C: port Gi1/0/12 link down"], ["13", "6.701045", "02:00:c0:a8:0a:2d", "Broadcast", "ARP", "42", "Who has 192.168.10.2? Tell 192.168.10.45"], ["14", "6.701445", "02:00:c0:a8:0a:02", "02:00:c0:a8:0a:2d", "ARP", "42", "192.168.10.2 is at 02:00:c0:a8:0a:02"], ["15", "6.901814", "192.168.10.45", "192.168.10.2", "DNS", "83", "Standard query 0x1203 A updates.pdx-ops.example"], ["16", "6.903814", "192.168.10.2", "192.168.10.45", "DNS", "122", "Standard query response 0x1203 A updates.pdx-ops.example A 192.168.10.13"], ["17", "7.749942", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=3/768, ttl=64"], ["18", "7.750542", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=3/768, ttl=64 (request in 17)"], ["19", "8.912478", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:43:41 Switch-Closet-C: temperature normal"], ["20", "9.202246", "10.0.4.15", "192.168.10.5", "Syslog", "113", "LOCAL7.NOTICE: Oct 13 08:43:41 Switch-Closet-C: NTP synchronized to 192.168.10.3"], ["21", "10.282376", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=9/2304, ttl=64"], ["22", "10.282976", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=9/2304, ttl=64 (request in 21)"], ["23", "11.372553", "10.0.4.15", "192.168.10.5", "Syslog", "113", "LOCAL7.NOTICE: Oct 13 08:43:43 Switch-Closet-C: NTP synchronized to 192.168.10.3"], ["24", "11.469959", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=4/1024, ttl=64"], ["25", "11.470559", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=4/1024, ttl=64 (request in 24)"], ["26", "11.614223", "10.0.4.15", "192.168.10.5", "Syslog", "104", "LOCAL7.NOTICE: Oct 13 08:43:43 Switch-Closet-C: port Gi1/0/12 link down"], ["27", "12.195143", "192.168.10.45", "192.168.10.3", "NTP", "90", "NTP Version 4, client"], ["28", "12.196143", "192.168.10.3", "192.168.10.45", "NTP", "90", "NTP Version 4, server"], ["29", "12.653286", "10.0.4.15", "192.168.10.5", "Syslog", "113", "LOCAL7.NOTICE: Oct 13 08:43:44 Switch-Closet-C: NTP synchronized to 192.168.10.3"], ["30", "12.670324", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:43:44 Switch-Closet-C: fan 1 speed normal"], ["31", "12.828806", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:43:45 Switch-Closet-C: fan 1 speed normal"], ["32", "13.492717", "10.0.4.15", "192.168.10.5", "Syslog", "101", "LOCAL7.NOTICE: Oct 13 08:43:45 Switch-Closet-C: port Gi1/0/7 link up"], ["33", "13.813117", "192.168.10.45", "192.168.10.2", "DNS", "79", "Standard query 0x1206 A ntp.pdx-ops.example"], ["34", "13.815117", "192.168.10.2", "192.168.10.45", "DNS", "114", "Standard query response 0x1206 A ntp.pdx-ops.example A 192.168.10.11"], ["35", "15.550317", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:43:47 Switch-Closet-C: fan 1 speed normal"], ["36", "15.893829", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=0/0, ttl=64"], ["37", "15.894429", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=0/0, ttl=64 (request in 36)"], ["38", "16.002010", "02:00:c0:a8:0a:2d", "Broadcast", "ARP", "42", "Who has 192.168.10.1? Tell 192.168.10.45"], ["39", "16.002410", "02:00:c0:a8:0a:01", "02:00:c0:a8:0a:2d", "ARP", "42", "192.168.10.1 is at 02:00:c0:a8:0a:01"], ["40", "16.048336", "192.168.10.45", "192.168.10.2", "DNS", "81", "Standard query 0x1205 A files.pdx-ops.example"], ["41", "16.050336", "192.168.10.2", "192.168.10.45", "DNS", "118", "Standard query response 0x1205 A files.pdx-ops.example A 192.168.10.10"], ["42", "16.114829", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:43:48 Switch-Closet-C: temperature normal"], ["43", "16.223727", "02:00:c0:a8:0a:02", "Broadcast", "ARP", "42", "Who has 192.168.10.45? Tell 192.168.10.2"], ["44", "16.224127", "02:00:c0:a8:0a:2d", "02:00:c0:a8:0a:02", "ARP", "42", "192.168.10.45 is at 02:00:c0:a8:0a:2d"], ["45", "16.328217", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=6/1536, ttl=64"], ["46", "16.328817", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=6/1536, ttl=64 (request in 45)"], ["47", "16.382730", "10.0.4.15", "192.168.10.5", "Syslog", "113", "LOCAL7.NOTICE: Oct 13 08:43:48 Switch-Closet-C: NTP synchronized to 192.168.10.3"], ["48", "17.368708", "192.168.10.45", "192.168.10.2", "DNS", "83", "Standard query 0x1208 A updates.pdx-ops.example"], ["49", "17.370708", "192.168.10.2", "192.168.10.45", "DNS", "122", "Standard query response 0x1208 A updates.pdx-ops.example A 192.168.10.13"], ["50", "18.248078", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=7/1792, ttl=64"], ["51", "18.248678", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=7/1792, ttl=64 (request in 50)"], ["52", "19.661181", "10.0.4.15", "192.168.10.5", "Syslog", "102", "LOCAL7.NOTICE: Oct 13 08:43:51 Switch-Closet-C: port Gi1/0/12 link up"], ["53", "20.240907", "10.0.4.15", "192.168.10.5", "Syslog", "104", "LOCAL7.NOTICE: Oct 13 08:43:52 Switch-Closet-C: port Gi1/0/12 link down"], ["54", "20.938734", "10.0.4.15", "192.168.10.5", "Syslog", "113", "LOCAL7.NOTICE: Oct 13 08:43:53 Switch-Closet-C: NTP synchronized to 192.168.10.3"], ["55", "21.056551", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=1/256, ttl=64"], ["56", "21.057151", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=1/256, ttl=64 (request in 55)"], ["57", "22.054642", "192.168.10.45", "192.168.10.3", "NTP", "90", "NTP Version 4, client"], ["58", "22.055642", "192.168.10.3", "192.168.10.45", "NTP", "90", "NTP Version 4, server"], ["59", "22.423952", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:43:54 Switch-Closet-C: temperature normal"], ["60", "23.332626", "02:00:c0:a8:0a:01", "Broadcast", "ARP", "42", "Who has 192.168.10.50? Tell 192.168.10.1"], ["61", "23.333026", "02:00:c0:a8:0a:32", "02:00:c0:a8:0a:01", "ARP", "42", "192.168.10.50 is at 02:00:c0:a8:0a:32"], ["62", "23.684876", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:43:55 Switch-Closet-C: temperature normal"], ["63", "24.207238", "192.168.10.45", "192.168.10.2", "DNS", "82", "Standard query 0x1207 A syslog.pdx-ops.example"], ["64", "24.209238", "192.168.10.2", "192.168.10.45", "DNS", "120", "Standard query response 0x1207 A syslog.pdx-ops.example A 192.168.10.12"], ["65", "26.479002", "192.168.10.45", "192.168.10.3", "NTP", "90", "NTP Version 4, client"], ["66", "26.480002", "192.168.10.3", "192.168.10.45", "NTP", "90", "NTP Version 4, server"], ["67", "26.494589", "10.0.4.15", "192.168.10.5", "Syslog", "102", "LOCAL7.NOTICE: Oct 13 08:43:58 Switch-Closet-C: port Gi1/0/12 link up"], ["68", "26.699951", "192.168.10.45", "192.168.10.2", "DNS", "82", "Standard query 0x1202 A syslog.pdx-ops.example"], ["69", "26.701951", "192.168.10.2", "192.168.10.45", "DNS", "120", "Standard query response 0x1202 A syslog.pdx-ops.example A 192.168.10.12"], ["70", "27.039829", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=2/512, ttl=64"], ["71", "27.040429", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=2/512, ttl=64 (request in 70)"], ["72", "27.435980", "02:00:c0:a8:0a:2d", "Broadcast", "ARP", "42", "Who has 192.168.10.50? Tell 192.168.10.45"], ["73", "27.436380", "02:00:c0:a8:0a:32", "02:00:c0:a8:0a:2d", "ARP", "42", "192.168.10.50 is at 02:00:c0:a8:0a:32"], ["74", "27.501169", "10.0.4.15", "192.168.10.5", "Syslog", "102", "LOCAL7.NOTICE: Oct 13 08:43:59 Switch-Closet-C: port Gi1/0/12 link up"], ["75", "27.631516", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:43:59 Switch-Closet-C: fan 1 speed normal"], ["76", "29.210978", "192.168.10.50", "10.0.4.15", "ICMP", "74", "Echo (ping) request  id=0x004d, seq=5/1280, ttl=64"], ["77", "29.211578", "10.0.4.15", "192.168.10.50", "ICMP", "74", "Echo (ping) reply    id=0x004d, seq=5/1280, ttl=64 (request in 76)"], ["78", "30.698352", "192.168.10.45", "192.168.10.3", "NTP", "90", "NTP Version 4, client"], ["79", "30.699352", "192.168.10.3", "192.168.10.45", "NTP", "90", "NTP Version 4, server"], ["80", "31.682413", "192.168.10.45", "192.168.10.2", "DNS", "80", "Standard query 0x1204 A mail.pdx-ops.example"], ["81", "31.684413", "192.168.10.2", "192.168.10.45", "DNS", "116", "Standard query response 0x1204 A mail.pdx-ops.example A 192.168.10.14"], ["82", "32.803345", "10.0.4.15", "192.168.10.5", "Syslog", "101", "LOCAL7.NOTICE: Oct 13 08:44:05 Switch-Closet-C: port Gi1/0/7 link up"], ["83", "33.104794", "192.168.10.45", "192.168.10.2", "DNS", "81", "Standard query 0x1200 A files.pdx-ops.example"], ["84", "33.106794", "192.168.10.2", "192.168.10.45", "DNS", "118", "Standard query response 0x1200 A files.pdx-ops.example A 192.168.10.10"], ["85", "34.126177", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:44:06 Switch-Closet-C: fan 1 speed normal"], ["86", "34.136845", "192.168.10.45", "192.168.10.2", "DNS", "79", "Standard query 0x1201 A ntp.pdx-ops.example"], ["87", "34.138845", "192.168.10.2", "192.168.10.45", "DNS", "114", "Standard query response 0x1201 A ntp.pdx-ops.example A 192.168.10.11"], ["88", "36.006380", "02:00:c0:a8:0a:05", "Broadcast", "ARP", "42", "Who has 192.168.10.2? Tell 192.168.10.5"], ["89", "36.006780", "02:00:c0:a8:0a:02", "02:00:c0:a8:0a:05", "ARP", "42", "192.168.10.2 is at 02:00:c0:a8:0a:02"], ["90", "36.281972", "192.168.10.45", "192.168.10.2", "DNS", "80", "Standard query 0x1209 A mail.pdx-ops.example"], ["91", "36.283972", "192.168.10.2", "192.168.10.45", "DNS", "116", "Standard query response 0x1209 A mail.pdx-ops.example A 192.168.10.14"], ["92", "36.364634", "10.0.4.15", "192.168.10.5", "Syslog", "99", "LOCAL7.NOTICE: Oct 13 08:44:08 Switch-Closet-C: temperature normal"], ["93", "36.406296", "192.168.10.45", "192.168.10.3", "NTP", "90", "NTP Version 4, client"], ["94", "36.407296", "192.168.10.3", "192.168.10.45", "NTP", "90", "NTP Version 4, server"], ["95", "36.425432", "02:00:c0:a8:0a:2d", "Broadcast", "ARP", "42", "Who has 192.168.10.5? Tell 192.168.10.45"], ["96", "36.425832", "02:00:c0:a8:0a:05", "02:00:c0:a8:0a:2d", "ARP", "42", "192.168.10.5 is at 02:00:c0:a8:0a:05"], ["97", "37.201659", "10.0.4.15", "192.168.10.5", "Syslog", "104", "LOCAL7.NOTICE: Oct 13 08:44:09 Switch-Closet-C: port Gi1/0/12 link down"], ["98", "37.268411", "02:00:c0:a8:0a:02", "Broadcast", "ARP", "42", "Who has 192.168.10.50? Tell 192.168.10.2"], ["99", "37.268811", "02:00:c0:a8:0a:32", "02:00:c0:a8:0a:02", "ARP", "42", "192.168.10.50 is at 02:00:c0:a8:0a:32"], ["100", "37.850788", "10.0.4.15", "192.168.10.5", "Syslog", "101", "LOCAL7.NOTICE: Oct 13 08:44:10 Switch-Closet-C: port Gi1/0/7 link up"], ["101", "39.730742", "192.168.10.45", "10.0.4.15", "TCP", "54", "51240 \u2192 23 [SYN] Seq=0 Win=64240 Len=0"], ["102", "39.740742", "10.0.4.15", "192.168.10.45", "TCP", "54", "23 \u2192 51240 [SYN, ACK] Seq=0 Ack=1 Win=64240 Len=0"], ["103", "39.750742", "192.168.10.45", "10.0.4.15", "TCP", "54", "51240 \u2192 23 [ACK] Seq=1 Ack=1 Win=64240 Len=0"], ["104", "40.730742", "10.0.4.15", "192.168.10.45", "TELNET", "80", "Telnet Data ..."], ["105", "40.830742", "10.0.4.15", "192.168.10.45", "TELNET", "64", "Telnet Data ..."], ["106", "41.730742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["107", "41.760742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["108", "41.790742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["109", "41.820742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["110", "41.850742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["111", "41.880742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["112", "41.910742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["113", "41.940742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["114", "41.970742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["115", "42.000742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["116", "42.030742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["117", "42.060742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["118", "42.090742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["119", "42.120742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["120", "42.150742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["121", "42.180742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["122", "42.210742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["123", "42.330742", "192.168.10.45", "10.0.4.15", "TELNET", "56", "Telnet Data ..."], ["124", "42.730742", "10.0.4.15", "192.168.10.45", "TELNET", "77", "Telnet Data ..."], ["125", "42.830742", "10.0.4.15", "192.168.10.45", "TELNET", "64", "Telnet Data ..."], ["126", "43.730742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["127", "43.760742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["128", "43.790742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["129", "43.820742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["130", "43.850742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["131", "43.880742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["132", "43.910742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["133", "43.940742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["134", "43.970742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["135", "44.000742", "192.168.10.45", "10.0.4.15", "TELNET", "55", "Telnet Data ..."], ["136", "44.230742", "192.168.10.45", "10.0.4.15", "TELNET", "56", "Telnet Data ..."], ["137", "44.730742", "10.0.4.15", "192.168.10.45", "TELNET", "70", "Telnet Data ..."]], "syslog": ["<189>Oct 13 08:43:32 Switch-Closet-C: port Gi1/0/12 link up", "<189>Oct 13 08:43:32 Switch-Closet-C: port Gi1/0/12 link down", "<189>Oct 13 08:43:34 Switch-Closet-C: port Gi1/0/12 link up", "<189>Oct 13 08:43:36 Switch-Closet-C: port Gi1/0/7 link up", "<189>Oct 13 08:43:38 Switch-Closet-C: port Gi1/0/7 link up", "<189>Oct 13 08:43:38 Switch-Closet-C: port Gi1/0/12 link down", "<189>Oct 13 08:43:41 Switch-Closet-C: temperature normal", "<189>Oct 13 08:43:41 Switch-Closet-C: NTP synchronized to 192.168.10.3", "<189>Oct 13 08:43:43 Switch-Closet-C: NTP synchronized to 192.168.10.3", "<189>Oct 13 08:43:43 Switch-Closet-C: port Gi1/0/12 link down", "<189>Oct 13 08:43:44 Switch-Closet-C: NTP synchronized to 192.168.10.3", "<189>Oct 13 08:43:44 Switch-Closet-C: fan 1 speed normal", "<189>Oct 13 08:43:45 Switch-Closet-C: fan 1 speed normal", "<189>Oct 13 08:43:45 Switch-Closet-C: port Gi1/0/7 link up", "<189>Oct 13 08:43:47 Switch-Closet-C: fan 1 speed normal", "<189>Oct 13 08:43:48 Switch-Closet-C: temperature normal", "<189>Oct 13 08:43:48 Switch-Closet-C: NTP synchronized to 192.168.10.3", "<189>Oct 13 08:43:51 Switch-Closet-C: port Gi1/0/12 link up", "<189>Oct 13 08:43:52 Switch-Closet-C: port Gi1/0/12 link down", "<189>Oct 13 08:43:53 Switch-Closet-C: NTP synchronized to 192.168.10.3", "<189>Oct 13 08:43:54 Switch-Closet-C: temperature normal", "<189>Oct 13 08:43:55 Switch-Closet-C: temperature normal", "<189>Oct 13 08:43:58 Switch-Closet-C: port Gi1/0/12 link up", "<189>Oct 13 08:43:59 Switch-Closet-C: port Gi1/0/12 link up", "<189>Oct 13 08:43:59 Switch-Closet-C: fan 1 speed normal", "<189>Oct 13 08:44:05 Switch-Closet-C: port Gi1/0/7 link up", "<189>Oct 13 08:44:06 Switch-Closet-C: fan 1 speed normal", "<189>Oct 13 08:44:08 Switch-Closet-C: temperature normal", "<189>Oct 13 08:44:09 Switch-Closet-C: port Gi1/0/12 link down", "<189>Oct 13 08:44:10 Switch-Closet-C: port Gi1/0/7 link up"], "tshark_syslog": ["    1   0.000000    10.0.4.15 \u2192 192.168.10.5 Syslog 102 LOCAL7.NOTICE: Oct 13 08:43:32 Switch-Closet-C: port Gi1/0/12 link up", "    2   0.503923    10.0.4.15 \u2192 192.168.10.5 Syslog 104 LOCAL7.NOTICE: Oct 13 08:43:32 Switch-Closet-C: port Gi1/0/12 link down", "    7   1.888179    10.0.4.15 \u2192 192.168.10.5 Syslog 102 LOCAL7.NOTICE: Oct 13 08:43:34 Switch-Closet-C: port Gi1/0/12 link up"]};
+const R=D.rows;
+const $=id=>document.getElementById(id);
+const clamp=x=>Math.max(0,Math.min(1,x));
+const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const P=(lt,a,d=.5)=>ease(clamp((lt-a)/d));
+const fade=(el,v,dy=12)=>{if(!el)return;el.style.opacity=v;el.style.transform=`translateY(${(1-v)*dy}px)`};
+const lis=sc=>[...document.querySelectorAll(`#${sc} .steps li`)];
+const stepIn=(sc,lt,times)=>lis(sc).forEach((li,i)=>fade(li,P(lt,times[i]??99)));
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const setHTML=(el,h)=>{if(el.__h!==h){el.innerHTML=h;el.__h=h}};
+const typedText=(s,lt,a,d)=>s.slice(0,Math.floor(clamp((lt-a)/d)*s.length));
+
+/* validity of the typed demo filters (valid = green, otherwise red) */
+const NOISE='(arp|icmp|dns|ntp|syslog)';
+const valid=s=>/^(dns|udp(\.port( == \d+)?)?)$/.test(s)||new RegExp('^not '+NOISE+'( and not '+NOISE+')*$').test(s);
+
+function winHTML(o){
+  const rows=o.rows.map(i=>R[i]).slice(0,o.max||18);
+  const rh=o.rowH||22;
+  const W=[34,70,122,122,58,38];
+  const ring=o.ringCol===undefined?'':`outline:2px solid #f5c518;outline-offset:-2px;`;
+  const head=['No.','Time','Source','Destination','Protocol','Len','Info'].map((h,i)=>`<th style="${i<6?'width:'+W[i]+'px;':''}${o.ringCol===i?ring:''}">${h}</th>`).join('');
+  const list=`<table class="pl"><thead><tr>${head}</tr></thead><tbody>`+rows.map(r=>{
+    const n=+r[0],c=o.sel===n?'sel':(o.hi&&o.hi.includes(n)?'hi':'');
+    const info=r[6].length>46?r[6].slice(0,45)+'…':r[6];
+    return `<tr class="${c}" style="height:${rh}px"><td>${r[0]}</td><td>${(+r[1]).toFixed(3)}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${esc(info)}</td></tr>`}).join('')+`</tbody></table>`;
+  const state=o.state||'none';
+  const bar=`<div class="fb"><div class="fin ${state==='none'?'':state}"><span>${esc(o.filter||'')}</span>${o.caret?'<span class="car"></span>':''}</div><div class="fbtn" style="${o.hiApply?'outline:3px solid #f5c518':''}">Apply</div><div class="fbtn">Clear</div></div>`;
+  return bar+`<div>${list}</div>`;
+}
+const idx=f=>R.map((r,i)=>f(r)?i:-1).filter(i=>i>=0);
+const all=R.map((_,i)=>i);
+const byProto=p=>idx(r=>r[4]===p);
+const notNoise=ps=>idx(r=>!ps.includes(r[4]));
+
+/* colored squares for the capture overview */
+const COL={ARP:'#93a3bf',DNS:'#4ea1ff',ICMP:'#f5c518',NTP:'#22c38e',Syslog:'#ff9f43',TCP:'#c792ea',TELNET:'#c792ea'};
+$('s1m').innerHTML=R.map(r=>`<div style="width:14px;height:14px;border-radius:3px;background:${COL[r[4]]||'#fff'}"></div>`).join('');
+
+const SC=[
+ ['s0',6,lt=>{fade($('s0bar'),P(lt,.2,.6),0);$('s0bar').style.transform=`scaleY(${P(lt,.2,.6)})`;fade($('s0txt'),P(lt,.5,.8),20)}],
+ ['s1',13,lt=>{fade($('s1a'),P(lt,.3));
+   [...$('s1m').children].forEach((c,i)=>{c.style.opacity=P(lt,1+i*.015,.2)});stepIn('s1',lt,[3.5,6.5,9.5])}],
+ ['s2',15,lt=>{stepIn('s2',lt,[.8,3.5,8]);
+   setHTML($('s2w'),winHTML({rows:all,max:20,ringCol:lt>3.5&&lt<8?4:undefined,sel:0}))}],
+ ['s3',14,lt=>{stepIn('s3',lt,[1,5.5]);
+   const s=typedText('dns',lt,1,2.2),done=lt>5.5;
+   const st=s.length?(valid(s)?'ok':'bad'):'none';
+   setHTML($('s3w'),winHTML({filter:s,state:st,caret:!done&&Math.floor(lt*2)%2===0,rows:done?byProto('DNS'):all,max:20,hiApply:lt>4.5&&lt<5.5}));
+   $('s3d').textContent=done?'20':'137';fade($('s3n'),P(lt,.6))}],
+ ['s4',15,lt=>{stepIn('s4',lt,[1,5.5,9]);
+   const s=typedText('udp.port == 514',lt,1,3.4),done=lt>5.5;
+   const st=s.length?(valid(s)?'ok':'bad'):'none';
+   setHTML($('s4w'),winHTML({filter:s,state:st,caret:!done&&Math.floor(lt*2)%2===0,rows:done?byProto('Syslog'):all,max:20,hiApply:lt>4.6&&lt<5.5}))}],
+ ['s5',15,lt=>{stepIn('s5',lt,[1,3.5]);
+   const full='not arp and not icmp';
+   const s=typedText(full,lt,1,4.2),done=lt>6;
+   const st=s.length?(valid(s)?'ok':'bad'):'none';
+   setHTML($('s5w'),winHTML({filter:s,state:st,caret:!done&&Math.floor(lt*2)%2===0,rows:done?notNoise(['ARP','ICMP']):all,max:20,hiApply:lt>5.2&&lt<6}));
+   $('s5d').textContent=done?String(notNoise(['ARP','ICMP']).length):'137';fade($('s5n'),P(lt,.6))}],
+ ['s6',16,lt=>{const menu=lt>1.5&&lt<5.5;const sys=byProto('Syslog');
+   setHTML($('s6w'),winHTML({filter:'udp.port == 514',state:'ok',rows:sys,max:18,sel:lt>1?+R[sys[3]][0]:0,rowH:22}));
+   fade($('s6m'),menu?P(lt,1.5,.3):0,0);$('s6h').className=lt>3.5?'hl':'';
+   $('s6f').style.opacity=P(lt,5.5,.6);
+   const n=Math.floor(clamp((lt-6)/6)*Math.min(D.syslog.length,17));
+   $('s6t').innerHTML=D.syslog.slice(0,n).map(l=>`<div style="color:#a62323">${esc(l)}</div>`).join('');
+   fade($('s6n'),P(lt,9))}],
+ ['s7',11,lt=>{
+   const cmd='<span class="p">$</span> tshark -r artifacts/jared-telnet-capture.pcap -Y "udp.port == 514"';
+   const o=D.tshark_syslog;
+   $('s7t').innerHTML=cmd+(lt>2.2?'\n'+esc(o[0]):'')+(lt>2.9?'\n'+esc(o[1]):'')+(lt>3.6?'\n'+esc(o[2]):'');
+   stepIn('s7',lt,[4.5,7])}],
+ ['s8',11,lt=>{[...$('s8t').children].forEach((r,i)=>fade(r,P(lt,.4+i*.9,.5),8))}],
+ ['s9',12,lt=>{stepIn('s9',lt,[.5,1.8,3.1,4.4]);fade($('s9n'),P(lt,6.5))}],
+];
+let acc=0;SC.forEach(s=>{s.start=acc;acc+=s[1]});
+window.TOTAL=acc;
+window.render=function(t){
+  let cur=SC[SC.length-1];for(const s of SC){if(t>=s.start&&t<s.start+s[1]){cur=s;break}}
+  SC.forEach(s=>$(s[0]).style.display=s===cur?'block':'none');
+  const lt=t-cur.start;cur[2](lt);
+  const el=$(cur[0]);el.style.opacity=Math.min(clamp(lt/.35),clamp((cur[1]-lt)/.35));
+  $('prog').style.width=(t/acc*100)+'%';
+};
+document.querySelectorAll('.cap').forEach(c=>c.innerHTML='<span>'+c.innerHTML+'</span>');
+window.render(0);
+</script>
+</body></html>

@@ -150,6 +150,12 @@ Run all of these. Each one caught something real on the Tamarack track.
    render, no horizontal scroll, no console errors, new artifacts look right.
 6. After the PR is up, read the review bot's comments, reply on each thread before
    pushing the fix, and re-audit the whole unit if the fix moves structure.
+7. If you change Episode 7, Drill 1 (its capture table or its passwords), regenerate
+   `portland-desk/artifacts/jared-telnet-capture.pcap` with
+   `tools/generate_ep07_telnet_capture.py` (needs `pip install scapy`), copy it and the
+   workbench into `docs/portland-desk/`, and run `python3 tools/check_ep07_capture.py`.
+   CI runs the same check and fails if the table, the answer key, the capture, or the
+   mirror disagree.
 
 ## Environment notes
 
@@ -184,6 +190,10 @@ Full text: `schema/README.md`. Non-negotiables:
 - Two tiers when used: `exam` = study targets; `support` = readability jargon; flavor unmarked.
 - HTML is generated only via `tools/render_unit.py`.
 
+## Playbooks
+
+- **Instructions → training video** lives in the Knowledge Harvest repo: `playbooks/instructions-to-training-video/` in [cwarloe/knowledge-harvest](https://github.com/cwarloe/knowledge-harvest). Use it if a unit needs a captioned walkthrough video built from written steps. Not needed for normal units.
+
 ## Track-specific canon
 
 - **Portland Desk (Sec+):** `examples/PORTLAND_DESK.md`
@@ -216,3 +226,27 @@ Do not invent port numbers or exam definitions that contradict the course source
 ## Done definition
 
 A unit is done when: validate PASS, render succeeded, landing card present, cover test passes, sticky teaching beats can be named in one sentence each, and `docs/` is pushed for Pages.
+
+
+---
+
+## Core Standards & Production Knowledge Base
+
+When authoring narrative stories, hands-on workbenches, terminal simulations, or art briefs, all agents must adhere to the foundational research standards in `docs/research/`:
+
+1. **Plain-English & Vocabulary Standard (`docs/research/PLAIN_ENGLISH_STYLE_GUIDE.md`):**
+   - Strictly prohibits L&D, educational psychology, and software architect jargon ("invariants", "falsifiable hypothesis", "rubric", "pedagogical", "heuristic" in general prose, "scaffolding").
+   - Enforces U.S. high-school graduate readability and in-context technical vocabulary introduction.
+2. **Visual Art Direction & Technical Panels (`docs/research/VISUAL_ART_DIRECTION.md`):**
+   - Governs the "Clear Technical Cutaway" (Ligne Claire) art style and Pacific Northwest atmosphere.
+   - Enforces the **Zero-Text Rule** on all AI image generation to eliminate hallucinated lettering.
+   - Mandates Image-to-Image (Img2Img) workflow with real reference photos for hardware precision.
+   - Contains the master aspect ratio directory (`16:9`, `21:9`, `4:3`, `1:1`, `3:4`) and full episode prompt catalogue.
+3. **Pedagogical Agency Architecture (`docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`):**
+   - Resolves the "Already Solved" dilemma (Dramatic vs. Pedagogical Fallacy).
+   - Enforces the **Dynamic Fading Apprenticeship** across the 13 episodes (Symmetrical Tickets $\rightarrow$ Interleaved Cliffhanger Handoffs $\rightarrow$ Co-Pilot Dispatcher $\rightarrow$ Incident Commander).
+4. **Interactive Components Specification (`docs/research/INTERACTIVE_COMPONENTS_SPEC.md`):**
+   - Syntax and client-side behavior for ````lnk-terminal` (zero-backend in-browser CLI simulation) and ````callout-panel` (responsive graphic novel schematics).
+5. **Track Canon & Author Bibles:**
+   - `docs/research/PORTLAND_AUTHOR_BIBLE.md`: Character arcs, 3-act story snowflake, episode causal beat matrix.
+   - `docs/research/PORTLAND_CURRICULUM_PLAN.md`: Whole-task 4C/ID competency progression across CompTIA A+, Network+, and Security+.
