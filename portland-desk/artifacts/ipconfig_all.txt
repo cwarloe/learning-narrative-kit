@@ -1,15 +1,15 @@
 Windows IP Configuration
 
    Host Name . . . . . . . . . . . . : PORT-WS-1042
-   Primary Dns Suffix  . . . . . . . : portland-ops.local
+   Primary Dns Suffix  . . . . . . . : harrowmere.local
    Node Type . . . . . . . . . . . . : Hybrid
    IP Routing Enabled. . . . . . . . : No
    WINS Proxy Enabled. . . . . . . . : No
-   DNS Suffix Search List. . . . . . : portland-ops.local
+   DNS Suffix Search List. . . . . . : harrowmere.local
 
 Ethernet adapter Local Area Connection 1:
 
-   Connection-specific DNS Suffix  . : portland-ops.local
+   Connection-specific DNS Suffix  . : harrowmere.local
    Description . . . . . . . . . . . : Intel(R) Ethernet Connection (7) I219-LM
    Physical Address. . . . . . . . . : 00-2B-67-14-99-4A
    DHCP Enabled. . . . . . . . . . . : Yes

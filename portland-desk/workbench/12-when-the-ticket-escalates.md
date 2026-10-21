@@ -47,8 +47,8 @@ Over the span of three hours, four distinct tickets land across Ethan's dispatch
 2. **Ticket 2: Ken Vance in Sales/Warehouse (`KEN-SALES-14`):**  
    Ken walked into the help desk bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scrawled in faded blue marker. Ken plugged the drive into his corporate laptop to inspect an invoice. His cooling fans surged to 100% before he pulled the stick. Local antivirus quarantined a file named `SOW_final.pdf.exe` (`Trojan:Win32/Dropper.B`). While Ken believed the incident was resolved because the drive was removed, EDR telemetry revealed a hidden background process (`powershell.exe`) executing internal SMB share enumeration (`net view /all`), probing the warehouse storage server (`\\WH-PACK-02\share$`), and registering a scheduled persistence task named `CacheCleanup` configured to run under `NT AUTHORITY\SYSTEM` at system boot.
 
-3. **Ticket 3: Leah Moreno at the Willamette River Water Treatment Facility (`GW-PLANT-04`):**  
-   Leah Moreno, Senior SCADA and Industrial Systems Technician, called Ethan via the secure plant landline. Network monitoring on the operational technology (OT) edge detected anomalous outbound TLS egress traffic originating from telemetry gateway `GW-PLANT-04` destined for an external IP address (`185.22.112.14:8443`). Telemetry showed the connection was initiated not by the water treatment firmware, but from an internal staging jump box (`SRV-STAGE-01`) that bridges the corporate IT network and the plant SCADA supervisory zone.
+3. **Ticket 3: Leah Moreno at the Willamette River Plant (`GW-PLANT-04`):**  
+   Leah Moreno, Senior SCADA and Industrial Systems Technician, called Ethan via the secure plant landline. Network monitoring on the operational technology (OT) edge detected anomalous outbound TLS egress traffic originating from telemetry gateway `GW-PLANT-04` destined for an external IP address (`185.22.112.14:8443`). Telemetry showed the connection was initiated not by the plant controller firmware, but from an internal staging jump box (`SRV-STAGE-01`) that bridges the corporate IT network and the plant SCADA supervisory zone.
 
 4. **Ticket 4: Central Network & EDR Telemetry (Host C2 Beaconing):**  
    Cross-referencing perimeter firewall flow logs with host-level EDR data, Ethan spots a chilling synchronization: workstation `FIN-NORA-02` (Nora Higgins) has been establishing regular outbound HTTPS connections to `185.22.112.14:443` every 300 seconds ($\pm 5\%$ randomized jitter). Memory analysis alerts indicate unauthorized process injection: an unsigned thread within `powershell.exe` has initiated handle access against `lsass.exe` (Local Security Authority Subsystem Service), attempting to dump cached domain credentials from memory.
@@ -56,7 +56,7 @@ Over the span of three hours, four distinct tickets land across Ethan's dispatch
 Jules Brooks stands behind Ethan’s chair, sets her ceramic mug down without making a sound, and pulls a heavy red binder from the fireproof cabinet.
 
 > *"Ethan, listen to me carefully. A novice tech sees four tickets: a mailbox glitch, a dirty USB, a weird plant router alert, and a slow laptop. They run a scanner, wipe Nora's drive, tell Ken not to do it again, and go home at five.  
-> If you do that today, you destroy the only evidence of a coordinated intrusion campaign. Nora's stolen credentials opened the door; Ken's USB dropped the staging script; the script hopped to the staging jump box; and now an adversary is probing our municipal water treatment telemetry.  
+> If you do that today, you destroy the only evidence of a coordinated intrusion campaign. Nora's stolen credentials opened the door; Ken's USB dropped the staging script; the script hopped to the staging jump box; and now an adversary is probing our plant process telemetry.  
 > You are the first responder on this desk. That means your first job is not heroics and it is not freelance forensics. Your job is preservation, containment, and chain of custody. You are going to assemble the formal CSIRT Escalation Dossier under my eye. If it isn't documented with a timestamp and a SHA-256 hash, it didn't happen."*
 
 
@@ -238,7 +238,7 @@ During the triage of Nora's workstation (`FIN-NORA-02`), Ken's laptop (`KEN-SALE
 Sort the following eight items in strict order of volatility according to RFC 3227 and CompTIA Security+ SY0-701 guidelines, ranking them from **1 (Most Volatile / Dies First)** to **8 (Least Volatile / Most Permanent)**:
 
 * **Item A:** Local SSD storage volume containing `%SystemRoot%\System32\winevt\Logs\Security.evtx`
-* **Item B:** Physical network patch cabling map and rack elevation diagram for the water treatment facility
+* **Item B:** Physical network patch cabling map and rack elevation diagram for the Willamette plant
 * **Item C:** CPU L3 cache and execution registers on `FIN-NORA-02`
 * **Item D:** Volatile main memory (16GB DDR4 RAM) containing the injected `powershell.exe` process and unencrypted C2 decryption key
 * **Item E:** Magnetic backup tapes stored in the climate-controlled Gresham vault taken 7 days ago
@@ -457,8 +457,8 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
 
 ---
 
-#### Case 3: Leah Moreno (Water Treatment Plant) — `INC-2026-1203`
-*Telemetry & Symptoms:* Leah reports that plant telemetry gateway `GW-PLANT-04` is attempting outbound TLS sessions to external IP `185.22.112.14:8443`. Traffic originates from an internal staging jump box (`SRV-STAGE-01`) located in the cross-connected operations subnet. The water treatment facility's programmable logic controllers (PLCs) are operating normally, but Leah is concerned the gateway could be used to bridge into the SCADA network.
+#### Case 3: Leah Moreno (Willamette Plant) — `INC-2026-1203`
+*Telemetry & Symptoms:* Leah reports that plant telemetry gateway `GW-PLANT-04` is attempting outbound TLS sessions to external IP `185.22.112.14:8443`. Traffic originates from an internal staging jump box (`SRV-STAGE-01`) located in the cross-connected operations subnet. The Willamette plant's programmable logic controllers (PLCs) are operating normally, but Leah is concerned the gateway could be used to bridge into the SCADA network.
 
 * **Your Action:**  
   [ A. Reimage SCADA Gateway Immediately / B. Emergency Isolation of Staging Jump Box, Block Outbound Port 8443 at OT Edge, Engage Industrial CSIRT / C. Ignore Alert as Routine Telemetry Sync ]
@@ -471,7 +471,7 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
 * **Action:** **B. Emergency Isolation of Staging Jump Box, Block Outbound Port 8443 at OT Firewall Boundary, and Engage Industrial CSIRT.**
 * **Threat Classification & IR Phase:** **Pivoting / Unauthorized Network Egress / Critical Infrastructure Threat**; Lifecycle Phase: **Containment & Escalation**.
 * **Jules' Critique:**  
-  "This is where help desk responsibilities end and emergency CSIRT protocols begin. Gateway `GW-PLANT-04` sits on the boundary between corporate IT and municipal water control. The external destination IP (`185.22.112.14`) is the exact same C2 address communicating with Nora's infected PC in Finance.  
+  "This is where help desk responsibilities end and emergency CSIRT protocols begin. Gateway `GW-PLANT-04` sits on the boundary between corporate IT and plant process control. The external destination IP (`185.22.112.14`) is the exact same C2 address communicating with Nora's infected PC in Finance.  
   The attacker is attempting to pivot from corporate IT through staging jump box `SRV-STAGE-01` into the plant network. Sever the staging box's network links instantly. Implement an immediate egress drop rule on the OT perimeter firewall for port 8443 and IP `185.22.112.14`. Do NOT reboot the gateway or PLCs—call the Industrial Incident Commander immediately."
 </details>
 
@@ -591,8 +591,8 @@ Servers & Gateways:
   Status: EGRESS BLOCKED AT OT FIREWALL | Operating under Industrial IR Protocol
 
 Compromised Identities:
-- UPN: nhiggins@portland-ops.org (Finance Specialist — Full Mailbox & Cloud Access)
-- UPN: kvance@portland-ops.org (Warehouse Lead — Domain User)
+- UPN: nhiggins@harrowmere.com (Finance Specialist — Full Mailbox & Cloud Access)
+- UPN: kvance@harrowmere.com (Warehouse Lead — Domain User)
 - Target Exfiltration Mailbox: exfil@pay-secure-audit.com
 
 3. COMPREHENSIVE INDICATORS OF COMPROMISE (IoCs)
@@ -632,7 +632,7 @@ Timestamp (PST) | Action Executed & Technical Details
 14:18:12        | EDR Host Isolation engaged on FIN-NORA-02. Machine retained powered 
                 | ON in locked state. Out-of-band management channel preserved.
 14:20:05        | Cloud Identity Containment: Executed Revoke-AzureADUserAllRefreshToken
-                | for nhiggins@portland-ops.org. Forced administrative password reset.
+                | for nhiggins@harrowmere.com. Forced administrative password reset.
 14:22:30        | Purged malicious forwarding rule 'InvoiceProcess' via Exchange 
                 | Online PowerShell (Remove-InboxRule -Mailbox nhiggins -Identity ...).
 14:25:10        | Physical Network Isolation of KEN-SALES-14: Disconnected RJ-45 

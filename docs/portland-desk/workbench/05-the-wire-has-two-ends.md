@@ -31,7 +31,7 @@ prompt: "Clean technical wiring schematic of a DB-9 to RJ-45 console adapter und
 
 
 ### The Situation
-It is 08:15 on a stormy Tuesday morning in late October. Cold rain lashes the fourth-floor glass of the Portland Regional Operations Center. Inside the facility bullpen, network infrastructure engineer Jared Vance is furiously pounding his keyboard. His automated configuration backup script failed at 03:15 AM, failing to archive 300 municipal field switches and throwing thousands of red errors across server `PDX-ARCHIVE01`. Jared is convinced that Central IT in Chicago pushed an unannounced perimeter firewall change that severed access to port 8443.
+It is 08:15 on a stormy Tuesday morning in late October. Cold rain lashes the fourth-floor glass of the Portland Regional Operations Center. Inside the facility bullpen, network infrastructure engineer Jared Vance is furiously pounding his keyboard. His automated configuration backup script failed at 03:15 AM, failing to archive 300 field switches and throwing thousands of red errors across server `PDX-ARCHIVE01`. Jared is convinced that Central IT in Chicago pushed an unannounced perimeter firewall change that severed access to port 8443.
 
 Simultaneously, freight supervisor Ken at the Gresham logistics annex reports critical intake terminal failures. Terminal four fails instantly with an error stating "Connection refused," while terminal seven hangs spinning for nearly a minute before throwing "Connection timed out."
 
@@ -505,7 +505,7 @@ Priority:         P2 - High (Client Transport Architecture & Script Refactor)
 Subject:          Client-Side Ephemeral Port Exhaustion on Automated Backup Runs
 
 1. DEFECT DESCRIPTION & RUNTIME IMPACT:
-   During batch configuration archive runs across 400 municipal devices, the 
+   During batch configuration archive runs across 400 network devices, the 
    PowerShell backup script failed with SocketException ("Only one usage of each 
    socket address is normally permitted"). The archive destination server 
    (PDX-ARCHIVE01:8443) remained healthy at 12% CPU with its listening socket 
@@ -577,7 +577,7 @@ Subject:          Client-Side Ephemeral Port Exhaustion on Automated Backup Runs
 ```callout-panel
 title: "FIGURE 5.2: RESOLVED TRANSPORT LAYER ARCHIVE"
 badge: "Shift Epilogue"
-caption: "Operations center: At 01:45 PM, thin bands of autumn sunlight illuminate the Marquam Bridge as the backup archive engine streams municipal switch configurations without a dropped socket."
+caption: "Operations center: At 01:45 PM, thin bands of autumn sunlight illuminate the Marquam Bridge as the backup archive engine streams switch configurations without a dropped socket."
 prompt: "Clean graphic novel cutaway panel of a network management operations bullpen in the Pacific Northwest. Large windows show breaking clouds over an industrial bridge. On a multi-monitor desk, clean terminal windows display green successful backup synchronization logs. A ceramic coffee mug sits beside neatly arranged diagnostic notebooks. Ligne Claire style, sharp technical ink lines, no text, no words. 16:9 ratio."
 ```
 

@@ -1,17 +1,17 @@
-Delivered-To: tbradley@portland-ops.local
-Received: from mail-relay.portland-ops.local (mail-relay.portland-ops.local [192.168.10.50])
-	by imap.portland-ops.local with ESMTP id 82B93FA1
-	for <tbradley@portland-ops.local>; Tue, 20 Oct 2026 17:21:05 +0000
+Delivered-To: tbradley@harrowmere.local
+Received: from mail-relay.harrowmere.local (mail-relay.harrowmere.local [192.168.10.50])
+	by imap.harrowmere.local with ESMTP id 82B93FA1
+	for <tbradley@harrowmere.local>; Tue, 20 Oct 2026 17:21:05 +0000
 Received: from vps104-bogus-sender.net (vps104-bogus-sender.net [198.51.100.84])
-	by mail-relay.portland-ops.local with ESMTP id 93A87BF4
-	for <tbradley@portland-ops.local>; Tue, 20 Oct 2026 17:21:03 +0000
-Authentication-Results: mail-relay.portland-ops.local;
+	by mail-relay.harrowmere.local with ESMTP id 93A87BF4
+	for <tbradley@harrowmere.local>; Tue, 20 Oct 2026 17:21:03 +0000
+Authentication-Results: mail-relay.harrowmere.local;
 	spf=fail (sender IP 198.51.100.84 is not in designated SPF record of vendor-invoicing.net) smtp.mailfrom=bounce@vps104-bogus-sender.net;
 	dkim=none (no signature found);
 	dmarc=fail (p=none dis=none) header.from=vendor-invoicing.net
 From: "Supplier Billing Department" <billing@vendor-invoicing.net>
 Reply-To: "Emergency Collections" <collect@phish-drop.org>
-To: tbradley@portland-ops.local
+To: tbradley@harrowmere.local
 Subject: URGENT: Outstanding Balance Invoice #INV-98231 - Immediate Payment Required
 Date: Tue, 20 Oct 2026 17:20:45 +0000
 Message-ID: <20261020172045.99428174.phish@vps104-bogus-sender.net>

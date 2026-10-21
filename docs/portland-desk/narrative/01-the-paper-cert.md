@@ -2,9 +2,9 @@
 
 *A CompTIA A+ Core 1 hardware diagnostic precursor • Hover over highlighted terms for exam definitions.*
 
-The metal-halide lamps hung forty feet above the concrete floor. They buzzed with the low drone of heavy ballasts that had not been serviced in years. Out in the Gresham yard, the early summer air stayed damp and cool. Inside the high-bay distribution hub, the air smelled of forklift hydraulic oil, diesel exhaust, and thousands of dusty cardboard cartons stacked twelve tiers high. It was 2:24 on a Thursday morning. Battery chargers along the east perimeter wall hummed their steady sixty-hertz rhythm while our shift pushed toward the morning dispatch.
+The metal-halide lamps hung forty feet above the concrete floor. They buzzed with the low drone of heavy ballasts that had not been serviced in years. Out in the Gresham yard, the late-winter air stayed damp and cold. Inside the high-bay distribution hub, the air smelled of forklift hydraulic oil, diesel exhaust, and thousands of dusty cardboard cartons stacked twelve tiers high. It was 2:24 on a Thursday morning. Battery chargers along the east perimeter wall hummed their steady sixty-hertz rhythm while our shift pushed toward the morning dispatch.
 
-I was nineteen years old. My steel-toed boots pinched my arches, and I wore a high-visibility orange vest over my canvas jacket. My father had spent thirty-four years as a precision machinist in an East Portland tool-and-die shop. He had raised me with a quiet reverence for physical instruments, calibrated micrometers, and the unyielding realities of steel. When I chose to skip college loans and took this staging job, I convinced myself that modern industry lived entirely in software. During every fifteen-minute break, I sat on an upturned wooden pallet with my phone, drilling digital flashcards for the CompTIA exams. I had memorized bus widths, socket pin counts, and the theoretical seven layers of the OSI model. I believed that passing those multiple-choice tests made me a real technician.
+I was twenty-one years old. My steel-toed boots pinched my arches, and I wore a high-visibility orange vest over my canvas jacket. My father had spent thirty-four years as a precision machinist in an East Portland tool-and-die shop. He had raised me with a quiet reverence for physical instruments, calibrated micrometers, and the unyielding realities of steel. When I chose to skip college loans and took this staging job, I convinced myself that modern industry lived entirely in software. During every fifteen-minute break, I sat on an upturned wooden pallet with my phone, drilling digital flashcards for the CompTIA exams. I had memorized bus widths, socket pin counts, and the theoretical seven layers of the OSI model. I believed that passing those multiple-choice tests made me a real technician.
 
 That illusion shattered when the main conveyor belt on Sorting Line 4 shuddered to a sudden halt. The automated weighing and sorting deck fell dead silent. Above the intake scanner, the beacon tower flashed an angry, continuous amber fault light.
 
@@ -92,5 +92,5 @@ target: workbench/01-the-paper-cert.md
 domain: CompTIA A+ Core 1 (220-1101) • Domain 3.0 Hardware & Network Troubleshooting
 badge: Hands-On Lab
 ---
-Step onto Ethan's graveyard shift at the Gresham freight terminal with interactive POST code diagnostics, RS-232 serial telemetry debugging, multimeter power rail verification, and the Tier 1 Physical Incident Triage Report.
+Step onto Ethan's graveyard shift at the Harrowmere Gresham distribution warehouse with interactive POST code diagnostics, RS-232 serial telemetry debugging, multimeter power rail verification, and the Tier 1 Physical Incident Triage Report.
 ```

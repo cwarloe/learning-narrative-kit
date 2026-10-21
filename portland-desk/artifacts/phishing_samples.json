@@ -25,7 +25,7 @@
     "sample_id": "PHISH-02",
     "filename": "sample_spoofed_exec.eml",
     "subject": "Confidential: Immediate vendor wire authorization required",
-    "sender_header": "walt@portland-ops.local",
+    "sender_header": "walt@harrowmere.local",
     "reply_to": "walt.executive.desk77@gmail.com",
     "origin_ip": "159.135.225.12",
     "authentication_results": {
@@ -47,8 +47,8 @@
     "sample_id": "LEGIT-01",
     "filename": "sample_legit_payroll.eml",
     "subject": "Annual Open Enrollment 2027: Confirmation of Current Health Selections",
-    "sender_header": "hr-benefits@portland-ops.local",
-    "reply_to": "hr-benefits@portland-ops.local",
+    "sender_header": "hr-benefits@harrowmere.local",
+    "reply_to": "hr-benefits@harrowmere.local",
     "origin_ip": "192.168.10.72",
     "authentication_results": {
       "spf": "pass",

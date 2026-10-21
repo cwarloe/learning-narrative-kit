@@ -33,7 +33,7 @@ prompt: "Clean technical cutaway diagram of a computer desktop screen displaying
 ### The Situation
 It is 08:30 on an overcast Tuesday morning in East Portland. Outside, rain streams down the high double-paned windows facing the river. Inside the operations center, the incoming service desk ticket queue has spiked with nine critical incidents within twenty minutes.
 
-Remote employees working from home across Multnomah and Washington counties have established secure VPN tunnels into the corporate network. Their network adapters report valid IP addresses on the `10.200.15.0/24` VPN pool. Yet whenever they attempt to browse internal business tools—specifically `payroll.portland-ops.local` and `wiki.portland-ops.local`—their browsers either time out with `DNS_PROBE_FINISHED_NXDOMAIN` or redirect to public registrar parking pages. Meanwhile, workstations physically plugged into the office local area network resolve those exact same resources instantly.
+Remote employees working from home across Multnomah and Washington counties have established secure VPN tunnels into the corporate network. Their network adapters report valid IP addresses on the `10.200.15.0/24` VPN pool. Yet whenever they attempt to browse internal business tools—specifically `payroll.harrowmere.local` and `wiki.harrowmere.local`—their browsers either time out with `DNS_PROBE_FINISHED_NXDOMAIN` or redirect to public registrar parking pages. Meanwhile, workstations physically plugged into the office local area network resolve those exact same resources instantly.
 
 Jared Vance from network operations insists that residential internet service providers are experiencing routing failures. But Desk Lead Jules Brooks and Tier 2 Systems Administrator Maya Chen point out that the encrypted tunnel is fully operational. 
 
@@ -55,7 +55,7 @@ flowchart TD
 
 1. **Rule 1: The Name Is Not the Number.** Executing `ping hostname` tests two distinct subsystems simultaneously: name resolution and ICMP echo reachability. If the operating system cannot resolve the hostname to an IP address, `ping` fails immediately with `Could not find host`. That failure reveals zero information about network routing, firewall rules, or server health; it proves solely that the resolver failed.
 2. **Rule 2: Client-Side Precedence Always Wins First.** An operating system never sends a UDP 53 packet across the network until it has exhausted its internal local checks. If a static entry exists in `C:\Windows\System32\drivers\etc\hosts` or a stale record sits in the local resolver cache, the OS uses that address without ever querying a corporate DNS server.
-3. **Rule 3: Split-Horizon Demands Vantage Point Awareness.** Enterprise networks often maintain two distinct versions of the same DNS zone. An internal employee querying `wiki.portland-ops.com` receives a private RFC 1918 IP address (`10.100.40.8`), while an external user on the public internet receives a public CDN proxy IP (`198.51.100.24`). You cannot troubleshoot a resolution ticket without knowing which authoritative zone answered the client.
+3. **Rule 3: Split-Horizon Demands Vantage Point Awareness.** Enterprise networks often maintain two distinct versions of the same DNS zone. An internal employee querying `wiki.harrowmere.com` receives a private RFC 1918 IP address (`10.100.40.8`), while an external user on the public internet receives a public CDN proxy IP (`198.51.100.24`). You cannot troubleshoot a resolution ticket without knowing which authoritative zone answered the client.
 4. **Rule 4: Multi-Homed VPN Endpoints Are Prone to DNS Leaks.** Modern client operating systems utilize Smart Multi-Homed Name Resolution. When connected to a VPN, the OS sends DNS queries across all network adapters simultaneously. If the physical Wi-Fi interface responds faster than the encrypted virtual adapter, the OS accepts the home router's response, leaking corporate DNS queries to public ISPs and dropping private `.local` lookups.
 5. **Rule 5: Negative Caching Persists by TTL.** When a recursive resolver returns an NXDOMAIN (non-existent domain) response, the client stub resolver caches that negative answer for the duration specified in the zone's SOA Minimum TTL. Reconnecting the VPN or refreshing the browser will continue to fail until the client cache is purged via `ipconfig /flushdns`.
 
@@ -70,7 +70,7 @@ When an application (such as a web browser or database client) requests a connec
 
 ```mermaid
 flowchart TD
-    A["Application Requests 'payroll.portland-ops.local'"] --> B{"1. Local Host Check<br/>Does name match local computer name?"}
+    A["Application Requests 'payroll.harrowmere.local'"] --> B{"1. Local Host Check<br/>Does name match local computer name?"}
     B -- Yes --> C["Return Loopback 127.0.0.1 or Local NIC IP"]
     B -- No --> D{"2. DNS Client Cache<br/>Is record in memory cache?<br/>(ipconfig /displaydns)"}
     D -- Yes --> E["Return Cached IP Address"]
@@ -88,12 +88,12 @@ Every network technician must distinguish between DNS resource records by transp
 
 | Record Type | RFC Standard | Functional Description | Typical Production Payload Example | Troubleshooting Significance & Failure Mode |
 | :--- | :--- | :--- | :--- | :--- |
-| **A** | RFC 1035 | Host IPv4 address mapping (32-bit integer). | `payroll.portland-ops.local. IN A 10.100.20.14` | Client cannot connect to service; verify correct subnet and split-horizon vantage point. |
-| **AAAA** | RFC 3596 | Host IPv6 address mapping (128-bit hexadecimal). | `portal.portland-ops.com. IN AAAA 2001:db8:85a3::8a2e:370:7334` | Dual-stack clients prefer IPv6; an unreachable AAAA record causes connection delays before IPv4 fallback. |
-| **CNAME** | RFC 1035 | Canonical Name (Alias) pointing one FQDN to another canonical FQDN. | `wiki.portland-ops.com. IN CNAME cloud-proxy.pdx-cdn.net.` | Cannot coexist with other records on the exact same node (RFC 1912); cannot be placed at zone apex (`@`). |
-| **MX** | RFC 1035 | Mail Exchanger; specifies mail servers responsible for accepting inbound email, ordered by preference priority. | `portland-ops.com. IN MX 10 mail1.portland-ops.com.`<br>`portland-ops.com. IN MX 20 mail2.portland-ops.com.` | Lower preference number indicates higher priority; missing or mispointed MX records halt inbound corporate email. |
-| **TXT** | RFC 1035 | Arbitrary human and machine-readable text; utilized for domain ownership verification, SPF, DKIM, and DMARC. | `portland-ops.com. IN TXT "v=spf1 ip4:10.100.0.0/16 include:_spf.google.com ~all"` | Syntax errors in TXT records cause external mail servers to reject corporate outbound email as spam. |
-| **PTR** | RFC 1035 | Pointer record; performs reverse DNS lookups (resolves an IP address to an FQDN) in the `in-addr.arpa` zone. | `14.20.100.10.in-addr.arpa. IN PTR payroll.portland-ops.local.` | Mail servers reject connections from MTAs lacking valid reverse PTR records matching their forward A records. |
+| **A** | RFC 1035 | Host IPv4 address mapping (32-bit integer). | `payroll.harrowmere.local. IN A 10.100.20.14` | Client cannot connect to service; verify correct subnet and split-horizon vantage point. |
+| **AAAA** | RFC 3596 | Host IPv6 address mapping (128-bit hexadecimal). | `portal.harrowmere.com. IN AAAA 2001:db8:85a3::8a2e:370:7334` | Dual-stack clients prefer IPv6; an unreachable AAAA record causes connection delays before IPv4 fallback. |
+| **CNAME** | RFC 1035 | Canonical Name (Alias) pointing one FQDN to another canonical FQDN. | `wiki.harrowmere.com. IN CNAME cloud-proxy.pdx-cdn.net.` | Cannot coexist with other records on the exact same node (RFC 1912); cannot be placed at zone apex (`@`). |
+| **MX** | RFC 1035 | Mail Exchanger; specifies mail servers responsible for accepting inbound email, ordered by preference priority. | `harrowmere.com. IN MX 10 mail1.harrowmere.com.`<br>`harrowmere.com. IN MX 20 mail2.harrowmere.com.` | Lower preference number indicates higher priority; missing or mispointed MX records halt inbound corporate email. |
+| **TXT** | RFC 1035 | Arbitrary human and machine-readable text; utilized for domain ownership verification, SPF, DKIM, and DMARC. | `harrowmere.com. IN TXT "v=spf1 ip4:10.100.0.0/16 include:_spf.google.com ~all"` | Syntax errors in TXT records cause external mail servers to reject corporate outbound email as spam. |
+| **PTR** | RFC 1035 | Pointer record; performs reverse DNS lookups (resolves an IP address to an FQDN) in the `in-addr.arpa` zone. | `14.20.100.10.in-addr.arpa. IN PTR payroll.harrowmere.local.` | Mail servers reject connections from MTAs lacking valid reverse PTR records matching their forward A records. |
 | **SRV** | RFC 2782 | Service locator; defines hostname, port number, priority, and weight for specific services (Active Directory, SIP, Kerberos). | `_ldap._tcp.dc._msdcs.portland.local. IN SRV 0 100 389 pdx-dc01.portland.local.` | Missing SRV records prevent domain join operations and trigger "No logon servers available" errors. |
 | **SOA** | RFC 1035 | Start of Authority; specifies authoritative server, administrator email, serial number, refresh intervals, and minimum TTL. | `portland.local. IN SOA ns1.portland.local. admin.portland.local. (2026101801 7200 3600 1209600 900)` | Serial number mismatches cause secondary DNS servers to serve stale zone data. Minimum TTL governs negative caching. |
 
@@ -118,14 +118,14 @@ ipconfig /all
 nslookup
 > server 10.100.10.2
 > set type=A
-> payroll.portland-ops.local
+> payroll.harrowmere.local
 > set type=SRV
-> _ldap._tcp.dc._msdcs.portland-ops.local
+> _ldap._tcp.dc._msdcs.harrowmere.local
 > exit
 
 # 5. PowerShell Modern DNS Name Resolution Cmdlet
-Resolve-DnsName -Name "payroll.portland-ops.local" -Server 10.100.10.2
-Resolve-DnsName -Name "wiki.portland-ops.com" -Type CNAME
+Resolve-DnsName -Name "payroll.harrowmere.local" -Server 10.100.10.2
+Resolve-DnsName -Name "wiki.harrowmere.com" -Type CNAME
 ```
 
 
@@ -147,15 +147,15 @@ flowchart TD
     subgraph PublicInternet["Public Internet"]
         ClientExternal["External / Remote Workstation<br/>192.168.1.105"]
         HomeRouter["Home Router / ISP DNS<br/>192.168.1.1"]
-        DNSPublic["Public Authoritative DNS<br/>ns1.portland-ops.com"]
+        DNSPublic["Public Authoritative DNS<br/>ns1.harrowmere.com"]
         PublicProxy["Public Cloud Landing / CDN<br/>198.51.100.24"]
     end
 
-    ClientInternal -->|"Query: payroll.portland-ops.local"| DNSInternal
+    ClientInternal -->|"Query: payroll.harrowmere.local"| DNSInternal
     DNSInternal -->|"Returns: 10.100.20.14"| ClientInternal
     ClientInternal -->|"Connects directly"| ServerInternal
 
-    ClientExternal -->|"Query: wiki.portland-ops.com"| HomeRouter
+    ClientExternal -->|"Query: wiki.harrowmere.com"| HomeRouter
     HomeRouter -->|"Recursive lookup"| DNSPublic
     DNSPublic -->|"Returns: 198.51.100.24"| HomeRouter
     HomeRouter -->|"Returns: 198.51.100.24"| ClientExternal
@@ -172,7 +172,7 @@ sequenceDiagram
     participant WiFi as Physical Wi-Fi NIC (192.168.1.1)
     participant VPN as Virtual VPN Adapter (10.100.10.2)
 
-    App->>Stub: Resolve 'payroll.portland-ops.local'
+    App->>Stub: Resolve 'payroll.harrowmere.local'
     Note over Stub: Multi-Homed Parallel Query Dispatched
     Stub->>WiFi: UDP 53 Query -> 192.168.1.1
     Stub->>VPN: UDP 53 Query -> 10.100.10.2 (Over IPsec)
@@ -190,24 +190,24 @@ sequenceDiagram
 ### Drill 1: `nslookup` Output Inspection & Internal vs. External IP Comparison
 
 #### Scenario
-A field supervisor working remotely on an iPad and Windows laptop claims that `https://wiki.portland-ops.local` is returning an HTTP 404 page, while in-office users see the active technical wiki. 
+A field supervisor working remotely on an iPad and Windows laptop claims that `https://wiki.harrowmere.local` is returning an HTTP 404 page, while in-office users see the active technical wiki. 
 
 You execute two targeted `nslookup` queries from the supervisor's remote session:
 
 ```console
 # Query 1: Default Resolver (Client's active network configuration)
-C:\Users\tech> nslookup wiki.portland-ops.local
+C:\Users\tech> nslookup wiki.harrowmere.local
 Server:  router.local
 Address:  192.168.1.1
 
-*** router.local can't find wiki.portland-ops.local: Non-existent domain
+*** router.local can't find wiki.harrowmere.local: Non-existent domain
 
 # Query 2: Explicitly directed to Corporate Domain Controller
-C:\Users\tech> nslookup wiki.portland-ops.local 10.100.10.2
-Server:  pdx-dc01.portland-ops.local
+C:\Users\tech> nslookup wiki.harrowmere.local 10.100.10.2
+Server:  pdx-dc01.harrowmere.local
 Address:  10.100.10.2
 
-Name:    wiki.portland-ops.local
+Name:    wiki.harrowmere.local
 Address:  10.100.40.8
 ```
 
@@ -215,7 +215,7 @@ Address:  10.100.40.8
 1. **Which server answered Query 1, and why did it fail?**
    * *Answer:* The client's default gateway at `192.168.1.1` (the home Wi-Fi router) answered. It failed with NXDOMAIN because `.local` is a private, non-routable top-level domain not registered in public internet root zones.
 2. **What does Query 2 prove about the corporate network and VPN tunnel?**
-   * *Answer:* It proves that the VPN tunnel is fully passing traffic, routing to `10.100.10.2` is healthy, and the corporate authoritative DNS server has a valid, active A record mapping `wiki.portland-ops.local` to `10.100.40.8`.
+   * *Answer:* It proves that the VPN tunnel is fully passing traffic, routing to `10.100.10.2` is healthy, and the corporate authoritative DNS server has a valid, active A record mapping `wiki.harrowmere.local` to `10.100.40.8`.
 3. **What is the root cause of the supervisor's failure?**
    * *Answer:* The client system is routing DNS queries to its local home router rather than the VPN adapter's assigned DNS servers (a DNS leak in the split-tunnel profile).
 
@@ -225,20 +225,20 @@ Address:  10.100.40.8
 ### Drill 2: Rogue Hosts File Override Hunting
 
 #### Scenario
-An accountant's laptop connects to the VPN and resolves `wiki.portland-ops.local` correctly to `10.100.40.8`. However, whenever the accountant attempts to open `payroll.portland-ops.local`, the browser attempts to connect to `192.168.1.50:443` and fails with `ERR_CONNECTION_REFUSED`.
+An accountant's laptop connects to the VPN and resolves `wiki.harrowmere.local` correctly to `10.100.40.8`. However, whenever the accountant attempts to open `payroll.harrowmere.local`, the browser attempts to connect to `192.168.1.50:443` and fails with `ERR_CONNECTION_REFUSED`.
 
 You run the following triage commands:
 
 ```console
-C:\Windows\System32> nslookup payroll.portland-ops.local 10.100.10.2
-Server:  pdx-dc01.portland-ops.local
+C:\Windows\System32> nslookup payroll.harrowmere.local 10.100.10.2
+Server:  pdx-dc01.harrowmere.local
 Address:  10.100.10.2
 
-Name:    payroll.portland-ops.local
+Name:    payroll.harrowmere.local
 Address:  10.100.20.14
 
-C:\Windows\System32> ping payroll.portland-ops.local
-Pinging payroll.portland-ops.local [192.168.1.50] with 32 bytes of data:
+C:\Windows\System32> ping payroll.harrowmere.local
+Pinging payroll.harrowmere.local [192.168.1.50] with 32 bytes of data:
 Reply from 192.168.1.50: Destination host unreachable.
 ```
 
@@ -257,7 +257,7 @@ Notice the contradiction: `nslookup` reports `10.100.20.14`, but `ping` attempts
 3. Locate and delete any rogue or obsolete static mapping lines:
    ```text
    # REMOVE THIS LINE:
-   192.168.1.50    payroll.portland-ops.local
+   192.168.1.50    payroll.harrowmere.local
    ```
 4. Flush the resolver cache to purge the static entry from memory:
    ```cmd
@@ -341,7 +341,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
 
 
 #### Case 3.1: The Stale Local Cache After Server Migration
-**Scenario:** The server team migrated `intranet.portland-ops.local` from legacy server `10.100.10.80` to cluster `10.100.10.95`. Users who kept their laptops powered on overnight see a 404 error. Users who just booted their laptops access the new cluster without error.
+**Scenario:** The server team migrated `intranet.harrowmere.local` from legacy server `10.100.10.80` to cluster `10.100.10.95`. Users who kept their laptops powered on overnight see a 404 error. Users who just booted their laptops access the new cluster without error.
 
 <details>
 <summary>Prediction & Verification Gate (Click to Expand)</summary>
@@ -350,7 +350,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
 * **Predicted Output:**
   ```cmd
   C:\> ipconfig /displaydns
-  Record Name . . . . . : intranet.portland-ops.local
+  Record Name . . . . . : intranet.harrowmere.local
   Record Type . . . . . : 1
   Time To Live  . . . . : 480
   Data Length . . . . . : 4
@@ -359,7 +359,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
   ```
 * **Triage Action:**
   1. Execute `ipconfig /flushdns`.
-  2. Query authoritative server directly: `nslookup intranet.portland-ops.local 10.100.10.2`.
+  2. Query authoritative server directly: `nslookup intranet.harrowmere.local 10.100.10.2`.
   3. Verify client connects to `10.100.10.95`.
 </details>
 
@@ -367,7 +367,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
 ---
 
 #### Case 3.2: Multi-Homed VPN Split-Tunnel DNS Leak
-**Scenario:** A remote engineer connected to the VPN can access servers by IP (`\\10.100.20.14`), but typing `\\payroll.portland-ops.local` fails. Running `nslookup payroll.portland-ops.local` reports `Non-existent domain` from server `192.168.1.1`.
+**Scenario:** A remote engineer connected to the VPN can access servers by IP (`\\10.100.20.14`), but typing `\\payroll.harrowmere.local` fails. Running `nslookup payroll.harrowmere.local` reports `Non-existent domain` from server `192.168.1.1`.
 
 <details>
 <summary>Prediction & Verification Gate (Click to Expand)</summary>
@@ -381,7 +381,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
   ```
 * **Triage Action:**
   1. Lower VPN adapter metric: `Set-NetIPInterface -InterfaceAlias "Portland-VPN" -InterfaceMetric 10`.
-  2. Configure DNS suffix search list in VPN connection profile: `Set-DnsClientGlobalSetting -SuffixSearchList @("portland-ops.local")`.
+  2. Configure DNS suffix search list in VPN connection profile: `Set-DnsClientGlobalSetting -SuffixSearchList @("harrowmere.local")`.
   3. Execute `ipconfig /flushdns` and test lookup.
 </details>
 
@@ -417,7 +417,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
 <details>
 <summary>Prediction & Verification Gate (Click to Expand)</summary>
 
-* **Layer & Failure Point:** Layer 7 DNS / Reverse DNS Mapping (`in-addr.arpa`). The outbound mail server has a valid forward A record (`mail.portland-ops.com` $\rightarrow$ `198.51.100.50`), but the ISP hosting the public IP block has not created the matching PTR record.
+* **Layer & Failure Point:** Layer 7 DNS / Reverse DNS Mapping (`in-addr.arpa`). The outbound mail server has a valid forward A record (`mail.harrowmere.com` $\rightarrow$ `198.51.100.50`), but the ISP hosting the public IP block has not created the matching PTR record.
 * **Predicted Output:**
   ```cmd
   C:\> nslookup -type=PTR 198.51.100.50
@@ -427,7 +427,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
   ```
 * **Triage Action:**
   1. Confirm the public IP address used by the outbound MTA gateway.
-  2. Submit an escalation ticket to the upstream ISP / IP block registrar requesting a PTR record mapping `198.51.100.50` to `mail.portland-ops.com`.
+  2. Submit an escalation ticket to the upstream ISP / IP block registrar requesting a PTR record mapping `198.51.100.50` to `mail.harrowmere.com`.
   3. Verify FCrDNS (Forward-Confirmed Reverse DNS) matches in both directions.
 </details>
 
@@ -435,7 +435,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
 ---
 
 #### Case 3.5: Zone Apex CNAME Restriction
-**Scenario:** Marketing creates a cloud landing page on AWS CloudFront (`d111111abcdef8.cloudfront.net`) and requests that IT create a CNAME record mapping the apex domain `portland-ops.com` directly to CloudFront.
+**Scenario:** Marketing creates a cloud landing page on AWS CloudFront (`d111111abcdef8.cloudfront.net`) and requests that IT create a CNAME record mapping the apex domain `harrowmere.com` directly to CloudFront.
 
 <details>
 <summary>Prediction & Verification Gate (Click to Expand)</summary>
@@ -445,7 +445,7 @@ Before running any diagnostic command or altering endpoint configuration, state 
   * Attempting to create `@ IN CNAME d111111abcdef8.cloudfront.net` in standard BIND or Windows DNS fails with error: *"The record cannot be added because a node with this name already contains SOA/NS records."*
 * **Triage Action:**
   1. Explain the RFC 1912 restriction to the requester.
-  2. Implement an **ALIAS / ANAME** pseudo-record (if supported by DNS provider) or deploy an HTTP 301 redirection service at the apex (`portland-ops.com` $\rightarrow$ `www.portland-ops.com`), placing the CNAME record on the `www` subdomain.
+  2. Implement an **ALIAS / ANAME** pseudo-record (if supported by DNS provider) or deploy an HTTP 301 redirection service at the apex (`harrowmere.com` $\rightarrow$ `www.harrowmere.com`), placing the CNAME record on the `www` subdomain.
 </details>
 
 
@@ -483,19 +483,19 @@ Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
 Date / Time:      2026-10-18 09:15:22 PDT
 Category:         Network / Remote Access / Name Resolution
-Affected FQDN:    payroll.portland-ops.local
+Affected FQDN:    payroll.harrowmere.local
 Status:           RESOLVED
 
 1. INCIDENT DESCRIPTION:
    User connected remotely via Portland Corporate VPN from home office in Hillsboro. 
-   User reported inability to access the internal payroll portal (payroll.portland-ops.local), 
+   User reported inability to access the internal payroll portal (payroll.harrowmere.local), 
    receiving browser errors indicating the server address could not be found. 
    Internal users on the physical LAN experienced no service interruption.
 
 2. ROOT CAUSE ANALYSIS:
    Two-stage resolution failure identified on endpoint PORT-LT-0418:
    a. Local Static Override: Examination of C:\Windows\System32\drivers\etc\hosts 
-      revealed a legacy test entry mapping payroll.portland-ops.local to obsolete IP 
+      revealed a legacy test entry mapping payroll.harrowmere.local to obsolete IP 
       192.168.1.50 (left behind by previous development contractor).
    b. VPN Split-Tunnel DNS Leak: After removing the static entry, the client failed 
       to query internal domain controller 10.100.10.2. Interactive nslookup confirmed 
@@ -506,9 +506,9 @@ Status:           RESOLVED
 3. REMEDIATION PERFORMED:
    a. Purged obsolete static mapping lines from C:\Windows\System32\drivers\etc\hosts.
    b. Reconnected VPN tunnel following pushed gateway configuration update (enforcing 
-      virtual adapter metric 10 and DNS suffix search list for portland-ops.local).
+      virtual adapter metric 10 and DNS suffix search list for harrowmere.local).
    c. Executed 'ipconfig /flushdns' in elevated prompt to wipe cached NXDOMAIN entry.
-   d. Verified resolution: payroll.portland-ops.local resolved successfully to 10.100.20.14.
+   d. Verified resolution: payroll.harrowmere.local resolved successfully to 10.100.20.14.
    e. User verified web application access and confirmed successful timesheet submission.
 
 4. USER EDUCATION & FOLLOW-UP:
@@ -553,7 +553,7 @@ Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDO
 3. IMMEDIATE REMEDIATION DEPLOYED:
    - Maya Chen pushed an emergency revision (v2.4.1) to the VPN Concentrator:
      * Enforced <InterfaceMetric>10</InterfaceMetric> on virtual tunnel adapter.
-     * Enforced <DNSSuffix>portland-ops.local, portland-ops.internal</DNSSuffix>.
+     * Enforced <DNSSuffix>harrowmere.local, harrowmere.internal</DNSSuffix>.
      * Activated <DisableSmartNameResolution>true</DisableSmartNameResolution>.
    - Desk broadcasted mass notification instructing remote staff to disconnect, 
      reconnect, and run 'ipconfig /flushdns'.
@@ -593,10 +593,10 @@ Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDO
 title: "FIGURE 4.2: RESOLVED REMOTE ACCESS RESOLUTION"
 badge: "Shift Epilogue"
 caption: "Operations center bullpen: At 10:15 AM, the remote dispatch queue returns to green. On Greg's remote desktop, the internal payroll timesheet portal renders cleanly over the encrypted tunnel."
-prompt: "Clean graphic novel cutaway panel of a municipal IT help desk operations center. Outside the panoramic windows, morning rain clears over the Willamette River. On a large wall-mounted operations monitor, a network traffic graph displays balanced green metrics. A technician types at a dual-monitor workstation. Ligne Claire style, sharp technical lines, no text, no words. 16:9 ratio."
+prompt: "Clean graphic novel cutaway panel of a corporate IT help desk operations center. Outside the panoramic windows, morning rain clears over the Willamette River. On a large wall-mounted operations monitor, a network traffic graph displays balanced green metrics. A technician types at a dual-monitor workstation. Ligne Claire style, sharp technical lines, no text, no words. 16:9 ratio."
 ```
 
-With the root cause identified, Maya Chen pulled up the centralized VPN gateway management console on her workstation. She pushed a mandatory client profile revision across the cluster, enforcing an interface metric of 10 on the virtual tunnel adapter, appending `portland-ops.local` to the suffix search list, and disabling multi-homed smart resolution.
+With the root cause identified, Maya Chen pulled up the centralized VPN gateway management console on her workstation. She pushed a mandatory client profile revision across the cluster, enforcing an interface metric of 10 on the virtual tunnel adapter, appending `harrowmere.local` to the suffix search list, and disabling multi-homed smart resolution.
 
 "I will handle the queue," I told Maya, opening our mass notification template. I broadcasted the three-step resolution instructions to affected staff: disconnect the client session, reconnect to pull the revised profile from the gateway cluster, and run `ipconfig /flushdns` in an elevated prompt to wipe the negative NXDOMAIN cache.
 

@@ -31,13 +31,13 @@ prompt: "Clean technical cutaway illustration of a computer motherboard RAM slot
 
 
 ### The Situation
-It is 08:15 on a rain-swept August morning on the fourth floor of the Portland Regional Operations Center. You are Ethan Mercer, sitting beside Help Desk Lead Jules Brooks for your second-round practical working trial. Your portfolio holds your CompTIA A+ certificate and a signed recommendation from supervisor Ken out at the Gresham freight terminal. You are patched into the station fourteen training bridge on a dual-headset splitter. 
+It is 08:15 on a rain-swept August morning on the fourth floor of the Portland Regional Operations Center. You are Ethan Mercer, sitting beside Help Desk Lead Jules Brooks for the practical that closes out your six-month IT rotation. Your portfolio holds your CompTIA A+ certificate, your rotation sign-off, and the internal referral that supervisor Ken wrote from the Harrowmere Gresham distribution warehouse. You are patched into the station fourteen training bridge on a dual-headset splitter. 
 
 Two rows over, workstation fourteen displays a high-priority ticket flagged in glowing amber text:
 
 $$\boxed{\textbf{INC-2026-0814: Maya Lin (Accounting) — Workstation Hard Freeze on Payroll Launch}}$$
 
-Maya Lin has twenty-eight city supervisors waiting on biweekly payroll approval by noon. Every time she launches `PDX-Pay`, the mouse freezes, both monitors turn pitch black, and she is forced to crawl under her desk to yank the AC power cable. 
+Maya Lin has twenty-eight site supervisors waiting on biweekly payroll approval by noon. Every time she launches `PDX-Pay`, the mouse freezes, both monitors turn pitch black, and she is forced to crawl under her desk to yank the AC power cable. 
 
 The temptation for every junior technician is the "nuclear option": reach for a bootable USB drive, re-image the drive, and hope the clean slate solves the issue. But as Jules makes clear before you touch the keyboard:
 
@@ -597,6 +597,6 @@ I clicked disconnect on the softphone, slid the headset off, and completed the s
 
 She paused, pulling a blue visitor badge exchange slip from her desk drawer and signing her initials across the authorization line.
 
-"The job starts Monday morning at seven-thirty," she said. "Nineteen-fifty an hour to start. Bring your own coffee mug, and leave the flashcards in your backpack."
+"You start on the desk Monday morning at seven-thirty," she said. "Twenty-four an hour to start, with a step review after your first year. Overnight coverage comes around on the rotation like it does for everyone. Bring your own coffee mug, and leave the flashcards in your backpack."
 
-I thanked her, shook her hand, and walked out into the cool Portland rain. Across the river, the steel arches of the Hawthorne Bridge emerged from the morning fog, and for the first time in eighteen months, I felt like I was standing on solid ground.
+I thanked her, shook her hand, and walked out into the cool Portland rain. Across the river, the steel arches of the Hawthorne Bridge emerged from the morning fog, and for the first time since I left the dock, I felt like I was standing on solid ground.

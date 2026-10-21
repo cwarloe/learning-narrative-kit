@@ -201,7 +201,7 @@ narrative; expect to need it rarely, if ever.
 - Excel units describe Excel behavior accurately. If a glossary definition and real
   Excel behavior disagree, write the scene so it is consistent with both, and flag the
   definition in `unit.yaml`.
-- Don't use Priya or Harrowmere (validator rule inherited from Portland Desk).
+- Don't use Priya (validator rule inherited from Portland Desk).
 - When the course glossary is wrong, quote it exactly in `glossary.yaml`, record the
   problem in `unit.yaml` `source_notes`, and write the scene so it is true either way.
   Never repeat the wrong version in the prose as fact.

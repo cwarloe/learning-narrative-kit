@@ -1,21 +1,21 @@
-Delivered-To: nora.vasquez@portland-ops.gov
-Received: from mail-gateway02.portland-ops.gov (mail-gateway02.portland-ops.gov [198.51.100.25])
-	by imap-internal.portland-ops.gov (Postfix) with ESMTPS id 4Y7kL901zZz982b
-	for <nora.vasquez@portland-ops.gov>; Wed, 21 Oct 2026 08:12:14 -0700
+Delivered-To: nora.vasquez@harrowmere.com
+Received: from mail-gateway02.harrowmere.com (mail-gateway02.harrowmere.com [198.51.100.25])
+	by imap-internal.harrowmere.com (Postfix) with ESMTPS id 4Y7kL901zZz982b
+	for <nora.vasquez@harrowmere.com>; Wed, 21 Oct 2026 08:12:14 -0700
 Received: from out-relay04.fake-bulletin-mailer.net (out-relay04.fake-bulletin-mailer.net [185.220.101.42])
-	by mail-gateway02.portland-ops.gov (CipherMail) with ESMTP id 8F21A3011C
-	for <nora.vasquez@portland-ops.gov>; Wed, 21 Oct 2026 08:12:12 -0700
-Authentication-Results: mail-gateway02.portland-ops.gov;
-	dkim=fail reason="signature missing or invalid" header.i=@port1and-ops.com;
-	spf=softfail (mail-gateway02.portland-ops.gov: domain of transition-exec@port1and-ops.com does not designate 185.220.101.42 as permitted sender) smtp.mailfrom=transition-exec@port1and-ops.com;
-	dmarc=fail (p=quarantine dis=quarantine) header.from=port1and-ops.com
-Received-SPF: softfail (mail-gateway02.portland-ops.gov: domain of transition-exec@port1and-ops.com does not designate 185.220.101.42 as permitted sender) client-ip=185.220.101.42;
-From: "Maya Lin (CEO)" <mlin@port1and-ops.com>
+	by mail-gateway02.harrowmere.com (CipherMail) with ESMTP id 8F21A3011C
+	for <nora.vasquez@harrowmere.com>; Wed, 21 Oct 2026 08:12:12 -0700
+Authentication-Results: mail-gateway02.harrowmere.com;
+	dkim=fail reason="signature missing or invalid" header.i=@harrowrnere.com;
+	spf=softfail (mail-gateway02.harrowmere.com: domain of transition-exec@harrowrnere.com does not designate 185.220.101.42 as permitted sender) smtp.mailfrom=transition-exec@harrowrnere.com;
+	dmarc=fail (p=quarantine dis=quarantine) header.from=harrowrnere.com
+Received-SPF: softfail (mail-gateway02.harrowmere.com: domain of transition-exec@harrowrnere.com does not designate 185.220.101.42 as permitted sender) client-ip=185.220.101.42;
+From: "Maya Lin (CEO)" <mlin@harrowrnere.com>
 Reply-To: "Maya Lin (Personal Mobile)" <maya.lin.executive78@gmail.com>
-To: nora.vasquez@portland-ops.gov
+To: nora.vasquez@harrowmere.com
 Subject: URGENT: Off-cycle payroll direct deposit account update - Confidential
 Date: Wed, 21 Oct 2026 08:11:45 -0700
-Message-ID: <20261021081145.42918.transition-exec@port1and-ops.com>
+Message-ID: <20261021081145.42918.transition-exec@harrowrnere.com>
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary="----=_Part_9281_10482910.1697897505"
 X-Mailer: WebMail / PHP-Mailer v6.8.0
@@ -40,7 +40,7 @@ Best regards,
 
 Maya Lin
 Chief Executive Officer
-Portland Municipal Utilities & Operations
+Harrowmere Equipment Group
 ------=_Part_9281_10482910.1697897505
 Content-Type: application/octet-stream; name="MayaLin_VoidedCheck_RoutingUpdate.pdf.exe"
 Content-Disposition: attachment; filename="MayaLin_VoidedCheck_RoutingUpdate.pdf.exe"

@@ -10,7 +10,7 @@ Checks:
   - no mark ids missing from glossary
   - mark density (marks per 100 words)
   - if tiers present: count exam vs support; warn if any term lacks tier
-  - fail if Priya or Harrowmere appear in narrative (Portland Desk rule)
+  - fail if Priya appears in narrative (Portland Desk rule)
   - print PASS/FAIL; exit nonzero on fail
 """
 
@@ -34,7 +34,7 @@ except ImportError:
 
 MARK_RE = re.compile(r"\[\[([^|\]]+)\|([^\]]*)\]\]")
 WORD_RE = re.compile(r"\b[\w']+\b", re.UNICODE)
-FORBIDDEN = ("Priya", "Harrowmere")
+FORBIDDEN = ("Priya",)
 
 
 def load_glossary(path: Path) -> list[dict]:

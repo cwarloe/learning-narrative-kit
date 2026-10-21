@@ -11,7 +11,7 @@ Most IT training begins with an 800-page book of disconnected acronyms, cable le
 
 **Portland Desk is different.** 
 
-Here, theory is never taught in a vacuum. You sit alongside **Ethan Mercer**—a 19-year-old moving 50-pound bags of concrete mix in Gresham, Oregon, with \$83 left in his checking account—as he breaks into IT, survives his first live shift under Desk Lead **Jules Brooks**, and learns the tradecraft of troubleshooting, local networking, and security escalation across the Portland operations center, logistics warehouses, and Willamette River water processing plants.
+Here, theory is never taught in a vacuum. You sit alongside **Ethan Mercer**—a 20-year-old moving 50-pound bags of concrete mix in Gresham, Oregon, with \$83 left in his checking account—as he breaks into IT, survives his first live shift under Desk Lead **Jules Brooks**, and learns the tradecraft of troubleshooting, local networking, and security escalation across Harrowmere Equipment Group's Portland operations center, its Gresham distribution warehouse, and its Willamette River plant.
 
 Every module is structured as **an authentic workplace incident**:
 1. **The Incident Story:** Read the call, feel the operational pressure, and understand *why* the technology exists and what breaks when humans take shortcuts.

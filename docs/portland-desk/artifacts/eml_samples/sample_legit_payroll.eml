@@ -1,20 +1,20 @@
-Delivered-To: ethan@portland-ops.local
-Received: from mail-relay.portland-ops.local (mail-relay.portland-ops.local [192.168.10.50])
-	by imap.portland-ops.local with ESMTP id 11A89DC3
-	for <ethan@portland-ops.local>; Tue, 20 Oct 2026 09:10:00 +0000
-Received: from hr-app01.portland-ops.local (hr-app01.portland-ops.local [192.168.10.72])
-	by mail-relay.portland-ops.local with ESMTP id 22F81B99
-	for <ethan@portland-ops.local>; Tue, 20 Oct 2026 09:09:58 +0000
-Authentication-Results: mail-relay.portland-ops.local;
-	spf=pass (hr-app01.portland-ops.local: 192.168.10.72 is authorized sender) smtp.mailfrom=hr-benefits@portland-ops.local;
-	dkim=pass (signature verified for portland-ops.local);
-	dmarc=pass (p=reject) header.from=portland-ops.local
-From: "People Operations & Benefits" <hr-benefits@portland-ops.local>
-Reply-To: <hr-benefits@portland-ops.local>
-To: ethan@portland-ops.local
+Delivered-To: ethan@harrowmere.local
+Received: from mail-relay.harrowmere.local (mail-relay.harrowmere.local [192.168.10.50])
+	by imap.harrowmere.local with ESMTP id 11A89DC3
+	for <ethan@harrowmere.local>; Tue, 20 Oct 2026 09:10:00 +0000
+Received: from hr-app01.harrowmere.local (hr-app01.harrowmere.local [192.168.10.72])
+	by mail-relay.harrowmere.local with ESMTP id 22F81B99
+	for <ethan@harrowmere.local>; Tue, 20 Oct 2026 09:09:58 +0000
+Authentication-Results: mail-relay.harrowmere.local;
+	spf=pass (hr-app01.harrowmere.local: 192.168.10.72 is authorized sender) smtp.mailfrom=hr-benefits@harrowmere.local;
+	dkim=pass (signature verified for harrowmere.local);
+	dmarc=pass (p=reject) header.from=harrowmere.local
+From: "People Operations & Benefits" <hr-benefits@harrowmere.local>
+Reply-To: <hr-benefits@harrowmere.local>
+To: ethan@harrowmere.local
 Subject: Annual Open Enrollment 2027: Confirmation of Current Health Selections
 Date: Tue, 20 Oct 2026 09:09:50 +0000
-Message-ID: <20261020090950.771239@hr-app01.portland-ops.local>
+Message-ID: <20261020090950.771239@hr-app01.harrowmere.local>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
