@@ -8,9 +8,13 @@ Walt Brandvold came back from a fishing trip with a napkin. On it, in his handwr
 
 Ruth had been asked to open a twelfth store within eighteen months, and she had a list of four candidate towns. Sandpoint was on it. So were Davenport, Newport, and Ritzville. She had not intended to decide by napkin.
 
-She asked Dana Okafor to come up with a way to decide that Walt would accept, which Dana understood to mean a way that would let him keep the napkin if the answer turned out to be Sandpoint.
+She asked Dana Okafor to come up with a way to decide.
 
-Walt's first idea was that the computer should decide. "Teo's system orders feed by itself," he said. "Give it the four towns and let it pick."
+"One Walt will accept," Ruth said. "He's already picked Sandpoint. If the numbers say Sandpoint, fine, he was right. If they don't, he has to be able to see why, or he'll go with the napkin anyway."
+
+Walt had his own idea, and he brought it to Dana's desk that afternoon. All spring he had watched the system reorder bagged feed on its own, without anybody touching it, and he liked it better than anything else Teo had ever bought.
+
+"Teo's system orders feed by itself," he said. "Give it the four towns and let it pick. Then nobody can say I went with Jim's building because Jim's a friend of mine."
 
 Dana pulled up the reorder screen, because Walt trusted things he had seen work. Reordering bagged feed was a [[structured_decisions|structured decision]]: it came up every week, and it had a standard procedure. When stock fell below a reorder point, the system ordered a set quantity. Someone had written that rule once, and it had run ever since.
 
@@ -30,9 +34,25 @@ Ruth laid out the process in four phases, because the consultant she'd once work
 
 The [[intelligence_phase|intelligence phase]] meant looking at the environment for the conditions that needed a decision and gathering data from inside and outside the company. Dana pulled loyalty customer addresses from all eleven stores, and Teo Vasquez loaded them into a [[geographic_information_system_gis|geographic information system]] along with county agricultural census data, competitor locations, and highway drive times. The map showed something nobody had expected: Tamarack already had more than four hundred loyalty customers in Lincoln County who drove past Davenport to shop in Spokane, an hour each way.
 
-Sandpoint had fewer existing customers and more horse owners. Newport had a competitor already. Ritzville was mostly wheat farms with little livestock.
+The [[design_phase|design phase]] was Ruth at the whiteboard on Wednesday, writing down what a good town had to look like before anybody argued about which town it was.
 
-The [[design_phase|design phase]] meant defining criteria, generating alternatives, and connecting the two. Ruth's criteria were drive time from the DC, existing customer density, livestock numbers, competitor distance, and lease cost. The four towns were the alternatives, plus a fifth that Dana added — not opening a store, and adding a delivery route instead — which Walt found irritating.
+"Close enough to the DC that a truck gets there and back in a shift," she said, and wrote *drive time*. "People who already shop with us. Livestock, because that's what we sell. No competitor across the street. And rent we can pay." *Customers, livestock, competitors, lease.*
+
+Then she wrote the four towns across the top, and the arguing started.
+
+Davenport had the four hundred Lincoln County customers. Sandpoint had fewer existing customers and more horse owners than ranchers.
+
+"Horse people buy feed," Walt said.
+
+"They do," Ruth said, and wrote it down. Newport already had a competitor. Ritzville was wheat country, and Marcy said you couldn't sell much mineral feed to a combine.
+
+Dana added a fifth column. "Or no store. Run a delivery truck out to Lincoln County twice a week."
+
+"That's not a twelfth store," Walt said.
+
+"It's another option. If it beats all four, we should know before we sign a lease."
+
+Walt said that was the kind of idea that kept a company at eleven stores. Ruth left the column on the board.
 
 ## The Tool Three People Built
 
