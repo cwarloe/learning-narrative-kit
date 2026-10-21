@@ -6,21 +6,23 @@ estimated_minutes: 18
 sources:
   - "ITM 310 Week 7 slides, Intro to Power BI (Fall 2026): CRISP-DM highlights, Power BI, DAX calculated columns and measures, video take-aways"
   - "MindTap course glossary export (primary key, foreign key, KPI, delimiter)"
+  - "ITM 310 Week 7 technical assignment, Star Schema and Visualization (star schema, fact table, dimension table)"
   - "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md"
 glossary: glossary.yaml
 narrative: narrative.md
 review: review.yaml
 mark_convention: "[[term_id|surface text]]"
 glossary_tiers:
-  exam: "Terms the Week 7 slides teach, defined from the slides (or the MindTap glossary where the slides only name them)"
+  exam: "Terms the Week 7 slides and technical assignment teach, defined from the slides, the assignment (star schema, fact table, dimension table), or the MindTap glossary where the slides only name them"
   support: "Power BI interface and modeling words the slides use without defining; plain-language glosses"
 constraints:
   - Every glossary term appears at least once in a decision or complication
-  - Exam definitions follow the slides; do not invent rival definitions
+  - Exam definitions follow the slides or the technical assignment; do not invent rival definitions
   - Power BI behavior described accurately (column vs measure, default sum aggregation, relationship key matching)
   - Story must pass the cover test (readable with marks hidden)
   - Third-person past tense; same company and cast as the rest of the Tamarack track
 source_notes:
-  - "The slides name the Week 7 technical assignment 'Star Schema and Visualization' but do not define star schema, fact table, or dimension table. Those three are tier support with plain-language glosses, not exam definitions. Replace them if the assignment or textbook gives wording."
+  - "Star schema, fact table, and dimension table are defined in the Week 7 technical assignment ('Star Schema and Visualization'), not the slides: 'A star schema is a type of relational data structure optimized for analytics. In a star schema, the central entity is called the Fact table. All other tables are called Dimension tables and are directly connected to the Fact table.' Those sentences are the definitions (tier exam); the earlier plain-language glosses are kept as context."
+  - "Power BI screen names follow Microsoft Learn as of October 2026: Power Query Editor (opened with Transform data), Get data, Table view. The slides say Data view; Microsoft's Table view page (learn.microsoft.com/power-bi/connect-data/desktop-data-view) describes the same view, though it doesn't state the rename."
   - "Slide 13 expands ETL as 'Explore, Transform, Load'; slide 10 and the MindTap glossary expand it as 'Extraction, Transformation, and Loading'. The glossary uses the latter."
 heading_rule: scene

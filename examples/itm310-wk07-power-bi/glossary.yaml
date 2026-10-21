@@ -55,8 +55,9 @@ terms:
     refs: ["ITM 310 Week 7, slide 10"]
   # ---- Power BI (slides 13-31)
   - id: query_editor
-    title: "Query Editor"
+    title: "Power Query Editor (Query Editor)"
     definition: "Power BI's ETL tool, used for shaping and mashing up data. It can import and merge data from a variety of sources, append tables together, and set table and column properties such as data types."
+    context: "Microsoft's current name is Power Query Editor, opened with Transform data on the Home tab. The Week 7 slides call it the Query Editor."
     tags: [power-bi]
     tier: exam
     refs: ["ITM 310 Week 7, slides 13-14, 30"]
@@ -135,7 +136,7 @@ terms:
     refs: ["MindTap course glossary, Power Query module", "ITM 310 Week 7, slide 30"]
   # ---- Support: interface and modeling jargon the slides use without defining
   - id: get_data
-    title: "Get Data"
+    title: "Get data"
     definition: "The Power BI command that connects to a data source and starts an import."
     tags: [support, power-bi]
     tier: support
@@ -151,22 +152,29 @@ terms:
     tier: support
   - id: star_schema
     title: "Star schema"
-    definition: "A way of arranging a data model with one central table of transactions surrounded by lookup tables, each joined to it by a key."
-    tags: [support, modeling]
-    tier: support
+    definition: "A star schema is a type of relational data structure optimized for analytics."
+    context: "A way of arranging a data model with one central table of transactions surrounded by lookup tables, each joined to it by a key."
+    tags: [modeling]
+    tier: exam
+    refs: ["ITM 310 Week 7 technical assignment, Star Schema and Visualization"]
   - id: fact_table
     title: "Fact table"
-    definition: "The central table in a star schema: one row per transaction or event, holding the numbers being measured and keys to the lookup tables."
-    tags: [support, modeling]
-    tier: support
+    definition: "In a star schema, the central entity is called the Fact table."
+    context: "One row per transaction or event, holding the numbers being measured and the keys that point to the dimension tables."
+    tags: [modeling]
+    tier: exam
+    refs: ["ITM 310 Week 7 technical assignment, Star Schema and Visualization"]
   - id: dimension_table
     title: "Dimension table"
-    definition: "A lookup table in a star schema, such as products, stores, or dates, that describes the rows in the fact table."
-    tags: [support, modeling]
-    tier: support
+    definition: "In a star schema, the central entity is called the Fact table. All other tables are called Dimension tables and are directly connected to the Fact table."
+    context: "Lookup tables such as products, stores, or dates that describe the rows in the fact table."
+    tags: [modeling]
+    tier: exam
+    refs: ["ITM 310 Week 7 technical assignment, Star Schema and Visualization"]
   - id: data_view
-    title: "Data view"
+    title: "Table view"
     definition: "The Power BI Desktop view that shows the rows of each table. The course recommends creating calculations here, from the Modeling tab."
+    context: "Microsoft's current name is Table view, one of the three view icons on the left side of Power BI Desktop. The Week 7 slides call it the Data view."
     tags: [support, power-bi]
     tier: support
   - id: report_canvas
