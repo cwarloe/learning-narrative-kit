@@ -7,9 +7,11 @@ on:
     paths:
       - "examples/**"
       - "tools/validate_unit.py"
+      - "tools/build_hub_index.py"
+      - "tools/check_hub_links.py"
       - "tools/check_ep07_capture.py"
       - "portland-desk/**"
-      - "docs/portland-desk/**"
+      - "docs/**"
       - "requirements.txt"
       - ".github/workflows/validate.yml"
   workflow_dispatch:
@@ -51,3 +53,17 @@ jobs:
 
       - name: Episode 7 capture matches its drill
         run: python tools/check_ep07_capture.py
+
+  landing-page:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Landing page matches builder; hub links resolve
+        run: python tools/check_hub_links.py
