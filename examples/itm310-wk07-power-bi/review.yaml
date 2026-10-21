@@ -175,7 +175,7 @@ cards:
   - modeling
   tier: exam
 - id: data_view
-  prompt: Table view (Data view)
+  prompt: Table view
   answer: The Power BI Desktop view that shows the rows of each table. The course recommends creating calculations here, from the Modeling tab.
   tags:
   - support

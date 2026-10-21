@@ -156,20 +156,23 @@ terms:
     context: "A way of arranging a data model with one central table of transactions surrounded by lookup tables, each joined to it by a key."
     tags: [modeling]
     tier: exam
+    refs: ["ITM 310 Week 7 technical assignment, Star Schema and Visualization"]
   - id: fact_table
     title: "Fact table"
     definition: "In a star schema, the central entity is called the Fact table."
     context: "One row per transaction or event, holding the numbers being measured and the keys that point to the dimension tables."
     tags: [modeling]
     tier: exam
+    refs: ["ITM 310 Week 7 technical assignment, Star Schema and Visualization"]
   - id: dimension_table
     title: "Dimension table"
     definition: "In a star schema, the central entity is called the Fact table. All other tables are called Dimension tables and are directly connected to the Fact table."
     context: "Lookup tables such as products, stores, or dates that describe the rows in the fact table."
     tags: [modeling]
     tier: exam
+    refs: ["ITM 310 Week 7 technical assignment, Star Schema and Visualization"]
   - id: data_view
-    title: "Table view (Data view)"
+    title: "Table view"
     definition: "The Power BI Desktop view that shows the rows of each table. The course recommends creating calculations here, from the Modeling tab."
     context: "Microsoft's current name is Table view, one of the three view icons on the left side of Power BI Desktop. The Week 7 slides call it the Data view."
     tags: [support, power-bi]
