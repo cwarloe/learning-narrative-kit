@@ -31,8 +31,8 @@ When a character chooses between opening port 23 versus port 22, the learning ob
 4. **Leah's role.** Senior Controls Tech at the Willamette plant here. Enterprise Applications Lead there.
 5. **Dana.** A vendor engineer (Ep 7) and a finance contact (Ep 9) here. The mentor Dana Shah there. They are different people, so one may need a new name.
 6. ~~**The validator.**~~ Resolved 2026-10-21: the ban on "Harrowmere" is lifted. "Priya" is still banned in Book 0 narrative.
-7. **Leah's age.** 38 here, about 36 in NADF. Open.
-8. **Ep 00's day job.** Ep 00 has Ethan at a building-supply / home-improvement warehouse in Gresham; Ep 01 has him on Harrowmere's graveyard dock. Same employer or an earlier job? Open.
+7. ~~**Leah's age.**~~ Resolved 2026-10-21: she is 36 in both stories.
+8. ~~**Ep 00's day job.**~~ Resolved 2026-10-21: it is the same job. Ep 00 and Ep 01 both put Ethan on the dock at Harrowmere's Gresham distribution warehouse.
 
 ---
 
@@ -123,7 +123,7 @@ graph LR
 
 #### Leah Moreno — Senior Controls Tech / Plant Systems Specialist
 - **Role:** Senior Controls & SCADA Technician, Harrowmere Willamette River Plant (Portland Operations).
-- **Age:** 38. *(Open: NADF has her at about 36.)*
+- **Age:** 36.
 - **Visuals & Habits:** Carries a scratched aluminum clipboard stuffed with piping and instrumentation diagrams (P&IDs). Wears a high-visibility ANSI Class 2 vest, steel-toed boots, and safety glasses with side shields. Carries an armored Panasonic Toughbook running specialized PLC ladder logic software.
 - **Why Leah matters:** Leah brings the plant-floor side of the story into the help desk. She represents the critical, unforgiving reality of Operational Technology (OT) and Industrial Control Systems (ICS). Her plant processes hundreds of thousands of gallons of liquid daily; an unexpected valve trip or network latency spike does not result in a 404 error—it results in physical effluent overflow, environmental fines, or blown pump seals.
 - **Relationship with Ethan:** Initially hostile toward "carpet-land IT" technicians who push Windows security patches that reboot telemetry servers mid-cycle. She tests Ethan mercilessly in Episode 4. When Ethan demonstrates that he respects her physical operational constraints and devises an encrypted site-to-site VPN solution that protects her sensors without touching the pumps, Leah becomes his staunchest operational ally. She teaches Ethan how to read physical industrial failure modes.
@@ -228,7 +228,7 @@ Every episode must reflect the principles of industrial throughput and organizat
 **Point of View:** Ethan Mercer (Age 20).  
 
 #### Core Dilemma & Goldratt Friction
-Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loading lumber at a building supply warehouse in Gresham. His debit card shows $83 left after paying $246 for a CompTIA A+ exam voucher. If he fails, he cannot make rent. He is drowning in 800 pages of pedantic syllabus trivia—laser printer transfer rollers, DVI connector pinouts, SATA revisions, and RAM clock timings. When he fails an online practice exam with a 58%, he breaks down in exhaustion and cynical rage, throwing his index cards across the linoleum. He faces the beginner's ultimate gatekeeping trap: believing that because he cannot memorize a manufacturer parts catalog, he is too stupid to work in technology.
+Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loading lumber on the loading dock at Harrowmere's distribution warehouse in Gresham. His debit card shows $83 left after paying $246 for a CompTIA A+ exam voucher. If he fails, he cannot make rent. He is drowning in 800 pages of pedantic syllabus trivia—laser printer transfer rollers, DVI connector pinouts, SATA revisions, and RAM clock timings. When he fails an online practice exam with a 58%, he breaks down in exhaustion and cynical rage, throwing his index cards across the linoleum. He faces the beginner's ultimate gatekeeping trap: believing that because he cannot memorize a manufacturer parts catalog, he is too stupid to work in technology.
 
 #### Narrative Synopsis
 1. **Goal:** Ethan wants to pass the CompTIA A+ exam on Thursday to escape blue-collar manual labor and qualify for an IT job instead of a dock job.
@@ -268,7 +268,7 @@ Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loadi
 **Point of View:** Ethan Mercer (Age 21).  
 
 #### Core Dilemma & Goldratt Friction
-Ethan has accumulated CompTIA A+ and Network+ certifications by grinding hundreds of digital flashcards. He believes that IT is an exact, rule-bound science. When the primary industrial barcode sorting line halts at 2:30 AM because an automated scale terminal fails to communicate with the warehouse management system, Ethan is tasked with fixing it. His multiple-choice heuristics completely fail: the terminal's motherboard displays an undocumented hex POST error, a proprietary serial cable has bent pins, and the vendor documentation assumes a 9600-baud rate while the terminal is strapped for 19200. Ethan must choose between blindly replacing parts until the budget runs out or learning empirical, physical Layer 1/2 troubleshooting.
+Ethan has earned his CompTIA A+ and is grinding hundreds of digital flashcards for Network+. He believes that IT is an exact, rule-bound science. When the primary industrial barcode sorting line halts at 2:30 AM because an automated scale terminal fails to communicate with the warehouse management system, Ethan is tasked with fixing it. His multiple-choice heuristics completely fail: the terminal's motherboard displays an undocumented hex POST error, a proprietary serial cable has bent pins, and the vendor documentation assumes a 9600-baud rate while the terminal is strapped for 19200. Ethan must choose between blindly replacing parts until the budget runs out or learning empirical, physical Layer 1/2 troubleshooting.
 
 #### Narrative Synopsis
 1. **Goal:** Ethan wants to clear the sorting line jam before the 5:00 AM cross-dock trucks arrive, proving that his new CompTIA certifications qualify him for more than moving pallets.

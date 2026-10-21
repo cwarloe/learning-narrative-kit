@@ -144,5 +144,4 @@ His father is a retired precision machinist (East Portland tool-and-die, 34 year
 
 ### Open questions (not decided)
 
-- Leah's age: 38 in Book 0, about 36 in NADF.
-- Whether Ep 00's building-supply / home-improvement day job in Gresham is the same employer as the Harrowmere dock, or a separate earlier job.
+None right now. Leah's age (36) and Ep 00's job (the Harrowmere dock) were settled on 2026-10-21.

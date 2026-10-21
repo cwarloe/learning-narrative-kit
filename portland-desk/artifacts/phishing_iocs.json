@@ -6,7 +6,7 @@
     "malicious_domains": [
       {
         "domain": "harrowrnere.com",
-        "category": "Typosquatting / Character Substitution (Digit '1' for Letter 'l')",
+        "category": "Typosquatting / Character Substitution (Letters 'rn' for Letter 'm')",
         "threat_type": "Executive Impersonation / BEC",
         "action": "Blocked at Perimeter Mail Gateway & DNS Resolver"
       },

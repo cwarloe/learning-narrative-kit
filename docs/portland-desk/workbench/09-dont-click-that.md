@@ -565,8 +565,9 @@ Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
                            Filename: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 
 3. RECOMMENDED ENTERPRISE MITIGATIONS:
-   1. Gateway Rule: Add 'harrowrnere.com' and regex pattern 'port*1*ops' to 
-      inbound mail transport blocklist.
+   1. Gateway Rule: Add 'harrowrnere.com' and the lookalike pattern 'harrow(rn|nn)ere' 
+      to the inbound mail transport blocklist. (The pattern must not match 
+      the real 'harrowmere.com'.)
    2. DNS Sinkhole: Add domain and subdomains to corporate DNS RPZ sinkhole.
    3. EDR Threat Hunt: Query Microsoft Defender / CrowdStrike telemetry across all 
       workstations for SHA-256 file hash and process spawning of '.pdf.exe'.
@@ -586,7 +587,7 @@ Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
 | :--- | :--- | :--- | :--- |
 | **Email Header Decomposition & Hop Analysis** | Accurately traces multi-hop `Received:` headers chronologically from origin to destination; identifies untrusted external MTAs, client IPs, and differentiates RFC 5321 envelope senders from RFC 5322 display headers. | Identifies originating IP and basic headers, but confuses hop sequence or overlooks envelope vs. header distinction. | Cannot trace `Received:` hops; evaluates email legitimacy based solely on visible `From:` display name or logo. |
 | **Authentication Triad (SPF/DKIM/DMARC) Mastery** | Flawlessly evaluates SPF DNS syntax, DKIM cryptographic key exchange, and DMARC identifier alignment rules (`none`, `quarantine`, `reject`); explains why SPF alone fails to stop display-name spoofing. | Understands purpose of SPF, DKIM, and DMARC, but struggles to calculate alignment or explain qualifier impacts (`~all` vs. `-all`). | Confuses SPF with DKIM; fails to articulate why passing SPF with an unaligned domain permits phishing bypass. |
-| **Domain Squatting & Social Engineering Vector Identification** | Rapidly spots typosquatting, character substitution (e.g., `1` for `l`), combosquatting, Punycode/IDN homographs, and weaponized influence principles (urgency, authority, secrecy). | Identifies obvious typosquatting but misses advanced homoglyphs, Punycode indicators, or subtle Reply-To discrepancies. | Fails to detect typosquatted domains; falls victim to visual branding and superficial email formatting. |
+| **Domain Squatting & Social Engineering Vector Identification** | Rapidly spots typosquatting, character substitution (e.g., `rn` for `m`), combosquatting, Punycode/IDN homographs, and weaponized influence principles (urgency, authority, secrecy). | Identifies obvious typosquatting but misses advanced homoglyphs, Punycode indicators, or subtle Reply-To discrepancies. | Fails to detect typosquatted domains; falls victim to visual branding and superficial email formatting. |
 | **Incident Documentation, IOC Extraction & SOC Escalation Quality** | Delivers structured, professional ticket notes and escalation advisories complete with extracted IOCs (IPs, domains, hashes), MITRE ATT&CK mapping, and actionable containment steps. | Notes are accurate but lack standardized enterprise formatting, omission of critical IOCs (hashes/ASNs), or unclear remediation steps. | Ticket documentation is vague, lacks forensic evidence, or recommends unsafe actions (e.g., forwarding raw malware). |
 
 

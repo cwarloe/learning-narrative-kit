@@ -378,7 +378,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 * **Action:** **STRICTLY FORBID CONNECTION; INSPECT FOR EVIL TWIN / ROGUE RADIUS PROXY**.
 * **Threat Classification:** **Evil Twin / Rogue RADIUS Impersonation / Credential Harvesting**.
-* **Rationale:** In an 802.1X PEAP network, the server certificate is the *only* barrier protecting the user's credentials. If Maya clicks "Connect Anyway," her laptop will establish a TLS tunnel with an attacker-controlled RADIUS server (notice the typosquatted domain `harrowrnere.com` with a `1` instead of an `l`!). Her client will then transmit her MS-CHAPv2 password hash into the attacker's tunnel, allowing the adversary to crack her domain password offline or execute a pass-the-hash relay. Direct Maya to use a wired dock or mobile hotspot through corporate VPN until the rogue radio is hunted down.
+* **Rationale:** In an 802.1X PEAP network, the server certificate is the *only* barrier protecting the user's credentials. If Maya clicks "Connect Anyway," her laptop will establish a TLS tunnel with an attacker-controlled RADIUS server (notice the typosquatted domain `harrowrnere.com` with the letters `rn` standing in for an `m`!). Her client will then transmit her MS-CHAPv2 password hash into the attacker's tunnel, allowing the adversary to crack her domain password offline or execute a pass-the-hash relay. Direct Maya to use a wired dock or mobile hotspot through corporate VPN until the rogue radio is hunted down.
 </details>
 
 
