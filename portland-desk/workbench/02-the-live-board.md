@@ -1,7 +1,7 @@
 # Portland Desk Lab: OS Diagnostics, Event Log Triage, & Boot Recovery
 
 > **The Situation:** Portland Regional Operations Center • Live service desk bullpen  
-> **Your Role:** Tier 1 Support Specialist (Practical Trial under Desk Lead Jules Mercer)  
+> **Your Role:** Tier 1 Support Specialist (Practical Trial under Desk Lead Jules Brooks)  
 > **The Objective:** Troubleshoot live workstation freezes, OS crashes, and graphics driver conflicts using binary search, Safe Mode, and Windows Event Viewer logs.  
 > **Estimated Time:** 40–50 minutes • Operating System Triage  
 
@@ -31,7 +31,7 @@ prompt: "Clean technical cutaway illustration of a computer motherboard RAM slot
 
 
 ### The Situation
-It is 08:15 on a rain-swept August morning on the fourth floor of the Portland Regional Operations Center. You are Ethan Brooks, sitting beside Help Desk Lead Jules Mercer for your second-round practical working trial. Your portfolio holds your CompTIA A+ certificate and a signed recommendation from supervisor Ken out at the Gresham freight terminal. You are patched into the station fourteen training bridge on a dual-headset splitter. 
+It is 08:15 on a rain-swept August morning on the fourth floor of the Portland Regional Operations Center. You are Ethan Mercer, sitting beside Help Desk Lead Jules Brooks for your second-round practical working trial. Your portfolio holds your CompTIA A+ certificate and a signed recommendation from supervisor Ken out at the Gresham freight terminal. You are patched into the station fourteen training bridge on a dual-headset splitter. 
 
 Two rows over, workstation fourteen displays a high-priority ticket flagged in glowing amber text:
 
@@ -490,8 +490,8 @@ TIER 1 RESOLUTION SUMMARY - PORTLAND REGIONAL SERVICE DESK
 Ticket ID:        INC-2026-0814
 Requester:        Maya Lin (Supervisor, Accounting Operations)
 Affected Asset:   PORT-WS-0142 (Dell OptiPlex 7090 Micro / Service Tag: 8F2J9X3)
-Technician:       Ethan Brooks (Tier 1 Support Trial)
-Supervising Lead: Jules Mercer (Desk Lead)
+Technician:       Ethan Mercer (Tier 1 Support Trial)
+Supervising Lead: Jules Brooks (Desk Lead)
 Incident Date:    2026-08-14 08:15:00 PST
 Resolution Date:  2026-08-14 09:12:35 PST
 Impact Category:  Workstation Hardware / OS Display Subsystem Hang
@@ -575,7 +575,7 @@ Status:           RESOLVED & VERIFIED
 ```callout-panel
 title: "FIGURE 2.2: THE LIVE BOARD RESOLUTION"
 badge: "Shift Epilogue"
-caption: "Bullpen view: At 09:12 AM, workstation 14's dispatch ticket flips from amber to green. Outside the casement windows, rain sweeps across the Hawthorne Bridge as Jules Mercer signs the onboarding slip."
+caption: "Bullpen view: At 09:12 AM, workstation 14's dispatch ticket flips from amber to green. Outside the casement windows, rain sweeps across the Hawthorne Bridge as Jules Brooks signs the onboarding slip."
 prompt: "Clean graphic novel panel of an IT help desk office bullpen in the Pacific Northwest. Rain streaks against large casement windows overlooking an industrial river bridge. A computer monitor displays a green resolved ticket badge. On the laminate desk, a blue visitor badge slip sits signed next to a ceramic coffee mug. Ligne Claire style, crisp technical lines, no text, no words. 16:9 ratio."
 ```
 

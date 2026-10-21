@@ -1,4 +1,4 @@
-PS C:\Users\ebrooks> Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4740} -MaxEvents 1 | Format-List -Property *
+PS C:\Users\emercer> Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4740} -MaxEvents 1 | Format-List -Property *
 
 Message              : A user account was locked out.
 

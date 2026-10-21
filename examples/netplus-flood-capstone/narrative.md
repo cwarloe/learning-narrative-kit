@@ -4,7 +4,7 @@
 
 An atmospheric river had stalled directly over the Willamette Valley since midday Sunday. The weather service called the system a once-in-a-decade storm. It dumped more than four inches of rain across twelve punishing hours. By three o'clock on Monday morning, the river had surged past flood stage. The swollen current pushed brown stormwater through storm drains and low-lying basements across the industrial district. My phone woke me from a dead sleep at three-thirty with the harsh chirping tone reserved for priority campus outages.
 
-Desk lead Jules Mercer was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses water billing, logistics dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
+Desk lead Jules Brooks was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses water billing, logistics dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
 
 I pulled on my insulated coveralls and laced my rubber mud boots by the kitchen door. Five months on the Portland desk had transformed my habits. The work had replaced my old panic with an instinct for preparation. I packed my punchdown tool, an optical fiber light tester, spare patch cords, and two rolls of hook-and-loop cable ties into my canvas bag. As I drove my beat-up truck across the Morrison Bridge through blinding sheets of rain, the dark river churned violently beneath the piers.
 
@@ -112,7 +112,7 @@ Within three minutes, my mobile service phone began vibrating continuously in my
 I opened a remote PowerShell terminal to our primary domain controller. I queried the active DHCP scope servicing the water billing subnet at `10.20.10.0/24`. The output revealed an immediate operational problem.
 
 ```console
-PS C:\Users\ebrooks> Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State
+PS C:\Users\emercer> Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State
 
 ScopeId : 10.20.10.0
 Free    : 0
@@ -135,9 +135,9 @@ When the power cut during the storm, eighty desktop computers dropped off the ne
 "First, I will export the active lease table to preserve an audit record of static hardware assignments," I said, executing the commands without hesitation. "Second, I will reconcile the scope by clearing all expired and inactive leases. Third, I will reduce the dynamic lease duration from eight days to eight hours, which matches our working shift schedule. Finally, I will expand the dynamic pool range from two hundred addresses to two hundred and thirty addresses, reserving the first twenty addresses for local switches and network printers."
 
 ```console
-PS C:\Users\ebrooks> Set-DhcpServerv4Scope -ScopeId 10.20.10.0 -LeaseDuration 08:00:00
-PS C:\Users\ebrooks> Set-DhcpServerv4OptionValue -ScopeId 10.20.10.0 -DnsServer 10.100.1.10, 10.100.1.11
-PS C:\Users\ebrooks> Get-DhcpServerv4Lease -ScopeId 10.20.10.0 -AllLeases | Where-Object {$_.AddressState -eq "Inactive"} | Remove-DhcpServerv4Lease
+PS C:\Users\emercer> Set-DhcpServerv4Scope -ScopeId 10.20.10.0 -LeaseDuration 08:00:00
+PS C:\Users\emercer> Set-DhcpServerv4OptionValue -ScopeId 10.20.10.0 -DnsServer 10.100.1.10, 10.100.1.11
+PS C:\Users\emercer> Get-DhcpServerv4Lease -ScopeId 10.20.10.0 -AllLeases | Where-Object {$_.AddressState -eq "Inactive"} | Remove-DhcpServerv4Lease
 ```
 
 The script ran in six seconds, flushing eighty-four stale leases from the server memory. Almost instantly, the monitoring dashboard showed client devices renewing their addresses across the building. 

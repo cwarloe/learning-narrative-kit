@@ -32,7 +32,7 @@ WORKBENCH_METADATA = {
     },
     "02": {
         "setting": "Portland Regional Operations Center • Live service desk bullpen",
-        "role": "Tier 1 Support Specialist (Practical Trial under Desk Lead Jules Mercer)",
+        "role": "Tier 1 Support Specialist (Practical Trial under Desk Lead Jules Brooks)",
         "goal": "Troubleshoot live workstation freezes, OS crashes, and graphics driver conflicts using binary search, Safe Mode, and Windows Event Viewer logs.",
         "duration": "40–50 minutes • Operating System Triage",
         "cert": "CompTIA A+ Core 2 (220-1102)",
@@ -41,7 +41,7 @@ WORKBENCH_METADATA = {
     },
     "03": {
         "setting": "East Portland Pump Station & Annex • Operations Service Desk",
-        "role": "Level 1 Network Support Specialist (under Jules Mercer & Jared Vance)",
+        "role": "Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)",
         "goal": "Triage local IP addressing, APIPA 169.254.x.x link-local traps, subnet boundaries, and ARP resolution failures following a storm switch reboot.",
         "duration": "45–55 minutes • Local Network Addressing",
         "cert": "CompTIA Network+ (N10-008/009)",
@@ -50,7 +50,7 @@ WORKBENCH_METADATA = {
     },
     "04": {
         "setting": "Portland Operations Center • Spring downpour, remote VPN support queue",
-        "role": "Level 1 Network Support Specialist (under Jules Mercer & Maya Chen)",
+        "role": "Level 1 Network Support Specialist (under Jules Brooks & Maya Chen)",
         "goal": "Trace why remote VPN users fail to access internal company services while in-office users succeed, resolving split-horizon DNS and rogue hosts file overrides.",
         "duration": "40–50 minutes • Name Resolution & DNS Plumbing",
         "cert": "CompTIA Network+ (N10-008/009)",
@@ -59,7 +59,7 @@ WORKBENCH_METADATA = {
     },
     "05": {
         "setting": "Portland Operations Center Bullpen • Cold October rain, evening shift",
-        "role": "Level 1 Network Support Specialist (under Jules Mercer & Jared Vance)",
+        "role": "Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)",
         "goal": "Diagnose network connection refusals (RST) versus silent timeouts (firewall drops) using TCP three-way handshake mechanics and netstat socket inspections.",
         "duration": "45–50 minutes • Layer 4 Transport & Sockets",
         "cert": "CompTIA Network+ (N10-008/009)",
@@ -68,7 +68,7 @@ WORKBENCH_METADATA = {
     },
     "06": {
         "setting": "Building C Basement Telecom Vault • 04:00 AM Flood Emergency",
-        "role": "Emergency Response Technician (Midpoint Capstone under Jules Mercer & Jared Vance)",
+        "role": "Emergency Response Technician (Midpoint Capstone under Jules Brooks & Jared Vance)",
         "goal": "Physically replace flood-damaged core switches, rebuild trunk VLANs, recover from a 150-device DHCP exhaustion storm, and restore municipal operations before 08:00 AM opening.",
         "duration": "60–75 minutes • Disaster Recovery Midpoint Capstone",
         "cert": "CompTIA Network+ (N10-008/009) & A+ Core 1",
@@ -77,7 +77,7 @@ WORKBENCH_METADATA = {
     },
     "07": {
         "setting": "Level 1 Service Desk Terminal • Operational Queue",
-        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)",
+        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Brooks)",
         "goal": "Identify and replace unencrypted, cleartext legacy protocols (Telnet, HTTP, POP3, SMTP) with modern TLS encrypted standards across email, administration, and plant telemetry.",
         "duration": "40–50 minutes • Network Security & Protocol Hardening",
         "cert": "CompTIA Security+ (SY0-701)",
@@ -86,7 +86,7 @@ WORKBENCH_METADATA = {
     },
     "08": {
         "setting": "Level 1 Service Desk Terminal • Identity & Access Queue",
-        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)",
+        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Brooks)",
         "goal": "Triage authentication failures, Active Directory lockouts (Event ID 4740), caller computer detection, and transition users from vulnerable SMS OTP to phishing-resistant MFA.",
         "duration": "40–50 minutes • Identity, Credential & Access Management",
         "cert": "CompTIA Security+ (SY0-701)",
@@ -95,7 +95,7 @@ WORKBENCH_METADATA = {
     },
     "09": {
         "setting": "Level 1 Service Desk Terminal • Mail Defense Queue",
-        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)",
+        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Brooks)",
         "goal": "Dissect RFC 5322 raw email MIME headers, verify SPF, DKIM, and DMARC cryptographic alignment, and identify typosquatted domains in executive wire fraud attempts.",
         "duration": "40–50 minutes • Email Security & Phishing Analysis",
         "cert": "CompTIA Security+ (SY0-701)",
@@ -104,7 +104,7 @@ WORKBENCH_METADATA = {
     },
     "10": {
         "setting": "Level 1 Service Desk Terminal • Endpoint Detection (EDR) Console",
-        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)",
+        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Brooks)",
         "goal": "Investigate host malware infections, calculate cryptographic file hashes, decode Base64 living-off-the-land PowerShell commands, and isolate persistence mechanisms.",
         "duration": "45–55 minutes • Endpoint Security & Malware Persistence",
         "cert": "CompTIA Security+ (SY0-701)",
@@ -113,7 +113,7 @@ WORKBENCH_METADATA = {
     },
     "11": {
         "setting": "Level 1 Service Desk Terminal & Wireless LAN Controller (WLC)",
-        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)",
+        "role": "Tier 1 Service Desk Specialist (under Desk Lead Jules Brooks)",
         "goal": "Isolate unauthorized rogue wireless access points using RSSI signal triangulation and enforce WPA2/WPA3-Enterprise 802.1X with RADIUS and EAP-TLS certificate validation.",
         "duration": "45–55 minutes • Wireless Security & RF Diagnostics",
         "cert": "CompTIA Security+ (SY0-701)",
@@ -122,7 +122,7 @@ WORKBENCH_METADATA = {
     },
     "12": {
         "setting": "Portland Operations Center Service Desk • Tier 1 CSIRT Incident Station",
-        "role": "Tier 1 Support Specialist / Junior CSIRT Responder (Final Capstone under Jules Mercer)",
+        "role": "Tier 1 Support Specialist / Junior CSIRT Responder (Final Capstone under Jules Brooks)",
         "goal": "Correlate a multi-stage enterprise intrusion spanning finance phishing, USB dropper execution, lateral pivot, and industrial OT egress into a definitive CSIRT handoff dossier.",
         "duration": "60–75 minutes • Book 0 Final Capstone (Bridge to Book 1 SOC)",
         "cert": "CompTIA Security+ (SY0-701) Capstone & Incident Response",

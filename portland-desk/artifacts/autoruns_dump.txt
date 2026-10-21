@@ -2,7 +2,7 @@
 Sysinternals Autoruns Command-Line Dump (autorunsc.exe -a r -c)
 Host: MAYA-W11.portland-ops.local
 Timestamp: 2026-10-22 08:12:04 PST
-Operator: Ethan Brooks (Tier 1 Support)
+Operator: Ethan Mercer (Tier 1 Support)
 ================================================================================
 
 Entry Location: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run

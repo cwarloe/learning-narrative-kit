@@ -3,7 +3,7 @@
 > **Track:** Portland Desk (Book 0: Zero-to-One) • Midpoint Capstone  
 > **Unit Companion:** `netplus-flood-capstone` — *The Portland Flood*  
 > **Setting:** Building C Basement Telecommunications Vault & Service Desk Bullpen  
-> **Lead Mentors:** Jules Mercer (Desk Lead), Jared Vance (Network Operations Engineer)  
+> **Lead Mentors:** Jules Brooks (Desk Lead), Jared Vance (Network Operations Engineer)  
 > **Badge:** The Hands-On Lab  
 
 ---
@@ -17,7 +17,7 @@
 | **Primary Examination Domains** | **Network+ N10-008 Domain 1.0 Networking Fundamentals**<br>• *1.2 Explain characteristics of network media, connectors, and patch panels (110 punchdown, T568A/B pinouts)*<br>• *1.4 Configure and troubleshoot IPv4 addressing, subnetting, and DHCP scope options*<br>**Network+ N10-008 Domain 2.0 Network Implementations**<br>• *2.1 Configure and apply switching features (VLANs, 802.1Q trunking, LACP link aggregation, Spanning Tree Protocol)*<br>**Network+ N10-008 Domain 4.0 Network Troubleshooting**<br>• *4.1 Explain the network troubleshooting methodology and binary search isolation*<br>• *4.2 Troubleshoot common physical and Layer 2/3 network issues (transient power surges, flea power, damp cabling, DHCP exhaustion)*<br>**Network+ N10-009 Domain 1.2, 1.4, 2.1, 4.1 & 4.2**<br>• *High availability switching, disaster recovery, loop prevention, and multi-VLAN recovery* |
 | **Prerequisites** | Solid understanding of OSI Layer 1 through Layer 4 mechanics, basic Cisco IOS switch command syntax, IPv4 subnetting, and PowerShell administration. |
 | **Estimated Completion** | 60–75 minutes (Comprehensive Midpoint Capstone) |
-| **Core Deliverables** | 1. Disaster Recovery & Rebuild Architecture Matrix (Layer 1 through Layer 4)<br>2. Skill Rep 1: Cable & VLAN Punchdown Drill (T568B pinouts, 110 blocks, access vs. trunk ports)<br>3. Skill Rep 2: DHCP Scope Recovery & Stampede Mitigation Drill (Lease duration math, stale lease cleanup)<br>4. Skill Rep 3: "Call Your Shot" (5-Case CBYT Prediction Gate)<br>5. Performance Deliverable: Post-Outage Incident Report (SEV-1 Post-Mortem & Infrastructure Passdown)<br>6. Lead Sign-Off Checklist & Evaluation Rubric (Desk Lead Jules Mercer) |
+| **Core Deliverables** | 1. Disaster Recovery & Rebuild Architecture Matrix (Layer 1 through Layer 4)<br>2. Skill Rep 1: Cable & VLAN Punchdown Drill (T568B pinouts, 110 blocks, access vs. trunk ports)<br>3. Skill Rep 2: DHCP Scope Recovery & Stampede Mitigation Drill (Lease duration math, stale lease cleanup)<br>4. Skill Rep 3: "Call Your Shot" (5-Case CBYT Prediction Gate)<br>5. Performance Deliverable: Post-Outage Incident Report (SEV-1 Post-Mortem & Infrastructure Passdown)<br>6. Lead Sign-Off Checklist & Evaluation Rubric (Desk Lead Jules Brooks) |
 
 ---
 
@@ -28,7 +28,7 @@ It is 04:00 AM on a freezing Monday in December. A severe Pacific Northwest atmo
 
 In the basement telecommunications vault of Building C—which houses East Portland Water Billing, logistics fleet dispatch, and industrial plant telemetry loggers—eight inches of muddy river water covers the concrete floor. When the utility pole transformer arced on the corner, commercial grid power failed. The campus diesel generator engaged six seconds later, but the resulting electrical transient surge blew out two aging twenty-four-port edge switches on the bottom rack unit. 
 
-City administrative offices, emergency dispatch, and public billing windows unlock at 08:00 AM sharp. Apprentice technician Ethan Brooks, Desk Lead Jules Mercer, and Senior Network Engineer Jared Vance stand in rubber boots in the flooded vault with headlamps and toolkits. They have exactly four hours to physically condemn dead hardware, rack and power spare switches, restore Layer 1 structured cabling, configure 802.1Q VLAN trunking and LACP link aggregation, and resolve a massive 150-device DHCP scope exhaustion storm before municipal operations open.
+City administrative offices, emergency dispatch, and public billing windows unlock at 08:00 AM sharp. Apprentice technician Ethan Mercer, Desk Lead Jules Brooks, and Senior Network Engineer Jared Vance stand in rubber boots in the flooded vault with headlamps and toolkits. They have exactly four hours to physically condemn dead hardware, rack and power spare switches, restore Layer 1 structured cabling, configure 802.1Q VLAN trunking and LACP link aggregation, and resolve a massive 150-device DHCP scope exhaustion storm before municipal operations open.
 
 ```mermaid
 timeline
@@ -443,8 +443,8 @@ PORTLAND MUNICIPAL IT OPERATIONS — POST-INCIDENT RECOVERY REPORT (SEV-1)
 INCIDENT ID:      INC-2026-1215-SEV1
 DATE / TIME:      2026-12-15 04:00:00 PST through 2026-12-15 08:00:00 PST
 FACILITY / SITE:  Building C (Rivergate Municipal Operations Annex), Sub-Basement Vault
-LEAD TECH:        Ethan Brooks (Lead Tier 1 Specialist)
-SUPERVISING LEAD: Jules Mercer (Help Desk Lead)
+LEAD TECH:        Ethan Mercer (Lead Tier 1 Specialist)
+SUPERVISING LEAD: Jules Brooks (Help Desk Lead)
 NETWORK ENGINEER: Jared Vance (Senior Network Operations Engineer)
 IMPACTED SUBNETS: VLAN 10 (Water Billing), VLAN 20 (Telemetry), VLAN 30 (VoIP)
 OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
@@ -468,8 +468,8 @@ OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
 2. CHRONOLOGICAL INCIDENT TIMELINE:
    - 03:15 PST: River storm floodwater breaches vault; utility power cut; generator starts.
    - 03:18 PST: Electrical transient surge destroys edge switches SW-BLDGC-01 & 02.
-   - 03:30 PST: Tier 1 escalation dispatched; Jules Mercer initiates bridge call.
-   - 04:00 PST: Brooks, Mercer, and Vance arrive on site with boots and emergency kit.
+   - 03:30 PST: Tier 1 escalation dispatched; Jules Brooks initiates bridge call.
+   - 04:00 PST: Mercer, Brooks, and Vance arrive on site with boots and emergency kit.
    - 04:15 PST: Sump pump activated; electrical test meter confirms 0V stray potential.
    - 04:30 PST: Bleed flea power on fried PSUs; internal transformer coil failure confirmed.
    - 04:50 PST: Dead chassis unmounted; two 48-port switches mounted 4 RUs above water line.
@@ -526,7 +526,7 @@ OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
 
 ## 5. What Good Looks Like / Lead Sign-Off Checklist
 
-To achieve full operational qualification on the Midpoint Capstone, apprentice technicians must demonstrate mastery across five core operational dimensions evaluated by Desk Lead Jules Mercer.
+To achieve full operational qualification on the Midpoint Capstone, apprentice technicians must demonstrate mastery across five core operational dimensions evaluated by Desk Lead Jules Brooks.
 
 ```mermaid
 pie title Midpoint Capstone Competency Evaluation Weighting
@@ -541,11 +541,11 @@ pie title Midpoint Capstone Competency Evaluation Weighting
 
 | Competency Area | What Good Looks Like (Mastery Standards) | Lead Review Verification | Status |
 | :--- | :--- | :--- | :---: |
-| **1. Physical Layer Safety & Structured Cabling** | • Verifies zero stray ground voltage with multimeter before entering flooded vault.<br>• Successfully bleeds residual flea power from power supplies before declaring hardware dead.<br>• Mounts replacement hardware in upper rack units above flood line.<br>• Cleans modular patch panel jacks with solvent and punches down 110 IDC blocks adhering strictly to T568B pinout standards without excessive pair untwisting. | *Jules Mercer:* "Ethan did not touch the metal frame until the meter verified zero potential. His cable punchdowns were clean, trimmed flush, and showed zero CRC alignment errors under load." | **PASSED** |
+| **1. Physical Layer Safety & Structured Cabling** | • Verifies zero stray ground voltage with multimeter before entering flooded vault.<br>• Successfully bleeds residual flea power from power supplies before declaring hardware dead.<br>• Mounts replacement hardware in upper rack units above flood line.<br>• Cleans modular patch panel jacks with solvent and punches down 110 IDC blocks adhering strictly to T568B pinout standards without excessive pair untwisting. | *Jules Brooks:* "Ethan did not touch the metal frame until the meter verified zero potential. His cable punchdowns were clean, trimmed flush, and showed zero CRC alignment errors under load." | **PASSED** |
 | **2. Layer 2 Segmentation & Redundancy** | • Accurately provisions VLANs 10, 20, 30, and native management VLAN 99.<br>• Configures 802.1Q trunk encapsulation and explicitly restricts allowed VLANs.<br>• Bundles redundant physical fiber interfaces into active LACP (802.3ad) Port-Channel.<br>• Verifies Spanning Tree Protocol (RSTP) root bridge path cost and confirms zero blocked ports or native VLAN mismatch syslog alerts. | *Jared Vance:* "Port-Channel 1 came up clean at 2 Gbps. Ethan remembered to set native VLAN 99 on both sides of the trunk, preventing spanning tree root inconsistency." | **PASSED** |
-| **3. Layer 3 Addressing & Stampede Mitigation** | • Rapidly diagnoses APIPA link-local (`169.254.x.x`) failure mode under high-volume reconnect conditions.<br>• Calculates dynamic scope utilization and recognizes mathematical lease exhaustion.<br>• Executes non-destructive PowerShell reconciliation: exports lease table, purges inactive entries, shortens lease duration to 8 hours, and expands allocation boundaries.<br>• Verifies client DORA renegotiation and confirms default gateway reachability (`<1ms`). | *Jules Mercer:* "When 150 machines hit the wire at 07:15, Ethan did not blame the fiber link. He opened the DHCP console, read the counters, and cut the 8-day lease anchor in five minutes." | **PASSED** |
-| **4. Binary Search Methodology ("Call Your Shot")** | • Refuses to guess or execute trial-and-error commands under crisis conditions.<br>• Follows the 6-step troubleshooting methodology: isolates problem to specific OSI layer, forms testable hypothesis, predicts output, executes isolated command, and measures delta.<br>• Successfully solves all 5 "Call Your Shot" prediction cases without destroying volatile evidence. | *Jules Mercer:* "He committed his predictions before typing. That is the exact discipline that separates an engineer from someone who just mashes keys hoping for a miracle." | **PASSED** |
-| **5. Post-Incident Documentation & Passdown** | • Produces comprehensive, audit-ready SEV-1 Incident Post-Mortem.<br>• Captures detailed chronological timeline, observable metrics, precise root cause analysis, specific remediation actions, and preventative architectural recommendations.<br>• Communicates effectively across operations, facilities, and network engineering. | *Jules Mercer:* "This incident post-mortem is clean enough to hand straight to the department director and city auditor. Flawless work." | **PASSED** |
+| **3. Layer 3 Addressing & Stampede Mitigation** | • Rapidly diagnoses APIPA link-local (`169.254.x.x`) failure mode under high-volume reconnect conditions.<br>• Calculates dynamic scope utilization and recognizes mathematical lease exhaustion.<br>• Executes non-destructive PowerShell reconciliation: exports lease table, purges inactive entries, shortens lease duration to 8 hours, and expands allocation boundaries.<br>• Verifies client DORA renegotiation and confirms default gateway reachability (`<1ms`). | *Jules Brooks:* "When 150 machines hit the wire at 07:15, Ethan did not blame the fiber link. He opened the DHCP console, read the counters, and cut the 8-day lease anchor in five minutes." | **PASSED** |
+| **4. Binary Search Methodology ("Call Your Shot")** | • Refuses to guess or execute trial-and-error commands under crisis conditions.<br>• Follows the 6-step troubleshooting methodology: isolates problem to specific OSI layer, forms testable hypothesis, predicts output, executes isolated command, and measures delta.<br>• Successfully solves all 5 "Call Your Shot" prediction cases without destroying volatile evidence. | *Jules Brooks:* "He committed his predictions before typing. That is the exact discipline that separates an engineer from someone who just mashes keys hoping for a miracle." | **PASSED** |
+| **5. Post-Incident Documentation & Passdown** | • Produces comprehensive, audit-ready SEV-1 Incident Post-Mortem.<br>• Captures detailed chronological timeline, observable metrics, precise root cause analysis, specific remediation actions, and preventative architectural recommendations.<br>• Communicates effectively across operations, facilities, and network engineering. | *Jules Brooks:* "This incident post-mortem is clean enough to hand straight to the department director and city auditor. Flawless work." | **PASSED** |
 
 ---
 
@@ -555,8 +555,8 @@ pie title Midpoint Capstone Competency Evaluation Weighting
 ================================================================================
 PORTLAND HELP DESK (BOOK 0) — MIDPOINT CAPSTONE QUALIFICATION
 ================================================================================
-CANDIDATE:        Ethan Brooks, Apprentice Support Specialist
-SUPERVISING LEAD: Jules Mercer, Help Desk Lead
+CANDIDATE:        Ethan Mercer, Apprentice Support Specialist
+SUPERVISING LEAD: Jules Brooks, Help Desk Lead
 NETWORK ENGINEER: Jared Vance, Senior Network Infrastructure Engineer
 DATE OF SIGN-OFF: 2026-12-15 08:15:00 PST
 RESULT:           QUALIFIED — FULL CAPSTONE PASS (ADVANCED TO TIER 2 CANDIDACY)
@@ -569,7 +569,7 @@ the protocol stack from the wet concrete up to the transport layer, executed
 flawless Layer 2 and Layer 3 rebuilds, and delivered 100% operational throughput 
 before the morning opening bell. He has outgrown his flashcards. Sign-off granted."
 
-SIGNATURE:  [ Jules Mercer, Lead Tier 1/2 ]
+SIGNATURE:  [ Jules Brooks, Lead Tier 1/2 ]
 SIGNATURE:  [ Jared Vance, NetOps Infrastructure ]
 ================================================================================
 ```

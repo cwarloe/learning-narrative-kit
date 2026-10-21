@@ -1,7 +1,7 @@
 # Portland Desk Master Timeline & Canon Continuity Guide
 **Repository:** `learning-narrative-kit`  
-**Protagonist:** Ethan Brooks (19-20 years old)  
-**Lead Mentor:** Jules Mercer (Lead Support Specialist, Portland Regional Operations Center)  
+**Protagonist:** Ethan Mercer (19-20 years old)  
+**Lead Mentor:** Jules Brooks (Lead Support Specialist, Portland Regional Operations Center)  
 **Setting:** East Portland, Gresham Freight Terminal, & Portland Regional Operations Center (Hawthorne Bridge overlook)  
 **Purpose:** Canonical chronological anchor for all authoring, editing, visual prompts, and lab environments across CompTIA A+, Network+, and Security+ modules.
 
@@ -80,12 +80,12 @@ $$\text{Laborer / Student} \longrightarrow \text{Staging Tech} \longrightarrow \
 
 ## 2. Canonical Recurring Cast & Entities
 
-### Ethan Brooks
+### Ethan Mercer
 * **Identity:** 19 turning 20. Son of an East Portland precision machinist. Pragmatic, hands-on, scars on his knuckles from warehouse freight.
 * **Gear:** Worn canvas Carhartt-style jacket, grey heather hoodie, dark jeans, work boots. Stainless steel 0.5mm drafting pencil clipped in chest pocket (father's graduation gift).
 * **Quirk:** Carries 300 handmade flashcards bundled with four thick colored rubber bands (Red = trivia, Green = hardware anatomy, Yellow = network identity, Blue = diagnostic troubleshooting reflex). Started in a mug on his kitchen table; now lives in his top center desk drawer.
 
-### Jules Mercer
+### Jules Brooks
 * **Identity:** 34-year-old female Lead Support Specialist, Portland Regional Operations Center. Nine years at the operations center.
 * **Voice:** Measured, wry, calm under fire. Acts as a diagnostic compass rather than a cheat sheet. Never commands panic; uses Socratic questions to teach binary search.
 * **Gear:** Commutes by bicycle regardless of weather (steel Kona Rove commuter bike locked to vertical bullpen pipe; matte silver commuter helmet clipped to secondary monitor arm; rain shell drying over chair). Worn ceramic coffee mug.
@@ -105,7 +105,7 @@ $$\text{Laborer / Student} \longrightarrow \text{Staging Tech} \longrightarrow \
    * Never refer to the employer as a commercial "midsize MSP". The desk serves municipal departments, regional freight hubs, and public service offices across Multnomah County.
 2. **The Hiring Audit Law:**
    * Ethan does **not** take live tickets solo as an unscreened walk-in candidate.
-   * In Episode 02, Ethan is on a supervised practical hiring trial using a dual-headset training bridge alongside Jules Mercer. Formal background checks clear over the weekend; he provides professional notice to Ken in Gresham and starts full-time on Monday.
+   * In Episode 02, Ethan is on a supervised practical hiring trial using a dual-headset training bridge alongside Jules Brooks. Formal background checks clear over the weekend; he provides professional notice to Ken in Gresham and starts full-time on Monday.
 3. **The Index Cards Progress with Ethan:**
    * In Ep 00: Scattered on the kitchen linoleum floor in despair, then sorted into four colored bands.
    * In Ep 01: In his pocket on the freight pallet.

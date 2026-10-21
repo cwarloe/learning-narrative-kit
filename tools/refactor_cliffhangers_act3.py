@@ -271,7 +271,7 @@ domain: CompTIA Security+ SY0-701 • Domain 4.0 Incident Response & Operations
 badge: Final Capstone Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Jules Mercer.
+Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Jules Brooks.
 ```
 """
 
@@ -291,7 +291,7 @@ Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage inci
 ```callout-panel
 title: "FIGURE 12.2: CSIRT INCIDENT HANDOFF & THE BRIDGE TO BOOK 1"
 badge: "Shift Epilogue"
-caption: "Operations bullpen: At 05:45 PM, the autumn rain eases over the Willamette River. Jules Mercer hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
+caption: "Operations bullpen: At 05:45 PM, the autumn rain eases over the Willamette River. Jules Brooks hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
 prompt: "Clean graphic novel cutaway panel of an IT support operations floor at twilight. Warm indoor desk light contrasts with blue twilight outside the floor-to-ceiling windows showing city bridges and river. A senior technician hands a new security access keycard lanyard to a junior technician across an open incident binder. Clean ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
 ```
 

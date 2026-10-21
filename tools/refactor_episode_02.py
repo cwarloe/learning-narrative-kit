@@ -59,7 +59,7 @@ WORKBENCH_EPILOGUE = """
 ```callout-panel
 title: "FIGURE 2.2: THE LIVE BOARD RESOLUTION"
 badge: "Shift Epilogue"
-caption: "Bullpen view: At 09:12 AM, workstation 14's dispatch ticket flips from amber to green. Outside the casement windows, rain sweeps across the Hawthorne Bridge as Jules Mercer signs the onboarding slip."
+caption: "Bullpen view: At 09:12 AM, workstation 14's dispatch ticket flips from amber to green. Outside the casement windows, rain sweeps across the Hawthorne Bridge as Jules Brooks signs the onboarding slip."
 prompt: "Clean graphic novel panel of an IT help desk office bullpen in the Pacific Northwest. Rain streaks against large casement windows overlooking an industrial river bridge. A computer monitor displays a green resolved ticket badge. On the laminate desk, a blue visitor badge slip sits signed next to a ceramic coffee mug. Ligne Claire style, crisp technical lines, no text, no words. 16:9 ratio."
 ```
 

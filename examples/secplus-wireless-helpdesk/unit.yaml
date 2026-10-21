@@ -1,6 +1,6 @@
 unit_id: secplus-wireless-helpdesk
 title: "Portland Desk — The Air Is Shared"
-audience: "Someone studying Security+ wireless / WLAN topics"
+audience: "Someone studying Security+ wireless / WLAN topics, or a NADF precursor for Ethan's help-desk years"
 purpose: "Weave SY0-701 wireless standards, encryption, evil twin/rogue AP risks, PSK vs enterprise, guest segmentation, and light Bluetooth into one help-desk shift so definitions become desk decisions."
 estimated_minutes: 22
 sources:

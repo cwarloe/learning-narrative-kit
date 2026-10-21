@@ -55,7 +55,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "I wrote this script back when we racked gear in Hillsboro. Requesting temporary port 23 allow rule on "
                 "management firewall so I can fix the trunk VLAN."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T08:45:12Z",
             "updated_at": "2026-10-20T09:14:02Z",
@@ -85,7 +85,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "or coffee shop hotspots. Outlook displays alert: 'Receiving reported error (0x8004210A): The operation "
                 "timed out waiting for a response from the receiving (POP) server.' Outgoing mail is also stuck in Outbox."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T09:02:45Z",
             "updated_at": "2026-10-20T09:35:10Z",
@@ -116,7 +116,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "to the internal facilities repository (192.168.10.85). Vendor installation manual specifies FTP on port 21. "
                 "Connection attempts fail with connection timeout."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T09:40:18Z",
             "updated_at": "2026-10-20T10:15:33Z",
@@ -146,7 +146,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "finance workstation (192.168.10.14). Please open TCP 3389 on the external IP for the next 72 hours so "
                 "I can finish the audit deliverables from my hotel room."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T10:20:00Z",
             "updated_at": "2026-10-20T10:45:19Z",
@@ -177,7 +177,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "After reconnecting to corporate dock, domain logon reports 'Kerberos pre-authentication failed: "
                 "Clock skew too great'."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T11:05:22Z",
             "updated_at": "2026-10-20T11:42:01Z",
@@ -207,7 +207,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "Internal audit flagged that newly deployed access switches in Building B are answering SNMP GET requests "
                 "on UDP 161 using default community string 'public'. Need review of monitoring template before weekly change window."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T11:50:00Z",
             "updated_at": "2026-10-20T12:20:15Z",
@@ -235,7 +235,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "Working on staging laptops from the guest conference area. Wanted to forward debugging logs to the "
                 "collector at 192.168.10.60 on UDP 514 without walking back upstairs to plug into the bench rack."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T13:10:40Z",
             "updated_at": "2026-10-20T13:35:00Z",
@@ -264,7 +264,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "Recovery mode requires sending binary ROM over TFTP (UDP 69). Requested opening UDP 69 from technician "
                 "laptop on standard user VLAN."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T14:15:11Z",
             "updated_at": "2026-10-20T14:48:30Z",
@@ -294,7 +294,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "cleartext DNP3 (port 20000) over the inter-site WAN link. Traffic is currently blocked by edge boundary ACLs. "
                 "Plant ops requires continuous pressure and flow monitoring to prevent overflow alarms."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T14:55:00Z",
             "updated_at": "2026-10-20T15:25:12Z",
@@ -324,7 +324,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "Shipping staff cannot generate packing slips or bill of lading manifests. Windows error on print server: "
                 "'The Print Spooler service terminated unexpectedly. Error code 0x800706BA (The RPC server is unavailable)'."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T15:30:22Z",
             "updated_at": "2026-10-20T15:58:45Z",
@@ -352,7 +352,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "Turned on Dell Latitude laptop after rebooting for an automated Dell Command Update / BIOS firmware flash. "
                 "Screen is bright blue demanding a 48-digit BitLocker recovery key. Executive has a board presentation in 30 minutes."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T16:02:10Z",
             "updated_at": "2026-10-20T16:21:40Z",
@@ -381,7 +381,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "Password was changed yesterday morning. Today, account is locking out continuously every 5 to 10 minutes, "
                 "even when not touching the workstation keyboard. Self-service unlock succeeds and then locks out again."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T16:30:00Z",
             "updated_at": "2026-10-20T16:55:12Z",
@@ -411,7 +411,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "IT wireless map does not show any access points registered with this SSID in the reception area. "
                 "Physical inspection revealed a small black travel router plugged into a conference room RJ-45 wall jack."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T17:01:05Z",
             "updated_at": "2026-10-20T17:18:22Z",
@@ -440,7 +440,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
                 "but email address is 'billing@vendor-invoicing.net'. Email contains attachment named 'INV_Oct2026_9942.pdf.iso'. "
                 "User has not opened the attachment."
             ),
-            "assigned_to": "Ethan Brooks",
+            "assigned_to": "Ethan Mercer",
             "assigned_group": "Tier 1 Service Desk",
             "created_at": "2026-10-20T17:22:40Z",
             "updated_at": "2026-10-20T17:35:10Z",
@@ -576,7 +576,7 @@ Connected over a slow link?: No
 
 USER SETTINGS
 --------------
-    CN=Ethan Brooks,OU=HelpDesk,OU=Staff,DC=portland-ops,DC=local
+    CN=Ethan Mercer,OU=HelpDesk,OU=Staff,DC=portland-ops,DC=local
     Last time Group Policy was applied: 10/20/2026 at 10:45:12 AM
     Group Policy was applied from:      dc01.portland-ops.local
     Group Policy slow link threshold:   500 kbps

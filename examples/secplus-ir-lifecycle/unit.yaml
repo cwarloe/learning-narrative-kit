@@ -1,6 +1,6 @@
 unit_id: secplus-ir-lifecycle
 title: "Portland Desk — The Order You Do It In"
-audience: "Someone studying Security+ incident response"
+audience: "Someone studying Security+ incident response, or a NADF precursor for Ethan's help-desk years"
 purpose: "Teach the SY0-701 incident response lifecycle through the cost of doing it out of order — contain before you eradicate, image before you clean, recover under watch — plus the plan/playbook/runbook apparatus that decides who decides. Companion to secplus-ir-helpdesk, which covers the first-touch decision before the lifecycle starts."
 estimated_minutes: 18
 sources:

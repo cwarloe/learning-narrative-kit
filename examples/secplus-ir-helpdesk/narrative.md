@@ -67,7 +67,7 @@ domain: CompTIA Security+ SY0-701 • Domain 4.0 Incident Response & Operations
 badge: Final Capstone Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Jules Mercer.
+Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Jules Brooks.
 
 [Take the Ticket & Open the Lab ->](workbench.md)
 ```

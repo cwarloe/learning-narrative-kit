@@ -1,7 +1,7 @@
 # Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
 
 > **The Situation:** East Portland Pump Station & Annex • Operations Service Desk  
-> **Your Role:** Level 1 Network Support Specialist (under Jules Mercer & Jared Vance)  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)  
 > **The Objective:** Triage local IP addressing, APIPA 169.254.x.x link-local traps, subnet boundaries, and ARP resolution failures following a storm switch reboot.  
 > **Estimated Time:** 45–55 minutes • Local Network Addressing  
 
@@ -35,7 +35,7 @@ It is 08:20 on a damp Tuesday morning in late September. Low clouds hang over th
 
 Workstations on the warehouse intake dock, barcode scanners on shipping line four, and automated water pump loggers cannot connect to central services. The freight clerks report that shipping portals have frozen with socket errors, and facilities technicians report that telemetry feeds have dropped. Desks report that "the internet is dead." 
 
-When apprentice technician Ethan Brooks instinctively grabs the telephone to report an external carrier fiber cut to CenturyLink, Desk Lead Jules Mercer stops him in his tracks:
+When apprentice technician Ethan Mercer instinctively grabs the telephone to report an external carrier fiber cut to CenturyLink, Desk Lead Jules Brooks stops him in his tracks:
 > *"Put the telephone down, Ethan, and look at your own desk first. Can you ping the gateway for that subnet from our core switch? Can you ping the loopback address on one of their endpoints? You do not know if their local operating system stack is functioning. Start on your side of the glass. Never jump to the WAN when your own gateway hasn't answered you."*
 
 ### The Ground Truth Rules of IP Addressing & Local Delivery
@@ -452,8 +452,8 @@ TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-0922
 Requester:        Frank Kowalski (Lead Shipping Dispatcher, Building B)
-Technician:       Ethan Brooks (Tier 1 Support Specialist)
-Supervising Lead: Jules Mercer (Help Desk Lead)
+Technician:       Ethan Mercer (Tier 1 Support Specialist)
+Supervising Lead: Jules Brooks (Help Desk Lead)
 Date / Time:      2026-09-22 10:45:18 PDT
 Category:         Network / IPv4 Addressing / Duplicate IP & DHCP Failure
 Affected Host:    WS-BLDGB-04 (IP: 10.100.4.55 / MAC: 00-14-22-8A-41-EF)
@@ -507,7 +507,7 @@ NETWORK INFRASTRUCTURE PASSDOWN & HANDOVER NOTE
 ================================================================================
 Escalation ID:    ESC-2026-0341
 Originating Desk: Portland Regional Operations Help Desk
-Technician:       Ethan Brooks (Tier 1 Specialist)
+Technician:       Ethan Mercer (Tier 1 Specialist)
 Escalated To:     Jared Vance (Network Operations Engineer)
 Date / Time:      2026-09-22 11:30:00 PDT
 Priority:         P2 - High (Infrastructure Configuration Drift)

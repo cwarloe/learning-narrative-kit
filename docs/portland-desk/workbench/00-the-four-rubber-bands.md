@@ -169,7 +169,7 @@ The graphical user interface (GUI) hides operating system mechanics. On the help
 
 ```cmd
 C:\> whoami
-PORTLAND-CORP\ebrooks
+PORTLAND-CORP\emercer
 
 C:\> whoami /priv
 
@@ -559,7 +559,7 @@ Use this standardized intake checklist when logging and triaging your first live
 FIRST-CONTACT DIAGNOSTIC INTAKE WORKSHEET · TIER 1 SUPPORT
 ========================================================================================
 TICKET REF   : T1-INIT-2026-001             DATE/TIME : 2026-07-16 09:30 PDT
-TECHNICIAN   : Ethan Brooks                 STATUS    : UNDER INVESTIGATION
+TECHNICIAN   : Ethan Mercer                 STATUS    : UNDER INVESTIGATION
 USER NAME    : ____________________________ ASSET TAG : _______________________________
 
 1. SUBSYSTEM ISOLATION (Which core component is failing?):

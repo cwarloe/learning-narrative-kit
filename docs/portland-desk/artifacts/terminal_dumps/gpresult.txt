@@ -15,7 +15,7 @@ Connected over a slow link?: No
 
 USER SETTINGS
 --------------
-    CN=Ethan Brooks,OU=HelpDesk,OU=Staff,DC=portland-ops,DC=local
+    CN=Ethan Mercer,OU=HelpDesk,OU=Staff,DC=portland-ops,DC=local
     Last time Group Policy was applied: 10/20/2026 at 10:45:12 AM
     Group Policy was applied from:      dc01.portland-ops.local
     Group Policy slow link threshold:   500 kbps

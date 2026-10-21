@@ -6,7 +6,7 @@
 ## 1. Executive Summary & Series Overview
 
 ### 1.1 Premise and Mandate
-The Portland Help Desk Prequel (*Book 0: Zero-to-One*) is a twelve-episode narrative learning track that bridges foundational IT support and practical cybersecurity operations. This series chronicles the professional formation of Ethan Brooks as he evolves from an eighteen-year-old high school graduate trapped in rote certification memorization into a battle-tested Tier 2 Help Desk Lead at the Portland Regional Operations Center.
+The Portland Help Desk Prequel (*Book 0: Zero-to-One*) is a twelve-episode narrative learning track that bridges foundational IT support and practical cybersecurity operations. This series chronicles the professional formation of Ethan Mercer as he evolves from an eighteen-year-old high school graduate trapped in rote certification memorization into a battle-tested Tier 2 Help Desk Lead at the Portland Regional Operations Center.
 
 Where standard certification prep materials treat IT concepts as isolated flashcard definitions, *Book 0* demonstrates how technical protocols, access controls, physical infrastructure, and incident response lifecycles interact within messy, high-pressure human organizations. Every episode operates under the tradition of Eliyahu M. Goldratt’s *The Goal*: technology is never an end in itself, but rather a mechanism for maintaining operational throughput in the face of competing business incentives, organizational friction, and technical debt.
 
@@ -15,14 +15,22 @@ In the Learning Narrative Kit (LNK) framework, the narrative is not decorative f
 
 When a character chooses between opening port 23 versus port 22, the learning objective is not simply the integers `23` and `22`. The learning objective is the consequence: cleartext administrative credentials traversing a shared network span versus encrypted SSH sessions with cryptographic key authentication. By embedding every CompTIA A+, Network+, and Security+ concept within an authentic workplace dilemma where someone has a train to catch, an accounting run to finish, or a wastewater pump to keep running, the technical concept becomes an indelible operational memory.
 
-### 1.3 Where Book 0 Stands
-*Book 0* stands on its own. It does not depend on any other course or story. The Portland site serves as a logistics, distribution, and processing hub, and the characters, environments, and tensions below belong to Portland:
-- **Leah Moreno** appears as the Senior Plant Systems Specialist at the Willamette River treatment and processing plant, establishing the high-friction boundary between corporate enterprise IT and operational technology (OT/ICS).
+### 1.3 Continuity with NADF (Book 1)
+*Book 0* is the first part of Ethan's story. The Network Analyst Development Framework (NADF, *Book 1*) continues it. The Portland site serves as a logistics, distribution, and processing hub, and the characters, environments, and tensions below are where it starts:
+- **Leah Moreno** appears as the Senior Plant Systems Specialist at the Willamette River treatment and processing plant, establishing the high-friction boundary between corporate enterprise IT and operational technology (OT/ICS). Leah continues into NADF as the Enterprise Applications Lead.
 - The **Chicago Central IT and Security Operations Center (SOC)** exists as an intimidating, distant corporate presence whose top-down policies frequently clash with regional operational realities.
-- **Nia Alvarez**, Senior Incident Response Lead at Chicago HQ, makes her pivotal first appearance in Episode 12, where Ethan’s meticulous Tier 1/2 escalation dossier catches her attention and earns him a seat at the enterprise security table.
+- **Nia Alvarez**, Senior Incident Response Lead at Chicago HQ, makes her pivotal first appearance in Episode 12, where Ethan’s meticulous Tier 1/2 escalation dossier catches her attention and earns him a seat at the enterprise security table. Nia continues into NADF as the Security Operations Manager.
 - Legacy architectural quirks—such as unsegmented field networks, unmanaged warehouse switches, and fragmented identity directories—provide the exact historical vulnerabilities that adversaries exploit in subsequent storylines.
 
-**Relationship to NADF.** The separate Network Analyst Development Framework (NADF) course has its own story: Ethan Mercer at Harrowmere Equipment Group, mentored by Dana Shah. It is not a sequel to this track, and Ethan Brooks is not Ethan Mercer. A few names overlap (Nia Alvarez, Leah Moreno), but the roles differ, so don't carry details from one story into the other. Learners can use NADF as an optional next course for reading packet captures.
+**Continuity with NADF.** Ethan Mercer, Jules Brooks, Nia Alvarez, and Leah Moreno are the same people in both stories. Names were reconciled on 2026-10-21: Ethan was "Ethan Brooks" here and is now Ethan Mercer, as in NADF; the desk lead was "Jules Mercer" and is now Jules Brooks; NADF's developer Marcus Vance became Marcus Whitlock so he no longer clashes with Jared Vance here.
+
+**Still to reconcile (the integration pass):**
+1. **Ethan's age and timeline.** This track runs about 24 months from age 18. NADF describes a 27-year-old with several years of IT support experience.
+2. **Employer and place.** Portland Regional Operations Center and the Willamette plant here. Harrowmere Equipment Group, which has a Portland branch, there.
+3. **Nia's title.** Senior Incident Response Lead at Chicago HQ here. Security Operations Manager there.
+4. **Leah's role.** Senior Controls Tech at the Willamette plant here. Enterprise Applications Lead there.
+5. **Dana.** A vendor engineer (Ep 7) and a finance contact (Ep 9) here. The mentor Dana Shah there. They are different people, so one may need a new name.
+6. **The validator.** It fails any narrative that mentions Harrowmere or Priya, which blocks the crossover until it is lifted.
 
 ---
 
@@ -53,11 +61,11 @@ flowchart TD
 
 ### Act I: The Wilderness & The Cert Trap (Episodes 1–3 | Months 1–4)
 - **Thematic Core:** The transition from artificial, multiple-choice theoretical knowledge to empirical, real-world troubleshooting.
-- **Narrative Movement:** Ethan graduates high school and takes a graveyard-shift logistics staging job at an industrial warehouse out in Gresham. He spends his days memorizing hundreds of digital flashcards for CompTIA A+, Network+, and Security+, convinced that passing the exams will make him an engineer. The reality check comes swiftly: a dead motherboard on a barcode-sorting line does not present four multiple-choice options. When Ethan is hired onto the Portland Regional Help Desk by Jules Mercer, he expects clean network diagrams. Instead, he is thrown into an overwhelming ticket firehose where legacy habits thrive because "it worked yesterday," and where the first lesson of IT support is learning that troubleshooting is not guessing—it is binary search across physical and logical layers.
+- **Narrative Movement:** Ethan graduates high school and takes a graveyard-shift logistics staging job at an industrial warehouse out in Gresham. He spends his days memorizing hundreds of digital flashcards for CompTIA A+, Network+, and Security+, convinced that passing the exams will make him an engineer. The reality check comes swiftly: a dead motherboard on a barcode-sorting line does not present four multiple-choice options. When Ethan is hired onto the Portland Regional Help Desk by Jules Brooks, he expects clean network diagrams. Instead, he is thrown into an overwhelming ticket firehose where legacy habits thrive because "it worked yesterday," and where the first lesson of IT support is learning that troubleshooting is not guessing—it is binary search across physical and logical layers.
 
 ### Act II: Year 1 on the Desk — The Architecture of Work (Episodes 4–8 | Months 5–14)
 - **Thematic Core:** Socio-technical systems, organizational friction, and the boundary between operational availability and enterprise security.
-- **Narrative Movement:** Ethan finds his footing as a Tier 1 technician, but quickly discovers that the hardest problems do not occur inside operating systems; they occur at the boundaries between human departments. When Leah Moreno demands an open firewall rule to silence plant overflow alarms, Ethan learns that operational technology (OT) prioritizes physical safety and uptime over data confidentiality. When warehouse workers deploy consumer Wi-Fi routers to meet shipping quotas, Ethan learns that shadow IT is always an unfulfilled business requirement. Over the course of his first year, guided by Jules Mercer’s pragmatic mentorship, Ethan learns how to handle false-positive ransomware panics, untangle Active Directory privilege drift, and enforce secure staging protocols without alienating the business.
+- **Narrative Movement:** Ethan finds his footing as a Tier 1 technician, but quickly discovers that the hardest problems do not occur inside operating systems; they occur at the boundaries between human departments. When Leah Moreno demands an open firewall rule to silence plant overflow alarms, Ethan learns that operational technology (OT) prioritizes physical safety and uptime over data confidentiality. When warehouse workers deploy consumer Wi-Fi routers to meet shipping quotas, Ethan learns that shadow IT is always an unfulfilled business requirement. Over the course of his first year, guided by Jules Brooks’s pragmatic mentorship, Ethan learns how to handle false-positive ransomware panics, untangle Active Directory privilege drift, and enforce secure staging protocols without alienating the business.
 
 ### Act III: Year 2 & The Security Boundary — The Chicago Threshold (Episodes 9–12 | Months 15–24)
 - **Thematic Core:** Professional maturity, distinguishing noise from adversary tradecraft, and crossing from regional support to enterprise defense.
@@ -70,8 +78,8 @@ flowchart TD
 ```mermaid
 graph LR
     subgraph Portland Desk & Ops
-        Ethan["Ethan Brooks<br/><i>Protagonist (Tier 1 -> Tier 2 Lead)</i>"]
-        Jules["Jules Mercer<br/><i>Desk Lead & Pragmatic Mentor</i>"]
+        Ethan["Ethan Mercer<br/><i>Protagonist (Tier 1 -> Tier 2 Lead)</i>"]
+        Jules["Jules Brooks<br/><i>Desk Lead & Pragmatic Mentor</i>"]
         Jared["Jared Vance<br/><i>Network Ops Engineer (Legacy Habits)</i>"]
         Maya["Maya Lin<br/><i>Accounting Specialist (Business Pressure)</i>"]
         Leah["Leah Moreno<br/><i>Senior Controls Tech (Plant Operations)</i>"]
@@ -96,14 +104,14 @@ graph LR
 
 ### 3.1 Primary Characters
 
-#### Ethan Brooks — Protagonist & POV
+#### Ethan Mercer — Protagonist & POV
 - **Role:** Tier 1 Support Technician (Episodes 1–7), promoted to Tier 2 Help Desk Lead (Episodes 8–12).
 - **Age:** 19 at Episode 1; 21 by Episode 12.
 - **Background:** Raised in East Portland / Gresham. His father was a precision machinist at a metal fabrication shop who taught him how to respect physical tools. Ethan skipped the four-year university track due to financial constraints, working warehouse logistics while studying late into the night for his CompTIA trifecta (A+, Network+, Security+).
 - **Psychological Profile:** Highly observant, earnest, and intrinsically motivated, but initially burdened by severe imposter syndrome. In the early episodes, he treats technical standards as moral dogma and clings to flashcard taxonomies like a security blanket. When faced with ambiguous failures, his instinct is to freeze or over-engineer theoretical solutions. Over 24 months, he develops emotional resilience, learning that troubleshooting is an iterative discipline of hypothesis testing, root-cause isolation, and empathetic communication.
 - **Narrative Voice:** First-person past tense. Analytical, reflective, grounded, and intensely aware of physical textures—smells of damp rain jackets, hum of server racks, clicking of mechanical clipboards. He does not speak in stylized action-movie tropes; he narrates like an authentic junior engineer reflecting on how he learned to do the work.
 
-#### Jules Mercer — Desk Lead & Mentor
+#### Jules Brooks — Desk Lead & Mentor
 - **Role:** Portland Help Desk Lead (9-year veteran).
 - **Age:** 34.
 - **Visuals & Habits:** Daily bicycle commuter regardless of Pacific Northwest weather (rides a beat-up steel Kona Rove with fenders and waterproof panniers). Wears wool sweaters, rolled-up flannel sleeves, and durable canvas trousers. A yellow cycling rain jacket dries over the back of her chair; her bike helmet hangs perpetually from her secondary monitor arm. Keeps a ceramic mug of dark coffee on the corner partition of her cubicle.
@@ -189,7 +197,7 @@ Real operational shifts do not resolve into neat philosophical epigrams suitable
 - **Forbidden Patterns:** *"Numbers are inventory. Decisions are the job."* / *"Reporting is not snitching; reporting is how the filter gets a second brain."* / *"X is not Y."*
 - **The Operational Reality:** Let scenes end flat. Let them end on an unresolved ticket note, someone walking to the microwave, an irritated user accepting a compromise, or an engineer locking their desk drawer to catch the bus.
 
-#### 5. Deformulate the Mentor (Jules Mercer)
+#### 5. Deformulate the Mentor (Jules Brooks)
 Jules is a working desk lead, not a zen master. 
 - Over ninety percent of Jules’ speech must be functional, messy, and operational (*"Did you verify Layer 1?", "Check the switch uptime before you reboot it", "I have an operations review with Chicago at eleven"*).
 - She speaks epigrammatic truths only when Ethan explicitly stops to register them in his notes (*"That was the line I wrote down"*).
@@ -215,7 +223,7 @@ Every episode must reflect the principles of industrial throughput and organizat
 **Arc Placement:** Prologue (Before the Badge — The Zero Foundation)  
 **Timeline:** Month 0 (May, Late Spring)  
 **Setting:** A cramped duplex kitchen in East Portland, Oregon; fluorescent tube humming overhead, box fan rattling in the window, greasy pizza box, cold instant coffee, linoleum table covered in 300 blank index cards and open 800-page CompTIA study guide.  
-**Point of View:** Ethan Brooks (Age 19).  
+**Point of View:** Ethan Mercer (Age 19).  
 
 #### Core Dilemma & Goldratt Friction
 Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loading lumber at a building supply warehouse in Gresham. His debit card shows $83 left after paying $246 for a CompTIA A+ exam voucher. If he fails, he cannot make rent. He is drowning in 800 pages of pedantic syllabus trivia—laser printer transfer rollers, DVI connector pinouts, SATA revisions, and RAM clock timings. When he fails an online practice exam with a 58%, he breaks down in exhaustion and cynical rage, throwing his index cards across the linoleum. He faces the beginner's ultimate gatekeeping trap: believing that because he cannot memorize a manufacturer parts catalog, he is too stupid to work in technology.
@@ -255,7 +263,7 @@ Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loadi
 **Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 1 of 12  
 **Timeline:** Month 1 (July, Summer)  
 **Setting:** Graveyard shift at a regional freight-forwarding warehouse in Gresham, Oregon; high-bay industrial racking, hum of forklift chargers, dust motes under metal-halide lamps.  
-**Point of View:** Ethan Brooks (Age 19).  
+**Point of View:** Ethan Mercer (Age 19).  
 
 #### Core Dilemma & Goldratt Friction
 Ethan has accumulated CompTIA A+ and Network+ certifications by grinding hundreds of digital flashcards. He believes that IT is an exact, rule-bound science. When the primary industrial barcode sorting line halts at 2:30 AM because an automated scale terminal fails to communicate with the warehouse management system, Ethan is tasked with fixing it. His multiple-choice heuristics completely fail: the terminal's motherboard displays an undocumented hex POST error, a proprietary serial cable has bent pins, and the vendor documentation assumes a 9600-baud rate while the terminal is strapped for 19200. Ethan must choose between blindly replacing parts until the budget runs out or learning empirical, physical Layer 1/2 troubleshooting.
@@ -293,10 +301,10 @@ Ethan saves the morning freight run, but ruins a fifty-dollar staging cable, sev
 **Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 2 of 12  
 **Timeline:** Month 2 (August)  
 **Setting:** Portland Regional Operations Center, Central Help Desk bullpen; fourth-floor interior office overlooking rain-slicked industrial roofs, rows of dual-monitor cubicles, hum of HVAC and muted phone ringers.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
-Ethan arrives for his formal hiring interview with Help Desk Lead Jules Mercer, expecting a standard grilling on networking trivia, port numbers, and acronyms. Instead, Jules seats him in an empty cubicle, hands him a live telephone headset connected to an escalating user ticket, and points to a locked-up Windows desktop workstation. Ethan must diagnose a critical system hang while under observation, balancing the urge to guess wildly against the disciplined necessity of binary search triage.
+Ethan arrives for his formal hiring interview with Help Desk Lead Jules Brooks, expecting a standard grilling on networking trivia, port numbers, and acronyms. Instead, Jules seats him in an empty cubicle, hands him a live telephone headset connected to an escalating user ticket, and points to a locked-up Windows desktop workstation. Ethan must diagnose a critical system hang while under observation, balancing the urge to guess wildly against the disciplined necessity of binary search triage.
 
 #### Narrative Synopsis
 1. **Goal:** Ethan wants to pass the practical interview and secure the Tier 1 Help Desk position to escape warehouse labor.
@@ -331,7 +339,7 @@ Ethan secures the entry-level role, but his pride is punctured. He realizes that
 **Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 3 of 12  
 **Timeline:** Month 4 (October, Autumn rain begins)  
 **Setting:** Portland Operations Help Desk bullpen; overcast morning, sound of steady Pacific Northwest rain against the glass, monitors glowing with the Tier 1 ticket queue.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
 Ethan is three weeks into the job, drowning in the daily ticket firehose. He discovers that the organization’s senior staff members rely on dangerous legacy shortcuts. Jared Vance in Network Ops manages switches using automated cleartext Telnet scripts, while Maya Lin in Accounting routes sensitive payroll emails over unencrypted POP3. When Ethan tries to enforce modern cryptographic protocols, he faces immense pushback from staff who argue that security updates break their daily workflow.
@@ -368,7 +376,7 @@ Ethan achieves protocol hardening, but burns through political capital with Jare
 **Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 4 of 12  
 **Timeline:** Month 6 (December, Winter freeze)  
 **Setting:** Willamette River Wastewater & Dairy Processing Plant; vast concrete echoing spaces, smell of ozone, chlorine, and damp river silt, vibration of 500-horsepower electric centrifugal pumps.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
 A severe cold snap threatens municipal pipe freezing, causing an industrial telemetry gateway at the processing plant to lose connection to the central monitoring board. Leah Moreno, Senior Controls Tech, calls the help desk demanding that Ethan immediately open raw Modbus (TCP 502) and DNP3 (TCP 20000) ports across the corporate WAN to allow a field contractor remote access to silence screaming overflow alarms. Ethan is caught between the corporate security policy forbidding cleartext industrial protocols on the WAN and the immediate physical danger of plant tank overflows.
@@ -405,7 +413,7 @@ Ethan earns Leah Moreno’s grudging respect, but freezes his boots on the concr
 **Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 5 of 12  
 **Timeline:** Month 8 (February, Mid-winter rain)  
 **Setting:** Portland Distribution Logistics Warehouse; three-story high-bay metal racking, diesel exhaust from yard hostlers, concrete flooring, radio static.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
 Following the plant network realignment, wireless dead zones plague the warehouse annex. Forklift drivers cannot sync their handheld barcode scanners, delaying shipping manifests. Warehouse supervisor Ken takes matters into his own hands: he buys a consumer-grade wireless router from an electronics store, plugs it into a live corporate network drop in the shipping office, and names it "Warehouse_Fast_Guest." The rogue router’s internal DHCP server begins handing out non-routable IP addresses to corporate laptops and shipping terminals, causing network collapse across the facility.
@@ -442,7 +450,7 @@ Ethan resolves the network outage, but Ken files a grievance over lost throughpu
 **Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 6 of 12  
 **Timeline:** Month 10 (April, Spring showers)  
 **Setting:** Portland Operations Desk bullpen and Executive Conference Room; humid morning, flashing high-priority ticket banners on the monitoring screen.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
 Thirty minutes before an executive financial review with Chicago leadership, Maya Lin arrives at the help desk in a state of sheer panic. Her laptop display is overrun with aggressive flashing warning banners, fake system alerts, and audio chimes demanding payment. Convinced that the corporate network is suffering a catastrophic ransomware attack, Maya demands that Ethan immediately wipe and re-image the machine. Ethan is caught between the pressure to take drastic action and the disciplined requirement to follow the incident response lifecycle.
@@ -479,7 +487,7 @@ Maya saves her meeting, but Ethan suffers public embarrassment in front of the d
 **Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 7 of 12  
 **Timeline:** Month 12 (June, Early Summer)  
 **Setting:** Portland Operations Center, Server Closet 2B and Open Bullpen; dry air conditioning, hum of rack fans, bright morning sun reflecting off the Willamette.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
 A massive Monday morning onboarding of twenty summer interns collides with an inexplicable corporate authentication failure. Newly imaged laptops and remote staff cannot authenticate against the Active Directory domain controller; Kerberos ticket requests are flatly rejected, locking Legal and Accounting out of critical network shares. At the same time, an identity audit reveals massive Role-Based Access Control (RBAC) privilege bloat, with multiple junior staff members holding nested Domain Admin privileges.
@@ -516,7 +524,7 @@ Ethan restores enterprise login services, but incurs complaints from administrat
 **Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 8 of 12  
 **Timeline:** Month 14 (August, Late Summer heat)  
 **Setting:** Third-floor staging closet and facilities service corridors; hot, cramped room smelling of warm circuit boards, cardboard boxes, and uncoiled Cat6 copper cables.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
 A third-party facilities technician named Owen is on-site to upgrade the firmware on thirty building environmental controllers and enterprise network printers before catching his commuter train. Because the privilege remediation from Episode 7 stripped his administrative desktop rights, Owen connects his personal field laptop directly into a user desk VLAN drop and attempts to push raw, unauthenticated firmware binaries across the subnet using TFTP (UDP 69). Ethan must stop this dangerous supply-chain risk without stranding Owen or failing the facilities compliance deadline.
@@ -553,7 +561,7 @@ Ethan earns his promotion to Tier 2 Lead, but sacrifices his physical comfort in
 **Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 9 of 12  
 **Timeline:** Month 16 (October, Second Autumn)  
 **Setting:** Tier 2 Lead desk, Portland Operations Center; quiet late-afternoon shift, rain streaking the glass, soft tapping of mechanical keyboards.  
-**Point of View:** Ethan Brooks (Promoted to Tier 2 Lead).  
+**Point of View:** Ethan Mercer (Promoted to Tier 2 Lead).  
 
 #### Core Dilemma & Goldratt Friction
 While conducting routine mail-routing audits as Tier 2 Lead, Ethan detects a subtle administrative anomaly: Maya Lin’s executive accounting mailbox has an active forwarding rule routing external copies of all invoices to an external domain that mirrors the corporate domain name (`@portland-ops-corp.com` vs `@portland-ops-c0rp.com`). There are no flashy popups, no system freezes, and no user complaints. Ethan must handle an active Business Email Compromise (BEC) attack, learning that real cyber threats are quiet, patient, and catastrophic if handled with clumsy panic.
@@ -590,7 +598,7 @@ Ethan saves the company from catastrophic financial loss, but endures intense ho
 **Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 10 of 12  
 **Timeline:** Month 18 (December, Deep Winter)  
 **Setting:** Portland Operations Bullpen, Distribution Loading Docks, and Plant Telemetry Kiosks; freezing wind, snow flurries against the bay doors, yellow warning lights flashing.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
 In response to the session hijacking incident, Chicago Central IT executes an emergency, uncoordinated enterprise-wide Public Key Infrastructure (PKI) overhaul, deploying a new SHA-256 wildcard TLS certificate across all subdomains. The new certificate instantly breaks thirty legacy warehouse barcode scanners, ancient plant HVAC controllers, and internal API bridges that do not have the new root Certificate Authority (CA) in their hardcoded trust stores. Operations freeze across the Portland campus during sub-zero temperatures.
@@ -627,7 +635,7 @@ Ethan saves the facility from freezing damage, but takes on the long-term operat
 **Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 11 of 12  
 **Timeline:** Month 21 (March, Early Spring)  
 **Setting:** Portland Desk bullpen and remote Chicago SOC phone bridge; pitch-black 3:00 AM emergency triage, glow of multi-monitor security consoles, rain drumming against the roof.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
 At 2:30 AM, Ethan is awakened by an automated priority alert from Chicago Central SOC. Endpoint Detection and Response (EDR) sensors across three hundred Portland workstations are reporting aggressive, suspicious lateral movement: encoded PowerShell commands, execution of `certutil` to download payloads, and rapid `WMI` queries across the administrative subnet. The SOC demands an immediate campus-wide network isolation. Ethan must determine whether Portland is suffering a catastrophic ransomware outbreak or an unannounced internal operational blunder.
@@ -664,7 +672,7 @@ Ethan saves the facility from an unwarranted corporate network disconnect, but e
 **Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 12 of 12  
 **Timeline:** Month 24 (July, Midsummer — Two years since Episode 1)  
 **Setting:** Portland Operations Desk Lead station, Leah Moreno’s Plant SCADA Control Room, and high-priority Chicago SOC bridge; humid Pacific Northwest summer afternoon, drone of cooling fans, smell of river water and hot silicon.  
-**Point of View:** Ethan Brooks.  
+**Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
 A highly targeted spearphishing attack compromises a logistics shipping clerk’s workstation. Unlike previous automated threats, the adversary immediately initiates living-off-the-land reconnaissance, harvesting credentials from memory and attempting to pivot directly across the internal VPN into Leah Moreno’s wastewater treatment control network. Ethan, now operating as Tier 2 Lead, must orchestrate rapid on-the-ground containment between plant operations and corporate IT, compiling a flawless forensic incident packet that bridges the regional desk and Chicago Central IT.
@@ -677,7 +685,7 @@ A highly targeted spearphishing attack compromises a logistics shipping clerk’
 
 #### Mentorship / Heuristic Core
 - **Jules' Heuristic:** *You don't earn a seat at the defense table by having the certs. You earn it by delivering facts that hold up when everything else is on fire.*
-- **Dialogue Realism:** Nia Alvarez, on the Chicago line: *"Brooks, I’ve read twenty escalation tickets this week that were pure panic and zero data. Your timeline had process IDs, flow hashes, and zero guesswork. Who taught you to write an incident report like this?"* / Ethan, looking across at Jules: *"My desk lead."*
+- **Dialogue Realism:** Nia Alvarez, on the Chicago line: *"Mercer, I’ve read twenty escalation tickets this week that were pure panic and zero data. Your timeline had process IDs, flow hashes, and zero guesswork. Who taught you to write an incident report like this?"* / Ethan, looking across at Jules: *"My desk lead."*
 
 #### CompTIA / Security+ Knowledge Load
 - **CompTIA Security+ (Domain 4.2, 4.4 & 4.5):** Advanced incident response, Containment strategies (Isolation vs. Segmentation), Forensic memory dumping, Indicators of Compromise (IoCs), MITRE ATT&CK framework mapping, Technical report writing, Lateral movement defense.
@@ -702,7 +710,7 @@ Ethan successfully protects the facility and earns corporate recognition, but th
 Every chapter submitted to the Portland Help Desk track must satisfy the following five non-negotiable rules:
 
 1. **Strict Narrative Perspective:**
-   All narrative must be written in the **first-person, past tense** ("I arrived", "I checked the cable", "Jules told me"). The narrator is always Ethan Brooks looking back on his operational formation.
+   All narrative must be written in the **first-person, past tense** ("I arrived", "I checked the cable", "Jules told me"). The narrator is always Ethan Mercer looking back on his operational formation.
 
 2. **The Cover Test:**
    Strip every markdown glossary mark (`[[term_id|surface text]]`). Read the prose aloud. If the narrative sounds like an artificial glossary parade or an awkward recitation of textbook definitions, the scene must be rewritten. The story must explain the real-world relationships between systems even if all tooltips are disabled.

@@ -231,7 +231,7 @@ EPISODE_DATA = {
         ],
         "term_commands": {
             "Get-FileHash -Algorithm SHA256 .\\evidence_disk0.dd": "Algorithm       Hash                                                             Path\n---------       ----                                                             ----\nSHA256          A3F8B4C92E1045D87E6B9C1045F2A83C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A .\\evidence_disk0.dd\n[OK] Bit-for-bit forensic image acquired through hardware write-blocker.",
-            "Compare-Object -ReferenceObject $orig -DifferenceObject $new": "Hash comparison: MATCH (0 differences).\nChain of Custody verified: Evidence integrity intact.\nFormal handoff dossier packaged for Senior CSIRT Lead Jules Mercer.\n[OK] Incident handoff complete."
+            "Compare-Object -ReferenceObject $orig -DifferenceObject $new": "Hash comparison: MATCH (0 differences).\nChain of Custody verified: Evidence integrity intact.\nFormal handoff dossier packaged for Senior CSIRT Lead Jules Brooks.\n[OK] Incident handoff complete."
         }
     }
 }

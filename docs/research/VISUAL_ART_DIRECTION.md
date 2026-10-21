@@ -49,7 +49,7 @@ To ensure 100% technical fidelity (preventing hallucinated 7-pin D-sub connector
 | **`21:9`** | Cinematic ultrawide panoramic capstone moments. | Ep 06 (The Portland Flood / Sub-basement trench), Ep 12 (Incident War Room). |
 | **`4:3`** | Top-down chassis cutaways, component macro shots, document layers. | Ep 00 (OptiPlex Guts), Ep 02 (RAM Latch), Ep 08 (Phone Push), Ep 09 (Malicious PDF). |
 | **`1:1`** | Tight macro details of ports, connectors, and pins. | Ep 01 (Bent DB-9 Pin), Ep 03 (RJ45 Keystone Jack). |
-| **`3:4`** | Full-body vertical character concept sheets. | Ethan Brooks, Desk Lead Jules Mercer. |
+| **`3:4`** | Full-body vertical character concept sheets. | Ethan Mercer, Desk Lead Jules Brooks. |
 
 ---
 
@@ -64,14 +64,14 @@ Clean technical cutaway illustration in Pacific Northwest instructional manual s
 
 ## 6. Complete Episode-by-Episode Image Prompt Directory
 
-### Character Sheet: Ethan Brooks (3:4 Ratio)
+### Character Sheet: Ethan Mercer (3:4 Ratio)
 ```text
-Character concept sheet for Ethan Brooks, 19-year-old frontline help desk technician, in clean technical graphic novel line art style. Lanky build, dark hair slightly disheveled, weary but focused eyes, wearing a dark canvas Carhartt-style jacket over a grey hoodie, worn jeans, steel-toed work boots, with a black lanyard holding a contractor ID badge and a stainless-steel 0.5mm mechanical pencil clipped to his pocket. Three panel poses: inspecting an RJ45 cable with a penlight, typing at an industrial terminal, and listening intently to a mentor. Bright even lighting, clean lines, no text, no words. 3:4 ratio.
+Character concept sheet for Ethan Mercer, 19-year-old frontline help desk technician, in clean technical graphic novel line art style. Lanky build, dark hair slightly disheveled, weary but focused eyes, wearing a dark canvas Carhartt-style jacket over a grey hoodie, worn jeans, steel-toed work boots, with a black lanyard holding a contractor ID badge and a stainless-steel 0.5mm mechanical pencil clipped to his pocket. Three panel poses: inspecting an RJ45 cable with a penlight, typing at an industrial terminal, and listening intently to a mentor. Bright even lighting, clean lines, no text, no words. 3:4 ratio.
 ```
 
-### Character Sheet: Jules Mercer (3:4 Ratio)
+### Character Sheet: Jules Brooks (3:4 Ratio)
 ```text
-Character concept sheet for Jules Mercer, 34-year-old female Level 1 Help Desk Lead, in clean technical graphic novel line art style. Practical, authoritative presence, sharp intelligent facial features, shoulder-length straight dark hair with subtle silver streaks tucked behind one ear, wearing a comfortable flannel shirt or dark blazer over a black t-shirt, wired call-center headset pushed back over one ear, ceramic coffee mug in one hand, matte silver commuter bicycle helmet nearby. Calm, observant mentor expression of an experienced systems troubleshooter. Three panel poses: leaning over a technician's shoulder pointing at a terminal screen, listening on headset, and sketching a network diagram on a whiteboard. Bright even lighting, clean lines, no text, no words. 3:4 ratio.
+Character concept sheet for Jules Brooks, 34-year-old female Level 1 Help Desk Lead, in clean technical graphic novel line art style. Practical, authoritative presence, sharp intelligent facial features, shoulder-length straight dark hair with subtle silver streaks tucked behind one ear, wearing a comfortable flannel shirt or dark blazer over a black t-shirt, wired call-center headset pushed back over one ear, ceramic coffee mug in one hand, matte silver commuter bicycle helmet nearby. Calm, observant mentor expression of an experienced systems troubleshooter. Three panel poses: leaning over a technician's shoulder pointing at a terminal screen, listening on headset, and sketching a network diagram on a whiteboard. Bright even lighting, clean lines, no text, no words. 3:4 ratio.
 ```
 
 ### Episode 00: The Swollen Capacitors & Unseated Memory (4:3 Ratio)

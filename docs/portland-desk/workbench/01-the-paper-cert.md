@@ -420,7 +420,7 @@ test-telemetry: |
 ### Tier 1 Physical Incident Triage Report & Equipment Passdown Note
 
 #### Scenario Assignment
-You are Ethan Brooks, Tier 1 Field Technician on the graveyard shift at the Gresham Freight Forwarding Terminal. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
+You are Ethan Mercer, Tier 1 Field Technician on the graveyard shift at the Gresham Freight Forwarding Terminal. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
 
 
 ---
@@ -435,7 +435,7 @@ INCIDENT TICKET ID : INC-2026-0714-L4
 INCIDENT TIMESTAMP : 2026-07-14 02:24 PDT
 RESOLUTION TIME    : 2026-07-14 04:47 PDT (Total Downtime: 2 hrs 23 mins)
 AFFECTED SUBSYSTEM : Sorting Line 4 · In-Line Toledo Weighing & Sorting Station
-PRIMARY TECHNICIAN : Ethan Brooks (Employee ID: 94021)
+PRIMARY TECHNICIAN : Ethan Mercer (Employee ID: 94021)
 SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
 ========================================================================================
 
@@ -505,7 +505,7 @@ SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
 SHIFT PASSDOWN LOG · GRESHAM LOGISTICS IT/FACILITIES · DATE: 2026-07-14 05:15 PDT
 ----------------------------------------------------------------------------------------
 TO   : Day Shift Maintenance Lead / Regional IT Operations
-FROM : Ethan Brooks, Graveyard Shift Technician
+FROM : Ethan Mercer, Graveyard Shift Technician
 ATTN : Line 4 Toledo Weigh Station Recovery
 
 SUMMARY:

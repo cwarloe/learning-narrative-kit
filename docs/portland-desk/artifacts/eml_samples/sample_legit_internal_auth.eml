@@ -1,10 +1,10 @@
-Delivered-To: ethan.brooks@portland-ops.gov
+Delivered-To: ethan.mercer@portland-ops.gov
 Received: from mail-gateway01.portland-ops.gov (mail-gateway01.portland-ops.gov [198.51.100.24])
 	by imap-internal.portland-ops.gov (Postfix) with ESMTPS id 4K81920L01
-	for <ethan.brooks@portland-ops.gov>; Wed, 21 Oct 2026 08:30:15 -0700
+	for <ethan.mercer@portland-ops.gov>; Wed, 21 Oct 2026 08:30:15 -0700
 Received: from out-relay.mail.portland-ops.gov (out-relay.mail.portland-ops.gov [198.51.100.10])
 	by mail-gateway01.portland-ops.gov (CipherMail) with ESMTPS id 2J99182C
-	for <ethan.brooks@portland-ops.gov>; Wed, 21 Oct 2026 08:30:14 -0700
+	for <ethan.mercer@portland-ops.gov>; Wed, 21 Oct 2026 08:30:14 -0700
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=portland-ops.gov;
 	s=selector1; t=1697897414;
 	bh=9zE8x+W9kY5K1G0fC+6v3u2H1q0=;
@@ -12,10 +12,10 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=portland-ops.gov;
 	b=X9eF3k...[VALID_RSA_2048_SIGNATURE]...
 Authentication-Results: mail-gateway01.portland-ops.gov;
 	dkim=pass (signature verified) header.i=@portland-ops.gov;
-	spf=pass (mail-gateway01.portland-ops.gov: domain of jules.mercer@portland-ops.gov designates 198.51.100.10 as permitted sender) smtp.mailfrom=jules.mercer@portland-ops.gov;
+	spf=pass (mail-gateway01.portland-ops.gov: domain of jules.brooks@portland-ops.gov designates 198.51.100.10 as permitted sender) smtp.mailfrom=jules.brooks@portland-ops.gov;
 	dmarc=pass (p=reject dis=none) header.from=portland-ops.gov
-From: "Jules Mercer" <jules.mercer@portland-ops.gov>
-To: ethan.brooks@portland-ops.gov
+From: "Jules Brooks" <jules.brooks@portland-ops.gov>
+To: ethan.mercer@portland-ops.gov
 Subject: Shift Handoff & Phishing Triage Protocol Review
 Date: Wed, 21 Oct 2026 08:30:00 -0700
 Message-ID: <handoff-20261021-0830@portland-ops.gov>
@@ -28,5 +28,5 @@ Keep an eye on the finance queue this morning. Nora flagged an unusual direct de
 
 Remember our rule: display names lie, check the envelope Return-Path, and verify SPF/DKIM/DMARC alignment before touching any links or attachments.
 
-Jules Mercer
+Jules Brooks
 Service Desk Lead | Portland Municipal Utilities

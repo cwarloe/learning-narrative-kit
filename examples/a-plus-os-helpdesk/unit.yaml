@@ -1,6 +1,6 @@
 unit_id: a-plus-os-helpdesk
 title: "Portland Desk — The Live Board"
-audience: "Candidates preparing for CompTIA A+ Core 2 (220-1102) Domain 1.0 & 2.0, or readers following Ethan Brooks' entry into enterprise IT support"
+audience: "Candidates preparing for CompTIA A+ Core 2 (220-1102) Domain 1.0 & 2.0, or readers following Ethan Mercer' entry into enterprise IT support"
 purpose: "Transform abstract OS troubleshooting steps into disciplined binary search triage under live help desk pressure."
 estimated_minutes: 30
 sources:
@@ -14,7 +14,7 @@ glossary_tiers:
   exam: "CompTIA A+ Core 2 objectives — primary study terms"
   support: "Desk and systems jargon marked for contextual clarity"
 constraints:
-  - First-person past tense narration by Ethan Brooks
+  - First-person past tense narration by Ethan Mercer
   - Mean sentence length 16-20 words with complete grammatical clauses
   - No dropped determiners or telegraphic staccato runs
   - Forbidden words: Priya, Harrowmere
