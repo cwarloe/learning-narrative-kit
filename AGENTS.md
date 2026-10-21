@@ -250,3 +250,6 @@ When authoring narrative stories, hands-on workbenches, terminal simulations, or
 5. **Track Canon & Author Bibles:**
    - `docs/research/PORTLAND_AUTHOR_BIBLE.md`: Character arcs, 3-act story snowflake, episode causal beat matrix.
    - `docs/research/PORTLAND_CURRICULUM_PLAN.md`: Whole-task 4C/ID competency progression across CompTIA A+, Network+, and Security+.
+6. **The Four Rubber Bands Framework (`docs/research/FOUR_RUBBER_BANDS_FRAMEWORK.md`):**
+   - Governs cognitive triage of exam concepts into four distinct operational bands: 🔴 Red (Disposable Passport Trivia / Rapid Flashcard Drill), 🟢 Green (System Anatomy / Assembly Mat), 🟡 Yellow (Identity & Boundaries / Packet Sandwich), and 🔵 Blue (Diagnostic Reflex / Fault-Tree Walk).
+   - Solves declarative atomization and the single-deck flashcard trap by assigning discrete study rituals and open-source card schemas to each band.
