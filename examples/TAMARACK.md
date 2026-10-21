@@ -98,7 +98,7 @@ each is established.
 | Karen | Accounts-receivable manager at the seed company; six years of invoices with Hank | MIS 5 |
 | Dale Kowalchuk | Prairie Wire's fencing rep, Marcy's call for eleven years, until approvals moved to Saskatoon | MIS 6 |
 | Corinne | Former regional planner; the site-selection consultant who built the model | MIS 8 |
-| Jim Sorensen | Walt's contact in Sandpoint, with a building he'd lease; told to give it a year | MIS 8 |
+| Jim Sorensen | Walt's friend in Sandpoint (the fishing trip and the napkin), with a building he'd lease; told to give it a year | MIS 8 |
 | Kip Andersen | Reads the board packet and asks about every number in parentheses | Excel 2, Excel 4 |
 | Brenda | ERP vendor's sales engineer at the Boise expo | MIS 10 |
 | Gene Palmer | Palmer's Feed & Seed, Kettle Falls; buying-group member | MIS 1 (as "Palmer's"), ITM Week 7 |
