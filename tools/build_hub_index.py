@@ -480,7 +480,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     <section class="hero-banner" id="hero-banner">
       <div class="hero-info">
         <h1>Portland Desk (Book 0: Zero-to-One)</h1>
-        <p>From zero knowledge to Tier 1 IT support and Junior Security Analyst readiness. Follow Ethan Brooks through 13 workplace incidents covering CompTIA A+, Network+, and Security+ operations.</p>
+        <p>From zero knowledge to Tier 1 IT support and Junior Security Analyst readiness. Follow Ethan Mercer through 13 workplace incidents covering CompTIA A+, Network+, and Security+ operations.</p>
         <div class="hero-stats">
           <span class="stat-pill">13 Incident Stories</span>
           <span class="stat-pill">13 Hands-On Labs</span>
@@ -554,7 +554,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
               </div>
             </div>
             <h3 class="card-title">The Live Board</h3>
-            <p class="card-premise">First day on the live phone queue under Jules Mercer. Isolating Accounting PC freezes with Safe Mode, Clean Boot, and Windows Event Viewer crash logs.</p>
+            <p class="card-premise">First day on the live phone queue under Jules Brooks. Isolating Accounting PC freezes with Safe Mode, Clean Boot, and Windows Event Viewer crash logs.</p>
           </div>
           <div class="card-actions">
             <a class="action-btn btn-story" href="portland-desk/#/narrative/02-the-live-board">Read Story</a>

@@ -3,7 +3,7 @@
 <p>"Did the fiber trunk drop?" Jules asked, her eyes narrowing as she stepped toward my console.</p>
 <p>"The trunk interface is up and passing frames," I replied, running <code>show interfaces trunk</code> on the console. "The port-channel is green. I will connect to the Windows DHCP server in the central datacenter and check the scope status for VLAN 10."</p>
 <p>I opened a remote PowerShell terminal to our primary domain controller. I queried the active DHCP scope servicing the water billing subnet at <code>10.20.10.0/24</code>. The output revealed an immediate operational problem.</p>
-<figure class="artifact console"><figcaption>Console</figcaption><pre class="console-body"><span class="cmd">PS C:\Users\ebrooks&gt; Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State</span>
+<figure class="artifact console"><figcaption>Console</figcaption><pre class="console-body"><span class="cmd">PS C:\Users\emercer&gt; Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State</span>
 <span class="out"></span>
 <span class="out">ScopeId : 10.20.10.0</span>
 <span class="out">Free    : 0</span>
@@ -17,9 +17,9 @@
 <p>"The scope ran out of leases because the lease duration is set to eight days," I explained to Jules and Jared, using the binary search method Jules had drilled into me. "Over one hundred offline leases from last week are locking up the pool. When all one hundred and fifty devices booted at once, the server exhausted its remaining twenty addresses in sixty seconds."</p>
 <p>"What is your plan of action, Ethan?" Jules asked, watching me carefully. "We have twenty-five minutes before the public service windows unlock upstairs."</p>
 <p>"First, I will export the active lease table to preserve an audit record of static hardware assignments," I said, executing the commands without hesitation. "Second, I will reconcile the scope by clearing all expired and inactive leases. Third, I will reduce the dynamic lease duration from eight days to eight hours, which matches our working shift schedule. Finally, I will expand the dynamic pool range from two hundred addresses to two hundred and thirty addresses, reserving the first twenty addresses for local switches and network printers."</p>
-<figure class="artifact console"><figcaption>Console</figcaption><pre class="console-body"><span class="cmd">PS C:\Users\ebrooks&gt; Set-DhcpServerv4Scope -ScopeId 10.20.10.0 -LeaseDuration 08:00:00</span>
-<span class="cmd">PS C:\Users\ebrooks&gt; Set-DhcpServerv4OptionValue -ScopeId 10.20.10.0 -DnsServer 10.100.1.10, 10.100.1.11</span>
-<span class="cmd">PS C:\Users\ebrooks&gt; Get-DhcpServerv4Lease -ScopeId 10.20.10.0 -AllLeases | Where-Object {$_.AddressState -eq "Inactive"} | Remove-DhcpServerv4Lease</span>
+<figure class="artifact console"><figcaption>Console</figcaption><pre class="console-body"><span class="cmd">PS C:\Users\emercer&gt; Set-DhcpServerv4Scope -ScopeId 10.20.10.0 -LeaseDuration 08:00:00</span>
+<span class="cmd">PS C:\Users\emercer&gt; Set-DhcpServerv4OptionValue -ScopeId 10.20.10.0 -DnsServer 10.100.1.10, 10.100.1.11</span>
+<span class="cmd">PS C:\Users\emercer&gt; Get-DhcpServerv4Lease -ScopeId 10.20.10.0 -AllLeases | Where-Object {$_.AddressState -eq "Inactive"} | Remove-DhcpServerv4Lease</span>
 </pre></figure>
 <p>The script ran in six seconds, flushing eighty-four stale leases from the server memory. Almost instantly, the monitoring dashboard showed client devices renewing their addresses across the building.</p>
 <p>I consoled into a test workstation on the billing floor and executed <code>ipconfig /renew</code>. Within two seconds, the terminal returned a valid configuration. The screen displayed a valid network configuration with IP address <code>10.20.10.74</code>, a subnet mask of <code>255.255.255.0</code>, and a default gateway pointing to <code>10.20.10.1</code>. The billing application splash screen loaded cleanly, authenticated against the database cluster, and displayed green status indicators across all transaction ledgers.</p>

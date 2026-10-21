@@ -1,6 +1,6 @@
 unit_id: secplus-auth-helpdesk
 title: "Portland Desk — Prove Who You Are"
-audience: "Someone studying Security+ identity/authentication/MFA/password topics"
+audience: "Someone studying Security+ identity/authentication/MFA/password topics, or a NADF precursor for Ethan's help-desk years"
 purpose: "Weave SY0-701 identity, authentication factors, MFA, password policy, SSO/federation, and account lifecycle into one help-desk shift so definitions become desk decisions."
 estimated_minutes: 22
 sources:

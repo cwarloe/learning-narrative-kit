@@ -6,7 +6,7 @@
     "computer": "dc01.portland-ops.local",
     "description": "An account was successfully logged on.",
     "data": {
-      "TargetUserName": "ebrooks",
+      "TargetUserName": "emercer",
       "TargetDomainName": "PORTLAND-OPS",
       "LogonType": 2,
       "LogonTypeName": "Interactive",

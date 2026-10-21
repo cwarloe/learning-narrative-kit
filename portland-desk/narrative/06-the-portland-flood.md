@@ -4,7 +4,7 @@
 
 An atmospheric river had stalled directly over the Willamette Valley since midday Sunday. The weather service called the system a once-in-a-decade storm. It dumped more than four inches of rain across twelve punishing hours. By three o'clock on Monday morning, the river had surged past flood stage. The swollen current pushed brown stormwater through storm drains and low-lying basements across the industrial district. My phone woke me from a dead sleep at three-thirty with the harsh chirping tone reserved for priority campus outages.
 
-Desk lead Jules Mercer was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses water billing, logistics dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
+Desk lead Jules Brooks was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses water billing, logistics dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
 
 I pulled on my insulated coveralls and laced my rubber mud boots by the kitchen door. Five months on the Portland desk had transformed my habits. The work had replaced my old panic with an instinct for preparation. I packed my punchdown tool, an optical fiber light tester, spare patch cords, and two rolls of hook-and-loop cable ties into my canvas bag. As I drove my beat-up truck across the Morrison Bridge through blinding sheets of rain, the dark river churned violently beneath the piers.
 
@@ -119,7 +119,7 @@ Within three minutes, my mobile service phone began vibrating continuously in my
 I opened a remote PowerShell terminal to our primary domain controller. I queried the active DHCP scope servicing the water billing subnet at `10.20.10.0/24`. The output revealed an immediate operational problem.
 
 ```console
-PS C:\Users\ebrooks> Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State
+PS C:\Users\emercer> Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State
 
 ScopeId : 10.20.10.0
 Free    : 0

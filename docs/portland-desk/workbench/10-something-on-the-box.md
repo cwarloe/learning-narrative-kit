@@ -1,7 +1,7 @@
 # Portland Desk Lab: Host Malware Triage, Persistence Mechanisms, & EDR Analysis
 
 > **The Situation:** Level 1 Service Desk Terminal • Endpoint Detection (EDR) Console  
-> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)  
+> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Brooks)  
 > **The Objective:** Investigate host malware infections, calculate cryptographic file hashes, decode Base64 living-off-the-land PowerShell commands, and isolate persistence mechanisms.  
 > **Estimated Time:** 45–55 minutes • Endpoint Security & Malware Persistence  
 
@@ -31,7 +31,7 @@ prompt: "Clean technical illustration of a computer monitor displaying a system 
 
 
 ### The Situation
-It is 08:45 on a gray Thursday morning in East Portland. Outside, rain needles the double-paned windows facing the Central Eastside Industrial District, and the desk floor hums with the electric drone of fluorescent lights and server rack blowers. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet clipped to her dual-monitor arm, steam curling off her dark roast coffee.
+It is 08:45 on a gray Thursday morning in East Portland. Outside, rain needles the double-paned windows facing the Central Eastside Industrial District, and the desk floor hums with the electric drone of fluorescent lights and server rack blowers. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet clipped to her dual-monitor arm, steam curling off her dark roast coffee.
 
 On the whiteboard beside the dispatch monitor, the sticky note from yesterday's authentication shift (*which factor?*) has been replaced with a fresh neon-yellow square:
 
@@ -527,8 +527,8 @@ TIER 1 INCIDENT CONTAINMENT NOTE - PORTLAND SERVICE DESK
 Ticket ID:        INC-2026-1181
 Affected Host:    KEN-SALES-14 (IP: 192.168.10.45)
 User / Dept:      Ken Vance (Sales & Warehouse Operations)
-Technician:       Ethan Brooks (Tier 1 Support)
-Lead Reviewer:    Jules Mercer (Service Desk Lead)
+Technician:       Ethan Mercer (Tier 1 Support)
+Lead Reviewer:    Jules Brooks (Service Desk Lead)
 Timestamp:        2026-10-22 10:35:12 PST
 Category:         Malware / Worm & Dropper Outbreak
 Severity:         HIGH (P2) - Lateral Propagation Attempt
@@ -590,8 +590,8 @@ CRITICAL SECURITY ESCALATION - ACTIVE RANSOMWARE OUTBREAK
 Ticket ID:        INC-2026-1182
 Affected Host:    DANA-FAC-01 (IP: 192.168.30.12)
 User / Dept:      Dana Rostova (Facilities Operations)
-Technician:       Ethan Brooks (Tier 1 Support)
-Lead Reviewer:    Jules Mercer (Service Desk Lead)
+Technician:       Ethan Mercer (Tier 1 Support)
+Lead Reviewer:    Jules Brooks (Service Desk Lead)
 Timestamp:        2026-10-22 12:44:00 PST
 Category:         Malware / Ransomware & Extortion
 Severity:         CRITICAL (P1) - Active Host Cryptographic Lockdown

@@ -3,7 +3,7 @@
 > **Track:** Portland Desk (Book 0: Zero-to-One)  
 > **Unit Companion:** `a-plus-foundations-prologue` — *The Four Rubber Bands*  
 > **Environment:** East Portland Kitchen Table & First-Contact Diagnostic Console  
-> **Author:** Ethan Brooks (Pre-Helpdesk, Gresham Warehouse Staging Associate)  
+> **Author:** Ethan Mercer (Pre-Helpdesk, Gresham Warehouse Staging Associate)  
 > **Target Certification:** CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations  
 
 ---
@@ -159,7 +159,7 @@ The graphical user interface (GUI) hides operating system mechanics. On the help
 
 ```cmd
 C:\> whoami
-PORTLAND-CORP\ebrooks
+PORTLAND-CORP\emercer
 
 C:\> whoami /priv
 PRIVILEGES INFORMATION
@@ -457,7 +457,7 @@ Use this standardized intake checklist when logging and triaging your first live
 FIRST-CONTACT DIAGNOSTIC INTAKE WORKSHEET · TIER 1 SUPPORT
 ========================================================================================
 TICKET REF   : T1-INIT-2026-001             DATE/TIME : 2026-07-16 09:30 PDT
-TECHNICIAN   : Ethan Brooks                 STATUS    : UNDER INVESTIGATION
+TECHNICIAN   : Ethan Mercer                 STATUS    : UNDER INVESTIGATION
 USER NAME    : ____________________________ ASSET TAG : _______________________________
 
 1. INVARIANT & SUBSYSTEM ISOLATION (Which invariant is misbehaving?):

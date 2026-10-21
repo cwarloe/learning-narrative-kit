@@ -1,7 +1,7 @@
 # Portland Desk Lab: Wireless Security, 802.1X Enterprise, & Rogue AP Triage
 
 > **The Situation:** Level 1 Service Desk Terminal & Wireless LAN Controller (WLC)  
-> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Mercer)  
+> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Brooks)  
 > **The Objective:** Isolate unauthorized rogue wireless access points using RSSI signal triangulation and enforce WPA2/WPA3-Enterprise 802.1X with RADIUS and EAP-TLS certificate validation.  
 > **Estimated Time:** 45–55 minutes • Wireless Security & RF Diagnostics  
 
@@ -31,7 +31,7 @@ prompt: "Clean technical cutaway diagram of radio frequency spectrum channels un
 
 
 ### The Situation
-It is 08:35 on a brisk Friday morning on the east side of Portland. Mist clings to the brick facade of the industrial park near the Central Eastside railroad tracks. Inside the service desk bullpen, the morning coffee is fresh, but the dispatch dashboard is flashing amber. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet resting against her primary monitor arm, methodically parsing tickets.
+It is 08:35 on a brisk Friday morning on the east side of Portland. Mist clings to the brick facade of the industrial park near the Central Eastside railroad tracks. Inside the service desk bullpen, the morning coffee is fresh, but the dispatch dashboard is flashing amber. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet resting against her primary monitor arm, methodically parsing tickets.
 
 On the whiteboard beside the dispatch screen, Jules has pinned a faded yellow sticky note:
 
@@ -473,8 +473,8 @@ TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1101
 Requester:        Ken Vance (Warehouse Operations / Logistics Logistics)
-Technician:       Ethan Brooks (Tier 1 Support)
-Supervising Lead: Jules Mercer (Service Desk Lead)
+Technician:       Ethan Mercer (Tier 1 Support)
+Supervising Lead: Jules Brooks (Service Desk Lead)
 Date/Time:        2026-10-23 09:15:44 PST
 Category:         Wireless & Network Infrastructure / Rogue Device Containment
 Severity:         P2 - High (Warehouse Barcode Scanning Operations Halted)
@@ -525,8 +525,8 @@ SECURITY ESCALATION & THREAT INTEL ADVISORY - TIER 2 SOC / WIRELESS OPS
 ================================================================================
 Incident Tracking: SEC-WLAN-2026-1023
 Related Tickets:   INC-2026-1102, INC-2026-1103
-Reporter:          Ethan Brooks (Tier 1 Support)
-Supervising Lead:  Jules Mercer (Desk Lead)
+Reporter:          Ethan Mercer (Tier 1 Support)
+Supervising Lead:  Jules Brooks (Desk Lead)
 Target Facility:   Portland Operations Center - East Lobby & Executive Courtyard
 Threat Level:      HIGH - Active RF Deauthentication & Credential Interception
 MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-in-the-Middle)

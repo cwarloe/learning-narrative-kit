@@ -3,7 +3,7 @@
 > **Track:** Portland Desk (Book 0: Zero-to-One)  
 > **Unit Companion:** `secplus-ports-helpdesk` — *The Port That Is Open*  
 > **Environment:** Level 1 Service Desk Terminal & Diagnostic Queue  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
+> **Author:** Ethan Mercer (under Desk Lead Jules Brooks)  
 > **Live Artifacts Directory:** [`artifacts/`](artifacts/)
 
 ---
@@ -24,7 +24,7 @@
 ## 1. The Situation & Ground Truth
 
 ### The Situation
-It is 08:30 on a rain-soaked Tuesday morning on the east side of Portland. You are three weeks into your role on the Portland service desk. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet slung over her monitor arm, sipping black coffee. On the edge of her screen is a faded yellow sticky note:
+It is 08:30 on a rain-soaked Tuesday morning on the east side of Portland. You are three weeks into your role on the Portland service desk. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet slung over her monitor arm, sipping black coffee. On the edge of her screen is a faded yellow sticky note:
 
 $$\boxed{\textbf{Which decision?}}$$
 
@@ -313,8 +313,8 @@ TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1042
 Requester:        Maya Lin (Accounting)
-Technician:       Ethan Brooks (Tier 1 Support)
-Supervising Lead: Jules Mercer
+Technician:       Ethan Mercer (Tier 1 Support)
+Supervising Lead: Jules Brooks
 Date/Time:        2026-10-20 09:35:10 PST
 Category:         Email & Collaboration / Client Configuration
 Status:           RESOLVED
@@ -352,7 +352,7 @@ SECURITY ESCALATION & ARCHITECTURAL REVIEW NOTE
 ================================================================================
 Ticket ID:        INC-2026-1049
 Requester:        Leah Moreno (Portland Plant Operations Lead)
-Technician:       Ethan Brooks (Tier 1 Support)
+Technician:       Ethan Mercer (Tier 1 Support)
 Escalated To:     Tier 2 Network Security & SOC Incident Desk
 Priority:         P2 - High / Operational Facility Impact
 Date/Time:        2026-10-20 15:25:12 PST

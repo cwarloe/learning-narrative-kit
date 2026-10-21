@@ -4,7 +4,7 @@
 
 A steady autumn drizzle had settled over the Willamette River since dawn. It blurred the steel arches of the Hawthorne Bridge into dark silhouettes. I was three months into my probationary tenure on the fourth-floor help desk at the Portland Regional Operations Center. My center drawer held my CompTIA flashcards under a stack of spare RJ-45 mod plugs and a yellow pad. The morning quiet of the bullpen was broken only by the low hum of the ventilation shafts.
 
-Jules Mercer wheeled her steel Kona Rove commuter bicycle into the bullpen just past eight o'clock. She shook heavy drops of rain from the shoulders of her yellow riding shell. She locked the frame to the vertical pipe beside her desk, and draped her rain trousers over her chair. Her black helmet hung from the lower mounting arm of her secondary monitor. On the lower right bezel of her main screen, a faded yellow sticky note asked *Which decision?* under the ceiling vent airflow. She poured black coffee into her chipped ceramic mug and opened her ticket queue.
+Jules Brooks wheeled her steel Kona Rove commuter bicycle into the bullpen just past eight o'clock. She shook heavy drops of rain from the shoulders of her yellow riding shell. She locked the frame to the vertical pipe beside her desk, and draped her rain trousers over her chair. Her black helmet hung from the lower mounting arm of her secondary monitor. On the lower right bezel of her main screen, a faded yellow sticky note asked *Which decision?* under the ceiling vent airflow. She poured black coffee into her chipped ceramic mug and opened her ticket queue.
 
 Across the aisle, network infrastructure engineer Jared Vance sat with his boots propped on a cardboard shipping box. He scrolled through router syslog alerts while nursing a paper cup of lukewarm tea. A series of early squalls had swept through the east county around five o'clock. Those gusts triggered momentary power flickers across several municipal service facilities along the river corridor. Jared dismissed the alerts as transient utility noise, noting that the central datacenter battery arrays had carried the load.
 
@@ -125,14 +125,14 @@ I opened a remote desktop session to Frank's machine at `10.100.4.55`. I initiat
 I executed `arp -a` in the command prompt on Frank's machine. Then I opened a terminal on my administrative station. I ran `arp -a 10.100.4.55` to observe how our network viewed Frank's machine from the distribution layer.
 
 ```console
-C:\Users\admin.ebrooks> arp -a 10.100.4.55
+C:\Users\admin.emercer> arp -a 10.100.4.55
   10.100.4.55           00-14-22-8a-41-ef     dynamic
 ```
 
 I ran the command again fifteen seconds later. The returned hardware address changed before my eyes.
 
 ```console
-C:\Users\admin.ebrooks> arp -a 10.100.4.55
+C:\Users\admin.emercer> arp -a 10.100.4.55
   10.100.4.55           00-25-b3-18-c2-90     dynamic
 ```
 

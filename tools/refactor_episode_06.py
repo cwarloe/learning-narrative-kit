@@ -28,7 +28,7 @@ Within three minutes, my mobile service phone began vibrating continuously in my
 I opened a remote PowerShell terminal to our primary domain controller. I queried the active DHCP scope servicing the water billing subnet at `10.20.10.0/24`. The output revealed an immediate operational problem.
 
 ```console
-PS C:\\Users\\ebrooks> Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State
+PS C:\\Users\\emercer> Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State
 
 ScopeId : 10.20.10.0
 Free    : 0

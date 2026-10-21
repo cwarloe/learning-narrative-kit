@@ -26,14 +26,14 @@ I opened a remote desktop session to Frank's machine at `10.100.4.55`. I initiat
 I executed `arp -a` in the command prompt on Frank's machine. Then I opened a terminal on my administrative station. I ran `arp -a 10.100.4.55` to observe how our network viewed Frank's machine from the distribution layer.
 
 ```console
-C:\\Users\\admin.ebrooks> arp -a 10.100.4.55
+C:\\Users\\admin.emercer> arp -a 10.100.4.55
   10.100.4.55           00-14-22-8a-41-ef     dynamic
 ```
 
 I ran the command again fifteen seconds later. The returned hardware address changed before my eyes.
 
 ```console
-C:\\Users\\admin.ebrooks> arp -a 10.100.4.55
+C:\\Users\\admin.emercer> arp -a 10.100.4.55
   10.100.4.55           00-25-b3-18-c2-90     dynamic
 ```
 

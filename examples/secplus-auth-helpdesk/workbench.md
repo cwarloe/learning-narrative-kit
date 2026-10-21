@@ -3,7 +3,7 @@
 > **Track:** Portland Desk (Book 0: Zero-to-One)  
 > **Unit Companion:** `secplus-auth-helpdesk` — *Prove Who You Are*  
 > **Environment:** Level 1 Service Desk Terminal & Identity Queue  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
+> **Author:** Ethan Mercer (under Desk Lead Jules Brooks)  
 > **Live Artifacts Directory:** [`artifacts/`](artifacts/)
 
 ---
@@ -24,7 +24,7 @@
 ## 1. The Situation & Ground Truth
 
 ### The Situation
-It is 08:15 on a gusty Wednesday morning in East Portland. Low gray clouds drag across the Willamette, and the service desk floor smells of damp rain jackets and burnt roast coffee. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet clipped to her monitor arm, scanning the incoming identity dispatch queue.
+It is 08:15 on a gusty Wednesday morning in East Portland. Low gray clouds drag across the Willamette, and the service desk floor smells of damp rain jackets and burnt roast coffee. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet clipped to her monitor arm, scanning the incoming identity dispatch queue.
 
 On the whiteboard beside her desk, the sticky note from the networking rotation (*which decision?*) has been swapped for a fresh yellow square:
 
@@ -213,7 +213,7 @@ Instead of clicking "Unlock" a second time, you launch PowerShell on your manage
 
 ```console
 caption: PowerShell Active Directory Security Event Query on DC01
-PS C:\Users\ebrooks> Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4740} -MaxEvents 1 | Format-List -Property *
+PS C:\Users\emercer> Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4740} -MaxEvents 1 | Format-List -Property *
 
 Message              : A user account was locked out.
 
@@ -393,8 +393,8 @@ TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1142
 Requester:        Nora Higgins (Finance Department)
-Technician:       Ethan Brooks (Tier 1 Support)
-Supervising Lead: Jules Mercer
+Technician:       Ethan Mercer (Tier 1 Support)
+Supervising Lead: Jules Brooks
 Date/Time:        2026-10-21 08:52:14 PST
 Category:         Identity & Access Management / Account Lockout
 Status:           RESOLVED
@@ -437,8 +437,8 @@ SECURITY ENROLLMENT & HARDENING NOTE - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1141
 Requester:        Ken Vance (Sales Representative)
-Technician:       Ethan Brooks (Tier 1 Support)
-Supervising Lead: Jules Mercer
+Technician:       Ethan Mercer (Tier 1 Support)
+Supervising Lead: Jules Brooks
 Date/Time:        2026-10-21 10:15:30 PST
 Category:         Multi-Factor Authentication / Device Provisioning
 Status:           RESOLVED

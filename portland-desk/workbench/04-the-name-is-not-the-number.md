@@ -1,7 +1,7 @@
 # Portland Desk Lab: DNS Plumbing, Name Resolution Triage, & Split-Horizon Analysis
 
 > **The Situation:** Portland Operations Center • Spring downpour, remote VPN support queue  
-> **Your Role:** Level 1 Network Support Specialist (under Jules Mercer & Maya Chen)  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Maya Chen)  
 > **The Objective:** Trace why remote VPN users fail to access internal company services while in-office users succeed, resolving split-horizon DNS and rogue hosts file overrides.  
 > **Estimated Time:** 40–50 minutes • Name Resolution & DNS Plumbing  
 
@@ -35,7 +35,7 @@ It is 08:30 on an overcast Tuesday morning in East Portland. Outside, rain strea
 
 Remote employees working from home across Multnomah and Washington counties have established secure VPN tunnels into the corporate network. Their network adapters report valid IP addresses on the `10.200.15.0/24` VPN pool. Yet whenever they attempt to browse internal business tools—specifically `payroll.portland-ops.local` and `wiki.portland-ops.local`—their browsers either time out with `DNS_PROBE_FINISHED_NXDOMAIN` or redirect to public registrar parking pages. Meanwhile, workstations physically plugged into the office local area network resolve those exact same resources instantly.
 
-Jared Vance from network operations insists that residential internet service providers are experiencing routing failures. But Desk Lead Jules Mercer and Tier 2 Systems Administrator Maya Chen point out that the encrypted tunnel is fully operational. 
+Jared Vance from network operations insists that residential internet service providers are experiencing routing failures. But Desk Lead Jules Brooks and Tier 2 Systems Administrator Maya Chen point out that the encrypted tunnel is fully operational. 
 
 As Jules reminds the desk before anyone touches a configuration:
 > *"When a user tells you a website is down, the website is almost never down. The client simply does not know what number to dial. The name is not the number. Trace who answers the question before you assume the wire is broken."*
@@ -479,8 +479,8 @@ TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1104
 Requester:        Greg Adams (Accounts Payable Specialist)
-Technician:       Ethan Brooks (Tier 1 Support Specialist)
-Supervising Lead: Jules Mercer (Help Desk Lead)
+Technician:       Ethan Mercer (Tier 1 Support Specialist)
+Supervising Lead: Jules Brooks (Help Desk Lead)
 Date / Time:      2026-10-18 09:15:22 PDT
 Category:         Network / Remote Access / Name Resolution
 Affected FQDN:    payroll.portland-ops.local
@@ -528,7 +528,7 @@ SYSTEMS & NETWORK SECURITY ESCALATION NOTE
 ================================================================================
 Escalation ID:    ESC-2026-0488
 Originating Desk: Portland Regional Operations Help Desk
-Technician:       Ethan Brooks (Tier 1 Specialist)
+Technician:       Ethan Mercer (Tier 1 Specialist)
 Escalated To:     Maya Chen (Tier 2 Sysadmin) / Jared Vance (Network Ops)
 Priority:         P2 - High (Systemic Remote Access Degradation)
 Date / Time:      2026-10-18 09:40:15 PDT

@@ -3,8 +3,8 @@
 > **Document Type:** Instructional Planning & Curriculum Architecture  
 > **Target Audience:** Technical Curriculum Architects, Instructional Designers, Scenario Authors, Simulator Engineers  
 > **Course Setting:** Portland Regional Services IT Desk (Central Service Desk, East Portland Operations Center)  
-> **Protagonist:** Ethan Brooks (Narrator / Apprentice Desk Tech)  
-> **Mentor:** Jules Mercer (Desk Lead, 9-Year Veteran, Commuter Cyclist, Socratic Coach)  
+> **Protagonist:** Ethan Mercer (Narrator / Apprentice Desk Tech)  
+> **Mentor:** Jules Brooks (Desk Lead, 9-Year Veteran, Commuter Cyclist, Socratic Coach)  
 > **Downstream Target:** Central Security Operations Center (Central SOC / CSIRT / Incident Commander Nia Alvarez)  
 > **Target Certifications:** CompTIA A+ (Core 220-1101 & 220-1102), Network+ (N10-008/009), Security+ (SY0-701)  
 > **Target Role:** Tier 1 Help Desk Specialist $\rightarrow$ Lead Tier 1 Security Escalation Tech $\rightarrow$ Junior SOC Triage Analyst  
@@ -21,9 +21,9 @@ When a novice technician faces their first production shift, they do not encount
 ### 1.2 The Book 0 Mandate: Zero-to-One
 **Book 0 (The Portland Help Desk Prequel)** bridges the chasm between raw high school graduation / non-IT employment and operational readiness for **the Central SOC (incident response and escalation)**. 
 
-Rooted in the **Four-Component Instructional Design (4C/ID)** model and the authentic workspace reality of the Portland municipal/enterprise help desk, Book 0 charts Ethan Brooks's cognitive transformation from a retail worker studying flashcards in an east-side apartment to an analytically disciplined Lead Tier 1 technician. 
+Rooted in the **Four-Component Instructional Design (4C/ID)** model and the authentic workspace reality of the Portland municipal/enterprise help desk, Book 0 charts Ethan Mercer's cognitive transformation from a retail worker studying flashcards in an east-side apartment to an analytically disciplined Lead Tier 1 technician. 
 
-Ethan does not win through innate genius; he wins through disciplined epistemic habits taught by Desk Lead Jules Mercer. Chief among these habits is the **"Commit Before You Touch" (CBYT)** triage algorithm: a strict mental protocol where a technician must predict the failure layer, expected CLI output, and systemic impact *before* executing a diagnostic command or altering an endpoint state.
+Ethan does not win through innate genius; he wins through disciplined epistemic habits taught by Desk Lead Jules Brooks. Chief among these habits is the **"Commit Before You Touch" (CBYT)** triage algorithm: a strict mental protocol where a technician must predict the failure layer, expected CLI output, and systemic impact *before* executing a diagnostic command or altering an endpoint state.
 
 ```mermaid
 flowchart LR
@@ -864,7 +864,7 @@ flowchart LR
   ```markdown
   ### SECURITY INCIDENT ESCALATION (TIER 1 -> CENTRAL SOC)
   - **Date/Time:** YYYY-MM-DD HH:MM PST
-  - **Escalating Tech:** Ethan Brooks (Lead Tier 1)
+  - **Escalating Tech:** Ethan Mercer (Lead Tier 1)
   - **Receiving Lead:** Nia Alvarez (Central SOC / CSIRT)
   - **Incident Type:** Suspected Ransomware / Active Lateral Movement
   - **Severity Proposed:** SEV-1 (Critical Enterprise Impact)
@@ -889,7 +889,7 @@ flowchart LR
   
   #### 5. Chain of Custody & Physical Evidence
   - Laptop PDX-ACC-014 impounded, tagged, and locked in Evidence Locker B.
-  - Key held by: Ethan Brooks.
+  - Key held by: Ethan Mercer.
   ```
 
 #### 5. Part-Task Practice Micro-Drills
@@ -1090,7 +1090,7 @@ Got a phishing email from someone saying they are the Mayor. It looks fake. User
 ```markdown
 ### FORMAL SECURITY INCIDENT ESCALATION (TIER 1 -> CENTRAL SOC)
 - **Date/Time Submitted:** 2026-10-18 10:45 PST
-- **Escalating Technician:** Ethan Brooks (Lead Tier 1 Service Desk)
+- **Escalating Technician:** Ethan Mercer (Lead Tier 1 Service Desk)
 - **Receiving Lead:** Nia Alvarez (Central SOC / CSIRT Incident Commander)
 - **Incident Classification:** Business Email Compromise (BEC) / Executive Impersonation
 - **Proposed Severity:** SEV-2 (High Potential Impact / Financial Target)
@@ -1157,7 +1157,7 @@ Simulated technical artifacts will be programmatically generated via `tools/gene
 - **Packet Captures:** Wireshark-compatible terminal text dumps showing TCP three-way handshakes, cleartext Telnet streams, DNS recursion queries, and 802.1X EAP authentication.
 
 ### 8.3 The Bridge to the Central SOC
-Module 12 serves as the launchpad into **Central SOC incident response**. The separate Network Analyst Development Framework course is an optional next step for reading packet captures. It tells a different story with different characters. 
+Module 12 serves as the launchpad into **Central SOC incident response**. Ethan's story continues in the Network Analyst Development Framework (NADF, Book 1), which picks up with packet captures and analyst judgment. The open continuity items are listed in the author bible, section 1.3. 
 
 When students complete Module 12, they have not merely passed a certification test; they have stepped into the shoes of a seasoned Lead Tier 1 technician who understands how to operate in a high-stakes environment without panicking, how to defend their diagnostic choices using the CBYT algorithm, and how to deliver actionable, forensic-grade intelligence to Central SOC Commander **Nia Alvarez**.
 

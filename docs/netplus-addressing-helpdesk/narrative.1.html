@@ -1,10 +1,10 @@
 
 <p>I executed <code>arp -a</code> in the command prompt on Frank's machine. I noted the hardware address mapped to adjacent desktop <code>10.100.4.56</code>. Then I opened a terminal on my administrative station. I ran <code>arp -a 10.100.4.55</code> to observe how our network viewed Frank's machine from the distribution layer.</p>
-<figure class="artifact console"><figcaption>Console</figcaption><pre class="console-body"><span class="cmd">C:\Users\admin.ebrooks&gt; arp -a 10.100.4.55</span>
+<figure class="artifact console"><figcaption>Console</figcaption><pre class="console-body"><span class="cmd">C:\Users\admin.emercer&gt; arp -a 10.100.4.55</span>
 <span class="out">  10.100.4.55           00-14-22-8a-41-ef     dynamic</span>
 </pre></figure>
 <p>I ran the command again fifteen seconds later. The returned hardware address changed before my eyes.</p>
-<figure class="artifact console"><figcaption>Console</figcaption><pre class="console-body"><span class="cmd">C:\Users\admin.ebrooks&gt; arp -a 10.100.4.55</span>
+<figure class="artifact console"><figcaption>Console</figcaption><pre class="console-body"><span class="cmd">C:\Users\admin.emercer&gt; arp -a 10.100.4.55</span>
 <span class="out">  10.100.4.55           00-25-b3-18-c2-90     dynamic</span>
 </pre></figure>
 <p>"Look at the physical MAC address bound to ten-one-hundred-four-fifty-five," I said. I highlighted the two alternating lines. "The first hardware address belongs to Frank's Dell OptiPlex desktop. Fifteen seconds later, the address flips to an identifier registered to Hewlett-Packard. Two physical network interfaces are claiming ownership of the exact same IP address."</p>

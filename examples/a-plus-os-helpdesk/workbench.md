@@ -3,7 +3,7 @@
 > **Track:** Portland Desk (Book 0: Zero-to-One)  
 > **Unit Companion:** `a-plus-os-helpdesk` — *The Live Board*  
 > **Environment:** Tier 1 Service Desk Terminal & Diagnostic Queue  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
+> **Author:** Ethan Mercer (under Desk Lead Jules Brooks)  
 > **Live Artifacts Directory:** [`artifacts/`](artifacts/)
 
 ---
@@ -24,7 +24,7 @@
 ## 1. The Situation & Ground Truth
 
 ### The Situation
-It is 08:15 on a rain-swept August morning on the fourth floor of the Portland Regional Operations Center. You are Ethan Brooks, sitting across from Help Desk Lead Jules Mercer for your practical hiring trial. Your knuckles are still scarred from eighteen months of moving freight across concrete warehouse docks, and your backpack holds freshly laminated CompTIA study sheets. 
+It is 08:15 on a rain-swept August morning on the fourth floor of the Portland Regional Operations Center. You are Ethan Mercer, sitting across from Help Desk Lead Jules Brooks for your practical hiring trial. Your knuckles are still scarred from eighteen months of moving freight across concrete warehouse docks, and your backpack holds freshly laminated CompTIA study sheets. 
 
 Two rows over, workstation fourteen displays a high-priority ticket flagged in glowing amber text:
 
@@ -391,8 +391,8 @@ TIER 1 RESOLUTION SUMMARY - PORTLAND REGIONAL SERVICE DESK
 Ticket ID:        INC-2026-0814
 Requester:        Maya Lin (Supervisor, Accounting Operations)
 Affected Asset:   PORT-WS-0142 (Dell OptiPlex 7090 Micro / Service Tag: 8F2J9X3)
-Technician:       Ethan Brooks (Tier 1 Support Trial)
-Supervising Lead: Jules Mercer (Desk Lead)
+Technician:       Ethan Mercer (Tier 1 Support Trial)
+Supervising Lead: Jules Brooks (Desk Lead)
 Incident Date:    2026-08-14 08:15:00 PST
 Resolution Date:  2026-08-14 09:12:35 PST
 Impact Category:  Workstation Hardware / OS Display Subsystem Hang

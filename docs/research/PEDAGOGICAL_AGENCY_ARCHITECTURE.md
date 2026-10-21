@@ -72,6 +72,6 @@ $$\text{Modeling} \longrightarrow \text{Scaffolding} \longrightarrow \text{Coach
 
 ## 4. Authoring Checklist for Content Creators
 1. **Never write past the turning point in Part 1** of a Cliffhanger episode. Leave the mystery open.
-2. **Mentors offer rules of thumb, never solutions.** Jules Mercer is a compass, not a cheat sheet.
+2. **Mentors offer rules of thumb, never solutions.** Jules Brooks is a compass, not a cheat sheet.
 3. **The Lab must match the story state exactly.** Hostnames, IP addresses, error codes, and symptoms in the interactive terminal must match what Ethan observed in the prose.
 4. **Epilogues explore human consequences, not mechanics.** Focus on user gratitude or pushback, supervisor feedback, documentation hygiene, and the quiet satisfaction of a saved shift.

@@ -11,7 +11,7 @@ Most IT training begins with an 800-page book of disconnected acronyms, cable le
 
 **Portland Desk is different.** 
 
-Here, theory is never taught in a vacuum. You sit alongside **Ethan Brooks**—a 19-year-old moving 50-pound bags of concrete mix in Gresham, Oregon, with \$83 left in his checking account—as he breaks into IT, survives his first live shift under Desk Lead **Jules Mercer**, and learns the tradecraft of troubleshooting, local networking, and security escalation across the Portland operations center, logistics warehouses, and Willamette River water processing plants.
+Here, theory is never taught in a vacuum. You sit alongside **Ethan Mercer**—a 19-year-old moving 50-pound bags of concrete mix in Gresham, Oregon, with \$83 left in his checking account—as he breaks into IT, survives his first live shift under Desk Lead **Jules Brooks**, and learns the tradecraft of troubleshooting, local networking, and security escalation across the Portland operations center, logistics warehouses, and Willamette River water processing plants.
 
 Every module is structured as **an authentic workplace incident**:
 1. **The Incident Story:** Read the call, feel the operational pressure, and understand *why* the technology exists and what breaks when humans take shortcuts.
@@ -50,14 +50,14 @@ flowchart TD
         M06 --> M07 --> M08 --> M09 --> M10 --> M11 --> M12
     end
 
-    M12 -.->|"Optional next course"| NADF["Network Analyst Development Framework<br/>(separate course: reading packet captures)"]
+    M12 ==>|"Ethan's story continues"| NADF["Network Analyst Development Framework<br/>(Book 1: reading packet captures)"]
 ```
 
 ---
 
 ## The Ground Truth Rules of the Desk
 
-Throughout your time on the desk, keep Jules Mercer's four sticky notes in mind:
+Throughout your time on the desk, keep Jules Brooks's four sticky notes in mind:
 
 1. **"Start on your side of the glass."**  
    Never blame the WAN, the cloud, or CenturyLink when your own gateway hasn't answered you. Test from the inside out: Loopback $\rightarrow$ Local IP $\rightarrow$ Gateway $\rightarrow$ Remote Server.

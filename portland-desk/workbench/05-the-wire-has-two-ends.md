@@ -1,7 +1,7 @@
 # Portland Desk Lab: TCP Sockets, Port States, & Handshake Diagnostics
 
 > **The Situation:** Portland Operations Center Bullpen • Cold October rain, evening shift  
-> **Your Role:** Level 1 Network Support Specialist (under Jules Mercer & Jared Vance)  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)  
 > **The Objective:** Diagnose network connection refusals (RST) versus silent timeouts (firewall drops) using TCP three-way handshake mechanics and netstat socket inspections.  
 > **Estimated Time:** 45–50 minutes • Layer 4 Transport & Sockets  
 
@@ -35,7 +35,7 @@ It is 08:15 on a stormy Tuesday morning in late October. Cold rain lashes the fo
 
 Simultaneously, freight supervisor Ken at the Gresham logistics annex reports critical intake terminal failures. Terminal four fails instantly with an error stating "Connection refused," while terminal seven hangs spinning for nearly a minute before throwing "Connection timed out."
 
-When apprentice technician Ethan Brooks prepares to submit an emergency firewall escalation ticket to Chicago, Desk Lead Jules Mercer stops him:
+When apprentice technician Ethan Mercer prepares to submit an emergency firewall escalation ticket to Chicago, Desk Lead Jules Brooks stops him:
 > *"The wire has two ends, Ethan. Just because the door is open doesn't mean anyone is home. Is the service listening, or did the firewall drop the SYN? You don't ask the firewall team to open a port until you have logged onto the destination host and verified that a process is actually bound to the socket."*
 
 ### The Ground Truth Rules of Transport & Socket Diagnostics
@@ -444,8 +444,8 @@ TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1024
 Requester:        Ken Henderson (Freight Supervisor, Gresham Logistics Annex)
-Technician:       Ethan Brooks (Tier 1 Support Specialist)
-Supervising Lead: Jules Mercer (Help Desk Lead)
+Technician:       Ethan Mercer (Tier 1 Support Specialist)
+Supervising Lead: Jules Brooks (Help Desk Lead)
 Date / Time:      2026-10-24 09:30:15 PDT
 Category:         Network / Transport Layer / Socket Error & Service Failure
 Affected Host:    WS-GRESH-04 / WS-GRESH-07 / PDX-ARCHIVE01 (Port 8443)
@@ -498,7 +498,7 @@ NETWORK INFRASTRUCTURE PASSDOWN & HANDOVER NOTE
 ================================================================================
 Escalation ID:    ESC-2026-0418
 Originating Desk: Portland Regional Operations Help Desk
-Technician:       Ethan Brooks (Tier 1 Specialist)
+Technician:       Ethan Mercer (Tier 1 Specialist)
 Escalated To:     Jared Vance (Network Operations Engineer)
 Date / Time:      2026-10-24 11:45:00 PDT
 Priority:         P2 - High (Client Transport Architecture & Script Refactor)

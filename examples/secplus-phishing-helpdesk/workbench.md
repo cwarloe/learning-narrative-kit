@@ -3,7 +3,7 @@
 > **Track:** Portland Desk (Book 0: Zero-to-One)  
 > **Unit Companion:** `secplus-phishing-helpdesk` — *Don't Click That*  
 > **Environment:** Level 1 Service Desk Terminal & Mail Defense Queue  
-> **Author:** Ethan Brooks (under Desk Lead Jules Mercer)  
+> **Author:** Ethan Mercer (under Desk Lead Jules Brooks)  
 > **Live Artifacts Directory:** [`artifacts/`](artifacts/)
 
 ---
@@ -24,7 +24,7 @@
 ## 1. The Situation & Ground Truth
 
 ### The Situation
-It is 08:10 on a rain-lashed Wednesday morning on the east side of Portland. Low, charcoal-colored clouds hang heavy over the Hawthorne Bridge, and the service desk smells of damp wool coats, ozone from the server room exhaust, and dark roast coffee. Two cubes over sits Jules Mercer, desk lead for nine years, bike helmet clipped to her monitor arm, calmly triaging the morning ticket flood.
+It is 08:10 on a rain-lashed Wednesday morning on the east side of Portland. Low, charcoal-colored clouds hang heavy over the Hawthorne Bridge, and the service desk smells of damp wool coats, ozone from the server room exhaust, and dark roast coffee. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet clipped to her monitor arm, calmly triaging the morning ticket flood.
 
 On the corner of her primary display, the sticky note from yesterday's authentication shift (*which factor?*) has been stripped away. In its place sits a fresh neon-yellow square:
 
@@ -405,8 +405,8 @@ TIER 1 INCIDENT RESOLUTION NOTE - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1051
 Date / Time:      2026-10-21 08:35:22 PST
-Technician:       Ethan Brooks (Tier 1 Support)
-Supervising Lead: Jules Mercer (Service Desk Lead)
+Technician:       Ethan Mercer (Tier 1 Support)
+Supervising Lead: Jules Brooks (Service Desk Lead)
 Requester:        Nora Vasquez (Payroll & Accounting - Ext. 4412)
 Category:         Security Incident / Email Phishing & Spoofing
 Severity:         P2 - High (Attempted Executive Payroll Fraud)
@@ -451,8 +451,8 @@ SECURITY ESCALATION & THREAT INTEL ADVISORY - TIER 2 SOC DESK
 ================================================================================
 Incident Tracking: SEC-PHISH-2026-1021
 Related Ticket:    INC-2026-1051
-Reporter:          Ethan Brooks (Tier 1 Support)
-Lead Endorsement:  Jules Mercer (Desk Lead)
+Reporter:          Ethan Mercer (Tier 1 Support)
+Lead Endorsement:  Jules Brooks (Desk Lead)
 Target Unit:       Portland Municipal Utilities & Operations (portland-ops.gov)
 Threat Actor TTP:  MITRE ATT&CK T1566.001 (Spearphishing Attachment), 
                    T1566.002 (Spearphishing Link), T1656 (Impersonation)

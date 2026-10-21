@@ -1,7 +1,7 @@
 # Portland Desk Lab: The Incident Escalation & SOC Handoff Crucible
 
 > **The Situation:** Portland Operations Center Service Desk • Tier 1 CSIRT Incident Station  
-> **Your Role:** Tier 1 Support Specialist / Junior CSIRT Responder (Final Capstone under Jules Mercer)  
+> **Your Role:** Tier 1 Support Specialist / Junior CSIRT Responder (Final Capstone under Jules Brooks)  
 > **The Objective:** Correlate a multi-stage enterprise intrusion spanning finance phishing, USB dropper execution, lateral pivot, and industrial OT egress into a definitive CSIRT handoff dossier.  
 > **Estimated Time:** 60–75 minutes • Book 0 Final Capstone (Handoff to the SOC)  
 
@@ -31,7 +31,7 @@ prompt: "Clean technical illustration of a computer forensic examination bench u
 
 
 ### The Situation
-It is 14:15 on a wind-whipped Thursday in late October. Outside the fourth-floor windows of the Portland Operations Center, sheets of gray rain sweep across the Willamette River, obscuring the Hawthorne Bridge and the steel industrial warehouses of the Central Eastside. Inside, the dispatch floor smells of wet wool jackets, ozone from the server room exhaust blowers, and Jules Mercer’s dark French roast coffee.
+It is 14:15 on a wind-whipped Thursday in late October. Outside the fourth-floor windows of the Portland Operations Center, sheets of gray rain sweep across the Willamette River, obscuring the Hawthorne Bridge and the steel industrial warehouses of the Central Eastside. Inside, the dispatch floor smells of wet wool jackets, ozone from the server room exhaust blowers, and Jules Brooks’s dark French roast coffee.
 
 On the corkboard above the primary dispatch console, Jules’s morning sticky note (*"which decision?"*) has been covered with a fresh neon-orange square:
 
@@ -53,7 +53,7 @@ Over the span of three hours, four distinct tickets land across Ethan's dispatch
 4. **Ticket 4: Central Network & EDR Telemetry (Host C2 Beaconing):**  
    Cross-referencing perimeter firewall flow logs with host-level EDR data, Ethan spots a chilling synchronization: workstation `FIN-NORA-02` (Nora Higgins) has been establishing regular outbound HTTPS connections to `185.22.112.14:443` every 300 seconds ($\pm 5\%$ randomized jitter). Memory analysis alerts indicate unauthorized process injection: an unsigned thread within `powershell.exe` has initiated handle access against `lsass.exe` (Local Security Authority Subsystem Service), attempting to dump cached domain credentials from memory.
 
-Jules Mercer stands behind Ethan’s chair, sets her ceramic mug down without making a sound, and pulls a heavy red binder from the fireproof cabinet.
+Jules Brooks stands behind Ethan’s chair, sets her ceramic mug down without making a sound, and pulls a heavy red binder from the fireproof cabinet.
 
 > *"Ethan, listen to me carefully. A novice tech sees four tickets: a mailbox glitch, a dirty USB, a weird plant router alert, and a slow laptop. They run a scanner, wipe Nora's drive, tell Ken not to do it again, and go home at five.  
 > If you do that today, you destroy the only evidence of a coordinated intrusion campaign. Nora's stolen credentials opened the door; Ken's USB dropped the staging script; the script hopped to the staging jump box; and now an adversary is probing our municipal water treatment telemetry.  
@@ -168,7 +168,7 @@ Digital evidence is only admissible in administrative actions, regulatory inquir
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Ethan as Ethan Brooks (First Responder)
+    participant Ethan as Ethan Mercer (First Responder)
     participant HW as Hardware Write Blocker
     participant Evidence as Evidence Lockbox
     participant SOC as Jules / CSIRT Lead Tech
@@ -326,12 +326,12 @@ SHA256          9F2C8D1E3A4B5C6D7E8F0A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9BC41A
 
 ```text
 ITEM: EVD-2026-1022-USB
-SEIZED: 2026-10-22 14:40 PST by Ethan Brooks (Tier 1 Support)
+SEIZED: 2026-10-22 14:40 PST by Ethan Mercer (Tier 1 Support)
 CUSTODY LOG:
-- 14:40 PST: Seized from Ken Vance desk by Ethan Brooks. Placed in backpack.
-- 15:05 PST: Ethan Brooks arrived at Operations Center; placed USB on desk beside coffee.
+- 14:40 PST: Seized from Ken Vance desk by Ethan Mercer. Placed in backpack.
+- 15:05 PST: Ethan Mercer arrived at Operations Center; placed USB on desk beside coffee.
 - 15:10 PST: Connected to PORT-IR-WK01 for bit-stream acquisition.
-- 15:30 PST: Transferred to Jules Mercer (CSIRT Lead). Signature: J. Mercer.
+- 15:30 PST: Transferred to Jules Brooks (CSIRT Lead). Signature: J. Brooks.
 ```
 
 <details>
@@ -352,7 +352,7 @@ CUSTODY LOG:
 3. **Fatal Chain of Custody Errors Identified:**
    - *"Placed in backpack"*: Evidence was placed in an unsecured personal bag rather than a certified anti-static, tamper-evident evidence pouch sealed with tamper-indicating tape and signed across the seam.
    - *"Placed USB on desk beside coffee"*: Evidence was left unattended in an open, unmonitored area. This represents a complete break in physical custody. Anyone on the desk floor had physical access to the device.
-   - *Missing Releasing Signature*: Ethan Brooks failed to sign the transfer block at 15:30 PST; a valid chain of custody requires dual signatures (releasing party and receiving party) at every handoff.
+   - *Missing Releasing Signature*: Ethan Mercer failed to sign the transfer block at 15:30 PST; a valid chain of custody requires dual signatures (releasing party and receiving party) at every handoff.
 </details>
 
 
@@ -385,7 +385,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
   Hash comparison: MATCH (0 differences).
   Chain of Custody verified: Evidence integrity intact.
-  Formal handoff dossier packaged for Senior CSIRT Lead Jules Mercer.
+  Formal handoff dossier packaged for Senior CSIRT Lead Jules Brooks.
   [OK] Incident handoff complete.
 
 ```
@@ -537,7 +537,7 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
   </div>
 </div>
 
-Below is the definitive, audit-grade Incident Escalation Dossier assembled by Ethan Brooks and reviewed by Desk Lead Jules Mercer for formal handoff to the Portland Operations Center CSIRT and Incident Commander.
+Below is the definitive, audit-grade Incident Escalation Dossier assembled by Ethan Mercer and reviewed by Desk Lead Jules Brooks for formal handoff to the Portland Operations Center CSIRT and Incident Commander.
 
 ```text
 ================================================================================
@@ -547,8 +547,8 @@ INCIDENT TRACKING ID:  INC-2026-1022-CRUCIBLE
 INCIDENT SEVERITY:     P1 — CRITICAL (ACTIVE MULTI-STAGE INTRUSION & OT EXPOSURE)
 INITIAL CLASSIFICATION: Malicious Phishing / C2 Beaconing / Lateral Pivot / SCADA Exposure
 DATE & TIME INITIATED: 2026-10-22 14:15:00 PST (21:15:00 UTC)
-FIRST RESPONDER:       Ethan Brooks (Tier 1 Support Specialist, Portland Desk)
-INCIDENT LEAD / QA:    Jules Mercer (Service Desk Lead & First Response Coordinator)
+FIRST RESPONDER:       Ethan Mercer (Tier 1 Support Specialist, Portland Desk)
+INCIDENT LEAD / QA:    Jules Brooks (Service Desk Lead & First Response Coordinator)
 TARGET ESCALATION:     Enterprise CSIRT / SOC Tier 2 Operations / Industrial IR Bridge
 ================================================================================
 
@@ -655,16 +655,16 @@ Item Description: SanDisk Ultra 32GB USB 3.0 Flash Drive (Black casing, blue sha
 Serial Number:    4C530001220914112102
 Seized From:      Ken Vance desk (Warehouse Operations, Cubicle W-12)
 Seized Date/Time: 2026-10-22 14:28:45 PST
-Seizing Tech:     Ethan Brooks (Badge #IT-8842)
+Seizing Tech:     Ethan Mercer (Badge #IT-8842)
 SHA-256 Digest:   a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10
-Storage Location: Central Operations Evidence Safe #2 (Locker B, Combination Held by J. Mercer)
+Storage Location: Central Operations Evidence Safe #2 (Locker B, Combination Held by J. Brooks)
 
 Chain of Custody Transfer History:
-- 14:28 PST: Seized by Ethan Brooks; sealed in Bag #EVD-2026-1022-01.
-- 15:05 PST: Transferred to PORT-IR-WK01 by Ethan Brooks for write-blocked imaging.
-- 15:35 PST: Transferred to Jules Mercer (CSIRT Lead). 
-  Releasing Signature: Ethan Brooks, Tier 1 Support
-  Receiving Signature: Jules Mercer, Desk Lead & CSIRT Coordinator
+- 14:28 PST: Seized by Ethan Mercer; sealed in Bag #EVD-2026-1022-01.
+- 15:05 PST: Transferred to PORT-IR-WK01 by Ethan Mercer for write-blocked imaging.
+- 15:35 PST: Transferred to Jules Brooks (CSIRT Lead). 
+  Releasing Signature: Ethan Mercer, Tier 1 Support
+  Receiving Signature: Jules Brooks, Desk Lead & CSIRT Coordinator
 
 Item Number:      EVD-2026-1022-02
 Item Description: Volatile Memory Dump (FIN-NORA-02-RAM.raw) — 16GB Physical DDR4
@@ -702,14 +702,14 @@ DOSSIER STATUS: SIGNED & TRANSFERRED TO CSIRT INCIDENT COMMANDER (2026-10-22 15:
 ## 5. What Good Looks Like (Shift Quality Checklist)
 
 ### Lead Tech Sign-Off Checklist
-Before Ethan closes the red folder and hands the physical binder to Jules Mercer, he verifies every item against the Portland Desk Shift Quality Standard:
+Before Ethan closes the red folder and hands the physical binder to Jules Brooks, he verifies every item against the Portland Desk Shift Quality Standard:
 
 * [x] **Event vs. Incident Delineated:** Maya's noisy adware was properly tagged as an isolated *Event* (resolved without disruption), while Nora's quiet mailbox anomaly was identified as an active *Security Incident*.
 * [x] **Order of Volatility Honored:** Volatile memory (RAM) and network socket states were captured live before any system reboots, shutdowns, or disk imaging occurred.
 * [x] **Strict Containment Before Analysis:** Infected endpoints (`FIN-NORA-02`, `KEN-SALES-14`) were isolated from the network via EDR and physical cable disengagement before forensic triage commenced.
 * [x] **Operational Silence Maintained:** Need-to-know principles were strictly enforced; no notifications were posted to public Slack channels or email distribution lists that could alert the adversary.
 * [x] **Cryptographic Hash Verification:** Every physical and virtual artifact possesses an immutable pre-acquisition and post-acquisition SHA-256 checksum proving 100% mathematical integrity.
-* [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Ken's USB drive was picked up to the dual-signature transfer to Jules Mercer.
+* [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Ken's USB drive was picked up to the dual-signature transfer to Jules Brooks.
 * [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, testable IoCs (hashes, IP addresses, ports, task names) allowing Tier 2 analysts to hunt across enterprise telemetry immediately.
 
 
@@ -735,7 +735,7 @@ Before Ethan closes the red folder and hands the physical binder to Jules Mercer
 ```callout-panel
 title: "FIGURE 12.2: CSIRT INCIDENT HANDOFF & THE BRIDGE TO BOOK 1"
 badge: "Shift Epilogue"
-caption: "Operations bullpen: At 05:45 PM, the autumn rain eases over the Willamette River. Jules Mercer hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
+caption: "Operations bullpen: At 05:45 PM, the autumn rain eases over the Willamette River. Jules Brooks hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
 prompt: "Clean graphic novel cutaway panel of an IT support operations floor at twilight. Warm indoor desk light contrasts with blue twilight outside the floor-to-ceiling windows showing city bridges and river. A senior technician hands a new security access keycard lanyard to a junior technician across an open incident binder. Clean ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
 ```
 
@@ -753,7 +753,7 @@ The queue showed one more URGENT. I opened it anyway — criteria first, adrenal
 
 ## The Step Beyond the Desk
 
-At 16:30, the autumn rain finally eases to a mist over the Willamette. The river reflects the amber streetlights turning on along the Eastbank Esplanade. In the quiet of the fourth-floor dispatch bullpen, Jules Mercer signs her name on the receiving line of Evidence Pouch `#EVD-2026-1022-01`, slides the red binder into the CSIRT handoff rack, and turns her desk chair toward Ethan.
+At 16:30, the autumn rain finally eases to a mist over the Willamette. The river reflects the amber streetlights turning on along the Eastbank Esplanade. In the quiet of the fourth-floor dispatch bullpen, Jules Brooks signs her name on the receiving line of Evidence Pouch `#EVD-2026-1022-01`, slides the red binder into the CSIRT handoff rack, and turns her desk chair toward Ethan.
 
 "You didn't wipe Maya's machine," she says, her voice steady and quiet. "And you didn't let Ken plug his stick back in. But more importantly: when Nora's Sent folder looked empty, you didn't see a software bug. You saw the wire."
 
@@ -764,5 +764,5 @@ She reaches into her desk drawer and pulls out a new lanyard—dark navy blue wi
 
 ---
 
-*This concludes **Book 0: Zero-to-One (Portland Desk)**. Want more practice reading network traffic? The separate [Network Analyst Development Framework](https://github.com/cwarloe/network-analyst-development-framework) course starts with packet captures and analyst judgment. It tells a different story with different characters.*
+*This concludes **Book 0: Zero-to-One (Portland Desk)**. Ethan's work continues in the [Network Analyst Development Framework](https://github.com/cwarloe/network-analyst-development-framework), which starts with packet captures and analyst judgment.*
 
