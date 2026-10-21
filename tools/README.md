@@ -36,7 +36,7 @@ Render a unit directory to **GitHub Pages** HTML under `docs/<unit_id>/`.
 - Writes: `index.html` (thin shell), `narrative.N.html` parts + `narrative.manifest.json`, `glossary.js`
 - Shared assets: `docs/unit.css`, `docs/unit.js`
 - Soft prose-tint marks; Exam-only / All; tooltip = definition + context only
-- **Does not** update `docs/index.html` — add landing cards by hand
+- **Does not** update `docs/index.html` — add landing cards in `tools/build_hub_index.py` (see below)
 
 Markdown/YAML remain source of truth; never hand-edit generated HTML under `docs/<unit_id>/`.
 
@@ -73,6 +73,17 @@ Render one A-Z glossary page for a whole track, from every unit's `glossary.yaml
 - Each chapter link opens the chapter at the term: `chapter/#term=<id>` makes `docs/unit.js` open the term, switch to All if it is support-tier, and scroll to its first mark.
 - Search box, Exam-only filter, and A-Z jump bar; works without JavaScript except for search and filtering.
 - Set `glossary: true` in the track manifest so the contents page and every chapter's top bar link to it. Re-run after any glossary or track change.
+
+## `build_hub_index.py` and `check_hub_links.py`
+
+`docs/index.html` (the landing page) is generated: its full HTML lives in `HTML_CONTENT` in `tools/build_hub_index.py`. Edit the builder, never the page, then:
+
+```bash
+python3 tools/build_hub_index.py    # rewrites docs/index.html
+python3 tools/check_hub_links.py    # landing-page drift check (CI runs this)
+```
+
+`check_hub_links.py` fails if `docs/index.html` differs from the builder's output or if a relative link on it is broken. It also lists rendered `docs/<dir>/index.html` pages that cannot be reached from the landing page (a unit with no card); that is a warning unless you pass `--strict`.
 
 ## Full LLM playbook
 
