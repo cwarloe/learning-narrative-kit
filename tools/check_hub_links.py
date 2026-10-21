@@ -5,7 +5,8 @@ Run from anywhere:  python3 tools/check_hub_links.py [--strict]
 Fails (exit 1) when:
   * docs/index.html no longer matches what tools/build_hub_index.py writes
     (someone hand-edited the generated page, or edited the builder without re-running it);
-  * a relative link on docs/index.html points at a file that does not exist.
+  * a relative link on docs/index.html points at a file that does not exist,
+    or escapes docs/ (Pages serves only docs/).
 
 Reports (and fails only with --strict):
   * rendered pages docs/<dir>/index.html that cannot be reached by following
@@ -74,7 +75,13 @@ def main() -> int:
     broken = 0
     for href in links:
         target = local_target(HUB, href)
-        if target is not None and not target.exists():
+        if target is None:
+            continue
+        if DOCS.resolve() not in target.parents:
+            # Pages serves only docs/, so a link that climbs out of it 404s in the browser.
+            print(f"BROKEN: {href} -> outside docs/ (not served by Pages)")
+            broken += 1
+        elif not target.exists():
             print(f"BROKEN: {href} -> {target.relative_to(ROOT)}")
             broken += 1
     print(f"Checked {len(links)} links on docs/index.html; {broken} broken.")
