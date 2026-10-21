@@ -1,17 +1,17 @@
-Delivered-To: mlin@portland-ops.local
-Received: from mail-relay.portland-ops.local (mail-relay.portland-ops.local [192.168.10.50])
-	by imap.portland-ops.local with ESMTP id 77C12EF1
-	for <mlin@portland-ops.local>; Tue, 20 Oct 2026 16:15:10 +0000
+Delivered-To: mlin@harrowmere.local
+Received: from mail-relay.harrowmere.local (mail-relay.harrowmere.local [192.168.10.50])
+	by imap.harrowmere.local with ESMTP id 77C12EF1
+	for <mlin@harrowmere.local>; Tue, 20 Oct 2026 16:15:10 +0000
 Received: from out-relay-12.mailgun.org (out-relay-12.mailgun.org [159.135.225.12])
-	by mail-relay.portland-ops.local with ESMTP id 65B90AA2
-	for <mlin@portland-ops.local>; Tue, 20 Oct 2026 16:15:08 +0000
-Authentication-Results: mail-relay.portland-ops.local;
-	spf=softfail (portland-ops.local: domain of ceo-desk-office@gmail.com does not designate 159.135.225.12 as permitted sender);
+	by mail-relay.harrowmere.local with ESMTP id 65B90AA2
+	for <mlin@harrowmere.local>; Tue, 20 Oct 2026 16:15:08 +0000
+Authentication-Results: mail-relay.harrowmere.local;
+	spf=softfail (harrowmere.local: domain of ceo-desk-office@gmail.com does not designate 159.135.225.12 as permitted sender);
 	dkim=fail (signature does not match header payload);
-	dmarc=fail (p=quarantine dis=quarantine) header.from=portland-ops.local
-From: "Walt Brandvold" <walt@portland-ops.local>
+	dmarc=fail (p=quarantine dis=quarantine) header.from=harrowmere.local
+From: "Walt Brandvold" <walt@harrowmere.local>
 Reply-To: "Walt Brandvold (Mobile Office)" <walt.executive.desk77@gmail.com>
-To: mlin@portland-ops.local
+To: mlin@harrowmere.local
 Subject: Confidential: Immediate vendor wire authorization required
 Date: Tue, 20 Oct 2026 16:14:50 +0000
 Message-ID: <CA+V=8A9184B1028@mail.gmail.com>

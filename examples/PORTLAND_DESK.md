@@ -8,7 +8,7 @@ Ethan’s help-desk years. One cohesive SY0-701 cluster per chapter, woven into 
 - **Jules** — Portlandia-flavored desk lead; conversational coach, not crisis commander.
 - **Past tense** for narration and dialogue tags. Goldratt-style: people talking decisions through tickets, not melodrama.
 - **First person**, Ethan narrating. Do not switch to third — see below.
-- **Forbidden in narrative:** `Priya`, `Harrowmere`, or any foreshadowing of places/events the reader has not met (`validate_unit.py` fails on Priya/Harrowmere).
+- **Forbidden in narrative:** `Priya`, or any foreshadowing of places/events the reader has not met (`validate_unit.py` fails on Priya). Harrowmere Equipment Group is the employer and may be named.
 
 
 ## POV and tense — decided, with its basis

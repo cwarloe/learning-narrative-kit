@@ -186,22 +186,22 @@ You examine the client workstation diagnostic dump ([`artifacts/ipconfig_all.txt
 
 ```console
 caption: PowerShell Diagnostic on PORT-WS-1042
-PS C:\Users\mlin> Test-NetConnection -ComputerName mail.portland-ops.local -Port 110
+PS C:\Users\mlin> Test-NetConnection -ComputerName mail.harrowmere.local -Port 110
 WARNING: TCP connect to (192.168.10.50 : 110) failed
 TcpTestSucceeded : False
 
-PS C:\Users\mlin> Test-NetConnection -ComputerName mail.portland-ops.local -Port 25
+PS C:\Users\mlin> Test-NetConnection -ComputerName mail.harrowmere.local -Port 25
 WARNING: TCP connect to (192.168.10.50 : 25) failed
 TcpTestSucceeded : False
 
-PS C:\Users\mlin> Test-NetConnection -ComputerName mail.portland-ops.local -Port 993
-ComputerName     : mail.portland-ops.local
+PS C:\Users\mlin> Test-NetConnection -ComputerName mail.harrowmere.local -Port 993
+ComputerName     : mail.harrowmere.local
 RemoteAddress    : 192.168.10.50
 RemotePort       : 993
 TcpTestSucceeded : True
 
-PS C:\Users\mlin> Test-NetConnection -ComputerName mail.portland-ops.local -Port 587
-ComputerName     : mail.portland-ops.local
+PS C:\Users\mlin> Test-NetConnection -ComputerName mail.harrowmere.local -Port 587
+ComputerName     : mail.harrowmere.local
 RemoteAddress    : 192.168.10.50
 RemotePort       : 587
 TcpTestSucceeded : True
@@ -219,11 +219,11 @@ TcpTestSucceeded : True
 1. **Port 25 Failure:** Standard residential ISPs and mobile carriers block outbound TCP Port 25 by default to prevent compromised endpoints from acting as spam zombie relays. Port 25 is meant exclusively for MTA-to-MTA routing.
 2. **Port 110 Hazard:** POP3 on port 110 transmits the `USER` and `PASS` commands in cleartext ASCII. On an unencrypted coffee shop or hotel Wi-Fi network, any nearby machine running a packet monitor can harvest Maya's corporate domain credentials.
 3. **Correct Configuration:**
-   - **Incoming Mail Server:** `mail.portland-ops.local`
+   - **Incoming Mail Server:** `mail.harrowmere.local`
      - **Protocol:** **IMAPS** (maintains server mailbox state across phone, laptop, and web)
      - **Port:** **`993`**
      - **Encryption Method:** **SSL/TLS (Implicit)**
-   - **Outgoing Mail Server (SMTP):** `mail.portland-ops.local`
+   - **Outgoing Mail Server (SMTP):** `mail.harrowmere.local`
      - **Protocol:** **Authenticated SMTP Submission**
      - **Port:** **`587`**
      - **Encryption Method:** **STARTTLS (Explicit TLS)**
@@ -437,8 +437,8 @@ Status:           RESOLVED
 
 3. REMEDIATION PERFORMED:
    Remote session to PORT-WS-1042. Reconfigured email transport to modern TLS standards:
-   - Inbound Server:  mail.portland-ops.local | Protocol: IMAPS | Port: 993 (SSL/TLS)
-   - Outbound Server: mail.portland-ops.local | Protocol: Submission | Port: 587 (STARTTLS)
+   - Inbound Server:  mail.harrowmere.local | Protocol: IMAPS | Port: 993 (SSL/TLS)
+   - Outbound Server: mail.harrowmere.local | Protocol: Submission | Port: 587 (STARTTLS)
    - Authentication:  Enforced same credentials as incoming server (SASL PLAIN over TLS).
    - Validation: Sent test verification email; confirmed inbound sync and Outbox flush.
 

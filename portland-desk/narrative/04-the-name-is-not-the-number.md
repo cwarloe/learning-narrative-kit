@@ -25,7 +25,7 @@ Jared Vance from network operations walked over from the bullpen holding a paper
 
 Maya Chen turned slightly in her swivel chair and lowered her headset microphone. "Rebooting sixty consumer cable modems across three residential providers is not an operational triage plan, Jared. The VPN concentrator shows eighty-two active client tunnels with healthy keepalive handshakes. We have zero packet drops on the transport interface. The encrypted tunnel is staying wide open, but the application payload is landing in the wrong place."
 
-I opened the first ticket from the queue. It was submitted by an accounts payable clerk named Greg who was working remotely from Hillsboro. Greg could not access `payroll.portland-ops.local` to verify morning direct deposits. His browser displayed a generic error stating that the server address could not be found.
+I opened the first ticket from the queue. It was submitted by an accounts payable clerk named Greg who was working remotely from Hillsboro. Greg could not access `payroll.harrowmere.local` to verify morning direct deposits. His browser displayed a generic error stating that the server address could not be found.
 
 Jules took a sip from her ceramic mug and leaned over my cubicle partition. She watched my screen as I initiated a remote assistance session to Greg's laptop. "What is your working hypothesis, Ethan?"
 
@@ -37,7 +37,7 @@ Jules set her coffee mug down with a soft ceramic clink. "If you try to ping a d
 
 I leaned forward and examined the terminal window on Greg's remote screen. Instead of running ping sweeps, I executed `ipconfig /displaydns` to inspect the contents of his local operating system resolver cache. Hundreds of routine web records scrolled past. Mixed among them were cached intranet entries that looked thoroughly garbled.
 
-"Look at the IP address Greg's machine tried to reach for the payroll portal," I murmured. I highlighted a line in the terminal dump. "The cache shows an entry for `payroll.portland-ops.local` mapped to `192.168.1.50`. Our actual corporate payroll cluster sits in the datacenter on `10.100.20.14`."
+"Look at the IP address Greg's machine tried to reach for the payroll portal," I murmured. I highlighted a line in the terminal dump. "The cache shows an entry for `payroll.harrowmere.local` mapped to `192.168.1.50`. Our actual corporate payroll cluster sits in the datacenter on `10.100.20.14`."
 
 "A `192.168.1.50` address is private non-routable space that belongs on a domestic local network," Maya pointed out. She wheeled her chair into our row. "Check the local static configuration files before you do anything else."
 
@@ -45,8 +45,8 @@ I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the loc
 
 ```text
 # Temporary development override - DO NOT REMOVE
-192.168.1.50    payroll.portland-ops.local
-192.168.1.51    wiki.portland-ops.local
+192.168.1.50    payroll.harrowmere.local
+192.168.1.51    wiki.harrowmere.local
 ```
 
 "A contract software developer had this machine out in a staging trailer last September," I said. "They must have hardcoded those static mappings to point to a portable test server on their switch. Nobody ever cleaned the file before reissuing the laptop to accounting."
@@ -55,24 +55,24 @@ I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the loc
 
 I deleted the three hardcoded lines, saved the file, and executed `ipconfig /flushdns` in the command prompt. The utility confirmed that the DNS resolver cache had been successfully purged. I then launched Greg's web browser and refreshed the payroll portal tab. I fully expected the login screen to appear so I could close the ticket.
 
-Instead, the browser spun for five seconds and displayed a bright orange GoDaddy parked domain page. The page announced that `portland-ops.local` was available for purchase or had no active web host configured.
+Instead, the browser spun for five seconds and displayed a bright orange GoDaddy parked domain page. The page announced that `harrowmere.local` was available for purchase or had no active web host configured.
 
 "The bad static file was masking a deeper failure," I said. I felt the initial rush of confidence drain away. "Even with the local override removed, the machine is still failing to resolve the internal domain."
 
 ## The server that answered the question
 
-The help desk phone lines were lighting up with six more incoming calls from field supervisors and remote inspectors. All of them reported the exact same symptom. Their web browsers could not open internal corporate resources over the VPN. Two users claimed that navigating to `wiki.portland-ops.local` had redirected them to an external search engine.
+The help desk phone lines were lighting up with six more incoming calls from field supervisors and remote inspectors. All of them reported the exact same symptom. Their web browsers could not open internal corporate resources over the VPN. Two users claimed that navigating to `wiki.harrowmere.local` had redirected them to an external search engine.
 
 "This is why you never stop at the first anomaly you find," Jules said calmly. "A single dirty configuration file explains one laptop. It does not explain eighteen tickets originating from six different neighborhoods. Go back to first principles, Ethan. Stop guessing what the computer wants to find. Look at the exact dialogue taking place between the client and the resolver."
 
-I opened a fresh command prompt on Greg's workstation and launched interactive `nslookup`. When I typed `payroll.portland-ops.local` at the prompt, the output appeared almost instantly:
+I opened a fresh command prompt on Greg's workstation and launched interactive `nslookup`. When I typed `payroll.harrowmere.local` at the prompt, the output appeared almost instantly:
 
 ```console
-C:\Users\greg.adams> nslookup payroll.portland-ops.local
+C:\Users\greg.adams> nslookup payroll.harrowmere.local
 Server:  router.local
 Address:  192.168.1.1
 
-*** router.local can't find payroll.portland-ops.local: Non-existent domain
+*** router.local can't find payroll.harrowmere.local: Non-existent domain
 ```
 
 I stared at the first two lines of the terminal response. "Look at the resolving server address. The machine did not query our enterprise domain controller at `10.100.10.2`. It sent the query directly to `192.168.1.1`, which is Greg's personal home Wi-Fi gateway."
@@ -83,7 +83,7 @@ I stared at the first two lines of the terminal response. "Look at the resolving
 
 "Now look at what happens when Greg tries to browse the public corporate domain name," Maya said.
 
-I typed `nslookup wiki.portland-ops.com` into the terminal. This time, the query returned a public IP address belonging to a cloud content delivery network. It was accompanied by an alias record indicating that `wiki.portland-ops.com` was registered as a [[cname_record|CNAME record]] pointing to an external hosting provider.
+I typed `nslookup wiki.harrowmere.com` into the terminal. This time, the query returned a public IP address belonging to a cloud content delivery network. It was accompanied by an alias record indicating that `wiki.harrowmere.com` was registered as a [[cname_record|CNAME record]] pointing to an external hosting provider.
 
 "We use [[split_dns|split-horizon DNS]] for all of our regional infrastructure," Maya explained. She pointed at the two distinct answers on my screen. "When an employee is sitting in this building, our internal name servers intercept the query and return a private `10.100.40.8` address for the plant documentation wiki. But when an external user queries the exact same hostname from the public internet, our public authoritative name servers return an external proxy gateway. If a remote worker's machine queries a public resolver instead of our internal domain controller, they receive the external answer. That external host promptly rejects their internal connection attempt."
 
@@ -126,7 +126,7 @@ I looked at the terminal output and the dual adapter configuration. The tunnel w
 | **[[hosts_file|Hosts File]]** | A plain-text operating system file that maps hostnames directly to static IP addresses, taking precedence over DNS server queries during resolution. | A legacy manual override file that developers and contractors often forget to clean up, silently redirecting modern traffic to dead or obsolete test servers. |
 | **[[recursive_resolver|Recursive Resolver]]** | A DNS server that performs the iterative process of querying root, TLD, and authoritative name servers on behalf of a client stub resolver to return an answer. | The intermediate server (such as an ISP or public DNS provider) that tracks down the final IP address for a computer that does not know where to go. |
 | **[[dns_ttl|DNS TTL]]** | A 32-bit integer in a DNS resource record determining the duration in seconds that intermediate resolvers and client caches may retain the record before re-querying. | The expiration timer that tells your laptop how long to remember a good or bad answer; if set too high, it traps users on stale or broken addresses after an outage. |
-| **[[cname_record|CNAME Record]]** | A DNS Canonical Name resource record that establishes an alias from one domain name to another fully qualified domain name rather than to an IP address. | An alias pointer that routes a friendly hostname (like `wiki.portland-ops.com`) to an external cloud or vendor URL where the real web application lives. |
+| **[[cname_record|CNAME Record]]** | A DNS Canonical Name resource record that establishes an alias from one domain name to another fully qualified domain name rather than to an IP address. | An alias pointer that routes a friendly hostname (like `wiki.harrowmere.com`) to an external cloud or vendor URL where the real web application lives. |
 
 ## The Handoff Gate
 

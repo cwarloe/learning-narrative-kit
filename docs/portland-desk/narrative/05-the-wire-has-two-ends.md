@@ -4,7 +4,7 @@
 
 A heavy October rain was lashing the fourth-floor glass of the Portland Regional Operations Center. It turned the distant silhouettes of the Marquam Bridge into dark gray smears against the low sky. I was four months into my probationary tenure on the service desk. My workspace sat between a crate of spare patch cords and two Dell OptiPlex towers waiting for imaging. The bullpen was normally quiet before eight o'clock in the morning. Today, however, the rhythmic clatter of plastic keycaps echoed across the aisle.
 
-Jared Vance was leaning forward with his elbows planted firmly on his desk blotter. He glared at his secondary display while hammering on his mechanical keyboard. A paper cup of lukewarm black tea sat precariously close to his power brick. His automated configuration backup script had failed at quarter past three in the morning. The crash left three hundred municipal switches unarchived and dumped hundreds of red error lines into his terminal.
+Jared Vance was leaning forward with his elbows planted firmly on his desk blotter. He glared at his secondary display while hammering on his mechanical keyboard. A paper cup of lukewarm black tea sat precariously close to his power brick. His automated configuration backup script had failed at quarter past three in the morning. The crash left three hundred company switches unarchived and dumped hundreds of red error lines into his terminal.
 
 "Central IT pushed an unannounced firewall update across the distribution layer again," Jared snapped, spinning around in his chair. "Chicago always tweaks access lists without logging a note on the change board. Port 8443 is blocked between our administrative subnet and the central archive cluster. That broken rule wrecked my entire morning schedule."
 
@@ -109,7 +109,7 @@ Ken called back from the Gresham warehouse three minutes later to report success
 
 ## Fifteen thousand ghosts in time-wait
 
-By eleven o'clock the rain had intensified, drumming a steady rhythm against the eastern windows. The bullpen temperature dropped a couple of degrees as cold air seeped through the frames. Jared returned from the server room with fresh tea. He sat down to run a catch-up batch of his backup script across all four hundred municipal field devices. His script was designed to query switches, distribution routers, and environmental sensors across five remote facilities.
+By eleven o'clock the rain had intensified, drumming a steady rhythm against the eastern windows. The bullpen temperature dropped a couple of degrees as cold air seeped through the frames. Jared returned from the server room with fresh tea. He sat down to run a catch-up batch of his backup script across all four hundred field devices across the Portland sites. His script was designed to query switches, distribution routers, and environmental sensors across five remote facilities.
 
 After ten minutes of execution, Jared's terminal began spitting out hundreds of crimson error traces. The script aborted abruptly with a socket exception that filled the window.
 
@@ -157,7 +157,7 @@ Jared rubbed his forehead, looking at his source code on his left screen. "The s
 
 Jules wheeled her chair closer, looking from the fifteen thousand frozen sockets on Jared's screen to the blinking backup SLA alert on the dispatch board.
 
-"You have four hundred municipal switches waiting on configuration backups, and our disaster recovery SLA expired two hours ago," Jules said, her voice quiet and direct. "The server is healthy, but Jared's workstation has consumed every dynamic port in its outbound pool. How do you triage this socket exhaustion, reconfigure the operating system TCP recycling timers, refactor the client transport architecture, and prove the fix without losing a single device backup? Call your shot, Ethan."
+"You have four hundred switches waiting on configuration backups, and our disaster recovery SLA expired two hours ago," Jules said, her voice quiet and direct. "The server is healthy, but Jared's workstation has consumed every dynamic port in its outbound pool. How do you triage this socket exhaustion, reconfigure the operating system TCP recycling timers, refactor the client transport architecture, and prove the fix without losing a single device backup? Call your shot, Ethan."
 
 I looked at the mountain of frozen TIME_WAIT sockets. The wire had two ends, and right now, our own management station was starving itself to death. I needed to isolate the dynamic port depletion, calculate the socket reuse rates, and implement connection pooling before the next scheduled archive sweep failed.
 

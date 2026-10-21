@@ -3,7 +3,7 @@ c 2026 Microsoft Corporation. All rights reserved.
 
 Created on Tuesday, October 20, 2026 at 11:15:32 AM
 
-RSOP data for PORTLAND-OPS\ethan on PORT-WS-1042 : Logging Mode
+RSOP data for HARROWMERE\ethan on PORT-WS-1042 : Logging Mode
 --------------------------------------------------------------
 
 OS Configuration:            Member Workstation
@@ -15,11 +15,11 @@ Connected over a slow link?: No
 
 USER SETTINGS
 --------------
-    CN=Ethan Mercer,OU=HelpDesk,OU=Staff,DC=portland-ops,DC=local
+    CN=Ethan Mercer,OU=HelpDesk,OU=Staff,DC=harrowmere,DC=local
     Last time Group Policy was applied: 10/20/2026 at 10:45:12 AM
-    Group Policy was applied from:      dc01.portland-ops.local
+    Group Policy was applied from:      dc01.harrowmere.local
     Group Policy slow link threshold:   500 kbps
-    Domain Name:                        portland-ops
+    Domain Name:                        harrowmere
     Domain Type:                        Windows 2016 or newer
 
     Applied Group Policy Objects

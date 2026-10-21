@@ -2,7 +2,7 @@
 
 > **The Situation:** Building C Basement Telecom Vault • 04:00 AM Flood Emergency  
 > **Your Role:** Emergency Response Technician (Midpoint Capstone under Jules Brooks & Jared Vance)  
-> **The Objective:** Physically replace flood-damaged core switches, rebuild trunk VLANs, recover from a 150-device DHCP exhaustion storm, and restore municipal operations before 08:00 AM opening.  
+> **The Objective:** Physically replace flood-damaged core switches, rebuild trunk VLANs, recover from a 150-device DHCP exhaustion storm, and restore site operations before the 08:00 AM opening.  
 > **Estimated Time:** 60–75 minutes • Disaster Recovery Midpoint Capstone  
 
 
@@ -31,11 +31,11 @@ prompt: "Clean technical cutaway illustration of a server room during a water le
 
 
 ### The Shift Crucible: Four Inches in Twelve Hours
-It is 04:00 AM on a freezing Monday in December. A severe Pacific Northwest atmospheric river has stalled over the Willamette Valley, dumping over four inches of driving rain in twelve hours. The Willamette River has breached low-lying revetments along the industrial corridor, backing up municipal storm drains.
+It is 04:00 AM on a freezing Monday in December. A severe Pacific Northwest atmospheric river has stalled over the Willamette Valley, dumping over four inches of driving rain in twelve hours. The Willamette River has breached low-lying revetments along the industrial corridor, backing up the city storm drains.
 
-In the basement telecommunications vault of Building C—which houses East Portland Water Billing, logistics fleet dispatch, and industrial plant telemetry loggers—eight inches of muddy river water covers the concrete floor. When the utility pole transformer arced on the corner, commercial grid power failed. The campus diesel generator engaged six seconds later, but the resulting electrical transient surge blew out two aging twenty-four-port edge switches on the bottom rack unit. 
+In the basement telecommunications vault of Building C—which houses the Rivergate order desk, field-service dispatch, and plant telemetry loggers—eight inches of muddy river water covers the concrete floor. When the utility pole transformer arced on the corner, commercial grid power failed. The campus diesel generator engaged six seconds later, but the resulting electrical transient surge blew out two aging twenty-four-port edge switches on the bottom rack unit. 
 
-City administrative offices, emergency dispatch, and public billing windows unlock at 08:00 AM sharp. Apprentice technician Ethan Mercer, Desk Lead Jules Brooks, and Senior Network Engineer Jared Vance stand in rubber boots in the flooded vault with headlamps and toolkits. They have exactly four hours to physically condemn dead hardware, rack and power spare switches, restore Layer 1 structured cabling, configure 802.1Q VLAN trunking and LACP link aggregation, and resolve a massive 150-device DHCP scope exhaustion storm before municipal operations open.
+The order desk, field-service dispatch, and the will-call parts counter open at 08:00 AM sharp. Apprentice technician Ethan Mercer, Desk Lead Jules Brooks, and Senior Network Engineer Jared Vance stand in rubber boots in the flooded vault with headlamps and toolkits. They have exactly four hours to physically condemn dead hardware, rack and power spare switches, restore Layer 1 structured cabling, configure 802.1Q VLAN trunking and LACP link aggregation, and resolve a massive 150-device DHCP scope exhaustion storm before the site opens.
 
 ```mermaid
 timeline
@@ -80,7 +80,7 @@ flowchart TD
 
 ### 2.1 Building C Campus Rebuild Topology & VLAN Allocations
 
-Building C houses three distinct municipal functions that must remain strictly isolated at Layer 2 to comply with regulatory security baselines and quality-of-service guarantees.
+Building C houses three distinct business functions that must remain strictly isolated at Layer 2 to comply with regulatory security baselines and quality-of-service guarantees.
 
 ```mermaid
 flowchart TD
@@ -298,18 +298,18 @@ classDiagram
 
 | Patch Panel Jack | Destination Office / Desk | Required VLAN ID | Switch Hardware Port | Port Mode | Spanning Tree Feature |
 | :---: | :--- | :---: | :---: | :---: | :---: |
-| **Port 01–12** | Water Billing Intake Desks 1–12 | **VLAN 10** | `Fa0/1` – `Fa0/12` | Access | PortFast, BPDU Guard |
+| **Port 01–12** | Order Desk Workstations 1–12 | **VLAN 10** | `Fa0/1` – `Fa0/12` | Access | PortFast, BPDU Guard |
 | **Port 13–24** | Water Accounting & SQL Terminals | **VLAN 10** | `Fa0/13` – `Fa0/24` | Access | PortFast, BPDU Guard |
 | **Port 25–32** | Plant Telemetry Sensor Gateways | **VLAN 20** | `Fa0/25` – `Fa0/32` | Access | PortFast |
 | **Port 33–36** | SCADA Intake Pressure Loggers | **VLAN 20** | `Fa0/33` – `Fa0/36` | Access | PortFast |
-| **Port 37–48** | Emergency Dispatch Consoles & VoIP | **VLAN 30** | `Fa0/37` – `Fa0/48` | Access + Voice | PortFast, Voice VLAN 30 |
+| **Port 37–48** | Field-Service Dispatch Consoles & VoIP | **VLAN 30** | `Fa0/37` – `Fa0/48` | Access + Voice | PortFast, Voice VLAN 30 |
 
 
 ---
 
 ### Skill Rep 2: DHCP Scope Recovery & Stampede Mitigation Drill
 
-**Objective:** Diagnose and remediate a catastrophic DHCP scope exhaustion failure caused by an 8-day legacy lease duration when 150 municipal devices simultaneously reconnect to the network following campus power restoration.
+**Objective:** Diagnose and remediate a catastrophic DHCP scope exhaustion failure caused by an 8-day legacy lease duration when 150 company devices simultaneously reconnect to the network following campus power restoration.
 
 #### The Mathematical Anatomy of Scope Exhaustion
 
@@ -522,15 +522,15 @@ In high-pressure disaster recovery scenarios, novices guess and execute random c
 
 ```text
 ================================================================================
-PORTLAND MUNICIPAL IT OPERATIONS — POST-INCIDENT RECOVERY REPORT (SEV-1)
+HARROWMERE PORTLAND IT OPERATIONS — POST-INCIDENT RECOVERY REPORT (SEV-1)
 ================================================================================
 INCIDENT ID:      INC-2026-1215-SEV1
 DATE / TIME:      2026-12-15 04:00:00 PST through 2026-12-15 08:00:00 PST
-FACILITY / SITE:  Building C (Rivergate Municipal Operations Annex), Sub-Basement Vault
+FACILITY / SITE:  Building C (Rivergate Parts & Service Center), Sub-Basement Vault
 LEAD TECH:        Ethan Mercer (Lead Tier 1 Specialist)
 SUPERVISING LEAD: Jules Brooks (Help Desk Lead)
 NETWORK ENGINEER: Jared Vance (Senior Network Operations Engineer)
-IMPACTED SUBNETS: VLAN 10 (Water Billing), VLAN 20 (Telemetry), VLAN 30 (VoIP)
+IMPACTED SUBNETS: VLAN 10 (Order Desk), VLAN 20 (Telemetry), VLAN 30 (VoIP)
 OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
 ================================================================================
 
@@ -540,14 +540,14 @@ OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
    eight inches of floodwater due to stormwater backflow. A concurrent electrical 
    transformer arc triggered a generator transfer surge that destroyed two lower-tier 
    24-port edge switches. Building C lost all network connectivity, cutting off 
-   East Portland Water Billing, logistics dispatch, and plant SCADA telemetry loggers.
+   the Rivergate order desk, field-service dispatch, and plant SCADA telemetry loggers.
    
    IT field crews mobilized at 04:00 PST. Over a 4-hour maintenance window, crews 
    condemned damaged hardware, racked two replacement Cisco 2960-X 48-port switches 
    in the upper rack tier, sanitized damp patch panel connections, provisioned 
    802.1Q VLAN trunking and LACP link aggregation, and mitigated a 150-endpoint DHCP 
    scope exhaustion storm following commercial power restoration. Full operational 
-   restoration was achieved at 07:50 PST, allowing normal 08:00 municipal opening.
+   restoration was achieved at 07:50 PST, allowing the normal 08:00 opening.
 
 2. CHRONOLOGICAL INCIDENT TIMELINE:
    - 03:15 PST: River storm floodwater breaches vault; utility power cut; generator starts.
@@ -566,7 +566,7 @@ OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
    - 07:35 PST: DHCP scope reconciled; 84 stale leases cleared; lease reduced to 8 hours.
    - 07:45 PST: Clients execute 'ipconfig /renew'; valid 10.20.10.x addresses bound.
    - 07:50 PST: Layer 1-4 end-to-end verification completed; SCADA telemetry confirmed green.
-   - 08:00 PST: Public doors open; municipal staff report zero network downtime.
+   - 08:00 PST: Parts counter opens; Rivergate staff report zero network downtime.
 
 3. ROOT CAUSE ANALYSIS (RCA):
    - Primary Physical Cause (Layer 1): Stormwater backflow through sub-basement floor drains 
@@ -574,7 +574,7 @@ OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
      threshold of legacy surge protectors on lower rack units.
    - Primary Logical Cause (Layer 3): Legacy DHCP scope configuration for VLAN 10 utilized an 
      excessive lease duration of 8 days (192 hours). Over 175 offline leases were locked in 
-     the server database. When 150 municipal devices booted simultaneously upon power 
+     the server database. When 150 company devices booted simultaneously upon power 
      restoration, the remaining 26 dynamic leases were exhausted in 60 seconds, forcing 
      subsequent clients into APIPA autoconfiguration failure.
 
@@ -601,7 +601,7 @@ OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
    2. Electrical / Power: Install online double-conversion uninterruptible power supply (UPS) 
       units on all telecommunications racks to isolate sensitive network silicon from 
       generator transfer spikes.
-   3. Network Engineering: Audit all municipal DHCP scopes across the campus; standardize all 
+   3. Network Engineering: Audit all DHCP scopes across the campus; standardize all 
       user access subnets to 8-hour lease durations and deploy DHCP Snooping across all edge switches.
 ================================================================================
 ```
@@ -630,7 +630,7 @@ pie title Midpoint Capstone Competency Evaluation Weighting
 | **2. Layer 2 Segmentation & Redundancy** | • Accurately provisions VLANs 10, 20, 30, and native management VLAN 99.<br>• Configures 802.1Q trunk encapsulation and explicitly restricts allowed VLANs.<br>• Bundles redundant physical fiber interfaces into active LACP (802.3ad) Port-Channel.<br>• Verifies Spanning Tree Protocol (RSTP) root bridge path cost and confirms zero blocked ports or native VLAN mismatch syslog alerts. | *Jared Vance:* "Port-Channel 1 came up clean at 2 Gbps. Ethan remembered to set native VLAN 99 on both sides of the trunk, preventing spanning tree root inconsistency." | **PASSED** |
 | **3. Layer 3 Addressing & Stampede Mitigation** | • Rapidly diagnoses APIPA link-local (`169.254.x.x`) failure mode under high-volume reconnect conditions.<br>• Calculates dynamic scope utilization and recognizes mathematical lease exhaustion.<br>• Executes non-destructive PowerShell reconciliation: exports lease table, purges inactive entries, shortens lease duration to 8 hours, and expands allocation boundaries.<br>• Verifies client DORA renegotiation and confirms default gateway reachability (`<1ms`). | *Jules Brooks:* "When 150 machines hit the wire at 07:15, Ethan did not blame the fiber link. He opened the DHCP console, read the counters, and cut the 8-day lease anchor in five minutes." | **PASSED** |
 | **4. Binary Search Methodology ("Call Your Shot")** | • Refuses to guess or execute trial-and-error commands under crisis conditions.<br>• Follows the 6-step troubleshooting methodology: isolates problem to specific OSI layer, forms testable hypothesis, predicts output, executes isolated command, and measures delta.<br>• Successfully solves all 5 "Call Your Shot" prediction cases without destroying volatile evidence. | *Jules Brooks:* "He committed his predictions before typing. That is the exact discipline that separates an engineer from someone who just mashes keys hoping for a miracle." | **PASSED** |
-| **5. Post-Incident Documentation & Passdown** | • Produces comprehensive, audit-ready SEV-1 Incident Post-Mortem.<br>• Captures detailed chronological timeline, observable metrics, precise root cause analysis, specific remediation actions, and preventative architectural recommendations.<br>• Communicates effectively across operations, facilities, and network engineering. | *Jules Brooks:* "This incident post-mortem is clean enough to hand straight to the department director and city auditor. Flawless work." | **PASSED** |
+| **5. Post-Incident Documentation & Passdown** | • Produces comprehensive, audit-ready SEV-1 Incident Post-Mortem.<br>• Captures detailed chronological timeline, observable metrics, precise root cause analysis, specific remediation actions, and preventative architectural recommendations.<br>• Communicates effectively across operations, facilities, and network engineering. | *Jules Brooks:* "This incident post-mortem is clean enough to hand straight to the regional director and internal audit. Flawless work." | **PASSED** |
 
 
 ---
@@ -690,13 +690,13 @@ I opened four simultaneous terminal sessions on my laptop and executed our stand
 1. **Layer 1 (Physical):** Link status on both fiber transceivers and all forty-eight copper ports showed full-duplex operation at one gigabit per second, with zero CRC alignment errors on the counter registers.
 2. **Layer 2 (Data Link):** The LACP bundle showed both physical member links active in Port-Channel 1. Rapid Spanning Tree Protocol confirmed zero topology changes or blocked ports across all three active virtual networks.
 3. **Layer 3 (Network):** Default gateway pings to `10.20.10.1` (Billing), `10.20.20.1` (Telemetry), and `10.20.30.1` (VoIP) responded with consistent sub-millisecond round-trip times.
-4. **Layer 4 and Application:** Telemetry loggers on VLAN 20 successfully delivered Modbus sensor packets to the central SCADA database. VoIP phones on VLAN 30 registered with the call manager, and water billing terminals on VLAN 10 completed test database queries without packet loss.
+4. **Layer 4 and Application:** Telemetry loggers on VLAN 20 successfully delivered Modbus sensor packets to the central SCADA database. VoIP phones on VLAN 30 registered with the call manager, and order desk terminals on VLAN 10 completed test database queries without packet loss.
 
 I closed my active terminal windows and reported that all three network segments were fully operational. The trunk was balanced, the DHCP pool had ninety free leases remaining, and the plant telemetry stream had been stable for twenty minutes.
 
 Jared latched his toolcase and slung his cable harness over his shoulder with a weary grin. "Not bad for four hours in rubber boots, kid. You handled that DHCP pool storm faster than our third-shift network admin did last winter."
 
-Outside the high basement windows, the rain had finally tapered off to a gentle Pacific Northwest drizzle. The dark storm clouds were breaking over the Willamette River. Pale winter morning light reflected across the wet asphalt of the loading bay. Upstairs, the faint chime of the municipal elevator signaled the arrival of the morning staff as the eight o'clock bell rang out across the campus.
+Outside the high basement windows, the rain had finally tapered off to a gentle Pacific Northwest drizzle. The dark storm clouds were breaking over the Willamette River. Pale winter morning light reflected across the wet asphalt of the loading bay. Upstairs, the faint chime of the freight elevator signaled the arrival of the morning staff as the eight o'clock bell rang out across the campus.
 
 Jules switched off her halogen lantern and hooked her bicycle helmet to her pack. "You did not panic when the scope exhausted, Ethan," she said, looking at me with a quiet nod of approval. "You followed the protocol stack from the wet concrete up to the transport layer, and you committed your decisions before you typed them. That is the difference between guessing in the dark and doing the work."
 

@@ -2,7 +2,7 @@
   {
     "ticket_id": "INC-2026-1041",
     "requester_name": "Jared Vance",
-    "requester_email": "jvance@portland-ops.local",
+    "requester_email": "jvance@harrowmere.local",
     "department": "Network Operations",
     "priority": "P3 - Medium",
     "urgency": "Medium",
@@ -23,7 +23,7 @@
   {
     "ticket_id": "INC-2026-1042",
     "requester_name": "Maya Lin",
-    "requester_email": "mlin@portland-ops.local",
+    "requester_email": "mlin@harrowmere.local",
     "department": "Accounting",
     "priority": "P2 - High",
     "urgency": "High",
@@ -65,7 +65,7 @@
   {
     "ticket_id": "INC-2026-1044",
     "requester_name": "Sam Kelly",
-    "requester_email": "skelly.contractor@portland-ops.local",
+    "requester_email": "skelly.contractor@harrowmere.local",
     "department": "Finance (Contractor)",
     "priority": "P2 - High",
     "urgency": "High",
@@ -86,7 +86,7 @@
   {
     "ticket_id": "INC-2026-1045",
     "requester_name": "Lena Chen",
-    "requester_email": "lchen@portland-ops.local",
+    "requester_email": "lchen@harrowmere.local",
     "department": "Legal",
     "priority": "P2 - High",
     "urgency": "High",
@@ -107,7 +107,7 @@
   {
     "ticket_id": "INC-2026-1046",
     "requester_name": "Dee Washington",
-    "requester_email": "dwashington@portland-ops.local",
+    "requester_email": "dwashington@harrowmere.local",
     "department": "Network Operations",
     "priority": "P3 - Medium",
     "urgency": "Low",
@@ -128,7 +128,7 @@
   {
     "ticket_id": "INC-2026-1047",
     "requester_name": "Marco Reyes",
-    "requester_email": "mreyes@portland-ops.local",
+    "requester_email": "mreyes@harrowmere.local",
     "department": "Field Engineering",
     "priority": "P3 - Medium",
     "urgency": "Low",
@@ -149,7 +149,7 @@
   {
     "ticket_id": "INC-2026-1048",
     "requester_name": "Owen Miller",
-    "requester_email": "omiller@portland-ops.local",
+    "requester_email": "omiller@harrowmere.local",
     "department": "Facilities Maintenance",
     "priority": "P3 - Medium",
     "urgency": "High",
@@ -170,7 +170,7 @@
   {
     "ticket_id": "INC-2026-1049",
     "requester_name": "Leah Moreno",
-    "requester_email": "lmoreno@portland-ops.local",
+    "requester_email": "lmoreno@harrowmere.local",
     "department": "Portland Plant Operations",
     "priority": "P2 - High",
     "urgency": "High",
@@ -191,7 +191,7 @@
   {
     "ticket_id": "INC-2026-1050",
     "requester_name": "Carlos Gomez",
-    "requester_email": "cgomez@portland-ops.local",
+    "requester_email": "cgomez@harrowmere.local",
     "department": "Warehouse / Shipping",
     "priority": "P2 - High",
     "urgency": "High",
@@ -212,7 +212,7 @@
   {
     "ticket_id": "INC-2026-1051",
     "requester_name": "Rachel Adams",
-    "requester_email": "radams@portland-ops.local",
+    "requester_email": "radams@harrowmere.local",
     "department": "Executive Office",
     "priority": "P1 - Critical",
     "urgency": "High",
@@ -233,7 +233,7 @@
   {
     "ticket_id": "INC-2026-1052",
     "requester_name": "David Kim",
-    "requester_email": "dkim@portland-ops.local",
+    "requester_email": "dkim@harrowmere.local",
     "department": "Marketing",
     "priority": "P2 - High",
     "urgency": "High",
@@ -254,7 +254,7 @@
   {
     "ticket_id": "INC-2026-1053",
     "requester_name": "Sarah Jenkins",
-    "requester_email": "sjenkins@portland-ops.local",
+    "requester_email": "sjenkins@harrowmere.local",
     "department": "Lobby Reception",
     "priority": "P1 - Critical",
     "urgency": "High",
@@ -275,7 +275,7 @@
   {
     "ticket_id": "INC-2026-1054",
     "requester_name": "Tom Bradley",
-    "requester_email": "tbradley@portland-ops.local",
+    "requester_email": "tbradley@harrowmere.local",
     "department": "Procurement",
     "priority": "P2 - High",
     "urgency": "High",

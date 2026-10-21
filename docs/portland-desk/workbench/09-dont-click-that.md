@@ -72,21 +72,21 @@ sequenceDiagram
 
     Note over Sender,Gateway: RFC 5321 SMTP Envelope Layer (Transport)
     Sender->>Gateway: HELO out-relay04.fake-bulletin-mailer.net
-    Sender->>Gateway: MAIL FROM: <transition-exec@port1and-ops.com>
-    Sender->>Gateway: RCPT TO: <nora.vasquez@portland-ops.gov>
+    Sender->>Gateway: MAIL FROM: <transition-exec@harrowrnere.com>
+    Sender->>Gateway: RCPT TO: <nora.vasquez@harrowmere.com>
     Sender->>Gateway: DATA
 
     Note over Sender,Gateway: RFC 5322 Message Header Layer (Display & Payload)
     Sender->>Gateway: Received: from out-relay04... by mail-gateway02...
-    Sender->>Gateway: From: "Maya Lin (CEO)" <mlin@port1and-ops.com>
+    Sender->>Gateway: From: "Maya Lin (CEO)" <mlin@harrowrnere.com>
     Sender->>Gateway: Reply-To: <maya.lin.executive78@gmail.com>
-    Sender->>Gateway: To: nora.vasquez@portland-ops.gov
+    Sender->>Gateway: To: nora.vasquez@harrowmere.com
     Sender->>Gateway: Subject: URGENT: Off-cycle payroll direct deposit account update
     Sender->>Gateway: [MIME Message Body + Malware Attachment: VoidedCheck.pdf.exe]
     Sender->>Gateway: . (CRLF.CRLF)
 
     Gateway-->>Recipient: Delivers message to mailbox
-    Note over Recipient: User sees ONLY: "Maya Lin (CEO)" <mlin@port1and-ops.com><br/>The envelope sender and hop headers are hidden!
+    Note over Recipient: User sees ONLY: "Maya Lin (CEO)" <mlin@harrowrnere.com><br/>The envelope sender and hop headers are hidden!
 ```
 
 * **RFC 5321 Envelope (`MAIL FROM` / `Return-Path`):** Used by mail transfer agents (MTAs) for routing and non-delivery reports (bounces). This is the identity evaluated by basic **SPF**.
@@ -125,7 +125,7 @@ flowchart TD
 * **What it does:** Publishes an authorized list of IP addresses, CIDR subnets, and hostnames permitted to send mail on behalf of a specific domain in a DNS TXT record.
 * **Standard DNS TXT Record:**
   ```text
-  portland-ops.gov.  IN  TXT  "v=spf1 ip4:198.51.100.0/24 include:_spf.google.com -all"
+  harrowmere.com.  IN  TXT  "v=spf1 ip4:198.51.100.0/24 include:_spf.google.com -all"
   ```
 * **Mechanism & Qualifiers:**
   * `+all` (Pass): Anyone can send (dangerous; insecure).
@@ -143,13 +143,13 @@ flowchart TD
   3. The receiving MTA extracts the domain (`d=`) and selector (`s=`) from the header, queries DNS for `<selector>._domainkey.<domain>`, retrieves the sender's **public key**, and verifies the signature.
 * **Example DKIM Header:**
   ```text
-  DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=portland-ops.gov;
+  DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=harrowmere.com;
     s=selector1; t=1697897414;
     bh=9zE8x+W9kY5K1G0fC+6v3u2H1q0=;
     h=From:To:Subject:Date:Message-ID;
     b=X9eF3k...[RSA-2048-SIGNATURE]...
   ```
-* **Limitation:** DKIM proves that the message was not modified in transit and that the signing domain owns the cryptographic key. However, DKIM does **not** require the signing domain (`d=attacker.com`) to match the visible `From:` address (`From: ceo@portland-ops.gov`).
+* **Limitation:** DKIM proves that the message was not modified in transit and that the signing domain owns the cryptographic key. However, DKIM does **not** require the signing domain (`d=attacker.com`) to match the visible `From:` address (`From: ceo@harrowmere.com`).
 
 #### 3. DMARC (Domain-based Message Authentication, Reporting, and Conformance — RFC 7489)
 * **What it does:** Binds SPF and DKIM to the RFC 5322 `From:` header via **Identifier Alignment**, instructs receiving gateways how to handle authentication failures, and generates diagnostic XML reports (`rua`/`ruf`).
@@ -159,7 +159,7 @@ flowchart TD
   * **DKIM Alignment:** The domain in the `d=` tag of a valid DKIM signature must match the domain in the visible RFC 5322 `From:` header.
 * **Standard DNS TXT Record:**
   ```text
-  _dmarc.portland-ops.gov.  IN  TXT  "v=DMARC1; p=reject; sp=reject; pct=100; rua=mailto:dmarc-rua@portland-ops.gov; aspf=r; adkim=r"
+  _dmarc.harrowmere.com.  IN  TXT  "v=DMARC1; p=reject; sp=reject; pct=100; rua=mailto:dmarc-rua@harrowmere.com; aspf=r; adkim=r"
   ```
 * **Policy Parameters (`p=`):**
   * `p=none`: Monitor mode. Delivers mail normally; collects telemetry reports.
@@ -197,8 +197,8 @@ mindmap
       Scarcity ("Limited spots / funds")
       Confidentiality ("Keep between us")
     Domain & Identity Deception
-      Typosquatting ("port1and-ops.com")
-      Lookalike Domains ("portland-ops-payroll.com")
+      Typosquatting ("harrowrnere.com")
+      Lookalike Domains ("harrowmere-payroll.com")
       Punycode Homographs ("xn--...")
       Display Name Spoofing
     Header Anomalies
@@ -214,15 +214,15 @@ mindmap
 ```
 
 1. **Domain Squatting & Typosquatting:**
-   * **Character Substitution:** Replacing letters with visually similar numbers or symbols (e.g., `port1and-ops.com` substituting digit `1` for lowercase `l`, or `micros0ft.com`).
-   * **Combosquatting:** Appending legitimate brand names with operational terms (e.g., `portland-ops-payroll.com`, `login-microsoft-verify.com`).
-   * **TLD Swapping:** Switching domain extensions (e.g., registering `.com`, `.net`, or `.co` when the organization operates on `.gov`).
-   * **Transposition:** Inverting adjacent letters (e.g., `protland-ops.gov`).
+   * **Character Substitution:** Replacing letters with visually similar numbers or symbols (e.g., `harrowrnere.com` substituting the letters `rn` for `m`, or `micros0ft.com`).
+   * **Combosquatting:** Appending legitimate brand names with operational terms (e.g., `harrowmere-payroll.com`, `login-microsoft-verify.com`).
+   * **TLD Swapping:** Switching domain extensions (e.g., registering `.com`, `.net`, or `.co` when the organization operates on `.com`).
+   * **Transposition:** Inverting adjacent letters (e.g., `harrowmeer.com`).
 2. **Punycode & IDN Homograph Attacks:**
    * Attackers exploit the Internationalized Domain Name (IDN) standard by registering domains using Cyrillic, Greek, or Latin lookalike characters.
-   * A browser or mail client translates Unicode into ASCII via the **Punycode** standard (prefixed with `xn--`). For example, the Cyrillic small letter "о" (U+043E) looks identical to Latin "o" (U+006F), but resolves to `xn--prtland-ops-n8a.com`.
+   * A browser or mail client translates Unicode into ASCII via the **Punycode** standard (prefixed with `xn--`). For example, the Cyrillic small letter "о" (U+043E) looks identical to Latin "o" (U+006F), but resolves to `xn--harrwmere-32h.com`.
 3. **Reply-To Discrepancy:**
-   * The visible `From:` address displays a legitimate internal executive (`mlin@portland-ops.gov`), but the hidden `Reply-To:` header points to an external, attacker-controlled inbox (`maya.lin.executive78@gmail.com`). When the victim clicks "Reply," their client quietly addresses the attacker.
+   * The visible `From:` address displays a legitimate internal executive (`mlin@harrowmere.com`), but the hidden `Reply-To:` header points to an external, attacker-controlled inbox (`maya.lin.executive78@gmail.com`). When the victim clicks "Reply," their client quietly addresses the attacker.
 4. **Malicious Attachments & Container Smuggling:**
    * **Double Extensions:** Exploiting default Windows file explorer settings that hide known extensions (e.g., `VoidedCheck.pdf.exe`).
    * **Container Archives:** Delivering `.iso`, `.vhd`, `.zip`, or `.img` files to evade email gateway static inspection and bypass Windows Mark of the Web (MOTW) security controls.
@@ -238,24 +238,24 @@ mindmap
 Nora Vasquez in Finance forwarded the suspicious email headers from ticket **`INC-2026-1051`** ([`artifacts/eml_samples/sample_spoofed_ceo_payroll.eml`](../artifacts/eml_samples/sample_spoofed_ceo_payroll.eml)):
 
 ```email
-Delivered-To: nora.vasquez@portland-ops.gov
-Received: from mail-gateway02.portland-ops.gov (mail-gateway02.portland-ops.gov [198.51.100.25])
-	by imap-internal.portland-ops.gov (Postfix) with ESMTPS id 4Y7kL901zZz982b
-	for <nora.vasquez@portland-ops.gov>; Wed, 21 Oct 2026 08:12:14 -0700
+Delivered-To: nora.vasquez@harrowmere.com
+Received: from mail-gateway02.harrowmere.com (mail-gateway02.harrowmere.com [198.51.100.25])
+	by imap-internal.harrowmere.com (Postfix) with ESMTPS id 4Y7kL901zZz982b
+	for <nora.vasquez@harrowmere.com>; Wed, 21 Oct 2026 08:12:14 -0700
 Received: from out-relay04.fake-bulletin-mailer.net (out-relay04.fake-bulletin-mailer.net [185.220.101.42])
-	by mail-gateway02.portland-ops.gov (CipherMail) with ESMTP id 8F21A3011C
-	for <nora.vasquez@portland-ops.gov>; Wed, 21 Oct 2026 08:12:12 -0700
-Authentication-Results: mail-gateway02.portland-ops.gov;
-	dkim=fail reason="signature missing or invalid" header.i=@port1and-ops.com;
-	spf=softfail (mail-gateway02.portland-ops.gov: domain of transition-exec@port1and-ops.com does not designate 185.220.101.42 as permitted sender) smtp.mailfrom=transition-exec@port1and-ops.com;
-	dmarc=fail (p=quarantine dis=quarantine) header.from=port1and-ops.com
-Received-SPF: softfail (mail-gateway02.portland-ops.gov: domain of transition-exec@port1and-ops.com does not designate 185.220.101.42 as permitted sender) client-ip=185.220.101.42;
-From: "Maya Lin (CEO)" <mlin@port1and-ops.com>
+	by mail-gateway02.harrowmere.com (CipherMail) with ESMTP id 8F21A3011C
+	for <nora.vasquez@harrowmere.com>; Wed, 21 Oct 2026 08:12:12 -0700
+Authentication-Results: mail-gateway02.harrowmere.com;
+	dkim=fail reason="signature missing or invalid" header.i=@harrowrnere.com;
+	spf=softfail (mail-gateway02.harrowmere.com: domain of transition-exec@harrowrnere.com does not designate 185.220.101.42 as permitted sender) smtp.mailfrom=transition-exec@harrowrnere.com;
+	dmarc=fail (p=quarantine dis=quarantine) header.from=harrowrnere.com
+Received-SPF: softfail (mail-gateway02.harrowmere.com: domain of transition-exec@harrowrnere.com does not designate 185.220.101.42 as permitted sender) client-ip=185.220.101.42;
+From: "Maya Lin (CEO)" <mlin@harrowrnere.com>
 Reply-To: "Maya Lin (Personal Mobile)" <maya.lin.executive78@gmail.com>
-To: nora.vasquez@portland-ops.gov
+To: nora.vasquez@harrowmere.com
 Subject: URGENT: Off-cycle payroll direct deposit account update - Confidential
 Date: Wed, 21 Oct 2026 08:11:45 -0700
-Message-ID: <20261021081145.42918.transition-exec@port1and-ops.com>
+Message-ID: <20261021081145.42918.transition-exec@harrowrnere.com>
 X-Mailer: WebMail / PHP-Mailer v6.8.0
 Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 ```
@@ -271,14 +271,14 @@ Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 <summary>Drill 1 Forensic Findings & Lead Review</summary>
 
 * **Hop Analysis (Read Bottom to Top):**
-  1. **Hop 1 (Origin):** Server `out-relay04.fake-bulletin-mailer.net` at IP `185.220.101.42` connected to Portland's perimeter mail gateway (`mail-gateway02.portland-ops.gov`) at 08:12:12. This is the untrusted external entry point.
-  2. **Hop 2 (Internal Relay):** `mail-gateway02.portland-ops.gov` (`198.51.100.25`) relayed the message internally to `imap-internal.portland-ops.gov` at 08:12:14.
+  1. **Hop 1 (Origin):** Server `out-relay04.fake-bulletin-mailer.net` at IP `185.220.101.42` connected to Harrowmere's perimeter mail gateway (`mail-gateway02.harrowmere.com`) at 08:12:12. This is the untrusted external entry point.
+  2. **Hop 2 (Internal Relay):** `mail-gateway02.harrowmere.com` (`198.51.100.25`) relayed the message internally to `imap-internal.harrowmere.com` at 08:12:14.
 * **SPF Failure:**
-  The RFC 5321 envelope sender was `transition-exec@port1and-ops.com`. The gateway queried DNS for the SPF record of `port1and-ops.com`. That SPF record did not authorize IP `185.220.101.42`, resulting in `spf=softfail`.
+  The RFC 5321 envelope sender was `transition-exec@harrowrnere.com`. The gateway queried DNS for the SPF record of `harrowrnere.com`. That SPF record did not authorize IP `185.220.101.42`, resulting in `spf=softfail`.
 * **Domain Squatting / Typosquatting:**
-  The `From:` address is `<mlin@port1and-ops.com>`. Notice the digit **`1`** (one) replacing the lowercase letter **`l`** in `portland`. Furthermore, Portland Municipal Utilities operates under the top-level domain **`.gov`**, whereas the attacker registered a **`.com`** domain.
+  The `From:` address is `<mlin@harrowrnere.com>`. Notice the two letters **`rn`** standing in for the letter **`m`** in `harrowmere`. The attacker kept the same **`.com`** top-level domain, so the swap only shows if you read the name letter by letter.
 * **Reply-To Hijack:**
-  The `Reply-To:` header is set to `maya.lin.executive78@gmail.com`. Even if Nora did not notice the typosquatted `.com` address, any reply sent from her client would route directly to an attacker-controlled Gmail account.
+  The `Reply-To:` header is set to `maya.lin.executive78@gmail.com`. Even if Nora did not notice the typosquatted address, any reply sent from her client would route directly to an attacker-controlled Gmail account.
 * **Malicious Executable Dropper:**
   The attachment uses a **double extension** (`.pdf.exe`). On Windows systems with default explorer settings ("Hide extensions for known file types"), the `.exe` extension is hidden, displaying only `MayaLin_VoidedCheck_RoutingUpdate.pdf` with a PDF document icon. Opening this file executes binary shellcode (trojan/stealer) rather than displaying a document.
 </details>
@@ -288,31 +288,31 @@ Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 
 ### Drill 2: Domain Squatting & Typosquatting Recognition
 
-Examine the suspect domain names below and classify the deceptive technique employed against Portland's legitimate domain (`portland-ops.gov`):
+Examine the suspect domain names below and classify the deceptive technique employed against Harrowmere's legitimate domain (`harrowmere.com`):
 
 | # | Suspect Candidate Domain | Deceptive Technique | Forensic Detection Method |
 | :--- | :--- | :--- | :--- |
-| **1** | `port1and-ops.com` | **Character Substitution (Typosquatting)** | Digit `1` replaces letter `l`; commercial `.com` TLD replaces government `.gov`. |
-| **2** | `xn--prtland-ops-n8a.com` (`pоrtland-ops.com`) | **IDN Homograph / Punycode Attack** | Cyrillic small letter `о` (U+043E) substituted for Latin `o` (U+006F). Browser resolves Punycode `xn--`. |
-| **3** | `portland-ops-payroll.com` | **Combosquatting (Keyword Insertion)** | Appending legitimate brand name with trusted departmental keyword (`-payroll`). |
-| **4** | `portland-ops.co` | **TLD Swapping / Omission** | Dropping the trailing letter of a commercial TLD (`.com` $\rightarrow$ `.co`) or swapping `.gov` for `.co`. |
-| **5** | `protland-ops.gov` | **Transposition** | Inverting adjacent characters (`or` $\rightarrow$ `ro`), taking advantage of fast human reading habits. |
-| **6** | `portland-ops.gov.attacker-auth.net` | **Subdomain Prepending** | Creating a third-level subdomain containing the target entity's full domain name on an attacker-owned root. |
+| **1** | `harrowrnere.com` | **Character Substitution (Typosquatting)** | Letters `rn` stand in for `m`; same `.com` TLD, so only a letter-by-letter read catches it. |
+| **2** | `xn--harrwmere-32h.com` (`harrоwmere.com`) | **IDN Homograph / Punycode Attack** | Cyrillic small letter `о` (U+043E) substituted for Latin `o` (U+006F). Browser resolves Punycode `xn--`. |
+| **3** | `harrowmere-payroll.com` | **Combosquatting (Keyword Insertion)** | Appending legitimate brand name with trusted departmental keyword (`-payroll`). |
+| **4** | `harrowmere.co` | **TLD Swapping / Omission** | Dropping the trailing letter of a commercial TLD (`.com` $\rightarrow$ `.co`). |
+| **5** | `harrowmeer.com` | **Transposition** | Inverting adjacent characters (`er` $\rightarrow$ `re`), taking advantage of fast human reading habits. |
+| **6** | `harrowmere.com.attacker-auth.net` | **Subdomain Prepending** | Creating a third-level subdomain containing the target entity's full domain name on an attacker-owned root. |
 
 #### Micro-Drill Challenge
 Evaluate the following four URLs received in user tickets. Identify which are malicious and specify the indicator:
 1. `https://login.microsoftonline.com/common/oauth2/authorize`
-2. `https://login-micros0ft-secure.ru/auth/login.php?user=maya.lin@portland-ops.gov`
-3. `https://portland-ops.gov.identity-verify.org/portal/reset`
-4. `https://adp.workday.portland-ops.gov/payroll/`
+2. `https://login-micros0ft-secure.ru/auth/login.php?user=maya.lin@harrowmere.com`
+3. `https://harrowmere.com.identity-verify.org/portal/reset`
+4. `https://adp.workday.harrowmere.com/payroll/`
 
 <details>
 <summary>Solution & Lead Technique Breakdown</summary>
 
 1. **Legitimate:** Official Microsoft 365 OAuth 2.0 authorization endpoint under apex domain `microsoftonline.com`.
 2. **Malicious (Credential Harvesting Phish):** Typosquatting (numeral `0` for letter `o`), brand impersonation, and untrusted foreign country-code top-level domain (`.ru`).
-3. **Malicious (Subdomain Prepending):** The root domain is `identity-verify.org`. The string `portland-ops.gov` is merely a deceptive subdomain designed to fool users who read left-to-right without identifying the effective top-level domain (eTLD+1).
-4. **Legitimate:** An internal subdomain (`adp.workday`) residing securely under Portland's genuine organizational domain `portland-ops.gov`.
+3. **Malicious (Subdomain Prepending):** The root domain is `identity-verify.org`. The string `harrowmere.com` is merely a deceptive subdomain designed to fool users who read left-to-right without identifying the effective top-level domain (eTLD+1).
+4. **Legitimate:** An internal subdomain (`adp.workday`) residing securely under Harrowmere's genuine organizational domain `harrowmere.com`.
 </details>
 
 
@@ -337,22 +337,22 @@ objectives:
     trigger: "findstr /i "Received: from" invoice.eml"
   - id: "obj-quarantine"
     label: "Execute mail gateway rule to quarantine lookalike sender"
-    trigger: "quarantine-sender --domain port1and-ops.com"
+    trigger: "quarantine-sender --domain harrowrnere.com"
 ---
 findstr /i "Received-SPF Authentication-Results" invoice.eml: |
-  Received-SPF: Fail (protection.outlook.com: domain of port1and-ops.com does not designate 198.51.100.77 as permitted sender)
-  Authentication-Results: spf=fail (sender IP is 198.51.100.77); dkim=none; dmarc=fail action=none header.from=port1and-ops.com
-  [ALERT] SPF/DMARC hard failure. Sender domain is typosquatted (numeral 1 substituted for letter l).
+  Received-SPF: Fail (protection.outlook.com: domain of harrowrnere.com does not designate 198.51.100.77 as permitted sender)
+  Authentication-Results: spf=fail (sender IP is 198.51.100.77); dkim=none; dmarc=fail action=none header.from=harrowrnere.com
+  [ALERT] SPF/DMARC hard failure. Sender domain is typosquatted (letters rn substituted for letter m).
 
 findstr /i "Received: from" invoice.eml: |
   Received: from mail-relay.suspicious-host.net (198.51.100.77)
   Received: from client-smtp-relay (192.0.2.14)
   Originating IP: 198.51.100.77 (Bucharest, Romania)
-  Target: nora.finance@portland-ops.gov
+  Target: nora.finance@harrowmere.com
   Subject: URGENT: Wire Transfer Routing Change
 
-quarantine-sender --domain port1and-ops.com: |
-  Rule created: Block and quarantine all incoming mail from '@port1and-ops.com'.
+quarantine-sender --domain harrowrnere.com: |
+  Rule created: Block and quarantine all incoming mail from '@harrowrnere.com'.
   Mailbox purge executed: 1 malicious phishing message moved to Junk/Quarantine.
   [OK] Phishing threat contained before wire transfer executed.
 
@@ -380,7 +380,7 @@ quarantine-sender --domain port1and-ops.com: |
 
 #### Case 1: Nora Vasquez (Finance) — `INC-2026-1051`
 * **Incoming Message:** "Urgent direct deposit bank update for CEO Maya Lin before 10:00 AM payroll cutoff."
-* **Header Metadata:** `From: "Maya Lin" <mlin@port1and-ops.com>`, `Return-Path: <transition-exec@port1and-ops.com>`, `Reply-To: <maya.lin.executive78@gmail.com>`. Attachment: `MayaLin_VoidedCheck_RoutingUpdate.pdf.exe`.
+* **Header Metadata:** `From: "Maya Lin" <mlin@harrowrnere.com>`, `Return-Path: <transition-exec@harrowrnere.com>`, `Reply-To: <maya.lin.executive78@gmail.com>`. Attachment: `MayaLin_VoidedCheck_RoutingUpdate.pdf.exe`.
 * **Your Triage Action:** [ Allow / Quarantine / Drop / Escalate ]
 * **Authentication Status:** SPF, DKIM, DMARC?
 * **Security Rationale:**
@@ -390,7 +390,7 @@ quarantine-sender --domain port1and-ops.com: |
 
 * **Action:** **DROP & ESCALATE IMMEDIATELY** to Tier 2 Security / SOC.
 * **Authentication Status:** SPF SoftFail, DKIM Fail (unaligned), DMARC Fail (`p=quarantine`).
-* **Rationale:** Classic **Business Email Compromise (BEC)** / **Whaling** attack employing an executive impersonation pretext, typosquatted domain (`port1and-ops.com`), Reply-To discrepancy, and a malicious Win32 PE binary payload disguised as a PDF document. Instruct Nora via phone/in-person to make no payroll changes. Submit attachment hash to EDR blocklist.
+* **Rationale:** Classic **Business Email Compromise (BEC)** / **Whaling** attack employing an executive impersonation pretext, typosquatted domain (`harrowrnere.com`), Reply-To discrepancy, and a malicious Win32 PE binary payload disguised as a PDF document. Instruct Nora via phone/in-person to make no payroll changes. Submit attachment hash to EDR blocklist.
 </details>
 
 
@@ -508,8 +508,8 @@ Status:           RESOLVED / ESCALATED TO SOC
    traveling offsite with no voice telephone reception.
 
 2. FORENSIC HEADER & ARTIFACT TRIAGE:
-   - Header From:          "Maya Lin (CEO)" <mlin@port1and-ops.com>
-   - Envelope Sender:      transition-exec@port1and-ops.com
+   - Header From:          "Maya Lin (CEO)" <mlin@harrowrnere.com>
+   - Envelope Sender:      transition-exec@harrowrnere.com
    - Originating IP / ASN: 185.220.101.42 (AS44194 - Bulletproof VPS Hosting)
    - Reply-To Discrepancy: maya.lin.executive78@gmail.com
    - Authentication:       SPF: SoftFail | DKIM: Fail (Unsigned) | DMARC: Fail
@@ -522,7 +522,7 @@ Status:           RESOLVED / ESCALATED TO SOC
    - Verified that user DID NOT execute attachment or enter bank data into ADP.
    - Performed out-of-band voice contact with executive assistant to confirm 
      genuine CEO Maya Lin did not author message.
-   - Blocked originating IP (185.220.101.42) and domain (port1and-ops.com) at 
+   - Blocked originating IP (185.220.101.42) and domain (harrowrnere.com) at 
      perimeter mail gateway.
 
 4. USER GUIDANCE & CLOSING:
@@ -542,7 +542,7 @@ Incident Tracking: SEC-PHISH-2026-1021
 Related Ticket:    INC-2026-1051
 Reporter:          Ethan Mercer (Tier 1 Support)
 Lead Endorsement:  Jules Brooks (Desk Lead)
-Target Unit:       Portland Municipal Utilities & Operations (portland-ops.gov)
+Target Unit:       Harrowmere Equipment Group (harrowmere.com)
 Threat Actor TTP:  MITRE ATT&CK T1566.001 (Spearphishing Attachment), 
                    T1566.002 (Spearphishing Link), T1656 (Impersonation)
 Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
@@ -550,29 +550,29 @@ Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
 1. EXECUTIVE SUMMARY:
    A targeted Business Email Compromise (BEC) and spear-phishing campaign was 
    intercepted targeting Finance personnel. The threat actor impersonated CEO 
-   Maya Lin utilizing a lookalike typosquatted domain (port1and-ops.com) to request 
+   Maya Lin utilizing a lookalike typosquatted domain (harrowrnere.com) to request 
    unauthorized payroll routing modifications and deliver a double-extension 
    malware dropper (Win32 PE executable).
 
 2. INDICATORS OF COMPROMISE (IOCs):
-   - Malicious Domains:    port1and-ops.com (Typosquat - digit 1 for letter l)
+   - Malicious Domains:    harrowrnere.com (Typosquat - letters rn for letter m)
                            login-micros0ft-secure.ru (Credential harvesting)
    - Originating IPs:      185.220.101.42 (Mailer relay - AS44194)
                            194.26.29.114 (Web hosting - AS209588)
    - Discrepant Accounts:  maya.lin.executive78@gmail.com
-                           transition-exec@port1and-ops.com
+                           transition-exec@harrowrnere.com
    - Malicious Hash:       SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
                            Filename: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 
 3. RECOMMENDED ENTERPRISE MITIGATIONS:
-   1. Gateway Rule: Add 'port1and-ops.com' and regex pattern 'port*1*ops' to 
+   1. Gateway Rule: Add 'harrowrnere.com' and regex pattern 'port*1*ops' to 
       inbound mail transport blocklist.
    2. DNS Sinkhole: Add domain and subdomains to corporate DNS RPZ sinkhole.
    3. EDR Threat Hunt: Query Microsoft Defender / CrowdStrike telemetry across all 
       workstations for SHA-256 file hash and process spawning of '.pdf.exe'.
    4. Domain Triage: Notify legal and file ICANN UDRP dispute / registrar takedown 
-      for typosquatted domain 'port1and-ops.com'.
-   5. DMARC Review: Accelerate enterprise migration of 'portland-ops.gov' DMARC 
+      for typosquatted domain 'harrowrnere.com'.
+   5. DMARC Review: Accelerate enterprise migration of 'harrowmere.com' DMARC 
       policy from 'p=quarantine' to 'p=reject' across all outbound relays.
 ================================================================================
 ```

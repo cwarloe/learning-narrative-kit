@@ -1,6 +1,6 @@
 ================================================================================
 Sysinternals Autoruns Command-Line Dump (autorunsc.exe -a r -c)
-Host: MAYA-W11.portland-ops.local
+Host: MAYA-W11.harrowmere.local
 Timestamp: 2026-10-22 08:12:04 PST
 Operator: Ethan Mercer (Tier 1 Support)
 ================================================================================

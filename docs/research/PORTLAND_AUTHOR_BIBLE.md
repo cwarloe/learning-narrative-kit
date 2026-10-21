@@ -6,7 +6,7 @@
 ## 1. Executive Summary & Series Overview
 
 ### 1.1 Premise and Mandate
-The Portland Help Desk Prequel (*Book 0: Zero-to-One*) is a twelve-episode narrative learning track that bridges foundational IT support and practical cybersecurity operations. This series chronicles the professional formation of Ethan Mercer as he evolves from an eighteen-year-old high school graduate trapped in rote certification memorization into a battle-tested Tier 2 Help Desk Lead at the Portland Regional Operations Center.
+The Portland Help Desk Prequel (*Book 0: Zero-to-One*) is a twelve-episode narrative learning track that bridges foundational IT support and practical cybersecurity operations. This series chronicles the professional formation of Ethan Mercer as he evolves from a twenty-year-old warehouse worker, two years out of high school and trapped in rote certification memorization, into a battle-tested Tier 2 Help Desk Lead at Harrowmere Equipment Group's Portland Regional Operations Center.
 
 Where standard certification prep materials treat IT concepts as isolated flashcard definitions, *Book 0* demonstrates how technical protocols, access controls, physical infrastructure, and incident response lifecycles interact within messy, high-pressure human organizations. Every episode operates under the tradition of Eliyahu M. Goldratt’s *The Goal*: technology is never an end in itself, but rather a mechanism for maintaining operational throughput in the face of competing business incentives, organizational friction, and technical debt.
 
@@ -16,8 +16,8 @@ In the Learning Narrative Kit (LNK) framework, the narrative is not decorative f
 When a character chooses between opening port 23 versus port 22, the learning objective is not simply the integers `23` and `22`. The learning objective is the consequence: cleartext administrative credentials traversing a shared network span versus encrypted SSH sessions with cryptographic key authentication. By embedding every CompTIA A+, Network+, and Security+ concept within an authentic workplace dilemma where someone has a train to catch, an accounting run to finish, or a wastewater pump to keep running, the technical concept becomes an indelible operational memory.
 
 ### 1.3 Continuity with NADF (Book 1)
-*Book 0* is the first part of Ethan's story. The Network Analyst Development Framework (NADF, *Book 1*) continues it. The Portland site serves as a logistics, distribution, and processing hub, and the characters, environments, and tensions below are where it starts:
-- **Leah Moreno** appears as the Senior Plant Systems Specialist at the Willamette River treatment and processing plant, establishing the high-friction boundary between corporate enterprise IT and operational technology (OT/ICS). Leah continues into NADF as the Enterprise Applications Lead.
+*Book 0* is the first part of Ethan's story. The Network Analyst Development Framework (NADF, *Book 1*) continues it. The employer in both books is **Harrowmere Equipment Group**, a mid-sized manufacturer and distributor of industrial equipment. Its Portland area is a logistics, distribution, and processing hub: the Gresham distribution warehouse, the Willamette River plant, the Rivergate parts & service center, and the Portland Regional Operations Center (PROC), the internal IT help desk that serves all of them and reports up to Central IT in Chicago. Ethan never relocates; he stays in the Portland area from Book 0 through NADF. The characters, environments, and tensions below are where it starts:
+- **Leah Moreno** appears as the Senior Plant Systems Specialist at Harrowmere's Willamette River plant, establishing the high-friction boundary between corporate enterprise IT and operational technology (OT/ICS). Leah continues into NADF as the Enterprise Applications Lead.
 - The **Chicago Central IT and Security Operations Center (SOC)** exists as an intimidating, distant corporate presence whose top-down policies frequently clash with regional operational realities.
 - **Nia Alvarez**, Senior Incident Response Lead at Chicago HQ, makes her pivotal first appearance in Episode 12, where Ethan’s meticulous Tier 1/2 escalation dossier catches her attention and earns him a seat at the enterprise security table. Nia continues into NADF as the Security Operations Manager.
 - Legacy architectural quirks—such as unsegmented field networks, unmanaged warehouse switches, and fragmented identity directories—provide the exact historical vulnerabilities that adversaries exploit in subsequent storylines.
@@ -25,12 +25,14 @@ When a character chooses between opening port 23 versus port 22, the learning ob
 **Continuity with NADF.** Ethan Mercer, Jules Brooks, Nia Alvarez, and Leah Moreno are the same people in both stories. Names were reconciled on 2026-10-21: Ethan was "Ethan Brooks" here and is now Ethan Mercer, as in NADF; the desk lead was "Jules Mercer" and is now Jules Brooks; NADF's developer Marcus Vance became Marcus Whitlock so he no longer clashes with Jared Vance here.
 
 **Still to reconcile (the integration pass):**
-1. **Ethan's age and timeline.** This track runs about 24 months from age 18. NADF describes a 27-year-old with several years of IT support experience.
-2. **Employer and place.** Portland Regional Operations Center and the Willamette plant here. Harrowmere Equipment Group, which has a Portland branch, there.
+1. ~~**Ethan's age and timeline.**~~ Resolved 2026-10-21: see §3.1 and `PORTLAND_TIMELINE.md` §4. He is 20 at Ep 00, 23 by Ep 12, and 23 turning 24 when NADF starts.
+2. ~~**Employer and place.**~~ Resolved 2026-10-21: everything is Harrowmere Equipment Group. The Gresham dock is Harrowmere's distribution warehouse; PROC is Harrowmere's Portland Regional Operations Center.
 3. **Nia's title.** Senior Incident Response Lead at Chicago HQ here. Security Operations Manager there.
 4. **Leah's role.** Senior Controls Tech at the Willamette plant here. Enterprise Applications Lead there.
 5. **Dana.** A vendor engineer (Ep 7) and a finance contact (Ep 9) here. The mentor Dana Shah there. They are different people, so one may need a new name.
-6. **The validator.** It fails any narrative that mentions Harrowmere or Priya, which blocks the crossover until it is lifted.
+6. ~~**The validator.**~~ Resolved 2026-10-21: the ban on "Harrowmere" is lifted. "Priya" is still banned in Book 0 narrative.
+7. **Leah's age.** 38 here, about 36 in NADF. Open.
+8. **Ep 00's day job.** Ep 00 has Ethan at a building-supply / home-improvement warehouse in Gresham; Ep 01 has him on Harrowmere's graveyard dock. Same employer or an earlier job? Open.
 
 ---
 
@@ -61,7 +63,7 @@ flowchart TD
 
 ### Act I: The Wilderness & The Cert Trap (Episodes 1–3 | Months 1–4)
 - **Thematic Core:** The transition from artificial, multiple-choice theoretical knowledge to empirical, real-world troubleshooting.
-- **Narrative Movement:** Ethan graduates high school and takes a graveyard-shift logistics staging job at an industrial warehouse out in Gresham. He spends his days memorizing hundreds of digital flashcards for CompTIA A+, Network+, and Security+, convinced that passing the exams will make him an engineer. The reality check comes swiftly: a dead motherboard on a barcode-sorting line does not present four multiple-choice options. When Ethan is hired onto the Portland Regional Help Desk by Jules Brooks, he expects clean network diagrams. Instead, he is thrown into an overwhelming ticket firehose where legacy habits thrive because "it worked yesterday," and where the first lesson of IT support is learning that troubleshooting is not guessing—it is binary search across physical and logical layers.
+- **Narrative Movement:** Ethan graduates high school, drifts through up to two years of restaurant work, and then takes a non-technical graveyard-shift logistics staging job at Harrowmere's distribution warehouse out in Gresham. He spends his days memorizing hundreds of digital flashcards for CompTIA A+, Network+, and Security+, convinced that passing the exams will make him an engineer. The reality check comes swiftly: a dead motherboard on a barcode-sorting line does not present four multiple-choice options. When Ken's internal referral and a six-month IT rotation land him on Jules Brooks's Portland help desk, he expects clean network diagrams. Instead, he is thrown into an overwhelming ticket firehose where legacy habits thrive because "it worked yesterday," and where the first lesson of IT support is learning that troubleshooting is not guessing—it is binary search across physical and logical layers.
 
 ### Act II: Year 1 on the Desk — The Architecture of Work (Episodes 4–8 | Months 5–14)
 - **Thematic Core:** Socio-technical systems, organizational friction, and the boundary between operational availability and enterprise security.
@@ -106,8 +108,8 @@ graph LR
 
 #### Ethan Mercer — Protagonist & POV
 - **Role:** Tier 1 Support Technician (Episodes 1–7), promoted to Tier 2 Help Desk Lead (Episodes 8–12).
-- **Age:** 19 at Episode 1; 21 by Episode 12.
-- **Background:** Raised in East Portland / Gresham. His father was a precision machinist at a metal fabrication shop who taught him how to respect physical tools. Ethan skipped the four-year university track due to financial constraints, working warehouse logistics while studying late into the night for his CompTIA trifecta (A+, Network+, Security+).
+- **Age:** 20 at Episode 0; 21 at Episodes 1–2; 23 by Episode 12; 23 turning 24 when NADF begins.
+- **Background:** Raised in East Portland / Gresham. His father, now retired, was a precision machinist at a metal fabrication shop who taught him how to respect physical tools. Ethan skipped the four-year university track due to financial constraints. He spent up to two years in a restaurant job, then about fourteen months on Harrowmere's graveyard dock in Gresham, studying by day. After the Line 4 fix, Ken's internal referral moved him into a six-month day-shift IT rotation at a slight pay cut, and then onto Jules's help desk. The certs are spaced out: A+ after about ten months of study, Network+ about thirteen months into IT, Security+ about twenty-six months into IT (after Book 0 ends). Full table: `PORTLAND_TIMELINE.md` §4.
 - **Psychological Profile:** Highly observant, earnest, and intrinsically motivated, but initially burdened by severe imposter syndrome. In the early episodes, he treats technical standards as moral dogma and clings to flashcard taxonomies like a security blanket. When faced with ambiguous failures, his instinct is to freeze or over-engineer theoretical solutions. Over 24 months, he develops emotional resilience, learning that troubleshooting is an iterative discipline of hypothesis testing, root-cause isolation, and empathetic communication.
 - **Narrative Voice:** First-person past tense. Analytical, reflective, grounded, and intensely aware of physical textures—smells of damp rain jackets, hum of server racks, clicking of mechanical clipboards. He does not speak in stylized action-movie tropes; he narrates like an authentic junior engineer reflecting on how he learned to do the work.
 
@@ -120,8 +122,8 @@ graph LR
 - **Flaws & Blind Spots:** Jules is cynical about corporate initiatives originating from Chicago Central IT. Her fierce loyalty to regional autonomy sometimes leads her to delay corporate compliance rollouts, preferring local operational stability over enterprise uniformity.
 
 #### Leah Moreno — Senior Controls Tech / Plant Systems Specialist
-- **Role:** Senior Controls & SCADA Technician, Willamette River Treatment & Processing Facility (Portland Operations).
-- **Age:** 38.
+- **Role:** Senior Controls & SCADA Technician, Harrowmere Willamette River Plant (Portland Operations).
+- **Age:** 38. *(Open: NADF has her at about 36.)*
 - **Visuals & Habits:** Carries a scratched aluminum clipboard stuffed with piping and instrumentation diagrams (P&IDs). Wears a high-visibility ANSI Class 2 vest, steel-toed boots, and safety glasses with side shields. Carries an armored Panasonic Toughbook running specialized PLC ladder logic software.
 - **Why Leah matters:** Leah brings the plant-floor side of the story into the help desk. She represents the critical, unforgiving reality of Operational Technology (OT) and Industrial Control Systems (ICS). Her plant processes hundreds of thousands of gallons of liquid daily; an unexpected valve trip or network latency spike does not result in a 404 error—it results in physical effluent overflow, environmental fines, or blown pump seals.
 - **Relationship with Ethan:** Initially hostile toward "carpet-land IT" technicians who push Windows security patches that reboot telemetry servers mid-cycle. She tests Ethan mercilessly in Episode 4. When Ethan demonstrates that he respects her physical operational constraints and devises an encrypted site-to-site VPN solution that protects her sensors without touching the pumps, Leah becomes his staunchest operational ally. She teaches Ethan how to read physical industrial failure modes.
@@ -221,15 +223,15 @@ Every episode must reflect the principles of industrial throughput and organizat
 ### Episode Architecture Card 00 (Prologue)
 **Title:** The Four Rubber Bands  
 **Arc Placement:** Prologue (Before the Badge — The Zero Foundation)  
-**Timeline:** Month 0 (May, Late Spring)  
+**Timeline:** About 7 months on the dock (Late July, Summer)  
 **Setting:** A cramped duplex kitchen in East Portland, Oregon; fluorescent tube humming overhead, box fan rattling in the window, greasy pizza box, cold instant coffee, linoleum table covered in 300 blank index cards and open 800-page CompTIA study guide.  
-**Point of View:** Ethan Mercer (Age 19).  
+**Point of View:** Ethan Mercer (Age 20).  
 
 #### Core Dilemma & Goldratt Friction
 Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loading lumber at a building supply warehouse in Gresham. His debit card shows $83 left after paying $246 for a CompTIA A+ exam voucher. If he fails, he cannot make rent. He is drowning in 800 pages of pedantic syllabus trivia—laser printer transfer rollers, DVI connector pinouts, SATA revisions, and RAM clock timings. When he fails an online practice exam with a 58%, he breaks down in exhaustion and cynical rage, throwing his index cards across the linoleum. He faces the beginner's ultimate gatekeeping trap: believing that because he cannot memorize a manufacturer parts catalog, he is too stupid to work in technology.
 
 #### Narrative Synopsis
-1. **Goal:** Ethan wants to pass the CompTIA A+ exam on Thursday to escape blue-collar manual labor and qualify for a $19.50/hr entry-level help desk position.
+1. **Goal:** Ethan wants to pass the CompTIA A+ exam on Thursday to escape blue-collar manual labor and qualify for an IT job instead of a dock job.
 2. **Complication:** The sheer volume of arbitrary trivia creates total cognitive overload. Every time he tries to remember DDR pin counts, he forgets the difference between a default gateway and a subnet mask. He feels like the exam is an expensive racket designed to test memorization rather than competence.
 3. **Pivot:** His father, a retired machinist who spent 35 years reading blueprints and running CNC milling machines, wanders into the kitchen in his socks looking for a glass of water. Looking at Ethan's flashcards, his dad cuts through the academic noise: *"Ethan, this is just a parts catalog. When an apprentice starts in the shop, he thinks he has to memorize every bolt in McMaster-Carr. Does it spin, does it leak, or is it jammed? What holds tension, and what moves?"* Ethan stops treating the exam like a spelling bee. He groups his cards into **Four Colored Rubber Bands**:
    - **Red Band (The Exam Passport):** The disposable syllabus trivia (printer drums, pin counts, cable specs) that he will cram for 48 hours, spit back at the computer, and immediately forget.
@@ -261,9 +263,9 @@ Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loadi
 ### Episode Architecture Card 01
 **Title:** The Paper Cert  
 **Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 1 of 12  
-**Timeline:** Month 1 (July, Summer)  
-**Setting:** Graveyard shift at a regional freight-forwarding warehouse in Gresham, Oregon; high-bay industrial racking, hum of forklift chargers, dust motes under metal-halide lamps.  
-**Point of View:** Ethan Mercer (Age 19).  
+**Timeline:** About 14 months on the dock (February, Late Winter)  
+**Setting:** Graveyard shift at Harrowmere's Gresham distribution warehouse, Oregon; high-bay industrial racking, hum of forklift chargers, dust motes under metal-halide lamps.  
+**Point of View:** Ethan Mercer (Age 21).  
 
 #### Core Dilemma & Goldratt Friction
 Ethan has accumulated CompTIA A+ and Network+ certifications by grinding hundreds of digital flashcards. He believes that IT is an exact, rule-bound science. When the primary industrial barcode sorting line halts at 2:30 AM because an automated scale terminal fails to communicate with the warehouse management system, Ethan is tasked with fixing it. His multiple-choice heuristics completely fail: the terminal's motherboard displays an undocumented hex POST error, a proprietary serial cable has bent pins, and the vendor documentation assumes a 9600-baud rate while the terminal is strapped for 19200. Ethan must choose between blindly replacing parts until the budget runs out or learning empirical, physical Layer 1/2 troubleshooting.
@@ -299,18 +301,18 @@ Ethan saves the morning freight run, but ruins a fifty-dollar staging cable, sev
 ### Episode Architecture Card 02
 **Title:** The Live Board  
 **Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 2 of 12  
-**Timeline:** Month 2 (August)  
-**Setting:** Portland Regional Operations Center, Central Help Desk bullpen; fourth-floor interior office overlooking rain-slicked industrial roofs, rows of dual-monitor cubicles, hum of HVAC and muted phone ringers.  
+**Timeline:** Late August, at the end of a six-month day-shift IT rotation  
+**Setting:** Harrowmere Portland Regional Operations Center, Central Help Desk bullpen; fourth-floor interior office overlooking rain-slicked industrial roofs, rows of dual-monitor cubicles, hum of HVAC and muted phone ringers.  
 **Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
-Ethan arrives for his formal hiring interview with Help Desk Lead Jules Brooks, expecting a standard grilling on networking trivia, port numbers, and acronyms. Instead, Jules seats him in an empty cubicle, hands him a live telephone headset connected to an escalating user ticket, and points to a locked-up Windows desktop workstation. Ethan must diagnose a critical system hang while under observation, balancing the urge to guess wildly against the disciplined necessity of binary search triage.
+Six months after Ken's internal referral moved him off the dock into a day-shift IT rotation (imaging bench, deployments, desk-side support, one overnight week, at a slight pay cut), Ethan arrives for the practical that decides whether he gets a desk seat with Help Desk Lead Jules Brooks, expecting a standard grilling on networking trivia, port numbers, and acronyms. Instead, Jules seats him in an empty cubicle, hands him a live telephone headset connected to an escalating user ticket, and points to a locked-up Windows desktop workstation. Ethan must diagnose a critical system hang while under observation, balancing the urge to guess wildly against the disciplined necessity of binary search triage.
 
 #### Narrative Synopsis
-1. **Goal:** Ethan wants to pass the practical interview and secure the Tier 1 Help Desk position to escape warehouse labor.
+1. **Goal:** Ethan wants to pass the practical and move from the IT rotation to a permanent Tier 1 Help Desk seat.
 2. **Complication:** Jules does not ask him to define DNS. She takes a live call from Maya Lin in Accounting, whose machine freezes every time she launches the payroll database. Ethan freezes, tempted to suggest a complete operating system re-installation. Jules watches quietly, sipping coffee.
 3. **Pivot:** Ethan recalls the physical discipline from the warehouse. Instead of guessing, he divides the problem space in half: is it software or hardware? Is it network-dependent or local? He boots into Safe Mode with Networking. The freeze disappears. He systematically isolates third-party startup services, discovering a corrupted graphics driver update conflicting with the finance software's hardware acceleration.
-4. **Resolution & Cost:** Ethan disables hardware acceleration, updates the driver, and restores Maya’s access. Jules offers him the job at $19.50 an hour, but blunt feedback accompanies the offer: his methodical isolation was sound, but his hesitation cost twenty minutes on a priority queue.
+4. **Resolution & Cost:** Ethan disables hardware acceleration, updates the driver, and restores Maya’s access. Jules moves him from the IT rotation onto the desk at about $24 an hour, but blunt feedback accompanies the offer: his methodical isolation was sound, but his hesitation cost twenty minutes on a priority queue.
 
 #### Mentorship / Heuristic Core
 - **Jules' Heuristic:** *Troubleshooting is not intuition; it is binary search. Every test must eliminate half the remaining possibilities.*
@@ -375,7 +377,7 @@ Ethan achieves protocol hardening, but burns through political capital with Jare
 **Title:** The Plant Floor Collision  
 **Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 4 of 12  
 **Timeline:** Month 6 (December, Winter freeze)  
-**Setting:** Willamette River Wastewater & Dairy Processing Plant; vast concrete echoing spaces, smell of ozone, chlorine, and damp river silt, vibration of 500-horsepower electric centrifugal pumps.  
+**Setting:** Harrowmere Willamette River Plant (machining, coatings, and process-water treatment); vast concrete echoing spaces, smell of ozone, chlorine, and damp river silt, vibration of 500-horsepower electric centrifugal pumps.  
 **Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
@@ -389,7 +391,7 @@ A severe cold snap threatens municipal pipe freezing, causing an industrial tele
 
 #### Mentorship / Heuristic Core
 - **Jules' Heuristic:** *In enterprise IT, confidentiality rules. On the plant floor, safety and availability rule. If your security control stops a pump, your security control is the failure.*
-- **Dialogue Realism:** Leah, holding her steel clipboard against a vibrating valve housing: *"If that tank overflows, the state environmental inspector doesn't fine your firewall, Ethan. He fines me, and the city shuts our intake valves."*
+- **Dialogue Realism:** Leah, holding her steel clipboard against a vibrating valve housing: *"If that tank overflows, the state environmental inspector doesn't fine your firewall, Ethan. He fines me, and the city pulls our discharge permit."*
 
 #### CompTIA / Security+ Knowledge Load
 - **CompTIA Security+ (Domain 2.1 & 2.2):** IT vs. OT/ICS security, SCADA architectures, Industrial Protocols (Modbus, DNP3), CIA Triad inversions in industrial environments, Site-to-site IPsec VPNs, Network segmentation (Purdue Model Level 1/2/3).
@@ -564,7 +566,7 @@ Ethan earns his promotion to Tier 2 Lead, but sacrifices his physical comfort in
 **Point of View:** Ethan Mercer (Promoted to Tier 2 Lead).  
 
 #### Core Dilemma & Goldratt Friction
-While conducting routine mail-routing audits as Tier 2 Lead, Ethan detects a subtle administrative anomaly: Maya Lin’s executive accounting mailbox has an active forwarding rule routing external copies of all invoices to an external domain that mirrors the corporate domain name (`@portland-ops-corp.com` vs `@portland-ops-c0rp.com`). There are no flashy popups, no system freezes, and no user complaints. Ethan must handle an active Business Email Compromise (BEC) attack, learning that real cyber threats are quiet, patient, and catastrophic if handled with clumsy panic.
+While conducting routine mail-routing audits as Tier 2 Lead, Ethan detects a subtle administrative anomaly: Maya Lin’s executive accounting mailbox has an active forwarding rule routing external copies of all invoices to an external domain that mirrors the corporate domain name (`@harrowmere-corp.com` vs `@harrowmere-c0rp.com`). There are no flashy popups, no system freezes, and no user complaints. Ethan must handle an active Business Email Compromise (BEC) attack, learning that real cyber threats are quiet, patient, and catastrophic if handled with clumsy panic.
 
 #### Narrative Synopsis
 1. **Goal:** Ethan must investigate the suspicious mailbox forwarding rule, contain the exfiltration of sensitive financial invoices, and determine how the account was compromised.
@@ -642,7 +644,7 @@ At 2:30 AM, Ethan is awakened by an automated priority alert from Chicago Centra
 
 #### Narrative Synopsis
 1. **Goal:** Ethan must investigate the EDR alert and verify whether an active threat actor is executing living-off-the-land (LotL) techniques across the Portland network.
-2. **Complication:** Chicago SOC analysts are hovering over the escalation bridge, ready to sever Portland’s external WAN links, an action that would completely shut down regional shipping distribution and halt dairy processing operations. Ethan has fifteen minutes to confirm or deny active adversary presence.
+2. **Complication:** Chicago SOC analysts are hovering over the escalation bridge, ready to sever Portland’s external WAN links, an action that would completely shut down regional shipping distribution and halt plant production. Ethan has fifteen minutes to confirm or deny active adversary presence.
 3. **Pivot:** Ethan analyzes the raw EDR telemetry rather than reacting to the high-severity alert labels. He decodes the Base64-encoded PowerShell strings and correlates the process tree parentage. He traces the execution back to Jared Vance’s workstation. Jared, attempting to audit legacy network adapters for the proxy project without entering tickets, had run an unvetted batch maintenance script written in 2012 that relied on built-in administrative binaries (`certutil`, `wmic`, `powershell.exe`). Ethan confirms administrative misuse, averts the network shutdown, and educates Jared on modern administrative hygiene.
 4. **Resolution & Cost:** The network remains online and operations proceed without disruption. However, Jared receives a formal corporate reprimand from Chicago, straining his relationship with Ethan, while Ethan is tasked with establishing formal baseline rules and detection exemptions for all internal administrative tooling.
 
@@ -675,7 +677,7 @@ Ethan saves the facility from an unwarranted corporate network disconnect, but e
 **Point of View:** Ethan Mercer.  
 
 #### Core Dilemma & Goldratt Friction
-A highly targeted spearphishing attack compromises a logistics shipping clerk’s workstation. Unlike previous automated threats, the adversary immediately initiates living-off-the-land reconnaissance, harvesting credentials from memory and attempting to pivot directly across the internal VPN into Leah Moreno’s wastewater treatment control network. Ethan, now operating as Tier 2 Lead, must orchestrate rapid on-the-ground containment between plant operations and corporate IT, compiling a flawless forensic incident packet that bridges the regional desk and Chicago Central IT.
+A highly targeted spearphishing attack compromises a logistics shipping clerk’s workstation. Unlike previous automated threats, the adversary immediately initiates living-off-the-land reconnaissance, harvesting credentials from memory and attempting to pivot directly across the internal VPN into Leah Moreno’s plant control network. Ethan, now operating as Tier 2 Lead, must orchestrate rapid on-the-ground containment between plant operations and corporate IT, compiling a flawless forensic incident packet that bridges the regional desk and Chicago Central IT.
 
 #### Narrative Synopsis
 1. **Goal:** Ethan must detect the lateral pivot, isolate the compromised administrative host, protect Leah’s treatment plant control network from unauthorized tampering, and escalate the incident to Chicago.

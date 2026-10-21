@@ -175,7 +175,7 @@ Run all of these. Each one caught something real on the Tamarack track.
 | No mark ids missing from glossary | fail |
 | Mark density | report |
 | Missing `tier` when any tier present | warn |
-| `Priya` or `Harrowmere` in narrative | fail |
+| `Priya` in narrative | fail |
 | Heading rule (units with `heading_rule: scene`): heading at chapter start, heading or break with nothing under it, heading over fewer than ~270 words, more than one heading per ~500 words | warn |
 
 ## Authoring contract (summary)

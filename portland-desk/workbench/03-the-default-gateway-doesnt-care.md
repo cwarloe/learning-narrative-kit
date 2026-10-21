@@ -60,7 +60,7 @@ flowchart TD
    - `ping <Local_IP>`: Verifies that the local Network Interface Card (NIC) driver and physical hardware are operating.
    - `ping <Default_Gateway>`: Verifies Layer 1/2 physical cabling, switch port state, and local subnet reachability to the local router.
    - `ping <Remote_IP>` (e.g., `8.8.8.8`): Verifies Layer 3 inter-VLAN routing, WAN transport, and upstream ISP transit.
-   - `ping <FQDN>` (e.g., `portal.portland.gov`): Verifies Layer 7 DNS name resolution.
+   - `ping <FQDN>` (e.g., `portal.harrowmere.com`): Verifies Layer 7 DNS name resolution.
 
 
 ---
@@ -245,7 +245,7 @@ Ethernet adapter Local Area Connection:
 
 ### Micro-Drill 2: CIDR Bitwise Subnet Boundary Math & Off-by-One Troubleshooting
 
-**Scenario:** Two newly racked municipal servers sit in the same equipment cabinet in the East Portland pump house, plugged into adjacent ports on the same switch:
+**Scenario:** Two newly racked company servers sit in the same equipment cabinet in the Willamette plant pump house, plugged into adjacent ports on the same switch:
 - Server A (`PDX-PUMP-DB01`): `192.168.10.62` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
 - Server B (`PDX-PUMP-LOG02`): `192.168.10.65` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
 

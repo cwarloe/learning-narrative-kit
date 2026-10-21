@@ -1,6 +1,6 @@
 # Portland Desk Lab: Hardware Fault Isolation & Layer 1 Diagnostics
 
-> **The Situation:** Gresham Freight Forwarding Terminal • Graveyard shift, industrial staging floor  
+> **The Situation:** Harrowmere Gresham Distribution Warehouse • Graveyard shift, industrial staging floor  
 > **Your Role:** Tier 1 Field / Hardware Bench Technician  
 > **The Objective:** Isolate hardware faults and Layer 1 physical failures on an automated shipping scale terminal before the 5:00 AM dispatch.  
 > **Estimated Time:** 40–50 minutes • Hardware Diagnostics  
@@ -420,7 +420,7 @@ test-telemetry: |
 ### Tier 1 Physical Incident Triage Report & Equipment Passdown Note
 
 #### Scenario Assignment
-You are Ethan Mercer, Tier 1 Field Technician on the graveyard shift at the Gresham Freight Forwarding Terminal. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
+You are Ethan Mercer, Tier 1 Field Technician on the graveyard shift at the Harrowmere Gresham Distribution Warehouse. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
 
 
 ---

@@ -108,7 +108,7 @@ sequenceDiagram
     Client->>AP: 802.11 Association Request
     AP->>Client: 802.11 Association Response (Port Blocked / 802.1X State)
     AP->>Client: EAP-Request / Identity
-    Client->>AP: EAP-Response / Identity (maya.lin@portland-ops.gov)
+    Client->>AP: EAP-Response / Identity (maya.lin@harrowmere.com)
     AP->>RADIUS: RADIUS Access-Request (UDP 1812, Encapsulating EAP)
     RADIUS->>Client: EAP-TLS / PEAP Server Certificate Exchange (TLS Tunnel Setup)
     Note over Client,RADIUS: Client verifies Server Certificate against Trusted Root CA
@@ -240,9 +240,9 @@ No.  Time      Source         Destination    Proto    Info
                                                               RSN IE: WPA2-Enterprise, AKM=802.1X, Cipher=AES-CCMP
 04   08:22:10  70:69:79:01:aa:04  00:1a:2b:3c:4d:5e  802.11   Association Response, Status=Success, AID=12
 05   08:22:11  70:69:79:01:aa:04  00:1a:2b:3c:4d:5e  EAP      Request, Identity
-06   08:22:11  00:1a:2b:3c:4d:5e  70:69:79:01:aa:04  EAP      Response, Identity (maya.lin@portland-ops.gov)
+06   08:22:11  00:1a:2b:3c:4d:5e  70:69:79:01:aa:04  EAP      Response, Identity (maya.lin@harrowmere.com)
 07   08:22:11  10.10.10.15    10.10.10.25    RADIUS   Access-Request(1) (id=42, l=128)
-                                                              User-Name: maya.lin@portland-ops.gov
+                                                              User-Name: maya.lin@harrowmere.com
                                                               NAS-IP-Address: 10.10.10.15 (WLC-CORE-01)
                                                               NAS-Port: 1042
                                                               Framed-MTU: 1400
@@ -368,7 +368,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 ---
 
 #### Case 2: Maya Lin's Certificate Prompt Bypass — `INC-2026-1102`
-* **Incoming Ticket:** Maya Lin reports: *"I am trying to connect to CORP-EMPLOYEE from the courtyard patio. A window popped up saying 'radius-auth.port1and-ops.com - The server certificate was issued by an untrusted entity.' It gives me a button that says 'Connect Anyway'. Should I click it so I can get into my board meeting?"*
+* **Incoming Ticket:** Maya Lin reports: *"I am trying to connect to CORP-EMPLOYEE from the courtyard patio. A window popped up saying 'radius-auth.harrowrnere.com - The server certificate was issued by an untrusted entity.' It gives me a button that says 'Connect Anyway'. Should I click it so I can get into my board meeting?"*
 * **Your Triage Action:** [ Tell user to click Connect Anyway / Force WPA2-PSK / DENY connection, verify Root CA, and inspect for Evil Twin ]
 * **Threat Classification:**
 * **Technical Rationale:**
@@ -378,7 +378,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 * **Action:** **STRICTLY FORBID CONNECTION; INSPECT FOR EVIL TWIN / ROGUE RADIUS PROXY**.
 * **Threat Classification:** **Evil Twin / Rogue RADIUS Impersonation / Credential Harvesting**.
-* **Rationale:** In an 802.1X PEAP network, the server certificate is the *only* barrier protecting the user's credentials. If Maya clicks "Connect Anyway," her laptop will establish a TLS tunnel with an attacker-controlled RADIUS server (notice the typosquatted domain `port1and-ops.com` with a `1` instead of an `l`!). Her client will then transmit her MS-CHAPv2 password hash into the attacker's tunnel, allowing the adversary to crack her domain password offline or execute a pass-the-hash relay. Direct Maya to use a wired dock or mobile hotspot through corporate VPN until the rogue radio is hunted down.
+* **Rationale:** In an 802.1X PEAP network, the server certificate is the *only* barrier protecting the user's credentials. If Maya clicks "Connect Anyway," her laptop will establish a TLS tunnel with an attacker-controlled RADIUS server (notice the typosquatted domain `harrowrnere.com` with a `1` instead of an `l`!). Her client will then transmit her MS-CHAPv2 password hash into the attacker's tunnel, allowing the adversary to crack her domain password offline or execute a pass-the-hash relay. Direct Maya to use a wired dock or mobile hotspot through corporate VPN until the rogue radio is hunted down.
 </details>
 
 
@@ -547,7 +547,7 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
        * Frequency/Ch:   2.437 GHz (Channel 6) @ +28 dBm transmission power
        * RSSI in Lobby:  -38 dBm (Stronger than internal corporate APs)
    - Rogue RADIUS Server: Client association attempts triggered untrusted certificate 
-     warning issued to 'radius-auth.port1and-ops.com' (typosquatted domain). 
+     warning issued to 'radius-auth.harrowrnere.com' (typosquatted domain). 
      Attacker attempted to proxy PEAP/EAP-MSCHAPv2 authentication to harvest 
      cleartext user credentials and password hashes.
 
@@ -564,7 +564,7 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
    1. Physical Security: Review exterior parking lot CCTV footage between 08:00 
       and 09:00 PST focusing on vehicles parked adjacent to the East Courtyard glass.
    2. Threat Intel / Registrar Takedown: Submit immediate domain takedown and DNS 
-      RPZ sinkhole for typosquatted domain 'port1and-ops.com'.
+      RPZ sinkhole for typosquatted domain 'harrowrnere.com'.
    3. Architectural Hardening: Accelerate deployment of 802.11w (Protected Management 
       Frames / PMF) across all corporate WLAN profiles to render spoofed 
       deauthentication frames ineffective against client operating systems.

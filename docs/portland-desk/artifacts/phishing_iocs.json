@@ -1,11 +1,11 @@
 {
   "investigation_id": "SEC-PHISH-2026-1021",
   "incident_date": "2026-10-21T08:12:12-07:00",
-  "target_organization": "Portland Municipal Utilities & Operations (portland-ops.gov)",
+  "target_organization": "Harrowmere Equipment Group (harrowmere.com)",
   "indicators_of_compromise": {
     "malicious_domains": [
       {
-        "domain": "port1and-ops.com",
+        "domain": "harrowrnere.com",
         "category": "Typosquatting / Character Substitution (Digit '1' for Letter 'l')",
         "threat_type": "Executive Impersonation / BEC",
         "action": "Blocked at Perimeter Mail Gateway & DNS Resolver"
@@ -17,7 +17,7 @@
         "action": "Blocked at Web Proxy & DNS RPZ"
       },
       {
-        "domain": "xn--prtland-ops-n8a.com",
+        "domain": "xn--harrwmere-32h.com",
         "category": "IDN Homograph / Punycode Attack (Cyrillic Small Letter 'о' U+043E)",
         "threat_type": "Deceptive Brand Impersonation",
         "action": "Blocked via Punycode Disallow Rule"

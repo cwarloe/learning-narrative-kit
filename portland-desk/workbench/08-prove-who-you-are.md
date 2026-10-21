@@ -121,10 +121,10 @@ sequenceDiagram
     IdP-->>User: Match confirmed -> Token issued
 
     Note over User,IdP: FIDO2 / WebAuthn Phishing-Resistant Flow
-    User->>IdP: Request Login (Origin: pdx.gov)
+    User->>IdP: Request Login (Origin: sso.harrowmere.com)
     IdP->>User: Cryptographic Challenge + Domain Nonce
     User->>AuthApp: User presents biometric / PIN to unlock Hardware Key
-    AuthApp->>AuthApp: Signs Challenge + Origin (pdx.gov) with private key
+    AuthApp->>AuthApp: Signs Challenge + Origin (sso.harrowmere.com) with private key
     AuthApp->>IdP: Returns signed cryptographic assertion
     IdP->>IdP: Validates signature with public key (Fails if origin spoofed)
     IdP-->>User: Authentication Successful
@@ -143,7 +143,7 @@ sequenceDiagram
    - **Remediation: Number Matching.** The IdP displays a 2-digit number on the login screen; the user must manually enter that exact number inside the authenticator app to authorize the push.
 4. **FIDO2 / WebAuthn (Passkeys & Security Keys):**
    - Employs public-key cryptography bound to the browser's origin URL (domain).
-   - Immune to credential phishing and AiTM proxies: even if the user is tricked into visiting `pdx-gov.phish.com`, the hardware key signs the prompt for `pdx-gov.phish.com`, which the real `pdx.gov` server immediately rejects.
+   - Immune to credential phishing and AiTM proxies: even if the user is tricked into visiting `harrowmere-sso.phish.com`, the hardware key signs the prompt for `harrowmere-sso.phish.com`, which the real `sso.harrowmere.com` server immediately rejects.
 
 
 ---
@@ -209,7 +209,7 @@ Evaluate each scenario in the matrix below. Determine whether the configuration 
 **Jules' Analysis:**
 1. **The Password + PIN Trap:** Users and uncertified managers mistakenly confuse the quantity of credential prompts with the number of authentication factors. Because a PIN feels like an ATM card code, users believe it represents hardware possession. In reality, unless the PIN unlocks a physical TPM or smart card chip, typing two alphanumeric secrets into software is purely knowledge-based.
 2. **Multi-Modal Biometrics:** Both modalities reside in the *Something You Are* bucket. While multi-modal biometrics significantly lowers the False Acceptance Rate (FAR) in high-security biometric checkpoints (e.g., facial recognition combined with fingerprint attestation in defense SCIFs), it remains single-factor authentication under CompTIA and NIST standards unless paired with a token (possession) or passphrase (knowledge).
-3. **FIDO2 Phishing Resistance:** SMS OTP can be harvested in real time: an attacker spins up a spoofed phishing page that prompts the victim for their username, password, and SMS code, and the attacker's server automatically replays that code to the legitimate service. FIDO2 / WebAuthn creates a cryptographic key pair bound to the exact Fully Qualified Domain Name (FQDN) in the browser address bar. The browser passes the origin domain to the security key; if the domain is `pdx-portal.phishing-domain.com` instead of `pdx.gov`, the cryptographic signature is invalid for the real portal, stopping the attack instantly.
+3. **FIDO2 Phishing Resistance:** SMS OTP can be harvested in real time: an attacker spins up a spoofed phishing page that prompts the victim for their username, password, and SMS code, and the attacker's server automatically replays that code to the legitimate service. FIDO2 / WebAuthn creates a cryptographic key pair bound to the exact Fully Qualified Domain Name (FQDN) in the browser address bar. The browser passes the origin domain to the security key; if the domain is `pdx-portal.phishing-domain.com` instead of `sso.harrowmere.com`, the cryptographic signature is invalid for the real portal, stopping the attack instantly.
 </details>
 
 
@@ -222,7 +222,7 @@ Nora Higgins in Finance logged ticket **`INC-2026-1142`**. At 08:30 she updated 
 
 You unlocked her account in Active Directory Users and Computers (ADUC). At 08:39, she called back furious: her account locked out again while she was on the phone, and she had not even touched her keyboard.
 
-Instead of clicking "Unlock" a second time, you launch PowerShell on your management console and query the Security Event Log on the Primary Domain Controller (`dc01.portland-ops.local`) using [`artifacts/event_4740_dump.txt`](../artifacts/event_4740_dump.txt):
+Instead of clicking "Unlock" a second time, you launch PowerShell on your management console and query the Security Event Log on the Primary Domain Controller (`dc01.harrowmere.local`) using [`artifacts/event_4740_dump.txt`](../artifacts/event_4740_dump.txt):
 
 ```console
 caption: PowerShell Active Directory Security Event Query on DC01
@@ -233,7 +233,7 @@ Message              : A user account was locked out.
                        Subject:
                            Security ID:        S-1-5-18
                            Account Name:       DC01$
-                           Account Domain:     PORTLAND-OPS
+                           Account Domain:     HARROWMERE
                            Logon ID:           0x3E7
 
                        Account That Was Locked Out:
@@ -245,9 +245,9 @@ Message              : A user account was locked out.
 
 Id                   : 4740
 TimeCreated          : 10/21/2026 8:34:18 AM
-MachineName          : dc01.portland-ops.local
+MachineName          : dc01.harrowmere.local
 TaskDisplayName      : User Account Management
-Properties           : {nhiggins, PORTLAND-OPS, IPAD-NORA-FIN, S-1-5-21-3928174412-1082938471-2948192837-1402...}
+Properties           : {nhiggins, HARROWMERE, IPAD-NORA-FIN, S-1-5-21-3928174412-1082938471-2948192837-1402...}
 ```
 
 Next, you inspect the preceding **Event ID 4625** records from [`artifacts/security_events.json`](../artifacts/security_events.json) generated just prior to the lockout:
@@ -256,12 +256,12 @@ Next, you inspect the preceding **Event ID 4625** records from [`artifacts/secur
 caption: Windows Event Log 4625 Breakdown on DC01
 Event ID:     4625
 Time Created: 10/21/2026 8:34:18.109240Z
-Computer:     dc01.portland-ops.local
+Computer:     dc01.harrowmere.local
 Description:  An account failed to log on.
 
 Account For Which Logon Failed:
     Account Name:        nhiggins
-    Account Domain:      PORTLAND-OPS
+    Account Domain:      HARROWMERE
 
 Failure Information:
     Failure Reason:      The user account has been automatically locked because too many invalid logon attempts were made.
@@ -497,7 +497,7 @@ Status:           RESOLVED
    lockout within five minutes without active user input.
 
 2. ROOT CAUSE ANALYSIS & EVENT LOG TRIAGE:
-   - Queried Primary Domain Controller (dc01.portland-ops.local) Security Log.
+   - Queried Primary Domain Controller (dc01.harrowmere.local) Security Log.
    - Identified Event ID 4740 (Account Lockout) for target user 'nhiggins'.
    - Extracted Caller Computer Name: 'IPAD-NORA-FIN' (IP: 192.168.20.114).
    - Correlated with Event ID 4625 (Logon Failure, SubStatus 0xC000006A - Bad Password, 
