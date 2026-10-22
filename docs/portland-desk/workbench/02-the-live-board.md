@@ -23,10 +23,10 @@
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
-title: "FIGURE 2.1: MOTHERBOARD MEMORY SLOT & BROKEN LATCH"
-badge: "Motherboard Inspection"
-caption: "Macro view: On the circuit board, a dual-digit red LED displays code C1. Directly adjacent, the DDR4 RAM slot has a broken white plastic retention latch tilted at 15 degrees, with the memory stick slightly unseated."
-prompt: "Clean technical cutaway illustration of a computer motherboard RAM slot under bright, even inspection lighting. A dual-digit 7-segment red LED display reads C1. Beside it, the memory slot has its white plastic end-latch broken off and cocked at a 15-degree angle, with the gold contacts of the RAM module partially unseated. Sharp technical accuracy, no text, no words. 4:3 ratio."
+title: "FIGURE 2.1: WINDOWS EVENT VIEWER CRASH ANALYSIS"
+badge: "Operating System Triage"
+caption: "Macro console view: Windows Event Viewer Application log. Event ID 1000: Faulting application name PDXPay.exe, faulting module name igdumdim64.dll (Intel Graphics User Mode Driver), exception code 0xc0000005."
+prompt: "Clean technical graphic novel illustration of a Windows workstation diagnostic monitor displaying Windows Event Viewer. In the center pane, an Application Error log entry is highlighted with Event ID 1000 in red accent. The lower description box clearly shows the faulting application name and the faulting graphics driver module with an access violation exception code. High contrast crisp linework, Pacific Northwest clean IT desk lighting, technical precision, no extraneous text, 4:3 ratio."
 ```
 
 

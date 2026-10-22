@@ -94,10 +94,10 @@ Transform reference photo of a DB-9 male connector into a high-detail macro tech
 Transform reference motherboard photo into a clean technical instruction manual illustration. Bright, even inspection lighting, sharp macro focus. The long memory DIMM slot is clearly visible on the circuit board, with one white plastic end-latch broken off and cocked at a 15-degree angle, causing the gold edge contacts of the RAM module to be slightly unseated from the socket pins. A small dual-digit digital display glows red nearby. Crisp component outlines, clean PCB traces, no heavy shadows, no text, no letters. 4:3 ratio.
 ```
 
-### Episode 03: The RJ45 Keystone Jack with Bent Pin (1:1 Ratio)
-```text
-Transform reference photo into a clear technical inspection illustration. Bright, shadowless macro lighting. Looking straight into the front opening of an RJ45 ethernet keystone jack. All 8 gold spring wire contacts are visible; pin 3 is visibly flattened backward against the plastic slot wall. Clean white plastic housing, sharp metallic reflections on the gold pins, crisp instructional manual style, no text, no letters. 1:1 ratio.
-```
+### Episode 03: The /26 Subnet Boundary & Default Gateway (16:9 Ratio)
+`	ext
+Clear technical cutaway illustration of a network architecture schematic under bright neutral lighting. Two adjacent server chassis on a 19-inch equipment rack connected to a central switch. A glowing logical boundary line divides Subnet A (192.168.10.0) and Subnet B (192.168.10.64). Packets halt at the subnet boundary line before reaching the router gateway interface. Crisp technical drawing style, Ligne Claire, no text, no letters. 16:9 ratio.
+`
 
 ### Episode 04: Split-Horizon DNS & Hosts File (16:9 Ratio)
 ```text

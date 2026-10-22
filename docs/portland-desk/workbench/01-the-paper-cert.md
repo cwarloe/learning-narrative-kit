@@ -470,7 +470,7 @@ SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
 4. SECONDARY PERIPHERAL & SERIAL TELEMETRY RESOLUTION:
    - Upon OS boot, conveyor daemon reported continuous RS-232 Framing Errors (FE) from Toledo scale.
    - Inspected DB-9 serial interface connector:
-     * Pin 2 (RxD - Receive Data) was bent flush against connector base, shorting to Pin 5 (GND).
+     * Pin 2 (RxD - Receive Data) was bent flush against the connector housing, shorting against the metal chassis shell.
      * Straightened Pin 2 to true 90-degree alignment using 0.5mm brass drafting pencil sleeve.
    - Telemetry stream still corrupted (streaming garbled ASCII characters and null bytes):
      * Cross-referenced Toledo scale manual: Transmitter factory-set for 9600 Baud, 8-N-1.

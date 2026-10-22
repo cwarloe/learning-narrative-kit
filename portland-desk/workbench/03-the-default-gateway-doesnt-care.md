@@ -23,10 +23,10 @@
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
-title: "FIGURE 3.1: RJ45 KEYSTONE JACK WITH BENT PIN 3"
-badge: "Physical Layer"
-caption: "Macro view looking directly into the open socket of an RJ45 modular jack. All 8 gold spring wire contacts are visible; pin 3 is flattened backward against the plastic slot wall, breaking physical link continuity."
-prompt: "Macro technical illustration looking into the front opening of an RJ45 ethernet wall jack under bright inspection lighting. All 8 gold spring wire contacts visible; pin 3 is visibly flattened backward against the white plastic slot wall. Sharp metallic reflections on the gold pins, crisp instructional manual style, no text, no letters. 1:1 ratio."
+title: "FIGURE 3.1: THE /26 SUBNET BOUNDARY & DEFAULT GATEWAY"
+badge: "Network Layer"
+caption: "Architectural cutaway showing the Layer 3 boundary split between Subnet A (192.168.10.0/26) and Subnet B (192.168.10.64/26). The telemetry logger sits on Subnet B but forwards frames toward gateway 192.168.10.1 on Subnet A, stranding packets at the local network boundary."
+prompt: "Clear technical cutaway illustration of a network architecture schematic under bright neutral lighting. Two adjacent server chassis on a 19-inch equipment rack connected to a central switch. A glowing logical boundary line divides Subnet A (192.168.10.0) and Subnet B (192.168.10.64). Packets halt at the subnet boundary line before reaching the router gateway interface. Crisp technical drawing style, Ligne Claire, no text, no letters. 16:9 ratio."
 ```
 
 
@@ -334,11 +334,16 @@ Before executing any diagnostic command or changing a system setting, enforce th
 * **Layer & Subsystem:** Layer 2 / Data Link Address Resolution Protocol (ARP). Two distinct network adapters (Dell desktop NIC and HP printer JetDirect) are responding to ARP requests for `10.100.4.55`.
 * **Predicted Output:**
   ```console
-  C:\> arp -a 10.100.4.55
-  # First execution:
+  # Executed from local broadcast domain (e.g. WS-BLDGB-04):
+  C:\> arp -a | findstr 10.100.4.55
+  # First execution (Frank's Dell):
   10.100.4.55           00-14-22-8a-41-ef     dynamic
-  # Fifteen seconds later:
+  # Fifteen seconds later (Rogue HP Printer):
   10.100.4.55           00-25-b3-18-c2-90     dynamic
+
+  # Or queried directly on Building B distribution switch:
+  SW-BLDGB-DIST01# show ip arp 10.100.4.55
+  Internet  10.100.4.55             0   0014.228a.41ef  ARPA   Vlan4
   ```
 * **Triage Action:**
   1. Isolate the rogue device: search switch CAM table for both MAC addresses (`show mac address-table address 0025.b318.c290`).
@@ -362,6 +367,8 @@ Before executing any diagnostic command or changing a system setting, enforce th
   PS C:\> ping 192.168.10.62
   Request timed out.
   Request timed out.
+  PS C:\> ping 192.168.10.1
+  Destination host unreachable.
   PS C:\> arp -a
   # No entry for 192.168.10.62 appears in the ARP table because the OS attempted to route rather than ARP locally.
   ```
