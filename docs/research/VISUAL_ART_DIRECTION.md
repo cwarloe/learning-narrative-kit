@@ -104,9 +104,9 @@ Clear technical cutaway illustration of a network architecture schematic under b
 Clean technical cutaway diagram of a computer desktop screen displaying DNS resolution paths under bright, even lighting. Flowchart lines connect local hosts file to DNS resolver cache and recursive domain controllers. Clean instructional style, crisp fine lines, no text, no words. 16:9 ratio.
 ```
 
-### Episode 05: RS-232 to RJ-45 Console Rollover (16:9 Ratio)
+### Episode 05: Layer 4 TCP State Machine & TIME_WAIT Exhaustion (16:9 Ratio)
 ```text
-Clean technical wiring schematic of a DB-9 to RJ-45 console adapter under bright inspection lighting. Precision pinout lines connecting DB-9 pins 2, 3, and 5 to RJ45 modular jack. Clean neutral background, crisp fine ink linework, no heavy shadows, no text, no words. 16:9 ratio.
+Clean technical cutaway diagram of a network protocol state machine under bright inspection lighting. Flowchart lines illustrate TCP four-way handshake connection termination from FIN-WAIT to TIME-WAIT to CLOSED. A highlighted warning box depicts dynamic ephemeral port exhaustion. Crisp technical drawing style, Ligne Claire, no text, no letters. 16:9 ratio.
 ```
 
 ### Episode 06: The Sub-Basement Flood & Patch Trench (21:9 Ratio)

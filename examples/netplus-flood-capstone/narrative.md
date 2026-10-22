@@ -4,11 +4,18 @@
 
 An atmospheric river had stalled directly over the Willamette Valley since midday Sunday. The weather service called the system a once-in-a-decade storm. It dumped more than four inches of rain across twelve punishing hours. By three o'clock on Monday morning, the river had surged past flood stage. The swollen current pushed brown stormwater through storm drains and low-lying basements across the industrial district. My phone woke me from a dead sleep at three-thirty with the harsh chirping tone reserved for priority campus outages.
 
-Desk lead Jules Brooks was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses water billing, logistics dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
+Desk lead Jules Brooks was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses the regional order desk, field-service dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
 
 I pulled on my insulated coveralls and laced my rubber mud boots by the kitchen door. Five months on the Portland desk had transformed my habits. The work had replaced my old panic with an instinct for preparation. I packed my punchdown tool, an optical fiber light tester, spare patch cords, and two rolls of hook-and-loop cable ties into my canvas bag. As I drove my beat-up truck across the Morrison Bridge through blinding sheets of rain, the dark river churned violently beneath the piers.
 
 ## The basement vault at four in the morning
+
+```callout-panel
+title: "FIGURE 6.1: SUB-BASEMENT FLOOD & PATCH TRENCH"
+badge: "Disaster Recovery"
+caption: "Wide panoramic cutaway: The flooded Building C sub-basement. Murky water reflects emergency lights; bundles of blue Cat6 cables drip water above a wall-mounted 48-port patch panel and edge switch stack."
+prompt: "Clean technical cutaway illustration of a server room during a water leak under bright emergency lights. Bundles of blue network cables hang above a wall-mounted 48-port patch panel. A rackmount switch with glowing green port LEDs. Clean instructional drawing style, crisp fine lines, no text, no words. 21:9 ratio."
+```
 
 I parked in the loading bay of Building C alongside Jared Vance's four-wheel-drive service truck just before four o'clock. The building stood dark except for the amber strobes of the emergency backup generator rumbling on its elevated concrete pad outside. Jared was already unlatching the heavy tailgate. He pulled out two cardboard equipment cartons that held spare forty-eight-port switches. Jules stood beside him in her yellow cycling rain shell. She held a halogen lantern and studied a printed building wiring schematic inside a clear plastic sleeve.
 
@@ -18,7 +25,7 @@ We walked through the service entrance and headed down the concrete stairwell in
 
 Jules directed her halogen beam across the flooded chamber toward the open steel equipment rack bolted to the wall. The lower two rack units sat barely two inches above the water line. Dirty water spray had streaked their sheet metal housings. Both of the twenty-four-port access switches mounted in those lower slots were dark. They showed zero link lights across their front interfaces. Above them, the wall-mounted [[patch_panel|patch panel]] remained dry. However, damp condensation coated its numbered RJ-45 jacks and punchdown blocks.
 
-"The water never crested the third rack unit, but the electrical surge killed both edge switches," Jules said, testing the water with her rubber boot before stepping forward. "We have four hours before the administrative offices open. The water billing clerks will arrive for their morning run at eight o'clock. If this vault is dark at eight o'clock, water billing halts. Logistics dispatch will go blind, and the plant telemetry will drop into fail-safe mode."
+"Surge killed both lower switches," Jules said, testing the water with her boot before stepping forward. "Water stayed below unit three, but the hardware is toasted. We have until eight o'clock before order clerks walk in. If this vault stays dark, Rivergate goes blind and plant telemetry drops into fail-safe."
 
 ## Cold iron and flea power
 
@@ -26,21 +33,21 @@ Jared and I sloshed through the standing water toward the equipment rack. Our ru
 
 "Check the power supplies before you condemn the hardware, Ethan," Jared said, holding his flashlight on the rear power receptacles. "Sometimes an automated generator transfer trips the internal circuit breaker on the power supply without burning the silicon."
 
-I reached behind the first switch and unplugged the redundant power cords. I flipped the rear breaker switch back and forth several times. The internal cooling fans remained motionless, and the status LEDs stayed completely dark. I knew from my hardware training that digital switching supplies often hold residual electrical charges inside their high-voltage capacitors. I held down the front power button for thirty seconds to discharge all residual [[flea_power|flea power]] from the motherboard logic gates. When I plugged the power lead back into the wall outlet, the switch remained completely unresponsive. That test confirmed that the transient surge had destroyed the internal transformer coils.
+I reached behind the first switch and unplugged the redundant power cords. I flipped the rear breaker switch back and forth several times. The internal cooling fans remained motionless, and the status LEDs stayed completely dark. "Hold the front power button thirty seconds to discharge the [[flea_power|flea power]]," Jared instructed. "If the logic gates locked on an over-voltage clamp, bleeding the capacitors might reset the controller." I held the switch down, but when I plugged the power lead back into the outlet, the status lights stayed completely dark.
 
-"The power supplies are fried on both lower switches," I reported, unhooking my ratcheting screwdriver from my belt. "The transient spike breached the varistors and scorched the power distribution boards."
+"The power supplies are fried on both lower switches," I reported, unhooking my ratcheting screwdriver from my belt. "The transient spike blew right through the primary transformer coils."
 
 "Then we unrack them and build fresh," Jules said, setting her lantern on an upper conduit bracket. "We have two spare forty-eight-port switches in Jared's truck bed. We are mounting them four rack units higher. That position puts them well above the reach of any future water intrusion."
 
 Jared and I backed out the rack screws and lowered the dead chassis into scrap bins. We carried the replacement hardware down from the loading bay. We hoisted the replacement switches into the upper tier of the rack. We fastened them securely into the cage nuts with stainless steel screws. While Jared ran fresh power feeds to the overhead ceiling bus, I turned my attention to the damp horizontal cabling.
 
-The structural wiring of Building C terminated on a two-hundred-pair [[patch_panel|patch panel]] mounted directly above the switch bays. Moisture from the humid air had condensed across the modular ports. That condensation threatened to cause high resistance or crosstalk across the copper contacts. I pulled a canister of lint-free wipes and electronic contact cleaner from my field kit. I methodically cleaned each modular port. I wiped the plastic bezels dry. Finally, I inspected the color-coded twisted pairs on the reverse punchdown blocks to ensure all connections remained tight.
+The structural wiring of Building C terminated on a 48-port Cat6 modular [[patch_panel|patch panel]] mounted directly above the switch bays. Moisture from the humid air had condensed across the modular ports. That condensation threatened to cause high resistance or crosstalk across the copper contacts. I pulled a canister of lint-free wipes and electronic contact cleaner from my field kit. I methodically cleaned each modular port. I wiped the plastic bezels dry. Finally, I inspected the color-coded twisted pairs on the reverse punchdown blocks to ensure all connections remained tight.
 
 ## Building the three broadcast domains
 
 By five-thirty in the morning, the physical installation was complete. Both replacement switches hummed quietly on clean generator power. Jared plugged a rollover console cable into the management port of the primary switch. He handed the serial adapter over to me. I sat on an overturned plastic equipment crate above the water line, balancing my laptop across my knees.
 
-"Building C carries three distinct operational services across its horizontal cabling," Jules reminded me, shining her penlight onto her laminated network layout map. "VLAN 10 handles Corporate Water Billing workstations and municipal database servers. VLAN 20 carries critical Plant Telemetry Loggers that monitor river intake levels. VLAN 30 is reserved strictly for VoIP Dispatch consoles and emergency call-routing hardware. If you cross those streams, you violate municipal security policy and risk dropping emergency voice calls."
+"Three VLANs down here, Ethan," Jules said, shining her penlight on her clipboard schematic. "Ten for order desks and billing, twenty for intake telemetry, thirty for dispatch and plant safety phones. Keep them separated. If dispatch drops a safety call because an intake logger flooded the voice broadcast domain, we're all out of a job."
 
 I logged into the switch command line and initialized the baseline configuration. I created each virtual network in the local database. I named them carefully to match our campus inventory standards. Next, I mapped the physical patch connections from the [[patch_panel|patch panel]] into their designated access interfaces. I placed the billing desks on VLAN 10. I assigned the telemetry loggers to VLAN 20. I configured the dispatch handsets on VLAN 30.
 
@@ -99,7 +106,7 @@ VLAN0010
 
 At seven-fifteen, the city electrical utility restored commercial grid power to the district. Outside our basement vault, the diesel generator cycled down with a heavy mechanical shudder. The campus transfer switch transferred the electrical load back to the municipal grid. Overhead fluorescent tubes flickered on throughout Building C, illuminating the wet stairwells and hallways.
 
-Upstairs on the first and second floors, more than one hundred and fifty municipal devices powered on at the exact same moment. Desktop workstations in the water billing bullpen booted into their login screens. Wall-mounted logistics monitors reconnected their displays. Rows of VoIP handsets on dispatch desks initialized their operating firmware.
+Upstairs on the first and second floors, more than one hundred and fifty company devices powered on at the exact same moment. Desktop workstations in the order desk bullpen booted into their login screens. Wall-mounted logistics monitors reconnected their displays. Rows of VoIP handsets on dispatch desks initialized their operating firmware.
 
 Within three minutes, my mobile service phone began vibrating continuously in my pocket. Jared opened our network monitoring dashboard on his tablet. A sea of yellow and red warning icons populated the Building C device overview. 
 
@@ -109,7 +116,7 @@ Within three minutes, my mobile service phone began vibrating continuously in my
 
 "The trunk interface is up and passing frames," I replied, running `show interfaces trunk` on the console. "The port-channel is green. I will connect to the Windows DHCP server in the central datacenter and check the scope status for VLAN 10."
 
-I opened a remote PowerShell terminal to our primary domain controller. I queried the active DHCP scope servicing the water billing subnet at `10.20.10.0/24`. The output revealed an immediate operational problem.
+I opened a remote PowerShell terminal to our primary domain controller. I queried the active DHCP scope servicing the order desk subnet at `10.20.10.0/24`. The output revealed an immediate operational problem.
 
 ```console
 PS C:\Users\emercer> Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State
@@ -120,52 +127,21 @@ InUse   : 200
 State   : Active
 ```
 
-"Look at the address counter on this scope," I called out, tracing the numbers on the display. "The available free address count is zero. The active in-use count is at two hundred. We have hit complete [[dhcp_exhaustion|DHCP scope exhaustion]] on the water billing subnet."
+"Look at the address counter on this scope," I called out, tracing the numbers on the display. "The available free address count is zero. The active in-use count is at two hundred. We have hit complete [[dhcp_exhaustion|DHCP scope exhaustion]] on the order desk subnet."
 
 "How can a department with eighty desks exhaust a pool of two hundred addresses?" Jared asked, scratching his beard in frustration. "Did someone plug an unauthorized rogue wireless router into a wall jack upstairs?"
 
 I ran `Get-DhcpServerv4Lease -ScopeId 10.20.10.0` and piped the output into a sorting filter. Long rows of hostnames and physical hardware addresses scrolled rapidly across my monitor alongside lease expiration timestamps. The diagnostic data revealed a clear operational failure. The scope lease duration was configured for eight days, an old legacy setting left behind from a previous office configuration. 
 
-When the power cut during the storm, eighty desktop computers dropped off the network. When commercial power returned, those machines powered back on alongside fifty docking stations, twenty network printers, and fifteen field tablets carried in by arriving logistics drivers. Because the old leases were still active in the database, the DHCP server refused to reassign those addresses to new client requests. The eighty booting workstations broadcasted DHCP Discover packets across VLAN 10. They received zero Offers from the exhausted server and fell back to link-local APIPA assignments.
+When commercial power returned, eighty workstations booted up alongside fifty new employee docking stations, twenty network printers, and fifteen field tablets carried in by arriving logistics drivers. The transient docking stations and mobile tablets—each presenting unfamiliar MAC addresses—requested leases first and completely consumed the twenty remaining unallocated addresses in the pool. When the desktop workstations booted, several had their network interfaces bridged through the docks' new MAC addresses. The DHCP server viewed them as unleased clients, found zero available addresses in the exhausted scope, and refused to respond with DHCPOFFERS, stranding the order desks in APIPA.
 
-"The scope ran out of leases because the lease duration is set to eight days," I explained to Jules and Jared, using the binary search method Jules had drilled into me. "Over one hundred offline leases from last week are locking up the pool. When all one hundred and fifty devices booted at once, the server exhausted its remaining twenty addresses in sixty seconds."
+"The scope ran out of addresses because transient MACs claimed the buffer," I explained to Jules and Jared. "The lease duration was set to eight days, so last week's inactive mobile devices never released their reservations. When the dock hardware grabbed the remaining twenty dynamic addresses, there was zero room left in the pool for the booting desks."
 
-"What is your plan of action, Ethan?" Jules asked, watching me carefully. "We have twenty-five minutes before the public service windows unlock upstairs."
+Jules set her flashlight down on the rack rail and looked directly at me.
 
-"First, I will export the active lease table to preserve an audit record of static hardware assignments," I said, executing the commands without hesitation. "Second, I will reconcile the scope by clearing all expired and inactive leases. Third, I will reduce the dynamic lease duration from eight days to eight hours, which matches our working shift schedule. Finally, I will expand the dynamic pool range from two hundred addresses to two hundred and thirty addresses, reserving the first twenty addresses for local switches and network printers."
+"We have twenty-five minutes before the parts counter opens upstairs, Ethan," Jules said, her voice cutting through the hum of the cooling fans. "Eighty order clerks are locked out, twenty printers are dead, and the dispatchers cannot reach the safety line. If this building is not fully online at eight o'clock, Rivergate cannot take or ship a single order. What is your plan of action? How do you flush the stale leases, re-architect the scope duration, expand the dynamic pool without colliding with static equipment, and verify the entire four-layer protocol stack before that bell rings? Call your shot, Ethan."
 
-```console
-PS C:\Users\emercer> Set-DhcpServerv4Scope -ScopeId 10.20.10.0 -LeaseDuration 08:00:00
-PS C:\Users\emercer> Set-DhcpServerv4OptionValue -ScopeId 10.20.10.0 -DnsServer 10.100.1.10, 10.100.1.11
-PS C:\Users\emercer> Get-DhcpServerv4Lease -ScopeId 10.20.10.0 -AllLeases | Where-Object {$_.AddressState -eq "Inactive"} | Remove-DhcpServerv4Lease
-```
-
-The script ran in six seconds, flushing eighty-four stale leases from the server memory. Almost instantly, the monitoring dashboard showed client devices renewing their addresses across the building. 
-
-I consoled into a test workstation on the billing floor and executed `ipconfig /renew`. Within two seconds, the terminal returned a valid configuration. The screen displayed a valid network configuration with IP address `10.20.10.74`, a subnet mask of `255.255.255.0`, and a default gateway pointing to `10.20.10.1`. The billing application splash screen loaded cleanly, authenticated against the database cluster, and displayed green status indicators across all transaction ledgers.
-
-## The eight o'clock bell
-
-By seven-fifty in the morning, the basement vault had quieted down. The sump pump had lowered the standing water to a shallow sheen across the low corners of the concrete floor. The newly mounted switches in the upper rack operated quietly. Their link lights blinked in steady green unison across all forty-eight interfaces.
-
-Jules stood beside the rack with her clipboard in hand, verifying our post-restoration punch list. "Run the end-to-end verification across all four layers, Ethan. I want proof before the department director walks through the door."
-
-I opened four simultaneous terminal sessions on my laptop and executed our standard verification checklist:
-
-1. **Layer 1 (Physical):** Link status on both fiber transceivers and all forty-eight copper ports showed full-duplex operation at one gigabit per second, with zero CRC alignment errors on the counter registers.
-2. **Layer 2 (Data Link):** The LACP bundle showed both physical member links active in Port-Channel 1. Rapid Spanning Tree Protocol confirmed zero topology changes or blocked ports across all three active virtual networks.
-3. **Layer 3 (Network):** Default gateway pings to `10.20.10.1` (Billing), `10.20.20.1` (Telemetry), and `10.20.30.1` (VoIP) responded with consistent sub-millisecond round-trip times.
-4. **Layer 4 and Application:** Telemetry loggers on VLAN 20 successfully delivered Modbus sensor packets to the central SCADA database. VoIP phones on VLAN 30 registered with the call manager, and water billing terminals on VLAN 10 completed test database queries without packet loss.
-
-I closed my active terminal windows and reported that all three network segments were fully operational. The trunk was balanced, the DHCP pool had ninety free leases remaining, and the plant telemetry stream had been stable for twenty minutes.
-
-Jared latched his toolcase and slung his cable harness over his shoulder with a weary grin. "Not bad for four hours in rubber boots, kid. You handled that DHCP pool storm faster than our third-shift network admin did last winter."
-
-Outside the high basement windows, the rain had finally tapered off to a gentle Pacific Northwest drizzle. The dark storm clouds were breaking over the Willamette River. Pale winter morning light reflected across the wet asphalt of the loading bay. Upstairs, the faint chime of the municipal elevator signaled the arrival of the morning staff as the eight o'clock bell rang out across the campus.
-
-Jules switched off her halogen lantern and hooked her bicycle helmet to her pack. "You did not panic when the scope exhausted, Ethan," she said, looking at me with a quiet nod of approval. "You followed the protocol stack from the wet concrete up to the transport layer, and you committed your decisions before you typed them. That is the difference between guessing in the dark and doing the work."
-
-We hauled our empty cartons and spent gear up the stairwell to Jared's truck, leaving the basement telecommunications vault secure, elevated, and fully restored.
+I looked at the red warning icons multiplying across the monitoring board. Four hours of sweating in rubber boots in an ankle-deep flood came down to the next twenty-five minutes. I needed to execute the DHCP reconciliation, restore address leases to one hundred and fifty endpoints, and run the end-to-end verification checklist before the doors unlocked.
 
 ## Desk Translation Table
 
@@ -178,13 +154,13 @@ We hauled our empty cartons and spent gear up the stairwell to Jared's truck, le
 | **[[spanning_tree|Spanning Tree Protocol (STP)]]** | A Layer 2 network protocol that monitors bridge topology and dynamically places redundant switch ports into blocking state to prevent catastrophic broadcast storms and switching loops. | The network traffic cop that turns off duplicate switch cables so broadcast loops do not circle endlessly and crash the entire building network. |
 | **[[link_aggregation|Link Aggregation (LACP)]]** | A networking standard (Link Aggregation Control Protocol) that bundles multiple physical Ethernet interfaces into a single logical channel to provide multiplied bandwidth and active redundancy. | The team-up protocol that binds two or more network cables together to act like one double-speed wire that stays up even if one cable snaps. |
 
+## The Handoff Gate
+
 ```bridge-card
 title: Portland Desk Lab: The Campus Flood & Disaster Recovery Crucible
-target: workbench.md
+target: workbench/06-the-portland-flood.md
 domain: CompTIA Network+ N10-008/009 • Disaster Recovery & Layer 1-4 Rebuild
 badge: The Hands-On Lab
 ---
-Step into Ethan's rubber boots at 04:00 AM in the flooded Building C vault. Punch down damp patch cables, configure 802.1Q VLAN trunks and LACP link aggregation, mitigate a massive 150-device DHCP scope exhaustion storm, and complete the 5-case "Call Your Shot" prediction gate before the 08:00 AM opening.
+Take over Ethan's console at 07:35 AM in the flooded vault. Execute the PowerShell DHCP reconciliation to clear 84 stale leases, reduce lease durations, expand pool capacity, and run the Layer 1-4 verification checklist before the 08:00 AM opening.
 ```
-
-[Take the Ticket & Open the Lab ->](workbench.md)

@@ -23,10 +23,10 @@
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
-title: "FIGURE 5.1: RS-232 TO RJ-45 CONSOLE PINOUT CROSSOVER"
-badge: "Serial Interface"
-caption: "Schematic wiring diagram: DB-9 female serial connector pinned to an RJ-45 rollover console cable. Pin 2 (RxD) and Pin 3 (TxD) cross over cleanly to pins 3 and 6 on the remote switch port."
-prompt: "Clean technical wiring schematic of a DB-9 to RJ-45 console adapter under bright inspection lighting. Precision pinout lines connecting DB-9 pins 2, 3, and 5 to RJ45 modular jack. Clean neutral background, crisp fine ink linework, no heavy shadows, no text, no words. 16:9 ratio."
+title: "FIGURE 5.1: LAYER 4 TCP STATE MACHINE & TIME_WAIT EXHAUSTION"
+badge: "Transport Layer"
+caption: "Schematic diagram: TCP teardown lifecycle. After active closure (FIN/ACK exchange), the client socket parks in TIME_WAIT for 2MSL (120 seconds). Unthrottled multi-threaded retry loops consume all 16,384 ephemeral ports in the dynamic range (49152–65535)."
+prompt: "Clean technical cutaway diagram of a network protocol state machine under bright inspection lighting. Flowchart lines illustrate TCP four-way handshake connection termination from FIN-WAIT to TIME-WAIT to CLOSED. A highlighted warning box depicts dynamic ephemeral port exhaustion. Crisp technical drawing style, Ligne Claire, no text, no letters. 16:9 ratio."
 ```
 
 

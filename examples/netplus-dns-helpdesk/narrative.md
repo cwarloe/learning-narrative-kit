@@ -2,11 +2,9 @@
 
 *A CompTIA Network+ name resolution precursor • Hover over highlighted terms for technical definitions and triage mechanics.*
 
-A steady March downpour had been drumming against the high double-paned windows since six in the morning. I was five months into my tenure at the Portland Operations Center. That was long enough to know which switches ran hot in the telecom closets, and which departments panicked over forgotten passwords. The index cards I once carried in my shirt pocket now sat inside my center desk drawer. My morning routine remained largely unchanged.
+A gray March downpour beat against the high double-paned windows of the fourth floor. Five months on the Portland Operations Center desk had taught me the rhythms of the building: which closet switches ran warm, which departments panicked before payroll cutoff, and how fast a wet morning turned into a ticket surge.
 
-Jules Brooks pedaled in around eight fifteen. She shook sheets of water from her yellow cycling jacket before draping it across the back of her chair. Her battered steel commuter bike was already locked downstairs in the basement cage. Its fenders were coated in gritty road spray. Her black helmet hung from the lower mounting arm of her secondary display. On the lower right bezel of her primary monitor, a faded yellow sticky note read *Which decision?* Its edges curled slightly under the steady breeze from the ceiling vent.
-
-Across the center aisle from our row, Tier 2 systems administrator Maya Chen was already reviewing directory logs. Maya managed our regional identity services, virtual machine clusters, and remote access gateways. She was usually quiet during the first hour of a shift. This morning, however, her headset light was glowing amber and her keyboard clattered with steady, rhythmic keystrokes.
+Across the center aisle, Tier 2 systems administrator Maya Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules Brooks sat to my left, finishing her first coffee while auditing overnight firewall changes.
 
 By eight thirty, the incoming ticket board on our wall monitor began flashing amber with nine high-priority incidents. Remote employees working across Multnomah and Washington counties were calling in with identical complaints. They had connected their laptops to our corporate virtual private network without any errors. Yet whenever they tried to open the internal payroll portal or the plant telemetry wiki, their browsers spun endlessly. Some requests timed out completely, while others redirected users to an unfamiliar public domain parking page. Meanwhile, accountants and dispatchers working inside the building were browsing those exact same internal websites without any trouble.
 
@@ -14,7 +12,7 @@ By eight thirty, the incoming ticket board on our wall monitor began flashing am
 
 Jared Vance from network operations walked over from the bullpen holding a paper cup of lukewarm coffee. He had worked around regional fiber plants long enough to remember when frame relay was cutting edge. His first instinct during any distributed outage was to blame the carrier.
 
-"CenturyLink has a backhoe problem out in Beaverton, or Comcast pushed another broken routing update," Jared announced. He gestured vaguely toward the rain-streaked windows with his paper cup. "The office runs on a dedicated synchronous fiber loop with static routes. Those remote workers are sitting on domestic broadband connections that drop packets whenever the weather turns sour. Tell them to reboot their residential cable modems and flush their network stacks."
+"Comcast probably pushed another broken routing update, or a backhoe clipped a conduit in Beaverton," Jared said, gesturing toward the rain with his paper cup. "Remote workers are on domestic broadband lines that flake out whenever the weather turns sour. Have them reboot their cable modems and flush their network stacks."
 
 Maya Chen turned slightly in her swivel chair and lowered her headset microphone. "Rebooting sixty consumer cable modems across three residential providers is not an operational triage plan, Jared. The VPN concentrator shows eighty-two active client tunnels with healthy keepalive handshakes. We have zero packet drops on the transport interface. The encrypted tunnel is staying wide open, but the application payload is landing in the wrong place."
 
@@ -72,7 +70,7 @@ I stared at the first two lines of the terminal response. "Look at the resolving
 
 "And what does his home router do when a client asks it to resolve an unfamiliar internal host?" Maya asked.
 
-"His home router forwards the request upstream to its configured [[recursive_resolver|recursive resolver]] at Comcast," I explained. I traced the query path mentally. "The public recursive servers walk the internet root servers and the top-level domain authorities looking for `.local`. But `.local` is a private, non-delegated internal namespace that does not exist in public root zone files. The public resolver immediately returns a non-existent domain code."
+"His home router forwards the query to its upstream [[recursive_resolver|recursive resolver]] at Comcast," I said. "RFC 6762 reserves `.local` for Multicast DNS on the local link. Comcast's public recursive resolvers don't know our private corporate namespace, so they drop an immediate NXDOMAIN non-existent domain code right back to his machine."
 
 "Now look at what happens when Greg tries to browse the public corporate domain name," Maya said.
 
@@ -104,7 +102,7 @@ DNSServer                    : 10.100.10.2, 10.100.10.3
 
 "Look at the interface binding order and gateway metrics," Maya observed. She spotted the configuration discrepancy immediately. "The client VPN profile was updated during last night's maintenance window to enable split-tunneling. That was intended to keep remote employees from pushing video streaming traffic across our corporate circuits. But whoever updated the XML connection profile forgot to configure the domain suffix search list. They also left the virtual adapter metric set higher than the physical Wi-Fi interface."
 
-"A textbook [[dns_leak|DNS leak]]," Jules observed. She took another sip of coffee. "Modern Windows operating systems query all available network interfaces simultaneously under multi-homed resolution. The physical Wi-Fi adapter responds in four milliseconds, while the encrypted tunnel takes twenty. The home router answers first with an authoritative NXDOMAIN failure. The Windows resolver accepts the fastest negative response. The client never even waits for the internal domain controller to answer through the VPN."
+"A textbook [[dns_leak|DNS leak]]," Jules observed. She took another sip of coffee. "Modern Windows operating systems query all available network adapters simultaneously under Smart Multi-Homed Name Resolution. The physical Wi-Fi adapter's local router responds in four milliseconds with an NXDOMAIN code, while the encrypted tunnel takes twenty. Because the virtual adapter's metric is set higher than the physical interface, the resolver prioritizes the local negative response, and the client never establishes the connection through the VPN."
 
 "To make matters worse, look at the negative response caching," I added. I checked the record properties. "The local resolver caches those failed lookups according to the zone [[dns_ttl|DNS TTL]]. That means even if the employee restarts their browser or reconnects the tunnel, the operating system keeps feeding them the cached failure for the next fifteen minutes."
 
