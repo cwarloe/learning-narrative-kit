@@ -23,10 +23,10 @@
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
-title: "FIGURE 12.1: INCIDENT COMMAND EVIDENCE & WRITE-BLOCKER"
+title: "FIGURE 12.1: LIVE FORENSIC MEMORY CAPTURE & ORDER OF VOLATILITY"
 badge: "Incident Response"
-caption: "Forensic bench diagram: An extracted NVMe storage drive connected through a hardware write-blocker to the forensic acquisition laptop. Chain of custody tags and anti-static pouches in view."
-prompt: "Clean technical illustration of a computer forensic examination bench under bright laboratory lighting. An external storage drive connects through a small rectangular hardware write-blocker with a glowing green LED to a laptop. Anti-static bags and clean tools on an ESD mat. Sharp technical linework, no text, no words. 16:9 ratio."
+caption: "Forensic bench diagram: An isolated, live running laptop on an ESD mat with a write-blocking USB capture tool acquiring volatile RAM (RFC 3227) before power-down and physical storage disk acquisition."
+prompt: "Clean technical cutaway illustration of a computer forensic examination bench under bright laboratory lighting. A running laptop sits on an ESD mat connected via USB to a dedicated forensic memory acquisition dongle with glowing green status LEDs. Evidence tags and documentation binder nearby. Sharp technical linework, no text, no words. 16:9 ratio."
 ```
 
 

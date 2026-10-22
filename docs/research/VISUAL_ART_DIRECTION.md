@@ -139,7 +139,7 @@ Clean technical illustration of a computer monitor displaying a system process m
 Clean technical cutaway diagram of radio frequency spectrum channels under bright studio lighting. Bell curves represent Wi-Fi channels 1, 6, and 11 across the 2.4 GHz band, with interference spikes overlapping channel 6. Crisp technical line art, no text, no words. 16:9 ratio.
 ```
 
-### Episode 12: Forensic Acquisition & Write-Blocker (16:9 Ratio)
+### Episode 12: Live Forensic Memory Capture & Order of Volatility (16:9 Ratio)
 ```text
-Clean technical illustration of a computer forensic examination bench under bright laboratory lighting. An external storage drive connects through a small rectangular hardware write-blocker with a glowing green LED to a laptop. Anti-static bags and clean tools on an ESD mat. Sharp technical linework, no text, no words. 16:9 ratio.
+Clean technical cutaway illustration of a computer forensic examination bench under bright laboratory lighting. A running laptop sits on an ESD mat connected via USB to a dedicated forensic memory acquisition dongle with glowing green status LEDs. Evidence tags and documentation binder nearby. Sharp technical linework, no text, no words. 16:9 ratio.
 ```

@@ -43,11 +43,11 @@ actions: Remove | Keep for now
 New tabs open to coupons. Three toolbars. A helper named OptimizeRAM. The merger works. The rest of the machine is trying to sell her a vacation.
 ```
 
-"That cluster is [[pups|PUPs]] — potentially unwanted programs — riding a free install," I said. "The ad engine is [[adware|adware]]. Some of these bundles also drop [[spyware|spyware]] that phones home about where you browse. We do not tune it. We remove the bundle, reset the browser, and run a full malware scan."
+"You got bundled, Maya," I said. "The free PDF tool was real enough, but the installer snuck in an [[adware|adware]] engine and coupon toolbars—classic [[pups|PUPs]], potentially unwanted programs. Some of these bundles also drop [[spyware|spyware]] that tracks your browsing. It's essentially a [[trojan|trojan]] carrying a hidden [[payload|payload]]. We remove the bundle, reset the browser extensions, and run a full malware scan."
 
 Maya winced. "So I got scammed by a checkbox."
 
-"Useful-looking installer, extra [[payload|payload]] in the luggage," I said. "That is [[trojan|trojan]] territory even when the merger itself works. Next time: company software portal only. If it is not on the portal, it is not a merger we support."
+"Next time: company software portal only," I told her. "If it's not on the portal, it's not a utility we support."
 
 We stripped the junk while her standup Slack started to ping. [[antivirus|Antivirus]] quarantined one toolbar DLL on sight. A second helper only tripped after it started injecting ads.
 
@@ -116,7 +116,7 @@ Parent is a scheduled task created this morning. Child is a copy of the same scr
 caption: KEN-SALES-14 · process tree
 powershell.exe  (signed, company cert)
   powershell.exe -nop -w hidden -enc JABzA...
-    net.exe view /all
+    net.exe view /domain
     cmd.exe /c copy update.ps1 \\WH-PACK-02\share$
     schtasks.exe /create /tn "CacheCleanup"
 ```
@@ -158,7 +158,7 @@ Dana unplugged. Jules was already on the bridge with SOC. They asked about backu
 
 Dana asked if she should try the attacker's support chat anyway, "just to see if the test file comes back." I said no. She asked when her files would be back. I said after SOC and backups, not this afternoon. She stayed on the slow spare printer for the rest of the day and was not polite about it. I wrote that in the ticket because politeness is not a restore code either.
 
-Jules turned from the ops bridge, her headset resting around her collar. "Ken's laptop is spinning fans at 100% executing encoded PowerShell payloads across warehouse shares, an unknown USB dropper sits on the scan bench, and Dana's endpoint is locked with a crypto-malware demand. If you let that PowerShell beacon run another thirty seconds, the entire warehouse VLAN is toast. Isolate the network endpoints, decode that Base64 payload, hunt down the persistence run keys in Autoruns, and log Event ID 7045 before lateral movement takes down the domain."
+Jules turned from the ops bridge, her headset resting around her collar. "Ken's laptop is spinning fans at 100% executing encoded PowerShell payloads across warehouse shares, an unknown USB dropper sits on the scan bench, and Dana's endpoint is locked with a crypto-malware demand. If you let that PowerShell beacon run another thirty seconds, the entire warehouse VLAN is toast. Isolate the network endpoints, decode that Base64 payload, hunt down the persistence run keys in Autoruns, and trace Event ID 7045 in the System log before lateral movement takes down the domain."
 
 ## The Handoff Gate
 
@@ -169,5 +169,5 @@ domain: CompTIA Security+ SY0-701 • Domain 2.1 & 4.1
 badge: The Hands-On Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Take over Ethan's workstation. Decode obfuscated Base64 PowerShell scripts, inspect Sysinternals Autoruns and Windows Security logs for Event ID 7045 and registry persistence, isolate infected endpoints from the network, and submit the Tier 1 Host Infection Containment Dossier.
+Take over Ethan's workstation. Decode obfuscated Base64 PowerShell scripts, inspect Sysinternals Autoruns and Windows System logs for Event ID 7045 (or Security log Event ID 4697) and registry persistence, isolate infected endpoints from the network, and submit the Tier 1 Host Infection Containment Dossier.
 ```

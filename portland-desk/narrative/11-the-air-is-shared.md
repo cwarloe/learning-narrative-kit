@@ -21,9 +21,9 @@ Maya from accounting was in the lobby with a loaner laptop.
 
 "It asks for a password," she said. "I type the one on the sticky under the monitor in Finance. Denied. Also there are two networks named almost the same. One has more bars."
 
-I walked out with a phone running our approved [[wifi_analyzer|Wi-Fi analyzer]] view. Official [[ssid|SSID]] was `CORP-EMPLOYEE`. Beside it, `CORP-EMPLOYEE_Guest` and a suspicious `CORP-EMPLOYE` with the last letter missing and a signal strength that was louder near the street than near the AP closet.
+I walked out with a phone running our approved [[wifi_analyzer|Wi-Fi analyzer]] view. Official [[ssid|SSID]] was `CORP-EMPLOYEE`. Beside it appeared `CORP-EMPLOYEE_Guest` and a duplicate `CORP-EMPLOYEE` with an identical network name but an unrecognized BSSID transmitting at maximum signal strength near the street entrance.
 
-"The lobby sticky password is the old [[psk|PSK]] world," I said. "Shared key. Everyone knows it, which means everyone and their cousin know it. We moved employees to [[enterprise_wpa|WPA-Enterprise]] — [[ieee_8021x|802.1X]] with your badge account against [[radius|RADIUS]]. Join `CORP-EMPLOYEE`, use your user ID, trust the company certificate prompt we already documented, and do not join the loud almost-name."
+"That sticky note is the old guest [[psk|pre-shared key]], Maya," I said. "Connect to `CORP-EMPLOYEE` instead. That uses [[enterprise_wpa|WPA-Enterprise]]—authenticate with your normal badge username and password under [[ieee_8021x|802.1X]] against our [[radius|RADIUS]] server, and accept the company certificate. Don't touch the duplicate network."
 
 Maya squinted at the twin. "So the louder one is…?"
 
@@ -55,7 +55,7 @@ Mid-morning Facilities Slack: visitors could not reach the projector, so someone
 
 Rita blushed into her notebook. We unplugged. Network confirmed the jack was on a user VLAN that should never have been a free café. I filed the ticket with a photo, jack number, and "not malicious, still a rogue."
 
-While we were there, the analyzer showed our real APs plus a faint outside SSID that had been mapping the block for an hour — classic war driving energy from a car with too many antennas. Not our emergency. Still a reminder that discovery is cheap.
+While we were there, the analyzer showed our real APs alongside faint guest beacons from adjacent retail shops down the street. Not our emergency, but a clear reminder that radio boundaries stop where walls end.
 
 ## Disassociation, jamming, and the reconnect reflex
 
@@ -63,7 +63,7 @@ Afternoon: Dev from engineering pinged that his laptop kept dropping Wi-Fi every
 
 "I did not change anything," he said. "It just flaps. Then it asks for passwords it already knew."
 
-Wireless ops had a note on the bridge: bursts of [[disassociation|disassociation / deauthentication]] frames aimed at lobby clients. Not full [[jamming|jamming]] — the air still worked — but enough kicks to make laptops frantic. Frantic laptops are how evil twins collect friends.
+Wireless ops had a note on the bridge: bursts of spoofed [[disassociation|deauthentication frames]] aimed at lobby clients where 802.11w Protected Management Frames had not yet been enforced on the legacy WPA2 profile. Not full [[jamming|jamming]]—the air still worked—but enough kicks to make laptops frantic. Frantic laptops are how evil twins collect friends.
 
 "When you get kicked, do not reconnect on autopilot," I said. "Check the SSID character by character. Prefer the dock. If the air is being rude on purpose, escalate — that is a SOC and wireless hunt, not a forget-network ritual."
 

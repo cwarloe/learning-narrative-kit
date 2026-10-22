@@ -2,9 +2,7 @@
 
 *A Security+ incident response precursor • Hover over highlighted terms after they have earned their keep.*
 
-The rain came in sideways on Wednesday, hard enough that the lobby mat was already soaked when I sat down. I had a queue full of subject lines in all caps and a USB drawer I trusted too much.
-
-Jules's sticky still said *which decision?* I had not looked at it yet. I was looking at the first ticket.
+A gusting Wednesday rain swept across the Willamette as I stepped onto the fourth floor. Eleven months on the service desk had taught me that the quietest tickets are often the ones carrying the sharpest edges. On the bezel of her monitor, Jules's sticky note still asked *Which decision?* under the fluorescent lights.
 
 ## Maya and the laptop that must die
 
@@ -32,7 +30,7 @@ Jules put the imaging USB on her side of the wall. "You can have it back when yo
 
 The next subject line was almost polite. *Can't see my Sent. Also a rule I did not make.*
 
-Finance this time — a different Maya, mailboxes, not laptops. She was not asking for a wipe. She was asking why her own mail was leaving without her.
+Finance this time — Elena from payroll audit, mailboxes, not laptops. She was not asking for a wipe. She was asking why her own mail was leaving without her.
 
 I did not reach for the USB. I opened the portal the way Jules had opened the AV log. A forwarding rule to a domain that was almost ours and not ours. An MFA reset at 2:13 a.m. from an IP that had never bought coffee in Portland.
 

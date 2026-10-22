@@ -2,17 +2,15 @@
 
 *A Security+ incident response precursor • Hover over highlighted terms after they have earned their keep.*
 
-The rain came in sideways on Wednesday, hard enough that the lobby mat was already soaked when I sat down. I had a queue full of subject lines in all caps and a USB drawer I trusted too much.
-
-Jules's sticky still said *which decision?* I had not looked at it yet. I was looking at the first ticket.
+A gusting Wednesday rain swept across the Willamette as I stepped onto the fourth floor. Eleven months on the service desk had taught me that the quietest tickets are often the ones carrying the sharpest edges. On the bezel of her monitor, Jules's sticky note still asked *Which decision?* under the fluorescent lights.
 
 ## Maya and the laptop that must die
 
 ```callout-panel
-title: "FIGURE 12.1: INCIDENT COMMAND EVIDENCE & WRITE-BLOCKER"
+title: "FIGURE 12.1: LIVE FORENSIC MEMORY CAPTURE & ORDER OF VOLATILITY"
 badge: "Incident Response"
-caption: "Forensic bench diagram: An extracted NVMe storage drive connected through a hardware write-blocker to the forensic acquisition laptop. Chain of custody tags and anti-static pouches in view."
-prompt: "Clean technical illustration of a computer forensic examination bench under bright laboratory lighting. An external storage drive connects through a small rectangular hardware write-blocker with a glowing green LED to a laptop. Anti-static bags and clean tools on an ESD mat. Sharp technical linework, no text, no words. 16:9 ratio."
+caption: "Forensic bench diagram: An isolated, live running laptop on an ESD mat with a write-blocking USB capture tool acquiring volatile RAM (RFC 3227) before power-down and physical storage disk acquisition."
+prompt: "Clean technical cutaway illustration of a computer forensic examination bench under bright laboratory lighting. A running laptop sits on an ESD mat connected via USB to a dedicated forensic memory acquisition dongle with glowing green status LEDs. Evidence tags and documentation binder nearby. Sharp technical linework, no text, no words. 16:9 ratio."
 ```
 
 The subject was *PC possessed — ads, slowness, standup in twelve — please wipe.*
@@ -39,7 +37,7 @@ Jules put the imaging USB on her side of the wall. "You can have it back when yo
 
 The next subject line was almost polite. *Can't see my Sent. Also a rule I did not make.*
 
-Finance this time — a different Maya, mailboxes, not laptops. She was not asking for a wipe. She was asking why her own mail was leaving without her.
+Finance this time — Elena from payroll audit, mailboxes, not laptops. She was not asking for a wipe. She was asking why her own mail was leaving without her.
 
 I did not reach for the USB. I opened the portal the way Jules had opened the AV log. A forwarding rule to a domain that was almost ours and not ours. An MFA reset at 2:13 a.m. from an IP that had never bought coffee in Portland.
 
@@ -55,7 +53,7 @@ Jules had me bag the laptop she had also brought, "just in case." Tag, time, who
 
 I almost said I had learned the phases. I did not. I had learned that my first useful move of the day was an undo.
 
-Jules set a red binder and an anti-static evidence pouch onto my desk. "We have an active credential compromise, unauthorized cloud mailbox rule exfiltration, and a live compromised laptop sitting on the counter. If you reboot or shut it down, volatile RAM evidence evaporates. If you leave it connected, data leaks out. You have twenty minutes to execute the Order of Volatility, pull the live memory capture, compute the SHA-256 hash, establish chain of custody, and draft the formal CSIRT Escalation Dossier before the incident response team steps onto the floor."
+Jules set a red binder and an anti-static evidence pouch onto my desk. "We have an active credential compromise, a live exfiltration rule, and an endpoint that was touched," Jules said, handing me an anti-static pouch. "Remember your Order of Volatility, Ethan. If you pull the plug, live RAM evaporates. If you leave the NIC up, the adversary moves. Isolate the interface, dump volatile memory to the forensic drive, hash the image, and get the chain of custody logged before the CSIRT team arrives."
 
 ## The Handoff Gate
 
