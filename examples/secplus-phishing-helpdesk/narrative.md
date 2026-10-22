@@ -16,7 +16,7 @@ Maya from accounting forwarded a message with logos that looked expensive. The b
 
 I expanded the link without clicking. Display text said `login.microsoft.com`. The real host was `login-micros0ft-secure[.]ru` with a zero where an o should live. The browser status bar is honest when you let it finish talking.
 
-"That is a [[phishing_url|phishing URL]]," I said. "[[typo_squatting|Typosquatting]] plus [[brand_impersonation|brand impersonation]]. The destination is [[credential_harvesting|credential harvesting]] — a fake login that eats your password and maybe your MFA code if you type one in because the page asked nicely."
+"That is a [[phishing_url|phishing URL]]," I said. "They are using [[typo_squatting|typosquatting]] with a zero instead of an 'o' to pull off [[brand_impersonation|brand impersonation]]. The destination is [[credential_harvesting|credential harvesting]]—a fake login that grabs your password and immediately prompts for your MFA code."
 
 Maya exhaled. "So this is just… [[phishing|phishing]]?"
 
@@ -44,7 +44,7 @@ Jules appeared at my cube wall.
 
 Display name: *Avery Chen, CFO*. Address: `avery.chen@c0mpany-mail[.]biz`. Reply-To somewhere else entirely. The logo in the signature was crisp.
 
-"[[spoofing|Spoofing]] the display name," I said. "[[impersonation|Impersonation]] of the CFO. Aimed at money movers — that is [[whaling|whaling]] when the target is the whale, and the payment change is [[bec|business email compromise (BEC)]] with an [[invoice_scam|invoice scam]] payload. Nobody confirms wiring instructions from a surprise thread. Call Avery on a number you already have — badge directory, not the number in the email footer."
+"[[spoofing|Spoofing]] the display name," I said. "[[impersonation|Executive impersonation]] of our CFO. When an attacker targets the executive directly, that's [[whaling|whaling]]; when they impersonate the executive to trick accounts payable into wiring money, that is classic CEO Fraud under [[bec|business email compromise (BEC)]] with an [[invoice_scam|invoice scam]] payload. Nobody confirms wiring instructions from a surprise thread. Call Avery on an internal extension from the badge directory, not the number in the email footer."
 
 Dana already had Avery on the real desk phone. Avery had never heard of the thread. AP froze the change. Someone un-typed *on it*. I opened an escalate ticket for the [[soc|SOC]] with headers pasted, not vibes.
 

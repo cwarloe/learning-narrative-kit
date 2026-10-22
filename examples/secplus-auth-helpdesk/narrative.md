@@ -38,7 +38,7 @@ I felt the flashcard reflex and almost agreed because the sentence had two nouns
 
 Jules's sticky was visible from my chair.
 
-"[[identification|Identification]] is you typing your username," I said. "[[authentication|Authentication]] is proving it. MFA means two different factor types. Password is [[something_you_know|something you know]]. PIN is also something you know. Same bucket. That is [[single_factor|single-factor]] with extra typing — not [[mfa|multifactor authentication]]."
+"[[identification|Identification]] is typing your username, Ken, while [[authentication|Authentication]] is proving it," I said. "A password and a PIN are both [[something_you_know|something you know]]—typing two secrets out of your head is just [[single_factor|single-factor]] twice, not real [[mfa|multifactor authentication]]. Real MFA needs two distinct factor types, like combining your password with [[something_you_have|something you have]], like the authenticator app on your phone."
 
 Ken was quiet for a second. "So what counts as the second thing?"
 
@@ -48,7 +48,7 @@ Ken was quiet for a second. "So what counts as the second thing?"
 
 ## Soft tokens, SMS, and the Approve reflex
 
-The enrollment ticket for Ken turned into a hallway class for two other people who "just need the code thing."
+While Ken got his phone out, two other sales reps stopped by my desk to get their authenticator apps set up.
 
 I started with the [[authenticator_app|authenticator app]]. The soft path is a [[soft_token|soft token]] on the phone that shows [[totp|TOTP]] codes — six digits, thirty seconds, clock-bound. We scanned the QR at his desk, not at the coffee bar. I mentioned [[shoulder_surfing|shoulder surfing]] once; he angled the screen.
 
@@ -80,7 +80,7 @@ While Dev waited, Lila from HR stopped by with a laptop lid.
 
 "Windows Hello says my face," she said. "Is that real [[biometrics|biometrics]], or theater? Also can I turn off MFA if the laptop unlocks me?"
 
-"Biometrics are [[something_you_are|something you are]]," I said. "Fine for device unlock. Company apps still want MFA at the [[identity_provider|identity provider]]. Unlocking the lid is not the same as proving you to every SaaS tile."
+"Biometrics are [[something_you_are|something you are]]," I said. "On consumer laptops, it's just a local screen unlock. But on our managed enterprise laptops, Windows Hello for Business pairs your biometric gesture with an asymmetric private key locked inside your laptop's TPM chip. That hardware handshake satisfies MFA at the [[identity_provider|identity provider]] without typing codes. If procurement hasn't enrolled your laptop into Hello for Business yet, you still need the soft token app."
 
 She kept the app. She looked like someone who had hoped for a shorter answer.
 

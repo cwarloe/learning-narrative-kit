@@ -2,13 +2,11 @@
 
 *A Security+ ports-and-protocols precursor • Hover over highlighted terms for exam definitions and supporting desk/network jargon.*
 
-It had been raining on the east side of the building since before I got in. I was eight months into my run at the operations center — past the rookie freeze of my first payroll ticket, but still carrying the habit of checking twice before touching a firewall. In my top drawer sat the red-banded index cards I had drafted at my kitchen table before the A+ exam, service on the front and port number on the back. I knew the numbers by heart now, but when the queue started barking, holding the paper kept my hands from jumping.
+I was eight months into my tenure at the Portland Operations Center—long past the rookie freeze of my first payroll outage, but still carrying the habit of checking twice before recommending a firewall change. In my top drawer sat my red-banded index cards for Security+: service names on the front, port numbers and transport protocols on the back. I knew the numbers by heart now, but when the queue started barking, holding the paper kept my hands from jumping.
 
-Two cubes over, Jules's bicycle helmet hung from the monitor arm, her rain shell dripping onto the rubber mat. The faded yellow sticky note on the corner of her screen still asked the only question that mattered on a Tuesday morning: *which decision?*
+Jules Brooks glanced over from her workstation, mug in hand. On the bezel of her primary monitor, her faded yellow sticky note asked *Which decision?* under the ceiling lights.
 
-The first ticket came in and I reached for the cards, and she caught me at it.
-
-"You already know the numbers," she said. "So that's not the part that's slowing you down."
+"You already know the numbers, Ethan," she said, catching me glancing toward the drawer. "The port numbers aren't what's slowing you down. It's knowing which habits to challenge."
 
 It was an ordinary Tuesday queue. All day it was people carrying habits from somewhere else — an old shop, vendor documentation, a home lab at one in the morning — and most of my job was talking those habits into something that worked here.
 
@@ -31,11 +29,11 @@ I was most of the way to saying *sure, twenty-three is open on that box* when Ju
 
 Jared answered before I could get the question out. "Packet capture on the management span. The enable password sitting there in the clear where anybody walking past the collector could read it. The boss made us rotate everything that week. I still flinch."
 
-"So which port do we allow on the management path," I said, "and which protocol is carrying that password? Telnet sends it in [[cleartext|cleartext]]."
+"Port twenty-two, Jared. [[ssh|SSH]]."
 
-He sighed at me. "You're going to say [[ssh|SSH]]. Same remote shell, encrypted, twenty-two. Fine. The script's mine, I can rewrite it. Just don't make me do it twice."
+He sighed, shaking his head. "Yeah, yeah. Encrypted remote shell. Script's mine, I'll update it. Just don't make me touch it twice."
 
-"Then let's put [[key_auth|key auth]] on it now instead of passwords," I said. "You rewrite once. And we're fixing the script, not the firewall."
+"Configure [[key_auth|key auth]] while you're in there," I added. "Then you never have to type the enable password into a script again."
 
 Eleven minutes later he pasted a screenshot of a working SSH login and added, sounding almost proud, that keys felt weird after ten years of passwords but whatever. His clipboard was one line shorter.
 
@@ -73,7 +71,7 @@ I called instead of typing a lecture at them. Their engineer, Dana, sounded like
 
 Everybody mixes the letters up. I'd done it in front of Jules a month earlier and she drew me two arrows in red marker, helmet strap still looped around her wrist.
 
-"They're not the same," I said. "SFTP is file transfer running inside SSH, so it's usually port twenty-two, and it's a different protocol underneath. [[ftps|FTPS]] is the old FTP wrapped in TLS, which in implicit mode is often 990 for the control connection and 989 for data. Different ports, different firewall conversation. If your appliance speaks FTPS then we'll do FTPS. What we're not doing is plain FTP across the internet."
+"They're not the same," I said. "[[sftp|SFTP]] is file transfer running as a subsystem inside SSH, so it lives on port twenty-two. [[ftps|FTPS]] is FTP secured with TLS. While legacy appliances sometimes run implicit FTPS on port 990, the modern RFC standard is explicit FTPS on standard port twenty-one using the AUTH TLS command. Different ports, different protocol handshakes. What we are not doing is unencrypted FTP across the perimeter."
 
 Dana exhaled. "FTPS I can turn on. I got burned once when a firewall guy opened twenty-one and then couldn't work out why the data connection hung. Active mode, port twenty, whole mess. Where do you want me to land it?"
 
@@ -115,7 +113,7 @@ Jules reached over and tapped the edge of my monitor with her pen. "Read that re
 
 "Right. Now read the second half of it out loud," Jules said, her voice quiet and direct. "Our cyber insurance renewal questionnaire asks whether port 3389 faces the public internet. That is a policy termination conversation, not a movie plot. Automated ransomware scripts scan that port every second of every day. And Sam is not the only ticket on the board right now."
 
-She pointed to the queue monitor above our heads. A facilities tech was asking for unauthenticated TFTP across the user VLAN, legal could not bind to LDAP across the guest SSID, and network monitoring was asking to poll edge switches using cleartext SNMP with a community string of `public`.
+She pointed to the queue monitor above our heads. A facilities tech was asking for unauthenticated UDP TFTP on port 69 across the user VLAN, legal could not bind to cleartext TCP LDAP on 389 across the guest SSID, and network monitoring was asking to poll edge switches using cleartext UDP SNMP on 161 with a community string of `public`.
 
 "You have six different teams asking for convenience shortcuts, and automated port scanners probing our perimeter from the outside right now," Jules said, crossing her arms. "How do you lock down the perimeter, map every insecure legacy protocol to its hardened enterprise replacement, configure the jump host access rules, and draft the Tier 1 Security Escalation before the change window closes? Call your shot, Ethan."
 

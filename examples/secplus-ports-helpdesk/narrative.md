@@ -24,11 +24,11 @@ I was most of the way to saying *sure, twenty-three is open on that box* when Ju
 
 Jared answered before I could get the question out. "Packet capture on the management span. The enable password sitting there in the clear where anybody walking past the collector could read it. The boss made us rotate everything that week. I still flinch."
 
-"So which [[port|port]] do we allow on the management path," I said, "and which [[protocol|protocol]] is carrying that password? Telnet sends it in [[cleartext|cleartext]]."
+"[[port|Port]] twenty-two, Jared. [[ssh|SSH]]. It sends everything encrypted instead of in [[cleartext|cleartext]]."
 
-He sighed at me. "You're going to say [[ssh|SSH]]. Same remote shell, encrypted, twenty-two. Fine. The script's mine, I can rewrite it. Just don't make me do it twice."
+He sighed, shaking his head. "Yeah, yeah. Encrypted remote shell. Script's mine, I'll update it. Just don't make me touch it twice."
 
-"Then let's put [[key_auth|key auth]] on it now instead of passwords," I said. "You rewrite once. And we're fixing the script, not the [[firewall|firewall]]."
+"Configure [[key_auth|key auth]] while you're in there," I added. "You rewrite once, and we're fixing the script, not the [[firewall|firewall]]."
 
 Eleven minutes later he pasted a screenshot of a working SSH login and added, sounding almost proud, that keys felt weird after ten years of passwords but whatever. His clipboard was one line shorter.
 
@@ -66,7 +66,7 @@ I called instead of typing a lecture at them. Their engineer, Dana, sounded like
 
 Everybody mixes the letters up. I'd done it in front of Jules a month earlier and she drew me two arrows in red marker, helmet strap still looped around her wrist.
 
-"They're not the same," I said. "[[sftp|SFTP]] is file transfer running inside SSH, so it's usually port twenty-two, and it's a different protocol underneath. [[ftps|FTPS]] is the old FTP wrapped in TLS, which in implicit mode is often 990 for the control connection and 989 for data. Different ports, different firewall conversation. If your appliance speaks FTPS then we'll do FTPS. What we're not doing is plain FTP across the internet."
+"They're not the same," I said. "[[sftp|SFTP]] is file transfer running as a subsystem inside SSH, so it lives on port twenty-two. [[ftps|FTPS]] is FTP secured with TLS. While legacy appliances sometimes run implicit FTPS on port 990, the modern RFC standard is explicit FTPS on standard port twenty-one using the AUTH TLS command. Different ports, different protocol handshakes. What we are not doing is unencrypted FTP across the perimeter."
 
 Dana exhaled. "FTPS I can turn on. I got burned once when a firewall guy opened twenty-one and then couldn't work out why the data connection hung. Active mode, port twenty, whole mess. Where do you want me to land it?"
 
