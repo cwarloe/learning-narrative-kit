@@ -253,3 +253,7 @@ When authoring narrative stories, hands-on workbenches, terminal simulations, or
 6. **The Four Rubber Bands Framework (`docs/research/FOUR_RUBBER_BANDS_FRAMEWORK.md`):**
    - Governs cognitive triage of exam concepts into four distinct operational bands: 🔴 Red (Disposable Passport Trivia / Rapid Flashcard Drill), 🟢 Green (System Anatomy / Assembly Mat), 🟡 Yellow (Identity & Boundaries / Packet Sandwich), and 🔵 Blue (Diagnostic Reflex / Fault-Tree Walk).
    - Solves declarative atomization and the single-deck flashcard trap by assigning discrete study rituals and open-source card schemas to each band.
+7. **Technical Narrative Craft & Architecture Standard (`docs/research/TECHNICAL_NARRATIVE_AUTHORING_PRINCIPLES.md`):**
+   - Derived from ruthless audits by our adversarial Technical SME and Literary/Prose Critic.
+   - Enforces the **Six Principles of Protocol Realism & Architectural Accuracy** (Layer Boundary Invariance, State Machine Integrity, Physical Geometry & Causality, Syllabus Harmony vs. Operational Ground Truth, Telemetry/Log Fidelity, and Scaling Arithmetic).
+   - Enforces the **Five Principles of Dialogue, Voice, Pacing & Narrative Pedagogy** (Dialogue Under Pressure / "Wire Is Hot", Pacing & Division of Labor, Grounded Working-Class Voice, Descriptive Discipline, and the Non-Negotiable Cover Test).
