@@ -77,7 +77,7 @@ I stared at the first two lines of the terminal response. "Look at the resolving
 
 "And what does his home router do when a client asks it to resolve an unfamiliar internal host?" Lena asked.
 
-"His home router forwards the query to its upstream [[recursive_resolver|recursive resolver]] at Comcast," I said. "RFC 6762 reserves `.local` for Multicast DNS on the local link. Comcast's public recursive resolvers don't know our private corporate namespace, so they drop an immediate NXDOMAIN non-existent domain code right back to his machine."
+"His home router forwards the query to its upstream [[recursive_resolver|recursive resolver]] at Comcast," I said. "The `.local` domain is reserved for local link device discovery. Comcast's public recursive resolvers don't know our private corporate namespace, so they drop an immediate NXDOMAIN non-existent domain code right back to his machine."
 
 "Now look at what happens when Greg tries to browse the public corporate domain name," Lena said.
 
@@ -107,7 +107,7 @@ DNSServer                    : 10.100.10.2, 10.100.10.3
 
 "A textbook [[dns_leak|DNS leak]]," Jules observed. She took another sip of coffee. "Modern Windows operating systems query all available network adapters simultaneously under Smart Multi-Homed Name Resolution. The physical Wi-Fi adapter's local router responds in four milliseconds with an NXDOMAIN code, while the encrypted tunnel takes twenty. Because the virtual adapter's metric is set higher than the physical interface, the resolver prioritizes the local negative response, and the client never establishes the connection through the VPN."
 
-"To make matters worse, look at the negative response caching," Lena added, pulling up the resolver cache. "Under RFC 2308, Windows caches that NXDOMAIN using the negative TTL defined in the upstream SOA record. So even if the employee restarts their browser or reconnects the tunnel, the operating system keeps serving the failure until the negative cache expires or you flush it."
+"To make matters worse, look at the negative response caching," Lena added, pulling up the resolver cache. "Windows aggressively caches that NXDOMAIN using the negative TTL defined in the upstream SOA record. So even if the employee restarts their browser or reconnects the tunnel, the operating system keeps serving the failure until the negative cache expires or you flush it."
 
 Jules set her mug down and leaned over the cubicle partition, her eyes scanning the board where eighteen tickets continued to flash amber.
 

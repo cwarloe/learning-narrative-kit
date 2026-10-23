@@ -88,9 +88,9 @@ Jules sat watching me, her eyebrow raised. "What is the policy for privileged ac
 
 Maya gave the numbers without hesitation: badge `88412`, cost center `FIN-402`, extension `4218`. 
 
-I turned to Jules's screen, submitted a Just-In-Time (JIT) elevation request with Maya's verification data, and waited. Jules reviewed the log, approved the request with her smartcard badge, and my console refreshed to display the twelve groups of four digits.
+I turned to Jules's screen, submitted a Just-In-Time (JIT) elevation request with Maya's verification data, and waited. Jules reviewed the log, approved the request with her smartcard badge, and my console refreshed to display the eight groups of six digits, hyphens cleanly dividing the 48-digit key.
 
-I read the 48 digits clearly over the phone. Once Maya keyed in the final number, the machine unlocked and loaded the low-resolution diagnostic desktop.
+I read each six-digit block slowly over the phone, letting the bootloader verify the modulo-11 checksums one group at a time. Once Maya keyed in the final number, the machine unlocked and loaded the low-resolution diagnostic desktop.
 
 "Now, please double-click the PDX-Pay shortcut while we are in Safe Mode," I said.
 

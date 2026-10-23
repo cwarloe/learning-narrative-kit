@@ -40,7 +40,7 @@ $$\boxed{\textbf{Which SSID am I actually on?}}$$
 Ethan’s desk drawer still holds his port index cards and Active Directory lockout sheets, but Friday's queue is entirely about the invisible medium outside the copper wire: the shared corporate radio frequencies.
 
 Three critical wireless incidents have hit the board simultaneously:
-1. **The Warehouse Annex Barcode Outage:** At 08:15, Ken from Sales and the warehouse logistics team reported that six mobile Zebra barcode scanners mounted on forklifts in the Warehouse Annex (Bay 4) abruptly stopped transmitting inventory updates to the Warehouse Management System (`WMS-APP-01` at `10.10.20.5`). The forklift drivers are idling, logistics trucks are backing up at loading docks 3 and 4, and scanner screens display `Connection Timeout - Host Unreachable`.
+1. **The Warehouse Annex Barcode Outage:** At 08:15, Ken Vance from Warehouse Operations and his logistics team reported that six mobile Zebra barcode scanners mounted on forklifts in the Warehouse Annex (Bay 4) abruptly stopped transmitting inventory updates to the Warehouse Management System (`WMS-APP-01` at `10.10.20.5`). The forklift drivers are idling, logistics trucks are backing up at loading docks 3 and 4, and scanner screens display `Connection Timeout - Host Unreachable`.
 2. **The Annex DHCP Storm:** Network monitoring flagged a critical DHCP scope anomaly on VLAN 20 (Warehouse Operations). Workstations and mobile scanners in the annex are suddenly dropping their legitimate corporate IP leases (`10.10.20.x`) and picking up bizarre addresses in the `192.168.1.x` pool with a default gateway of `192.168.1.1`—a non-routable consumer address that does not exist on the corporate network map!
 3. **Maya Lin and the Lobby Lookalike:** Maya Lin from Accounting walked up to the help desk counter with a corporate loaner laptop. She has an urgent executive finance meeting in fifteen minutes and cannot connect to Wi-Fi. In the Windows network list, right beside the legitimate corporate network `CORP-EMPLOYEE`, sits an unencrypted lookalike named `CORP-EMPLOYE` (missing the trailing "E") transmitting with maximum signal strength, along with an open hotel-style captive portal named `FreeConfQuick`. When Maya tried connecting to the corporate SSID, Windows threw an alarming banner: *"The server certificate presented by the network could not be verified."*
 
@@ -653,7 +653,7 @@ End of day we closed a stubborn laptop that kept failing enterprise join. The us
 
 I updated the wiki blurb: join the real SSID, prefer 802.1X over hallway PSK, VPN on open and portal networks, never WEP, unplug rogue travel routers, do not reconnect blind after weird drops, guest stays segmented, hide-SSID and MAC filters are not controls, WPS off, survey over vibes, and Bluetooth only for things you meant to invite.
 
-At 5:40 I closed notes. Maya was on enterprise and late. Ken was on VPN and not on WEP. Rita's rogue was unplugged. Dev was docked through deauth. The vendor was on guest with walls. Lila's ghost keyboard was declined. The twin in the lobby was still Network's problem.
+At 5:40 I closed notes. Maya was on enterprise and late. Todd was on VPN and not on WEP. Rita's rogue was unplugged. Dev was docked through deauth. The vendor was on guest with walls. Lila's ghost keyboard was declined. The twin in the lobby was still Network's problem.
 
 Jules clipped her bike lights on. "Monday someone will join the loud lookalike because the meeting started."
 

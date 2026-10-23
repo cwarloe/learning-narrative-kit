@@ -596,7 +596,20 @@ USER NAME    : ____________________________ ASSET TAG : ________________________
 
 ---
 
-### Part C: Scoring & Passing Standards
+## 5. What Good Looks Like (Shift Quality Checklist)
+
+Before closing your intake checklist and logging your initial ticket notes, verify your performance against the Portland Desk Shift Quality Standard:
+
+### Shift Quality Checklist
+* [ ] **Physical Layer Verification:** Power rails, link carrier LEDs, and hardware integrity confirmed before software changes.
+* [ ] **Identity Triad Isolated:** MAC address, IP address, and port number cleanly distinguished in diagnostic notes.
+* [ ] **CBYT Hypothesis Formulated:** Testable failure theory committed to writing before issuing commands or touching hardware.
+* [ ] **Sequential Ping Ladder:** Diagnostic pings executed in strict hierarchy (Loopback $\rightarrow$ Local Host $\rightarrow$ Default Gateway $\rightarrow$ Remote IP $\rightarrow$ DNS Hostname).
+* [ ] **Actionable User Guidance:** Root cause communicated without jargon, and preventative advice documented in ticket closure notes.
+
+---
+
+### Shift Grading Rubric
 
 Use this objective scoring guide to evaluate entry-level diagnostic performance across four core competencies:
 
@@ -607,3 +620,32 @@ Use this objective scoring guide to evaluate entry-level diagnostic performance 
 | **3. Command Telemetry Literacy** | **25** | Correctly interprets outputs from `whoami`, `hostname`, `ipconfig /all`, and `netstat`; identifies an APIPA address (`169.254.x.x`) as a DHCP failure. | Runs command-line tools but requires assistance interpreting subnet masks or process identifier (PID) outputs. | Relies solely on GUI menus; cannot interpret command-line network configuration outputs. |
 | **4. Diagnostic Discipline (CBYT)** | **25** | Formulates a clear, testable prediction before altering any hardware or software setting; follows the structured 5-step ping ladder sequentially. | Troubleshoots methodically but occasionally reboots or alters configurations without stating a hypothesis. | Clicks random settings, reboots frantically, or replaces hardware components without testing. |
 | **TOTAL** | **100** | **Passing Score: 85 Points or higher** | | |
+
+---
+
+## 6. The Shift Resolution & Epilogue: 02:15 AM
+
+```callout-panel
+title: "FIGURE 0.2: THE MIDNIGHT BENCH & FIRST WORKING VOUCHER"
+badge: "Shift Epilogue"
+caption: "Kitchen table bench: At 02:15 AM, Ethan categorizes his final index card into the Green Band stack while his father inspects the re-soldered power connector on the practice chassis."
+prompt: "Grounded graphic novel illustration in Pacific Northwest silicon noir style, cool slate blue and rain-slicked dark grey palette (#0f172a, #1e293b). A quiet duplex kitchen at night under a low pendant lamp. A 19-year-old apprentice sits at a Formica table with four stacks of index cards held by colored rubber bands. Beside him, an older retired machinist in work socks inspects a dismantled PC power supply on a newspaper mat. Rain streaks the dark kitchen window. High contrast, atmospheric, no text, no words. 16:9 ratio."
+```
+
+*The following operational debrief records Ethan's transition from exam anxiety to diagnostic discipline:*
+
+The kitchen clock clicked over to 2:15 AM. Outside the casement window, the East Portland rain tapped steadily against the glass.
+
+On the Formica table, the mountain of loose flashcards had disappeared. In their place sat four neat, compact bundles, each bound by a thick colored rubber band: Red for syllabus trivia, Green for machine invariants, Yellow for addresses and ports, and Blue for the troubleshooting reflex.
+
+My father stood by the sink, rinsing his water glass. He dried his hands on a dishtowel and walked over to the table, looking down at the four sorted stacks. He picked up the Green bundle, feeling the thickness of the cards.
+
+"What holds tension?" he asked quietly.
+
+"Volatile memory loses state when the circuit opens," I answered, looking up from the table. "Non-volatile storage holds the magnetic or charge state until you write over it. The bus bridges them, and the processor steps the clock."
+
+My dad set the stack back down in line with the others. A faint, knowing smile touched the corner of his mouth.
+
+"That's a machine," he said. "The rest is just part numbers in a catalog. Get some sleep, Ethan. The warehouse doesn't care how late you studied when the six o'clock bell rings."
+
+Three weeks later, on a gray Thursday morning in Beaverton, I sat in front of the testing center monitor with my palms flat on the laminate desk. When the scoring engine finalized the results, the screen didn't show perfection—it showed a 685. A passing score by ten points. Scraped by on the retake, but the paper certificate was real, and it bought my ticket onto the graveyard maintenance rotation at the Gresham cross-dock.

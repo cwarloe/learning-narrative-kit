@@ -71,7 +71,7 @@ I called instead of typing a lecture at them. Their engineer, Dana, sounded like
 
 Everybody mixes the letters up. I'd done it in front of Jules a month earlier and she drew me two arrows in red marker, helmet strap still looped around her wrist.
 
-"They're not the same," I said. "[[sftp|SFTP]] is file transfer running as a subsystem inside SSH, so it lives on port twenty-two. [[ftps|FTPS]] is FTP secured with TLS. While legacy appliances sometimes run implicit FTPS on port 990, the modern RFC standard is explicit FTPS on standard port twenty-one using the AUTH TLS command. Different ports, different protocol handshakes. What we are not doing is unencrypted FTP across the perimeter."
+"They're not the same," I said. "[[sftp|SFTP]] is file transfer running as a subsystem inside SSH, so it lives on port twenty-two. [[ftps|FTPS]] is FTP secured with TLS. While legacy appliances sometimes run implicit FTPS on port 990, standard explicit FTPS negotiates TLS right on standard port twenty-one using the AUTH TLS command. Different ports, different protocol handshakes. What we are not doing is unencrypted FTP across the perimeter."
 
 Dana exhaled. "FTPS I can turn on. I got burned once when a firewall guy opened twenty-one and then couldn't work out why the data connection hung. Active mode, port twenty, whole mess. Where do you want me to land it?"
 
@@ -114,8 +114,7 @@ Jules reached over and tapped the edge of my monitor with her pen. "Read that re
 "Right. Now read the second half of it out loud," Jules said, her voice quiet and direct. "Our cyber insurance renewal questionnaire asks whether port 3389 faces the public internet. That is a policy termination conversation, not a movie plot. Automated ransomware scripts scan that port every second of every day. And Sam is not the only ticket on the board right now."
 
 She pointed to the queue monitor above our heads. A facilities tech was asking for unauthenticated UDP TFTP on port 69 across the user VLAN, legal could not bind to cleartext TCP LDAP on 389 across the guest SSID, and network monitoring was asking to poll edge switches using cleartext UDP SNMP on 161 with a community string of `public`.
-
-Jules pointed to the queue monitor above our heads. A facilities tech was asking for unauthenticated TFTP across the user VLAN, legal could not bind to LDAP across the guest SSID, and network monitoring was asking to poll edge switches using cleartext SNMP with a community string of `public`.
+
 
 "Six tickets, six shortcuts," Jules said, her voice dropping into operational focus. "Sam wants RDP to the open street, and five other teams want to send credentials in cleartext. Map every legacy port to its encrypted replacement, configure the jump host rule, and submit the firewall change before someone punches an uninsurable hole in our edge."
 

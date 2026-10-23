@@ -2,11 +2,11 @@
 
 *A Security+ identity-and-authentication precursor • Hover over highlighted terms for exam definitions and supporting desk jargon.*
 
-It had been raining on the east glass since before I sat down. Jules had already claimed the whiteboard. A bike helmet hung off her monitor arm, and the sticky under *which decision?* now said *which factor?*
+The smell of wet wool and radiator steam filled the fourth floor long before the eight o'clock chime. Across the partition, Jules was running a dry-erase marker down a list of ninety-day password expiration notices that had triggered over the weekend.
 
-"Cards in the drawer are for ports," she said when I reached for a blank one. "Someone will swear two passwords are multifactor. Talk the habit into a decision."
+"Two dozen people locked themselves out between Friday night and seven this morning," Jules said, capping the blue marker with a sharp snap. "Half of them will swear up and down that typing a password and a PIN counts as multifactor. Don't argue with their frustration, Ethan. Separate what they know from what they hold."
 
-The first ticket in the help desk queue was already yelling in all caps.
+On the dispatch display, the first incident ticket was already flashing red.
 
 ## Nora and the policy that keeps changing the locks
 
@@ -39,27 +39,27 @@ She set the passphrase. She did not install the manager on the call. "I'll do th
 
 Todd in sales was locked out of the CRM after a phone wipe. He wanted a quick fix.
 
-"I already have multifactor," Ken said. "Password plus a PIN on the laptop. Two things. That is MFA, right? My old shop said so."
+"I already have multifactor," Todd said. "Password plus a PIN on the laptop. Two things. That is MFA, right? My old shop said so."
 
 I felt the flashcard reflex and almost agreed because the sentence had two nouns.
 
 Jules's sticky was visible from my chair.
 
-"A password and a PIN are both [[something_you_know|something you know]], Ken," I said. "Typing two secrets out of your head is just single-factor twice—not [[mfa|multifactor authentication]]. Real MFA needs two distinct factor types, like combining your password with [[something_you_have|something you have]], like the authenticator app on your phone."
+"A password and a PIN are both [[something_you_know|something you know]], Todd," I said. "Typing two secrets out of your head is just single-factor twice—not [[mfa|multifactor authentication]]. Real MFA needs two distinct factor types, like combining your password with [[something_you_have|something you have]], like the authenticator app on your phone."
 
-Ken was quiet for a second. "So what counts as the second thing?"
+Todd was quiet for a second. "So what counts as the second thing?"
 
 "[[something_you_have|Something you have]] — phone app, hardware token, security key. Or [[something_you_are|something you are]] — fingerprint, face. Location can be somewhere you are, a context signal, not a substitute for a second factor when policy asks for MFA."
 
-"Password plus PIN was a house rule, then," he muttered. "Okay. Enroll me for real."
+"Password plus PIN was a house rule, then," Todd muttered. "Okay. Enroll me for real."
 
 ## Soft tokens, SMS, and the Approve reflex
 
-While Ken got his phone out, two other sales reps stopped by my desk to get their authenticator apps set up.
+While Todd got his phone out, two other sales reps stopped by my desk to get their authenticator apps set up.
 
 I started with the authenticator app. The soft path is a soft token on the phone that shows [[totp|TOTP]] codes — six digits, thirty seconds, clock-bound. We scanned the QR at his desk, not at the coffee bar. I mentioned shoulder surfing once; he angled the screen.
 
-"What about texts?" Ken asked. "SMS is easier. I do not want another app."
+"What about texts?" Todd asked. "SMS is easier. I do not want another app."
 
 "SMS OTP is still a second factor," I said, "but it is the weaker possession story — SIM swap, intercepted texts. Policy allows it as a backup, not as the primary. App first."
 
@@ -69,7 +69,7 @@ Jules walked past with a granola bar. "Tell him about fatigue before he trains h
 
 "[[mfa_fatigue|MFA fatigue]]," I said. "If you get a push you did not start, tap Deny and call us. Attackers spam Approve until someone gets bored."
 
-Ken nodded like a man who had tapped through terms of service. "Deny if I did not ask."
+Todd nodded like a man who had tapped through terms of service. "Deny if I did not ask."
 
 Across the aisle, Rita from marketing wanted the same enrollment but "without the phone, I lose phones." We issued a loaner hard token for her travel week and scheduled a security key once procurement finished arguing about USB-C.
 
@@ -91,7 +91,7 @@ While Dev waited, Lila from HR stopped by with a laptop lid.
 
 She kept the app. She looked like someone who had hoped for a shorter answer.
 
-Jules looked across the divider. "Dev's account is locked out from a runaway script hammering the domain controller, Ken is insisting Password plus PIN is multifactor, and Nora has locked herself out with another seasonal password. You have ten minutes before the morning standup. Step up to the console and triage the queue."
+Jules looked across the divider. "Dev's account is locked out from a runaway script hammering the domain controller, Todd is insisting Password plus PIN is multifactor, and Nora has locked herself out with another seasonal password. You have ten minutes before the morning standup. Step up to the console and triage the queue."
 
 ## The Handoff Gate
 

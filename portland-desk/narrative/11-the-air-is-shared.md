@@ -2,11 +2,11 @@
 
 *A Security+ wireless precursor • Hover over highlighted terms for exam definitions and supporting desk jargon.*
 
-The first ticket of Friday was *Can't join CorpWifi — worked yesterday — board meeting in 20.* Jules's sticky under *which decision?* said *which SSID am I actually on?*
+Friday morning opened with the whine of the vacuum cleaner in the hallway and Maya Lin already standing at the front counter holding an iPad.
 
-"Wired has a cable you can point at," she said when I reached for a blank card. "Wireless has manners and math. Verify the network. Prefer enterprise over café vibes. Escalate anything that looks like a twin."
+"Wired connections have physical copper you can trace with your fingers," Jules said, stepping out of the server closet with a handheld spectrum analyzer. "Wireless is invisible friction. Verify the BSSID, enforce 802.1X enterprise authentication over convenience, and treat any sudden open twin as hostile."
 
-I opened the help desk queue.
+The board dinged with Maya's ticket: *Can't join CorpWifi — worked yesterday — executive meeting in 20.*
 
 ## Maya and the password that is everyone
 
@@ -41,11 +41,11 @@ I put him on speaker.
 
 "Open network means no encryption on the air," I said. "The [[captive_portal|captive portal]] is a gate for internet access, not a force field. Anyone on that same open SSID can try [[eavesdropping|wireless eavesdropping]] unless you wrap traffic in a VPN. Use the VPN before mail, before files, before just-quick Slack."
 
-"And WEP?" Ken asked.
+"And WEP?" Todd asked.
 
 "[[wep|WEP]] is a museum piece that still unlocks," Jules said. "Broken by [[iv_attack|IV attacks]] and boredom. If a scanner needs WEP, the scanner is the problem. Do not put your laptop there. Ask them for a wired drop or a modern SSID."
 
-Ken muttered something about customer politics and connected the VPN on the hotel portal network. He did not join the WEP scanner. He said the warehouse tour would have to live without his laptop.
+Todd muttered something about customer politics and connected the VPN on the hotel portal network. He did not join the WEP scanner. He said the customer tour would have to live without his laptop.
 
 ## Rogue AP in the conference room
 

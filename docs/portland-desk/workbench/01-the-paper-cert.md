@@ -533,7 +533,20 @@ ACTION REQUIRED FOR DAY SHIFT:
 
 ---
 
-### Part C: Scoring & Passing Standards
+## 5. What Good Looks Like (Shift Quality Checklist)
+
+Before handing the clipboard to Ken Vance and signing off on the Line 4 dispatch log, verify your diagnostic passdown against the Portland Desk Shift Quality Standard:
+
+### Shift Quality Checklist
+* [ ] **Flea Power Hygiene:** AC mains disconnected and residual capacitor charge drained for 20 seconds before touching internal bus components.
+* [ ] **Quantitative Power Telemetry:** Multimeter measurements recorded with exact DC voltages (+12V, +5V, +3.3V) and tolerance calculations.
+* [ ] **Physical Layer Continuity:** Ground fault isolated with audible continuity beeper; harness insulated with high-temp Kapton tape and strain-relief zip ties.
+* [ ] **Serial Timing & Baud Alignment:** DB-9 Pin 2 straightened without fracturing; motherboard SW1 DIP switch clock dividers matched to Toledo scale baud rate (9600 8-N-1).
+* [ ] **Operational Root Cause Reporting:** Formal passdown log drafted detailing failure mechanism, corrective action, and preventative maintenance action items for facilities.
+
+---
+
+### Shift Grading Rubric
 
 Use this objective scoring guide to assess technician performance across the five core competency areas:
 
@@ -579,7 +592,7 @@ The heavy three-phase electric motors spooled up with an industrial groan. The r
 
 Ken walked back to the cabinet, wiping grease off his forehead with the back of his glove. He looked at the Kapton-taped ribbon cable, then down at the sheared plastic memory latch resting on the bottom of the enclosure.
 
-"You cost us twenty minutes with that power switch, Brooks," Ken said, his voice blunt and tired over the conveyor clatter. "And you snapped a memory clip I'll have to explain to facilities on Monday. But when the wheels came off, you didn't run away, and you listened to the meter. Grab a hand scanner and help clear the chute at bay four—we have sixteen minutes to pack the tail."
+"You cost us twenty minutes with that power switch, Mercer," Ken said, his voice blunt and tired over the conveyor clatter. "And you snapped a memory clip I'll have to explain to facilities on Monday. But when the wheels came off, you didn't run away, and you listened to the meter. Grab a hand scanner and help clear the chute at bay four—we have sixteen minutes to pack the tail."
 
 I spent the next forty-five minutes sweating in my steel-toed boots, hand-stacking fifty-pound cartons until my back burned. 
 

@@ -21,7 +21,7 @@
         "ThreadID": 4820
       },
       "Channel": "Microsoft-Windows-PowerShell/Operational",
-      "Computer": "KEN-SALES-14.harrowmere.local",
+      "Computer": "TODD-SALES-14.harrowmere.local",
       "Security": {
         "UserID": "S-1-5-21-3928174412-1082938471-2948192837-1104"
       }

@@ -2,11 +2,11 @@
 
 *A Security+ social-engineering precursor • Hover over highlighted terms for exam definitions and supporting desk jargon.*
 
-Wednesday started with a subject line in all caps and Jules rewriting the sticky under *which decision?* It now said *who benefits if I hurry?*
+Wednesday morning smelled of wet pavement and burnt French roast. I was hanging my rain jacket behind workstation fourteen when Jules spun her chair around to block the aisle.
 
-"They are not breaking our crypto," she said when I reached for a blank card. "They are borrowing our manners. Notice which manners got borrowed."
+"Social engineering isn't about breaking cryptography, Ethan," Jules said, her voice cutting through the hum of the HVAC blowers. "Attackers borrow our manners, our hierarchy, and our panic. Notice which manners got borrowed before you click a single link."
 
-The first ticket in the help desk queue read *URGENT — mailbox locked, verify now.*
+The wallboard chimed: a high-priority ticket flagged *URGENT — mailbox locked, verify now.*
 
 ## Maya and the padlock that is not ours
 
@@ -67,11 +67,11 @@ Nora had me on chat while she kept him talking. Polite delay, no secrets.
 
 She hung up. He did not open a ticket. Nora sent a note: *he tried the certificate story twice with different verbs.*
 
-Ten minutes later Todd in sales texted a screenshot: a message claiming HR benefits enrollment seats were "almost gone," link included, only three left. The tone was HR-casual, which Ken trusts more than HR-formal.
+Ten minutes later Todd in sales texted a screenshot: a message claiming HR benefits enrollment seats were "almost gone," link included, only three left. The tone was HR-casual, which Todd trusts more than HR-formal.
 
 "[[smishing|Smishing]]," I said on the follow-up call. "SMS phishing. Same scarcity trick as a fake flash sale. Open benefits from the portal tile, not from a text. Report the number if the carrier tool lets you; open a desk ticket either way."
 
-Ken muttered, "I almost clicked because it said my teammates already finished." That is consensus — social proof as a shove. I wrote it on the sticky under Jules's: *everyone else already did* is not evidence. Jules walked by, read it, and added in smaller handwriting: *especially when 'everyone' has no names.*
+Todd muttered, "I almost clicked because it said my teammates already finished." That is consensus — social proof as a shove. I wrote it on the sticky under Jules's: *everyone else already did* is not evidence. Jules walked by, read it, and added in smaller handwriting: *especially when 'everyone' has no names.*
 
 ## MFA pushes nobody started
 
@@ -83,7 +83,7 @@ Afternoon: Dev from engineering pinged that his phone was buzzing Approve/Deny e
 
 We walked Deny, report, password rotate, then checked recent user-reported mail for his address. Nothing from Maya's campaign sat in his inbox, but a lookalike travel portal did. Dev put the phone face-down. "Deny if I did not ask. I already had that line once. Apparently I needed it twice."
 
-Jules stepped over to my terminal. "We have a spoofed CFO email demanding a forty-eight-thousand-dollar wire change, Sam hovering over an archive attachment, and Dev's phone buzzing with credential stuffing MFA fatigue pushes. You have ten minutes before AP cuts the afternoon batch wire. Pull the raw RFC 5322 MIME headers, trace the originating IP, verify SPF, DKIM, and DMARC alignment, and get the quarantine hash to the mail gateway before money walks out the door."
+Jules stepped over to my terminal. "We have a spoofed CFO email demanding a forty-eight-thousand-dollar wire change, Sam hovering over an archive attachment, and Dev's phone buzzing with credential stuffing MFA fatigue pushes. You have ten minutes before AP cuts the afternoon batch wire. Pull the raw email headers, trace the originating IP, verify SPF, DKIM, and DMARC alignment, and get the quarantine hash to the mail gateway before money walks out the door."
 
 ## The Handoff Gate
 

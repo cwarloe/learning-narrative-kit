@@ -2,11 +2,11 @@
 
 *A Security+ malware precursor • Hover over highlighted terms for exam definitions and supporting desk jargon.*
 
-Thursday's first subject line was already in all caps, which at this desk means either a real fire or someone whose standup starts in twelve minutes. Jules had rewritten the sticky under *which decision?* It now said *does this need to leave the network?*
+A fierce October squall was rattling the fourth-floor casement windows when the red beacon on the dispatch board lit up. Jules didn't look up from her terminal, but her knuckles were white on her pen.
 
-"Malware is a category," she said when I reached for a blank card. "Your job is the decision — quarantine the file, isolate the box, escalate the weird outbound. Do not negotiate with a padlock, and do not hunt Latin names while the machine is still talking to the floor."
+"Malware isn't a theory in a textbook, Ethan," Jules said, tracking an alert across the network operations dashboard. "Your job is containment: quarantine the dropper, isolate the host, and protect the shared drives. Do not hunt Latin names or argue with a ransom note while the box is actively beaconing across the subnet."
 
-I opened the help desk queue.
+I clicked into the high-priority queue.
 
 ```ticket
 id: HD-4419
@@ -123,7 +123,7 @@ powershell.exe  (signed, company cert)
 
 "That spread pattern is [[worm|worm]] behavior," I said. "Self-replicating across the LAN. Even if the first foothold was a person, the second through twentieth do not need another click. Pull the cable — isolate the host. Do not finish the file copy first. Isolation is the desk move. Analysis is later, and it is not your analysis."
 
-Ken unplugged. He still had a file mid-copy and he said so, twice, because the file was for a client who bills in hours. I told him the copy could wait and the client could bill us for being alive. I opened an escalate ticket for the SOC with hostnames, the scheduled-task name, and the outbound domains as light [[ioc|indicators of compromise]]. Jules, still on the Ops thread: "Good. Leave the shares dirty. We need them dirty."
+Todd unplugged his laptop. He still had a proposal deck mid-copy and he said so, twice, because the deck was for a client whose account was up for renewal. I told him the copy could wait and the client could bill us for being alive. I opened an escalate ticket for the SOC with hostnames, the scheduled-task name, and the outbound domains as light [[ioc|indicators of compromise]]. Jules, still on the Ops thread: "Good. Leave the shares dirty. We need them dirty."
 
 ## Ransomware at desk volume
 

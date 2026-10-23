@@ -156,7 +156,7 @@ Vlan    Mac Address       Type        Ports
 
 "ARP proves two physical MACs are fighting over IP ten-dot-one-hundred-dot-four-dot-fifty-five," Jared said, tapping the terminal. "And the switch MAC address table tells us the ports: Frank's Dell desktop is patched into GigabitEthernet1/0/12, but someone plugged a Hewlett-Packard network card into GigabitEthernet1/0/28 with the exact same IP hardcoded."
 
-"Duplicate IP conflict," Jules said, leaning back. "Every time one of them talks, its gratuitous ARP announcement poisons the switch MAC table and the ARP cache on neighboring PCs. Traffic flips back and forth depending on who spoke last."
+"Duplicate IP conflict," Jules said, leaning back. "Every time one of them talks, its gratuitous ARP announcement poisons the ARP cache on the default gateway and neighboring PCs. Traffic flips back and forth between two different MAC addresses depending on who spoke last."
 
 Jared Vance checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here."
 
@@ -164,7 +164,7 @@ Jules looked at me, tapping her pen against the edge of the desk.
 
 "Two physical machines fighting over one Layer 3 address, Ethan. One is halting freight, and the other is plugged into port twenty-eight somewhere out in that warehouse. How do you isolate the conflict, track down the rogue hardware, and lock down the DHCP pool before Ken has to shut down the dock?"
 
-I pulled up the switch interface monitor and opened the passdown template. I had a flapping MAC to isolate, an unmanaged printer to hunt down, and a scope to reconfigure.
+I pulled up the switch interface monitor and opened the passdown template. I had a flapping ARP entry to isolate, an unmanaged printer to hunt down, and a scope to reconfigure.
 
 ## Vocabulary & Concepts
 
@@ -185,5 +185,5 @@ target: workbench/03-the-default-gateway-doesnt-care.md
 domain: CompTIA Network+ N10-008/009 • Domain 1.4 & 4.1
 badge: Hands-On Lab
 ---
-Take over Ethan's triage console. Isolate the Layer 2 MAC address flapping war between Frank's shipping PC and the rogue device, resolve the DHCP dynamic pool collision, audit the /26 subnet boundaries, and draft the Tier 1 Addressing Passdown Note.
+Take over Ethan's triage console. Isolate the Layer 3 ARP flapping conflict between Frank's shipping PC and the rogue device, resolve the DHCP dynamic pool collision, audit the /26 subnet boundaries, and draft the Tier 1 Addressing Passdown Note.
 ```

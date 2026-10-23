@@ -38,7 +38,7 @@ On the whiteboard beside the dispatch monitor, the sticky note from yesterday's 
 $$\boxed{\textbf{Does this need to leave the network?}}$$
 
 Ethan’s desk drawer still holds his port flashcards and factor reference tables, but Thursday morning's queue is not about firewall rules or forgotten passwords. It is about malicious execution, compromised endpoints, and host persistence:
-* **Ken from the warehouse** walked into the dispatch bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scribbled in blue sharpie. Within four minutes of plugging it into his laptop (`TODD-SALES-14`) to check a purchase order, his laptop cooling fans spun up to an ear-splitting 100%, and EDR raised high-priority alerts: a hidden PowerShell process was enumerating domain shares and copying itself across the warehouse network (`\\WH-PACK-02\share$`).
+* **Todd Miller from Inside Sales** walked into the dispatch bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scribbled in blue sharpie. Within four minutes of plugging it into his laptop (`TODD-SALES-14`) to check a proposal, his laptop cooling fans spun up to an ear-splitting 100%, and EDR raised high-priority alerts: a hidden PowerShell process was enumerating domain shares and copying itself across the warehouse network (`\\WH-PACK-02\share$`).
 * **Maya in Accounting** downloaded an unauthorized "free PDF merger" from an external forum. While the merger works, her browser opened twenty coupon pop-ups, and a background task named `OptimizeRAM.exe` began injecting ads and phoning home.
 * **Dana in Facilities** called in a voice forced to a calm whisper: every spreadsheet and work order on her desktop has been renamed with a `.locked` extension, and a text file named `README_RESTORE.txt` demands 0.5 Bitcoin within 72 hours.
 * **Lila in HR** noticed significant keyboard lag; Task Manager revealed a suspicious process named `FontUpdateHelper.exe` capturing keystrokes via Windows API hooks.
@@ -208,7 +208,7 @@ Get-FileHash -Path "C:\junk-scan\SOW_final.pdf.exe" -Algorithm SHA256 | Format-L
 ### Drill 1: Deciphering Encoded PowerShell Payloads
 
 #### The Scenario
-At 10:17 AM, Ken Vance from Sales called the help desk in a panic: his laptop fans were roaring like a jet engine, and his mouse was stuttering. You open the EDR console and locate an alert for workstation `TODD-SALES-14`. The alert reveals that a parent scheduled task spawned a hidden, encoded PowerShell session:
+At 10:17 AM, Todd Miller from Sales called the help desk in a panic: his laptop fans were roaring like a jet engine, and his mouse was stuttering. You open the EDR console and locate an alert for workstation `TODD-SALES-14`. The alert reveals that a parent scheduled task spawned a hidden, encoded PowerShell session:
 
 ```console
 caption: EDR Alert Command Line · Host: TODD-SALES-14 · PID: 6412
@@ -370,7 +370,7 @@ objectives:
 Get-Process | Where Path -like "*AppData*": |
   Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id ProcessName Path
   -------  ------    -----      -----     ------     -- ----------- ----
-      842      45    98200     112400     412.18   4812 svch0st     C:\Users\Ken\AppData\Local\Temp\svch0st.exe
+      842      45    98200     112400     412.18   4812 svch0st     C:\Users\todd.miller\AppData\Local\Temp\svch0st.exe
   [CRITICAL] Rogue binary impersonating svchost running outside System32!
 
 Get-NetTCPConnection -OwningProcess 4812: |
@@ -419,7 +419,7 @@ Stop-Process -Id 4812 -Force: |
 
 * **Action:** **ISOLATE HOST IMMEDIATELY & AUDIT NETWORK SHARES**.
 * **Threat Classification & Vector:** **Trojan / Worm** delivered via **Removable Media (USB)**.
-* **Justification:** Even though the local AV quarantined the initial dropper file (`SOW_final.pdf.exe`), Ken's roaring fans indicate secondary payload execution. The process tree confirmed `powershell.exe` executing lateral enumeration commands (`net view /all`) and attempting to replicate to warehouse shares. Disconnect the Ethernet cable and disable Wi-Fi immediately. The USB drive must be confiscated and audited only on an isolated, non-domain analysis rig. The network shares must be audited for unauthorized file drops.
+* **Justification:** Even though the local AV quarantined the initial dropper file (`SOW_final.pdf.exe`), Todd's roaring fans indicate secondary payload execution. The process tree confirmed `powershell.exe` executing lateral enumeration commands (`net view /all`) and attempting to replicate to warehouse shares. Disconnect the Ethernet cable and disable Wi-Fi immediately. The USB drive must be confiscated and audited only on an isolated, non-domain analysis rig. The network shares must be audited for unauthorized file drops.
 </details>
 
 
@@ -518,7 +518,7 @@ Stop-Process -Id 4812 -Force: |
 In enterprise security operations, Tier 1 service desk notes serve as the initial chain-of-custody and incident triage record for Tier 2/3 SOC analysts, compliance teams, and management.
 
 #### Part A: Tier 1 Standard Host Infection Isolation & Containment Note
-*(Reference Case: Ken Vance / Workstation `TODD-SALES-14` / Incident `INC-2026-1181`)*
+*(Reference Case: Todd Miller / Workstation `TODD-SALES-14` / Incident `INC-2026-1181`)*
 
 ```text
 ================================================================================
@@ -752,7 +752,7 @@ The end-of-day bridge call was short, which I have learned is a compliment when 
 
 I updated the wiki blurb the desk actually reads: portal software only; USB is guilty until scanned; weird share activity means isolate first; ransomware means isolate and do not pay; restore from backups attackers cannot touch; green AV is not a verdict; EDR orange is a verb; and when something on the box is lying — quarantine the file, isolate the host, open the path to the SOC.
 
-At 5:35 I closed what I could. Maya's toolbars were gone and her merger was still a fight. Sam's USB was contained. Ken had unplugged a worm commute and was still owed a file copy. Dana had not paid and was still on the slow printer. Lila was on a loaner rotating passwords she did not want to rotate. Dev was reimaging. Nora's beacon was starved. Jordan's timer was defused. Rita's RAT was escalated. The closet miner was cooling down, and the spare printer was doing two jobs badly.
+At 5:35 I closed what I could. Maya's toolbars were gone and her merger was still a fight. Sam's USB was contained. Todd had unplugged a worm commute and was still owed a file copy. Dana had not paid and was still on the slow printer. Lila was on a loaner rotating passwords she did not want to rotate. Dev was reimaging. Nora's beacon was starved. Jordan's timer was defused. Rita's RAT was escalated. The closet miner was cooling down, and the spare printer was doing two jobs badly.
 
 Jules clipped her bike lights on. "Tomorrow someone will ask if paying just this once is faster."
 
