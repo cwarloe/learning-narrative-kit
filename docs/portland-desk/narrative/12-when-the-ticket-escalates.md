@@ -2,7 +2,7 @@
 
 *A Security+ incident response precursor • Hover over highlighted terms after they have earned their keep.*
 
-A gusting Wednesday rain swept across the Willamette as I stepped onto the fourth floor. Eleven months on the service desk had taught me that the quietest tickets are often the ones carrying the sharpest edges. On the bezel of her monitor, Jules's sticky note still asked *Which decision?* under the fluorescent lights.
+A gusting Wednesday rain swept across the Willamette as I stepped onto the fourth floor. Twenty-two months on the service desk had taught me that the quietest tickets are often the ones carrying the sharpest edges. On the bezel of her monitor, Jules's sticky note still asked *Which decision?* under the fluorescent lights.
 
 The dispatch board read forty-two open items at eight in the morning: forgotten passwords, jammed label printers, and a conference room projector that refused to handshake over HDMI. But by two in the afternoon, the board had gone dead silent. That silence is the first thing you learn to fear on an operations floor. When the phones stop ringing, it usually means the fire has moved into the walls.
 
@@ -21,7 +21,7 @@ At 08:30, Maya Lin from Accounting marched past the glass partition holding her 
 
 "It is possessed, Ethan," Maya said, dropping the machine onto my staging mat with a plastic clatter. "Pop-ups. Every time I open Chrome, five tabs try to sell me Caribbean cruises. The fan is screaming. My standup with the VP is in twelve minutes. Wipe it clean and image it from the thumb drive."
 
-Eleven months ago, I would have reached straight into the drawer for the bootable USB. Back then, "possessed" meant fire, and fire meant formatting the disk. I took the laptop, reached for the Ethernet jack to pull the copper, and had my hand on the imaging drive when Jules set her coffee mug on the divider wall with a dull *clack*.
+Twenty-two months ago, I would have reached straight into the drawer for the bootable USB. Back then, "possessed" meant fire, and fire meant formatting the disk. I took the laptop, reached for the Ethernet jack to pull the copper, and had my hand on the imaging drive when Jules set her coffee mug on the divider wall with a dull *clack*.
 
 "What did the box do, Ethan?" Jules asked, without looking up from her screen. "Besides scare Maya?"
 
@@ -95,7 +95,7 @@ She reached into the bottom drawer of her filing cabinet and pulled out two heav
 
 She set the red binder in front of my keyboard.
 
-"Maya Lin's machine this morning was an event, Ethan," Jules said, her voice quiet, steady, and unyielding. "This is the incident. The Enterprise CSIRT and the incident commander will be on this floor in twenty minutes. When they walk through those double doors, they don't want guesses, they don't want apologies, and they don't want wiped hard drives."
+"Maya Lin's machine this morning was an event, Ethan," Jules said, her voice quiet, steady, and unyielding. "This is the incident. Senior CSIRT Lead Nia Alvarez and the incident command team from Chicago are bridging onto our operations floor in twenty minutes. When Nia joins this bridge, she doesn't want guesses, she doesn't want apologies, and she doesn't want wiped hard drives."
 
 She pointed to the anti-static evidence pouches on my desk.
 
@@ -103,9 +103,9 @@ She pointed to the anti-static evidence pouches on my desk.
 
 You are the first responder on this shift. Follow the [[order_of_volatility|Order of Volatility]]. Isolate the endpoints from the wire, execute a forensically sound live memory capture, compute the cryptographic SHA-256 hashes before you touch storage, establish the legal chain of custody, and build the formal CSIRT Escalation Dossier before the clock runs out."
 
-I looked down at the red binder. Eleven months ago, I was a twenty-year-old kid on the Gresham loading dock, clutching an eight-hundred-page textbook and terrified of failing a multiple-choice test in a Beaverton strip mall. 
+I looked down at the red binder. Twenty-two months ago, I was an anxious nineteen-year-old kid on the Gresham loading dock, clutching an eight-hundred-page textbook and terrified of failing a multiple-choice test in a Beaverton strip mall. 
 
-Today, there were no multiple-choice questions. The municipal grid was on the line, and the desk had handed me the pen.
+Today, there were no multiple-choice questions. The municipal grid was on the line, and Jules had handed me the incident pen to brief Nia Alvarez.
 
 ---
 
@@ -113,7 +113,7 @@ Today, there were no multiple-choice questions. The municipal grid was on the li
 > ### The Book 0 Crucible: The CSIRT Escalation Gate
 > Multi-vector indicators have aligned across finance, sales, and industrial plant telemetry. Nora's C2 beacon is live, Todd's host is enumerating lateral shares, and the Willamette River gateway is attempting external egress.
 > 
-> **Your Turn at the Console:** Step up to the Incident Console on the Workbench. Execute the live memory acquisition, preserve the Order of Volatility, compute the cryptographic SHA-256 verification hashes, and deliver the formal CSIRT Escalation Dossier to Jules Brooks before the incident command team takes the floor.
+> **Your Turn at the Console:** Step up to the Incident Console on the Workbench. Execute the live memory acquisition, preserve the Order of Volatility, compute the cryptographic SHA-256 verification hashes, and deliver the formal CSIRT Escalation Dossier to Senior CSIRT Lead Nia Alvarez and Jules Brooks before the incident command team takes the floor.
 > 
 > [Take the Ticket & Open the Lab →](workbench/12-when-the-ticket-escalates.md)
 
@@ -137,5 +137,5 @@ domain: CompTIA Security+ SY0-701 • Domain 4.0 Incident Response & Operations
 badge: Final Capstone Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Jules Brooks.
+Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Senior CSIRT Lead Nia Alvarez and Jules Brooks.
 ```

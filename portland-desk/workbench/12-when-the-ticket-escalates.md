@@ -374,7 +374,7 @@ objectives:
     trigger: "Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd"
   - id: "obj-verify"
     label: "Verify forensic image hash matches chain of custody"
-    trigger: "Compare-Object -ReferenceObject $orig -DifferenceObject $new"
+    trigger: "(Get-FileHash .\evidence_disk0.dd).Hash -eq $custodyHash"
 ---
 Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
   Algorithm       Hash                                                             Path
@@ -382,10 +382,11 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
   SHA256          A3F8B4C92E1045D87E6B9C1045F2A83C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A .\evidence_disk0.dd
   [OK] Bit-for-bit forensic image acquired through hardware write-blocker.
 
-Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
-  Hash comparison: MATCH (0 differences).
+(Get-FileHash .\evidence_disk0.dd).Hash -eq $custodyHash: |
+  True
+  [VERIFIED] Cryptographic hash matches original intake record exactly (0 differences).
   Chain of Custody verified: Evidence integrity intact.
-  Formal handoff dossier packaged for Senior CSIRT Lead Jules Brooks.
+  Formal handoff dossier packaged for Senior CSIRT Lead Nia Alvarez and Jules Brooks.
   [OK] Incident handoff complete.
 
 ```

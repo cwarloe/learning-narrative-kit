@@ -316,34 +316,38 @@ prompt: "PS C:\Support> "
 replay: true
 objectives:
   - id: "obj-lockout"
-    label: "Find account lockout events (Event ID 4740)"
-    trigger: "Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740}"
-  - id: "obj-unlock"
-    label: "Unlock Nora's domain account"
-    trigger: "Unlock-ADAccount -Identity nora.finance"
+    label: "Query Security log for lockout event 4740"
+    trigger: "Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1"
   - id: "obj-caller"
-    label: "Identify caller computer causing stale password lockouts"
-    trigger: "Get-ADUser -Identity nora.finance -Properties *"
+    label: "Extract CallerComputerName from Event 4740 XML"
+    trigger: "(Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1).ToXml()"
+  - id: "obj-unlock"
+    label: "Unlock Nora's domain account after isolating caller device"
+    trigger: "Unlock-ADAccount -Identity nora.finance"
 ---
-Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740}: |
+Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1: |
   TimeCreated          Id RecordId ProcessId Message
   -----------          -- -------- --------- -------
   10/18 03:17:42 AM  4740   149204       620 A user account was locked out.
                                               Target Account Name: nora.finance
-                                              Caller Computer Name: WKS-NORA-PHONE (Stale Exchange ActiveSync creds)
+                                              Caller Computer Name: WKS-NORA-PHONE
+
+(Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1).ToXml(): |
+  <Event xmlns='http://schemas.microsoft.com/win/2004/08/events/event'>
+    <EventData>
+      <Data Name='TargetUserName'>nora.finance</Data>
+      <Data Name='TargetDomainName'>HARROWMERE</Data>
+      <Data Name='CallerComputerName'>WKS-NORA-PHONE</Data>
+    </EventData>
+  </Event>
+  [OK] Caller computer identified: WKS-NORA-PHONE (Nora's corporate mobile phone caching expired credentials).
+  Action Taken: Nora toggled Airplane Mode ON to halt automated background ActiveSync attempts.
 
 Unlock-ADAccount -Identity nora.finance: |
   Unlocking Active Directory account 'nora.finance' on Domain Controller DC01...
   Account unlocked successfully.
-  [OK] Account status: ACTIVE (Password expired flag: FALSE).
-
-Get-ADUser -Identity nora.finance -Properties *: |
-  DistinguishedName : CN=Nora Vance,OU=Finance,DC=corp,DC=local
-  Enabled           : True
-  LockedOut         : False
-  badPwdCount       : 0
-  LastBadPasswordAttempt : 10/18 03:17:41 AM
-  Root Cause: Nora's company iPhone was sending old password over Wi-Fi after password change.
+  [OK] Account status: ACTIVE (badPwdCount reset to 0).
+  [PASS] Stale credentials isolated before account unlock. Lockout loop defused.
 
 ```
 

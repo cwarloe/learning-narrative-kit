@@ -194,7 +194,7 @@ objectives:
     label: "Scan surrounding wireless BSSIDs and channels"
     trigger: "netsh wlan show networks mode=bssid"
   - id: "obj-rogue"
-    label: "Identify rogue access point broadcasting on channel 6"
+    label: "Inspect active adapter channel collision and link quality"
     trigger: "netsh wlan show interfaces"
 ---
 netsh wlan show networks mode=bssid: |

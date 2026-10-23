@@ -295,45 +295,40 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
 
 ```lnk-terminal
-title: "POWERSHELL: EVENT VIEWER & STARTUP SERVICE TRIAGE"
+title: "POWERSHELL: EVENT VIEWER & GRAPHICS DRIVER TRIAGE"
 shell: "powershell"
 prompt: "PS C:\Support> "
 replay: true
 objectives:
   - id: "obj-crash"
     label: "Query Application crash logs (Event ID 1000)"
-    trigger: "Get-EventLog -LogName Application -InstanceId 1000"
-  - id: "obj-services"
-    label: "List third-party background services"
-    trigger: "Get-Service | Where Status -eq Running"
-  - id: "obj-disable"
-    label: "Disable crashing audio/display helper service"
-    trigger: "Stop-Service -Name NahimicService"
+    trigger: "Get-WinEvent -FilterHashtable @{LogName='Application'; ProviderName='Application Error'; Id=1000} -MaxEvents 1"
+  - id: "obj-tdr"
+    label: "Inspect graphics kernel driver TDR event in System log (Event ID 4101)"
+    trigger: "Get-WinEvent -FilterHashtable @{LogName='System'; ProviderName='Display'; Id=4101} -MaxEvents 1"
+  - id: "obj-accel"
+    label: "Disable conflicting GPU hardware acceleration in PDX-Pay config"
+    trigger: "Set-Content -Path 'C:\Program Files\PDX-Pay\config.ini' -Value 'HardwareAcceleration=0'"
 ---
-Get-EventLog -LogName Application -InstanceId 1000: |
-  TimeGenerated       Source           EventID Message
-  -------------       ------           ------- -------
-  10/18 09:14:22 AM   Application Error   1000 Faulting application name: QuickBooks.exe, version: 23.0.4
-                                               Faulting module name: NahimicOSD.dll, version: 2.1.8
-                                               Exception code: 0xc0000005 (Access Violation)
-                                               Fault offset: 0x00012a4f
-                                               Faulting process id: 0x18a4
+Get-WinEvent -FilterHashtable @{LogName='Application'; ProviderName='Application Error'; Id=1000} -MaxEvents 1: |
+  TimeCreated          Id ProviderName        Message
+  -----------          -- ------------        -------
+  10/18 09:14:22 AM  1000 Application Error   Faulting application name: PDXPayClient.exe, version: 4.2.1
+                                              Faulting module name: amdkmdag.sys, version: 23.20.11
+                                              Exception code: 0xc0000005 (Access Violation in graphics pipeline)
+                                              Faulting process id: 0x21a4
 
-Get-Service | Where Status -eq Running: |
-  Status   Name               DisplayName
-  ------   ----               -----------
-  Running  Appinfo            Application Information
-  Running  AudioSrv           Windows Audio
-  Running  Dhcp               DHCP Client
-  Running  Dnscache           DNS Client
-  Running  NahimicService     Nahimic Audio Overlay Helper (Third-Party OSD)
-  Running  Spooler            Print Spooler
-  Running  WinDefend          Microsoft Defender Antivirus Service
+Get-WinEvent -FilterHashtable @{LogName='System'; ProviderName='Display'; Id=4101} -MaxEvents 1: |
+  TimeCreated          Id ProviderName        Message
+  -----------          -- ------------        -------
+  10/18 09:14:23 AM  4101 Display             Display driver amdkmdag stopped responding and has successfully recovered.
+                                              Timeout Detection and Recovery (TDR) event triggered during D3D11 device call.
 
-Stop-Service -Name NahimicService: |
-  Service 'Nahimic Audio Overlay Helper' (NahimicService) stopped.
-  Setting startup type to Disabled...
-  [OK] Background injection hook removed. Payroll application launches cleanly.
+Set-Content -Path 'C:\Program Files\PDX-Pay\config.ini' -Value 'HardwareAcceleration=0': |
+  [OK] Updated C:\Program Files\PDX-Pay\config.ini: HardwareAcceleration disabled.
+  Restarting PDXPayClient.exe in software rendering mode...
+  Process started (PID 5128). Payroll ledger loaded successfully without display freeze.
+  [PASS] Application stability restored.
 
 ```
 

@@ -364,8 +364,11 @@ objectives:
     label: "Inspect outbound socket connections for rogue process"
     trigger: "Get-NetTCPConnection -OwningProcess 4812"
   - id: "obj-kill"
-    label: "Terminate malicious process and remove persistence key"
+    label: "Terminate malicious process executing in memory"
     trigger: "Stop-Process -Id 4812 -Force"
+  - id: "obj-persist"
+    label: "Purge persistence run key from Registry"
+    trigger: "Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsUpdateSync'"
 ---
 Get-Process | Where Path -like "*AppData*": |
   Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id ProcessName Path
@@ -380,10 +383,12 @@ Get-NetTCPConnection -OwningProcess 4812: |
   Warning: Outbound TCP reverse shell established to remote C2 IP 203.0.113.88:4444.
 
 Stop-Process -Id 4812 -Force: |
-  Process 4812 (svch0st.exe) terminated.
-  Deleting registry key: HKCU\Software\Microsoft\Windows\CurrentVersion\Run\WindowsUpdateSync
-  Host isolated from network adapter.
-  [OK] Active malware beacon neutralized.
+  Process 4812 (svch0st.exe) terminated in volatile memory.
+  [WARNING] Process eliminated from RAM, but persistence mechanism remains on disk!
+
+Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsUpdateSync': |
+  [OK] Registry value 'WindowsUpdateSync' removed from HKCU:\Software\Microsoft\Windows\CurrentVersion\Run.
+  Persistence mechanism neutralized. Host isolated from network pending forensic acquisition.
 
 ```
 
