@@ -3,6 +3,57 @@
 Setup (from repo root): `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`.
 `.venv` at the repo root is the supported location (gitignored). If system `python3` already has PyYAML you can run the tools with `python3` directly.
 
+## Tool index
+
+Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_tools_index.py` checks that this list stays complete (CI runs it as a warning).
+
+### Use these (pipeline and checks)
+
+| Script | What it does | Docs |
+|---|---|---|
+| `validate_unit.py` | Authoring QA gate for one unit; must PASS before render (CI runs it on every `examples/*/`) | below |
+| `render_unit.py` | Unit dir → `docs/<unit_id>/` HTML; `--out` for an unpublished preview | below |
+| `render_track.py` | Track manifest → contents page | below |
+| `render_glossary.py` | Track → one A-Z glossary page | below |
+| `build_hub_index.py` | Writes `docs/index.html` (the landing page) from `HTML_CONTENT` | below |
+| `check_hub_links.py` | Landing page matches builder; hub links resolve (CI) | below |
+| `check_ep07_capture.py` | Episode 7 Drill 1 table ↔ `jared-telnet-capture.pcap`, plus the `docs/` mirror (CI) | `AGENTS.md` |
+| `check_tools_index.py` | This index lists every script in `tools/` (CI, warning only) | this section |
+| `author.py` | Authoring bookkeeping: brief → plan → review → status | below |
+| `voice_check.py` | Machine-prose tells; a reading aid, not a gate | below |
+| `_track.py`, `_unit_page_template.py` | Modules imported by the renderers; not run directly | — |
+
+### Generators (safe to rerun; they rebuild output from a source)
+
+| Script | Source → output |
+|---|---|
+| `generate_ep07_telnet_capture.py` | Drill table → `portland-desk/artifacts/jared-telnet-capture.pcap` (needs `pip install scapy`; deterministic). Then copy to `docs/portland-desk/` and run `check_ep07_capture.py`. |
+| `generate_helpdesk_artifacts.py` | Built-in data → ticket queue, terminal dumps, event logs, email headers (`--generate`, `--verify`, `--out-dir`) |
+| `build_portland_glossary.py` | `portland-desk/assets/glossary.json` → `portland-desk/glossary.md` and `docs/portland-desk/glossary.md` |
+| `find_bad_tables.py` | Read-only: lists Markdown tables under `portland-desk/` with text directly above the header row (breaks GFM rendering). Run from the repo root. |
+| `sync_agy_chats.py` | Not a content tool: exports/imports Antigravity chat history between machines. Root `sync_agy_chats.py` is a wrapper for it. |
+
+### One-shot edits (history only; do not rerun)
+
+These scripts each made one pass over Portland Desk content and are kept as a record of that change. Rerunning one would rewrite current files with the text it carries, undoing later edits. Several also hard-code `C:\Users\charl\learning-narrative-kit` as the repo path, so they only run on that machine.
+
+| Script | The one change it made | Hard-coded Windows path |
+|---|---|---|
+| `refactor_portland_ui.py` | Shift Briefing cards, emoji removal, scratchpads across all 13 workbenches | yes |
+| `upgrade_all_modules.py` | Episodes 00, 02–12 to the interleaved cliffhanger model with terminal simulations | no |
+| `refactor_episode_02.py`, `refactor_episode_03.py`, `refactor_episode_04.py`, `refactor_episode_05.py`, `refactor_episode_06.py`, `refactor_episode_07.py` | One episode each to the interleaved cliffhanger handoff model | no |
+| `refactor_cliffhangers_act3.py` | Episodes 08–12 to the same model | yes |
+| `refactor_episode_01_sorkin.py` | Episode 01 narrative + workbench rewrite | yes |
+| `apply_technical_fixes.py` | Technical fixes and cast disambiguation | yes |
+| `apply_final_sorkin_sme_overhaul.py` | Final story and SME fixes | yes |
+| `clean_jargon.py` | Phrase replacements ("invariants" → "building blocks") in `portland-desk/`, `docs/portland-desk/`, `build_hub_index.py` | no |
+| `clean_research_invariants.py` | Same replacements in three `docs/research/` files | yes |
+| `clean_vocab_density.py` | Unmarked everyday terms (`[[id\|text]]` → `text`) in Portland narratives | no |
+| `fix_dummy_links.py` | Replaced placeholder `[text](#)` links with plain text in `portland-desk/` and `docs/portland-desk/` | no |
+| `update_index_glossary.py` | Patched the Portland Desk `index.html` pages so terms link to the Master Glossary | no |
+
+New one-off edit scripts are better kept out of `tools/` (run them, commit the content change, and describe the script in the commit message). If one is committed, add it to this table.
+
 ## `validate_unit.py`
 
 Authoring QA checker. **Must PASS before render/ship.**
