@@ -44,8 +44,8 @@ Over the span of three hours, four distinct tickets land across Ethan's dispatch
 1. **Ticket 1: Nora Higgins in Finance (`FIN-NORA-02`):**  
    Nora submitted a low-priority ticket yesterday morning asking why her email "Sent Items" folder was intermittently empty. Her local antivirus reported 100% clean. However, an audit of the Microsoft 365 tenant portal revealed an unauthorized inbox forwarding rule created at 02:13 a.m. named `InvoiceProcess`. The rule silently redirects every incoming email containing the words *"wire"*, *"invoice"*, *"payroll"*, or *"confidential"* to an external drop address (`exfil@pay-secure-audit.com`), marks the message as read, and moves it directly to the hidden `RSS Feeds` folder. Azure Active Directory logs confirm an MFA reset and interactive logon originating from IP `198.51.100.77` (a hosting provider in Frankfurt, Germany).
 
-2. **Ticket 2: Ken Vance in Sales/Warehouse (`KEN-SALES-14`):**  
-   Ken walked into the help desk bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scrawled in faded blue marker. Ken plugged the drive into his corporate laptop to inspect an invoice. His cooling fans surged to 100% before he pulled the stick. Local antivirus quarantined a file named `SOW_final.pdf.exe` (`Trojan:Win32/Dropper.B`). While Ken believed the incident was resolved because the drive was removed, EDR telemetry revealed a hidden background process (`powershell.exe`) executing internal SMB share enumeration (`net view /all`), probing the warehouse storage server (`\\WH-PACK-02\share$`), and registering a scheduled persistence task named `CacheCleanup` configured to run under `NT AUTHORITY\SYSTEM` at system boot.
+2. **Ticket 2: Todd Miller in Sales/Warehouse (`TODD-SALES-14`):**  
+   Ken walked into the help desk bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scrawled in faded blue marker. Todd plugged the drive into his corporate laptop to inspect an invoice. His cooling fans surged to 100% before he pulled the stick. Local antivirus quarantined a file named `SOW_final.pdf.exe` (`Trojan:Win32/Dropper.B`). While Ken believed the incident was resolved because the drive was removed, EDR telemetry revealed a hidden background process (`powershell.exe`) executing internal SMB share enumeration (`net view /all`), probing the warehouse storage server (`\\WH-PACK-02\share$`), and registering a scheduled persistence task named `CacheCleanup` configured to run under `NT AUTHORITY\SYSTEM` at system boot.
 
 3. **Ticket 3: Leah Moreno at the Willamette River Plant (`GW-PLANT-04`):**  
    Leah Moreno, Senior SCADA and Industrial Systems Technician, called Ethan via the secure plant landline. Network monitoring on the operational technology (OT) edge detected anomalous outbound TLS egress traffic originating from telemetry gateway `GW-PLANT-04` destined for an external IP address (`185.22.112.14:8443`). Telemetry showed the connection was initiated not by the plant controller firmware, but from an internal staging jump box (`SRV-STAGE-01`) that bridges the corporate IT network and the plant SCADA supervisory zone.
@@ -56,7 +56,7 @@ Over the span of three hours, four distinct tickets land across Ethan's dispatch
 Jules Brooks stands behind Ethan’s chair, sets her ceramic mug down without making a sound, and pulls a heavy red binder from the fireproof cabinet.
 
 > *"Ethan, listen to me carefully. A novice tech sees four tickets: a mailbox glitch, a dirty USB, a weird plant router alert, and a slow laptop. They run a scanner, wipe Nora's drive, tell Ken not to do it again, and go home at five.  
-> If you do that today, you destroy the only evidence of a coordinated intrusion campaign. Nora's stolen credentials opened the door; Ken's USB dropped the staging script; the script hopped to the staging jump box; and now an adversary is probing our plant process telemetry.  
+> If you do that today, you destroy the only evidence of a coordinated intrusion campaign. Nora's stolen credentials opened the door; Todd's USB dropped the staging script; the script hopped to the staging jump box; and now an adversary is probing our plant process telemetry.  
 > You are the first responder on this desk. That means your first job is not heroics and it is not freelance forensics. Your job is preservation, containment, and chain of custody. You are going to assemble the formal CSIRT Escalation Dossier under my eye. If it isn't documented with a timestamp and a SHA-256 hash, it didn't happen."*
 
 
@@ -190,7 +190,7 @@ Before digital media is examined or cloned, a cryptographic message digest must 
 
 ```powershell
 # Calculate SHA-256 digest of seized physical or virtual forensic image
-Get-FileHash -Path "C:\Forensics\Evidence\KEN-SALES-14-disk.raw" -Algorithm SHA256 | Format-List
+Get-FileHash -Path "C:\Forensics\Evidence\TODD-SALES-14-disk.raw" -Algorithm SHA256 | Format-List
 ```
 
 1. **Pre-Acquisition Hash:** Calculate the hash of the source media (or bit-stream read stream).
@@ -233,7 +233,7 @@ First responders must make split-second containment decisions. The wrong choice 
 > **The Rule of the Desk:** If you reboot before you capture, you are throwing the weapon into the Willamette River. Rank the evidence before you touch the machine.
 
 #### The Challenge
-During the triage of Nora's workstation (`FIN-NORA-02`), Ken's laptop (`KEN-SALES-14`), and the plant gateway (`GW-PLANT-04`), Ethan collects eight distinct evidence artifacts.
+During the triage of Nora's workstation (`FIN-NORA-02`), Todd's laptop (`TODD-SALES-14`), and the plant gateway (`GW-PLANT-04`), Ethan collects eight distinct evidence artifacts.
 
 Sort the following eight items in strict order of volatility according to RFC 3227 and CompTIA Security+ SY0-701 guidelines, ranking them from **1 (Most Volatile / Dies First)** to **8 (Least Volatile / Most Permanent)**:
 
@@ -436,8 +436,8 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
 
 ---
 
-#### Case 2: Ken Vance (Sales & Warehouse) — `INC-2026-1202`
-*Telemetry & Symptoms:* Ken plugged in an unbranded USB drive. Antivirus quarantined `SOW_final.pdf.exe` on drive `E:\`. Ken unplugged the stick and wants his ticket closed. However, EDR process history indicates that before quarantine, the dropper spawned `powershell.exe -w hidden`, which executed `net view /all`, probed writable shares on `\\WH-PACK-02\share$`, and created a persistent scheduled task named `CacheCleanup` configured to execute at system startup.
+#### Case 2: Todd Miller (Sales & Warehouse) — `INC-2026-1202`
+*Telemetry & Symptoms:* Todd plugged in an unbranded USB drive. Antivirus quarantined `SOW_final.pdf.exe` on drive `E:\`. Ken unplugged the stick and wants his ticket closed. However, EDR process history indicates that before quarantine, the dropper spawned `powershell.exe -w hidden`, which executed `net view /all`, probed writable shares on `\\WH-PACK-02\share$`, and created a persistent scheduled task named `CacheCleanup` configured to execute at system startup.
 
 * **Your Action:**  
   [ A. Close Ticket with Warning / B. Delete Scheduled Task & Reconnect / C. Isolate Host Immediately, Confiscate USB Drive, Audit Target Network Shares ]
@@ -566,7 +566,7 @@ Attack Path Chronology:
 [Host C2 & Dumping]     Workstation FIN-NORA-02 establishes 300-second HTTPS beaconing 
                         to 185.22.112.14:443. Memory injection targets lsass.exe.
                                 |
-[Physical Vector]       Workstation KEN-SALES-14 infected via unbranded USB ('CLIENT DECK').
+[Physical Vector]       Workstation TODD-SALES-14 infected via unbranded USB ('CLIENT DECK').
                         Dropper SOW_final.pdf.exe initiates lateral SMB share enumeration
                         and establishes persistence task 'CacheCleanup' (SYSTEM).
                                 |
@@ -581,7 +581,7 @@ Attack Path Chronology:
 Workstations:
 - Hostname: FIN-NORA-02 | IP: 192.168.20.14 | User: Nora Higgins (Finance Specialist)
   Status: EDR ISOLATED (Power ON) | MAC: 00:1A:2B:3C:4D:5E | OS: Windows 11 Enterprise
-- Hostname: KEN-SALES-14 | IP: 192.168.10.45 | User: Ken Vance (Warehouse Logistics)
+- Hostname: TODD-SALES-14 | IP: 192.168.10.45 | User: Ken Vance (Warehouse Logistics)
   Status: PHYSICALLY DISCONNECTED (Power ON) | MAC: 00:1A:2B:5F:6A:7B | OS: Windows 11
 
 Servers & Gateways:
@@ -616,7 +616,7 @@ Compromised Identities:
   - Recipient for unauthorized Exchange inbox forwarding rule
 
 [Host Persistence & Behavioral Indicators]
-• Scheduled Task Name: 'CacheCleanup' (Event ID 4698 on KEN-SALES-14)
+• Scheduled Task Name: 'CacheCleanup' (Event ID 4698 on TODD-SALES-14)
   Action: powershell.exe -nop -w hidden -File C:\ProgramData\update.ps1
   Trigger: At system startup | Principal: NT AUTHORITY\SYSTEM
 • Exchange Inbox Rule: 'InvoiceProcess'
@@ -635,7 +635,7 @@ Timestamp (PST) | Action Executed & Technical Details
                 | for nhiggins@harrowmere.com. Forced administrative password reset.
 14:22:30        | Purged malicious forwarding rule 'InvoiceProcess' via Exchange 
                 | Online PowerShell (Remove-InboxRule -Mailbox nhiggins -Identity ...).
-14:25:10        | Physical Network Isolation of KEN-SALES-14: Disconnected RJ-45 
+14:25:10        | Physical Network Isolation of TODD-SALES-14: Disconnected RJ-45 
                 | Ethernet cable. Disengaged physical Wi-Fi hardware toggle.
 14:28:45        | Physical Media Seizure: Seized 32GB USB flash drive from Ken Vance.
                 | Packaged in Anti-Static Evidence Pouch #EVD-2026-1022-01 with 
@@ -706,10 +706,10 @@ Before Ethan closes the red folder and hands the physical binder to Jules Brooks
 
 * [x] **Event vs. Incident Delineated:** Maya's noisy adware was properly tagged as an isolated *Event* (resolved without disruption), while Nora's quiet mailbox anomaly was identified as an active *Security Incident*.
 * [x] **Order of Volatility Honored:** Volatile memory (RAM) and network socket states were captured live before any system reboots, shutdowns, or disk imaging occurred.
-* [x] **Strict Containment Before Analysis:** Infected endpoints (`FIN-NORA-02`, `KEN-SALES-14`) were isolated from the network via EDR and physical cable disengagement before forensic triage commenced.
+* [x] **Strict Containment Before Analysis:** Infected endpoints (`FIN-NORA-02`, `TODD-SALES-14`) were isolated from the network via EDR and physical cable disengagement before forensic triage commenced.
 * [x] **Operational Silence Maintained:** Need-to-know principles were strictly enforced; no notifications were posted to public Slack channels or email distribution lists that could alert the adversary.
 * [x] **Cryptographic Hash Verification:** Every physical and virtual artifact possesses an immutable pre-acquisition and post-acquisition SHA-256 checksum proving 100% mathematical integrity.
-* [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Ken's USB drive was picked up to the dual-signature transfer to Jules Brooks.
+* [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Todd's USB drive was picked up to the dual-signature transfer to Jules Brooks.
 * [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, testable IoCs (hashes, IP addresses, ports, task names) allowing Tier 2 analysts to hunt across enterprise telemetry immediately.
 
 

@@ -652,7 +652,7 @@ End of day we sat with a SOC analyst on a short bridge call. Not because I was b
 
 I updated the wiki blurb the desk actually reads: hover the link, check the real host, never read codes to callers, never approve surprise MFA, never change wire instructions from a thread, badge your own door, shred the bin, and when something feels like borrowed manners, use the report button. That is the reporting path.
 
-At 5:40 I closed notes: Maya reported, Sam did not open the zip, Avery's wire frozen, Nora hung up on the pretext, Ken ignored the text, Dev denied the pushes, the lobby stopped a tailgate, Jordan shredded, the gift-card caller got nothing.
+At 5:40 I closed notes: Maya reported, Sam did not open the zip, Avery's wire frozen, Nora hung up on the pretext, Todd ignored the text, Dev denied the pushes, the lobby stopped a tailgate, Jordan shredded, the gift-card caller got nothing.
 
 Jules clipped her bike lights on. "Tomorrow someone will call a spoofed CFO probably real because the logo is crisp."
 

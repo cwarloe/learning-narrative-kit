@@ -35,9 +35,9 @@ We walked a passphrase she would actually remember, not a movie quote she had po
 
 She set the passphrase. She did not install the manager on the call. "I'll do the vault later," she said. "I have a close." I put *manager still pending* in the ticket and left it open.
 
-## Ken and the MFA that is not MFA
+## Todd and the MFA that is not MFA
 
-Ken in sales was locked out of the CRM after a phone wipe. He wanted a quick fix.
+Todd in sales was locked out of the CRM after a phone wipe. He wanted a quick fix.
 
 "I already have multifactor," Ken said. "Password plus a PIN on the laptop. Two things. That is MFA, right? My old shop said so."
 

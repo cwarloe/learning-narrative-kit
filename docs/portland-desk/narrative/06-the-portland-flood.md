@@ -119,12 +119,12 @@ Within three minutes, my mobile service phone began vibrating continuously in my
 I opened a remote PowerShell terminal to our primary domain controller. I queried the active DHCP scope servicing the order desk subnet at `10.20.10.0/24`. The output revealed an immediate operational problem.
 
 ```console
-PS C:\Users\emercer> Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, State
+PS C:\Users\emercer> Get-DhcpServerv4ScopeStatistics -ScopeId 10.20.10.0 | Format-List ScopeId, Free, InUse, PercentageInUse
 
-ScopeId : 10.20.10.0
-Free    : 0
-InUse   : 200
-State   : Active
+ScopeId         : 10.20.10.0
+Free            : 0
+InUse           : 200
+PercentageInUse : 100
 ```
 
 "Look at the address counter on this scope," I called out, tracing the numbers on the display. "The available free address count is zero. The active in-use count is at two hundred. We have hit complete [[dhcp_exhaustion|DHCP scope exhaustion]] on the order desk subnet."

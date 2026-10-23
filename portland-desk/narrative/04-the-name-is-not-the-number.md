@@ -4,7 +4,7 @@
 
 A gray March downpour beat against the high double-paned windows of the fourth floor. Five months on the Portland Operations Center desk had taught me the rhythms of the building: which closet switches ran warm, which departments panicked before payroll cutoff, and how fast a wet morning turned into a ticket surge.
 
-Across the center aisle, Tier 2 systems administrator Maya Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules Brooks sat to my left, finishing her first coffee while auditing overnight firewall changes.
+Across the center aisle, Tier 2 systems administrator Lena Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules Brooks sat to my left, finishing her first coffee while auditing overnight firewall changes.
 
 By eight thirty, the incoming ticket board on our wall monitor began flashing amber with nine high-priority incidents. Remote employees working across Multnomah and Washington counties were calling in with identical complaints. They had connected their laptops to our corporate virtual private network without any errors. Yet whenever they tried to open the internal payroll portal or the plant telemetry wiki, their browsers spun endlessly. Some requests timed out completely, while others redirected users to an unfamiliar public domain parking page. Meanwhile, accountants and dispatchers working inside the building were browsing those exact same internal websites without any trouble.
 
@@ -21,7 +21,7 @@ Jared Vance from network operations walked over from the bullpen holding a paper
 
 "Comcast probably pushed another broken routing update, or a backhoe clipped a conduit in Beaverton," Jared said, gesturing toward the rain with his paper cup. "Remote workers are on domestic broadband lines that flake out whenever the weather turns sour. Have them reboot their cable modems and flush their network stacks."
 
-Maya Chen turned slightly in her swivel chair and lowered her headset microphone. "Rebooting sixty consumer cable modems across three residential providers is not an operational triage plan, Jared. The VPN concentrator shows eighty-two active client tunnels with healthy keepalive handshakes. We have zero packet drops on the transport interface. The encrypted tunnel is staying wide open, but the application payload is landing in the wrong place."
+Lena Chen turned slightly in her swivel chair and lowered her headset microphone. "Rebooting sixty consumer cable modems across three residential providers is not an operational triage plan, Jared. The VPN concentrator shows eighty-two active client tunnels with healthy keepalive handshakes. We have zero packet drops on the transport interface. The encrypted tunnel is staying wide open, but the application payload is landing in the wrong place."
 
 I opened the first ticket from the queue. It was submitted by an accounts payable clerk named Greg who was working remotely from Hillsboro. Greg could not access `payroll.harrowmere.local` to verify morning direct deposits. His browser displayed a generic error stating that the server address could not be found.
 
@@ -53,7 +53,7 @@ I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the loc
 
 I deleted the three hardcoded lines, saved the file, and executed `ipconfig /flushdns` in the command prompt. The utility confirmed that the DNS resolver cache had been successfully purged. I then launched Greg's web browser and refreshed the payroll portal tab. I fully expected the login screen to appear so I could close the ticket.
 
-Instead, the browser spun for five seconds and displayed a bright orange GoDaddy parked domain page. The page announced that `harrowmere.local` was available for purchase or had no active web host configured.
+Instead, the browser spun for five seconds, timed out, and displayed a connection failure: `DNS_PROBE_FINISHED_NXDOMAIN`. The browser reported that the server IP address could not be found.
 
 "The bad static file was masking a deeper failure," I said. I felt the initial rush of confidence drain away. "Even with the local override removed, the machine is still failing to resolve the internal domain."
 
@@ -75,15 +75,15 @@ Address:  192.168.1.1
 
 I stared at the first two lines of the terminal response. "Look at the resolving server address. The machine did not query our enterprise domain controller at `10.100.10.2`. It sent the query directly to `192.168.1.1`, which is Greg's personal home Wi-Fi gateway."
 
-"And what does his home router do when a client asks it to resolve an unfamiliar internal host?" Maya asked.
+"And what does his home router do when a client asks it to resolve an unfamiliar internal host?" Lena asked.
 
 "His home router forwards the query to its upstream [[recursive_resolver|recursive resolver]] at Comcast," I said. "RFC 6762 reserves `.local` for Multicast DNS on the local link. Comcast's public recursive resolvers don't know our private corporate namespace, so they drop an immediate NXDOMAIN non-existent domain code right back to his machine."
 
-"Now look at what happens when Greg tries to browse the public corporate domain name," Maya said.
+"Now look at what happens when Greg tries to browse the public corporate domain name," Lena said.
 
 I typed `nslookup wiki.harrowmere.com` into the terminal. This time, the query returned a public IP address belonging to a cloud content delivery network. It was accompanied by an alias record indicating that `wiki.harrowmere.com` was registered as a [[cname_record|CNAME record]] pointing to an external hosting provider.
 
-"We use [[split_dns|split-horizon DNS]] for all of our regional infrastructure," Maya explained. She pointed at the two distinct answers on my screen. "When an employee is sitting in this building, our internal name servers intercept the query and return a private `10.100.40.8` address for the plant documentation wiki. But when an external user queries the exact same hostname from the public internet, our public authoritative name servers return an external proxy gateway. If a remote worker's machine queries a public resolver instead of our internal domain controller, they receive the external answer. That external host promptly rejects their internal connection attempt."
+"We use [[split_dns|split-horizon DNS]] for all of our regional infrastructure," Lena explained. She pointed at the two distinct answers on my screen. "When an employee is sitting in this building, our internal name servers intercept the query and return a private `10.100.40.8` address for the plant documentation wiki. But when an external user queries the exact same hostname from the public internet, our public authoritative name servers return an external proxy gateway. If a remote worker's machine queries a public resolver instead of our internal domain controller, they receive the external answer. That external host promptly rejects their internal connection attempt."
 
 ## The leak in the tunnel
 

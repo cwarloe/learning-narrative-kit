@@ -367,7 +367,7 @@ Get-ADUser -Identity nora.finance -Properties *: |
 </div>
 
 
-#### Ticket 1: Ken Vance (Sales Representative) — `INC-2026-1141`
+#### Ticket 1: Todd Miller (Sales Representative) — `INC-2026-1141`
 *Request:* "Got a new phone over the weekend. I don't want to install the company authenticator app again because it takes up storage. Just set my account to SMS verification, or turn off MFA and let me use my laptop PIN plus password."
 
 * **Your Action:** [ Approve / Deny / Redirect ]
@@ -528,7 +528,7 @@ Status:           RESOLVED
 SECURITY ENROLLMENT & HARDENING NOTE - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1141
-Requester:        Ken Vance (Sales Representative)
+Requester:        Todd Miller (Sales Representative)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
 Date/Time:        2026-10-21 10:15:30 PST
@@ -588,7 +588,7 @@ Status:           RESOLVED
 ```callout-panel
 title: "FIGURE 8.2: IDENTITY BOUNDARIES & OFFBOARDING ENFORCEMENT"
 badge: "Shift Epilogue"
-caption: "Operations floor: At 05:35 PM, the identity queue clears. Ken's phone displays a verified authenticator token, Dev's script runs cleanly against the vault, and offboarding revokes the last orphaned credentials."
+caption: "Operations floor: At 05:35 PM, the identity queue clears. Todd's phone displays a verified authenticator token, Dev's script runs cleanly against the vault, and offboarding revokes the last orphaned credentials."
 prompt: "Clean graphic novel cutaway panel of an IT support technician desk at late afternoon. Warm desk lamp light mixes with rainy window reflection. On the desk, an authenticator app shows a glowing security key verification symbol next to an Active Directory management console showing green status ticks. Ligne Claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
 ```
 
@@ -652,7 +652,7 @@ Jules typed one line between vendor questions: *security keys and device-bound p
 
 I added the desk version for the person who would still call: passwordless replaces the knowledge factor with possession and biometrics wired through the IdP — it does not mean no proof. Until then, unique passwords in the manager, MFA that is actually multifactor, and no PIN cosplay.
 
-At 5:35 the queue was down to noise. Nora's vault was still pending. Ken was enrolled. The contractor was deprovisioned. EnergyDash was on SSO. Jared did not have standing god mode.
+At 5:35 the queue was down to noise. Nora's vault was still pending. Todd was enrolled. The contractor was deprovisioned. EnergyDash was on SSO. Jared did not have standing god mode.
 
 Jules clipped her bike lights on. "Tomorrow someone will call password-plus-PIN multifactor again."
 

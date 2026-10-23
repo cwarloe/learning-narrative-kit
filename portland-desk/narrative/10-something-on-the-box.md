@@ -94,7 +94,7 @@ Sam looked personally betrayed by a flash drive. "It said PDF on the sticker."
 
 Mid-morning Ops Slack lit up in a way that is never about one person: three warehouse PCs showing the same odd scheduled task, same weird outbound DNS, same sudden interest in mapping drives. Not one user. A pattern.
 
-Ken from sales called while I was still reading the thread. His fans were loud enough that I heard them through the handset.
+Todd from sales called while I was still reading the thread. His fans were loud enough that I heard them through the handset.
 
 "My laptop is scanning the building," he said. "Shares I do not recognize. I did not click anything today. I was copying a deck onto the warehouse share and then everything got interested in everything else."
 
@@ -104,8 +104,8 @@ I looked at the [[edr|EDR]] alert Jules forwarded. The process tree showed a scr
 product: EDR
 severity: High
 title: Share enumeration from a signed binary
-host: KEN-SALES-14
-user: ken.lee
+host: TODD-SALES-14
+user: todd.miller
 process: powershell.exe
 time: 10:17
 ---
@@ -113,7 +113,7 @@ Parent is a scheduled task created this morning. Child is a copy of the same scr
 ```
 
 ```tree
-caption: KEN-SALES-14 · process tree
+caption: TODD-SALES-14 · process tree
 powershell.exe  (signed, company cert)
   powershell.exe -nop -w hidden -enc JABzA...
     net.exe view /domain
@@ -158,7 +158,7 @@ Dana unplugged. Jules was already on the bridge with SOC. They asked about backu
 
 Dana asked if she should try the attacker's support chat anyway, "just to see if the test file comes back." I said no. She asked when her files would be back. I said after SOC and backups, not this afternoon. She stayed on the slow spare printer for the rest of the day and was not polite about it. I wrote that in the ticket because politeness is not a restore code either.
 
-Jules turned from the ops bridge, her headset resting around her collar. "Ken's laptop is spinning fans at 100% executing encoded PowerShell payloads across warehouse shares, an unknown USB dropper sits on the scan bench, and Dana's endpoint is locked with a crypto-malware demand. If you let that PowerShell beacon run another thirty seconds, the entire warehouse VLAN is toast. Isolate the network endpoints, decode that Base64 payload, hunt down the persistence run keys in Autoruns, and trace Event ID 7045 in the System log before lateral movement takes down the domain."
+Jules turned from the ops bridge, her headset resting around her collar. "Todd's laptop is spinning fans at 100% executing encoded PowerShell payloads across warehouse shares, an unknown USB dropper sits on the scan bench, and Dana's endpoint is locked with a crypto-malware demand. If you let that PowerShell beacon run another thirty seconds, the entire warehouse VLAN is toast. Isolate the network endpoints, decode that Base64 payload, hunt down the persistence run keys in Autoruns, and trace Event ID 7045 in the System log before lateral movement takes down the domain."
 
 ## The Handoff Gate
 

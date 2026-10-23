@@ -67,7 +67,7 @@ Nora had me on chat while she kept him talking. Polite delay, no secrets.
 
 She hung up. He did not open a ticket. Nora sent a note: *he tried the certificate story twice with different verbs.*
 
-Ten minutes later Ken in sales texted a screenshot: a message claiming HR benefits enrollment seats were "almost gone," link included, only three left. The tone was HR-casual, which Ken trusts more than HR-formal.
+Ten minutes later Todd in sales texted a screenshot: a message claiming HR benefits enrollment seats were "almost gone," link included, only three left. The tone was HR-casual, which Ken trusts more than HR-formal.
 
 "[[smishing|Smishing]]," I said on the follow-up call. "SMS phishing. Same scarcity trick as a fake flash sale. Open benefits from the portal tile, not from a text. Report the number if the carrier tool lets you; open a desk ticket either way."
 

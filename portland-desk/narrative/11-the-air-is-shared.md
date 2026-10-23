@@ -33,7 +33,7 @@ She docked. She was late to the board meeting. The twin was still on the air whe
 
 ## WEP, open air, and the portal that feels like security
 
-Ken from sales called from a hotel before a customer demo. He was proud of a workaround.
+Todd from sales called from a hotel before a customer demo. He was proud of a workaround.
 
 "Hotel Wi-Fi is open, then a webpage asks for the room number," he said. "That is basically login security, right? Also the customer site still has a dusty AP labeled WEP for the old scanner. They told me to join it for the warehouse tour."
 

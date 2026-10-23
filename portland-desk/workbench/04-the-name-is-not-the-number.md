@@ -1,7 +1,7 @@
 # Portland Desk Lab: DNS Plumbing, Name Resolution Triage, & Split-Horizon Analysis
 
 > **The Situation:** Portland Operations Center • Spring downpour, remote VPN support queue  
-> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Maya Chen)  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Lena Chen)  
 > **The Objective:** Trace why remote VPN users fail to access internal company services while in-office users succeed, resolving split-horizon DNS and rogue hosts file overrides.  
 > **Estimated Time:** 40–50 minutes • Name Resolution & DNS Plumbing  
 
@@ -35,7 +35,7 @@ It is 08:30 on an overcast Tuesday morning in East Portland. Outside, rain strea
 
 Remote employees working from home across Multnomah and Washington counties have established secure VPN tunnels into the corporate network. Their network adapters report valid IP addresses on the `10.200.15.0/24` VPN pool. Yet whenever they attempt to browse internal business tools—specifically `payroll.harrowmere.local` and `wiki.harrowmere.local`—their browsers either time out with `DNS_PROBE_FINISHED_NXDOMAIN` or redirect to public registrar parking pages. Meanwhile, workstations physically plugged into the office local area network resolve those exact same resources instantly.
 
-Jared Vance from network operations insists that residential internet service providers are experiencing routing failures. But Desk Lead Jules Brooks and Tier 2 Systems Administrator Maya Chen point out that the encrypted tunnel is fully operational. 
+Jared Vance from network operations insists that residential internet service providers are experiencing routing failures. But Desk Lead Jules Brooks and Tier 2 Systems Administrator Lena Chen point out that the encrypted tunnel is fully operational. 
 
 As Jules reminds the desk before anyone touches a configuration:
 > *"When a user tells you a website is down, the website is almost never down. The client simply does not know what number to dial. The name is not the number. Trace who answers the question before you assume the wire is broken."*
@@ -529,7 +529,7 @@ SYSTEMS & NETWORK SECURITY ESCALATION NOTE
 Escalation ID:    ESC-2026-0488
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
-Escalated To:     Maya Chen (Tier 2 Sysadmin) / Jared Vance (Network Ops)
+Escalated To:     Lena Chen (Tier 2 Sysadmin) / Jared Vance (Network Ops)
 Priority:         P2 - High (Systemic Remote Access Degradation)
 Date / Time:      2026-10-18 09:40:15 PDT
 Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDOMAIN)
@@ -551,7 +551,7 @@ Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDO
       causing persistent browser lockouts even during active tunnel sessions.
 
 3. IMMEDIATE REMEDIATION DEPLOYED:
-   - Maya Chen pushed an emergency revision (v2.4.1) to the VPN Concentrator:
+   - Lena Chen pushed an emergency revision (v2.4.1) to the VPN Concentrator:
      * Enforced <InterfaceMetric>10</InterfaceMetric> on virtual tunnel adapter.
      * Enforced <DNSSuffix>harrowmere.local, harrowmere.internal</DNSSuffix>.
      * Activated <DisableSmartNameResolution>true</DisableSmartNameResolution>.
@@ -596,7 +596,7 @@ caption: "Operations center bullpen: At 10:15 AM, the remote dispatch queue retu
 prompt: "Clean graphic novel cutaway panel of a corporate IT help desk operations center. Outside the panoramic windows, morning rain clears over the Willamette River. On a large wall-mounted operations monitor, a network traffic graph displays balanced green metrics. A technician types at a dual-monitor workstation. Ligne Claire style, sharp technical lines, no text, no words. 16:9 ratio."
 ```
 
-With the root cause identified, Maya Chen pulled up the centralized VPN gateway management console on her workstation. She pushed a mandatory client profile revision across the cluster, enforcing an interface metric of 10 on the virtual tunnel adapter, appending `harrowmere.local` to the suffix search list, and disabling multi-homed smart resolution.
+With the root cause identified, Lena Chen pulled up the centralized VPN gateway management console on her workstation. She pushed a mandatory client profile revision across the cluster, enforcing an interface metric of 10 on the virtual tunnel adapter, appending `harrowmere.local` to the suffix search list, and disabling multi-homed smart resolution.
 
 "I will handle the queue," I told Maya, opening our mass notification template. I broadcasted the three-step resolution instructions to affected staff: disconnect the client session, reconnect to pull the revised profile from the gateway cluster, and run `ipconfig /flushdns` in an elevated prompt to wipe the negative NXDOMAIN cache.
 
