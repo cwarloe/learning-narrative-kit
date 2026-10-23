@@ -20,7 +20,7 @@
 * **Ethan Mercer:**
   > `"Ethan Mercer, a 19-to-20-year-old frontline technician, slender athletic build, messy tousled dark wavy brown hair, clean-shaven, wide expressive hazel eyes. Wears a light heather-grey crew-neck t-shirt or grey hoodie under a dark canvas jacket, work boots, single-ear Plantronics telephone headset, stainless-steel mechanical pencil clipped in pocket."`
 * **Jules Brooks:**
-  > `"Jules Brooks, 34-year-old female Lead Support Specialist, sharp intelligent features, shoulder-length straight dark hair with subtle silver streaks tucked behind one ear, wearing an unstructured charcoal blazer over a black tee or dark flannel shirt, wired headset over one ear, ceramic coffee mug in hand, matte silver commuter bicycle helmet nearby. Calm, observant mentor expression."`
+  > `"Jules Brooks, 34-year-old female Lead Support Specialist, sharp intelligent features, shoulder-length straight dark hair with subtle silver streaks tucked behind one ear, wearing an unstructured charcoal blazer over a black tee or dark flannel shirt, wired headset over one ear, one hand on her headset ear-cup, matte silver commuter bicycle helmet nearby. Focused, high-stakes mentor posture — leaning in, not leaning back."`
 * **Ken:**
   > `"Ken, 51-year-old frantic logistics shift supervisor, scuffed denim jacket, aluminum clipboard under arm, receding grey hair, weathered lined face of a logistics manager under trailer dispatch deadlines."`
 * **Maya Lin:**
@@ -45,8 +45,8 @@
   * **Badge:** `Hardware Anatomy`
   * **Caption:** `Macro technical cutaway: A desktop motherboard on an ESD workbench mat. In the foreground, three cylindrical electrolytic capacitors: two are swollen and domed with dried brown crust leaking from the vents, beside one healthy flat capacitor. In the background, a dual-channel memory slot holding a green RAM stick with one broken retention latch.`
   * **Interactive Overlay Pins:**
-    * Pin 1 (Electrolyte Vent): `Bulging Electrolytic Capacitor — Outgassing hydrogen has ruptured the vent score, causing power rail ripple voltage.`
-    * Pin 2 (Flat Vent): `Intact Capacitor Seal — Flat vent indicates low equivalent series resistance (ESR) and solid internal seal.`
+    * Pin 1 (Electrolyte Vent): `Ruptured Electrolytic Capacitor — Electrolyte boil-off has domed and split the vent score. High ESR on this capacitor causes power rail ripple and instability.`
+    * Pin 2 (Flat Vent): `Intact Factory Vent Seal — Flat vent score indicates nominal internal pressure and normal ESR. Note: vent integrity is unrelated to supply voltage level.`
     * Pin 3 (RAM Latch): `Unseated Memory Module — Fractured retention latch prevents complete contact on the memory bus, causing firmware POST failure.`
 
 ---
