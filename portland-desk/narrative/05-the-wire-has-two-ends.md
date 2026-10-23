@@ -18,7 +18,7 @@ The dispatch board above our heads chimed with three sharp tones, flashing an am
 title: "FIGURE 5.1: LAYER 4 TCP STATE MACHINE & TIME_WAIT EXHAUSTION"
 badge: "Transport Layer"
 caption: "Schematic diagram: TCP teardown lifecycle. After active closure (FIN/ACK exchange), the client socket parks in TIME_WAIT for 2MSL (120 seconds). Unthrottled multi-threaded retry loops consume all 16,384 ephemeral ports in the dynamic range (49152–65535)."
-prompt: "Clean technical cutaway diagram of a network protocol state machine under bright inspection lighting. Flowchart lines illustrate TCP four-way handshake connection termination from FIN-WAIT to TIME-WAIT to CLOSED. A highlighted warning box depicts dynamic ephemeral port exhaustion. Crisp technical drawing style, Ligne Claire, no text, no letters. 16:9 ratio."
+prompt: "Clean technical cutaway diagram of a network protocol state machine under bright inspection lighting. Flowchart lines illustrate TCP four-way FIN connection termination sequence from FIN-WAIT to TIME-WAIT to CLOSED. A highlighted warning box depicts dynamic ephemeral port exhaustion. Crisp technical drawing style, Ligne Claire, no text, no letters. 16:9 ratio."
 ```
 
 I pulled my headset on and answered the incoming line from the Gresham warehouse. Ken described the situation unfolding across his loading dock in a loud, frustrated voice. Down in the staging bay, five freight drivers were idling their diesel engines. The intake terminals could not retrieve delivery manifests from the primary database server on port 8443, locking up the morning intake queue.
@@ -147,11 +147,15 @@ PS C:\Users\jvance> netstat -ano | findstr 8443
 
 Jared rubbed his forehead, looking at his source code on his left screen. "The worker threads query each device, and if an archive post stalls, the loop retries immediately. For every single retry and device check, it spins up a new TCP client, posts the payload, and calls close without connection pooling."
 
-"Your script opened thousands of rapid-fire transport sessions," I realized, sketching the lifecycle on my pad. "When it called close, the client stack initiated an active close. Under RFC 793, the client must park each closed socket in `TIME_WAIT` for two maximum segment lifetimes—one hundred and twenty seconds in Windows. In ten minutes of rapid retries, you burned through all sixteen thousand ephemeral ports in the dynamic range."
+"Every socket is parked in `TIME_WAIT`," I said, pointing at the terminal columns. "Thousands of them, all outbound from your desktop to port 8443, and the process ID is already zero."
 
-Jules wheeled her chair closer, looking from the fifteen thousand frozen sockets on Jared's screen to the blinking backup SLA alert on the dispatch board.
+Jared leaned in, squinting at the numbers as the color drained from his face. "The active close... The loop doesn't pool connections. Every retry spins up a new client, fires a packet, and slams the door shut."
 
-"You have four hundred switches waiting on configuration backups, and our disaster recovery SLA expired two hours ago," Jules said, her voice quiet and direct. "The server is healthy, but Jared's workstation has consumed every dynamic port in its outbound pool. How do you triage this socket exhaustion, reconfigure the operating system TCP recycling timers, refactor the client transport architecture, and prove the fix without losing a single device backup? Call your shot, Ethan."
+"And Windows parks each closed socket in `TIME_WAIT` for two minutes," Jules said, tapping her pen against Jared's monitor. "You burned through all sixteen thousand dynamic ephemeral ports on your own box in ten minutes of rapid retries."
+
+Jared slumped into his chair, rubbing his temples. "The disaster recovery audit is at noon. Every switch in the district is waiting."
+
+"Then stop kicking the trash can," Jules said. "Ethan, take his terminal, calculate the TCP recycling timer, and get connection pooling in place before we lose another hour of archives."
 
 I looked at the mountain of frozen TIME_WAIT sockets. The wire had two ends, and right now, our own management station was starving itself to death. I needed to isolate the dynamic port depletion, calculate the socket reuse rates, and implement connection pooling before the next scheduled archive sweep failed.
 

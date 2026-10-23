@@ -33,7 +33,7 @@ Jared answered before I could get the question out. "Packet capture on the manag
 
 He sighed, shaking his head. "Yeah, yeah. Encrypted remote shell. Script's mine, I'll update it. Just don't make me touch it twice."
 
-"Configure [[key_auth|key auth]] while you're in there," I added. "Then you never have to type the enable password into a script again."
+"Configure [[key_auth|key auth]] and a privilege-fifteen account while you're in there," I added. "Then the script won't need an enable secret or a cleartext password."
 
 Eleven minutes later he pasted a screenshot of a working SSH login and added, sounding almost proud, that keys felt weird after ten years of passwords but whatever. His clipboard was one line shorter.
 
@@ -115,7 +115,9 @@ Jules reached over and tapped the edge of my monitor with her pen. "Read that re
 
 She pointed to the queue monitor above our heads. A facilities tech was asking for unauthenticated UDP TFTP on port 69 across the user VLAN, legal could not bind to cleartext TCP LDAP on 389 across the guest SSID, and network monitoring was asking to poll edge switches using cleartext UDP SNMP on 161 with a community string of `public`.
 
-"You have six different teams asking for convenience shortcuts, and automated port scanners probing our perimeter from the outside right now," Jules said, crossing her arms. "How do you lock down the perimeter, map every insecure legacy protocol to its hardened enterprise replacement, configure the jump host access rules, and draft the Tier 1 Security Escalation before the change window closes? Call your shot, Ethan."
+Jules pointed to the queue monitor above our heads. A facilities tech was asking for unauthenticated TFTP across the user VLAN, legal could not bind to LDAP across the guest SSID, and network monitoring was asking to poll edge switches using cleartext SNMP with a community string of `public`.
+
+"Six tickets, six shortcuts," Jules said, her voice dropping into operational focus. "Sam wants RDP to the open street, and five other teams want to send credentials in cleartext. Map every legacy port to its encrypted replacement, configure the jump host rule, and submit the firewall change before someone punches an uninsurable hole in our edge."
 
 I looked at the stack of port index cards on my desk. Memorizing port numbers was easy; the hard part was standing between busy people and bad habits. I needed to build the protocol defense matrix, lock down the open sockets, and prove the secure paths before someone punched a hole in our firewall.
 

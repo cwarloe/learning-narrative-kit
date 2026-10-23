@@ -103,15 +103,17 @@ IPv4DefaultGateway           :
 DNSServer                    : 10.100.10.2, 10.100.10.3
 ```
 
-"Look at the interface binding order and gateway metrics," Maya observed. She spotted the configuration discrepancy immediately. "The client VPN profile was updated during last night's maintenance window to enable split-tunneling. That was intended to keep remote employees from pushing video streaming traffic across our corporate circuits. But whoever updated the XML connection profile forgot to configure the domain suffix search list. They also left the virtual adapter metric set higher than the physical Wi-Fi interface."
+"Look at the interface binding order and gateway metrics," Lena observed. She spotted the configuration discrepancy immediately. "The client VPN profile was updated during last night's maintenance window to enable split-tunneling. That was intended to keep remote employees from pushing video streaming traffic across our corporate circuits. But whoever updated the XML connection profile forgot to configure the domain suffix search list. They also left the virtual adapter metric set higher than the physical Wi-Fi interface."
 
 "A textbook [[dns_leak|DNS leak]]," Jules observed. She took another sip of coffee. "Modern Windows operating systems query all available network adapters simultaneously under Smart Multi-Homed Name Resolution. The physical Wi-Fi adapter's local router responds in four milliseconds with an NXDOMAIN code, while the encrypted tunnel takes twenty. Because the virtual adapter's metric is set higher than the physical interface, the resolver prioritizes the local negative response, and the client never establishes the connection through the VPN."
 
-"To make matters worse, look at the negative response caching," I added. I checked the record properties. "The local resolver caches those failed lookups according to the zone [[dns_ttl|DNS TTL]]. That means even if the employee restarts their browser or reconnects the tunnel, the operating system keeps feeding them the cached failure for the next fifteen minutes."
+"To make matters worse, look at the negative response caching," Lena added, pulling up the resolver cache. "Under RFC 2308, Windows caches that NXDOMAIN using the negative TTL defined in the upstream SOA record. So even if the employee restarts their browser or reconnects the tunnel, the operating system keeps serving the failure until the negative cache expires or you flush it."
 
 Jules set her mug down and leaned over the cubicle partition, her eyes scanning the board where eighteen tickets continued to flash amber.
 
-"You have eighty-two tunnels open, eighteen tickets blinking amber, and seventy remote workers locked out of payroll by their own home routers," Jules said quietly. "Jared is ready to call the ISP, and our users are rebooting cable modems for nothing. How do you re-architect the client resolution priority, eliminate the negative cache trap, and prove the fix across these remote endpoints without dropping their live sessions? Call your shot, Ethan."
+Jules picked up her phone to intercept another incoming call from finance. "We have eighty-two tunnels open and seventy remote workers locked out of payroll while Jared is ready to yell at Comcast. The XML profile fix has to push cleanly, the adapter metrics need to prioritize the tunnel, and that negative cache trap has to clear without rebooting eighty laptops in the middle of their shift."
+
+She looked back over her monitor. "You have fifteen minutes before accounting calls the Director, Ethan. Fix the plumbing."
 
 I looked at the terminal output and the dual adapter configuration. The tunnel was wide open, but the packets were flying blind. I needed to isolate the DNS leak, calculate the corrected adapter metrics, and draft the infrastructure escalation before the morning payroll deadline expired.
 

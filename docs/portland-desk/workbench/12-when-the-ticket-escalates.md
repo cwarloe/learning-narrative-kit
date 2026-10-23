@@ -581,7 +581,7 @@ Attack Path Chronology:
 Workstations:
 - Hostname: FIN-NORA-02 | IP: 192.168.20.14 | User: Nora Higgins (Finance Specialist)
   Status: EDR ISOLATED (Power ON) | MAC: 00:1A:2B:3C:4D:5E | OS: Windows 11 Enterprise
-- Hostname: TODD-SALES-14 | IP: 192.168.10.45 | User: Ken Vance (Warehouse Logistics)
+- Hostname: TODD-SALES-14 | IP: 192.168.10.45 | User: Todd Miller (Inside Sales Lead)
   Status: PHYSICALLY DISCONNECTED (Power ON) | MAC: 00:1A:2B:5F:6A:7B | OS: Windows 11
 
 Servers & Gateways:
@@ -592,7 +592,7 @@ Servers & Gateways:
 
 Compromised Identities:
 - UPN: nhiggins@harrowmere.com (Finance Specialist — Full Mailbox & Cloud Access)
-- UPN: kvance@harrowmere.com (Warehouse Lead — Domain User)
+- UPN: tmiller@harrowmere.com (Inside Sales Lead — Domain User)
 - Target Exfiltration Mailbox: exfil@pay-secure-audit.com
 
 3. COMPREHENSIVE INDICATORS OF COMPROMISE (IoCs)
