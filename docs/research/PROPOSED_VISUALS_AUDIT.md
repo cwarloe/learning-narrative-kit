@@ -17,10 +17,10 @@
 
 ## 2. Master Character DNA Anchors (Prompt Locks)
 
-* **Ethan Brooks:**
-  > `"Ethan Brooks, a 19-to-20-year-old frontline technician, slender athletic build, messy tousled dark wavy brown hair, clean-shaven, wide expressive hazel eyes. Wears a light heather-grey crew-neck t-shirt or grey hoodie under a dark canvas jacket, work boots, single-ear Plantronics telephone headset, stainless-steel mechanical pencil clipped in pocket."`
-* **Jules Mercer:**
-  > `"Jules Mercer, 34-year-old female Lead Support Specialist, sharp intelligent features, shoulder-length straight dark hair with subtle silver streaks tucked behind one ear, wearing an unstructured charcoal blazer over a black tee or dark flannel shirt, wired headset over one ear, ceramic coffee mug in hand, matte silver commuter bicycle helmet nearby. Calm, observant mentor expression."`
+* **Ethan Mercer:**
+  > `"Ethan Mercer, a 19-to-20-year-old frontline technician, slender athletic build, messy tousled dark wavy brown hair, clean-shaven, wide expressive hazel eyes. Wears a light heather-grey crew-neck t-shirt or grey hoodie under a dark canvas jacket, work boots, single-ear Plantronics telephone headset, stainless-steel mechanical pencil clipped in pocket."`
+* **Jules Brooks:**
+  > `"Jules Brooks, 34-year-old female Lead Support Specialist, sharp intelligent features, shoulder-length straight dark hair with subtle silver streaks tucked behind one ear, wearing an unstructured charcoal blazer over a black tee or dark flannel shirt, wired headset over one ear, ceramic coffee mug in hand, matte silver commuter bicycle helmet nearby. Calm, observant mentor expression."`
 * **Ken:**
   > `"Ken, 51-year-old frantic logistics shift supervisor, scuffed denim jacket, aluminum clipboard under arm, receding grey hair, weathered lined face of a logistics manager under trailer dispatch deadlines."`
 * **Maya Lin:**
@@ -78,14 +78,14 @@
   ```text
   Cinematic graphic novel illustration in modern DC Comics style (Jorge Jimenez). Crisp ink linework, moody Pacific Northwest interior office lighting. Inside the fourth-floor municipal operations center bullpen in Portland. Outside the panoramic windows, steady rain coats the glass overlooking the steel trusses of the Hawthorne Bridge. 
 
-  At Workstation 14, 19-year-old rookie technician Ethan Brooks sits upright and tense, wearing a single-ear call-center headset connected to a dual-plug training splitter. Beside him, 34-year-old lead support specialist Jules Mercer leans in with acute focus, sharing the training bridge with her headset clamped over one ear. Jules's hand is frozen inches above the console mute button, eyes locked on the dual monitor displays with intense mentor concentration. 
+  At Workstation 14, 19-year-old rookie technician Ethan Mercer sits upright and tense, wearing a single-ear call-center headset connected to a dual-plug training splitter. Beside him, 34-year-old lead support specialist Jules Brooks leans in with acute focus, sharing the training bridge with her headset clamped over one ear. Jules's hand is frozen inches above the console mute button, eyes locked on the dual monitor displays with intense mentor concentration. 
 
   The left monitor displays a high-contrast ticket window with a blank red alert header block. The right monitor displays an open administrative management console window with a blank multi-tab dialog. On the partition wall behind Ethan, Jules's matte silver commuter bicycle helmet hangs from a bracket, with a yellow sticky note on her monitor bezel. Clean panel composition, no text, no letters, no words anywhere on screens or papers. 16:9 ratio.
   ```
 * **Docsify Callout-Panel Overlay Specification:**
   * **Title:** `FIGURE 2.1: THE LIVE TRIAL ON WORKSTATION 14`
   * **Badge:** `Process of Elimination`
-  * **Caption:** `Workstation 14 during Ethan's second-round working trial. Jules Mercer monitors the call on a dual-headset training splitter as Maya Lin's payroll application crashes. Jules coaches Ethan to isolate the failure domain using Safe Mode and Event Viewer rather than wiping the operating system.`
+  * **Caption:** `Workstation 14 during Ethan's second-round working trial. Jules Brooks monitors the call on a dual-headset training splitter as Maya Lin's payroll application crashes. Jules coaches Ethan to isolate the failure domain using Safe Mode and Event Viewer rather than wiping the operating system.`
   * **Interactive Overlay Pins:**
     * Pin 1 (Left Monitor): `Ticket #4200 — High-priority payroll ledger freeze flagged 4 hours before biweekly direct deposit cutoff.`
     * Pin 2 (Mute Switch): `The Diagnostic Intervention — Jules intercepts Ethan's impulse to run an OS re-image, enforcing systematic elimination of variables.`
@@ -175,14 +175,14 @@
   ```text
   Cinematic ultrawide graphic novel spread in modern DC Comics style (Jorge Jimenez). High dramatic atmospheric lighting, gritty realism. Sub-basement telecommunications vault of the Portland operations center during a catastrophic storm water main break. Murky storm water sits eight inches deep across the concrete floor, reflecting emergency battery backup lights. 
 
-  In the foreground, Ethan Brooks and Jules Mercer, soaked to their waists, work in synchronized partnership. Jules stands on an overturned heavy plastic milk crate, holding a tactical waterproof work light illuminating the open 42U equipment rack. Ethan uses ratcheting cable cutters to free tensioned bundles of blue Cat6 network cables from low-mounted wire trays. 
+  In the foreground, Ethan Mercer and Jules Brooks, soaked to their waists, work in synchronized partnership. Jules stands on an overturned heavy plastic milk crate, holding a tactical waterproof work light illuminating the open 42U equipment rack. Ethan uses ratcheting cable cutters to free tensioned bundles of blue Cat6 network cables from low-mounted wire trays. 
 
   Inside the rack, they are remounting core 48-port switches four rack units (4U) higher above the rising waterline. Heavy service loops of slack cable are neatly re-dressed overhead. Glowing green switch LED indicators reflect off the dark rippling water. Gritty working-class technical atmosphere, crisp line art, no speech bubbles, no text, no words. 21:9 ratio.
   ```
 * **Docsify Callout-Panel Overlay Specification:**
   * **Title:** `FIGURE 6.1: SUB-BASEMENT FLOOD & EMERGENCY RACK RECOVERY`
   * **Badge:** `Physical Disaster Recovery`
-  * **Caption:** `Sub-basement datacenter during water main break. Ethan Brooks and Jules Mercer hoist core network hardware above the rising flood line, preserving trunk uplinks and maintaining municipal communications.`
+  * **Caption:** `Sub-basement datacenter during water main break. Ethan Mercer and Jules Brooks hoist core network hardware above the rising flood line, preserving trunk uplinks and maintaining municipal communications.`
   * **Interactive Overlay Pins:**
     * Pin 1 (4U Elevation): `Vertical Hardware Relocation — Critical switches elevated 4 rack units (7 inches) above projected water table.`
     * Pin 2 (Overhead Service Loops): `Cable Slack Reserves — Factory service loops in overhead trays permit emergency vertical equipment relocation without re-terminating patch panels.`
@@ -275,12 +275,12 @@
 
   On the scarred laminate staging table, Ken's ruggedized corporate laptop is running at full load with cooling fans whining. A handheld barcode scanner sits discarded beside an anomalous thumb drive. 
 
-  In the foreground, Ethan Brooks moves with deliberate diagnostic calm. With his right hand, his thumb depresses the clear plastic release tab of the blue Cat6 Ethernet cable, cleanly sliding the RJ-45 plug out of the laptop's network jack. With his left hand, he toggles the physical sliding hardware Wi-Fi cut-off switch on the side of the chassis, severing wireless radio transmission simultaneously. Behind the table, Ken leans forward with fists on the desk, tense and frustrated, watching the disconnect. Crisp linework, realistic anatomy, no speech bubbles, no text, no words. 16:9 ratio.
+  In the foreground, Ethan Mercer moves with deliberate diagnostic calm. With his right hand, his thumb depresses the clear plastic release tab of the blue Cat6 Ethernet cable, cleanly sliding the RJ-45 plug out of the laptop's network jack. With his left hand, he toggles the physical sliding hardware Wi-Fi cut-off switch on the side of the chassis, severing wireless radio transmission simultaneously. Behind the table, Ken leans forward with fists on the desk, tense and frustrated, watching the disconnect. Crisp linework, realistic anatomy, no speech bubbles, no text, no words. 16:9 ratio.
   ```
 * **Docsify Callout-Panel Overlay Specification:**
   * **Title:** `FIGURE 10.1: DUAL LAYER 1 HOST ISOLATION`
   * **Badge:** `Incident Containment`
-  * **Caption:** `Emergency host containment on the warehouse network. Ethan Brooks severs all network links via physical RJ-45 release and hardware radio kill-switch, blocking malware command-and-control beacons while preserving volatile RAM evidence.`
+  * **Caption:** `Emergency host containment on the warehouse network. Ethan Mercer severs all network links via physical RJ-45 release and hardware radio kill-switch, blocking malware command-and-control beacons while preserving volatile RAM evidence.`
   * **Interactive Overlay Pins:**
     * Pin 1 (RJ-45 Disconnect): `Wired Network Isolation — Disconnecting Ethernet blocks lateral SMB propagation and automated network shares encryption.`
     * Pin 2 (Hardware Wi-Fi Cutoff): `Wireless Radio Sever — Disabling the physical Wi-Fi radio prevents automatic failover to corporate wireless networks.`

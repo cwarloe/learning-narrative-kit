@@ -26,7 +26,7 @@ The cabinet responded with a heavy electrical clunk. But instead of the familiar
 
 Ken spun around, his face dark with fury.
 
-"What did you just do, Brooks?!" Ken shouted, stepping directly into my space. "You hard-cut the power during an active batch write! That local spool had forty carton weights queued in memory that hadn't synced to the database! You just blind-dumped forty tracking records into the void! Don't you ever touch a master power switch until you can tell me exactly what circuit it feeds!"
+"What did you just do, Mercer?!" Ken shouted, stepping directly into my space. "You hard-cut the power during an active batch write! That local spool had forty carton weights queued in memory that hadn't synced to the database! You just blind-dumped forty tracking records into the void! Don't you ever touch a master power switch until you can tell me exactly what circuit it feeds!"
 
 A cold sweat broke out across my ribs. My flashcards had taught me that rebooting was the first step in troubleshooting. They hadn't warned me about uncommitted database write caches on industrial controllers.
 
@@ -102,20 +102,20 @@ The physical communication link between the scale platform and the computer reli
 
 I unscrewed the thumbscrews on the terminal port, pulled the connector body straight back, and held the male plug up toward the overhead light. 
 
-Inside the connector face, Pin 2 (Receive Data / RXD) was bent flat against the insulating plastic floor, shorting directly against the grounded metal connector shell.
+Inside the connector face, Pin 2 (Receive Data / RXD) was bent flat against the blue insulating plastic floor, isolated by the dielectric block into an open circuit with zero signal continuity.
 
 ```callout-panel
 title: "FIGURE 1.1: PIN 2 REALIGNMENT ON THE TOLEDO SERIAL INTERFACE"
 badge: "Physical Layer Schematic"
-caption: "Macro schematic: Ethan uses the 0.5mm hollow brass sleeve of his drafting pencil as a miniature lever to realign Pin 2 (Receive Data / RXD) without snapping the brittle copper pin."
-prompt: "Extreme macro graphic novel illustration in Pacific Northwest silicon noir style, high contrast hard black ink lines, cross-hatching, moody warehouse lighting, cool slate blue and rain-slicked dark grey palette (#0f172a, #1e293b). A male DB-9 serial connector held up toward an overhead warehouse lamp; Pin 2 (RXD) is bent flat against the blue plastic housing. A stainless-steel mechanical drafting pencil with its 0.5mm hollow brass tip is poised over the bent pin, using the hollow sleeve as a lever to gently straighten it. Dust motes floating in the light beam, dark warehouse cross-dock background, technical precision."
+caption: "Macro schematic: Ethan uses the rigid flat steel side of his drafting pencil barrel as a precision lever to coax Pin 2 (Receive Data / RXD) upright after an impact bent it against the plastic insulator, resolving the open circuit."
+prompt: "Extreme macro graphic novel illustration in Pacific Northwest silicon noir style, high contrast hard black ink lines, cross-hatching, moody warehouse lighting, cool slate blue and rain-slicked dark grey palette (#0f172a, #1e293b). A male DB-9 serial connector held up toward an overhead warehouse lamp; Pin 2 (RXD) on the top row is bent flat against the blue plastic housing. A stainless-steel mechanical drafting pencil uses the rigid flat edge of its steel guide barrel as a precision miniature lever to gently coax the solid 1mm copper pin straight. Dust motes floating in the light beam, dark warehouse cross-dock background, technical precision, no text, no letters, no words. 1:1 ratio."
 ```
 
-I reached into my canvas vest pocket and pulled out the stainless-steel drafting pencil my father had given me when I graduated. I clicked the mechanism until the lead retracted completely into the barrel. 
+I reached into my canvas vest pocket and pulled out the stainless-steel drafting pencil my father had given me when I graduated. A standard Size 20 serial contact pin measured a full millimeter thick—far too wide to fit inside any hollow pencil sleeve—so I clicked the mechanism until the lead retracted completely, leaving the rigid steel barrel bare.
 
-The hollow brass guide sleeve at the tip measured exactly 0.5 millimeters across. With trembling, sweat-slicked fingers, I slipped the hollow brass sleeve over the bent copper pin. I knew that if I jerked or applied uneven sideways pressure, the brittle copper pin would snap off flush with the plastic floor, destroying the terminal port entirely. 
+With trembling, sweat-slicked fingers, I braced the flat exterior side of the steel guide sleeve against the blue plastic floor and tucked it under the shoulder of the bent copper pin. I knew that if I jerked or applied uneven sideways pressure, the brittle copper pin would snap off flush with the insulator block, destroying the terminal port entirely. 
 
-Holding my breath against the thumping of my heart, I used the rigid brass barrel as a miniature lever, coaxing the pin fraction by fraction back into vertical alignment.
+Holding my breath against the thumping of my heart, I used the rigid steel barrel as a micro-fulcrum, coaxing the pin fraction by fraction back into vertical alignment.
 
 I tightened the thumbscrews back onto the serial port, expecting the weight readings to stabilize. 
 
@@ -123,7 +123,7 @@ Instead, the monitor convulsed into an even faster torrent of corrupted ASCII ch
 
 Ken stepped up directly behind my shoulder. His watch face caught the glare of the amber CRT.
 
-"It's four-twenty, Brooks," Ken said, his voice dropping into a flat, terrifying quiet over the rumble of the idling conveyor rollers. "In forty minutes, the Seattle linehaul driver signs his manifest and pulls out of the gate. If that trailer rolls empty, corporate logistics files a failure report with my name on the header. Your paper cert promised you knew how computers talk. Why is this machine vomiting garbage, and what are you going to do about it?"
+"It's four-twenty, Mercer," Ken said, his voice dropping into a flat, terrifying quiet over the rumble of the idling conveyor rollers. "In forty minutes, the Seattle linehaul driver signs his manifest and pulls out of the gate. If that trailer rolls empty, corporate logistics files a failure report with my name on the header. Your paper cert promised you knew how computers talk. Why is this machine vomiting garbage, and what are you going to do about it?"
 
 My heart was hammering against my ribs. Straightening Pin 2 had restored electrical continuity, but the data was being torn into random bits before it reached the CPU. 
 

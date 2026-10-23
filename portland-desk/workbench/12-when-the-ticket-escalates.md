@@ -25,8 +25,8 @@
 ```callout-panel
 title: "FIGURE 12.1: LIVE FORENSIC MEMORY CAPTURE & ORDER OF VOLATILITY"
 badge: "Incident Response"
-caption: "Forensic bench diagram: An isolated, live running laptop on an ESD mat with a write-blocking USB capture tool acquiring volatile RAM (RFC 3227) before power-down and physical storage disk acquisition."
-prompt: "Clean technical cutaway illustration of a computer forensic examination bench under bright laboratory lighting. A running laptop sits on an ESD mat connected via USB to a dedicated forensic memory acquisition dongle with glowing green status LEDs. Evidence tags and documentation binder nearby. Sharp technical linework, no text, no words. 16:9 ratio."
+caption: "Forensic bench diagram: An isolated, live running laptop on an ESD mat streaming volatile system RAM to an external forensic SSD (RFC 3227) while a standalone hardware write-blocker sits staged for Step 2 dead-disk storage imaging."
+prompt: "Clean technical cutaway illustration of a computer forensic examination bench under bright laboratory lighting. A running laptop sits on an ESD mat connected via high-speed USB-C to a rugged external forensic SSD actively capturing live volatile memory. Staged on the ESD mat beside the laptop sits a standalone hardware write-blocker bridge with disconnected SATA/NVMe adapter cables and anti-static evidence bags ready for secondary persistent disk acquisition. Sharp technical linework, no text, no words. 16:9 ratio."
 ```
 
 
