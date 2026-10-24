@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ethan's Handcrafted Study Cards — 3 Architectural Prototypes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Handwriting, Drafting & Sketch Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Gochi+Hand&family=Indie+Flower&family=JetBrains+Mono:wght@600;800&family=Kalam:wght@400;700&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@700;800&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-desk: #0b0f19;
+      --desk-mat: #172033;
+      --shadow-card: rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-desk);
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, #0b0f19 0%, #030611 100%);
+      background-size: 24px 24px, 100% 100%;
+      min-height: 100vh;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 2.5rem 1rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-zone {
+      text-align: center;
+      max-width: 820px;
+      margin-bottom: 2.5rem;
+    }
+    .header-badge {
+      display: inline-block;
+      background: #dc2626;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .header-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+    .header-desc {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* Style Selector Tabs */
+    .style-switcher {
+      display: flex;
+      gap: 0.75rem;
+      background: #111827;
+      padding: 0.4rem;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .style-tab-btn {
+      background: transparent;
+      border: none;
+      color: #9ca3af;
+      padding: 0.6rem 1.25rem;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .style-tab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .style-tab-btn.active {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Comparison Stage */
+    .showcase-stage {
+      width: 100%;
+      max-width: 860px;
+      min-height: 520px;
+      position: relative;
+    }
+
+    .prototype-container {
+      display: none;
+      width: 100%;
+      animation: fadeIn 0.3s ease forwards;
+    }
+    .prototype-container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Shared Card 3D Flip Mechanics */
+    .card-flipper {
+      perspective: 1600px;
+      width: 100%;
+      cursor: pointer;
+      user-select: none;
+    }
+    .card-flipper-inner {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .card-flipper.is-flipped .card-flipper-inner {
+      transform: rotateY(180deg);
+    }
+    .card-side {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .card-back-side {
+      transform: rotateY(180deg);
+    }
+
+    /* ==========================================================================
+       STYLE 1: WALGREENS 3x5 RULED INDEX CARD (Analog Immersion)
+       ========================================================================== */
+    .style1-front {
+      background-color: #fdfaf2;
+      /* Ruled lines: top red header line + faint blue content lines */
+      background-image: 
+        linear-gradient(180deg, transparent 46px, #f87171 47px, #f87171 48px, transparent 49px),
+        repeating-linear-gradient(180deg, transparent, transparent 27px, #93c5fd 28px);
+      border: 1px solid #d1d5db;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.2);
+      padding: 1rem 1.75rem 1.25rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    /* Coffee ring stain in bottom corner */
+    .coffee-stain {
+      position: absolute;
+      bottom: 20px;
+      right: 35px;
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      border: 4px solid rgba(180, 83, 9, 0.18);
+      box-shadow: inset 0 0 12px rgba(180, 83, 9, 0.12);
+      pointer-events: none;
+      transform: rotate(15deg);
+    }
+
+    /* Tactile Rubber Band Wrap (Left Corner) */
+    .band-wrap-s1 {
+      position: absolute;
+      top: 22px;
+      left: -14px;
+      width: 125px;
+      height: 22px;
+      background: linear-gradient(180deg, #f87171, #dc2626 60%, #991b1b);
+      border-radius: 2px;
+      transform: rotate(-24deg);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .s1-header-title {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.6rem;
+      color: #1e3a8a; /* Blue ballpoint pen */
+      margin-left: 70px;
+      line-height: 1;
+      margin-top: 4px;
+    }
+
+    .s1-body {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+      flex-grow: 1;
+    }
+
+    /* Hand-Drawn Pencil Sketch (Layer 1 Graphic) */
+    .s1-sketch-container {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1.5px dashed #64748b;
+      border-radius: 4px;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Editable Handwriting (Layer 2 Text) */
+    .s1-text-column {
+      font-family: 'Kalam', cursive;
+      font-size: 0.92rem;
+      line-height: 1.62;
+      color: #1e293b;
+    }
+    .s1-bullet {
+      color: #dc2626;
+      font-weight: 700;
+      margin-right: 4px;
+    }
+    .crossed-out {
+      text-decoration: line-through;
+      color: #64748b;
+      margin-right: 6px;
+    }
+    .correction-arrow {
+      color: #dc2626;
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .s1-footer {
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    /* Style 1 Back: Frank Mercer's Machinist Advice in Dad's Pencil */
+    .style1-back {
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .dad-note-box {
+      border-left: 4px solid #475569;
+      padding-left: 1.25rem;
+    }
+    .dad-note-title {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.2rem;
+      color: #475569;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .dad-pencil-text {
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      line-height: 1.45;
+      color: #0f172a;
+    }
+    .ethan-reflection {
+      font-family: 'Kalam', cursive;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #334155;
+      margin-top: 1.25rem;
+      background: #f1f5f9;
+      padding: 1rem;
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       STYLE 2: BLUE-COLLAR POCKET GRID NOTES (Drafting / Machinist Lens)
+       ========================================================================== */
+    .style2-front {
+      background-color: #faf9f5;
+      /* Quad-ruled graph paper */
+      background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px);
+      background-size: 16px 16px;
+      border: 1.5px solid #94a3b8;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .band-wrap-s2 {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: #111827;
+      border: 1px solid #475569;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .s2-title-block {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .s2-main-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #0f172a;
+      letter-spacing: -0.01em;
+    }
+    .s2-domain {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    .s2-grid-body {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 1.5rem;
+      flex-grow: 1;
+    }
+    .s2-tech-sketch {
+      border: 1px solid #64748b;
+      background: #ffffff;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .s2-spec-table {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #1e293b;
+      line-height: 1.55;
+    }
+    .s2-spec-row {
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px dotted #cbd5e1;
+    }
+    .s2-key {
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .s2-dad-stamp {
+      background: rgba(220, 38, 38, 0.08);
+      border: 1.5px dashed #dc2626;
+      border-radius: 4px;
+      padding: 0.6rem;
+      margin-top: 0.75rem;
+      font-family: 'Kalam', cursive;
+      font-size: 0.88rem;
+      color: #991b1b;
+    }
+
+    /* Style 2 Back: Mechanical Inspection Rules */
+    .style2-back {
+      background: #0f172a;
+      border: 1.5px solid #334155;
+      color: #f8fafc;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    .s2-back-title {
+      font-family: 'JetBrains Mono', monospace;
+      color: #38bdf8;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .s2-back-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+
+    /* ==========================================================================
+       STYLE 3: MODERN INDIE COMIC SKETCHBOOK (Graphic Novel Bristol Board)
+       ========================================================================== */
+    .style3-front {
+      background: #fffdf5;
+      border: 3.5px solid #000;
+      box-shadow: 7px 7px 0px #000;
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .s3-tape-strip {
+      position: absolute;
+      top: -12px;
+      left: 35%;
+      width: 110px;
+      height: 24px;
+      background: rgba(254, 240, 138, 0.7);
+      border: 1px dashed rgba(0,0,0,0.3);
+      transform: rotate(-2deg);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .s3-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      border-bottom: 3px solid #000;
+      padding-bottom: 0.4rem;
+    }
+    .s3-title {
+      font-family: 'Gochi Hand', cursive;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: 0.02em;
+    }
+    .s3-band-tag {
+      background: #ef4444;
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 900;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border: 2px solid #000;
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    .s3-body {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .s3-comic-panel {
+      border: 2.5px solid #000;
+      background: #ffffff;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    .s3-notes-column {
+      font-family: 'Shadows Into Light', cursive;
+      font-size: 1.15rem;
+      line-height: 1.45;
+      color: #111827;
+      font-weight: 700;
+    }
+    .s3-highlight {
+      background: #fde047;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    .style3-back {
+      background: #1e1b4b;
+      border: 3.5px solid #000;
+      box-shadow: 7px 7px 0px #000;
+      color: #fff;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .s3-back-title {
+      font-family: 'Gochi Hand', cursive;
+      font-size: 1.7rem;
+      color: #38bdf8;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 0.4rem;
+    }
+    .s3-back-content {
+      font-family: 'Kalam', cursive;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: #e0e7ff;
+    }
+
+    /* Action bar */
+    .action-prompt {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+    .flip-instruction-pill {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #38bdf8;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .flip-instruction-pill:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-zone">
+    <div class="header-badge">Creative Architecture Review</div>
+    <div class="header-title">Ethan's Midnight Kitchen-Table Cards</div>
+    <div class="header-desc">
+      Comparing 3 handcrafted, imperfect study card designs. No baked-in text in images (all typography is live, layered HTML), and grounded in Ethan’s pre-job reality: a stressed 19-year-old taking notes with cheap pens and dad’s machinist lens.
+    </div>
+  </div>
+
+  <!-- Switcher Tabs -->
+  <div class="style-switcher">
+    <button class="style-tab-btn active" onclick="switchStyle('style1')">Style 1: Walgreens 3x5 Ruled Card</button>
+    <button class="style-tab-btn" onclick="switchStyle('style2')">Style 2: Blue-Collar Quad Grid</button>
+    <button class="style-tab-btn" onclick="switchStyle('style3')">Style 3: Indie Comic Sketchbook</button>
+  </div>
+
+  <!-- Showcase Stage -->
+  <div class="showcase-stage">
+
+    <!-- ====================================================================
+         PROTOTYPE 1: WALGREENS 3x5 RULED INDEX CARD
+         ==================================================================== -->
+    <div class="prototype-container active" id="proto-style1">
+      <div class="card-flipper" onclick="this.classList.toggle('is-flipped')">
+        <div class="card-flipper-inner">
+          
+          <!-- FRONT -->
+          <div class="card-side style1-front">
+            <div class="band-wrap-s1">Red Band</div>
+            <div class="coffee-stain"></div>
+
+            <div class="s1-header-title">DVI-I vs DVI-D (Exam Trap!)</div>
+
+            <div class="s1-body">
+              <!-- Layer 1 Artwork: Pencil/Ink Vector Sketch -->
+              <div class="s1-sketch-container">
+                <svg width="180" height="150" viewBox="0 0 180 150" fill="none" style="filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.15));">
+                  <!-- DVI Connector Outline -->
+                  <path d="M 20 25 L 160 25 C 166 25 170 30 170 36 L 155 120 C 154 125 150 128 145 128 L 35 128 C 30 128 26 125 25 120 L 10 36 C 10 30 14 25 20 25 Z" stroke="#334155" stroke-width="2.5" fill="#f8fafc" stroke-linecap="round"/>
+                  <!-- Digital Pin Array (24 Pins) -->
+                  <g fill="#1e293b">
+                    <!-- Row 1 -->
+                    <circle cx="42" cy="48" r="3"/><circle cx="54" cy="48" r="3"/><circle cx="66" cy="48" r="3"/>
+                    <circle cx="82" cy="48" r="3"/><circle cx="94" cy="48" r="3"/><circle cx="106" cy="48" r="3"/>
+                    <!-- Row 2 -->
+                    <circle cx="42" cy="64" r="3"/><circle cx="54" cy="64" r="3"/><circle cx="66" cy="64" r="3"/>
+                    <circle cx="82" cy="64" r="3"/><circle cx="94" cy="64" r="3"/><circle cx="106" cy="64" r="3"/>
+                    <!-- Row 3 -->
+                    <circle cx="42" cy="80" r="3"/><circle cx="54" cy="80" r="3"/><circle cx="66" cy="80" r="3"/>
+                    <circle cx="82" cy="80" r="3"/><circle cx="94" cy="80" r="3"/><circle cx="106" cy="80" r="3"/>
+                  </g>
+                  <!-- The Flat Analog Ground Blade -->
+                  <rect x="122" y="60" width="22" height="7" rx="1" stroke="#334155" stroke-width="2" fill="#cbd5e1"/>
+                  <!-- The 4 Analog Pins (DVI-I Only) in Red Ballpoint -->
+                  <circle cx="126" cy="48" r="2.8" fill="#dc2626"/>
+                  <circle cx="140" cy="48" r="2.8" fill="#dc2626"/>
+                  <circle cx="126" cy="80" r="2.8" fill="#dc2626"/>
+                  <circle cx="140" cy="80" r="2.8" fill="#dc2626"/>
+                  <!-- Hand-drawn arrow pointing to 4 red pins -->
+                  <path d="M 162 38 Q 155 45 146 46" stroke="#dc2626" stroke-width="1.8" fill="none"/>
+                  <polygon points="144,46 149,43 149,49" fill="#dc2626"/>
+                </svg>
+                <div style="font-family:'Caveat', cursive; font-size:0.95rem; color:#dc2626; text-align:center;">
+                  *4 pins around blade = ANALOG (VGA compatible)*
+                </div>
+              </div>
+
+              <!-- Layer 2 Live Typography: Ethan's Blue Ballpoint Notes -->
+              <div class="s1-text-column">
+                <p><span class="s1-bullet">•</span> <strong>DVI-I</strong> = Integrated (carries <span style="color:#2563eb;">Digital + Analog</span>).</p>
+                <p><span class="s1-bullet">•</span> <strong>DVI-D</strong> = Digital ONLY (<span class="crossed-out">has 4 pins</span> <span class="correction-arrow">NO! NO PINS AROUND BLADE!</span>).</p>
+                <p><span class="s1-bullet">•</span> <strong>DVI-A</strong> = Analog only (rare, 12+5 pins).</p>
+                <p><span class="s1-bullet">•</span> Dual-link max resolution: <strong>2560 × 1600 @ 60Hz</strong>.</p>
+                <p style="margin-top: 0.5rem; background: rgba(254, 240, 138, 0.4); padding: 4px 8px; border-radius: 3px; border-left: 3px solid #eab308;">
+                  <strong>Exam Passport Rule:</strong> If question mentions connecting an old VGA CRT monitor via a passive adapter, the answer MUST be DVI-I. DVI-D cannot do analog!
+                </p>
+              </div>
+            </div>
+
+            <div class="s1-footer">
+              <span>Card 14 of 42 (Exam Passport Trivia)</span>
+              <span style="color:#2563eb;">Click card to flip: Dad's Machinist Rule ⟳</span>
+            </div>
+          </div>
+
+          <!-- BACK: Dad's Machinist Lens -->
+          <div class="card-side style1-back">
+            <div class="dad-note-box">
+              <div class="dad-note-title">Frank Mercer (Kitchen Table @ Midnight):</div>
+              <div class="dad-pencil-text">
+                "Stop staring at the pin numbers, Ethan. When a bolt has extra threads on McMaster-Carr, you don't memorize the catalog page. What carries signal across the gap? If copper touches copper, the current flows. If the flat blade don't seat, the whole damn monitor is dark."
+              </div>
+            </div>
+
+            <div class="ethan-reflection">
+              <strong>The Reality Filter:</strong> In the real world, nobody calculates 29 pins with a magnifying glass. If the monitor is black and the cable has bent pins, you swap in a DisplayPort cable. Memorize this for 90 minutes Thursday, pass Core 1, and toss the scrap.
+            </div>
+
+            <div style="font-family:'Patrick Hand'; font-size:0.85rem; color:#64748b; text-align:right;">
+              CompTIA A+ Core 1 (220-1101) Domain 3.1 • Click to flip back ⟲
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         PROTOTYPE 2: BLUE-COLLAR QUAD GRID (Drafting / Technical Notebook)
+         ==================================================================== -->
+    <div class="prototype-container" id="proto-style2">
+      <div class="card-flipper" onclick="this.classList.toggle('is-flipped')">
+        <div class="card-flipper-inner">
+          
+          <!-- FRONT -->
+          <div class="card-side style2-front">
+            <div class="band-wrap-s2">🔴 RED BAND // PASSPORT</div>
+
+            <div class="s2-title-block">
+              <span class="s2-main-title">REF #014: DVI CONNECTOR PIN MAP</span>
+              <span class="s2-domain">A+ 220-1101 SEC 3.1</span>
+            </div>
+
+            <div class="s2-grid-body">
+              <!-- Technical Mechanical Drawing -->
+              <div class="s2-tech-sketch">
+                <svg width="190" height="150" viewBox="0 0 190 150" fill="none">
+                  <!-- Technical Grid background -->
+                  <rect width="190" height="150" fill="#f8fafc"/>
+                  <rect x="15" y="25" width="160" height="90" stroke="#0f172a" stroke-width="2" fill="#fff"/>
+                  <!-- 24-Pin Digital Matrix -->
+                  <g fill="#0f172a">
+                    <rect x="35" y="42" width="5" height="5"/><rect x="47" y="42" width="5" height="5"/><rect x="59" y="42" width="5" height="5"/>
+                    <rect x="75" y="42" width="5" height="5"/><rect x="87" y="42" width="5" height="5"/><rect x="99" y="42" width="5" height="5"/>
+                    <rect x="35" y="58" width="5" height="5"/><rect x="47" y="58" width="5" height="5"/><rect x="59" y="58" width="5" height="5"/>
+                    <rect x="75" y="58" width="5" height="5"/><rect x="87" y="58" width="5" height="5"/><rect x="99" y="58" width="5" height="5"/>
+                    <rect x="35" y="74" width="5" height="5"/><rect x="47" y="74" width="5" height="5"/><rect x="59" y="74" width="5" height="5"/>
+                    <rect x="75" y="74" width="5" height="5"/><rect x="87" y="74" width="5" height="5"/><rect x="99" y="74" width="5" height="5"/>
+                  </g>
+                  <!-- Ground Blade -->
+                  <rect x="120" y="57" width="22" height="7" fill="#64748b"/>
+                  <!-- 4 Analog Pins C1-C4 -->
+                  <circle cx="124" cy="45" r="3" fill="#dc2626"/>
+                  <circle cx="138" cy="45" r="3" fill="#dc2626"/>
+                  <circle cx="124" cy="76" r="3" fill="#dc2626"/>
+                  <circle cx="138" cy="76" r="3" fill="#dc2626"/>
+                  <!-- Dimension Line -->
+                  <line x1="120" y1="95" x2="142" y2="95" stroke="#dc2626" stroke-width="1.5"/>
+                  <text x="112" y="112" font-family="JetBrains Mono" font-size="9" fill="#dc2626">C1-C4 (RGB/H)</text>
+                </svg>
+                <div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:#475569; text-align:center;">
+                  FIG 14.1 // DVI-I DUAL-LINK (24+5)
+                </div>
+              </div>
+
+              <!-- Structured Specs -->
+              <div class="s2-spec-table">
+                <div class="s2-spec-row">
+                  <span class="s2-key">PIN COUNT:</span> 24 Digital + 1 Ground Blade + 4 Analog (Total 29 pins).
+                </div>
+                <div class="s2-spec-row">
+                  <span class="s2-key">SIGNAL TYPE:</span> Dual-Mode. Supports TMDS digital + RGB analog on same housing.
+                </div>
+                <div class="s2-spec-row">
+                  <span class="s2-key">CLOCK SPEED:</span> Single-link = 165 MHz (1920×1200). Dual-link = 330 MHz (2560×1600).
+                </div>
+                <div class="s2-dad-stamp">
+                  <strong>ETHAN'S TRIAGE MNEMONIC:</strong><br>
+                  "DVI-<b>I</b> = <b>I</b>ntegrated (both)<br>
+                  DVI-<b>D</b> = <b>D</b>igital ONLY<br>
+                  DVI-<b>A</b> = <b>A</b>nalog ONLY"
+                </div>
+              </div>
+            </div>
+
+            <div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:#64748b; margin-top:0.75rem; display:flex; justify-content:space-between;">
+              <span>HARROWMERE APPRENTICE NOTEBOOK</span>
+              <span style="color:#0284c7;">Click card to flip: Field Failure Mode ⟳</span>
+            </div>
+          </div>
+
+          <!-- BACK -->
+          <div class="card-side style2-back">
+            <div>
+              <div class="s2-back-title">// FIELD FAILURE MODE: ANALOG SHADOWING</div>
+              <p class="s2-back-text">
+                <strong>SYMPTOM:</strong> User connects older CRT scale monitor to PC using a cheap passive DVI-to-VGA adapter block. Screen shows ghosting trails and flickering lines.
+              </p>
+              <p class="s2-back-text" style="margin-top: 1rem;">
+                <strong>ROOT CAUSE:</strong> The passive adapter uses pins C1-C4 of DVI-I. If the video card only implements DVI-D, no analog voltage is driven. If unshielded, 60Hz plant machinery couples into the high-impedance RGB lines.
+              </p>
+            </div>
+            <div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:#64748b; text-align:right;">
+              CLICK TO FLIP BACK ⟲
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         PROTOTYPE 3: INDIE COMIC SKETCHBOOK (Graphic Bristol Scrap)
+         ==================================================================== -->
+    <div class="prototype-container" id="proto-style3">
+      <div class="card-flipper" onclick="this.classList.toggle('is-flipped')">
+        <div class="card-flipper-inner">
+          
+          <!-- FRONT -->
+          <div class="card-side style3-front">
+            <div class="s3-tape-strip"></div>
+
+            <div class="s3-header">
+              <span class="s3-title">DVI: The Four Analog Pins</span>
+              <span class="s3-band-tag">RED BAND #14</span>
+            </div>
+
+            <div class="s3-body">
+              <div class="s3-comic-panel">
+                <svg width="190" height="150" viewBox="0 0 190 150" fill="none">
+                  <!-- Rough comic line art -->
+                  <path d="M 22 28 L 168 28 L 152 118 L 38 118 Z" stroke="#000" stroke-width="3.5" fill="#fef08a" stroke-linejoin="round"/>
+                  <!-- Digital Pin Blobs -->
+                  <g fill="#000">
+                    <circle cx="48" cy="48" r="4"/><circle cx="62" cy="48" r="4"/><circle cx="76" cy="48" r="4"/>
+                    <circle cx="94" cy="48" r="4"/><circle cx="108" cy="48" r="4"/><circle cx="122" cy="48" r="4"/>
+                    <circle cx="48" cy="65" r="4"/><circle cx="62" cy="65" r="4"/><circle cx="76" cy="65" r="4"/>
+                    <circle cx="94" cy="65" r="4"/><circle cx="108" cy="65" r="4"/><circle cx="122" cy="65" r="4"/>
+                    <circle cx="48" cy="82" r="4"/><circle cx="62" cy="82" r="4"/><circle cx="76" cy="82" r="4"/>
+                    <circle cx="94" cy="82" r="4"/><circle cx="108" cy="82" r="4"/><circle cx="122" cy="82" r="4"/>
+                  </g>
+                  <!-- The Blade -->
+                  <rect x="138" y="60" width="20" height="8" stroke="#000" stroke-width="2.5" fill="#e2e8f0"/>
+                  <!-- Red analog cross pins -->
+                  <circle cx="142" cy="48" r="4.5" fill="#ef4444" stroke="#000" stroke-width="1.5"/>
+                  <circle cx="154" cy="48" r="4.5" fill="#ef4444" stroke="#000" stroke-width="1.5"/>
+                  <circle cx="142" cy="82" r="4.5" fill="#ef4444" stroke="#000" stroke-width="1.5"/>
+                  <circle cx="154" cy="82" r="4.5" fill="#ef4444" stroke="#000" stroke-width="1.5"/>
+                </svg>
+                <div style="font-family:'Gochi Hand'; font-size:0.95rem; color:#dc2626;">
+                  "Look for the cross around the blade!"
+                </div>
+              </div>
+
+              <div class="s3-notes-column">
+                <p>⚡ <span class="s3-highlight">DVI-I</span> has 24 digital pins + 4 analog pins around the blade.</p>
+                <p style="margin-top: 0.4rem;">⚡ <span class="s3-highlight">DVI-D</span> is missing those 4 pins. It cannot output VGA signal.</p>
+                <p style="margin-top: 0.4rem;">⚡ Dual-link gives you <span class="s3-highlight">2560 × 1600</span>. Single link caps at 1920 × 1200.</p>
+                <p style="margin-top: 0.75rem; font-family:'Patrick Hand'; font-size:1rem; color:#b91c1c; border-top: 2px dashed #000; padding-top: 0.4rem;">
+                  Exam Trick: Passive VGA adapter will physically NOT FIT into a DVI-D port because the blade slot has no pin holes!
+                </p>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:3px solid #000; padding-top:0.5rem; margin-top:0.5rem; font-family:'Gochi Hand'; font-size:1.1rem;">
+              <span>Ethan's Study Scrap #14</span>
+              <span style="color:#2563eb;">Click to flip card ⟳</span>
+            </div>
+          </div>
+
+          <!-- BACK -->
+          <div class="card-side style3-back">
+            <div>
+              <div class="s3-back-title">The Kitchen Table at 11:30 PM</div>
+              <p class="s3-back-content">
+                "Two hundred and forty-six dollars left in my account. If I don't remember whether the blade carries analog or digital tomorrow morning, I blow the voucher and spend another month hauling drywall."
+              </p>
+              <p class="s3-back-content" style="margin-top:1rem; color:#a5b4fc;">
+                Dad walked in for a glass of water: <em>'You're memorizing the phone book again. Does it move, does it leak, or is it jammed?'</em>
+              </p>
+            </div>
+            <div style="font-family:'Plus Jakarta Sans'; font-size:0.8rem; color:#818cf8; text-align:right;">
+              CLICK TO FLIP BACK ⟲
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="action-prompt">
+    <span>💡 Tip: Click any card to test the 3D flip. All text is live editable HTML layered over pure vector sketches.</span>
+  </div>
+
+  <script>
+    function switchStyle(styleId) {
+      document.querySelectorAll('.prototype-container').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.style-tab-btn').forEach(b => b.classList.remove('active'));
+
+      if (styleId === 'style1') {
+        document.getElementById('proto-style1').classList.add('active');
+        event.target.classList.add('active');
+      } else if (styleId === 'style2') {
+        document.getElementById('proto-style2').classList.add('active');
+        event.target.classList.add('active');
+      } else if (styleId === 'style3') {
+        document.getElementById('proto-style3').classList.add('active');
+        event.target.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
