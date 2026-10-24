@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DC Comics Narrative Field Card Deck — Mockup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Comic & Technical Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@500;700;800&family=Kalam:wght@700&family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,800;1,900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --comic-dark: #090d16;
+      --comic-paper: #fffef8;
+      --comic-border: #111827;
+      --comic-shadow: #000000;
+      --comic-red-band: #dc2626;
+      --comic-red-dark: #991b1b;
+      --comic-yellow: #fde047;
+      --comic-cyan: #38bdf8;
+      --comic-blue: #2563eb;
+      --halftone: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--comic-dark);
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(180deg, #090d16 0%, #030712 100%);
+      background-size: 24px 24px, 100% 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #f8fafc;
+    }
+
+    .demo-header {
+      text-align: center;
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    .demo-title {
+      font-family: 'Bangers', cursive;
+      font-size: 2.6rem;
+      letter-spacing: 0.05em;
+      color: var(--comic-yellow);
+      text-shadow: 3px 3px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 4px 4px 0px var(--comic-red-band);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .demo-subtitle {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* Deck Container */
+    .deck-stage {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      perspective: 1500px;
+      margin-bottom: 2rem;
+    }
+
+    /* Stack Depth Layers (Back cards creating physical stack illusion) */
+    .stack-layer {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 480px;
+      background: #f1f5f9;
+      border: 3.5px solid var(--comic-border);
+      border-radius: 8px;
+      box-shadow: 6px 6px 0px var(--comic-shadow);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .layer-2 {
+      top: 14px;
+      left: 10px;
+      right: -10px;
+      transform: rotate(1.8deg);
+      background: #e2e8f0;
+    }
+    .layer-1 {
+      top: 7px;
+      left: 5px;
+      right: -5px;
+      transform: rotate(-1.2deg);
+      background: #f8fafc;
+    }
+
+    /* The Active Front Card */
+    .comic-card-container {
+      position: relative;
+      width: 100%;
+      height: 490px;
+      z-index: 5;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .comic-card-container.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      border: 4px solid var(--comic-border);
+      box-shadow: 8px 8px 0px var(--comic-shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* FRONT: DC Comics Narrative Box Parchment */
+    .card-front {
+      background-color: var(--comic-paper);
+      background-image: var(--halftone);
+      background-size: 8px 8px;
+      color: #0f172a;
+    }
+
+    /* BACK: Blueprint Dark Reality */
+    .card-back {
+      background: #0b1329;
+      transform: rotateY(180deg);
+      color: #f8fafc;
+      background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    /* Red Rubber Band Across Top Right */
+    .rubber-band-snap {
+      position: absolute;
+      top: 24px;
+      right: -18px;
+      width: 160px;
+      height: 28px;
+      background: linear-gradient(180deg, #f87171 0%, var(--comic-red-band) 50%, var(--comic-red-dark) 100%);
+      border: 3px solid #000;
+      border-radius: 4px;
+      transform: rotate(26deg);
+      box-shadow: -2px 4px 0px rgba(0,0,0,0.7), inset 0 2px 0px rgba(255,255,255,0.4);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bangers', cursive;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      text-shadow: 1.5px 1.5px 0px #000;
+      pointer-events: none;
+    }
+
+    /* Comic Header Banner */
+    .comic-header-bar {
+      background: var(--comic-yellow);
+      border-bottom: 3.5px solid var(--comic-border);
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .comic-category-tag {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: #000;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .comic-card-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 0.82rem;
+      color: #000;
+      margin-right: 65px; /* space for rubber band */
+    }
+
+    /* Main Card Layout: Split between Sketch and DC Lettering */
+    .card-body-grid {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      flex-grow: 1;
+    }
+
+    /* Left Column: Ethan's Ink / Pencil Technical Doodle */
+    .sketch-box {
+      border: 3px solid var(--comic-border);
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 4px 4px 0px var(--comic-shadow);
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .sketch-graphic {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sketch-caption {
+      font-family: 'Kalam', cursive;
+      font-size: 0.82rem;
+      line-height: 1.3;
+      color: #1e293b;
+      text-align: center;
+      border-top: 2px dashed #94a3b8;
+      padding-top: 0.5rem;
+      width: 100%;
+    }
+
+    /* Right Column: Modern DC Comics Bold Italic Narrative Box */
+    .comic-narrative-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .comic-term-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 1.55rem;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+      border-bottom: 3px solid #0f172a;
+      padding-bottom: 0.35rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .comic-specs-list {
+      list-style: none;
+      margin-bottom: 0.75rem;
+    }
+
+    .comic-specs-list li {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-style: italic;
+      font-weight: 800;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: #334155;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .bullet-icon {
+      color: var(--comic-red-band);
+      font-size: 0.9rem;
+    }
+
+    /* Ethan's Hand-Scrawled Kitchen Table Note */
+    .ethan-note-container {
+      background: #fef08a;
+      border: 2.5px solid #000;
+      box-shadow: 3px 3px 0px #000;
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      transform: rotate(-0.8deg);
+      margin-top: 0.5rem;
+    }
+
+    .ethan-note-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #854d0e;
+      margin-bottom: 2px;
+    }
+
+    .ethan-note-text {
+      font-family: 'Kalam', cursive;
+      font-size: 0.88rem;
+      line-height: 1.35;
+      color: #1c1917;
+    }
+
+    /* Footer / Flip Prompt */
+    .comic-footer-bar {
+      background: #f1f5f9;
+      border-top: 3px solid var(--comic-border);
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #475569;
+    }
+
+    .flip-btn-pill {
+      background: #000;
+      color: var(--comic-yellow);
+      font-family: 'Bangers', cursive;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 2px 2px 0px var(--comic-red-band);
+    }
+
+    /* BACK FACE STYLING: Blueprint Reality */
+    .card-back-header {
+      background: #0f172a;
+      border-bottom: 3.5px solid #38bdf8;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-title {
+      font-family: 'Bangers', cursive;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      color: #38bdf8;
+      text-transform: uppercase;
+    }
+
+    .card-back-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .jules-rule-box {
+      background: rgba(30, 41, 59, 0.85);
+      border-left: 5px solid #38bdf8;
+      border-radius: 0 6px 6px 0;
+      padding: 1.25rem;
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+    }
+
+    .jules-rule-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 0.75rem;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .jules-quote {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      font-style: italic;
+      color: #f1f5f9;
+      margin-bottom: 0.75rem;
+    }
+
+    .desk-reality-detail {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: #94a3b8;
+    }
+
+    .back-footer {
+      background: #070d18;
+      border-top: 2px solid #1e293b;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    /* Deck Controls */
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .ctrl-btn {
+      background: var(--comic-paper);
+      border: 3px solid var(--comic-border);
+      box-shadow: 4px 4px 0px var(--comic-shadow);
+      color: #0f172a;
+      font-family: 'Bangers', cursive;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      padding: 0.6rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ctrl-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--comic-shadow);
+      background: var(--comic-yellow);
+    }
+    .ctrl-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px var(--comic-shadow);
+    }
+
+    .ctrl-btn.primary {
+      background: var(--comic-yellow);
+      border-color: #000;
+    }
+
+    /* Responsive */
+    @media (max-width: 680px) {
+      .card-body-grid {
+        grid-template-columns: 1fr;
+      }
+      .sketch-box { display: none; }
+      .comic-card-container { height: 520px; }
+      .stack-layer { height: 510px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-header">
+    <div class="demo-title">Ethan's Red Band Field Cards</div>
+    <div class="demo-subtitle">
+      Raw CompTIA exam trivia translated into DC Comics narrative rectangles. Heavy ink borders, halftone paper, pencil doodles, and the machinist's real-world desk rule on the back.
+    </div>
+  </div>
+
+  <div class="deck-stage">
+    <!-- Stack Under-layers -->
+    <div class="stack-layer layer-2"></div>
+    <div class="stack-layer layer-1"></div>
+
+    <!-- Active Flippable Comic Card -->
+    <div class="comic-card-container" id="active-card">
+      
+      <!-- FRONT: DC Narrative Box -->
+      <div class="card-face card-front">
+        <div class="rubber-band-snap">RED BAND</div>
+
+        <div class="comic-header-bar">
+          <span class="comic-category-tag" id="card-tag">A+ CORE 1 // HARDWARE</span>
+          <span class="comic-card-counter" id="card-counter">CARD 04 OF 12</span>
+        </div>
+
+        <div class="card-body-grid">
+          <!-- Hand-Drawn Sketch Box -->
+          <div class="sketch-box">
+            <div class="sketch-graphic" id="card-sketch">
+              <!-- SVG Sketch of DVI Connector -->
+              <svg width="170" height="150" viewBox="0 0 170 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Connector Shell with Comic Ink Stroke -->
+                <rect x="15" y="20" width="140" height="95" rx="10" stroke="#000" stroke-width="3.5" fill="#f8fafc"/>
+                <path d="M 30 20 L 40 10 L 130 10 L 140 20 Z" stroke="#000" stroke-width="3" fill="#e2e8f0"/>
+                
+                <!-- 24 Digital Grid Pins -->
+                <g fill="#000">
+                  <!-- Row 1 -->
+                  <circle cx="45" cy="40" r="3.5"/><circle cx="57" cy="40" r="3.5"/><circle cx="69" cy="40" r="3.5"/>
+                  <circle cx="85" cy="40" r="3.5"/><circle cx="97" cy="40" r="3.5"/><circle cx="109" cy="40" r="3.5"/>
+                  <!-- Row 2 -->
+                  <circle cx="45" cy="55" r="3.5"/><circle cx="57" cy="55" r="3.5"/><circle cx="69" cy="55" r="3.5"/>
+                  <circle cx="85" cy="55" r="3.5"/><circle cx="97" cy="55" r="3.5"/><circle cx="109" cy="55" r="3.5"/>
+                  <!-- Row 3 -->
+                  <circle cx="45" cy="70" r="3.5"/><circle cx="57" cy="70" r="3.5"/><circle cx="69" cy="70" r="3.5"/>
+                  <circle cx="85" cy="70" r="3.5"/><circle cx="97" cy="70" r="3.5"/><circle cx="109" cy="70" r="3.5"/>
+                </g>
+
+                <!-- Analog Ground Blade (Horizontal bar) -->
+                <rect x="124" y="52" width="18" height="6" stroke="#000" stroke-width="2.5" fill="#eab308"/>
+
+                <!-- 4 Analog Pins around the Blade (The DVI-I identifier!) -->
+                <g fill="#dc2626">
+                  <circle cx="127" cy="42" r="3"/>
+                  <circle cx="139" cy="42" r="3"/>
+                  <circle cx="127" cy="68" r="3"/>
+                  <circle cx="139" cy="68" r="3"/>
+                </g>
+
+                <!-- Hand-drawn Arrow pointing to the 4 pins -->
+                <path d="M 152 28 C 158 35, 150 48, 144 48" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+                <polygon points="142,48 147,44 148,51" fill="#dc2626"/>
+              </svg>
+            </div>
+            <div class="sketch-caption" id="sketch-caption">
+              Pencil note: Look for 4 pins surrounding the flat blade!
+            </div>
+          </div>
+
+          <!-- Comic Narrative Content -->
+          <div class="comic-narrative-box">
+            <div>
+              <div class="comic-term-title" id="card-title">DVI-I (INTEGRATED) CONNECTOR</div>
+              <ul class="comic-specs-list" id="card-specs">
+                <li><span class="bullet-icon">&#9658;</span> <strong>PINS:</strong> 24 DIGITAL (DUAL-LINK) + 4 ANALOG PINS</li>
+                <li><span class="bullet-icon">&#9658;</span> <strong>SIGNAL:</strong> TRANSMITS BOTH DIGITAL & ANALOG (VGA COMPATIBLE)</li>
+                <li><span class="bullet-icon">&#9658;</span> <strong>RESOLUTION:</strong> UP TO 2560 &times; 1600 @ 60HZ (DUAL-LINK)</li>
+                <li><span class="bullet-icon">&#9658;</span> <strong>KEY TRAP:</strong> DVI-D HAS ONLY THE FLAT BLADE (DIGITAL ONLY)</li>
+              </ul>
+            </div>
+
+            <!-- Ethan's Scrawled Sticky Note -->
+            <div class="ethan-note-container">
+              <div class="ethan-note-label">ETHAN'S KITCHEN-TABLE EXAM NOTE</div>
+              <div class="ethan-note-text" id="ethan-note">
+                "If it has the 4 cross pins hugging the flat blade, it carries analog. DVI-D leaves that space blank. Memorize Thursday morning, pass the test, forget it forever."
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comic-footer-bar">
+          <span>PORTLAND DESK // PASSPORT RECOVERY FILE</span>
+          <div class="flip-btn-pill">&#8635; CLICK CARD TO FLIP</div>
+        </div>
+      </div>
+
+      <!-- BACK: Blueprint Desk Reality -->
+      <div class="card-face card-back">
+        <div class="card-back-header">
+          <span class="back-title">FRONT-DESK ENGINEERING REALITY</span>
+          <span style="font-family:'JetBrains Mono'; font-size:0.8rem; color:#38bdf8;">INVARIANT #04</span>
+        </div>
+
+        <div class="card-back-body">
+          <div class="jules-rule-box">
+            <div class="jules-rule-label">Jules Brooks // Lead Desk Invariant</div>
+            <div class="jules-quote" id="jules-quote">
+              "Nobody orders replacement DVI cables anymore. When a dock user brings you a monitor with pins bent sideways, hand them an active DisplayPort-to-HDMI dongle and toss the cable in e-waste."
+            </div>
+            <div class="desk-reality-detail" id="desk-detail">
+              <strong>The HR Gate vs The Job:</strong> The CompTIA exam tests pinouts because vendors wrote the questions in 2004. On the live floor, legacy analog signals suffer from ground loop interference against warehouse motors. We convert everything to digital DisplayPort or HDMI at the workstation.
+            </div>
+          </div>
+
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; padding-top: 1rem;">
+            <strong>TIER 1 DIAGNOSTIC REFLEX:</strong> If the monitor says "No Signal", check if the user plugged an analog DVI-A adapter into a digital-only DVI-D GPU port.
+          </div>
+        </div>
+
+        <div class="back-footer">
+          <span>COMPTIA A+ CORE 1 DOMAIN 3.1</span>
+          <div class="flip-btn-pill" style="background:#38bdf8; color:#000;">&#8634; FLIP BACK TO SYLLABUS</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Deck Interactive Controls -->
+  <div class="deck-controls">
+    <button class="ctrl-btn" id="prev-btn">&#9664; PREV CARD</button>
+    <button class="ctrl-btn primary" id="flip-btn">&#8635; FLIP CARD</button>
+    <button class="ctrl-btn" id="next-btn">NEXT CARD &#9654;</button>
+  </div>
+
+  <script>
+    const deck = [
+      {
+        tag: "A+ CORE 1 // DISPLAY INTERFACES",
+        counter: "CARD 01 OF 04",
+        title: "DVI-I (INTEGRATED) CONNECTOR",
+        specs: [
+          "PINS: 24 DIGITAL (DUAL-LINK) + 4 ANALOG PINS",
+          "SIGNAL: TRANSMITS BOTH DIGITAL & ANALOG (VGA COMPATIBLE)",
+          "RESOLUTION: UP TO 2560 × 1600 @ 60HZ (DUAL-LINK)",
+          "KEY TRAP: DVI-D HAS ONLY THE FLAT BLADE (DIGITAL ONLY)"
+        ],
+        note: '"If it has the 4 cross pins hugging the flat blade, it carries analog. DVI-D leaves that space blank. Memorize Thursday morning, pass the test, forget it forever."',
+        sketchCaption: "Pencil note: Look for 4 pins surrounding the flat blade!",
+        jules: '"Nobody orders replacement DVI cables anymore. When a dock user brings you a monitor with pins bent sideways, hand them an active DisplayPort-to-HDMI dongle and toss the cable in e-waste."',
+        deskDetail: "The CompTIA exam tests pinouts because legacy corporate hardware lingered for decades. In reality, analog signals suffer from motor noise across warehouse runs. Always standardize on digital DP/HDMI.",
+        svg: `<svg width="170" height="150" viewBox="0 0 170 150" fill="none"><rect x="15" y="20" width="140" height="95" rx="10" stroke="#000" stroke-width="3.5" fill="#f8fafc"/><path d="M 30 20 L 40 10 L 130 10 L 140 20 Z" stroke="#000" stroke-width="3" fill="#e2e8f0"/><g fill="#000"><circle cx="45" cy="40" r="3.5"/><circle cx="57" cy="40" r="3.5"/><circle cx="69" cy="40" r="3.5"/><circle cx="85" cy="40" r="3.5"/><circle cx="97" cy="40" r="3.5"/><circle cx="109" cy="40" r="3.5"/><circle cx="45" cy="55" r="3.5"/><circle cx="57" cy="55" r="3.5"/><circle cx="69" cy="55" r="3.5"/><circle cx="85" cy="55" r="3.5"/><circle cx="97" cy="55" r="3.5"/><circle cx="109" cy="55" r="3.5"/><circle cx="45" cy="70" r="3.5"/><circle cx="57" cy="70" r="3.5"/><circle cx="69" cy="70" r="3.5"/><circle cx="85" cy="70" r="3.5"/><circle cx="97" cy="70" r="3.5"/><circle cx="109" cy="70" r="3.5"/></g><rect x="124" y="52" width="18" height="6" stroke="#000" stroke-width="2.5" fill="#eab308"/><g fill="#dc2626"><circle cx="127" cy="42" r="3"/><circle cx="139" cy="42" r="3"/><circle cx="127" cy="68" r="3"/><circle cx="139" cy="68" r="3"/></g><path d="M 152 28 C 158 35, 150 48, 144 48" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/><polygon points="142,48 147,44 148,51" fill="#dc2626"/></svg>`
+      },
+      {
+        tag: "A+ CORE 1 // PRINTING ENGINES",
+        counter: "CARD 02 OF 04",
+        title: "LASER PRINTER: 6 EP STAGES",
+        specs: [
+          "STAGE 1-3: PROCESSING → CHARGING (-600V DC) → EXPOSING (LASER)",
+          "STAGE 4-6: DEVELOPING (TONER) → TRANSFERRING (+CHARGE) → FUSING",
+          "KEY TEMPERATURE: FUSER RUNS AT ~200°C (392°F) WITH TEFLON ROLLERS",
+          "EXAM TRAP: SMUDGED PRINT = FUSER FAILED TO MELT PLASTIC RESIN"
+        ],
+        note: '"Mnemonic: Please Clean Every Day To The Finish. Processing, Charging, Exposing, Developing, Transferring, Fusing, Cleaning. Memorize the temperature: 200°C burns fingers."',
+        sketchCaption: "Laser writes latent image by discharging drum to -100V!",
+        jules: '"If toner smudges on your thumb like charcoal powder, the heating bulb inside the fuser is dead or cold. Don\'t touch the roller with bare fingers unless you want a third-degree blister."',
+        deskDetail: "Laser toner is finely ground plastic resin with iron oxide. The laser doesn't burn the paper; it just draws static electricity. The fuser's heat and pressure is what physically bakes the plastic into the cellulose fibers.",
+        svg: `<svg width="170" height="150" viewBox="0 0 170 150" fill="none"><circle cx="85" cy="75" r="45" stroke="#000" stroke-width="3.5" fill="#e0f2fe"/><circle cx="85" cy="75" r="15" stroke="#000" stroke-width="2" fill="#94a3b8"/><path d="M 25 35 L 70 60" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4 3"/><polygon points="70,60 62,56 64,64" fill="#ef4444"/><text x="18" y="28" font-family="Bangers" font-size="14" fill="#dc2626">LASER BEAM</text><g fill="#000"><circle cx="85" cy="24" r="2.5"/><circle cx="95" cy="26" r="2.5"/><circle cx="105" cy="30" r="2.5"/></g><text x="75" y="135" font-family="Kalam" font-size="12" fill="#0f172a">OPC DRUM (-600V)</text></svg>`
+      },
+      {
+        tag: "NETWORK+ // COPPER CABLING",
+        counter: "CARD 03 OF 04",
+        title: "CAT6 VS CAT6A ETHERNET",
+        specs: [
+          "CAT6 DISTANCE: 10GBASE-T UP TO 55 METERS (180 FT)",
+          "CAT6A DISTANCE: 10GBASE-T UP TO 100 METERS (328 FT)",
+          "FREQUENCY: CAT6 RUNS AT 250 MHZ; CAT6A RUNS AT 500 MHZ",
+          "ALIEN CROSSTALK: CAT6A HAS THICKER JACKET / FOIL SHIELDING"
+        ],
+        note: '"55m vs 100m! If the exam asks about 10-gigabit in a big warehouse over 60 meters, the answer is always Cat6A. Cat6 drops to 1 Gbps past 55 meters."',
+        sketchCaption: "Internal plastic spline separates pairs to kill crosstalk!",
+        jules: '"When Ken ran Cat6 across the plant crane way, packets started dropping at 3:00 PM when the arc welders fired up. We ripped it out and pulled armored fiber. Copper is an antenna for plant noise."',
+        deskDetail: "Crosstalk isn't magic; it's Faraday's law of induction. Adjacent copper pairs induce noise into each other. Cat6 twists the pairs tighter, but Cat6A adds heavier dielectric spacing to sustain 10G at full 100m runs.",
+        svg: `<svg width="170" height="150" viewBox="0 0 170 150" fill="none"><rect x="25" y="55" width="120" height="40" rx="6" stroke="#000" stroke-width="3" fill="#3b82f6"/><path d="M 60 55 L 60 95" stroke="#000" stroke-width="2.5"/><path d="M 95 55 L 95 95" stroke="#000" stroke-width="2.5"/><text x="40" y="80" font-family="Bangers" font-size="18" fill="#fff">CAT 6A</text><path d="M 145 65 L 160 60" stroke="#f97316" stroke-width="3"/><path d="M 145 75 L 162 75" stroke="#22c55e" stroke-width="3"/><path d="M 145 85 L 160 90" stroke="#a855f7" stroke-width="3"/></svg>`
+      },
+      {
+        tag: "SECURITY+ // THREAT VECTORS",
+        counter: "CARD 04 OF 04",
+        title: "SPER PHISHING VS BEC",
+        specs: [
+          "SPEAR PHISHING: TARGETED AT A SPECIFIC INDIVIDUAL / ROLE",
+          "BEC (BUSINESS EMAIL COMPROMISE): IMPERSONATES EXEC / VENDOR",
+          "PRIMARY TARGET: PAYROLL, WIRE TRANSFERS, INVOICE ROUTING",
+          "DEFENSE: OUT-OF-BAND VERIFICATION VIA TELEPHONE / DMARC"
+        ],
+        note: '"Phishing is spamming 10,000 people. Spear phishing is targeting Nora in accounting. BEC is forging the CEO\'s email asking Nora to change the direct deposit wire."',
+        sketchCaption: "Display Name Spoofing: Looks like CEO, but check envelope!",
+        jules: '"If an email from the VP of Logistics asks for an urgent $40,000 wire change because they are \'in a board meeting\', pick up the desk phone and call their direct extension. Never wire money via email."',
+        deskDetail: "Attackers register typo-squatted domains (e.g. `harowmere.com` with one 'r') and rely on email client display names to deceive busy payroll clerks. Technical SPF/DKIM validation stops exact domain forgery, but out-of-band telephone verification stops BEC.",
+        svg: `<svg width="170" height="150" viewBox="0 0 170 150" fill="none"><rect x="25" y="35" width="120" height="80" rx="8" stroke="#000" stroke-width="3.5" fill="#fef2f2"/><path d="M 25 38 L 85 85 L 145 38" stroke="#dc2626" stroke-width="3"/><circle cx="85" cy="75" r="22" stroke="#000" stroke-width="2" fill="#ef4444"/><text x="80" y="82" font-family="Bangers" font-size="22" fill="#fff">!</text></svg>`
+      }
+    ];
+
+    let currentIndex = 0;
+    const cardEl = document.getElementById('active-card');
+    const tagEl = document.getElementById('card-tag');
+    const counterEl = document.getElementById('card-counter');
+    const titleEl = document.getElementById('card-title');
+    const specsEl = document.getElementById('card-specs');
+    const noteEl = document.getElementById('ethan-note');
+    const sketchEl = document.getElementById('card-sketch');
+    const sketchCaptionEl = document.getElementById('sketch-caption');
+    const julesQuoteEl = document.getElementById('jules-quote');
+    const deskDetailEl = document.getElementById('desk-detail');
+
+    function renderCard(idx) {
+      const data = deck[idx];
+      tagEl.textContent = data.tag;
+      counterEl.textContent = data.counter;
+      titleEl.textContent = data.title;
+      specsEl.innerHTML = data.specs.map(s => `<li><span class="bullet-icon">&#9658;</span> ${s}</li>`).join('');
+      noteEl.textContent = data.note;
+      sketchEl.innerHTML = data.svg;
+      sketchCaptionEl.textContent = data.sketchCaption;
+      julesQuoteEl.textContent = data.jules;
+      deskDetailEl.textContent = data.deskDetail;
+    }
+
+    function flipCard() {
+      cardEl.classList.toggle('is-flipped');
+    }
+
+    cardEl.addEventListener('click', flipCard);
+    document.getElementById('flip-btn').addEventListener('click', flipCard);
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      cardEl.classList.remove('is-flipped');
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % deck.length;
+        renderCard(currentIndex);
+      }, 200);
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      cardEl.classList.remove('is-flipped');
+      setTimeout(() => {
+        currentIndex = (currentIndex - 1 + deck.length) % deck.length;
+        renderCard(currentIndex);
+      }, 200);
+    });
+
+    // Initial render
+    renderCard(0);
+  </script>
+</body>
+</html>
