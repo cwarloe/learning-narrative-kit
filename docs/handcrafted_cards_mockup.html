@@ -2,29 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ethan's Study Cards — 4 Authentic Flashcard Prototypes</title>
+  <title>Ethan's Authentic 3x5 Study Flashcards — Minimalist & Handcrafted</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Handwriting, Drafting & Comic Fonts -->
+  <!-- Handwriting Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Caveat:wght@700&family=Gochi+Hand&family=JetBrains+Mono:wght@600;800&family=Kalam:wght@700&family=Patrick+Hand&family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Gochi+Hand&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-desk: #090d16;
-      --desk-wood: #0f172a;
-      --comic-border: #111827;
-      --comic-shadow: #000000;
+      --bg-surface: #0a0e17;
+      --card-bg: #fdfbf7;
+      --blue-rule: #a5b4fc;
+      --red-margin: #f87171;
+      --pen-blue: #1e3a8a;
+      --pen-black: #0f172a;
+      --highlighter-red: rgba(239, 68, 68, 0.32);
+      --highlighter-green: rgba(34, 197, 94, 0.32);
+      --highlighter-yellow: rgba(234, 179, 8, 0.35);
+      --highlighter-blue: rgba(59, 130, 246, 0.32);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--bg-desk);
+      background-color: var(--bg-surface);
       background-image: 
         radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(180deg, #090d16 0%, #030611 100%);
+        linear-gradient(180deg, #0a0e17 0%, #03050a 100%);
       background-size: 24px 24px, 100% 100%;
       min-height: 100vh;
       color: #f8fafc;
@@ -37,40 +43,40 @@
 
     .header-zone {
       text-align: center;
-      max-width: 840px;
+      max-width: 760px;
       margin-bottom: 2rem;
     }
     .header-badge {
       display: inline-block;
       background: #dc2626;
       color: #fff;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 4px 10px;
+      padding: 3px 10px;
       border-radius: 4px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
     .header-title {
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #ffffff;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
     .header-desc {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: #94a3b8;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    /* 4-Design Switcher Tabs */
+    /* Style Selector */
     .style-switcher {
       display: flex;
       gap: 0.6rem;
       background: #111827;
-      padding: 0.4rem;
+      padding: 0.35rem;
       border-radius: 8px;
       border: 1px solid #374151;
       margin-bottom: 2rem;
@@ -81,759 +87,443 @@
       background: transparent;
       border: none;
       color: #9ca3af;
-      padding: 0.6rem 1.1rem;
+      padding: 0.5rem 1rem;
       font-weight: 700;
       font-size: 0.85rem;
       border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
-    .style-tab-btn:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-    }
+    .style-tab-btn:hover { color: #fff; background: rgba(255,255,255,0.05); }
     .style-tab-btn.active {
       background: #2563eb;
       color: #fff;
       box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
     }
 
-    /* Showcase Container */
-    .showcase-stage {
+    /* 3x5 Index Card Ratio Container (Standard 3:5 aspect ratio scaled up) */
+    .card-stage {
       width: 100%;
-      max-width: 780px;
-      min-height: 480px;
-      position: relative;
-    }
-
-    .proto-view {
-      display: none;
-      width: 100%;
-      animation: fadeIn 0.25s ease forwards;
-    }
-    .proto-view.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Shared Card 3D Flip Mechanics */
-    .flashcard {
-      perspective: 1600px;
-      width: 100%;
-      cursor: pointer;
+      max-width: 680px;
+      height: 408px; /* 3:5 proportion (680 x 408) */
+      perspective: 1500px;
       user-select: none;
+      cursor: pointer;
     }
-    .flashcard-inner {
+
+    .card-flipper {
       position: relative;
       width: 100%;
-      height: 450px;
+      height: 100%;
       transform-style: preserve-3d;
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .flashcard.is-flipped .flashcard-inner {
+    .card-flipper.is-flipped {
       transform: rotateY(180deg);
     }
-    .card-side {
+
+    .card-face {
       position: absolute;
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
       border-radius: 8px;
-      overflow: hidden;
+      border: 1px solid #d1d5db;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55), 0 3px 6px rgba(0, 0, 0, 0.3);
+      padding: 1.5rem 2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden;
     }
+
     .card-back {
       transform: rotateY(180deg);
     }
 
     /* ==========================================================================
-       DESIGN 1: WALGREENS 3x5 RULED INDEX CARD
+       STYLE 1: MINIMALIST WALGREENS RULED CARD
        ========================================================================== */
-    .d1-front {
-      background-color: #fcfaf4;
+    .s1-card {
+      background-color: var(--card-bg);
       background-image: 
-        linear-gradient(180deg, transparent 48px, #f87171 49px, #f87171 50px, transparent 51px),
-        repeating-linear-gradient(180deg, transparent, transparent 27px, #93c5fd 28px);
-      border: 1px solid #cbd5e1;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      padding: 1.25rem 2rem;
-      position: relative;
+        linear-gradient(180deg, transparent 48px, var(--red-margin) 49px, var(--red-margin) 50px, transparent 51px),
+        repeating-linear-gradient(180deg, transparent, transparent 31px, var(--blue-rule) 32px);
     }
-    .d1-band {
+
+    /* Red Marker Slash Across Top Edge */
+    .marker-swipe-red {
       position: absolute;
-      top: 20px;
-      left: -12px;
-      width: 120px;
-      height: 20px;
-      background: linear-gradient(180deg, #f87171, #dc2626 60%, #991b1b);
-      transform: rotate(-22deg);
-      box-shadow: 0 3px 6px rgba(0,0,0,0.4);
-      z-index: 10;
-      color: #fff;
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      top: 6px;
+      left: 15px;
+      width: 220px;
+      height: 26px;
+      background: var(--highlighter-red);
+      transform: rotate(-1.5deg);
+      border-radius: 4px;
+      pointer-events: none;
       display: flex;
       align-items: center;
-      justify-content: center;
+      padding-left: 10px;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 0.85rem;
+      color: #991b1b;
+      letter-spacing: 0.08em;
     }
-    .d1-card-num {
+
+    .marker-swipe-green {
+      background: var(--highlighter-green);
+      color: #14532d;
+    }
+
+    .card-num-scrawl {
+      position: absolute;
+      top: 14px;
+      right: 25px;
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       color: #64748b;
-      text-align: right;
     }
-    .d1-front-body {
+
+    /* Full-Canvas Minimalist Front Layout */
+    .front-content-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      align-items: center;
+      gap: 1.5rem;
+      flex-grow: 1;
+      margin-top: 1.25rem;
+    }
+
+    .drawing-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
+    }
+
+    .front-question {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 2.1rem;
+      line-height: 1.2;
+      color: var(--pen-blue);
+    }
+
+    .front-subtext {
+      font-family: 'Gochi Hand', cursive;
+      font-size: 1.15rem;
+      color: #b91c1c;
+      margin-top: 0.75rem;
+    }
+
+    /* Minimalist Back Layout */
+    .back-content-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       flex-grow: 1;
       padding: 0.5rem 0;
     }
-    .d1-question {
+
+    .back-answer-huge {
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.7rem;
-      line-height: 1.25;
-      color: #1e3a8a; /* blue ballpoint ink */
-      margin-top: 1rem;
-      max-width: 580px;
+      font-size: 3.2rem;
+      line-height: 1;
+      color: #15803d; /* green check ink */
+      margin-bottom: 1rem;
     }
-    .d1-prompt-hint {
-      font-family: 'Kalam', cursive;
-      font-size: 1rem;
-      color: #b91c1c; /* red pen scrawl */
-      margin-top: 0.5rem;
+
+    .back-rule {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.45rem;
+      line-height: 1.35;
+      color: #1e293b;
+      margin-bottom: 0.6rem;
     }
-    .d1-flip-cta {
-      border-top: 1px dashed #cbd5e1;
-      padding-top: 0.5rem;
+
+    .back-trap-scrawl {
+      font-family: 'Gochi Hand', cursive;
+      font-size: 1.3rem;
+      color: #dc2626;
+      border-top: 2px dashed #cbd5e1;
+      padding-top: 0.6rem;
+      margin-top: 0.6rem;
+    }
+
+    .card-footer-cta {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       font-family: 'Patrick Hand', cursive;
       font-size: 0.95rem;
       color: #64748b;
-    }
-
-    /* Back 1 */
-    .d1-back {
-      background-color: #ffffff;
-      border: 1px solid #cbd5e1;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      padding: 1.75rem 2rem;
-    }
-    .d1-answer-title {
-      font-family: 'Patrick Hand', cursive;
-      font-size: 2rem;
-      color: #15803d; /* green ink check */
-      border-bottom: 2px solid #bbf7d0;
-      padding-bottom: 0.25rem;
-      margin-bottom: 1rem;
-    }
-    .d1-answer-list {
-      font-family: 'Kalam', cursive;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: #1e293b;
-    }
-    .d1-trap-box {
-      background: #fef2f2;
-      border-left: 4px solid #ef4444;
-      padding: 0.6rem 0.85rem;
-      margin-top: 1rem;
-      font-family: 'Patrick Hand', cursive;
-      font-size: 1.1rem;
-      color: #991b1b;
+      border-top: 1px dotted #cbd5e1;
+      padding-top: 0.4rem;
     }
 
     /* ==========================================================================
-       DESIGN 2: BLUE-COLLAR QUAD GRID (Drafting Notebook)
+       STYLE 2: CLEAN GRAPH / QUAD GRID
        ========================================================================== */
-    .d2-front {
-      background-color: #faf9f5;
+    .s2-card {
+      background-color: #fbfbf9;
       background-image: 
-        linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px);
-      background-size: 16px 16px;
-      border: 2px solid #64748b;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      padding: 1.25rem 2rem;
-    }
-    .d2-header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 2px solid #0f172a;
-      padding-bottom: 0.35rem;
-    }
-    .d2-code {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 800;
-      font-size: 0.85rem;
-      color: #0f172a;
-    }
-    .d2-front-body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex-grow: 1;
-    }
-    .d2-question {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: #0f172a;
-      line-height: 1.35;
-      margin-top: 1rem;
-      max-width: 580px;
-    }
-    .d2-hint {
-      font-family: 'Kalam', cursive;
-      font-size: 0.95rem;
-      color: #b91c1c;
-      margin-top: 0.5rem;
-    }
-    .d2-back {
-      background: #0f172a;
-      border: 2px solid #334155;
-      color: #f8fafc;
-      padding: 1.75rem 2rem;
-      background-image: 
-        linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
-      background-size: 16px 16px;
-    }
-    .d2-answer-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #38bdf8;
-      border-bottom: 1px solid #334155;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .d2-specs {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.88rem;
-      line-height: 1.7;
-      color: #cbd5e1;
+        linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+      background-size: 18px 18px;
     }
 
     /* ==========================================================================
-       DESIGN 3: INDIE COMIC SKETCHBOOK BRISTOL
+       STYLE 3: PLAIN UNRULED BLANK INDEX CARD (Pencil & Pen)
        ========================================================================== */
-    .d3-front {
-      background: #fffdf5;
-      border: 3.5px solid #000;
-      box-shadow: 6px 6px 0px #000;
-      padding: 1.25rem 2rem;
-      position: relative;
-    }
-    .d3-tape {
-      position: absolute;
-      top: -10px;
-      right: 40px;
-      width: 90px;
-      height: 20px;
-      background: rgba(254, 240, 138, 0.7);
-      border: 1px dashed rgba(0,0,0,0.3);
-      transform: rotate(2deg);
-    }
-    .d3-header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 2.5px solid #000;
-      padding-bottom: 0.25rem;
-      font-family: 'Gochi Hand', cursive;
-      font-size: 1.2rem;
-      color: #000;
-    }
-    .d3-front-body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex-grow: 1;
-    }
-    .d3-question {
-      font-family: 'Gochi Hand', cursive;
-      font-size: 1.8rem;
-      line-height: 1.25;
-      color: #000;
-      margin-top: 1rem;
-      max-width: 580px;
-    }
-    .d3-back {
-      background: #1e1b4b;
-      border: 3.5px solid #000;
-      box-shadow: 6px 6px 0px #000;
-      color: #fff;
-      padding: 1.75rem 2rem;
-    }
-    .d3-answer-title {
-      font-family: 'Gochi Hand', cursive;
-      font-size: 2.1rem;
-      color: #38bdf8;
-      border-bottom: 2px solid #38bdf8;
-      padding-bottom: 0.25rem;
-      margin-bottom: 0.75rem;
-    }
-    .d3-specs {
-      font-family: 'Kalam', cursive;
-      font-size: 1.15rem;
-      line-height: 1.6;
-      color: #e0e7ff;
+    .s3-card {
+      background-color: #fffefb;
+      border: 1.5px solid #d1d5db;
     }
 
-    /* ==========================================================================
-       DESIGN 4: DC COMICS NARRATIVE RECTANGLE (Batman / Super Sons)
-       ========================================================================== */
-    .d4-front {
-      background: #fffef8;
-      background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
-      background-size: 8px 8px;
-      border: 4px solid #000;
-      box-shadow: 8px 8px 0px #000;
-      padding: 0;
-      position: relative;
-    }
-    .d4-banner {
-      background: #fde047;
-      border-bottom: 3.5px solid #000;
-      padding: 0.5rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .d4-banner-text {
-      font-family: 'Bangers', cursive;
-      font-size: 1.15rem;
-      color: #000;
-      letter-spacing: 0.05em;
-    }
-    .d4-front-body {
-      padding: 1.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex-grow: 1;
-    }
-    .d4-question {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-style: italic;
-      font-weight: 900;
-      font-size: 1.35rem;
-      line-height: 1.3;
-      text-transform: uppercase;
-      letter-spacing: 0.01em;
-      color: #0f172a;
-      margin-top: 1rem;
-      max-width: 580px;
-    }
-    .d4-footer {
-      background: #f1f5f9;
-      border-top: 3px solid #000;
-      padding: 0.6rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'Bangers', cursive;
-      font-size: 1rem;
-      color: #000;
-    }
-    .d4-back {
-      background: #0b1329;
-      border: 4px solid #000;
-      box-shadow: 8px 8px 0px #000;
-      padding: 1.75rem 2rem;
-      color: #f8fafc;
-      background-image: 
-        linear-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-    .d4-answer-title {
-      font-family: 'Bangers', cursive;
-      font-size: 1.7rem;
-      color: #fde047;
-      text-shadow: 1.5px 1.5px 0px #000;
-      border-bottom: 2px solid #fde047;
-      padding-bottom: 0.25rem;
-      margin-bottom: 1rem;
-    }
-    .d4-specs {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-style: italic;
-      font-weight: 800;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      text-transform: uppercase;
-      color: #e2e8f0;
-    }
-
-    /* Common Vector Drawing Shell */
-    .svg-stage {
-      filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.1));
-    }
-
-    /* Deck Controls */
-    .deck-action-bar {
+    /* Controls */
+    .deck-nav {
       margin-top: 1.5rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
-      font-size: 0.85rem;
-      color: #94a3b8;
+      gap: 1.25rem;
     }
-    .flip-btn {
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      font-weight: 700;
-      padding: 0.6rem 1.5rem;
+    .nav-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 0.6rem 1.4rem;
       border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
-    .flip-btn:hover { background: #1d4ed8; }
+    .nav-btn:hover { background: #334155; }
+    .nav-btn.primary { background: #2563eb; border-color: #2563eb; }
+    .nav-btn.primary:hover { background: #1d4ed8; }
+
+    @media (max-width: 640px) {
+      .card-stage { height: 490px; }
+      .front-content-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .front-question { font-size: 1.7rem; }
+      .back-answer-huge { font-size: 2.6rem; }
+    }
   </style>
 </head>
 <body>
 
   <div class="header-zone">
-    <div class="header-badge">Instructional Cognitive Redesign</div>
-    <div class="header-title">The "Testing Effect" Study Flashcard</div>
+    <div class="header-badge">Instructional Minimalism</div>
+    <div class="header-title">Ethan's Real Break-Room Flashcards</div>
     <div class="header-desc">
-      Front = <strong>Active Retrieval Prompt + Pure Visual Vector</strong> (no spoilers, no text bloat, no third-person script).<br>
-      Back = <strong>Target Answer + Visual Key + The Exam Trap</strong>. Testing 4 distinct tactile visual aesthetics:
+      <strong>Zero text dumps. Full 3x5 canvas utilization.</strong><br>
+      Highlighter mark indicates Ethan's triage bucket (Red = Trivia, Green = Anatomy).<br>
+      Front = <strong>One Question + One Hand-Drawn Sketch</strong>. Back = <strong>The Answer + The Exam Trap</strong>.
     </div>
   </div>
 
-  <!-- Switcher Tabs -->
+  <!-- Style Tabs -->
   <div class="style-switcher">
-    <button class="style-tab-btn active" onclick="switchProto('proto1')">1. Walgreens 3x5 Ruled Card</button>
-    <button class="style-tab-btn" onclick="switchProto('proto2')">2. Blue-Collar Quad Grid</button>
-    <button class="style-tab-btn" onclick="switchProto('proto3')">3. Indie Comic Sketchbook</button>
-    <button class="style-tab-btn" onclick="switchProto('proto4')">4. DC Comics Narrative Box</button>
+    <button class="style-tab-btn active" onclick="switchCardStyle('s1')">1. Walgreens Ruled 3x5</button>
+    <button class="style-tab-btn" onclick="switchCardStyle('s2')">2. Quad-Grid Drafter Card</button>
+    <button class="style-tab-btn" onclick="switchCardStyle('s3')">3. Plain Unruled Index Card</button>
   </div>
 
-  <div class="showcase-stage">
+  <!-- Card Canvas -->
+  <div class="card-stage" onclick="toggleFlip()">
+    <div class="card-flipper" id="flipper">
 
-    <!-- ====================================================================
-         PROTOTYPE 1: WALGREENS 3x5 RULED INDEX CARD
-         ==================================================================== -->
-    <div class="proto-view active" id="proto1">
-      <div class="flashcard" onclick="this.classList.toggle('is-flipped')">
-        <div class="flashcard-inner">
-          
-          <!-- FRONT: Pure Stimulus & Retrieval Question -->
-          <div class="card-side d1-front">
-            <div class="d1-band">Red Band</div>
-            <div class="d1-card-num">Card 14 / 42</div>
+      <!-- FRONT -->
+      <div class="card-face s1-card" id="card-front-face">
+        <!-- Marker Slash across the top -->
+        <div class="marker-swipe-red" id="card-marker">RED BAND // TRIVIA</div>
+        <div class="card-num-scrawl">#14</div>
 
-            <div class="d1-front-body">
-              <!-- Layer 1 Artwork: Pure SVG Drawing without baked-in text -->
-              <svg width="180" height="135" viewBox="0 0 180 135" fill="none" class="svg-stage">
-                <path d="M 20 20 L 160 20 C 166 20 170 25 170 31 L 155 105 C 154 110 150 113 145 113 L 35 113 C 30 113 26 110 25 105 L 10 31 C 10 25 14 20 20 20 Z" stroke="#334155" stroke-width="2.5" fill="#f8fafc" stroke-linecap="round"/>
-                <!-- 24 Digital Grid Pins -->
-                <g fill="#1e293b">
-                  <circle cx="42" cy="42" r="3"/><circle cx="54" cy="42" r="3"/><circle cx="66" cy="42" r="3"/>
-                  <circle cx="82" cy="42" r="3"/><circle cx="94" cy="42" r="3"/><circle cx="106" cy="42" r="3"/>
-                  <circle cx="42" cy="58" r="3"/><circle cx="54" cy="58" r="3"/><circle cx="66" cy="58" r="3"/>
-                  <circle cx="82" cy="58" r="3"/><circle cx="94" cy="58" r="3"/><circle cx="106" cy="58" r="3"/>
-                  <circle cx="42" cy="74" r="3"/><circle cx="54" cy="74" r="3"/><circle cx="66" cy="74" r="3"/>
-                  <circle cx="82" cy="74" r="3"/><circle cx="94" cy="74" r="3"/><circle cx="106" cy="74" r="3"/>
-                </g>
-                <!-- Flat Blade -->
-                <rect x="122" y="54" width="22" height="7" rx="1" stroke="#334155" stroke-width="2" fill="#cbd5e1"/>
-                <!-- 4 Red Analog Pins -->
-                <circle cx="126" cy="42" r="3" fill="#dc2626"/>
-                <circle cx="140" cy="42" r="3" fill="#dc2626"/>
-                <circle cx="126" cy="74" r="3" fill="#dc2626"/>
-                <circle cx="140" cy="74" r="3" fill="#dc2626"/>
-                <!-- Question mark arrow pointing to the blade -->
-                <path d="M 160 32 C 152 40 148 45 146 45" stroke="#dc2626" stroke-width="1.8" fill="none"/>
-                <polygon points="144,45 149,42 149,48" fill="#dc2626"/>
-              </svg>
-
-              <!-- Layer 2 Typography: Lean, Active Retrieval Prompt -->
-              <div class="d1-question">
-                Which DVI connector type carries ANALOG signal for a VGA adapter?
-              </div>
-              <div class="d1-prompt-hint">
-                (Look at the drawing: What do the 4 cross pins do?)
-              </div>
-            </div>
-
-            <div class="d1-flip-cta">
-              <span>CompTIA A+ Core 1</span>
-              <span style="color:#2563eb;">Click card to verify answer ⟳</span>
-            </div>
+        <div class="front-content-grid">
+          <!-- Big Hand-Drawn Sketch (Layer 1) -->
+          <div class="drawing-box">
+            <svg width="220" height="160" viewBox="0 0 200 150" fill="none">
+              <!-- DVI Shell in dark ballpoint ink -->
+              <path d="M 20 20 L 180 20 C 186 20 190 25 190 32 L 175 118 C 174 124 170 128 165 128 L 35 128 C 30 128 26 124 25 118 L 10 32 C 10 25 14 20 20 20 Z" stroke="#1e293b" stroke-width="3" fill="#f8fafc" stroke-linecap="round"/>
+              <!-- Digital Pins -->
+              <g fill="#0f172a">
+                <circle cx="45" cy="45" r="3.5"/><circle cx="58" cy="45" r="3.5"/><circle cx="71" cy="45" r="3.5"/>
+                <circle cx="91" cy="45" r="3.5"/><circle cx="104" cy="45" r="3.5"/><circle cx="117" cy="45" r="3.5"/>
+                <circle cx="45" cy="65" r="3.5"/><circle cx="58" cy="65" r="3.5"/><circle cx="71" cy="65" r="3.5"/>
+                <circle cx="91" cy="65" r="3.5"/><circle cx="104" cy="65" r="3.5"/><circle cx="117" cy="65" r="3.5"/>
+                <circle cx="45" cy="85" r="3.5"/><circle cx="58" cy="85" r="3.5"/><circle cx="71" cy="85" r="3.5"/>
+                <circle cx="91" cy="85" r="3.5"/><circle cx="104" cy="85" r="3.5"/><circle cx="117" cy="85" r="3.5"/>
+              </g>
+              <!-- Flat Blade -->
+              <rect x="135" y="60" width="24" height="8" rx="1" stroke="#1e293b" stroke-width="2.5" fill="#cbd5e1"/>
+              <!-- 4 Red Cross Pins -->
+              <circle cx="140" cy="45" r="3.5" fill="#dc2626"/>
+              <circle cx="154" cy="45" r="3.5" fill="#dc2626"/>
+              <circle cx="140" cy="85" r="3.5" fill="#dc2626"/>
+              <circle cx="154" cy="85" r="3.5" fill="#dc2626"/>
+              <!-- Arrow -->
+              <path d="M 175 32 Q 165 42 158 44" stroke="#dc2626" stroke-width="2" fill="none"/>
+              <polygon points="155,44 161,40 161,48" fill="#dc2626"/>
+            </svg>
           </div>
 
-          <!-- BACK: Answer + Visual Key + The Exam Trap -->
-          <div class="card-side d1-back">
-            <div>
-              <div class="d1-answer-title">✓ DVI-I (Integrated)</div>
-              <div class="d1-answer-list">
-                <p>• <strong>Visual Key:</strong> 4 analog pins surrounding the horizontal ground blade.</p>
-                <p>• <strong>Signal:</strong> Carries <em>both</em> Digital + Analog (VGA compatible).</p>
-                <p>• <strong>Digital Grid:</strong> 24 pins (dual-link up to 2560 × 1600) or 18 pins (single-link).</p>
-              </div>
-
-              <div class="d1-trap-box">
-                <strong>THE EXAM TRAP:</strong><br>
-                <strong>DVI-D</strong> is DIGITAL ONLY. It has <em>zero</em> pins around the blade.<br>
-                A passive VGA adapter will physically <strong>NOT FIT</strong> into a DVI-D port!
-              </div>
+          <!-- Minimalist Question (Layer 2) -->
+          <div>
+            <div class="front-question">
+              Which DVI carries ANALOG for a VGA monitor?
             </div>
-
-            <div style="font-family:'Patrick Hand'; font-size:0.9rem; color:#64748b; text-align:right;">
-              Click to flip back ⟲
+            <div class="front-subtext">
+              Look at the 4 pins around the flat blade!
             </div>
           </div>
+        </div>
 
+        <div class="card-footer-cta">
+          <span>CompTIA A+ Core 1</span>
+          <span style="color:#2563eb;">Tap to flip card ⟳</span>
         </div>
       </div>
-    </div>
 
-    <!-- ====================================================================
-         PROTOTYPE 2: BLUE-COLLAR QUAD GRID (Drafting Notebook)
-         ==================================================================== -->
-    <div class="proto-view" id="proto2">
-      <div class="flashcard" onclick="this.classList.toggle('is-flipped')">
-        <div class="flashcard-inner">
-          
-          <!-- FRONT -->
-          <div class="card-side d2-front">
-            <div class="d2-header">
-              <span class="d2-code">DIAGNOSTIC PROMPT // #14</span>
-              <span class="d2-code" style="color:#dc2626;">A+ HARDWARE GATE</span>
-            </div>
+      <!-- BACK: Complete, Minimalist, Huge Typography -->
+      <div class="card-face s1-card card-back" id="card-back-face">
+        <div class="marker-swipe-red" id="card-marker-back">ANSWER KEY</div>
+        <div class="card-num-scrawl">#14</div>
 
-            <div class="d2-front-body">
-              <svg width="190" height="135" viewBox="0 0 190 135" fill="none" class="svg-stage">
-                <rect x="15" y="20" width="160" height="85" stroke="#0f172a" stroke-width="2" fill="#fff"/>
-                <g fill="#0f172a">
-                  <rect x="35" y="38" width="5" height="5"/><rect x="47" y="38" width="5" height="5"/><rect x="59" y="38" width="5" height="5"/>
-                  <rect x="75" y="38" width="5" height="5"/><rect x="87" y="38" width="5" height="5"/><rect x="99" y="38" width="5" height="5"/>
-                  <rect x="35" y="54" width="5" height="5"/><rect x="47" y="54" width="5" height="5"/><rect x="59" y="54" width="5" height="5"/>
-                  <rect x="75" y="54" width="5" height="5"/><rect x="87" y="54" width="5" height="5"/><rect x="99" y="54" width="5" height="5"/>
-                  <rect x="35" y="70" width="5" height="5"/><rect x="47" y="70" width="5" height="5"/><rect x="59" y="70" width="5" height="5"/>
-                  <rect x="75" y="70" width="5" height="5"/><rect x="87" y="70" width="5" height="5"/><rect x="99" y="70" width="5" height="5"/>
-                </g>
-                <rect x="120" y="53" width="22" height="7" fill="#64748b"/>
-                <circle cx="124" cy="41" r="3" fill="#dc2626"/>
-                <circle cx="138" cy="41" r="3" fill="#dc2626"/>
-                <circle cx="124" cy="72" r="3" fill="#dc2626"/>
-                <circle cx="138" cy="72" r="3" fill="#dc2626"/>
-              </svg>
-
-              <div class="d2-question">
-                WHAT SIGNALS DO THE 4 PERIMETER PINS DRIVE?
-              </div>
-              <div class="d2-hint">
-                Identify why DVI-D cannot use a passive VGA block.
-              </div>
-            </div>
-
-            <div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:#64748b; display:flex; justify-content:space-between; border-top:1px dotted #cbd5e1; padding-top:0.4rem;">
-              <span>PORTLAND DESK APPRENTICE NOTE</span>
-              <span style="color:#0284c7;">CLICK TO VERIFY ⟳</span>
-            </div>
+        <div class="back-content-center">
+          <div class="back-answer-huge">
+            ✓ DVI-I (Integrated)
+          </div>
+          <div class="back-rule">
+            • <strong>DVI-I</strong> = Digital + Analog (4 cross pins)
+          </div>
+          <div class="back-rule">
+            • <strong>DVI-D</strong> = Digital ONLY (zero cross pins)
           </div>
 
-          <!-- BACK -->
-          <div class="card-side d2-back">
-            <div>
-              <div class="d2-answer-title">// ANSWER: DVI-I ANALOG (RGB/H-SYNC)</div>
-              <div class="d2-specs">
-                <p>• <strong>PIN COUNT:</strong> 24 Digital + 1 Ground Blade + 4 Analog = 29 Pins.</p>
-                <p>• <strong>FUNCTION:</strong> Those 4 pins carry analog RGB and horizontal sync to legacy VGA monitors.</p>
-                <p style="margin-top: 1rem; color:#f87171; border-left:3px solid #ef4444; padding-left:0.75rem;">
-                  <strong>EXAM TRAP:</strong> DVI-D ports lack the 4 female receptacles. If a user forces a DVI-to-VGA adapter, they will snap the pins off inside the GPU!
-                </p>
-              </div>
-            </div>
-
-            <div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:#64748b; text-align:right;">
-              CLICK TO FLIP BACK ⟲
-            </div>
+          <div class="back-trap-scrawl">
+            ⚠️ <strong>THE EXAM TRAP:</strong> DVI-D cannot take a passive VGA adapter. It physically won't fit into the blade slot!
           </div>
+        </div>
 
+        <div class="card-footer-cta">
+          <span>Pass Thursday, forget Friday</span>
+          <span style="color:#2563eb;">Tap to flip back ⟲</span>
         </div>
       </div>
+
     </div>
-
-    <!-- ====================================================================
-         PROTOTYPE 3: INDIE COMIC SKETCHBOOK BRISTOL
-         ==================================================================== -->
-    <div class="proto-view" id="proto3">
-      <div class="flashcard" onclick="this.classList.toggle('is-flipped')">
-        <div class="flashcard-inner">
-          
-          <!-- FRONT -->
-          <div class="card-side d3-front">
-            <div class="d3-tape"></div>
-            <div class="d3-header">
-              <span>Card #14: Video Cable Gate</span>
-              <span style="color:#dc2626;">Red Band</span>
-            </div>
-
-            <div class="d3-front-body">
-              <svg width="180" height="135" viewBox="0 0 180 135" fill="none" class="svg-stage">
-                <path d="M 22 25 L 168 25 L 152 108 L 38 108 Z" stroke="#000" stroke-width="3" fill="#fef08a"/>
-                <g fill="#000">
-                  <circle cx="48" cy="45" r="3.5"/><circle cx="62" cy="45" r="3.5"/><circle cx="76" cy="45" r="3.5"/>
-                  <circle cx="94" cy="45" r="3.5"/><circle cx="108" cy="45" r="3.5"/><circle cx="122" cy="45" r="3.5"/>
-                  <circle cx="48" cy="62" r="3.5"/><circle cx="62" cy="62" r="3.5"/><circle cx="76" cy="62" r="3.5"/>
-                  <circle cx="94" cy="62" r="3.5"/><circle cx="108" cy="62" r="3.5"/><circle cx="122" cy="62" r="3.5"/>
-                  <circle cx="48" cy="79" r="3.5"/><circle cx="62" cy="79" r="3.5"/><circle cx="76" cy="79" r="3.5"/>
-                  <circle cx="94" cy="79" r="3.5"/><circle cx="108" cy="79" r="3.5"/><circle cx="122" cy="79" r="3.5"/>
-                </g>
-                <rect x="138" y="58" width="20" height="7" stroke="#000" stroke-width="2" fill="#e2e8f0"/>
-                <circle cx="142" cy="45" r="4" fill="#ef4444" stroke="#000" stroke-width="1.2"/>
-                <circle cx="154" cy="45" r="4" fill="#ef4444" stroke="#000" stroke-width="1.2"/>
-                <circle cx="142" cy="79" r="4" fill="#ef4444" stroke="#000" stroke-width="1.2"/>
-                <circle cx="154" cy="79" r="4" fill="#ef4444" stroke="#000" stroke-width="1.2"/>
-              </svg>
-
-              <div class="d3-question">
-                Which DVI port has the 4 cross pins? And what happens if you plug VGA into DVI-D?
-              </div>
-            </div>
-
-            <div style="font-family:'Gochi Hand'; font-size:1.1rem; color:#64748b; display:flex; justify-content:space-between; border-top:2px solid #000; padding-top:0.4rem;">
-              <span>Midnight Study Sketch</span>
-              <span style="color:#2563eb;">Flip to check answer ⟳</span>
-            </div>
-          </div>
-
-          <!-- BACK -->
-          <div class="card-side d3-back">
-            <div>
-              <div class="d3-answer-title">Answer: DVI-I (Integrated)</div>
-              <div class="d3-specs">
-                <p>• <strong>DVI-I:</strong> Has the 4 cross pins. It speaks analog!</p>
-                <p>• <strong>DVI-D:</strong> Digital only. The blade space is blank.</p>
-                <p style="margin-top: 1rem; color:#fde047; border-top: 2px dashed #38bdf8; padding-top: 0.6rem;">
-                  💥 <strong>THE VOUCHER KILLER:</strong> Passive adapters only work on DVI-I. You cannot get VGA signal out of DVI-D without an active powered converter box!
-                </p>
-              </div>
-            </div>
-
-            <div style="font-family:'Gochi Hand'; font-size:1rem; color:#94a3b8; text-align:right;">
-              Click to flip back ⟲
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- ====================================================================
-         PROTOTYPE 4: DC COMICS NARRATIVE RECTANGLE (Batman / Super Sons)
-         ==================================================================== -->
-    <div class="proto-view" id="proto4">
-      <div class="flashcard" onclick="this.classList.toggle('is-flipped')">
-        <div class="flashcard-inner">
-          
-          <!-- FRONT -->
-          <div class="card-side d4-front">
-            <div class="d4-banner">
-              <span class="d4-banner-text">RECOVERY PASSPORT // FIELD SURVIVAL</span>
-              <span style="font-family:'Plus Jakarta Sans'; font-style:italic; font-weight:900; font-size:0.75rem; background:#000; color:#fff; padding:2px 8px; border-radius:2px;">CARD 14</span>
-            </div>
-
-            <div class="d4-front-body">
-              <svg width="180" height="135" viewBox="0 0 180 135" fill="none" class="svg-stage">
-                <rect x="15" y="15" width="140" height="90" rx="8" stroke="#000" stroke-width="3" fill="#f8fafc"/>
-                <g fill="#000">
-                  <circle cx="45" cy="35" r="3.5"/><circle cx="57" cy="35" r="3.5"/><circle cx="69" cy="35" r="3.5"/>
-                  <circle cx="85" cy="35" r="3.5"/><circle cx="97" cy="35" r="3.5"/><circle cx="109" cy="35" r="3.5"/>
-                  <circle cx="45" cy="50" r="3.5"/><circle cx="57" cy="50" r="3.5"/><circle cx="69" cy="50" r="3.5"/>
-                  <circle cx="85" cy="50" r="3.5"/><circle cx="97" cy="50" r="3.5"/><circle cx="109" cy="50" r="3.5"/>
-                  <circle cx="45" cy="65" r="3.5"/><circle cx="57" cy="65" r="3.5"/><circle cx="69" cy="65" r="3.5"/>
-                  <circle cx="85" cy="65" r="3.5"/><circle cx="97" cy="65" r="3.5"/><circle cx="109" cy="65" r="3.5"/>
-                </g>
-                <rect x="124" y="47" width="18" height="6" stroke="#000" stroke-width="2" fill="#eab308"/>
-                <circle cx="127" cy="37" r="3" fill="#dc2626"/>
-                <circle cx="139" cy="37" r="3" fill="#dc2626"/>
-                <circle cx="127" cy="63" r="3" fill="#dc2626"/>
-                <circle cx="139" cy="63" r="3" fill="#dc2626"/>
-              </svg>
-
-              <div class="d4-question">
-                WHICH DVI TYPE CARRIES ANALOG SIGNAL FOR A VGA MONITOR?
-              </div>
-              <div style="font-family:'Plus Jakarta Sans'; font-style:italic; font-weight:700; font-size:0.85rem; color:#dc2626; margin-top:0.5rem; text-transform:uppercase;">
-                [ SPOT THE PHYSICAL DIFFERENCE BEFORE FLIPPING ]
-              </div>
-            </div>
-
-            <div class="d4-footer">
-              <span>A+ CORE 1 TRIVIA</span>
-              <span style="color:#2563eb;">CLICK TO REVEAL ANSWER ⟳</span>
-            </div>
-          </div>
-
-          <!-- BACK -->
-          <div class="card-side d4-back">
-            <div>
-              <div class="d4-answer-title">VERIFIED ANSWER: DVI-I (INTEGRATED)</div>
-              <div class="d4-specs">
-                <p>• <strong>THE VISUAL TELL:</strong> 4 ANALOG PINS SURROUNDING THE HORIZONTAL BLADE.</p>
-                <p>• <strong>SIGNALS:</strong> TRANSMITS BOTH TMDS DIGITAL + RGB ANALOG.</p>
-                <p style="margin-top: 1rem; background:rgba(239,68,68,0.15); border-left:4px solid #ef4444; padding:0.6rem 0.8rem; color:#fca5a5;">
-                  <strong>EXAM TRAP:</strong> DVI-D HAS ONLY THE FLAT BLADE. ZERO ANALOG PINS. A PASSIVE VGA ADAPTER CANNOT WORK!
-                </p>
-              </div>
-            </div>
-
-            <div style="font-family:'Bangers'; font-size:0.95rem; color:#94a3b8; text-align:right;">
-              CLICK TO FLIP BACK ⟲
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <div class="deck-action-bar">
-    <button class="flip-btn" onclick="toggleActiveCard()">⟳ Flip Card</button>
-    <span>Testing cognitive retrieval: Prompt on front, verified answer on back.</span>
+  <div class="deck-nav">
+    <button class="nav-btn" onclick="prevCard()">◀ Previous Card</button>
+    <button class="nav-btn primary" onclick="toggleFlip()">⟳ Flip Card</button>
+    <button class="nav-btn" onclick="nextCard()">Next Card ▶</button>
   </div>
 
   <script>
-    function switchProto(protoId) {
-      document.querySelectorAll('.proto-view').forEach(p => p.classList.remove('active'));
+    const deck = [
+      {
+        num: "#14",
+        band: "RED BAND // TRIVIA",
+        bandColor: "var(--highlighter-red)",
+        textColor: "#991b1b",
+        q: "Which DVI carries ANALOG for a VGA monitor?",
+        hint: "Look at the 4 pins around the flat blade!",
+        a: "✓ DVI-I (Integrated)",
+        r1: "• DVI-I = Digital + Analog (4 cross pins)",
+        r2: "• DVI-D = Digital ONLY (zero cross pins)",
+        trap: "⚠️ EXAM TRAP: Passive VGA adapter will NOT fit into DVI-D!",
+        svg: `<svg width="220" height="160" viewBox="0 0 200 150" fill="none"><path d="M 20 20 L 180 20 C 186 20 190 25 190 32 L 175 118 C 174 124 170 128 165 128 L 35 128 C 30 128 26 124 25 118 L 10 32 C 10 25 14 20 20 20 Z" stroke="#1e293b" stroke-width="3" fill="#f8fafc" stroke-linecap="round"/><g fill="#0f172a"><circle cx="45" cy="45" r="3.5"/><circle cx="58" cy="45" r="3.5"/><circle cx="71" cy="45" r="3.5"/><circle cx="91" cy="45" r="3.5"/><circle cx="104" cy="45" r="3.5"/><circle cx="117" cy="45" r="3.5"/><circle cx="45" cy="65" r="3.5"/><circle cx="58" cy="65" r="3.5"/><circle cx="71" cy="65" r="3.5"/><circle cx="91" cy="65" r="3.5"/><circle cx="104" cy="65" r="3.5"/><circle cx="117" cy="65" r="3.5"/><circle cx="45" cy="85" r="3.5"/><circle cx="58" cy="85" r="3.5"/><circle cx="71" cy="85" r="3.5"/><circle cx="91" cy="85" r="3.5"/><circle cx="104" cy="85" r="3.5"/><circle cx="117" cy="85" r="3.5"/></g><rect x="135" y="60" width="24" height="8" rx="1" stroke="#1e293b" stroke-width="2.5" fill="#cbd5e1"/><circle cx="140" cy="45" r="3.5" fill="#dc2626"/><circle cx="154" cy="45" r="3.5" fill="#dc2626"/><circle cx="140" cy="85" r="3.5" fill="#dc2626"/><circle cx="154" cy="85" r="3.5" fill="#dc2626"/><path d="M 175 32 Q 165 42 158 44" stroke="#dc2626" stroke-width="2" fill="none"/><polygon points="155,44 161,40 161,48" fill="#dc2626"/></svg>`
+      },
+      {
+        num: "#22",
+        band: "RED BAND // TRIVIA",
+        bandColor: "var(--highlighter-red)",
+        textColor: "#991b1b",
+        q: "What laser printer part burns at 200°C?",
+        hint: "Mnemonic: Please Clean Every Day To The Finish",
+        a: "✓ The Fuser Assembly",
+        r1: "• Melts plastic toner resin into paper fibers",
+        r2: "• Heat + Pressure rollers (~200°C / 392°F)",
+        trap: "⚠️ EXAM TRAP: If toner smudges on your fingers, Fuser is cold/dead!",
+        svg: `<svg width="220" height="160" viewBox="0 0 200 150" fill="none"><circle cx="100" cy="50" r="35" stroke="#1e293b" stroke-width="3" fill="#fee2e2"/><circle cx="100" cy="115" r="28" stroke="#1e293b" stroke-width="3" fill="#e2e8f0"/><line x1="20" y1="83" x2="180" y2="83" stroke="#000" stroke-width="3"/><path d="M 90 40 Q 100 20 110 40" stroke="#ef4444" stroke-width="3" fill="none"/><text x="85" y="55" font-family="Patrick Hand" font-size="16" fill="#dc2626">HEAT</text><text x="82" y="120" font-family="Patrick Hand" font-size="13" fill="#475569">PRESSURE</text></svg>`
+      },
+      {
+        num: "#03",
+        band: "GREEN BAND // ANATOMY",
+        bandColor: "var(--highlighter-green)",
+        textColor: "#14532d",
+        q: "Power cuts out. What loses its memory?",
+        hint: "Volatile vs Non-Volatile boundary",
+        a: "✓ RAM (Dynamic Volatile)",
+        r1: "• RAM needs electrical refresh cycles to hold bits",
+        r2: "• Storage (SSD / HDD / Flash) keeps bits with zero power",
+        trap: "⚠️ SHOP REALITY: Rebooting clears malware from RAM, not disk!",
+        svg: `<svg width="220" height="160" viewBox="0 0 200 150" fill="none"><rect x="30" y="45" width="140" height="45" rx="3" stroke="#1e293b" stroke-width="3" fill="#dcfce7"/><rect x="45" y="55" width="20" height="25" fill="#15803d"/><rect x="75" y="55" width="20" height="25" fill="#15803d"/><rect x="105" y="55" width="20" height="25" fill="#15803d"/><rect x="135" y="55" width="20" height="25" fill="#15803d"/><path d="M 40 90 L 40 98 M 60 90 L 60 98 M 80 90 L 80 98 M 100 90 L 100 98 M 120 90 L 120 98 M 140 90 L 140 98 M 160 90 L 160 98" stroke="#15803d" stroke-width="2.5"/><text x="65" y="35" font-family="Patrick Hand" font-size="18" fill="#15803d">VOLATILE RAM</text></svg>`
+      }
+    ];
+
+    let currentCardIdx = 0;
+    const flipper = document.getElementById('flipper');
+
+    function toggleFlip() {
+      flipper.classList.toggle('is-flipped');
+    }
+
+    function renderCurrentCard() {
+      const c = deck[currentCardIdx];
+      // Front
+      document.querySelector('#card-front-face .card-num-scrawl').textContent = c.num;
+      const markerF = document.getElementById('card-marker');
+      markerF.textContent = c.band;
+      markerF.style.background = c.bandColor;
+      markerF.style.color = c.textColor;
+
+      document.querySelector('.drawing-box').innerHTML = c.svg;
+      document.querySelector('.front-question').textContent = c.q;
+      document.querySelector('.front-subtext').textContent = c.hint;
+
+      // Back
+      document.querySelector('#card-back-face .card-num-scrawl').textContent = c.num;
+      const markerB = document.getElementById('card-marker-back');
+      markerB.style.background = c.bandColor;
+      markerB.style.color = c.textColor;
+
+      document.querySelector('.back-answer-huge').textContent = c.a;
+      const rules = document.querySelectorAll('.back-rule');
+      rules[0].innerHTML = c.r1;
+      rules[1].innerHTML = c.r2;
+      document.querySelector('.back-trap-scrawl').innerHTML = c.trap;
+    }
+
+    function nextCard() {
+      flipper.classList.remove('is-flipped');
+      setTimeout(() => {
+        currentCardIdx = (currentCardIdx + 1) % deck.length;
+        renderCurrentCard();
+      }, 150);
+    }
+
+    function prevCard() {
+      flipper.classList.remove('is-flipped');
+      setTimeout(() => {
+        currentCardIdx = (currentCardIdx - 1 + deck.length) % deck.length;
+        renderCurrentCard();
+      }, 150);
+    }
+
+    function switchCardStyle(style) {
       document.querySelectorAll('.style-tab-btn').forEach(b => b.classList.remove('active'));
-
-      document.getElementById(protoId).classList.add('active');
       event.target.classList.add('active');
+
+      const front = document.getElementById('card-front-face');
+      const back = document.getElementById('card-back-face');
+      front.className = 'card-face ' + style + '-card';
+      back.className = 'card-face ' + style + '-card card-back';
     }
 
-    function toggleActiveCard() {
-      const active = document.querySelector('.proto-view.active .flashcard');
-      if (active) active.classList.toggle('is-flipped');
-    }
+    // Initial render
+    renderCurrentCard();
   </script>
 </body>
 </html>
