@@ -2,26 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ethan's Authentic 3x5 Study Flashcards — Minimalist & Handcrafted</title>
+  <title>Ethan's Authentic 3x5 Study Flashcards — 4 Gritty Handcrafted Variations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Handwriting Fonts -->
+  <!-- Handwriting, Drafting & Marker Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Gochi+Hand&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@700&family=Gochi+Hand&family=Kalam:wght@700&family=Patrick+Hand&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-surface: #0a0e17;
-      --card-bg: #fdfbf7;
-      --blue-rule: #a5b4fc;
-      --red-margin: #f87171;
-      --pen-blue: #1e3a8a;
+      --bg-surface: #070a11;
+      --pen-blue: #142d63;
       --pen-black: #0f172a;
-      --highlighter-red: rgba(239, 68, 68, 0.32);
-      --highlighter-green: rgba(34, 197, 94, 0.32);
-      --highlighter-yellow: rgba(234, 179, 8, 0.35);
-      --highlighter-blue: rgba(59, 130, 246, 0.32);
+      --pen-red: #b91c1c;
+      --pen-green: #15803d;
+      --highlighter-red: rgba(239, 68, 68, 0.42);
+      --highlighter-green: rgba(34, 197, 94, 0.42);
+      --highlighter-yellow: rgba(234, 179, 8, 0.45);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +28,7 @@
       background-color: var(--bg-surface);
       background-image: 
         radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(180deg, #0a0e17 0%, #03050a 100%);
+        linear-gradient(180deg, #070a11 0%, #020408 100%);
       background-size: 24px 24px, 100% 100%;
       min-height: 100vh;
       color: #f8fafc;
@@ -43,7 +41,7 @@
 
     .header-zone {
       text-align: center;
-      max-width: 760px;
+      max-width: 820px;
       margin-bottom: 2rem;
     }
     .header-badge {
@@ -59,27 +57,27 @@
       margin-bottom: 0.5rem;
     }
     .header-title {
-      font-size: 2.1rem;
+      font-size: 2.2rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #ffffff;
       margin-bottom: 0.4rem;
     }
     .header-desc {
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       color: #94a3b8;
       line-height: 1.5;
     }
 
-    /* Style Selector */
+    /* Style Selector Tabs */
     .style-switcher {
       display: flex;
       gap: 0.6rem;
       background: #111827;
-      padding: 0.35rem;
-      border-radius: 8px;
+      padding: 0.4rem;
+      border-radius: 10px;
       border: 1px solid #374151;
-      margin-bottom: 2rem;
+      margin-bottom: 2.2rem;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -87,28 +85,29 @@
       background: transparent;
       border: none;
       color: #9ca3af;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.1rem;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .style-tab-btn:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .style-tab-btn:hover { color: #fff; background: rgba(255,255,255,0.06); }
     .style-tab-btn.active {
       background: #2563eb;
       color: #fff;
-      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
     }
 
-    /* 3x5 Index Card Ratio Container (Standard 3:5 aspect ratio scaled up) */
+    /* 3x5 Index Card Ratio Container (True 3:5 proportion scaled up) */
     .card-stage {
       width: 100%;
-      max-width: 680px;
-      height: 408px; /* 3:5 proportion (680 x 408) */
-      perspective: 1500px;
+      max-width: 760px;
+      height: 456px; /* 3:5 proportion: 760 x 456 */
+      perspective: 1600px;
       user-select: none;
       cursor: pointer;
+      margin-bottom: 1.5rem;
     }
 
     .card-flipper {
@@ -116,7 +115,7 @@
       width: 100%;
       height: 100%;
       transform-style: preserve-3d;
-      transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.55s cubic-bezier(0.34, 1.45, 0.64, 1);
     }
     .card-flipper.is-flipped {
       transform: rotateY(180deg);
@@ -127,10 +126,7 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55), 0 3px 6px rgba(0, 0, 0, 0.3);
-      padding: 1.5rem 2rem;
+      padding: 2rem 2.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -142,365 +138,523 @@
     }
 
     /* ==========================================================================
-       STYLE 1: MINIMALIST WALGREENS RULED CARD
+       STYLE 1: MINIMALIST WHITE CARD AT SLIGHT ANGLE (Cartoon Edges & Deep Shadow)
        ========================================================================== */
-    .s1-card {
-      background-color: var(--card-bg);
-      background-image: 
-        linear-gradient(180deg, transparent 48px, var(--red-margin) 49px, var(--red-margin) 50px, transparent 51px),
-        repeating-linear-gradient(180deg, transparent, transparent 31px, var(--blue-rule) 32px);
+    .style-white {
+      transform: rotate(-1.4deg);
+      transition: transform 0.3s ease;
     }
-
-    /* Red Marker Slash Across Top Edge */
-    .marker-swipe-red {
+    .style-white:hover {
+      transform: rotate(-0.5deg) scale(1.01);
+    }
+    .style-white .card-face {
+      background-color: #ffffff;
+      border: 3.5px solid #111827;
+      /* Organic hand-inked cartoon border radius */
+      border-radius: 4px 16px 5px 14px / 14px 5px 16px 4px;
+      box-shadow: 
+        7px 9px 0px #090d16,
+        0 20px 35px rgba(0, 0, 0, 0.5);
+    }
+    .style-white .card-face::before {
+      content: "";
       position: absolute;
-      top: 6px;
-      left: 15px;
-      width: 220px;
-      height: 26px;
-      background: var(--highlighter-red);
-      transform: rotate(-1.5deg);
-      border-radius: 4px;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(0,0,0,0.015) 0%, transparent 70%);
       pointer-events: none;
-      display: flex;
-      align-items: center;
-      padding-left: 10px;
-      font-family: 'Permanent Marker', cursive;
-      font-size: 0.85rem;
-      color: #991b1b;
-      letter-spacing: 0.08em;
     }
 
-    .marker-swipe-green {
-      background: var(--highlighter-green);
-      color: #14532d;
+    /* ==========================================================================
+       STYLE 2: WALGREENS 3x5 RULED (Gritty Blue Line, Red Margin, Ballpoint)
+       ========================================================================== */
+    .style-ruled {
+      transform: rotate(0.4deg);
+      transition: transform 0.3s ease;
+    }
+    .style-ruled:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+    .style-ruled .card-face {
+      background-color: #fdfbf7;
+      background-image: 
+        linear-gradient(180deg, transparent 58px, #fca5a5 59px, #fca5a5 60px, transparent 61px),
+        repeating-linear-gradient(180deg, transparent, transparent 33px, #cbd5e1 34px);
+      border: 2px solid #cbd5e1;
+      border-radius: 6px;
+      box-shadow: 
+        4px 6px 0px rgba(15, 23, 42, 0.6),
+        0 18px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    /* ==========================================================================
+       STYLE 3: GRAPH / QUAD DRAFTING CARD (Technical Hand)
+       ========================================================================== */
+    .style-quad {
+      transform: rotate(-0.8deg);
+      transition: transform 0.3s ease;
+    }
+    .style-quad:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+    .style-quad .card-face {
+      background-color: #f8fafc;
+      background-image: 
+        linear-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.22) 1px, transparent 1px);
+      background-size: 20px 20px;
+      border: 3px solid #1e293b;
+      border-radius: 3px 8px 3px 7px;
+      box-shadow: 
+        6px 6px 0px #0f172a,
+        0 18px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    /* ==========================================================================
+       STYLE 4: HEAVY MANILA / SHOP FLOOR (Warm, Heavyweight, Comic Noir Shadow)
+       ========================================================================== */
+    .style-manila {
+      transform: rotate(1.2deg);
+      transition: transform 0.3s ease;
+    }
+    .style-manila:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+    .style-manila .card-face {
+      background-color: #f6eedb;
+      border: 4px solid #18181b;
+      border-radius: 8px 3px 10px 4px / 4px 10px 3px 8px;
+      box-shadow: 
+        9px 11px 0px #09090b,
+        0 24px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ==========================================================================
+       RAW HAND-DRAWN HIGHLIGHTER & CORNER SCRAWL (No enterprise labels, no badges)
+       ========================================================================== */
+    .marker-slash {
+      position: absolute;
+      top: 14px;
+      left: 18px;
+      display: inline-block;
+      padding: 4px 16px 3px 12px;
+      transform: rotate(-2.5deg);
+      border-radius: 3px;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      pointer-events: none;
+      mix-blend-mode: multiply;
     }
 
     .card-num-scrawl {
       position: absolute;
       top: 14px;
-      right: 25px;
+      right: 22px;
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.15rem;
+      font-size: 1.4rem;
+      font-weight: 700;
       color: #64748b;
     }
 
-    /* Full-Canvas Minimalist Front Layout */
-    .front-content-grid {
+    /* ==========================================================================
+       FRONT CONTENT: HUGE BOLD QUESTION & HAND-DRAWN SKETCH (Zero Spoilers)
+       ========================================================================== */
+    .front-layout {
       display: grid;
-      grid-template-columns: 240px 1fr;
+      grid-template-columns: 280px 1fr;
       align-items: center;
-      gap: 1.5rem;
+      gap: 2rem;
       flex-grow: 1;
-      margin-top: 1.25rem;
+      margin-top: 1.5rem;
     }
 
-    .drawing-box {
+    .drawing-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
 
-    .front-question {
+    .drawing-note {
       font-family: 'Patrick Hand', cursive;
-      font-size: 2.1rem;
-      line-height: 1.2;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #64748b;
+      margin-top: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .front-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .front-big-question {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.15;
       color: var(--pen-blue);
+      letter-spacing: -0.01em;
     }
+    .style-white .front-big-question { color: #090d16; }
+    .style-quad .front-big-question { font-family: 'Kalam', cursive; font-size: 2.3rem; color: #0f172a; }
+    .style-manila .front-big-question { font-family: 'Patrick Hand', cursive; font-size: 2.7rem; color: #18181b; }
 
-    .front-subtext {
+    .front-hint-scrawl {
       font-family: 'Gochi Hand', cursive;
-      font-size: 1.15rem;
-      color: #b91c1c;
-      margin-top: 0.75rem;
+      font-size: 1.45rem;
+      color: var(--pen-red);
+      margin-top: 1.2rem;
+      line-height: 1.2;
     }
 
-    /* Minimalist Back Layout */
-    .back-content-center {
+    /* ==========================================================================
+       BACK CONTENT: MASSIVE ANSWER & TIGHT INVARIANTS (Zero Icons, Pure Pen)
+       ========================================================================== */
+    .back-layout {
       display: flex;
       flex-direction: column;
       justify-content: center;
       flex-grow: 1;
-      padding: 0.5rem 0;
+      margin-top: 1.5rem;
+      padding-right: 0.5rem;
     }
 
-    .back-answer-huge {
+    .back-huge-answer {
       font-family: 'Patrick Hand', cursive;
-      font-size: 3.2rem;
+      font-size: 3.5rem;
+      font-weight: 700;
       line-height: 1;
-      color: #15803d; /* green check ink */
-      margin-bottom: 1rem;
+      color: var(--pen-green);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
     }
+    .style-quad .back-huge-answer { font-family: 'Kalam', cursive; font-size: 3.1rem; }
+    .style-manila .back-huge-answer { font-family: 'Patrick Hand', cursive; font-size: 3.6rem; color: #166534; }
 
-    .back-rule {
+    .back-bullet-point {
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.45rem;
+      font-size: 1.7rem;
+      font-weight: 700;
       line-height: 1.35;
-      color: #1e293b;
+      color: var(--pen-black);
       margin-bottom: 0.6rem;
     }
+    .style-quad .back-bullet-point { font-family: 'Architects Daughter', cursive; font-size: 1.45rem; line-height: 1.4; }
 
-    .back-trap-scrawl {
+    .back-trap-box {
+      margin-top: 0.9rem;
+      padding-top: 0.75rem;
+      border-top: 2.5px dashed #cbd5e1;
       font-family: 'Gochi Hand', cursive;
-      font-size: 1.3rem;
-      color: #dc2626;
-      border-top: 2px dashed #cbd5e1;
-      padding-top: 0.6rem;
-      margin-top: 0.6rem;
+      font-size: 1.55rem;
+      line-height: 1.25;
+      color: var(--pen-red);
     }
+    .style-manila .back-trap-box { border-top-color: #d6c7a7; }
 
-    .card-footer-cta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    /* Footer Tap Prompt */
+    .tap-to-flip-guide {
+      text-align: right;
       font-family: 'Patrick Hand', cursive;
-      font-size: 0.95rem;
-      color: #64748b;
-      border-top: 1px dotted #cbd5e1;
-      padding-top: 0.4rem;
+      font-size: 1.15rem;
+      color: #94a3b8;
+      letter-spacing: 0.05em;
     }
 
-    /* ==========================================================================
-       STYLE 2: CLEAN GRAPH / QUAD GRID
-       ========================================================================== */
-    .s2-card {
-      background-color: #fbfbf9;
-      background-image: 
-        linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
-      background-size: 18px 18px;
-    }
-
-    /* ==========================================================================
-       STYLE 3: PLAIN UNRULED BLANK INDEX CARD (Pencil & Pen)
-       ========================================================================== */
-    .s3-card {
-      background-color: #fffefb;
-      border: 1.5px solid #d1d5db;
-    }
-
-    /* Controls */
-    .deck-nav {
-      margin-top: 1.5rem;
+    /* Deck Controls Below Card */
+    .controls-zone {
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .nav-btn {
+
+    .ctrl-btn {
       background: #1e293b;
       border: 1px solid #334155;
       color: #f8fafc;
-      padding: 0.6rem 1.4rem;
-      border-radius: 6px;
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .nav-btn:hover { background: #334155; }
-    .nav-btn.primary { background: #2563eb; border-color: #2563eb; }
-    .nav-btn.primary:hover { background: #1d4ed8; }
+    .ctrl-btn:hover { background: #334155; color: #fff; }
+    .ctrl-btn.primary { background: #2563eb; border-color: #2563eb; }
+    .ctrl-btn.primary:hover { background: #1d4ed8; }
 
-    @media (max-width: 640px) {
-      .card-stage { height: 490px; }
-      .front-content-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-      .front-question { font-size: 1.7rem; }
-      .back-answer-huge { font-size: 2.6rem; }
+    /* Responsive */
+    @media (max-width: 740px) {
+      .card-stage { height: 520px; }
+      .front-layout { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.2rem; }
+      .front-big-question { font-size: 2rem; }
+      .back-huge-answer { font-size: 2.6rem; }
+      .back-bullet-point { font-size: 1.35rem; }
+      .back-trap-box { font-size: 1.25rem; }
     }
   </style>
 </head>
 <body>
 
   <div class="header-zone">
-    <div class="header-badge">Instructional Minimalism</div>
-    <div class="header-title">Ethan's Real Break-Room Flashcards</div>
+    <div class="header-badge">Ethan's Kitchen Table Deck</div>
+    <div class="header-title">Minimalist, Large-Scale 3x5 Active Retrieval</div>
     <div class="header-desc">
-      <strong>Zero text dumps. Full 3x5 canvas utilization.</strong><br>
-      Highlighter mark indicates Ethan's triage bucket (Red = Trivia, Green = Anatomy).<br>
-      Front = <strong>One Question + One Hand-Drawn Sketch</strong>. Back = <strong>The Answer + The Exam Trap</strong>.
+      Large, bold, high-contrast text that fills the card space. No icons, no emojis, no corporate badges.<br>
+      Front holds only the retrieval question and hand-drawn technical sketch. Back gives the instant answer, invariant rules, and exam trap.
     </div>
   </div>
 
-  <!-- Style Tabs -->
+  <!-- Style Switcher Tabs -->
   <div class="style-switcher">
-    <button class="style-tab-btn active" onclick="switchCardStyle('s1')">1. Walgreens Ruled 3x5</button>
-    <button class="style-tab-btn" onclick="switchCardStyle('s2')">2. Quad-Grid Drafter Card</button>
-    <button class="style-tab-btn" onclick="switchCardStyle('s3')">3. Plain Unruled Index Card</button>
+    <button class="style-tab-btn active" onclick="setCardStyle('style-white', this)">1. Minimalist White (Angled & Cartoon Edges)</button>
+    <button class="style-tab-btn" onclick="setCardStyle('style-ruled', this)">2. Walgreens Ruled (Gritty 3x5)</button>
+    <button class="style-tab-btn" onclick="setCardStyle('style-quad', this)">3. Graph / Quad Scratch Paper</button>
+    <button class="style-tab-btn" onclick="setCardStyle('style-manila', this)">4. Heavy Manila / Shop Floor</button>
   </div>
 
-  <!-- Card Canvas -->
-  <div class="card-stage" onclick="toggleFlip()">
+  <!-- 3x5 Card Stage -->
+  <div class="card-stage style-white" id="cardStage" onclick="flipCard()">
     <div class="card-flipper" id="flipper">
 
-      <!-- FRONT -->
-      <div class="card-face s1-card" id="card-front-face">
-        <!-- Marker Slash across the top -->
-        <div class="marker-swipe-red" id="card-marker">RED BAND // TRIVIA</div>
-        <div class="card-num-scrawl">#14</div>
+      <!-- FRONT FACE -->
+      <div class="card-face" id="frontFace">
+        <div class="marker-slash" id="markerFront">TRIVIA!</div>
+        <div class="card-num-scrawl" id="cardNumFront">#14</div>
 
-        <div class="front-content-grid">
-          <!-- Big Hand-Drawn Sketch (Layer 1) -->
-          <div class="drawing-box">
-            <svg width="220" height="160" viewBox="0 0 200 150" fill="none">
-              <!-- DVI Shell in dark ballpoint ink -->
-              <path d="M 20 20 L 180 20 C 186 20 190 25 190 32 L 175 118 C 174 124 170 128 165 128 L 35 128 C 30 128 26 124 25 118 L 10 32 C 10 25 14 20 20 20 Z" stroke="#1e293b" stroke-width="3" fill="#f8fafc" stroke-linecap="round"/>
-              <!-- Digital Pins -->
-              <g fill="#0f172a">
-                <circle cx="45" cy="45" r="3.5"/><circle cx="58" cy="45" r="3.5"/><circle cx="71" cy="45" r="3.5"/>
-                <circle cx="91" cy="45" r="3.5"/><circle cx="104" cy="45" r="3.5"/><circle cx="117" cy="45" r="3.5"/>
-                <circle cx="45" cy="65" r="3.5"/><circle cx="58" cy="65" r="3.5"/><circle cx="71" cy="65" r="3.5"/>
-                <circle cx="91" cy="65" r="3.5"/><circle cx="104" cy="65" r="3.5"/><circle cx="117" cy="65" r="3.5"/>
-                <circle cx="45" cy="85" r="3.5"/><circle cx="58" cy="85" r="3.5"/><circle cx="71" cy="85" r="3.5"/>
-                <circle cx="91" cy="85" r="3.5"/><circle cx="104" cy="85" r="3.5"/><circle cx="117" cy="85" r="3.5"/>
-              </g>
-              <!-- Flat Blade -->
-              <rect x="135" y="60" width="24" height="8" rx="1" stroke="#1e293b" stroke-width="2.5" fill="#cbd5e1"/>
-              <!-- 4 Red Cross Pins -->
-              <circle cx="140" cy="45" r="3.5" fill="#dc2626"/>
-              <circle cx="154" cy="45" r="3.5" fill="#dc2626"/>
-              <circle cx="140" cy="85" r="3.5" fill="#dc2626"/>
-              <circle cx="154" cy="85" r="3.5" fill="#dc2626"/>
-              <!-- Arrow -->
-              <path d="M 175 32 Q 165 42 158 44" stroke="#dc2626" stroke-width="2" fill="none"/>
-              <polygon points="155,44 161,40 161,48" fill="#dc2626"/>
-            </svg>
+        <div class="front-layout">
+          <div class="drawing-container">
+            <div id="drawingFront"></div>
+            <div class="drawing-note" id="drawingNoteFront">(flat blade + 4 pins)</div>
           </div>
-
-          <!-- Minimalist Question (Layer 2) -->
-          <div>
-            <div class="front-question">
-              Which DVI carries ANALOG for a VGA monitor?
-            </div>
-            <div class="front-subtext">
-              Look at the 4 pins around the flat blade!
-            </div>
+          <div class="front-text-col">
+            <div class="front-big-question" id="questionText">DVI: Which one carries both analog & digital video?</div>
+            <div class="front-hint-scrawl" id="hintText">Look at the pins around the horizontal blade...</div>
           </div>
         </div>
 
-        <div class="card-footer-cta">
-          <span>CompTIA A+ Core 1</span>
-          <span style="color:#2563eb;">Tap to flip card ⟳</span>
-        </div>
+        <div class="tap-to-flip-guide">Click card to flip</div>
       </div>
 
-      <!-- BACK: Complete, Minimalist, Huge Typography -->
-      <div class="card-face s1-card card-back" id="card-back-face">
-        <div class="marker-swipe-red" id="card-marker-back">ANSWER KEY</div>
-        <div class="card-num-scrawl">#14</div>
+      <!-- BACK FACE -->
+      <div class="card-face card-back" id="backFace">
+        <div class="marker-slash" id="markerBack">TRIVIA!</div>
+        <div class="card-num-scrawl" id="cardNumBack">#14</div>
 
-        <div class="back-content-center">
-          <div class="back-answer-huge">
-            ✓ DVI-I (Integrated)
-          </div>
-          <div class="back-rule">
-            • <strong>DVI-I</strong> = Digital + Analog (4 cross pins)
-          </div>
-          <div class="back-rule">
-            • <strong>DVI-D</strong> = Digital ONLY (zero cross pins)
-          </div>
-
-          <div class="back-trap-scrawl">
-            ⚠️ <strong>THE EXAM TRAP:</strong> DVI-D cannot take a passive VGA adapter. It physically won't fit into the blade slot!
-          </div>
+        <div class="back-layout">
+          <div class="back-huge-answer" id="answerText">DVI-I (Integrated)</div>
+          <div class="back-bullet-point" id="rule1Text">- The 4 analog pins around the flat blade carry the VGA signal.</div>
+          <div class="back-bullet-point" id="rule2Text">- If it only has the flat blade and no 4 pins, it is DVI-D (digital only).</div>
+          <div class="back-trap-box" id="trapText">Exam trap: DVI-A is analog only. DVI-D is digital only. DVI-I integrates both.</div>
         </div>
 
-        <div class="card-footer-cta">
-          <span>Pass Thursday, forget Friday</span>
-          <span style="color:#2563eb;">Tap to flip back ⟲</span>
-        </div>
+        <div class="tap-to-flip-guide">Click card to flip</div>
       </div>
 
     </div>
   </div>
 
-  <div class="deck-nav">
-    <button class="nav-btn" onclick="prevCard()">◀ Previous Card</button>
-    <button class="nav-btn primary" onclick="toggleFlip()">⟳ Flip Card</button>
-    <button class="nav-btn" onclick="nextCard()">Next Card ▶</button>
+  <!-- Deck Navigation Controls -->
+  <div class="controls-zone">
+    <button class="ctrl-btn" onclick="prevCard()">Previous Card</button>
+    <button class="ctrl-btn primary" onclick="flipCard()">Flip Card</button>
+    <button class="ctrl-btn" onclick="nextCard()">Next Card</button>
   </div>
 
   <script>
     const deck = [
       {
         num: "#14",
-        band: "RED BAND // TRIVIA",
-        bandColor: "var(--highlighter-red)",
+        tag: "TRIVIA!",
+        tagColor: "var(--highlighter-red)",
         textColor: "#991b1b",
-        q: "Which DVI carries ANALOG for a VGA monitor?",
-        hint: "Look at the 4 pins around the flat blade!",
-        a: "✓ DVI-I (Integrated)",
-        r1: "• DVI-I = Digital + Analog (4 cross pins)",
-        r2: "• DVI-D = Digital ONLY (zero cross pins)",
-        trap: "⚠️ EXAM TRAP: Passive VGA adapter will NOT fit into DVI-D!",
-        svg: `<svg width="220" height="160" viewBox="0 0 200 150" fill="none"><path d="M 20 20 L 180 20 C 186 20 190 25 190 32 L 175 118 C 174 124 170 128 165 128 L 35 128 C 30 128 26 124 25 118 L 10 32 C 10 25 14 20 20 20 Z" stroke="#1e293b" stroke-width="3" fill="#f8fafc" stroke-linecap="round"/><g fill="#0f172a"><circle cx="45" cy="45" r="3.5"/><circle cx="58" cy="45" r="3.5"/><circle cx="71" cy="45" r="3.5"/><circle cx="91" cy="45" r="3.5"/><circle cx="104" cy="45" r="3.5"/><circle cx="117" cy="45" r="3.5"/><circle cx="45" cy="65" r="3.5"/><circle cx="58" cy="65" r="3.5"/><circle cx="71" cy="65" r="3.5"/><circle cx="91" cy="65" r="3.5"/><circle cx="104" cy="65" r="3.5"/><circle cx="117" cy="65" r="3.5"/><circle cx="45" cy="85" r="3.5"/><circle cx="58" cy="85" r="3.5"/><circle cx="71" cy="85" r="3.5"/><circle cx="91" cy="85" r="3.5"/><circle cx="104" cy="85" r="3.5"/><circle cx="117" cy="85" r="3.5"/></g><rect x="135" y="60" width="24" height="8" rx="1" stroke="#1e293b" stroke-width="2.5" fill="#cbd5e1"/><circle cx="140" cy="45" r="3.5" fill="#dc2626"/><circle cx="154" cy="45" r="3.5" fill="#dc2626"/><circle cx="140" cy="85" r="3.5" fill="#dc2626"/><circle cx="154" cy="85" r="3.5" fill="#dc2626"/><path d="M 175 32 Q 165 42 158 44" stroke="#dc2626" stroke-width="2" fill="none"/><polygon points="155,44 161,40 161,48" fill="#dc2626"/></svg>`
+        q: "DVI: Which one carries both analog & digital video?",
+        note: "(flat blade + 4 pins)",
+        hint: "Look at the 4 pins flanking the horizontal blade...",
+        a: "DVI-I (Integrated)",
+        r1: "- The 4 pins around the flat blade carry the VGA analog signal.",
+        r2: "- If it only has the flat blade with zero pins around it, it is DVI-D.",
+        trap: "Exam trap: DVI-A is analog only. DVI-D is digital only. DVI-I integrates both.",
+        svg: `<svg width="250" height="150" viewBox="0 0 240 140" fill="none">
+          <!-- Outer DVI D-shell cartoon ink -->
+          <path d="M 22 25 L 218 25 C 224 25 228 30 228 36 L 228 104 C 228 110 224 115 218 115 L 22 115 C 16 115 12 110 12 104 L 12 36 C 12 30 16 25 22 25 Z" 
+                stroke="#1e293b" stroke-width="3.5" fill="#f8fafc" stroke-linejoin="round"/>
+          <!-- Inner DVI metal shield -->
+          <rect x="24" y="36" width="192" height="68" rx="4" stroke="#334155" stroke-width="2.5" fill="#e2e8f0"/>
+          
+          <!-- Flat Horizontal Blade (Ground) -->
+          <rect x="36" y="67" width="28" height="6" fill="#1e293b" rx="1"/>
+          
+          <!-- 4 ANALOG PINS (C1, C2, C3, C4) -->
+          <circle cx="42" cy="52" r="3.5" fill="#dc2626" stroke="#1e293b" stroke-width="1.5"/>
+          <circle cx="58" cy="52" r="3.5" fill="#dc2626" stroke="#1e293b" stroke-width="1.5"/>
+          <circle cx="42" cy="88" r="3.5" fill="#dc2626" stroke="#1e293b" stroke-width="1.5"/>
+          <circle cx="58" cy="88" r="3.5" fill="#dc2626" stroke="#1e293b" stroke-width="1.5"/>
+          
+          <!-- Digital 24-Pin Grid (8x3) -->
+          <!-- Row 1 -->
+          <circle cx="85" cy="50" r="2.8" fill="#1e293b"/>
+          <circle cx="100" cy="50" r="2.8" fill="#1e293b"/>
+          <circle cx="115" cy="50" r="2.8" fill="#1e293b"/>
+          <circle cx="130" cy="50" r="2.8" fill="#1e293b"/>
+          <circle cx="145" cy="50" r="2.8" fill="#1e293b"/>
+          <circle cx="160" cy="50" r="2.8" fill="#1e293b"/>
+          <circle cx="175" cy="50" r="2.8" fill="#1e293b"/>
+          <circle cx="190" cy="50" r="2.8" fill="#1e293b"/>
+          
+          <!-- Row 2 -->
+          <circle cx="85" cy="70" r="2.8" fill="#1e293b"/>
+          <circle cx="100" cy="70" r="2.8" fill="#1e293b"/>
+          <circle cx="115" cy="70" r="2.8" fill="#1e293b"/>
+          <circle cx="130" cy="70" r="2.8" fill="#1e293b"/>
+          <circle cx="145" cy="70" r="2.8" fill="#1e293b"/>
+          <circle cx="160" cy="70" r="2.8" fill="#1e293b"/>
+          <circle cx="175" cy="70" r="2.8" fill="#1e293b"/>
+          <circle cx="190" cy="70" r="2.8" fill="#1e293b"/>
+          
+          <!-- Row 3 -->
+          <circle cx="85" cy="90" r="2.8" fill="#1e293b"/>
+          <circle cx="100" cy="90" r="2.8" fill="#1e293b"/>
+          <circle cx="115" cy="90" r="2.8" fill="#1e293b"/>
+          <circle cx="130" cy="90" r="2.8" fill="#1e293b"/>
+          <circle cx="145" cy="90" r="2.8" fill="#1e293b"/>
+          <circle cx="160" cy="90" r="2.8" fill="#1e293b"/>
+          <circle cx="175" cy="90" r="2.8" fill="#1e293b"/>
+          <circle cx="190" cy="90" r="2.8" fill="#1e293b"/>
+
+          <!-- Hand-drawn callout arrow pointing to the 4 analog pins -->
+          <path d="M 68 126 C 60 114 55 106 52 98" stroke="#dc2626" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <polygon points="50,94 56,101 48,103" fill="#dc2626"/>
+          <text x="74" y="132" font-family="Permanent Marker" font-size="14" fill="#dc2626">4 ANALOG PINS</text>
+        </svg>`
       },
       {
         num: "#22",
-        band: "RED BAND // TRIVIA",
-        bandColor: "var(--highlighter-red)",
+        tag: "TRIVIA!",
+        tagColor: "var(--highlighter-red)",
         textColor: "#991b1b",
-        q: "What laser printer part burns at 200°C?",
+        q: "What laser printer part melts toner at 200°C?",
+        note: "(heat + pressure rollers)",
         hint: "Mnemonic: Please Clean Every Day To The Finish",
-        a: "✓ The Fuser Assembly",
-        r1: "• Melts plastic toner resin into paper fibers",
-        r2: "• Heat + Pressure rollers (~200°C / 392°F)",
-        trap: "⚠️ EXAM TRAP: If toner smudges on your fingers, Fuser is cold/dead!",
-        svg: `<svg width="220" height="160" viewBox="0 0 200 150" fill="none"><circle cx="100" cy="50" r="35" stroke="#1e293b" stroke-width="3" fill="#fee2e2"/><circle cx="100" cy="115" r="28" stroke="#1e293b" stroke-width="3" fill="#e2e8f0"/><line x1="20" y1="83" x2="180" y2="83" stroke="#000" stroke-width="3"/><path d="M 90 40 Q 100 20 110 40" stroke="#ef4444" stroke-width="3" fill="none"/><text x="85" y="55" font-family="Patrick Hand" font-size="16" fill="#dc2626">HEAT</text><text x="82" y="120" font-family="Patrick Hand" font-size="13" fill="#475569">PRESSURE</text></svg>`
+        a: "The Fuser Assembly",
+        r1: "- Melts plastic toner resin directly into the paper fibers.",
+        r2: "- Built from a heated halogen roller (~200°C / 392°F) and a rubber pressure roller.",
+        trap: "Exam trap: If toner smudges off on your fingers like powder, the fuser is dead or cold.",
+        svg: `<svg width="240" height="150" viewBox="0 0 220 140" fill="none">
+          <!-- Top Heat Roller -->
+          <circle cx="110" cy="46" r="32" stroke="#1e293b" stroke-width="3.5" fill="#fee2e2"/>
+          <circle cx="110" cy="46" r="14" stroke="#dc2626" stroke-width="2" stroke-dasharray="4 3" fill="#fecaca"/>
+          <text x="96" y="52" font-family="Permanent Marker" font-size="15" fill="#dc2626">HEAT</text>
+          
+          <!-- Paper Passing Through -->
+          <line x1="25" y1="78" x2="195" y2="78" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round"/>
+          
+          <!-- Bottom Pressure Roller -->
+          <circle cx="110" cy="110" r="26" stroke="#1e293b" stroke-width="3.5" fill="#e2e8f0"/>
+          <text x="82" y="115" font-family="Patrick Hand" font-size="15" font-weight="700" fill="#475569">PRESSURE</text>
+          
+          <!-- Melted Toner Particles -->
+          <circle cx="50" cy="74" r="3.5" fill="#0f172a"/>
+          <circle cx="65" cy="74" r="3.5" fill="#0f172a"/>
+          <circle cx="80" cy="74" r="3.5" fill="#0f172a"/>
+          
+          <path d="M 140 78 L 190 78" stroke="#16a34a" stroke-width="5" stroke-linecap="round"/>
+          <text x="142" y="96" font-family="Permanent Marker" font-size="13" fill="#16a34a">MELTED IN</text>
+        </svg>`
       },
       {
         num: "#03",
-        band: "GREEN BAND // ANATOMY",
-        bandColor: "var(--highlighter-green)",
+        tag: "HARDWARE",
+        tagColor: "var(--highlighter-green)",
         textColor: "#14532d",
-        q: "Power cuts out. What loses its memory?",
-        hint: "Volatile vs Non-Volatile boundary",
-        a: "✓ RAM (Dynamic Volatile)",
-        r1: "• RAM needs electrical refresh cycles to hold bits",
-        r2: "• Storage (SSD / HDD / Flash) keeps bits with zero power",
-        trap: "⚠️ SHOP REALITY: Rebooting clears malware from RAM, not disk!",
-        svg: `<svg width="220" height="160" viewBox="0 0 200 150" fill="none"><rect x="30" y="45" width="140" height="45" rx="3" stroke="#1e293b" stroke-width="3" fill="#dcfce7"/><rect x="45" y="55" width="20" height="25" fill="#15803d"/><rect x="75" y="55" width="20" height="25" fill="#15803d"/><rect x="105" y="55" width="20" height="25" fill="#15803d"/><rect x="135" y="55" width="20" height="25" fill="#15803d"/><path d="M 40 90 L 40 98 M 60 90 L 60 98 M 80 90 L 80 98 M 100 90 L 100 98 M 120 90 L 120 98 M 140 90 L 140 98 M 160 90 L 160 98" stroke="#15803d" stroke-width="2.5"/><text x="65" y="35" font-family="Patrick Hand" font-size="18" fill="#15803d">VOLATILE RAM</text></svg>`
+        q: "Power cuts out. What loses its memory instantly?",
+        note: "(volatile vs non-volatile)",
+        hint: "Which component needs constant electrical refresh cycles to hold bits?",
+        a: "RAM (Dynamic Volatile)",
+        r1: "- RAM requires continuous electrical refresh cycles to hold bits in capacitors.",
+        r2: "- Storage (SSD, HDD, USB Flash) is non-volatile; keeps bits indefinitely with zero power.",
+        trap: "Shop reality: Rebooting flushes RAM clean of crash states. It does not touch malware on disk.",
+        svg: `<svg width="240" height="150" viewBox="0 0 220 140" fill="none">
+          <!-- RAM PCB Stick -->
+          <rect x="25" y="45" width="170" height="48" rx="4" stroke="#1e293b" stroke-width="3.5" fill="#dcfce7"/>
+          
+          <!-- Memory Chips -->
+          <rect x="42" y="55" width="22" height="28" rx="2" fill="#15803d" stroke="#0f172a" stroke-width="2"/>
+          <rect x="76" y="55" width="22" height="28" rx="2" fill="#15803d" stroke="#0f172a" stroke-width="2"/>
+          <rect x="110" y="55" width="22" height="28" rx="2" fill="#15803d" stroke="#0f172a" stroke-width="2"/>
+          <rect x="144" y="55" width="22" height="28" rx="2" fill="#15803d" stroke="#0f172a" stroke-width="2"/>
+          
+          <!-- Gold Contacts at Bottom -->
+          <line x1="35" y1="93" x2="35" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="45" y1="93" x2="45" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="55" y1="93" x2="55" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="65" y1="93" x2="65" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="75" y1="93" x2="75" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="85" y1="93" x2="85" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="95" y1="93" x2="95" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="120" y1="93" x2="120" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="130" y1="93" x2="130" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="140" y1="93" x2="140" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="150" y1="93" x2="150" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="160" y1="93" x2="160" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="170" y1="93" x2="170" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+          <line x1="180" y1="93" x2="180" y2="103" stroke="#ca8a04" stroke-width="3.5"/>
+
+          <text x="65" y="34" font-family="Permanent Marker" font-size="16" fill="#15803d">VOLATILE (DRAM)</text>
+        </svg>`
       }
     ];
 
     let currentCardIdx = 0;
+    const stage = document.getElementById('cardStage');
     const flipper = document.getElementById('flipper');
 
-    function toggleFlip() {
+    function flipCard() {
       flipper.classList.toggle('is-flipped');
     }
 
-    function renderCurrentCard() {
+    function renderCard() {
       const c = deck[currentCardIdx];
-      // Front
-      document.querySelector('#card-front-face .card-num-scrawl').textContent = c.num;
-      const markerF = document.getElementById('card-marker');
-      markerF.textContent = c.band;
-      markerF.style.background = c.bandColor;
-      markerF.style.color = c.textColor;
 
-      document.querySelector('.drawing-box').innerHTML = c.svg;
-      document.querySelector('.front-question').textContent = c.q;
-      document.querySelector('.front-subtext').textContent = c.hint;
+      // Front
+      document.getElementById('cardNumFront').textContent = c.num;
+      const mf = document.getElementById('markerFront');
+      mf.textContent = c.tag;
+      mf.style.background = c.tagColor;
+      mf.style.color = c.textColor;
+
+      document.getElementById('drawingFront').innerHTML = c.svg;
+      document.getElementById('drawingNoteFront').textContent = c.note;
+      document.getElementById('questionText').textContent = c.q;
+      document.getElementById('hintText').textContent = c.hint;
 
       // Back
-      document.querySelector('#card-back-face .card-num-scrawl').textContent = c.num;
-      const markerB = document.getElementById('card-marker-back');
-      markerB.style.background = c.bandColor;
-      markerB.style.color = c.textColor;
+      document.getElementById('cardNumBack').textContent = c.num;
+      const mb = document.getElementById('markerBack');
+      mb.textContent = c.tag;
+      mb.style.background = c.tagColor;
+      mb.style.color = c.textColor;
 
-      document.querySelector('.back-answer-huge').textContent = c.a;
-      const rules = document.querySelectorAll('.back-rule');
-      rules[0].innerHTML = c.r1;
-      rules[1].innerHTML = c.r2;
-      document.querySelector('.back-trap-scrawl').innerHTML = c.trap;
+      document.getElementById('answerText').textContent = c.a;
+      document.getElementById('rule1Text').textContent = c.r1;
+      document.getElementById('rule2Text').textContent = c.r2;
+      document.getElementById('trapText').textContent = c.trap;
     }
 
     function nextCard() {
       flipper.classList.remove('is-flipped');
       setTimeout(() => {
         currentCardIdx = (currentCardIdx + 1) % deck.length;
-        renderCurrentCard();
+        renderCard();
       }, 150);
     }
 
@@ -508,22 +662,19 @@
       flipper.classList.remove('is-flipped');
       setTimeout(() => {
         currentCardIdx = (currentCardIdx - 1 + deck.length) % deck.length;
-        renderCurrentCard();
+        renderCard();
       }, 150);
     }
 
-    function switchCardStyle(style) {
+    function setCardStyle(styleClass, btn) {
       document.querySelectorAll('.style-tab-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
+      btn.classList.add('active');
 
-      const front = document.getElementById('card-front-face');
-      const back = document.getElementById('card-back-face');
-      front.className = 'card-face ' + style + '-card';
-      back.className = 'card-face ' + style + '-card card-back';
+      stage.className = 'card-stage ' + styleClass;
     }
 
     // Initial render
-    renderCurrentCard();
+    renderCard();
   </script>
 </body>
 </html>
