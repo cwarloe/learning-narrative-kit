@@ -12,9 +12,11 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   
   <!-- LNK Custom Theme & Components -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&display=swap">
   <link rel="stylesheet" href="assets/lnk-theme.css">
   <link rel="stylesheet" href="assets/lnk-terminal.css">
   <link rel="stylesheet" href="assets/lnk-panel.css">
+  <link rel="stylesheet" href="assets/lnk-job-aid.css">
 </head>
 <body>
   <div id="app">Loading Learning Narrative Kit...</div>
@@ -303,6 +305,38 @@
                   targetEl.classList.add('flash');
                   setTimeout(function() { targetEl.classList.remove('flash'); }, 1400);
                 }
+              });
+            });
+
+            // Bind Job Aid tab buttons
+            document.querySelectorAll('.lnk-job-aid-card').forEach(function(card) {
+              const tabBtns = card.querySelectorAll('.aid-tab-btn');
+              const faceA = card.querySelector('.aid-face.side-a');
+              const faceB = card.querySelector('.aid-face.side-b');
+              
+              tabBtns.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  const target = btn.getAttribute('data-target');
+                  tabBtns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+                  btn.classList.add('active');
+                  btn.setAttribute('aria-pressed', 'true');
+                  
+                  if (target === 'side-a') {
+                    if (faceA) faceA.classList.add('active');
+                    if (faceB) faceB.classList.remove('active');
+                  } else {
+                    if (faceB) faceB.classList.add('active');
+                    if (faceA) faceA.classList.remove('active');
+                  }
+                });
+              });
+            });
+
+            // Bind Passport Flashcard Flip handler
+            document.querySelectorAll('.passport-card').forEach(function(card) {
+              card.addEventListener('click', function() {
+                card.classList.toggle('flipped');
               });
             });
 

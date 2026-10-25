@@ -76,6 +76,52 @@ The certification voucher buys an HR passport. But once you walk through the cor
 
 ## 2. Technical Reference & Triage Matrix
 
+```job-aid
+band: yellow
+id: slate-0-identity
+title: "Slate 0: The Core Machine & Identity Compass"
+form: "4x6"
+side_a_label: "Side A: Decision Flow"
+side_b_label: "Side B: Invariants & Telemetry"
+---
+### SIDE A: Core Triage Decision Ladder
+
+```mermaid
+flowchart TD
+    S["Observed Failure / Ticket Drop"] --> L1{"1. Physical & Power (Layer 1)<br/>LEDs on? Fans spinning? Relays click?"}
+    L1 -- No --> P1["Triage Power Supply / Rails (Green Band)<br/>Check 12V / 5V rails & fuses with DMM"]
+    L1 -- Yes --> L2{"2. System Integrity (Firmware / POST)<br/>POST beeps? Hex code halts? Screen displays?"}
+    L2 -- Halts --> P2["Triage Memory / Bus / Expansion<br/>Reseat RAM, drain flea power, check capacitors"]
+    L2 -- Clears --> L3{"3. Storage Persistence (OS Boot)<br/>Loads kernel from non-volatile disk?"}
+    L3 -- Fails --> P3["Triage Disk / Partition / BCD<br/>Check SMART logs, boot order, file tables"]
+    L3 -- Boots --> L4{"4. Network Identity (Layer 2 / 3)<br/>Valid IP or 169.254.x.x APIPA timeout?"}
+    L4 -- APIPA --> P4["Triage DHCP / Scope Exhaustion<br/>Check link lights, renew lease, check relay"]
+    L4 -- Valid IP --> L5{"5. Layer 3 Routing (Gateway)<br/>Ping local gateway vs remote IP"}
+    L5 -- Fails GW --> P5["Triage Local Switch & Default Gateway"]
+    L5 -- Passes GW --> P6["Triage DNS (Layer 7) & Sockets (Layer 4)"]
+```
+
+1. **The Machine Has No Magic:** Never troubleshoot software when physical LEDs or power rails fluctuate.
+2. **Binary Search Protocol:** Test the midpoint (Default Gateway) before guessing internet or DNS failure.
+---
+### SIDE B: System Invariants & CLI Command Primitives
+
+| Subsystem | Physical Medium | Volatility | Failure Tell | Primary CLI Telemetry |
+|:---|:---|:---|:---|:---|
+| **1. Compute (CPU)** | Silicon ALU / Core Registers | **Volatile** (Zeroed on reset) | Instant thermal halt, POST `00`/`FF` | `wmic cpu get status` / BIOS Health |
+| **2. Memory (RAM)** | DRAM Transistor-Capacitor Cells | **Volatile** (Requires refresh) | BSOD `MEMORY_MANAGEMENT`, POST beeps | `wmic memorychip get speed,capacity` |
+| **3. Storage (Disk)** | NAND Flash / Magnetic Platter | **Non-Volatile** (Persists) | "OS Not Found", SMART disk errors | `diskmgmt.msc` / `chkdsk` / SMART logs |
+| **4. Network (NIC)** | Ethernet PHY / MAC Transceiver | **Mixed** (Firmware MAC persists) | APIPA `169.254.x.x`, dark link LEDs | `ipconfig /all` / `getmac` / `ping` |
+
+#### The Five-Step Ping Ladder:
+1. `ping 127.0.0.1` — Verifies local TCP/IP kernel stack (tcpip.sys).
+2. `ping <Host_IP>` — Verifies local NIC driver binding.
+3. `ping <Gateway_IP>` — Verifies physical cable/switch link to local router.
+4. `ping 8.8.8.8` — Verifies WAN routing and internet transit.
+5. `ping google.com` — Verifies DNS name resolution.
+```
+
+
 ### 2.1 The 4 Core Building Blocks of a Computer
 Across microcontrollers, smartphones, enterprise servers, and industrial sorting terminals, all von Neumann digital computers consist of four immutable subsystems:
 
@@ -268,7 +314,9 @@ Ethernet adapter Local Area Connection:
 
 ## 3. Quick Checks & Skill Reps
 
-### Drill 1: Volatile vs. Non-Volatile Artifact Isolation
+### Drill 1: Symmetrical Challenge (Incident 00.2 / Ticket B) — The Panic Power Cut
+
+> **Ticket Drop:** `T1-INIT-2026-002` • Priority: P2-High • Subsystem: Component 2 (Memory) vs Component 3 (Storage)
 **Scenario:** A user reports that their computer opened an unauthorized browser popup at 09:15 AM claiming their files were encrypted. The desktop background changed to a red warning screen. The user panicked, pulled the physical power cord from the wall outlet, and walked the tower down to the help desk.
 
 ```
@@ -397,9 +445,13 @@ ping 127.0.0.1: |
   Pinging 127.0.0.1 with 32 bytes of data:
   Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
   Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
+  Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
+  Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
   
   Ping statistics for 127.0.0.1:
-      Packets: Sent = 2, Received = 2, Lost = 0 (0% loss)
+      Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+  Approximate round trip times in milli-seconds:
+      Minimum = 0ms, Maximum = 0ms, Average = 0ms
   [OK] Internal TCP/IP loopback stack is healthy.
 
 ipconfig: |
@@ -470,7 +522,9 @@ ipconfig: |
 
 ---
 
-#### Case 3: Local Network Functional, Internet Down
+#### Case 3: Edge-Case Trap (Incident 00.3 / Ticket C) — Local Network Functional, Internet Down
+
+> **Ticket Drop:** `T1-INIT-2026-003` • Priority: P3-Normal • Subsystem: Component 4 (Communication / Layer 3 Routing)
 - **Symptom:** A user can print to the shared office network printer at `192.168.1.200` and can ping their desk neighbor at `192.168.1.55`. However, attempting to navigate to `google.com` or pinging `8.8.8.8` returns "Destination host unreachable."
 - **Your Task:** Isolate the exact network configuration parameter responsible using the Identity Triad.
 
@@ -517,6 +571,49 @@ ipconfig: |
   ```
   This command displays the listening socket and outputs the owning **Process Identifier (PID)** in the rightmost column. You can then cross-reference the PID in Task Manager or execute `tasklist /fi "PID eq <number>"` to identify and stop the conflicting service.
 </details>
+
+
+---
+
+### Quick Check 4: The Red Band Passport Deck (Atomic Active Retrieval)
+
+> **The Red Rubber Band Standard:** Test only one abstract concept per card. If saying the answer aloud takes more than 10 seconds, the card is overloaded. Click any card to flip between Question and Answer.
+
+<div class="passport-deck-container">
+  <div class="passport-deck-header">
+    <span class="passport-deck-badge">RED BAND // ATOMIC RECALL DECK</span>
+    <span class="passport-deck-meta">3 Cards • Spaced Retrieval Warmup • CompTIA A+ Core 1</span>
+  </div>
+  
+  <div class="passport-card-stage">
+    <!-- Card 1 -->
+    <div class="passport-card" id="card-00-1" tabindex="0" role="button" aria-label="Flashcard: Memory Volatility">
+      <div class="passport-face face-front">
+        <span class="passport-highlight-bar">BOUNDARY // VOLATILITY</span>
+        <div class="passport-prompt-text">Power cuts abruptly during an office outage. Does data in RAM survive the drop? (Yes/No and Why)</div>
+        <div class="passport-footer-prompt">
+          <span>Card 1 of 3</span>
+          <span>[ ⟳ Click to Flip ]</span>
+        </div>
+      </div>
+      <div class="passport-face face-back">
+        <span class="passport-highlight-bar">GROUND TRUTH // THE LAW</span>
+        <div class="passport-answer-text">
+          <div class="passport-answer-rule">NO. Dynamic RAM is 100% volatile.</div>
+          <div class="passport-why-text">DRAM stores bits as electrical charges inside microscopic capacitor cells that require continuous refresh cycles every 64ms. The instant power drops, the charge dissipates, wiping all active processes, kernel tables, and in-memory malware immediately.</div>
+        </div>
+        <div class="passport-footer-prompt">
+          <span>Target Recall: &lt; 10 Seconds</span>
+          <span>[ ⟳ Click to Flip ]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="passport-deck-nav">
+    <button type="button" class="passport-btn" onclick="document.getElementById('card-00-1').classList.toggle('flipped')">Flip Card (Spacebar)</button>
+  </div>
+</div>
 
 
 ---
@@ -590,6 +687,59 @@ USER NAME    : ____________________________ ASSET TAG : ________________________
    - Action Taken: _____________________________________________________________________
    - System Functionality Verified: [ ] YES  [ ] NO
    - Preventative Advice Given to User: _______________________________________________
+========================================================================================
+```
+
+
+---
+
+### Part C: Standard 3-Block Ticket Resolution Note (ServiceNow / Jira Standard)
+
+Before closing Incident `T1-INIT-2026-002`, draft the formal 3-Block passdown note separating internal technician telemetry from user-facing guidance:
+
+```
+========================================================================================
+ENTERPRISE INCIDENT RESOLUTION RECORD · SERVICE DESK TIER 1
+========================================================================================
+INCIDENT ID   : INC0048192 / T1-INIT-2026-002
+ASSET TAG     : ACCT-WS-09 (Dell OptiPlex 7090)
+CALLER        : Maya Lin (Accounting Supervisor)
+CATEGORY      : Endpoint Security > Malware Containment & Volatility Triage
+PRIORITY      : P2 - High (Financial workstation suspected compromise)
+STATUS        : RESOLVED / PENDING SOC REVIEW
+
+----------------------------------------------------------------------------------------
+BLOCK 1: INTERNAL WORK NOTES (TECHNICAL TELEMETRY LEDGER)
+----------------------------------------------------------------------------------------
+- 09:20 PDT: User reported ransomware lock screen popup; user severed AC wall power cord.
+- Ground Truth Diagnosis (Slate 0 Volatility Rule):
+  * Volatile memory space (RAM): Purged upon power cut. Active process execution, unwritten
+    encryption keys, and C2 network sockets permanently lost.
+  * Non-volatile storage space (NVMe SSD): Intact. Dropped payload in %AppData% and
+    malicious Registry Run keys persist on disk.
+- Containment Action:
+  * Disconnected RJ-45 Ethernet cable prior to powering on system.
+  * Booted host into isolated offline WinPE environment to verify persistence entries.
+  * Located dropper artifact: C:\Users\mlin\AppData\Local\Temp\invoice_update.exe
+  * Exported SHA-256 hash to CSIRT triage channel: e3b0c44298fc1c149afbf4c8996fb92427...
+- Verification: Host rebooted cleanly in safe isolation; network link maintained down
+  pending SOC endpoint scan completion.
+
+----------------------------------------------------------------------------------------
+BLOCK 2: CUSTOMER / SHIFT PASSDOWN SUMMARY
+----------------------------------------------------------------------------------------
+- Operational Impact: Workstation ACCT-WS-09 was safely quarantined following a deceptive
+  phishing popup. No file encryption occurred across shared department drives.
+- Action Taken: Technician isolated the workstation from the network, verified disk
+  integrity, and referred the malicious download artifact to Information Security.
+- Next Steps: Loaner laptop LAP-T1-04 provisioned for Maya Lin to complete morning payroll.
+  Primary workstation undergoing secondary EDR sweep before return to service.
+
+----------------------------------------------------------------------------------------
+BLOCK 3: LEAD TECHNICIAN SIGN-OFF
+----------------------------------------------------------------------------------------
+LEAD SIGN-OFF : Jules Mercer (Tier 2 Lead)          DATE: 2026-07-16 11:15 PDT
+DISPOSITION   : APPROVED · Clean isolation; no premature network reconnection.
 ========================================================================================
 ```
 
