@@ -90,18 +90,29 @@
       aside = document.createElement('aside');
       aside.id = 'lnk-glossary-aside';
       aside.innerHTML = `
-        <h3>Domain Glossary</h3>
-        <div class="sidebar-meta" id="term-count">Loading terms…</div>
-        <div class="filter-bar" role="group" aria-label="Vocabulary Category Filter">
-          <button type="button" class="filter-btn active" data-cat="all">All</button>
-          <button type="button" class="filter-btn" data-cat="telemetry">Telemetry</button>
-          <button type="button" class="filter-btn" data-cat="architecture">Architecture</button>
-          <button type="button" class="filter-btn" data-cat="analytical">Analytical</button>
-          <button type="button" class="filter-btn" data-cat="pedagogy">Pedagogy</button>
+        <div class="glossary-header-bar">
+          <div class="glossary-title-wrap">
+            <span class="glossary-icon">📚</span>
+            <div>
+              <h3>Active Domain Glossary & Technical Concept Index</h3>
+              <div class="sidebar-meta" id="term-count">Loading terms…</div>
+            </div>
+          </div>
+          <div class="glossary-filter-controls">
+            <div class="filter-bar" role="group" aria-label="Vocabulary Category Filter">
+              <button type="button" class="filter-btn active" data-cat="all">All</button>
+              <button type="button" class="filter-btn" data-cat="telemetry">Telemetry</button>
+              <button type="button" class="filter-btn" data-cat="architecture">Architecture</button>
+              <button type="button" class="filter-btn" data-cat="analytical">Analytical</button>
+              <button type="button" class="filter-btn" data-cat="pedagogy">Pedagogy</button>
+            </div>
+            <input type="text" id="search-box" placeholder="Filter terms or concepts…" autocomplete="off">
+          </div>
         </div>
-        <input type="text" id="search-box" placeholder="Filter terms or concepts…" autocomplete="off">
-        <div class="term-list" id="term-list"></div>
-        <div class="detail-panel empty" id="detail-panel">Select a highlighted term in prose or list to inspect definition.</div>
+        <div class="glossary-split-deck">
+          <div class="term-list" id="term-list"></div>
+          <div class="detail-panel empty" id="detail-panel">Select a highlighted term in prose or from the index to inspect its formal engineering definition.</div>
+        </div>
       `;
       content.appendChild(aside);
 
@@ -220,16 +231,14 @@
 
   function bindInStoryTermClicks() {
     document.querySelectorAll('.term').forEach(function (el) {
-      el.addEventListener('click', function () {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
         const id = el.getAttribute('data-term');
         selectTerm(id, false);
 
-        // Mobile responsiveness: scroll to detail panel
-        if (window.innerWidth < 1100) {
-          const detailPanel = document.getElementById('detail-panel');
-          if (detailPanel) {
-            detailPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
+        const detailPanel = document.getElementById('detail-panel');
+        if (detailPanel) {
+          detailPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       });
     });
