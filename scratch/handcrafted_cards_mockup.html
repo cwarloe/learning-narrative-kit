@@ -5,7 +5,29 @@
   <title>Ethan's Authentic 3x5 Study Flashcards — 4 Gritty Handcrafted Variations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Handwriting, Drafting, Marker & Comic Fonts -->
+  <!-- Local Comic Fonts from CSS Author (@font-face) -->
+  <style>
+    @font-face {
+      font-family: 'Komika Text';
+      src: url('assets/fonts/komika-text.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Komika Axis';
+      src: url('assets/fonts/komika-axis.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Anime Ace';
+      src: url('assets/fonts/anime-ace.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <!-- Handwriting, Drafting, Marker & Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@700&family=Comic+Neue:ital,wght@1,700&family=Gochi+Hand&family=Kalam:wght@700&family=Patrick+Hand&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
@@ -70,43 +92,152 @@
     }
 
     /* Font Mode Classes */
-    .font-patrick .front-big-question { font-family: 'Patrick Hand', cursive; text-transform: none; font-style: normal; }
-    .font-patrick .back-huge-answer { font-family: 'Patrick Hand', cursive; text-transform: none; font-style: normal; }
-    .font-patrick .back-bullet-point { font-family: 'Patrick Hand', cursive; text-transform: none; font-style: normal; }
+    /* 1. Komika Text (The DC Comics Narrative Box Standard) */
+    .font-komika-text .front-big-question { 
+      font-family: 'Komika Text', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.04em; 
+      font-size: 2.25rem; 
+      line-height: 1.18; 
+      color: #0f172a;
+    }
+    .font-komika-text .back-huge-answer { 
+      font-family: 'Komika Text', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.04em; 
+      font-size: 3rem; 
+      line-height: 1;
+      color: #15803d;
+    }
+    .font-komika-text .back-bullet-point { 
+      font-family: 'Komika Text', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      font-size: 1.4rem; 
+      line-height: 1.35;
+      color: #1e293b;
+    }
+    .font-komika-text .back-trap-box { 
+      font-family: 'Komika Text', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      font-size: 1.35rem; 
+      color: var(--pen-red);
+    }
 
-    .font-dccomic .front-big-question { 
+    /* 2. Komika Axis (Heavy DC Action Caption) */
+    .font-komika-axis .front-big-question { 
+      font-family: 'Komika Axis', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      font-size: 2.15rem; 
+      line-height: 1.2; 
+    }
+    .font-komika-axis .back-huge-answer { 
+      font-family: 'Komika Axis', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      font-size: 2.9rem; 
+      color: #15803d;
+    }
+    .font-komika-axis .back-bullet-point { 
+      font-family: 'Komika Axis', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.02em; 
+      font-size: 1.35rem; 
+      line-height: 1.35;
+    }
+    .font-komika-axis .back-trap-box { 
+      font-family: 'Komika Axis', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      font-size: 1.25rem; 
+    }
+
+    /* 3. Anime Ace (Blambot Comic Dialogue) */
+    .font-anime-ace .front-big-question { 
+      font-family: 'Anime Ace', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      font-size: 1.95rem; 
+      line-height: 1.28; 
+    }
+    .font-anime-ace .back-huge-answer { 
+      font-family: 'Anime Ace', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      font-size: 2.7rem; 
+      color: #15803d;
+    }
+    .font-anime-ace .back-bullet-point { 
+      font-family: 'Anime Ace', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.02em; 
+      font-size: 1.25rem; 
+      line-height: 1.45;
+    }
+    .font-anime-ace .back-trap-box { 
+      font-family: 'Anime Ace', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      font-size: 1.2rem; 
+    }
+
+    /* 4. Comic Neue (Modern Digital Comic) */
+    .font-comic-neue .front-big-question { 
       font-family: 'Comic Neue', cursive; 
       font-style: italic; 
       font-weight: 700; 
       text-transform: uppercase; 
       letter-spacing: 0.04em; 
-      font-size: 2.2rem;
-      line-height: 1.2;
+      font-size: 2.2rem; 
+      line-height: 1.2; 
     }
-    .font-dccomic .back-huge-answer { 
+    .font-comic-neue .back-huge-answer { 
       font-family: 'Comic Neue', cursive; 
       font-style: italic; 
       font-weight: 700; 
       text-transform: uppercase; 
       letter-spacing: 0.04em; 
-      font-size: 3rem;
+      font-size: 3rem; 
+      color: #15803d;
     }
-    .font-dccomic .back-bullet-point { 
+    .font-comic-neue .back-bullet-point { 
       font-family: 'Comic Neue', cursive; 
       font-style: italic; 
       font-weight: 700; 
       text-transform: uppercase; 
       letter-spacing: 0.03em; 
-      font-size: 1.35rem;
+      font-size: 1.35rem; 
+    }
+    .font-comic-neue .back-trap-box { 
+      font-family: 'Comic Neue', cursive; 
+      font-style: italic; 
+      font-weight: 700; 
+      text-transform: uppercase; 
+      font-size: 1.3rem; 
     }
 
-    .font-draft .front-big-question { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; }
-    .font-draft .back-huge-answer { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; }
-    .font-draft .back-bullet-point { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; }
+    /* 5. Patrick Hand (Natural Marker Pen Baseline) */
+    .font-patrick .front-big-question { font-family: 'Patrick Hand', cursive; text-transform: none; font-style: normal; font-size: 2.6rem; }
+    .font-patrick .back-huge-answer { font-family: 'Patrick Hand', cursive; text-transform: none; font-style: normal; font-size: 3.5rem; }
+    .font-patrick .back-bullet-point { font-family: 'Patrick Hand', cursive; text-transform: none; font-style: normal; font-size: 1.7rem; }
+    .font-patrick .back-trap-box { font-family: 'Gochi Hand', cursive; text-transform: none; font-style: normal; font-size: 1.55rem; }
 
-    .font-caveat .front-big-question { font-family: 'Caveat', cursive; text-transform: none; font-style: normal; font-weight: 700; font-size: 2.8rem; }
-    .font-caveat .back-huge-answer { font-family: 'Caveat', cursive; text-transform: none; font-style: normal; font-weight: 700; font-size: 3.8rem; }
-    .font-caveat .back-bullet-point { font-family: 'Caveat', cursive; text-transform: none; font-style: normal; font-weight: 700; font-size: 1.8rem; }
+    /* 6. Architects Daughter (Blueprint Drafting) */
+    .font-draft .front-big-question { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; font-size: 2.3rem; }
+    .font-draft .back-huge-answer { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; font-size: 3.1rem; }
+    .font-draft .back-bullet-point { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; font-size: 1.45rem; }
+    .font-draft .back-trap-box { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; font-size: 1.35rem; }
 
     .selector-label {
       font-size: 0.82rem;
@@ -122,16 +253,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 1.5rem;
-      gap: 0.4rem;
-    }
-      display: flex;
+      margin-bottom: 2rem;
       gap: 0.6rem;
+    }
+
+    .style-switcher {
+      display: flex;
+      gap: 0.5rem;
       background: #111827;
       padding: 0.4rem;
       border-radius: 10px;
       border: 1px solid #374151;
-      margin-bottom: 2.2rem;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -478,17 +610,19 @@
       <button class="style-tab-btn" onclick="setCardStyle('style-manila', this)">Heavy Manila / Shop Floor</button>
     </div>
 
-    <div class="selector-label">2. Typography & Comic Lettering Style</div>
+    <div class="selector-label">2. Typography & Comic Lettering Style (From CSS Author)</div>
     <div class="style-switcher">
-      <button class="style-tab-btn active" onclick="setFontMode('font-patrick', this)">Ethan's Pen (Patrick Hand)</button>
-      <button class="style-tab-btn" onclick="setFontMode('font-dccomic', this)">DC Comics Box (Comic Neue Italic Caps - CSS Author)</button>
+      <button class="style-tab-btn active" onclick="setFontMode('font-komika-text', this)">Komika Text (DC Comics Narrative Box)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-komika-axis', this)">Komika Axis (Heavy DC Caption)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-anime-ace', this)">Anime Ace (Blambot Dialogue)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-comic-neue', this)">Comic Neue (Digital Comic)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-patrick', this)">Ethan's Pen (Patrick Hand)</button>
       <button class="style-tab-btn" onclick="setFontMode('font-draft', this)">Blueprint Drafting (Architects Daughter)</button>
-      <button class="style-tab-btn" onclick="setFontMode('font-caveat', this)">Gritty Heavy Marker (Caveat 700)</button>
     </div>
   </div>
 
   <!-- 3x5 Card Stage -->
-  <div class="card-stage style-white font-patrick" id="cardStage" onclick="flipCard()">
+  <div class="card-stage style-white font-komika-text" id="cardStage" onclick="flipCard()">
     <div class="card-flipper" id="flipper">
 
       <!-- FRONT FACE -->
@@ -732,7 +866,7 @@
     }
 
     let currentCardStyle = 'style-white';
-    let currentFontStyle = 'font-patrick';
+    let currentFontStyle = 'font-komika-text';
 
     function setCardStyle(styleClass, btn) {
       btn.closest('.style-switcher').querySelectorAll('.style-tab-btn').forEach(b => b.classList.remove('active'));
