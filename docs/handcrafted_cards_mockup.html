@@ -5,10 +5,10 @@
   <title>Ethan's Authentic 3x5 Study Flashcards — 4 Gritty Handcrafted Variations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Handwriting, Drafting & Marker Fonts -->
+  <!-- Handwriting, Drafting, Marker & Comic Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@700&family=Gochi+Hand&family=Kalam:wght@700&family=Patrick+Hand&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@700&family=Comic+Neue:ital,wght@1,700&family=Gochi+Hand&family=Kalam:wght@700&family=Patrick+Hand&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -69,8 +69,62 @@
       line-height: 1.5;
     }
 
-    /* Style Selector Tabs */
-    .style-switcher {
+    /* Font Mode Classes */
+    .font-patrick .front-big-question { font-family: 'Patrick Hand', cursive; text-transform: none; font-style: normal; }
+    .font-patrick .back-huge-answer { font-family: 'Patrick Hand', cursive; text-transform: none; font-style: normal; }
+    .font-patrick .back-bullet-point { font-family: 'Patrick Hand', cursive; text-transform: none; font-style: normal; }
+
+    .font-dccomic .front-big-question { 
+      font-family: 'Comic Neue', cursive; 
+      font-style: italic; 
+      font-weight: 700; 
+      text-transform: uppercase; 
+      letter-spacing: 0.04em; 
+      font-size: 2.2rem;
+      line-height: 1.2;
+    }
+    .font-dccomic .back-huge-answer { 
+      font-family: 'Comic Neue', cursive; 
+      font-style: italic; 
+      font-weight: 700; 
+      text-transform: uppercase; 
+      letter-spacing: 0.04em; 
+      font-size: 3rem;
+    }
+    .font-dccomic .back-bullet-point { 
+      font-family: 'Comic Neue', cursive; 
+      font-style: italic; 
+      font-weight: 700; 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      font-size: 1.35rem;
+    }
+
+    .font-draft .front-big-question { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; }
+    .font-draft .back-huge-answer { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; }
+    .font-draft .back-bullet-point { font-family: 'Architects Daughter', cursive; text-transform: none; font-style: normal; }
+
+    .font-caveat .front-big-question { font-family: 'Caveat', cursive; text-transform: none; font-style: normal; font-weight: 700; font-size: 2.8rem; }
+    .font-caveat .back-huge-answer { font-family: 'Caveat', cursive; text-transform: none; font-style: normal; font-weight: 700; font-size: 3.8rem; }
+    .font-caveat .back-bullet-point { font-family: 'Caveat', cursive; text-transform: none; font-style: normal; font-weight: 700; font-size: 1.8rem; }
+
+    .selector-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .selector-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      gap: 0.4rem;
+    }
       display: flex;
       gap: 0.6rem;
       background: #111827;
@@ -414,16 +468,27 @@
     </div>
   </div>
 
-  <!-- Style Switcher Tabs -->
-  <div class="style-switcher">
-    <button class="style-tab-btn active" onclick="setCardStyle('style-white', this)">1. Minimalist White (Angled & Cartoon Edges)</button>
-    <button class="style-tab-btn" onclick="setCardStyle('style-ruled', this)">2. Walgreens Ruled (Gritty 3x5)</button>
-    <button class="style-tab-btn" onclick="setCardStyle('style-quad', this)">3. Graph / Quad Scratch Paper</button>
-    <button class="style-tab-btn" onclick="setCardStyle('style-manila', this)">4. Heavy Manila / Shop Floor</button>
+  <!-- Selectors Area -->
+  <div class="selector-group">
+    <div class="selector-label">1. Card Background & Paper Style</div>
+    <div class="style-switcher">
+      <button class="style-tab-btn active" onclick="setCardStyle('style-white', this)">Minimalist White (Angled & Cartoon Edges)</button>
+      <button class="style-tab-btn" onclick="setCardStyle('style-ruled', this)">Walgreens Ruled (Gritty 3x5)</button>
+      <button class="style-tab-btn" onclick="setCardStyle('style-quad', this)">Graph / Quad Scratch Paper</button>
+      <button class="style-tab-btn" onclick="setCardStyle('style-manila', this)">Heavy Manila / Shop Floor</button>
+    </div>
+
+    <div class="selector-label">2. Typography & Comic Lettering Style</div>
+    <div class="style-switcher">
+      <button class="style-tab-btn active" onclick="setFontMode('font-patrick', this)">Ethan's Pen (Patrick Hand)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-dccomic', this)">DC Comics Box (Comic Neue Italic Caps - CSS Author)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-draft', this)">Blueprint Drafting (Architects Daughter)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-caveat', this)">Gritty Heavy Marker (Caveat 700)</button>
+    </div>
   </div>
 
   <!-- 3x5 Card Stage -->
-  <div class="card-stage style-white" id="cardStage" onclick="flipCard()">
+  <div class="card-stage style-white font-patrick" id="cardStage" onclick="flipCard()">
     <div class="card-flipper" id="flipper">
 
       <!-- FRONT FACE -->
@@ -666,11 +731,25 @@
       }, 150);
     }
 
-    function setCardStyle(styleClass, btn) {
-      document.querySelectorAll('.style-tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    let currentCardStyle = 'style-white';
+    let currentFontStyle = 'font-patrick';
 
-      stage.className = 'card-stage ' + styleClass;
+    function setCardStyle(styleClass, btn) {
+      btn.closest('.style-switcher').querySelectorAll('.style-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCardStyle = styleClass;
+      updateStageClasses();
+    }
+
+    function setFontMode(fontClass, btn) {
+      btn.closest('.style-switcher').querySelectorAll('.style-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFontStyle = fontClass;
+      updateStageClasses();
+    }
+
+    function updateStageClasses() {
+      stage.className = 'card-stage ' + currentCardStyle + ' ' + currentFontStyle;
     }
 
     // Initial render
