@@ -164,10 +164,10 @@ A comprehensive fact-check was conducted across all research files in both repos
 * **What it proves:** First-person narrative voice evokes stronger reader identification, affective engagement, and perspective-taking than third-person, while grammatical tense (present vs. past) exhibits negligible differences in mental simulation or comprehension.
 
 #### 20. The Clinicopathological Conference (CPC) Case Architecture
-* **Status:** Verified Landmark Medical Case Teaching Method (Governs Act IV's Incident Commander & Forensic Handoff)
+* **Status:** Verified Landmark Medical Case Teaching Method (Governs Phase 4's Incident Commander & Forensic Handoff)
 * **Primary Citation:** Cabot, R. C. (1900/1906). Case records of the Massachusetts General Hospital: Weekly clinicopathological exercises. *The New England Journal of Medicine (NEJM)*.
 * **URL:** [NEJM Case Records Archive](https://www.nejm.org/case-records-of-the-mass-general-hospital)
-* **What it proves:** The gold standard for case-based clinical education, inspiring Act IV's "Incident Commander" and clinical handoff format where evidence is evaluated before ground-truth post-mortem disclosure.
+* **What it proves:** The gold standard for case-based clinical education, inspiring Phase 4's "Incident Commander" and clinical handoff format where evidence is evaluated before ground-truth post-mortem disclosure.
 
 #### 21. Official IANA & RFC Internet Protocol Specifications
 * **Status:** Verified Official Technical RFCs (Governs 100% technical accuracy across networking/security tracks)

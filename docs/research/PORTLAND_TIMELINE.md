@@ -8,6 +8,12 @@
 
 ---
 
+## 0. Acts and phases (decided 2026-10-26)
+
+- **Acts are story structure.** Act I is Ep 00 to 02 (getting in: dock to desk, A+). Act II is Ep 03 to 06 (the wire: Net+). Act III is Ep 07 to 12 (identity, threats, and escalation: Sec+, with the Tier 2 promotion after Ep 08). These match the published hub.
+- **Phases are the story-to-lab handoff models** in `PEDAGOGICAL_AGENCY_ARCHITECTURE.md`: Phase 1 is Ep 00 to 02, Phase 2 is Ep 03 to 06, Phase 3 is Ep 07 to 10, and Phase 4 is Ep 11 to 12.
+- Use "act" only for story and "phase" only for the handoff model.
+
 ## 1. Ethan's Professional & Pedagogical Arc
 
 The 13 episodes document Ethan's transformation from an exhausted warehouse laborer studying on a scarred kitchen table to a disciplined Incident Commander:

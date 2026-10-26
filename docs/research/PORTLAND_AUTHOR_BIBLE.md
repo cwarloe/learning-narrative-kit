@@ -38,14 +38,16 @@ When a character chooses between opening port 23 versus port 22, the learning ob
 
 ## 2. The Story Snowflake: The 3-Act Arc
 
+> **Note (2026-10-26).** Acts are defined in `PORTLAND_TIMELINE.md` section 0: Act I is Ep 00 to 02, Act II is Ep 03 to 06, Act III is Ep 07 to 12. The act headings and arc placements below follow that. The per-episode cards in this bible come from an earlier plan, and several titles and plots differ from the shipped episodes in `docs/portland-desk/`. Until Charles decides how to reconcile them, the shipped episodes and the timeline win.
+
 ```mermaid
 flowchart TD
-    subgraph ActI["Act I: The Wilderness & The Cert Trap (Episodes 1–3)"]
+    subgraph ActI["Act I: The Wilderness & The Cert Trap (Episodes 00–02)"]
         E1["Ep 1: The Paper Cert<br/><i>Warehouse staging, rote flashcards, hardware failure</i>"] --> E2["Ep 2: The Live Board<br/><i>The Portland interview, binary search triage</i>"]
         E2 --> E3["Ep 3: The Cleartext Habit<br/><i>The ticket firehose, legacy habits vs. security</i>"]
     end
 
-    subgraph ActII["Act II: Year 1 on the Desk — Architecture of Work (Episodes 4–8)"]
+    subgraph ActII["Act II: Year 1 on the Desk, Architecture of Work (Episodes 03–06)"]
         E3 --> E4["Ep 4: The Plant Floor Collision<br/><i>OT/IT boundary, Leah Moreno, Modbus/VPN</i>"]
         E4 --> E5["Ep 5: The Roaming Rogue<br/><i>Shadow Wi-Fi, 802.1X, DHCP exhaustion</i>"]
         E5 --> E6["Ep 6: The Phantom Ransomware<br/><i>Adware scare, AV logs, chain of custody</i>"]
@@ -53,7 +55,7 @@ flowchart TD
         E7 --> E8["Ep 8: The Supply Chain Firmware<br/><i>TFTP staging, vendor trust, peripheral risks</i>"]
     end
 
-    subgraph ActIII["Act III: Year 2 & The Security Boundary (Episodes 9–12)"]
+    subgraph ActIII["Act III: The Security Boundary (Episodes 07–12)"]
         E8 --> E9["Ep 9: The Quiet Mailbox<br/><i>BEC exfiltration, session hijacking, triage</i>"]
         E9 --> E10["Ep 10: The Certificate Winter<br/><i>Wildcard PKI expiry, legacy IoT breakage</i>"]
         E10 --> E11["Ep 11: The Living Off the Land Scare<br/><i>Admin PowerShell vs. adversary tradecraft</i>"]
@@ -61,15 +63,15 @@ flowchart TD
     end
 ```
 
-### Act I: The Wilderness & The Cert Trap (Episodes 1–3 | Months 1–4)
+### Act I: The Wilderness & The Cert Trap (Episodes 00–02)
 - **Thematic Core:** The transition from artificial, multiple-choice theoretical knowledge to empirical, real-world troubleshooting.
 - **Narrative Movement:** Ethan graduates high school, drifts through up to two years of restaurant work, and then takes a non-technical graveyard-shift logistics staging job at Harrowmere's distribution warehouse out in Gresham. He spends his days memorizing hundreds of digital flashcards for CompTIA A+, Network+, and Security+, convinced that passing the exams will make him an engineer. The reality check comes swiftly: a dead motherboard on a barcode-sorting line does not present four multiple-choice options. When Ken's internal referral and a six-month IT rotation land him on Jules Brooks's Portland help desk, he expects clean network diagrams. Instead, he is thrown into an overwhelming ticket firehose where legacy habits thrive because "it worked yesterday," and where the first lesson of IT support is learning that troubleshooting is not guessing—it is binary search across physical and logical layers.
 
-### Act II: Year 1 on the Desk — The Architecture of Work (Episodes 4–8 | Months 5–14)
+### Act II: Year 1 on the Desk — The Architecture of Work (Episodes 03–06)
 - **Thematic Core:** Socio-technical systems, organizational friction, and the boundary between operational availability and enterprise security.
 - **Narrative Movement:** Ethan finds his footing as a Tier 1 technician, but quickly discovers that the hardest problems do not occur inside operating systems; they occur at the boundaries between human departments. When Leah Moreno demands an open firewall rule to silence plant overflow alarms, Ethan learns that operational technology (OT) prioritizes physical safety and uptime over data confidentiality. When warehouse workers deploy consumer Wi-Fi routers to meet shipping quotas, Ethan learns that shadow IT is always an unfulfilled business requirement. Over the course of his first year, guided by Jules Brooks’s pragmatic mentorship, Ethan learns how to handle false-positive ransomware panics, untangle Active Directory privilege drift, and enforce secure staging protocols without alienating the business.
 
-### Act III: Year 2 & The Security Boundary — The Chicago Threshold (Episodes 9–12 | Months 15–24)
+### Act III: Year 2 & The Security Boundary — The Chicago Threshold (Episodes 07–12)
 - **Thematic Core:** Professional maturity, distinguishing noise from adversary tradecraft, and crossing from regional support to enterprise defense.
 - **Narrative Movement:** Promoted to Tier 2 Lead, Ethan is no longer merely reacting to broken hardware or forgotten passwords; he is tracking subtle behavioral anomalies across the network. When a quiet forwarding rule in accounting signals a sophisticated Business Email Compromise (BEC), Ethan learns the discipline of silent containment and chain of custody. A catastrophic corporate PKI renewal breaks critical operational equipment, proving that cryptographic maintenance requires operational planning. When a targeted adversary attempts to pivot from an administrative endpoint into Leah Moreno’s plant control network, Ethan synthesizes every lesson from his two years on the desk to build a comprehensive incident response dossier. His escalation catches the eye of Nia Alvarez at Chicago Central IT, which leads to a role change into Harrowmere security operations. He stays in Portland.
 
@@ -222,7 +224,7 @@ Every episode must reflect the principles of industrial throughput and organizat
 
 ### Episode Architecture Card 00 (Prologue)
 **Title:** The Four Rubber Bands  
-**Arc Placement:** Prologue (Before the Badge — The Zero Foundation)  
+**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 00 of 00 to 12, the prologue  
 **Timeline:** About 7 months on the dock (Late July, Summer)  
 **Setting:** A cramped duplex kitchen in East Portland, Oregon; fluorescent tube humming overhead, box fan rattling in the window, greasy pizza box, cold instant coffee, linoleum table covered in 300 blank index cards and open 800-page CompTIA study guide.  
 **Point of View:** Ethan Mercer (Age 20).  
@@ -338,7 +340,7 @@ Ethan secures the entry-level role, but his pride is punctured. He realizes that
 
 ### Episode Architecture Card 03
 **Title:** The Cleartext Habit  
-**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 03 of 00 to 12  
+**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 03 of 00 to 12  
 **Timeline:** Month 4 (October, Autumn rain begins)  
 **Setting:** Portland Operations Help Desk bullpen; overcast morning, sound of steady Pacific Northwest rain against the glass, monitors glowing with the Tier 1 ticket queue.  
 **Point of View:** Ethan Mercer.  
@@ -486,7 +488,7 @@ Maya saves her meeting, but Ethan suffers public embarrassment in front of the d
 
 ### Episode Architecture Card 07
 **Title:** The Identity Drift  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 07 of 00 to 12  
+**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 07 of 00 to 12  
 **Timeline:** Month 12 (June, Early Summer)  
 **Setting:** Portland Operations Center, Server Closet 2B and Open Bullpen; dry air conditioning, hum of rack fans, bright morning sun reflecting off the Willamette.  
 **Point of View:** Ethan Mercer.  
@@ -523,7 +525,7 @@ Ethan restores enterprise login services, but incurs complaints from administrat
 
 ### Episode Architecture Card 08
 **Title:** The Supply Chain Firmware  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 08 of 00 to 12  
+**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 08 of 00 to 12  
 **Timeline:** Month 14 (August, Late Summer heat)  
 **Setting:** Third-floor staging closet and facilities service corridors; hot, cramped room smelling of warm circuit boards, cardboard boxes, and uncoiled Cat6 copper cables.  
 **Point of View:** Ethan Mercer.  
