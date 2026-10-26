@@ -2,7 +2,7 @@
 
 **Project:** Portland Desk / Learning Narrative Kit (LNK)  
 **Document Purpose:** Master Reference & Specification for Comic Book Lettering, Layered Graphic Typography, and Flashcard Production  
-**Status:** Canonical Design Consensus  
+**Status:** Active standard for lettering. Ranks below the timeline, bible, and framework (see `AGENTS.md` precedence).  
 
 ---
 

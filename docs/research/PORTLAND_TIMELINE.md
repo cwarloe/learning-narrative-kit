@@ -4,7 +4,7 @@
 **Lead Mentor:** Jules Brooks (Lead Support Specialist, Harrowmere Portland Regional Operations Center)  
 **Employer:** Harrowmere Equipment Group (the same company as NADF, Books 1–2)  
 **Setting:** East Portland, Harrowmere's Gresham distribution warehouse, & Harrowmere's Portland Regional Operations Center (Hawthorne Bridge overlook). Ethan never relocates; he stays in the Portland area through NADF.  
-**Purpose:** Canonical chronological anchor for all authoring, editing, visual prompts, and lab environments across CompTIA A+, Network+, and Security+ modules.
+**Purpose:** The top-ranked source for Portland Desk facts (see `AGENTS.md` precedence) and the chronological anchor for all authoring, editing, visual prompts, and lab environments across CompTIA A+, Network+, and Security+ modules.
 
 ---
 

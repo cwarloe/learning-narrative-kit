@@ -2,7 +2,7 @@
 
 > **Document Type:** Academic Provenance, Fact-Check Audit & Sourced Bibliography  
 > **Repositories Covered:** `learning-narrative-kit` (LNK) & `network-analyst-development-framework` (NADF)  
-> **Status:** Fully Verified & Audited against Academic Literature  
+> **Status:** Reviewed by bot reviewers against the cited literature. Not independently verified by a person.  
 > **Last Audited:** October 2026  
 
 ---

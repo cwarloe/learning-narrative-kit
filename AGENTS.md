@@ -1,10 +1,26 @@
 # Agent / LLM handoff — Learning Narrative Kit
 
-Use this file when an LLM (or human) authors a new unit **without** a specialized bot. Schema wins if anything conflicts: `schema/README.md`.
+Use this file when an LLM (or human) authors a new unit **without** a specialized bot. If anything conflicts, follow "Which document wins" below.
 
 ## Archived material (read this first)
 
 `archive/` holds superseded documents. Do not read it, cite it, or follow its rules unless the author names a specific file and asks you to. If an active document links into `archive/`, treat the link as history, not as a source. See `archive/README.md` for what moved and what replaced it. `docs/AUDIT-2026-10.md` lists documents whose status is still undecided.
+
+## Which document wins (precedence)
+
+When two documents disagree, the higher one wins. Fix the lower one in the same change, or flag it.
+
+1. `schema/` (the authoring contract: `README.md`, `BRIEF.md`, `VOICE.md`).
+2. `docs/research/PORTLAND_TIMELINE.md` for Portland Desk facts: ages, dates, jobs, pay, places.
+3. `docs/research/PORTLAND_AUTHOR_BIBLE.md` for Portland Desk cast, acts, and episode beats.
+4. `docs/craft/learning-narrative-framework.md` for craft rules in every track.
+5. Other active standards in `docs/research/` (style, pedagogy, visuals, flashcards).
+6. `research/` background notes, and dated reviews in `docs/research/` or `docs/reviews/`. These inform; they do not rule.
+7. `archive/` is never a source.
+
+No document is "canonical" by its own say-so. Its place in this list decides.
+
+Canon that is settled: the employer is Harrowmere Equipment Group, the setting is Portland, and Ethan never relocates.
 
 ## What this kit is
 
@@ -28,7 +44,7 @@ tools/                  # validate_unit.py, render_unit.py, render_track.py
 tracks/<track>.yaml     # reading order for a track → contents page + prev/next links
 briefs/<brief_id>.brief.yaml   # the author's instructions for one job (schema/BRIEF.md)
 workshop/<brief_id>/    # plan, status, reviews, CANDIDATE chapters; never published
-research/               # background notes (schema wins on conflict)
+research/               # background notes (lowest active rank; see precedence)
 archive/                # SUPERSEDED. Do not use as a source (see archive/README.md)
 ```
 
@@ -133,7 +149,7 @@ a baseline) through r3.
     ```
     This writes the contents page `docs/<track_id>/index.html`. Re-render the unit and its old and new neighbours so their Previous / Next links update.
     If the track has `glossary: true`, also run `tools/render_glossary.py tracks/<track>.yaml` so the A-Z glossary picks up the new terms.
-11. **Commit** `examples/<unit_id>/`, `docs/<unit_id>/`, `docs/index.html`, and any track files. Push `main`. Pages serves `/docs`.
+11. **Commit** `examples/<unit_id>/`, `docs/<unit_id>/`, `docs/index.html`, and any track files. Pushing to `main` is allowed unless the change needs a decision from Charles (canon, scope, money, or anything public beyond the site); in that case open a PR and wait. Rollback is fine. Pages serves `/docs`.
 
 Expected URL: `https://cwarloe.github.io/learning-narrative-kit/<unit_id>/`
 

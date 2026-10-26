@@ -2,7 +2,7 @@
 
 ## Claude-specific notes
 
-`AGENTS.md` above is the shared playbook every coding agent reads; it is the source of truth for the ship checklist, validate/render commands, and track canon. `schema/README.md` wins over both if anything conflicts.
+`AGENTS.md` above is the shared playbook every coding agent reads; it is the source of truth for the ship checklist and validate/render commands, and its "Which document wins" section sets precedence. Story canon lives in `docs/research/PORTLAND_TIMELINE.md` and `PORTLAND_AUTHOR_BIBLE.md`.
 
 This file exists so the playbook still loads in contexts where `AGENTS.md` isn't read directly — in particular, a Claude Code project that clones several repositories, where each clone is attached as an additional directory and only `CLAUDE.md` loads from it. Keep Claude-only instructions below this line.
 
@@ -14,4 +14,4 @@ This file exists so the playbook still loads in contexts where `AGENTS.md` isn't
 - **Interactive Components:** Author terminals using the ````lnk-terminal` syntax and panels with ````callout-panel` per `docs/research/INTERACTIVE_COMPONENTS_SPEC.md`.
 - **The cover test is the real bar:** Strip every `[[...]]` mark and the story must still teach how the concepts depend on each other. A unit that only works with tooltips on has failed, even if validation is green.
 - **Don't invent port numbers, exam definitions, or vendor specifics.** If the course source doesn't state it, ask rather than supply it — a confidently wrong Sec+ fact in a study narrative is worse than a gap.
-- `research/` is background, not contract. When it disagrees with `schema/README.md`, the schema wins.
+- `research/` is background, not contract. `archive/` is never a source. See the precedence list in `AGENTS.md`.

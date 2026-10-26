@@ -81,4 +81,4 @@ Source: `docs/portland-desk/` (served at `/portland-desk/`). Canon: `docs/resear
 
 ## Research
 
-Background notes that shaped the contract live in `research/` (including the Sep 2026 Perplexity pass). **Schema wins** if notes disagree.
+Background notes that shaped the contract live in `research/` (including the Sep 2026 Perplexity pass). When documents disagree, follow the precedence list in `AGENTS.md`.

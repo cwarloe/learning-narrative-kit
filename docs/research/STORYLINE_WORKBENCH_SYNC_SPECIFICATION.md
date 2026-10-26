@@ -1,7 +1,7 @@
 # Master Storyline-to-Workbench Synchronization Specification
-## The Canonical Pedagogical, Technical, and Narrative Synchronization Standard for the Portland Desk (Modules 00–12)
+## The Pedagogical, Technical, and Narrative Synchronization Standard for the Portland Desk (Modules 00–12)
 
-> **Document Status:** Canonical Architectural Specification  
+> **Document Status:** Active standard for story and workbench sync. Story facts here lose to `PORTLAND_TIMELINE.md` and `PORTLAND_AUTHOR_BIBLE.md` (see `AGENTS.md` precedence).  
 > **Target System:** Portland Desk Courseware (`learning-narrative-kit`)  
 > **Authors:** Principal Technical Instructional Designer & Curriculum Architect, Lead Narrative Architect, Adversarial Technical SME & Protocol Pedant (`technical_nitpicker`)  
 > **Theoretical Framework:** 4C/ID Model (van Merriënboer), Cognitive Load Theory (Sweller), Deliberate Practice (Ericsson), Cognitive Apprenticeship (Collins, Brown, & Holum), Recognition-Primed Decision (Klein), Minimum Information Principle (Wozniak)  
@@ -232,7 +232,7 @@ Every flashcard in the courseware must satisfy the **Four Core Research Rules**:
 
 ## 5. Module 00 Golden Benchmark: Complete Synchronization Mapping
 
-Module 00 (*"The Four Rubber Bands"*) serves as the canonical design benchmark for the entire curriculum. Below is the complete, granular mapping of every narrative beat, worked example, workbench lab, and assessment artifact.
+Module 00 (*"The Four Rubber Bands"*) serves as the design benchmark for the entire curriculum. Below is the complete, granular mapping of every narrative beat, worked example, workbench lab, and assessment artifact.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
@@ -509,7 +509,7 @@ Our 4x6 Laminated Slates are designed using **faded cognitive scaffolding** that
 
 ## 9. Verification & Maintenance Checklist for Authors
 
-Before any module (00 to 12) is merged into the canonical repository, it must pass this 8-point synchronization audit:
+Before any module (00 to 12) is merged into the repository, it must pass this 8-point synchronization audit:
 
 - [ ] **1. Tool Provenance Check:** Does the narrative explicitly describe the physical origin, cost, and manufacturing method of any tool, slate, or test device Ethan uses?
 - [ ] **2. Character Lore Integrity:** Are characters cleanly distinguished with zero role conflation? (Ken Vance = Gresham cross-dock warehouse supervisor; Todd Miller = Inside Sales representative; Owen = Facilities technician; Maya Lin = Accounting supervisor; Jules Brooks = Retired toolmaker father).
@@ -523,4 +523,4 @@ Before any module (00 to 12) is merged into the canonical repository, it must pa
 ---
 
 *End of Specification.*  
-*Canonical Reference: `docs/research/STORYLINE_WORKBENCH_SYNC_SPECIFICATION.md`*
+*Reference: `docs/research/STORYLINE_WORKBENCH_SYNC_SPECIFICATION.md`*

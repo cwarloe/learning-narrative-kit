@@ -1,7 +1,7 @@
 # Master Visual Production Catalog: Portland Desk (Book 0: Zero-to-One)
 **Repository:** `learning-narrative-kit`  
 **Target Platform:** Docsify v4 (`docs/portland-desk`) & Grok Imagine (with inpainting)  
-**Status:** Approved by Digital Art Director, Technical Nitpicker, and Prose Critic.  
+**Status:** Reviewed by the bot reviewers (art director, technical, prose). Not a canon source for character facts; see `PORTLAND_TIMELINE.md`.  
 **Complements:** `docs/research/VISUAL_ART_DIRECTION.md`, `PORTLAND_TIMELINE.md`, and `TECHNICAL_NARRATIVE_AUTHORING_PRINCIPLES.md`.
 
 ---

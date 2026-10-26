@@ -1,6 +1,6 @@
 # Flashcard & Field Slate Architecture Specification
 **Portland Desk (Book 0: Zero-to-One)**  
-*Document Version: 1.0 • Canonical Curriculum & Interaction Architecture*
+*Document Version: 1.0. Active standard for field slates; ranks per `AGENTS.md` precedence.*
 
 ---
 
