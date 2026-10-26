@@ -14,7 +14,7 @@ Fixing the line equipment was not my job. I staged freight. That illusion, and t
 
 ## The Red Beacon on Line Four
 
-Ken Vance arrived at the scale terminal before the conveyor rollers had finished spinning down. He was fifty-one years old, carried a scarred aluminum clipboard under his left arm, and walked with the frantic stride of a logistics supervisor whose career was measured in outbound trailer tonnage.
+Ken arrived at the scale terminal before the conveyor rollers had finished spinning down. He was fifty-one years old, carried a scarred aluminum clipboard under his left arm, and walked with the frantic stride of a logistics supervisor whose career was measured in outbound trailer tonnage.
 
 "Scale deck dropped offline," Ken barked, his voice cutting through the rumble of distant forklifts. "Scanner's kicking every box because the terminal stopped logging weights. Seattle and Boise trailers roll at five sharp. Right now, two hundred cartons are backing up toward the intake rollers."
 
@@ -139,15 +139,31 @@ On the lower edge of the motherboard sat a small blue block of eight miniature s
 
 I had to read the motherboard silkscreen, calculate the bit timings, and align the hardware clock dividers before the five o'clock whistle blew.
 
----
+## Line Four Comes Back
 
-> [!IMPORTANT]
-> ### The 04:20 AM Dispatch Crucible: Handoff Gate
-> The conveyor is halted, Ken is timing the shift on his watch, and the Toledo scale head is streaming corrupted byte frames. Pin 2 is straight, but the UART clock dividers are desynchronized.
-> 
-> **Your Turn at the Console:** Step up to Station 01 on the Workbench. Inspect the active serial telemetry stream, calculate the bit duration, align the hardware clock divider, and prove the fix before the 05:00 AM dispatch deadline.
-> 
-> [Take the Ticket & Open the Lab →](workbench/01-the-paper-cert.md)
+I needed the two speeds side by side before I touched anything. The Toledo scale head was set to 19,200 baud. When I had hard-cut the power at 2:25, the terminal's serial controller had dropped back to its factory default of 9,600, so it was sampling every bit for twice as long as the scale was sending it. I worked the bit times out on the back of a pallet tag, 52 microseconds against 104, and read the silkscreen next to `SW1` with Rosa's flashlight. Switch 3 set the 2x divider for 19,200, and switch 4 set the 1x default.
+
+Using the fine flat tip of my father's jeweler's screwdriver, I pushed switch 3 from OFF up to ON, and clicked switch 4 from ON down to OFF. I restarted the serial daemon from the terminal prompt. The garbage stopped, and a clean stream of telemetry scrolled up the amber screen:
+
+```
+SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL
+SCALE_04: READY - 043.1 LBS - DIVERTER NORMAL
+```
+
+Ken did not waste time with compliments. He reached past my shoulder, jammed his thumb into the green start button on the motor console, and whistled down the main aisle. "Line four is live! Load Seattle on bay seven and Boise on bay nine!"
+
+The motors spooled up, and the diverter arms began their rhythmic clapping. The clock on the wall read 4:47 AM. Boise pulled away from bay nine at 5:04 AM. Seattle did not. Forty cartons had to be re-weighed by hand because of the records I had dumped with the power switch, and the Seattle trailer left at 5:51 AM, fifty-one minutes late. Ken had to write the late-departure report with his name on the header.
+
+He walked back to the cabinet and looked at the Kapton-taped ribbon cable, then at the sheared memory latch on the floor of the enclosure.
+
+"That wasn't your job, Mercer," Ken said, blunt and tired over the conveyor clatter. "You stage freight. You flipped a breaker you didn't understand, you dumped forty records, and Seattle left late. That's on my report now, and I'm going to remember it. So is the memory clip I'll have to explain to facilities on Monday." He looked at Rosa, who shrugged and said I had found the short myself. "But when it went wrong, you stopped guessing, you asked for help, and you listened to the meter. Most people on this dock would have walked away. Grab a hand scanner and help clear the chute at bay four."
+
+I spent the next forty-five minutes hand-stacking cartons until my back burned. At 6:15, when the shift ended, I sat on an upturned pallet behind the sorting enclosure with grease on my hands and blood on my knuckles. My flashcard app was still open on my phone, asking about the throughput of a PCI Express bus. It had not warned me that copper chafes against stamped steel, or that a power cut can quietly reset a clock.
+
+Ken never mentioned the Seattle trailer to me again, but the late report stayed pinned to his board for a month. A week later, he wrote the internal referral that moved me into the IT rotation. The first line said I had cost him a trailer. The second line said I was worth training.
+
+I kept the printout of the corrupted frames in my locker for weeks, as if it proved something. Nobody ever asked to see it.
+
 
 ## Vocabulary & Concepts
 
@@ -168,5 +184,5 @@ target: workbench/01-the-paper-cert.md
 domain: CompTIA A+ Core 1 (220-1101) • Domain 3.0 Hardware & Network Troubleshooting
 badge: Hands-On Lab
 ---
-Step onto Ethan's graveyard shift at the Harrowmere Gresham distribution warehouse with interactive POST code diagnostics, RS-232 serial telemetry debugging, multimeter power rail verification, and the Tier 1 Physical Incident Triage Report.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

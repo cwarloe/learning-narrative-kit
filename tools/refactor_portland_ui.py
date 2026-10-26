@@ -41,7 +41,7 @@ WORKBENCH_METADATA = {
     },
     "03": {
         "setting": "East Portland Pump Station & Annex • Operations Service Desk",
-        "role": "Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)",
+        "role": "Level 1 Network Support Specialist (under Jules Brooks & Jared Lindqvist)",
         "goal": "Triage local IP addressing, APIPA 169.254.x.x link-local traps, subnet boundaries, and ARP resolution failures following a storm switch reboot.",
         "duration": "45–55 minutes • Local Network Addressing",
         "cert": "CompTIA Network+ (N10-008/009)",
@@ -59,7 +59,7 @@ WORKBENCH_METADATA = {
     },
     "05": {
         "setting": "Portland Operations Center Bullpen • Cold October rain, evening shift",
-        "role": "Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)",
+        "role": "Level 1 Network Support Specialist (under Jules Brooks & Jared Lindqvist)",
         "goal": "Diagnose network connection refusals (RST) versus silent timeouts (firewall drops) using TCP three-way handshake mechanics and netstat socket inspections.",
         "duration": "45–50 minutes • Layer 4 Transport & Sockets",
         "cert": "CompTIA Network+ (N10-008/009)",
@@ -68,7 +68,7 @@ WORKBENCH_METADATA = {
     },
     "06": {
         "setting": "Building C Basement Telecom Vault • 04:00 AM Flood Emergency",
-        "role": "Emergency Response Technician (Midpoint Capstone under Jules Brooks & Jared Vance)",
+        "role": "Emergency Response Technician (Midpoint Capstone under Jules Brooks & Jared Lindqvist)",
         "goal": "Physically replace flood-damaged core switches, rebuild trunk VLANs, recover from a 150-device DHCP exhaustion storm, and restore municipal operations before 08:00 AM opening.",
         "duration": "60–75 minutes • Disaster Recovery Midpoint Capstone",
         "cert": "CompTIA Network+ (N10-008/009) & A+ Core 1",

@@ -1,7 +1,7 @@
 # Portland Desk Lab: TCP Sockets, Port States, & Handshake Diagnostics
 
-> **The Situation:** Portland Operations Center Bullpen • Cold October rain, evening shift  
-> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)  
+> **The Situation:** Portland Operations Center Bullpen • Cold April rain, evening shift  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Lindqvist)  
 > **The Objective:** Diagnose network connection refusals (RST) versus silent timeouts (firewall drops) using TCP three-way handshake mechanics and netstat socket inspections.  
 > **Estimated Time:** 45–50 minutes • Layer 4 Transport & Sockets  
 
@@ -20,6 +20,23 @@
 
 ---
 
+## Worked Example: Jared's archive sweep
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Gresham terminals failed in two different ways, and Jared's nightly backup sweep died partway through four hundred devices.
+
+1. Compare the two failures. Terminal four got `connection refused` instantly, which is a TCP reset: the packet reached the server and nothing was listening. Terminal seven timed out after a minute.
+2. Ping `10.100.4.20` and run `Test-NetConnection` on port 8443. Routing works, and the port refuses.
+3. Run `netstat -ano` on `PDX-ARCHIVE01`. Nothing is listening on 8443 because the backup agent crashed. Restart it and confirm `LISTENING` on PID 4112.
+4. Now look at Jared's own workstation, which runs the sweep. Run `netstat -ano` there and count thousands of sockets in TIME_WAIT. Each device got a brand new connection, and each closed socket waited 120 seconds.
+5. Recognize ephemeral port exhaustion on the client.
+6. Fix the cause: pool sixteen persistent connections instead of one per device.
+7. Shorten `TcpTimedWaitDelay` from 120 to 30 seconds as a safety margin, not as the fix.
+8. Result: the sweep finished in under three minutes, after a night of missing backups that started with an alert Ethan scrolled past twice.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,12 +48,9 @@ prompt: "Clean technical cutaway diagram of a network protocol state machine und
 
 
 ### The Situation
-It is 08:15 on a stormy Tuesday morning in late October. Cold rain lashes the fourth-floor glass of the Portland Regional Operations Center. Inside the facility bullpen, network infrastructure engineer Jared Vance is furiously pounding his keyboard. His automated configuration backup script failed at 03:15 AM, failing to archive 300 field switches and throwing thousands of red errors across server `PDX-ARCHIVE01`. Jared is convinced that Central IT in Chicago pushed an unannounced perimeter firewall change that severed access to port 8443.
+It is a wet April morning, and Ethan has been on the desk for eight months. Jared's configuration backup script aborted at quarter past three, and he blames a Chicago firewall change. Ken calls from the Gresham warehouse: terminal four gets "connection refused" instantly, and terminal seven spins for almost a minute before it times out.
 
-Simultaneously, freight supervisor Ken at the Gresham logistics annex reports critical intake terminal failures. Terminal four fails instantly with an error stating "Connection refused," while terminal seven hangs spinning for nearly a minute before throwing "Connection timed out."
-
-When apprentice technician Ethan Mercer prepares to submit an emergency firewall escalation ticket to Chicago, Desk Lead Jules Brooks stops him:
-> *"The wire has two ends, Ethan. Just because the door is open doesn't mean anyone is home. Is the service listening, or did the firewall drop the SYN? You don't ask the firewall team to open a port until you have logged onto the destination host and verified that a process is actually bound to the socket."*
+This lab follows the chapter in two halves. First, the difference between a reset and a timeout shows that nothing on the path is dropping packets: the backup agent on `PDX-ARCHIVE01` has crashed and nothing is listening on port 8443. Second, Jared's own workstation is out of ephemeral ports, because his script opens a new connection for each of four hundred devices and leaves every socket in TIME_WAIT for 120 seconds.
 
 ### The Ground Truth Rules of Transport & Socket Diagnostics
 
@@ -197,41 +211,39 @@ Get-Process -Id 4112
 Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
 
 ```lnk-terminal
-title: "POWERSHELL: TCP SOCKET & LISTENING PORT DIAGNOSTICS"
+title: "POWERSHELL: GRESHAM TERMINAL 4 AND PDX-ARCHIVE01 (PORT 8443)"
 shell: "powershell"
 prompt: "PS C:\Support> "
 replay: true
 objectives:
-  - id: "obj-netstat"
-    label: "Inspect active listening TCP ports and PIDs"
-    trigger: "netstat -ano | findstr 8080"
   - id: "obj-testport"
-    label: "Test TCP handshake reachability on port 8080"
-    trigger: "Test-NetConnection -Port 8080"
-  - id: "obj-process"
-    label: "Identify daemon process bound to socket"
-    trigger: "Get-Process -Id 3412"
+    label: "From Terminal 4, test the TCP handshake to PDX-ARCHIVE01 on 8443"
+    trigger: "Test-NetConnection -ComputerName 10.100.4.20 -Port 8443"
+  - id: "obj-netstat"
+    label: "On PDX-ARCHIVE01, check whether anything is listening on 8443"
+    trigger: "netstat -ano | findstr 8443"
+  - id: "obj-start"
+    label: "Restart the backup agent and confirm the listener"
+    trigger: "Start-Service PDX-BackupAgent"
 ---
-netstat -ano | findstr 8080: |
-    Proto  Local Address          Foreign Address        State           PID
-    TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       3412
-    TCP    192.168.10.45:8080     192.168.10.112:51244   TIME_WAIT       0
-  [OK] Port 8080 is actively LISTENING on PID 3412.
+Test-NetConnection -ComputerName 10.100.4.20 -Port 8443: |
+  WARNING: TCP connect to (10.100.4.20 : 8443) failed
+  ComputerName           : 10.100.4.20
+  RemoteAddress          : 10.100.4.20
+  RemotePort             : 8443
+  PingSucceeded          : True
+  PingReplyDetails (RTT) : 1 ms
+  TcpTestSucceeded       : False
+  [NOTE] Ping works and the refusal came back instantly: the server answered with a reset.
 
-Test-NetConnection -Port 8080: |
-  ComputerName     : localhost
-  RemoteAddress    : 127.0.0.1
-  RemotePort       : 8080
-  InterfaceAlias   : Loopback Pseudo-Interface 1
-  SourceAddress    : 127.0.0.1
-  TcpTestSucceeded : True
-  [OK] TCP 3-way handshake (SYN -> SYN-ACK -> ACK) verified.
+netstat -ano | findstr 8443: |
+  (no output)
+  [NOTE] Nothing on PDX-ARCHIVE01 is listening on 8443. The firewall is not the problem.
 
-Get-Process -Id 3412: |
-  Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id ProcessName
-  -------  ------    -----      -----     ------     -- -----------
-      412      18    42100      51200       2.14   3412 InventorySyncDaemon
-  Status: Process active. Port open and receiving frames.
+Start-Service PDX-BackupAgent: |
+  PS C:\Users\administrator> netstat -ano | findstr 8443
+    TCP    0.0.0.0:8443           0.0.0.0:0              LISTENING       4112
+  [OK] Backup agent PID 4112 is listening on 8443. Terminal 4 connects.
 
 ```
 
@@ -265,7 +277,7 @@ $$\text{[URG | ACK | PSH | RST | SYN | FIN]}$$
 
 ---
 
-### Micro-Drill 2: `netstat -ano` Socket Inspection & PID Mapping
+### Micro-Drill 2 (practice case): `netstat -ano` Socket Inspection & PID Mapping
 
 **Scenario:** You log into production application server `PDX-APP01` following user complaints that the internal web application is unreachable. You run `netstat -ano` and capture the following raw output:
 
@@ -295,6 +307,8 @@ Active Connections
 ---
 
 ### Micro-Drill 3: "Call Your Shot: Predict Before You Look" (5-Case Prediction Gate)
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 Before running any network command, enforce the CBYT protocol:
 1. **Layer & Subsystem:** What exact protocol, flag, or socket state governs this failure?
@@ -442,11 +456,11 @@ Before running any network command, enforce the CBYT protocol:
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1024
-Requester:        Ken Henderson (Freight Supervisor, Gresham Logistics Annex)
+Ticket ID:        INC0059713
+Requester:        Ken Vance (Freight Supervisor, Gresham Logistics Annex)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
-Date / Time:      2026-10-24 09:30:15 PDT
+Date / Time:      2025-04-15 09:30:15 PDT
 Category:         Network / Transport Layer / Socket Error & Service Failure
 Affected Host:    WS-GRESH-04 / WS-GRESH-07 / PDX-ARCHIVE01 (Port 8443)
 Status:           RESOLVED
@@ -496,11 +510,11 @@ Status:           RESOLVED
 ================================================================================
 NETWORK INFRASTRUCTURE PASSDOWN & HANDOVER NOTE
 ================================================================================
-Escalation ID:    ESC-2026-0418
+Escalation ID:    ESC0004978
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
-Escalated To:     Jared Vance (Network Operations Engineer)
-Date / Time:      2026-10-24 11:45:00 PDT
+Escalated To:     Jared Lindqvist (Network Operations Engineer)
+Date / Time:      2025-04-15 11:45:00 PDT
 Priority:         P2 - High (Client Transport Architecture & Script Refactor)
 Subject:          Client-Side Ephemeral Port Exhaustion on Automated Backup Runs
 
@@ -572,35 +586,10 @@ Subject:          Client-Side Ephemeral Port Exhaustion on Automated Backup Runs
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 5.2: RESOLVED TRANSPORT LAYER ARCHIVE"
-badge: "Shift Epilogue"
-caption: "Operations center: At 01:45 PM, thin bands of autumn sunlight illuminate the Marquam Bridge as the backup archive engine streams switch configurations without a dropped socket."
-prompt: "Clean graphic novel cutaway panel of a network management operations bullpen in the Pacific Northwest. Large windows show breaking clouds over an industrial bridge. On a multi-monitor desk, clean terminal windows display green successful backup synchronization logs. A ceramic coffee mug sits beside neatly arranged diagnostic notebooks. Ligne Claire style, sharp technical ink lines, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-With the root cause of the socket depletion isolated, Jared leaned back in his chair, exhaling slowly through his teeth. "My own machine starved itself because I tore down the sockets too fast."
+This problem looks different from Jared's archive sweep, but it works the same way. Use the worked example and your notes.
 
-"You built an engine that buys a new telephone for every phone call, speaks for two seconds, and drops the phone into a bucket that takes two minutes to empty," Jules said dryly. "Modify your script to use connection pooling with persistent HTTP keep-alive sessions. That way you reuse an established socket across hundreds of sequential requests instead of discarding it."
-
-Jared updated his script logic to reuse existing connections through a shared connection pool of sixteen concurrent sockets. At the same time, I adjusted the Windows registry value `TcpTimedWaitDelay` on his workstation from one hundred and twenty seconds down to thirty seconds, allowing the operating system to recycle dormant sockets four times faster during heavy administrative runs.
-
-When Jared executed the refactored script five minutes later, the performance difference was remarkable. The batch job processed all four hundred network devices in less than three minutes. The script maintained a compact pool of sixteen established connections that transferred configurations seamlessly without dropping a single packet.
-
-By two o'clock in the afternoon, the storm clouds had begun to break apart over the river. Thin bands of pale autumn sunlight illuminated the wet asphalt of the parking garage below. The morning ticket surge had subsided, and the status boards across the room showed steady green. Jared had finished his configuration archive run and was documenting connection pooling in our engineering wiki.
-
-I sat back at my desk and pulled my technical notebook toward me. I drew the four-stage lifecycle of a transport socket alongside the handshake flags.
-
-Jules wheeled her chair over to my desk with a printed network diagram of the Gresham annex. "What was the most important diagnostic distinction you made today, Ethan?"
-
-"The difference between an active rejection and a silent drop," I answered without hesitation. "When an application throws an immediate connection refused error, the network infrastructure is working. The target host is sending back an explicit reset because no service is listening. But when an application hangs in a timeout, packets are dropping into a void caused by a dead route or a packet-filtering firewall."
-
-"And what about Jared's script?" Jules asked with a faint smile.
-
-"Capacity belongs to both ends of the wire," I replied. "A client can paralyze itself through ephemeral port exhaustion if it opens and closes connections faster than the transport stack can recycle them. You have to verify both the listener on the destination and the source socket pool on the client."
-
-"Keep that page in your notebook," Jules said, tapping the paper with her pen. "Next month when someone insists the network is broken because an application cannot connect, you will not waste your morning opening emergency firewall tickets. You will check whether anyone is listening first."
-
-She wheeled her chair back to her desk and unhooked her bicycle helmet from the monitor arm as the afternoon shift technicians began logging into the queue. I saved my ticket notes into the service management portal, closed my terminal sessions, and turned back to the incoming queue with the quiet confidence of an engineer who knows how to listen to the wire.
+A reporting server polls 2,000 sensors every minute and starts failing with connection errors after about an hour. The sensors are fine. What do you check on the reporting server, what number tells you the cause, and what is the real fix versus the safety margin?

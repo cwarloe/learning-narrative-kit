@@ -20,6 +20,22 @@
 
 ---
 
+## Worked Example: The Hillsboro VPN users
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Remote users on the VPN could reach shares by IP, but internal names such as `payroll.harrowmere.local` failed.
+
+1. Check Greg's hosts file. It held three stale lines from a contract developer. Removing them fixed nothing for the other seventeen tickets, so keep going.
+2. Run `ipconfig /displaydns` and `nslookup payroll.harrowmere.local` with the VPN up.
+3. See the query go to Greg's home Wi-Fi gateway at `192.168.1.1` instead of the domain controller at `10.100.10.2`. The tunnel adapter had a worse interface metric than the Wi-Fi adapter.
+4. See that the client had no `harrowmere.local` search suffix, so the name went to Comcast's public resolvers and failed.
+5. Escalate to Lena Chen, who owns the gateway: a client profile with tunnel metric 10, the internal suffix, and smart multi-homed resolution off.
+6. Have users disconnect, reconnect to pull the new profile, and run `ipconfig /flushdns`.
+7. Result: all seventy locked-out users fixed within twelve minutes, four of Ethan's own tickets past target, and a split-horizon escalation that Jared did not enjoy reading.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,14 +47,9 @@ prompt: "Clean technical cutaway diagram of a computer desktop screen displaying
 
 
 ### The Situation
-It is 08:30 on an overcast Tuesday morning in East Portland. Outside, rain streams down the high double-paned windows facing the river. Inside the operations center, the incoming service desk ticket queue has spiked with nine critical incidents within twenty minutes.
+It is 08:30 on a gray Tuesday in March. Ethan has been on the desk for seven months. Remote employees on the VPN can reach file shares by IP address, but internal names such as `payroll.harrowmere.local` fail. Nine high-priority tickets become eighteen by mid-morning. Jared blames Comcast. Lena, the Tier 2 systems administrator who owns the VPN gateway, points out that eighty-two tunnels are up and healthy.
 
-Remote employees working from home across Multnomah and Washington counties have established secure VPN tunnels into the corporate network. Their network adapters report valid IP addresses on the `10.200.15.0/24` VPN pool. Yet whenever they attempt to browse internal business tools—specifically `payroll.harrowmere.local` and `wiki.harrowmere.local`—their browsers either time out with `DNS_PROBE_FINISHED_NXDOMAIN` or redirect to public registrar parking pages. Meanwhile, workstations physically plugged into the office local area network resolve those exact same resources instantly.
-
-Jared Vance from network operations insists that residential internet service providers are experiencing routing failures. But Desk Lead Jules Brooks and Tier 2 Systems Administrator Lena Chen point out that the encrypted tunnel is fully operational. 
-
-As Jules reminds the desk before anyone touches a configuration:
-> *"When a user tells you a website is down, the website is almost never down. The client simply does not know what number to dial. The name is not the number. Trace who answers the question before you assume the wire is broken."*
+The first ticket is from Greg, an accounts payable clerk working from home in Hillsboro. His hosts file holds three stale lines left by a contract developer, which explains his laptop but not the other seventeen tickets. The real cause is that his DNS queries go to his home Wi-Fi gateway at `192.168.1.1` instead of the domain controller at `10.100.10.2`, because the tunnel adapter has a worse interface metric and the client has no internal search suffix.
 
 ### The Ground Truth Rules of DNS Triage
 
@@ -187,7 +198,7 @@ sequenceDiagram
 
 ## 3. Quick Checks & Skill Reps
 
-### Drill 1: `nslookup` Output Inspection & Internal vs. External IP Comparison
+### Drill 1 (practice case): `nslookup` Output Inspection & Internal vs. External IP Comparison
 
 #### Scenario
 A field supervisor working remotely on an iPad and Windows laptop claims that `https://wiki.harrowmere.local` is returning an HTTP 404 page, while in-office users see the active technical wiki. 
@@ -225,7 +236,7 @@ Address:  10.100.40.8
 ### Drill 2: Rogue Hosts File Override Hunting
 
 #### Scenario
-An accountant's laptop connects to the VPN and resolves `wiki.harrowmere.local` correctly to `10.100.40.8`. However, whenever the accountant attempts to open `payroll.harrowmere.local`, the browser attempts to connect to `192.168.1.50:443` and fails with `ERR_CONNECTION_REFUSED`.
+Greg's laptop (from the chapter) connects to the VPN and resolves `wiki.harrowmere.local` correctly to `10.100.40.8`. However, whenever the accountant attempts to open `payroll.harrowmere.local`, the browser attempts to connect to `192.168.1.50:443` and fails with `ERR_CONNECTION_REFUSED`.
 
 You run the following triage commands:
 
@@ -280,8 +291,8 @@ prompt: "C:\Support> "
 replay: true
 objectives:
   - id: "obj-nslookup"
-    label: "Query DNS for internal wiki portal"
-    trigger: "nslookup wiki.corp.local"
+    label: "Query DNS for the payroll portal from Greg's laptop"
+    trigger: "nslookup payroll.harrowmere.local"
   - id: "obj-hosts"
     label: "Inspect local static hosts file overrides"
     trigger: "type C:\Windows\System32\drivers\etc\hosts"
@@ -289,34 +300,37 @@ objectives:
     label: "Flush local resolver cache"
     trigger: "ipconfig /flushdns"
 ---
-nslookup wiki.corp.local: |
+nslookup payroll.harrowmere.local: |
   Server:  UnKnown
   Address:  192.168.1.1 (Home Wi-Fi Router)
   
-  *** UnKnown can't find wiki.corp.local: Non-existent domain
-  Warning: Client is querying local home router DNS instead of internal VPN DC (10.0.0.2).
+  *** UnKnown can't find payroll.harrowmere.local: Non-existent domain
+  Warning: Client is querying Greg's home Wi-Fi router instead of the domain controller (10.100.10.2).
 
 type C:\Windows\System32\drivers\etc\hosts: |
   # Copyright (c) 1993-2009 Microsoft Corp.
   # Local static host overrides:
   127.0.0.1       localhost
   ::1             localhost
-  198.51.100.42   wiki.corp.local    # Stale contractor override from 2021!
+  192.168.1.50    payroll.harrowmere.local    # contractor staging trailer
 
 ipconfig /flushdns: |
   Windows IP Configuration
   
   Successfully flushed the DNS Resolver Cache.
-  Re-querying over active VPN tunnel...
-  Name:    wiki.corp.local
-  Address: 10.0.0.85 (Internal Wiki DC)
-  [OK] Internal portal accessible.
+  (The stale hosts lines were deleted before this flush. The flush clears the cache; it does not edit the hosts file.)
+  Re-querying after the VPN profile update (tunnel metric 10, harrowmere.local suffix)...
+  Name:    payroll.harrowmere.local
+  Address: 10.100.20.14
+  [OK] Payroll portal reachable.
 
 ```
 
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 Before running any diagnostic command or altering endpoint configuration, state your prediction:
 - **Layer & Failure Point:** What subsystem is failing?
@@ -477,11 +491,11 @@ Every service desk technician must produce documentation that meets strict opera
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1104
+Ticket ID:        INC0058306
 Requester:        Greg Adams (Accounts Payable Specialist)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
-Date / Time:      2026-10-18 09:15:22 PDT
+Date / Time:      2025-03-11 09:15:22 PDT
 Category:         Network / Remote Access / Name Resolution
 Affected FQDN:    payroll.harrowmere.local
 Status:           RESOLVED
@@ -526,12 +540,12 @@ Status:           RESOLVED
 ================================================================================
 SYSTEMS & NETWORK SECURITY ESCALATION NOTE
 ================================================================================
-Escalation ID:    ESC-2026-0488
+Escalation ID:    ESC0004888
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
-Escalated To:     Lena Chen (Tier 2 Sysadmin) / Jared Vance (Network Ops)
+Escalated To:     Lena Chen (Tier 2 Sysadmin) / Jared Lindqvist (Network Ops)
 Priority:         P2 - High (Systemic Remote Access Degradation)
-Date / Time:      2026-10-18 09:40:15 PDT
+Date / Time:      2025-03-11 09:40:15 PDT
 Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDOMAIN)
 
 1. DEFECT DESCRIPTION:
@@ -587,27 +601,10 @@ Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDO
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 4.2: RESOLVED REMOTE ACCESS RESOLUTION"
-badge: "Shift Epilogue"
-caption: "Operations center bullpen: At 10:15 AM, the remote dispatch queue returns to green. On Greg's remote desktop, the internal payroll timesheet portal renders cleanly over the encrypted tunnel."
-prompt: "Clean graphic novel cutaway panel of a corporate IT help desk operations center. Outside the panoramic windows, morning rain clears over the Willamette River. On a large wall-mounted operations monitor, a network traffic graph displays balanced green metrics. A technician types at a dual-monitor workstation. Ligne Claire style, sharp technical lines, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-With the root cause identified, Lena Chen pulled up the centralized VPN gateway management console on her workstation. She pushed a mandatory client profile revision across the cluster, enforcing an interface metric of 10 on the virtual tunnel adapter, appending `harrowmere.local` to the suffix search list, and disabling multi-homed smart resolution.
+This problem looks different from the Hillsboro VPN users, but it works the same way. Use the worked example and your notes.
 
-"I will handle the queue," I told Maya, opening our mass notification template. I broadcasted the three-step resolution instructions to affected staff: disconnect the client session, reconnect to pull the revised profile from the gateway cluster, and run `ipconfig /flushdns` in an elevated prompt to wipe the negative NXDOMAIN cache.
-
-Within twelve minutes, the gateway logs confirmed that seventy-five remote endpoints had downloaded the corrected configuration. I called Greg back in Hillsboro. I walked him through the reconnection and cache flush, and watched his screen over remote control as he refreshed the browser.
-
-The bright orange GoDaddy parked domain page vanished immediately. It was replaced by the clean green-and-white header of our internal payroll application. Greg let out an audible sigh of relief over the line, murmuring that he could finally submit his department's morning timesheets, and thanked us before hanging up. One by one, the remaining seventeen tickets on the board were updated, verified, and resolved.
-
-Jared walked back past our row with a fresh cup of coffee. He glanced at the green status board, and gave a brief, sheepish shrug before heading back toward the network closet. He did not say another word about CenturyLink backhoes.
-
-Jules smiled faintly and set her empty mug down on the edge of the partition. She unclipped her helmet from the display arm.
-
-"You spent two hours chasing down someone else's bad configuration, Ethan, but you did not spend it guessing," Jules said. "Remember this shift the next time someone tells you an application is broken. The application is almost never broken. Most of the time, the client is just asking the wrong stranger for directions."
-
-I wrote her words down in my technical journal. I saved the ticket escalation notes for Maya's post-incident review, and turned back to the queue as the rain outside softened into a quiet, steady mist.
+A user on home Wi-Fi with VPN up can reach `files.harrowmere.local` by IP but not by name, and only on her personal router. Her router hands out a public DNS server. List the commands you would run, the two client settings you would check, and who owns the fix.

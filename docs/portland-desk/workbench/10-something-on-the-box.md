@@ -20,6 +20,22 @@
 
 ---
 
+## Worked Example: Todd's laptop
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** A laptop ran an encoded PowerShell command and kept calling an unknown domain.
+
+1. Isolate the machine from the network before anything else.
+2. Decode the Base64 command to find the downloader and its domain.
+3. Find persistence: a scheduled task named `CacheCleanup` and Run keys.
+4. Block the domain, remove persistence, and reimage rather than trust the cleanup.
+5. Restore encrypted shares from snapshots the attacker could not reach. Do not pay.
+6. Check signed files for revocation. A valid signature only proves who held the key.
+7. Result: contained, with half a day of Rina's edits and all of Ken's local files lost.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,22 +47,9 @@ prompt: "Clean technical illustration of a computer monitor displaying a system 
 
 
 ### The Situation
-It is 08:45 on a gray Thursday morning in East Portland. Outside, rain needles the double-paned windows facing the Central Eastside Industrial District, and the desk floor hums with the electric drone of fluorescent lights and server rack blowers. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet clipped to her dual-monitor arm, steam curling off her dark roast coffee.
+It is a Thursday in February. Ethan is in his third week as Tier 2. Maya's browser is full of coupon toolbars after an installer ran at 07:41. Sam drops a branded USB stick on the counter that he plugged in at home. Todd's laptop is running encoded PowerShell and copying itself across warehouse shares. Rina Rostova in facilities finds her team folder encrypted, with a ransom note on the desktop. In the afternoon, Ken calls from Gresham with a laptop that is running a signed dropper.
 
-On the whiteboard beside the dispatch monitor, the sticky note from yesterday's authentication shift (*which factor?*) has been replaced with a fresh neon-yellow square:
-
-$$\boxed{\textbf{Does this need to leave the network?}}$$
-
-Ethan’s desk drawer still holds his port flashcards and factor reference tables, but Thursday morning's queue is not about firewall rules or forgotten passwords. It is about malicious execution, compromised endpoints, and host persistence:
-* **Todd Miller from Inside Sales** walked into the dispatch bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scribbled in blue sharpie. Within four minutes of plugging it into his laptop (`TODD-SALES-14`) to check a proposal, his laptop cooling fans spun up to an ear-splitting 100%, and EDR raised high-priority alerts: a hidden PowerShell process was enumerating domain shares and copying itself across the warehouse network (`\\WH-PACK-02\share$`).
-* **Maya in Accounting** downloaded an unauthorized "free PDF merger" from an external forum. While the merger works, her browser opened twenty coupon pop-ups, and a background task named `OptimizeRAM.exe` began injecting ads and phoning home.
-* **Dana in Facilities** called in a voice forced to a calm whisper: every spreadsheet and work order on her desktop has been renamed with a `.locked` extension, and a text file named `README_RESTORE.txt` demands 0.5 Bitcoin within 72 hours.
-* **Lila in HR** noticed significant keyboard lag; Task Manager revealed a suspicious process named `FontUpdateHelper.exe` capturing keystrokes via Windows API hooks.
-* **Dev in Engineering** reported that his local file explorer looked normal, but host EDR flagged an unsigned kernel driver hooking disk input/output calls—a rootkit concealing disk writes.
-* **Nora in Finance** forwarded a screenshot of a fleeting black PowerShell window. Her antivirus reported 100% clean, but network telemetry showed persistent HTTPS beacons phoning home to an external IP (`185.22.112.14:443`) every 300 seconds.
-
-Jules spins her ceramic mug and fixes her eyes on Ethan:
-> *"Malware is a category; your job is the decision. You do not negotiate with a padlock, you do not hunt Latin taxonomy while a machine is broadcasting across the warehouse subnet, and you never let an infected box stay plugged in while you satisfy your curiosity. On this desk, isolation comes before forensics."*
+This lab follows those cases in that order: adware, removable media, a worm, ransomware, and a signed file whose certificate has been revoked.
 
 ### The Ground Truth Rules of the Desk
 1. **Isolate First, Investigate Later:** Containment precedes analysis. When an endpoint displays worm-like lateral spread, active ransomware encryption, or persistent command-and-control (C2) beaconing, immediately sever its network connectivity—pull the physical Ethernet cable, disengage Wi-Fi, and issue an EDR network quarantine. An unplugged machine cannot compromise adjacent subnets, cannot exfiltrate corporate databases, and cannot receive execution instructions.
@@ -270,7 +273,9 @@ You open a PowerShell terminal on your management workstation to de-obfuscate th
 ### Drill 2: Sysinternals Autoruns & Registry Run Key Inspection
 
 #### The Scenario
-Maya in Accounting opened ticket `HD-4419` complaining of browser pop-ups and sluggish performance following an unauthorized software download. You remote into `MAYA-W11` with her permission. In Task Manager, you see an unfamiliar process named `optram.exe` using 15% CPU. If you simply right-click and choose "End Task", the process disappears, but returns immediately upon reboot.
+> **Practice case.** This drill is invented for practice and is not an event from the chapter.
+
+Maya in Accounting opened ticket `INC0070431` complaining of browser pop-ups and sluggish performance following an unauthorized software download. You remote into `MAYA-W11` with her permission. In Task Manager, you see an unfamiliar process named `optram.exe` using 15% CPU. If you simply right-click and choose "End Task", the process disappears, but returns immediately upon reboot.
 
 To inspect the persistence mechanism, you examine the pre-recorded Autoruns log in [`artifacts/autoruns_dump.txt`](../artifacts/autoruns_dump.txt) and the System Event Log in [`artifacts/event_7045_dump.txt`](../artifacts/event_7045_dump.txt):
 
@@ -396,6 +401,8 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 > **The Rule of the Desk:** Before typing a command, terminating a process, or replying to a ticket, commit your decision in your mind: name the threat category, state your containment action, and provide your technical justification.
 <div class="scratchpad-container">
   <div class="scratchpad-header">
@@ -412,7 +419,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 </div>
 
 
-#### Ticket 1: Todd Miller (Sales / Warehouse) — `INC-2026-1181`
+#### Ticket 1 (practice case, not from the chapter): Warehouse Clerk (Shipping Bay) — `INC0070418`
 *Request:* "Found an unlabeled USB stick in the shipping bay. Plugged it in to see who owns it, and my laptop fans immediately spun up to 100%. Antivirus quarantined `SOW_final.pdf.exe`. Can I just unplug the USB, empty my recycle bin, and keep working on my sales forecast?"
 
 * **Your Action:** [ Clear Alert & Resume / Isolate Host & Audit Network Shares / Scan USB on Laptop ]
@@ -430,7 +437,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 2: Dana Rostova (Facilities Lead) — `INC-2026-1182`
+#### Ticket 2: Rina Rostova (Facilities Lead) — `INC0070419`
 *Request:* "All work orders and vendor contracts on my desktop have the extension `.locked`. A Notepad opened titled `README_RESTORE.txt` demanding \$2,000 in Bitcoin within 72 hours. It says if I join their online customer chat they will decrypt one file for free as proof. Can I test the chat to get our building HVAC blueprints back?"
 
 * **Your Action:** [ Test Decrypt Chat / Negotiate / Isolate Host & Engage Backups ]
@@ -448,7 +455,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 3: Nora Higgins (Finance Specialist) — `INC-2026-1183`
+#### Ticket 3 (practice case, not from the chapter): Nora Higgins (Finance Specialist) — `INC0070420`
 *Request:* "A black terminal window flashed on my screen for half a second while I was reviewing budget spreadsheets. My local antivirus widget says 'System Protected - 0 Threats Found'. I have payroll due in two hours—can I ignore it?"
 
 * **Your Action:** [ Dismiss Ticket / Query Network Telemetry & Isolate Host ]
@@ -466,7 +473,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 4: Jordan Reed (Operations Specialist) — `INC-2026-1184`
+#### Ticket 4 (practice case, not from the chapter): Jordan Reed (Operations Specialist) — `INC0070421`
 *Request:* "Was reviewing scheduled tasks on our staging host `SRV-STAGE-01` and found a task named `StagingMaintenance`. The action is `powershell.exe -File C:\stage\cleanup.ps1`, and the trigger condition checks if a departed contractor's Active Directory account is disabled. Should I run the script manually to see what it cleans?"
 
 * **Your Action:** [ Run Script / Delete Task / Disable Task, Preserve Evidence, & Escalate ]
@@ -484,7 +491,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 5: Dev Patel (Software Engineer) — `INC-2026-1185`
+#### Ticket 5 (practice case, not from the chapter): Dev Patel (Software Engineer) — `INC0070422`
 *Request:* "My terminal command `dir C:\Windows\System32\drivers` looks completely normal, but EDR generated an alert claiming an unsigned driver is hooking file system I/O. I downloaded a free rootkit remover tool from an internet forum; can I run it with admin rights?"
 
 * **Your Action:** [ Run Free Cleaner / Reimage Host from Known-Good Media ]
@@ -523,18 +530,18 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 In enterprise security operations, Tier 1 service desk notes serve as the initial chain-of-custody and incident triage record for Tier 2/3 SOC analysts, compliance teams, and management.
 
 #### Part A: Tier 1 Standard Host Infection Isolation & Containment Note
-*(Reference Case: Todd Miller / Workstation `TODD-SALES-14` / Incident `INC-2026-1181`)*
+*(Reference Case: Todd / Workstation `TODD-SALES-14` / Incident `INC0070418`)*
 
 ```text
 ================================================================================
 TIER 1 INCIDENT CONTAINMENT NOTE - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1181
+Ticket ID:        INC0070418
 Affected Host:    TODD-SALES-14 (IP: 192.168.10.45)
 User / Dept:      Todd Miller (Sales & Warehouse Operations)
 Technician:       Ethan Mercer (Tier 1 Support)
 Lead Reviewer:    Jules Brooks (Service Desk Lead)
-Timestamp:        2026-10-22 10:35:12 PST
+Timestamp:        2026-02-12 10:35:12 PST
 Category:         Malware / Worm & Dropper Outbreak
 Severity:         HIGH (P2) - Lateral Propagation Attempt
 Status:           CONTAINED / ESCALATED TO SOC
@@ -586,18 +593,18 @@ Status:           CONTAINED / ESCALATED TO SOC
 ---
 
 #### Part B: High-Severity Ransomware Incident Escalation Note
-*(Reference Case: Dana Rostova / Workstation `DANA-FAC-01` / Incident `INC-2026-1182`)*
+*(Reference Case: Rina / Workstation `RINA-FAC-01` / Incident `INC0070419`)*
 
 ```text
 ================================================================================
 CRITICAL SECURITY ESCALATION - ACTIVE RANSOMWARE OUTBREAK
 ================================================================================
-Ticket ID:        INC-2026-1182
-Affected Host:    DANA-FAC-01 (IP: 192.168.30.12)
-User / Dept:      Dana Rostova (Facilities Operations)
+Ticket ID:        INC0070419
+Affected Host:    RINA-FAC-01 (IP: 192.168.30.12)
+User / Dept:      Rina Rostova (Facilities Operations)
 Technician:       Ethan Mercer (Tier 1 Support)
 Lead Reviewer:    Jules Brooks (Service Desk Lead)
-Timestamp:        2026-10-22 12:44:00 PST
+Timestamp:        2026-02-12 12:44:00 PST
 Category:         Malware / Ransomware & Extortion
 Severity:         CRITICAL (P1) - Active Host Cryptographic Lockdown
 Status:           ISOLATED / EMERGENCY SOC BRIDGE ENGAGED
@@ -624,11 +631,11 @@ Status:           ISOLATED / EMERGENCY SOC BRIDGE ENGAGED
    - Network shares mapped to user profile (\\FAC-SHARE-01\WorkOrders) audited:
      Zero write activity detected due to rapid network disconnect.
    - Backup Integrity: Verified overnight immutable snapshots on storage array
-     (ZFS immutable snapshot pool taken 2026-10-22 02:00 PST). Data restore ready.
+     (ZFS immutable snapshot pool taken 2026-02-12 02:00 PST). Data restore ready.
 
 4. HANDOFF & EVIDENCE CHAIN:
    - Incident Commander notified via emergency IR bridge.
-   - Workstation DANA-FAC-01 tagged for memory dump and drive preservation.
+   - Workstation RINA-FAC-01 tagged for memory dump and drive preservation.
    - User provided temporary non-domain workstation with cloud-only read access.
 ================================================================================
 ```
@@ -652,119 +659,10 @@ Status:           ISOLATED / EMERGENCY SOC BRIDGE ENGAGED
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 10.2: PERSISTENCE HUNT & HOST CONTAINMENT"
-badge: "Shift Epilogue"
-caption: "Operations bullpen: At 05:45 PM, the terminal fans spin down to a whisper. On Ethan's dual monitor setup, Sysinternals Autoruns shows the malicious Run key stripped, and Todd's laptop sits isolated on the quarantine bench awaiting a bare-metal reimage."
-prompt: "Clean graphic novel cutaway panel of an IT support technician workbench in the late afternoon. An open laptop with its Ethernet cable unplugged sits on an anti-static mat next to a monitor displaying a process management console with clean status indicators. Ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-With Todd's laptop disconnected and the obfuscated PowerShell payload decoded, SOC pushed an enterprise rule blocking the C2 domain. We extracted the malicious scheduled task `CacheCleanup`, purged the persistence Run keys in Autoruns, and scheduled both endpoints for a clean bare-metal reimage. Dana's locked files were queued for an offline snapshot restore from the immutable backup vault.
+This problem looks different from Todd's laptop, but it works the same way. Use the worked example and your notes.
 
-Across the bullpen, the rest of the shift brought the quieter, deeper variants of persistence.
-
-## Keyboards, roots, and the process that hides
-
-Afternoon was quieter and worse, which is a combination I am starting to recognize.
-
-Lila from HR noticed her password manager prompting more than usual. She had not typed those sites. She had typed a lot of other sites, which is the point. Task Manager showed a helper named like a font updater. The process list lied poorly if you looked twice.
-
-```console
-caption: LILA-HR · tasklist
-C:\Users\lila> tasklist /v | findstr /i "font helper chrome"
-chrome.exe           4412  Console  1    210,332 K  Running
-FontUpdateHelper.exe 5088  Console  1     14,108 K  Running
-```
-
-"That is a [[keylogger|keylogger]]," I said after EDR flagged keystroke hooks. "Spyware family. Steal what you type. We rotate credentials from a clean path — not from that laptop — and we rebuild, not clean until it feels better. If I sit here deleting helpers until Task Manager looks friendly, I have taught the next helper how long we are willing to bargain."
-
-She did not love the loaner. She used it. She asked whether her passwords from the morning were still good. I said we would rotate the ones that had been typed while the helper was running, which was most of them, and that she should not rotate them from the infected box. She made a face I deserved.
-
-While Lila was on the loaner, Dev from engineering pinged that his box looked clean in Explorer but EDR said a kernel driver was unsigned and hooking disk calls. Explorer is a terrible witness. It reports what it is allowed to see.
-
-"[[rootkit|Rootkit]]," Jules said, without coming over, which meant she had already read the alert. "Hides under the tools you trust. Desk does not hunt that with a free utility from a blog. Image the disk if SOC asks, then reimage. If you cannot trust `dir`, you do not negotiate with the filesystem."
-
-Dev exhaled. "Reimage is the product." He would be down until evening. He said so twice, once to me and once to the sprint channel, where it landed less well.
-
-## Fileless, land tools, and the bot that phones home
-
-Nora in finance forwarded a screenshot: a PowerShell window flash, then nothing. No new file on the desktop. Her antivirus was green. Her EDR was not. Green AV is a mood. EDR orange is a verb.
-
-"[[fileless|Fileless malware]]," I said. "Or at least file-light. [[living_off_the_land|Living off the land]] — abusing PowerShell and friends so it looks like admin work. Signature scanners that only chase new EXEs arrive late. Behavior is the clue, and the clue here is a window that had no business opening itself."
-
-SOC had already marked the parent process and the beacon URL. Outbound HTTPS to a freshly registered domain every five minutes.
-
-```console
-caption: NORA-FIN · netstat (SOC paste)
-PS C:\> Get-NetTCPConnection -RemotePort 443 | ? State -eq Established
-LocalAddress   RemoteAddress        RemotePort  OwningProcess
-10.12.8.41     185.22.xx.14         443         6412   powershell.exe
-
-# every ~300s since 11:04 — same host, same interval
-```
-
-Textbook [[command_and_control|command and control (C2)]]. Nora's PC was not a masterpiece APT story. It was a [[bot|bot]] waiting for instructions, one more node that could join a [[botnet|botnet]] if nobody pulled the cord. I said that more slowly than I needed to, because "bot" still sounds like a cartoon until you watch it keep a schedule.
-
-We pulled Nora off Wi-Fi and wired both. She worked from a clean kiosk on mail-only for the hour. She did not love it. She asked whether she could "just finish the one spreadsheet." I said the spreadsheet could live on the kiosk or it could live on a machine that was still phoning home, and those were different spreadsheets.
-
-## Logic bombs, RATs, backdoors, and the miner in the closet
-
-Late tickets arrived in a pile that would have been funny if any of them had been theoretical.
-
-Jordan from ops admitted a departing contractor had once joked about a script that "deletes the staging share if my account ever goes disabled." Nobody had filed it, because it had been a joke in a channel that jokes. Jordan found a scheduled task with a date trigger and a spiteful comment. The comment was the least professional part, which is saying something.
-
-```console
-caption: staging-host · schtasks
-PS C:\> schtasks /query /tn "StagingMaintenance" /v /fo LIST
-TaskName:        StagingMaintenance
-Last Run Time:   Never
-Next Run Time:   2026-09-22 02:00:00
-Trigger:         At logon of contractor-id — if account disabled, run
-Comment:         don't be a stranger
-Task To Run:     powershell.exe -File C:\stage\cleanup.ps1
-```
-
-We disabled the task, preserved it for HR and legal, and I finally got to say [[logic_bomb|logic bomb]] out loud. Condition plus payload. Malice on a timer. Jules told Jordan to stop narrating the joke in Slack and start attaching the export.
-
-Rita in marketing somehow had a remote support tool she did not remember installing. It listened. It waited. EDR called it a [[rat|remote access Trojan]] — a trojan whose payload is interactive control. Beside it, a service that should not exist smelled like a [[backdoor|backdoor]] planted for later. Same ticket family: isolate, do not just uninstall and hope, rebuild from known-good. Rita asked if she could keep the tool "because sometimes vendors need it." I said vendors can open a ticket like everyone else, and that a listener she did not install is not a vendor relationship.
-
-The warehouse closet PC that drives a label printer was burning CPU at 100 percent. No ransomware note. No ads. Just heat, and a fan that had opinions about remaining employed. SOC named it [[cryptojacking|cryptojacking]]: mining for someone else on our electricity.
-
-```meter
-caption: WH-LABEL-01 · CPU
-label: CPU
-value: 100
-note: No user at the console. Process name looks like a Windows update. It is not. Miner talking to a broker.
-```
-
-We isolated anyway. Miners talk to brokers. Brokers are C2 with a timesheet. The spare printer from Dana's morning inherited a second job and made a sound I will remember.
-
-## Persistence, privileges, and the commute across the floor
-
-The end-of-day bridge call was short, which I have learned is a compliment when SOC is on it.
-
-"What we saw today starts as one host and tries to become a floor," the analyst said. "Watch for [[persistence|persistence]] — Run keys, services, tasks that survive reboot. Watch for [[privilege_escalation|privilege escalation]] — suddenly the malware is SYSTEM. Watch for [[lateral_movement|lateral movement]] — same hash on the next PC, same share writes, same stolen creds. Your IoCs do not need to be poetry."
-
-| IoC we actually wrote down | Why it still matters tomorrow |
-| --- | --- |
-| Hosts: TODD-SALES-14, WH-PACK-02, MAYA-W11 | Pattern, not a one-off |
-| [[hash|SHA256]] on the USB dropper | Catalog already knew it; next USB might |
-| Domain `185.22.xx.14` on 443 / 5 min | Nora's beacon |
-| Task name `CacheCleanup` | Worm commute |
-| "isolated at 14:12" | Clock for the people who were not in the room |
-
-I updated the wiki blurb the desk actually reads: portal software only; USB is guilty until scanned; weird share activity means isolate first; ransomware means isolate and do not pay; restore from backups attackers cannot touch; green AV is not a verdict; EDR orange is a verb; and when something on the box is lying — quarantine the file, isolate the host, open the path to the SOC.
-
-At 5:35 I closed what I could. Maya's toolbars were gone and her merger was still a fight. Sam's USB was contained. Todd had unplugged a worm commute and was still owed a file copy. Dana had not paid and was still on the slow printer. Lila was on a loaner rotating passwords she did not want to rotate. Dev was reimaging. Nora's beacon was starved. Jordan's timer was defused. Rita's RAT was escalated. The closet miner was cooling down, and the spare printer was doing two jobs badly.
-
-Jules clipped her bike lights on. "Tomorrow someone will ask if paying just this once is faster."
-
-I already had the line. I went out into the rain.
-
-Jules shut her laptop and stretched. "Tomorrow someone will bring a branded flash drive from a conference and swear it is just drivers."
-
-"I will put it on the junk scan box," I said.
-
-"Good," Jules said. "That box is lonely." I locked the drawer and went out to catch the MAX.
+A kiosk PC in the lobby shows a new service named `UpdateHelper` that runs a signed binary and calls out every ten minutes. The signing certificate was revoked last week. Write the order of your actions and explain why the signature check passed at first.

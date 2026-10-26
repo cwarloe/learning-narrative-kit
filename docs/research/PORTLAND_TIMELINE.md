@@ -10,7 +10,7 @@
 
 ## 0. Acts and phases (decided 2026-10-26)
 
-- **Acts are story structure.** Act I is Ep 00 to 02 (getting in: dock to desk, A+). Act II is Ep 03 to 06 (the wire: Net+). Act III is Ep 07 to 12 (identity, threats, and escalation: Sec+, with the Tier 2 promotion after Ep 08). These match the published hub.
+- **Acts are story structure.** Act I is Ep 00 to 02 (getting in: dock to desk, A+). Act II is Ep 03 to 06 (the wire: Net+). Act III is Ep 07 to 12 (identity, threats, and escalation: Sec+, with the Tier 2 promotion in January, between Ep 09 and Ep 10). These match the published hub.
 - **Phases are the story-to-lab handoff models** in `PEDAGOGICAL_AGENCY_ARCHITECTURE.md`: Phase 1 is Ep 00 to 02, Phase 2 is Ep 03 to 06, Phase 3 is Ep 07 to 10, and Phase 4 is Ep 11 to 12.
 - Use "act" only for story and "phase" only for the handoff model.
 
@@ -69,11 +69,11 @@ $$\text{Laborer / Student} \longrightarrow \text{IT Rotation} \longrightarrow \t
 │         │ Open (Sec+ Ports)    │ August (22) │ script; protocol hardening.             │
 ├─────────┼──────────────────────┼─────────────┼─────────────────────────────────────────┤
 │ Ep 08   │ Prove Who You Are    │ Year 3:     │ 14 months on the desk. MFA push-bombing │
-│         │ (Sec+                │ October     │ and AD lockouts. Promoted to Tier 2     │
-│         │ Authentication)      │ (23)        │ after this episode.                     │
+│         │ (Sec+                │ October     │ and AD lockouts. Misses the October     │
+│         │ Authentication)      │ (23)        │ Tier 2 round.                           │
 ├─────────┼──────────────────────┼─────────────┼─────────────────────────────────────────┤
-│ Ep 09   │ Don't Click That     │ Year 3:     │ 16 months on the desk, first episode as │
-│         │ (Sec+ Phishing)      │ December    │ Tier 2. Phishing headers, typo domains, │
+│ Ep 09   │ Don't Click That     │ Year 3:     │ 16 months on the desk, still Tier 1.    │
+│         │ (Sec+ Phishing)      │ December    │ Phishing headers, typo domains,         │
 │         │                      │ (23)        │ SPF/DKIM/DMARC.                         │
 ├─────────┼──────────────────────┼─────────────┼─────────────────────────────────────────┤
 │ Ep 10   │ Something on the Box │ Year 4:     │ 18 months on the desk. Ken calls from   │
@@ -85,9 +85,9 @@ $$\text{Laborer / Student} \longrightarrow \text{IT Rotation} \longrightarrow \t
 │         │                      │             │ guns.                                   │
 ├─────────┼──────────────────────┼─────────────┼─────────────────────────────────────────┤
 │ Ep 12   │ When the Ticket      │ Year 4:     │ 22 months on the desk. Capstone         │
-│         │ Escalates (Sec+ IR)  │ Late June   │ incident; CSIRT handoff. Ends with a    │
-│         │                      │ (23)        │ role change into Harrowmere security    │
-│         │                      │             │ operations in Portland.                 │
+│         │ Escalates (Sec+ IR)  │ Late June   │ incident; CSIRT handoff. Ends with      │
+│         │                      │ (23)        │ Ethan applying for the security ops     │
+│         │                      │             │ analyst role. Offer opens Book 1.       │
 └─────────┴──────────────────────┴─────────────┴─────────────────────────────────────────┘
 ```
 
@@ -149,8 +149,9 @@ Most of this is off the page. It exists so every episode and NADF agree on how E
 | February | 21 | Line 4 sorting-line fix; Ken writes the internal referral | — | — | Ep 01 |
 | ~6 months | 21 | IT rotation on day shift (imaging bench, deployments, desk-side, one overnight week). Quasi-apprenticeship, not a formal internship | Net+ study begins | ~$20–21/hr: a slight cut, traded for day shift | Covered at the start of Ep 02 |
 | Late August | 21 | Passes Jules's practical; joins the desk | — | ~$24/hr | Ep 02 |
-| ~22 months on the desk | 21–23 | Help desk (Tier 1, Ep 02 to 08), then Tier 2 (Ep 09 to 12). Overnight is a rotation | Net+ (~13 months into IT); Security+ (~29 months into IT, just after Ep 12) | ~$24 → ~$28/hr in steps | Ep 02–12 (Book 0 ends ~22 months into the desk) |
-| After Book 0 | 23, turning 24 | Internal move to an analyst role on Harrowmere security operations, still in Portland | — | — | NADF Book 1 |
+| ~22 months on the desk | 21–23 | Help desk (Tier 1, Ep 02 to 09), then Tier 2 from January of Year 4 (Ep 10 to 12). Overnight is a rotation | Net+ (~13 months into IT); Security+ (~29 months into IT, just after Ep 12) | ~$24 → ~$28/hr in steps | Ep 02–12 (Book 0 ends ~22 months into the desk) |
+| End of Ep 12 (late June, Year 4) | 23 | Applies for the analyst opening on Harrowmere security operations | — | — | Ep 12 |
+| August, Year 4 | 23, turning 24 | Offer and move upstairs to the analyst role, still in Portland. This is the opening of Book 1. | — | — | NADF Book 1 |
 
 Pay benchmarks: BLS OEWS, Portland-Vancouver-Hillsboro, May 2025. The rotation pay, night differential, and raise sizes are estimates, not sourced figures.
 

@@ -20,6 +20,21 @@
 
 ---
 
+## Worked Example: The barcode scanners and the rogue AP
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Warehouse scanners and a laptop dropped and reconnected to the wrong network.
+
+1. Survey the air and compare it with the controller's list of known BSSIDs. There is no baseline yet.
+2. Find an SSID you do not own broadcasting on a channel you do not use.
+3. Locate it by signal strength: a travel router under the credenza in 3B.
+4. Shut its switch port.
+5. Move the scanners to 802.1X so they cannot join a look-alike network.
+6. Result: the dock scanned by hand until noon, and the baseline became a weekly job.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,24 +46,9 @@ prompt: "Clean technical cutaway diagram of radio frequency spectrum channels un
 
 
 ### The Situation
-It is 08:35 on a brisk Friday morning on the east side of Portland. Mist clings to the brick facade of the industrial park near the Central Eastside railroad tracks. Inside the service desk bullpen, the morning coffee is fresh, but the dispatch dashboard is flashing amber. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet resting against her primary monitor arm, methodically parsing tickets.
+It is a Friday in April. Maya sends a ticket from the lobby: two networks named `CORP-EMPLOYEE` are on the air, and one has a stronger signal and a BSSID that is not ours. Todd calls from a hotel, proud of a workaround. Rita in marketing has plugged a travel router with an open SSID, `FreeConfQuick`, into a wall jack under the credenza in conference room 3B. Dev's laptop keeps getting knocked off Wi-Fi by deauthentication frames. Ken's barcode scanners in the warehouse are dropping and rejoining the wrong network.
 
-On the whiteboard beside the dispatch screen, Jules has pinned a faded yellow sticky note:
-
-$$\boxed{\textbf{Which SSID am I actually on?}}$$
-
-Ethan’s desk drawer still holds his port index cards and Active Directory lockout sheets, but Friday's queue is entirely about the invisible medium outside the copper wire: the shared corporate radio frequencies.
-
-Three critical wireless incidents have hit the board simultaneously:
-1. **The Warehouse Annex Barcode Outage:** At 08:15, Ken Vance from Warehouse Operations and his logistics team reported that six mobile Zebra barcode scanners mounted on forklifts in the Warehouse Annex (Bay 4) abruptly stopped transmitting inventory updates to the Warehouse Management System (`WMS-APP-01` at `10.10.20.5`). The forklift drivers are idling, logistics trucks are backing up at loading docks 3 and 4, and scanner screens display `Connection Timeout - Host Unreachable`.
-2. **The Annex DHCP Storm:** Network monitoring flagged a critical DHCP scope anomaly on VLAN 20 (Warehouse Operations). Workstations and mobile scanners in the annex are suddenly dropping their legitimate corporate IP leases (`10.10.20.x`) and picking up bizarre addresses in the `192.168.1.x` pool with a default gateway of `192.168.1.1`—a non-routable consumer address that does not exist on the corporate network map!
-3. **Maya Lin and the Lobby Lookalike:** Maya Lin from Accounting walked up to the help desk counter with a corporate loaner laptop. She has an urgent executive finance meeting in fifteen minutes and cannot connect to Wi-Fi. In the Windows network list, right beside the legitimate corporate network `CORP-EMPLOYEE`, sits an unencrypted lookalike named `CORP-EMPLOYE` (missing the trailing "E") transmitting with maximum signal strength, along with an open hotel-style captive portal named `FreeConfQuick`. When Maya tried connecting to the corporate SSID, Windows threw an alarming banner: *"The server certificate presented by the network could not be verified."*
-
-Jules spins her coffee mug and looks directly at Ethan:
-> *"Wired networking has a plastic jack and copper patch cord you can trace with your fingers. Wireless has manners, radio physics, and mathematics. When an employee plugs a rogue consumer box into a warehouse drop because their Wi-Fi was weak, or an attacker stands up an evil twin in the parking lot with an amplified antenna, the air does not care who has permission. The air is shared. On this desk, we don't guess SSIDs, we don't click past certificate warnings, and we contain rogues at the switch port before we ask who bought them."*
-
-
----
+This lab follows the chapter. There is no wireless baseline yet. Ethan builds the first one at the end of this episode, so the survey in this lab starts from the access point inventory and the controller's list of known BSSIDs.
 
 ### The Ground Truth Rules of the Desk
 
@@ -337,12 +337,14 @@ Total Mac Addresses for this criterion: 3
 
 ### Drill 3: "Call Your Shot" (CBYT) 5-Case Wireless Incident Prediction Gate
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 Do not look at the answers first. Read each incident, commit to your decision and technical rationale, and verify your prediction against Jules' review.
 
 
 ---
 
-#### Case 1: Forklift Scanner IP Lease Triage — `INC-2026-1101`
+#### Case 1: Forklift Scanner IP Lease Triage — `INC0073305`
 * **Incoming Ticket:** Forklift scanner `SCAN-WH-12` in the warehouse cannot scan pallets. Terminal network status shows:
   ```text
   IPv4 Address: 192.168.1.104
@@ -367,8 +369,8 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 ---
 
-#### Case 2: Maya Lin's Certificate Prompt Bypass — `INC-2026-1102`
-* **Incoming Ticket:** Maya Lin reports: *"I am trying to connect to CORP-EMPLOYEE from the courtyard patio. A window popped up saying 'radius-auth.harrowrnere.com - The server certificate was issued by an untrusted entity.' It gives me a button that says 'Connect Anyway'. Should I click it so I can get into my board meeting?"*
+#### Case 2: Maya Lin's Certificate Prompt Bypass — `INC0073306`
+* **Incoming Ticket:** Maya reports: *"I am trying to connect to CORP-EMPLOYEE from the courtyard patio. A window popped up saying 'radius-auth.harrowrnere.com - The server certificate was issued by an untrusted entity.' It gives me a button that says 'Connect Anyway'. Should I click it so I can get into my board meeting?"*
 * **Your Triage Action:** [ Tell user to click Connect Anyway / Force WPA2-PSK / DENY connection, verify Root CA, and inspect for Evil Twin ]
 * **Threat Classification:**
 * **Technical Rationale:**
@@ -384,7 +386,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 ---
 
-#### Case 3: Deauthentication Storm in the Lobby — `INC-2026-1103`
+#### Case 3: Deauthentication Storm in the Lobby — `INC0073307`
 * **Incoming Ticket:** Dev in Engineering reports his laptop drops Wi-Fi every 45 seconds while working in the lobby cafeteria. WLC syslog shows:
   ```text
   %DOT11-4-DEAUTH_FLOOD: 450 Deauth frames/sec received targeting client 00:28:f8:11:22:33 from spoofed BSSID 70:69:79:01:aa:01. Reason: Class 3 frame received from nonassociated STA (Code 7).
@@ -405,8 +407,8 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 ---
 
-#### Case 4: Marketing's Hidden SSID & MAC Filtering Request — `INC-2026-1104`
-* **Incoming Ticket:** Marketing submitted ticket `INC-2026-1104`: *"We are setting up a private VIP lounge for a product launch next week. To guarantee absolute security against hackers, we want IT to create a Hidden SSID (suppress beacon frames) and configure a MAC Address Whitelist with the 12 laptops of our executives."*
+#### Case 4: Marketing's Hidden SSID & MAC Filtering Request — `INC0073308`
+* **Incoming Ticket:** Marketing submitted ticket `INC0073308`: *"We are setting up a private VIP lounge for a product launch next week. To guarantee absolute security against hackers, we want IT to create a Hidden SSID (suppress beacon frames) and configure a MAC Address Whitelist with the 12 laptops of our executives."*
 * **Your Triage Action:** [ Approve request as secure / Deny request and educate requester on 802.1X Enterprise & WPA3 ]
 * **Threat Classification:**
 * **Technical Rationale:**
@@ -425,7 +427,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 ---
 
-#### Case 5: Bluetooth Peripheral Spam & Pairing Request — `INC-2026-1105`
+#### Case 5: Bluetooth Peripheral Spam & Pairing Request — `INC0073309`
 * **Incoming Ticket:** Jordan in dispatch reports: *"My laptop screen just popped up an unsolicited Bluetooth pairing request asking to pair with 'Magic_Keyboard_Pro' with PIN 884129. Two minutes earlier, my phone received an unprompted file transfer notification containing an image named 'free_coffee.jpg'. Am I hacked?"*
 * **Your Triage Action:** [ Approve pairing / Reinstall Windows / Decline pairing, turn Bluetooth discovery off, classify Bluejacking ]
 * **Threat Classification:**
@@ -465,17 +467,17 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 In enterprise support environments, your ticket documentation is a legal and operational record. Below are the two mandatory templates you must master:
 
-#### Part A: Standard Tier 1 Resolution Note (Example: Ken's Rogue AP / INC-2026-1101)
+#### Part A: Standard Tier 1 Resolution Note (Example: Rita's Travel Router / INC0073305)
 
 ```text
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1101
-Requester:        Ken Vance (Warehouse Operations / Logistics Logistics)
+Ticket ID:        INC0073305
+Requester:        Rita (Marketing, Conference Room 3B)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks (Service Desk Lead)
-Date/Time:        2026-10-23 09:15:44 PST
+Date/Time:        2026-04-17 09:15:44 PDT
 Category:         Wireless & Network Infrastructure / Rogue Device Containment
 Severity:         P2 - High (Warehouse Barcode Scanning Operations Halted)
 Status:           RESOLVED / REMEDIATED
@@ -507,7 +509,7 @@ Status:           RESOLVED / REMEDIATED
      renew DHCP leases across all 6 affected forklift scanners. Verified scanners 
      re-acquired valid 10.10.20.0/24 leases (Default Gateway 10.10.20.1).
    - Validation: Confirmed bidirectional ICMP ping and successful barcode pallet 
-     scans against WMS-APP-01 (10.10.20.5). Operations restored 09:10 PST.
+     scans against WMS-APP-01 (10.10.20.5). Operations restored 09:10 PDT.
 
 4. USER GUIDANCE & PREVENTATIVE MEASURES:
    - Coached warehouse lead on Acceptable Use Policy: unmanaged consumer network 
@@ -517,14 +519,14 @@ Status:           RESOLVED / REMEDIATED
 ================================================================================
 ```
 
-#### Part B: Security Incident Escalation & SOC Handoff Note (Example: Lobby Evil Twin / INC-2026-1102)
+#### Part B: Security Incident Escalation & SOC Handoff Note (Example: Lobby Evil Twin / INC0073307)
 
 ```text
 ================================================================================
 SECURITY ESCALATION & THREAT INTEL ADVISORY - TIER 2 SOC / WIRELESS OPS
 ================================================================================
-Incident Tracking: SEC-WLAN-2026-1023
-Related Tickets:   INC-2026-1102, INC-2026-1103
+Incident Tracking: ESC0007312
+Related Tickets:   INC0073306, INC0073307
 Reporter:          Ethan Mercer (Tier 1 Support)
 Supervising Lead:  Jules Brooks (Desk Lead)
 Target Facility:   Portland Operations Center - East Lobby & Executive Courtyard
@@ -533,7 +535,7 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
 
 1. INCIDENT OVERVIEW:
    A coordinated wireless attack was detected targeting the East Lobby and 
-   Executive Courtyard. Multiple endpoints (including CEO Maya Lin's loaner laptop 
+   Executive Courtyard. Multiple endpoints (including Maya Lin's loaner laptop 
    and Engineering staff) reported repeated wireless disconnects followed by 
    untrusted certificate prompts and lookalike network advertisements.
 
@@ -542,7 +544,7 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
      floods (Type 0, Subtype 12 - Deauth) using spoofed source MAC addresses of 
      legitimate AP-LOBBY-01 (70:69:79:01:aa:01), kicking corporate clients offline.
    - Evil Twin Deployment: Handheld RF analyzer detected rogue radio broadcasting:
-       * Rogue SSID:     'CORP-EMPLOYE' (Typosquat - omitted trailing 'E')
+       * Rogue SSID:     'CORP-EMPLOYEE' (identical SSID, unknown BSSID)
        * Rogue BSSID:    00:c0:ca:98:76:54 (ALFA Networks High-Gain USB adapter)
        * Frequency/Ch:   2.437 GHz (Channel 6) @ +28 dBm transmission power
        * RSSI in Lobby:  -38 dBm (Stronger than internal corporate APs)
@@ -562,7 +564,7 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
 
 4. REQUIRED ACTION ITEMS FOR SOC & NETWORK ENGINEERING:
    1. Physical Security: Review exterior parking lot CCTV footage between 08:00 
-      and 09:00 PST focusing on vehicles parked adjacent to the East Courtyard glass.
+      and 09:00 PDT focusing on vehicles parked adjacent to the East Courtyard glass.
    2. Threat Intel / Registrar Takedown: Submit immediate domain takedown and DNS 
       RPZ sinkhole for typosquatted domain 'harrowrnere.com'.
    3. Architectural Hardening: Accelerate deployment of 802.11w (Protected Management 
@@ -592,69 +594,10 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 11.2: WIRELESS HEATMAP & ROGUE AP LOCALIZATION"
-badge: "Shift Epilogue"
-caption: "Operations floor: At 05:40 PM, the wireless controller console displays 100% green enterprise authentication. The rogue AP on port Gi1/0/14 has been administratively disabled, and lobby clients authenticate cleanly over 802.1X RADIUS."
-prompt: "Clean graphic novel cutaway panel of an IT support technician reviewing a wireless heat map on a wall-mounted monitor in an operations office. The heat map shows clean green RF signal distributions across building zones, with an unauthorized red hotspot marked as deactivated. Crisp ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-With the rogue AP located under the conference credenza and its switch port administratively disabled in Cisco IOS, warehouse barcode scanners reassociated smoothly with the legitimate corporate radios. The deauthentication bursts targeting lobby clients subsided once the rogue BSSID was silenced, and Dev's laptop reconnected over authenticated 802.1X RADIUS.
+This problem looks different from the barcode scanners and the rogue AP, but it works the same way. Use the worked example and your notes.
 
-Across the rest of the facility, wireless architecture and hygiene fell into place.
-
-## Guest Wi-Fi, segmentation, and the printer that should not see payroll
-
-Nora needed a vendor on site to update a badge printer. The vendor wanted Wi-Fi. Nora wanted them productive. Finance wanted them nowhere near file shares.
-
-"Guest Wi-Fi," I said. "Different SSID, captive portal for AUP, and — this is the part people skip — network segmentation so guest cannot route to payroll, cameras, or the help desk VLAN. Guest without segmentation is just hospitality for lateral movement."
-
-We put the vendor on `CORP-GUEST`, watched them fail to ping an internal share, and succeed at the vendor's own update CDN. Nora asked if we should hide the employee SSID so guests were less confused.
-
-"Hidden SSID is obscurity," Jules said. "It still leaks in other frames. Real control is enterprise auth and segmentation."
-
-Someone in the thread suggested MAC allow-lists for the printer VLAN. I typed carefully: "MAC filtering is a speed bump you can spoof with a screenshot."
-
-## WPA2, WPA3, WPS, and the survey that is not vibes
-
-Network dropped by the desk with a short hallway class. They were rolling a pilot.
-
-"Employees stay on [[wpa2|WPA2]]-Enterprise today," the engineer said. "Pilot floor gets [[wpa3|WPA3]]-Enterprise with [[sae|SAE]] for the personal SSID we still keep for a few IoT leftovers. SAE is why WPA3-PSK is less embarrassed about offline password guessing than WPA2-PSK. And turn [[wps|WPS]] off on anything that still admits it exists — convenience pairing with a brute-force hobby."
-
-I asked about coverage complaints on the east cubes. They pulled last week's [[site_survey|site survey]]: heat map, channel overlap, one AP transmitting like it was trying to cover the MAX stop.
-
-"AP placement and power," the engineer said. "Too loud outside means easier eavesdropping and easier twins. Survey is how we know. Vibes are how we get tickets titled Wi-Fi bad."
-
-I wrote it down.
-
-## Controllers, certificates, and the Monday meeting reflex
-
-Before Bluetooth ate the last hour, I rewrote one more wiki line the desk will actually use. The wireless controller is where SSID policy lives — encryption mode, guest splash, rogue detection flags — not in a sticky under someone's monitor. When a laptop fails enterprise join, we check whether the user clicked past a certificate warning, whether they are on the right SSID, and whether a booster app installed a fake trust store.
-
-Jules made me say it once for the queue: "If the meeting started, that is not permission to join the loud lookalike. Dock, hotspot from a known phone through VPN, or wait."
-
-I put that sentence in the ticket template.
-
-## Bluetooth in the cube farm
-
-Late day, Lila's laptop kept pairing prompts for a keyboard she did not own. Jordan found a cheap earbud spam message that said *Hi cute phone.* Sam wanted to leave Bluetooth discovery on so his watch felt loved.
-
-"Bluetooth is a second air," I said. "Short range, real risk. Unsolicited messages are [[bluejacking|bluejacking]] — mostly rude. Actual data theft over weak pairing is [[bluesnarfing|bluesnarfing]]. Desk hygiene: pairing hygiene — only expected devices, confirm the code, discovery off when you are not actively pairing."
-
-Lila declined the ghost keyboard. Jordan turned discovery off. Sam looked betrayed by his watch and complied anyway.
-
-## Replay, certificates, and the line that sticks
-
-End of day we closed a stubborn laptop that kept failing enterprise join. The user had installed a free "Wi-Fi booster" profile that pinned a wrong trust anchor. They were one impatient click from sending their password to a lookalike.
-
-"Enterprise helps only if you protect the certificate check," I said. "If the client ignores trust, replay and twin games get easier. Clicking through certificate warnings on Wi-Fi is the same sin as clicking through them on banks."
-
-I updated the wiki blurb: join the real SSID, prefer 802.1X over hallway PSK, VPN on open and portal networks, never WEP, unplug rogue travel routers, do not reconnect blind after weird drops, guest stays segmented, hide-SSID and MAC filters are not controls, WPS off, survey over vibes, and Bluetooth only for things you meant to invite.
-
-At 5:40 I closed notes. Maya was on enterprise and late. Todd was on VPN and not on WEP. Rita's rogue was unplugged. Dev was docked through deauth. The vendor was on guest with walls. Lila's ghost keyboard was declined. The twin in the lobby was still Network's problem.
-
-Jules clipped her bike lights on. "Monday someone will join the loud lookalike because the meeting started."
-
-I already had the line. I went out into the mist.
+Guests in the lobby report that `Harrowmere-Guest` asks them to log in again with their work password. Your AP list shows only one guest SSID. Explain what you suspect, how you find it, and what control stops staff devices from joining it.

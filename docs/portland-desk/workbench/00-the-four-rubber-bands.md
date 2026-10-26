@@ -20,6 +20,20 @@
 
 ---
 
+## Worked Example: The night Ethan sorted his study cards
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Ethan sorted a pile of mixed flashcards by asking one question of each: is this a fact to recall, or a mechanism to understand?
+
+1. Pull every card off the table so nothing is pre-sorted.
+2. Ask of each card whether it has moving parts. Pin counts and cable lengths do not, so they go to the red Passport Deck for speed drills.
+3. Group the mechanism cards by layer: what the hardware does, what the operating system does, and what the network does.
+4. Check yourself with live commands (`whoami`, `hostname`, `ipconfig`) so the model is tied to a real machine.
+5. Result: one small deck to drill fast and three mechanism stacks to understand slowly. He failed the first exam with 592, kept the system, and passed the second with 690.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,13 +45,13 @@ prompt: "Clean technical cutaway illustration in Pacific Northwest instructional
 
 
 ### The $500 Voucher Anxiety
-To an eighteen- or nineteen-year-old working an hourly retail, staging, or warehouse job, the CompTIA A+ certification is not an abstract professional milestone; it is an immense financial gamble. 
+To a twenty-year-old working an hourly retail, staging, or warehouse job, the CompTIA A+ certification is not an abstract professional milestone; it is an immense financial gamble. 
 
 The certification consists of two separate examinations:
 - **CompTIA A+ Core 1 (220-1101):** Hardware, mobile devices, networking technology, and virtualization ($246 retail voucher fee).
 - **CompTIA A+ Core 2 (220-1102):** Operating systems, security principles, software troubleshooting, and operational procedures ($246 retail voucher fee).
 
-Together, the two vouchers total **$492**. When your bank account holds less than one hundred dollars after paying rent, failing an exam does not mean scheduling a casual retake next Tuesday. It means forfeiting two weeks of food money, gas, or rent. 
+Together, the two vouchers total **$492**. When your bank account holds less than one hundred dollars after paying rent, failing an exam does not mean scheduling a casual retake next Tuesday. It means forfeiting two weeks of food money, gas, or rent.  <!-- date-ok: 'weeks' of money, not a date -->
 
 This financial terror produces a distinct cognitive pathology: **rote flashcard panic**. Stressed candidates purchase eight-hundred-page textbooks and try to memorize every noun, acronym, pin count, and cable specification as if preparing for a spelling bee. They drown in trivia—laser printer corona wires, DDR4 pinouts, and DVI connector variants—while failing to develop the mental models required to troubleshoot a machine in the real world.
 
@@ -295,8 +309,8 @@ Ethernet adapter Local Area Connection:
    DHCP Enabled. . . . . . . . . . . : Yes
    IPv4 Address. . . . . . . . . . . : 192.168.10.45       <-- Layer 3 IP Address
    Subnet Mask . . . . . . . . . . . : 255.255.255.0       <-- Defines Local Subnet
-   Lease Obtained. . . . . . . . . . : Thursday, July 16, 2026 07:15:22 AM
-   Lease Expires . . . . . . . . . . : Friday, July 17, 2026 07:15:22 AM
+   Lease Obtained. . . . . . . . . . : Thursday, July 27, 2023 07:15:22 AM
+   Lease Expires . . . . . . . . . . : Friday, July 28, 2023 07:15:22 AM
    Default Gateway . . . . . . . . . : 192.168.10.1        <-- Route out of Subnet
    DHCP Server . . . . . . . . . . . : 192.168.10.254
    DNS Servers . . . . . . . . . . . : 192.168.10.2
@@ -355,9 +369,11 @@ Ethernet adapter Local Area Connection:
 
 ## 3. Quick Checks & Skill Reps
 
-### Drill 1: Symmetrical Challenge (Incident 00.2 / Ticket B) — The Panic Power Cut
+> **All practice cases.** Ethan's chapter is a study night at the kitchen table, not a ticket. Every case in this section is a practice case that uses the mental model he built that night.
 
-> **Ticket Drop:** `T1-INIT-2026-002` • Priority: P2-High • Subsystem: Component 2 (Memory) vs Component 3 (Storage)
+### Drill 1 (practice case): The Panic Power Cut
+
+> **Ticket Drop:** `INC0048192` • Priority: P2-High • Subsystem: Component 2 (Memory) vs Component 3 (Storage)
 **Scenario:** A user reports that their computer opened an unauthorized browser popup at 09:15 AM claiming their files were encrypted. The desktop background changed to a red warning screen. The user panicked, pulled the physical power cord from the wall outlet, and walked the tower down to the help desk.
 
 ```
@@ -397,7 +413,7 @@ Ethernet adapter Local Area Connection:
 
 ---
 
-### Drill 2: Layer 2 vs. Layer 3 Identity (Local vs. Gateway Traffic)
+### Drill 2 (practice case): Layer 2 vs. Layer 3 Identity (Local vs. Gateway Traffic)
 **Scenario:** Examine the network configuration of Workstation A and determine how it transmits data to two different destination IP addresses:
 
 ```
@@ -511,6 +527,8 @@ ipconfig: |
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 *Strict Protocol:* Do not expand the verification box until you have written down your predicted failure layer, expected command output, and root cause hypothesis.
 <div class="scratchpad-container">
   <div class="scratchpad-header">
@@ -565,7 +583,7 @@ ipconfig: |
 
 #### Case 3: Edge-Case Trap (Incident 00.3 / Ticket C) — Local Network Functional, Internet Down
 
-> **Ticket Drop:** `T1-INIT-2026-003` • Priority: P3-Normal • Subsystem: Component 4 (Communication / Layer 3 Routing)
+> **Ticket Drop:** `INC0048193` • Priority: P3-Normal • Subsystem: Component 4 (Communication / Layer 3 Routing)
 - **Symptom:** A user can print to the shared office network printer at `192.168.1.200` and can ping their desk neighbor at `192.168.1.55`. However, attempting to navigate to `google.com` or pinging `8.8.8.8` returns "Destination host unreachable."
 - **Your Task:** Isolate the exact network configuration parameter responsible using the Identity Triad.
 
@@ -751,8 +769,8 @@ Use this standardized intake checklist when logging and triaging your first live
 ========================================================================================
 FIRST-CONTACT DIAGNOSTIC INTAKE WORKSHEET · TIER 1 SUPPORT
 ========================================================================================
-TICKET REF   : T1-INIT-2026-001             DATE/TIME : 2026-07-16 09:30 PDT
-TECHNICIAN   : Ethan Mercer                 STATUS    : UNDER INVESTIGATION
+TICKET REF   : INC0048191                   DATE/TIME : 2023-07-27 09:30 PDT
+TECHNICIAN   : ____________________________ STATUS    : UNDER INVESTIGATION
 USER NAME    : ____________________________ ASSET TAG : _______________________________
 
 1. SUBSYSTEM ISOLATION (Which core component is failing?):
@@ -789,17 +807,17 @@ USER NAME    : ____________________________ ASSET TAG : ________________________
 
 ---
 
-### Part C: Standard 3-Block Ticket Resolution Note (ServiceNow / Jira Standard)
+### Part C (practice case): Standard 3-Block Ticket Resolution Note
 
-Before closing Incident `T1-INIT-2026-002`, draft the formal 3-Block passdown note separating internal technician telemetry from user-facing guidance:
+Before closing Incident `INC0048192`, draft the formal 3-Block passdown note separating internal technician telemetry from user-facing guidance:
 
 ```
 ========================================================================================
 ENTERPRISE INCIDENT RESOLUTION RECORD · SERVICE DESK TIER 1
 ========================================================================================
-INCIDENT ID   : INC0048192 / T1-INIT-2026-002
+INCIDENT ID   : INC0048192
 ASSET TAG     : ACCT-WS-09 (Dell OptiPlex 7090)
-CALLER        : Maya Lin (Accounting Supervisor)
+CALLER        : Practice caller (Accounting Supervisor)
 CATEGORY      : Endpoint Security > Malware Containment & Volatility Triage
 PRIORITY      : P2 - High (Financial workstation suspected compromise)
 STATUS        : RESOLVED / PENDING SOC REVIEW
@@ -828,13 +846,13 @@ BLOCK 2: CUSTOMER / SHIFT PASSDOWN SUMMARY
   phishing popup. No file encryption occurred across shared department drives.
 - Action Taken: Technician isolated the workstation from the network, verified disk
   integrity, and referred the malicious download artifact to Information Security.
-- Next Steps: Loaner laptop LAP-T1-04 provisioned for Maya Lin to complete morning payroll.
+- Next Steps: Loaner laptop LAP-T1-04 provisioned for the caller to complete morning payroll.
   Primary workstation undergoing secondary EDR sweep before return to service.
 
 ----------------------------------------------------------------------------------------
 BLOCK 3: LEAD TECHNICIAN SIGN-OFF
 ----------------------------------------------------------------------------------------
-LEAD SIGN-OFF : Jules Mercer (Tier 2 Lead)          DATE: 2026-07-16 11:15 PDT
+LEAD SIGN-OFF : Desk Lead (practice sign-off)          DATE: 2023-07-27 11:15 PDT
 DISPOSITION   : APPROVED · Clean isolation; no premature network reconnection.
 ========================================================================================
 ```
@@ -869,29 +887,10 @@ Use this objective scoring guide to evaluate entry-level diagnostic performance 
 
 ---
 
-## 6. The Shift Resolution & Epilogue: 02:15 AM
+---
 
-```callout-panel
-title: "FIGURE 0.2: THE MIDNIGHT BENCH & FIRST WORKING VOUCHER"
-badge: "Shift Epilogue"
-caption: "Kitchen table bench: At 02:15 AM, Ethan categorizes his final index card into the Green Band stack while his father inspects the re-soldered power connector on the practice chassis."
-prompt: "Grounded graphic novel illustration in Pacific Northwest silicon noir style, cool slate blue and rain-slicked dark grey palette (#0f172a, #1e293b). A quiet duplex kitchen at night under a low pendant lamp. A 19-year-old apprentice sits at a Formica table with four stacks of index cards held by colored rubber bands. Beside him, an older retired machinist in work socks inspects a dismantled PC power supply on a newspaper mat. Rain streaks the dark kitchen window. High contrast, atmospheric, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-*The following operational debrief records Ethan's transition from exam anxiety to diagnostic discipline:*
+This problem looks different from the night Ethan sorted his study cards, but it works the same way. Use the worked example and your notes.
 
-The kitchen clock clicked over to 2:15 AM. Outside the casement window, the East Portland rain tapped steadily against the glass.
-
-On the Formica table, the mountain of loose flashcards had disappeared. In their place sat four neat, compact bundles, each bound by a thick colored rubber band: Red for syllabus trivia, Green for machine invariants, Yellow for addresses and ports, and Blue for the troubleshooting reflex.
-
-My father stood by the sink, rinsing his water glass. He dried his hands on a dishtowel and walked over to the table, looking down at the four sorted stacks. He picked up the Green bundle, feeling the thickness of the cards.
-
-"What holds tension?" he asked quietly.
-
-"Volatile memory loses state when the circuit opens," I answered, looking up from the table. "Non-volatile storage holds the magnetic or charge state until you write over it. The bus bridges them, and the processor steps the clock."
-
-My dad set the stack back down in line with the others. A faint, knowing smile touched the corner of his mouth.
-
-"That's a machine," he said. "The rest is just part numbers in a catalog. Get some sleep, Ethan. The testing center doesn't care how late you studied."
-
-The next morning, a gray Thursday in Beaverton, I sat in front of the testing center monitor with my palms flat on the laminate desk. The screen did not show perfection. It showed a 690, a pass by fifteen points on my second attempt. It did not get me off the dock. I was back on the graveyard shift that weekend, but the paper was real, and it was the first thing Ken would point to when he wrote my referral.
+A coworker sends you forty notes for the Network+ exam: port numbers, the OSI layers, how DHCP leases work, cable categories, and how a switch learns MAC addresses. Sort them the way Ethan did. Which cards are pure recall, and which describe a mechanism you should be able to explain? For two mechanism cards, write the one live command you would run to see the mechanism on a real machine.

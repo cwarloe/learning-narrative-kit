@@ -4,9 +4,11 @@
 
 An atmospheric river had stalled directly over the Willamette Valley since midday Sunday. The weather service called the system a once-in-a-decade storm. It dumped more than four inches of rain across twelve punishing hours. By three o'clock on Monday morning, the river had surged past flood stage. The swollen current pushed brown stormwater through storm drains and low-lying basements across the industrial district. My phone woke me from a dead sleep at three-thirty with the harsh chirping tone reserved for priority campus outages.
 
-Desk lead Jules Brooks was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses the regional order desk, field-service dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
+Jared's connection-pooling change was supposed to go in that Monday night. The flood ate the maintenance window before it started.
 
-I pulled on my insulated coveralls and laced my rubber mud boots by the kitchen door. Five months on the Portland desk had transformed my habits. The work had replaced my old panic with an instinct for preparation. I packed my punchdown tool, an optical fiber light tester, spare patch cords, and two rolls of hook-and-loop cable ties into my canvas bag. As I drove my beat-up truck across the Morrison Bridge through blinding sheets of rain, the dark river churned violently beneath the piers.
+Jules was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses the regional order desk, field-service dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
+
+I pulled on my insulated coveralls and laced my rubber mud boots by the kitchen door. Nine months on the Portland desk had transformed my habits. The work had replaced my old panic with an instinct for preparation. I packed my punchdown tool, an optical fiber light tester, spare patch cords, and two rolls of hook-and-loop cable ties into my canvas bag. As I drove my beat-up truck across the Morrison Bridge through blinding sheets of rain, the dark river churned violently beneath the piers.
 
 ## The basement vault at four in the morning
 
@@ -17,7 +19,7 @@ caption: "Wide panoramic cutaway: The flooded Building C sub-basement. Murky wat
 prompt: "Clean technical cutaway illustration of a server room during a water leak under bright emergency lights. Bundles of blue network cables hang above a wall-mounted 48-port patch panel. A rackmount switch with glowing green port LEDs. Clean instructional drawing style, crisp fine lines, no text, no words. 21:9 ratio."
 ```
 
-I parked in the loading bay of Building C alongside Jared Vance's four-wheel-drive service truck just before four o'clock. The building stood dark except for the amber strobes of the emergency backup generator rumbling on its elevated concrete pad outside. Jared was already unlatching the heavy tailgate. He pulled out two cardboard equipment cartons that held spare forty-eight-port switches. Jules stood beside him in her yellow cycling rain shell. She held a halogen lantern and studied a printed building wiring schematic inside a clear plastic sleeve.
+I parked in the loading bay of Building C alongside Jared's four-wheel-drive service truck just before four o'clock. The building stood dark except for the amber strobes of the emergency backup generator rumbling on its elevated concrete pad outside. Jared was already unlatching the heavy tailgate. He pulled out two cardboard equipment cartons that held spare forty-eight-port switches. Jules stood beside him in her yellow cycling rain shell. She held a halogen lantern and studied a printed building wiring schematic inside a clear plastic sleeve.
 
 "The power cut out when the utility pole transformer arced on the street corner," Jared explained as he slung a tool harness over his shoulder. "The automatic transfer switch slammed the building over to diesel generator power six seconds later. That transient voltage spike hammered the lower distribution rack before the surge suppression circuits could clamp down. Our monitoring server lost all telemetry packets from the river intake pumps at three-fifteen."
 
@@ -137,11 +139,17 @@ When commercial power returned, eighty workstations booted up alongside fifty ne
 
 "The scope ran out of addresses because transient MACs claimed the buffer," I explained to Jules and Jared. "The lease duration was set to eight days, so last week's inactive mobile devices never released their reservations. When the dock hardware grabbed the remaining twenty dynamic addresses, there was zero room left in the pool for the booting desks."
 
-Jules set her flashlight down on the rack rail and looked directly at me.
+## Mostly Restored
 
-"We have twenty-five minutes before the parts counter opens upstairs, Ethan," Jules said, her voice cutting through the hum of the cooling fans. "Eighty order clerks are locked out, twenty printers are dead, and the dispatchers cannot reach the safety line. If this building is not fully online at eight o'clock, Rivergate cannot take or ship a single order. What is your plan of action? How do you flush the stale leases, re-architect the scope duration, expand the dynamic pool without colliding with static equipment, and verify the entire four-layer protocol stack before that bell rings? Call your shot, Ethan."
+The DHCP scope was full of stale leases from devices that had dropped off the flooded switch. I cleared the abandoned leases, eighty-four of them, and cut the scope's lease duration from eight days to eight hours so the next wave of dock scanners could not pin the pool again. Then I watched the monitoring board fill with renewals. A test workstation on the billing floor pulled `10.20.10.74` with the right mask and gateway, and the billing application loaded.
 
-I looked at the red warning icons multiplying across the monitoring board. Four hours of sweating in rubber boots in an ankle-deep flood came down to the next twenty-five minutes. I needed to execute the DHCP reconciliation, restore address leases to one hundred and fifty endpoints, and run the end-to-end verification checklist before the doors unlocked.
+Jules would not sign the punch list until I had walked the verification out loud, layer by layer: links up at full duplex with no CRC errors, both LACP members active and spanning tree quiet, all three gateways answering, and telemetry, phones, and order terminals actually working. I said each one before I typed it.
+
+"Not bad for four hours in rubber boots, kid," Jared said, latching his toolcase.
+
+Mostly restored was the honest word. When the doors unlocked, the twelve label printers in shipping were still on the old VLAN behind a patch cord I had not had time to move, and the morning crew printed shipping labels by hand from a spreadsheet until ten. Jared's connection-pooling change, which had been scheduled for that night, slipped to the next window, two weeks out.
+
+On Thursday, Jules put my name on the overnight rotation. "You were useful at three in the morning," she said. "That is not a compliment. It is a schedule."
 
 ## Desk Translation Table
 
@@ -154,7 +162,7 @@ I looked at the red warning icons multiplying across the monitoring board. Four 
 | **[[spanning_tree|Spanning Tree Protocol (STP)]]** | A Layer 2 network protocol that monitors bridge topology and dynamically places redundant switch ports into blocking state to prevent catastrophic broadcast storms and switching loops. | The network traffic cop that turns off duplicate switch cables so broadcast loops do not circle endlessly and crash the entire building network. |
 | **[[link_aggregation|Link Aggregation (LACP)]]** | A networking standard (Link Aggregation Control Protocol) that bundles multiple physical Ethernet interfaces into a single logical channel to provide multiplied bandwidth and active redundancy. | The team-up protocol that binds two or more network cables together to act like one double-speed wire that stays up even if one cable snaps. |
 
-## The Handoff Gate
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: The Campus Flood & Disaster Recovery Crucible
@@ -162,5 +170,5 @@ target: workbench/06-the-portland-flood.md
 domain: CompTIA Network+ N10-008/009 • Disaster Recovery & Layer 1-4 Rebuild
 badge: The Hands-On Lab
 ---
-Take over Ethan's console at 07:35 AM in the flooded vault. Execute the PowerShell DHCP reconciliation to clear 84 stale leases, reduce lease durations, expand pool capacity, and run the Layer 1-4 verification checklist before the 08:00 AM opening.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

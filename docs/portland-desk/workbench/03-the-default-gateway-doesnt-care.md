@@ -1,7 +1,7 @@
 # Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
 
 > **The Situation:** East Portland Pump Station & Annex • Operations Service Desk  
-> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Lindqvist)  
 > **The Objective:** Triage local IP addressing, APIPA 169.254.x.x link-local traps, subnet boundaries, and ARP resolution failures following a storm switch reboot.  
 > **Estimated Time:** 45–55 minutes • Local Network Addressing  
 
@@ -20,6 +20,22 @@
 
 ---
 
+## Worked Example: Frank's flapping connection in Gresham
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Frank's desktop and a breakroom printer were fighting over `10.100.4.55`.
+
+1. Ping and watch the replies flap between good and dead.
+2. Run `arp -a` and see two MAC addresses claim the same IP over time.
+3. Check the switch MAC table to find the ports: Frank on Gi1/0/12, the unknown HP card on Gi1/0/28.
+4. Check DHCP: the server leased .55 to Frank, so the other device is a static address inside the pool.
+5. Walk to port 28, find the old LaserJet, and unplug it.
+6. Move the printer to a reservation at `10.100.4.240`, outside the pool.
+7. Result: clean replies, two late trailers while Ken held door six, and eleven more undocumented statics to clean up.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,12 +47,9 @@ prompt: "Clear technical cutaway illustration of a network architecture schemati
 
 
 ### The Situation
-It is 08:20 on a damp Tuesday morning in late September. Low clouds hang over the Willamette River, and early morning squalls have swept through East Portland. Outside the operations center, rainwater drains along the roof gutters. Inside the facility, the service desk ticket queue has spiked with fourteen critical incidents originating from Building B—the logistics annex and water pump station two miles south.
+It is 08:00 on a damp Tuesday in October, and Ethan has been on the Portland service desk for two months. Early squalls along the Willamette have knocked out utility power across the industrial district, and fourteen priority tickets land within three minutes. Ken calls from the Gresham dock: three freight clerks in Building B have lost the network. Owen calls from facilities: the new pump telemetry loggers have dropped offline.
 
-Workstations on the warehouse intake dock, barcode scanners on shipping line four, and automated water pump loggers cannot connect to central services. The freight clerks report that shipping portals have frozen with socket errors, and facilities technicians report that telemetry feeds have dropped. Desks report that "the internet is dead." 
-
-When apprentice technician Ethan Mercer instinctively grabs the telephone to report an external carrier fiber cut to CenturyLink, Desk Lead Jules Brooks stops him in his tracks:
-> *"Put the telephone down, Ethan, and look at your own desk first. Can you ping the gateway for that subnet from our core switch? Can you ping the loopback address on one of their endpoints? You do not know if their local operating system stack is functioning. Start on your side of the glass. Never jump to the WAN when your own gateway hasn't answered you."*
+This lab follows the same morning as the chapter. Building B's workstations show `169.254.x.x` addresses, which point at DHCP, not a fiber cut. The pump logger `PDX-PUMP-LOG02` sits on the wrong side of a `/26` boundary from its own gateway. Frank's desktop and a breakroom printer both claim `10.100.4.55`, and the printer is plugged into port twenty-eight.
 
 ### The Ground Truth Rules of IP Addressing & Local Delivery
 
@@ -245,7 +258,7 @@ Ethernet adapter Local Area Connection:
 
 ### Micro-Drill 2: CIDR Bitwise Subnet Boundary Math & Off-by-One Troubleshooting
 
-**Scenario:** Two newly racked company servers sit in the same equipment cabinet in the Willamette plant pump house, plugged into adjacent ports on the same switch:
+**Scenario:** Two newly racked company servers sit in the same equipment cabinet in the pump house next to the Gresham warehouse, plugged into adjacent ports on the same switch:
 - Server A (`PDX-PUMP-DB01`): `192.168.10.62` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
 - Server B (`PDX-PUMP-LOG02`): `192.168.10.65` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
 
@@ -293,6 +306,8 @@ Pinging from Server B to Server A fails with request timeouts. Pinging from Serv
 ---
 
 ### Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 Before executing any diagnostic command or changing a system setting, enforce the CBYT protocol:
 1. **Layer & Subsystem:** What exact layer (L1, L2, L3, L4, L7) and protocol is involved?
@@ -457,11 +472,11 @@ Before executing any diagnostic command or changing a system setting, enforce th
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-0922
-Requester:        Frank Kowalski (Lead Shipping Dispatcher, Building B)
+Ticket ID:        INC0055120
+Requester:        Ken Vance (Dock Supervisor, Building B)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
-Date / Time:      2026-09-22 10:45:18 PDT
+Date / Time:      2024-10-15 10:45:18 PDT
 Category:         Network / IPv4 Addressing / Duplicate IP & DHCP Failure
 Affected Host:    WS-BLDGB-04 (IP: 10.100.4.55 / MAC: 00-14-22-8A-41-EF)
 Status:           RESOLVED
@@ -470,7 +485,7 @@ Status:           RESOLVED
    Following an early morning power fluctuation and auxiliary generator test 
    at 05:00, fourteen endpoints in Building B (logistics annex) lost network 
    connectivity. Endpoints autoconfigured link-local APIPA addresses (169.254.x.x). 
-   After switch trunk restoration, Dispatcher Frank Kowalski reported persistent, 
+   After switch trunk restoration, Ken reported persistent, 
    intermittent connection drops occurring every 30 to 45 seconds on WS-BLDGB-04.
 
 2. ROOT CAUSE ANALYSIS:
@@ -512,11 +527,11 @@ Status:           RESOLVED
 ================================================================================
 NETWORK INFRASTRUCTURE PASSDOWN & HANDOVER NOTE
 ================================================================================
-Escalation ID:    ESC-2026-0341
+Escalation ID:    ESC0003411
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
-Escalated To:     Jared Vance (Network Operations Engineer)
-Date / Time:      2026-09-22 11:30:00 PDT
+Escalated To:     Jared Lindqvist (Network Operations Engineer)
+Date / Time:      2024-10-15 11:30:00 PDT
 Priority:         P2 - High (Infrastructure Configuration Drift)
 Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygiene
 
@@ -576,31 +591,10 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 3.2: THE RESOLVED WAREHOUSE DOCK"
-badge: "Shift Epilogue"
-caption: "Dock view: At 11:20 AM, intake scales and barcode scanners in Building B operate smoothly under clear skies as freight manifests stream across the restored network."
-prompt: "Clean graphic novel cutaway panel of a bustling freight warehouse shipping dock in the Pacific Northwest. Pallet jacks and freight scales operate under bright industrial overhead lighting. A desktop monitor displays an active green logistics manifest. Outside open bay doors, rain has cleared over the river. Clean line art, technical precision, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-Following the Layer 2 triage, I instructed Ken to check the warehouse floor for any newly relocated equipment. Ken groaned over the radio—facilities technician Owen had wheeled a legacy HP LaserJet 4050 into the breakroom yesterday afternoon, copying its static network settings from an outdated label beneath the paper tray.
+This problem looks different from Frank's flapping connection in Gresham, but it works the same way. Use the worked example and your notes.
 
-We unplugged the printer's network drop immediately. The ping replies on Frank's machine leveled out into an unbroken stream of clean two-millisecond responses. To prevent future scope collisions, I logged into the printer's web interface, shifted its addressing to dynamic DHCP reservation, and configured an explicit reservation in our Windows DHCP server at `10.100.4.240`, safely outside the dynamic client allocation pool.
-
-With the tickets resolved and the queues subsiding to their normal rhythm, Jules opened a packet capture file on her secondary monitor. The trace displayed an HTTP exchange originating from Frank's workstation and terminating at a cloud logistics portal in Seattle at `198.51.100.44`.
-
-"Let us review how that packet traversed the network, Ethan," Jules said, turning her chair toward me. "Frank's browser wanted to fetch a web page from `198.51.100.44`. When Frank's network adapter assembled the Ethernet frame on the wire, whose MAC address did it place in the destination field?"
-
-"Frank's computer applied its subnet mask to the target IP address first," I answered, following the logic step by step. "The bitwise comparison proved that `198.51.100.44` was on a remote network. Because the target was remote, the workstation looked up the Layer 2 address of its local default gateway in its ARP cache."
-
-"Exactly," Jules said, clicking on the detailed frame decode in Wireshark. "The destination IP address remained `198.51.100.44` throughout the entire journey across the internet. The time-to-live counter decremented at each hop, but the IP header stayed intact. The Layer 2 Ethernet frame was addressed directly to the gateway's router interface MAC at `10.100.4.1`. When the router received the frame, it stripped the Layer 2 header, evaluated its routing table, generated a brand new Layer 2 frame with its own source MAC, and forwarded the packet along the next hop."
-
-She gestured toward the packet trace on her screen with the tip of her pen.
-
-"The default gateway does not care what application you run, or what operating system you boot. It does not care how urgent your ticket feels. It only cares whether you addressed the Layer 2 frame to its physical MAC address. And it cares whether its routing table contains a valid route to forward your Layer 3 packet toward its destination."
-
-I nodded slowly, watching the encapsulation layers light up under her cursor. I opened my technical journal and recorded the lesson alongside my earlier subnet sketches.
-
-Outside our fourth-floor window, the low cloud deck began to lift over the Willamette. Pale patches of afternoon sky appeared above the river. Jared picked up his empty tea mug and headed toward the server room to audit switch configurations. Jules reached for her helmet, unhooking it from the monitor arm as the afternoon shift logged into the queue. I saved my incident notes into the ticketing system and closed my terminal sessions, standing on solid ground.
+A conference room phone in Hillsboro keeps dropping calls, and a laptop in the same room loses its network every few minutes. `arp -a` on the router shows the phone's IP flipping between two MAC addresses. Write the steps to find the second device and the change that keeps it from happening again.

@@ -126,6 +126,27 @@ Early chapters can be gentler, since a beginner reader needs some safety. Gentle
 - Ethan is the punching bag. He can struggle with anxiety, distraction, bad reactions to certain kinds of questions, or a learning disability he discovers along the way. Give him the problems real learners are likely to have, with real consequences, and let him work through them on the page. Keep it realistic, though: Ethan is not a "Mr. Glass" who is broken in every way. Give him a small, consistent set of personal struggles that fits who he is. Bring in other common problems vicariously, through coworkers' incidents, tickets he reads, war stories from mentors, or things he overhears. The rule of thumb is that each chapter costs Ethan something real, but not every lesson has to be his own pain.
 - Keep the passive-playback guard from the pedagogy doc. Ethan's hard-won lesson should not spend the learner's discovery for them. The workbench is still where the reader solves it.
 
+## Decision (Charles, 2026-10-26): the story may give away the answer
+
+This replaces any earlier rule about holding the answer back for the lab. Each chapter is the best standalone story it can be, cliffhanger or not, and it may show Ethan solving the problem. The lab opens with a worked example of exactly the same incident, with the solution known, and ends with one transfer problem that shares the principle but differs on the surface. There are no "what would you do" handoffs before training, no lab epilogues, and no story Easter eggs. Labs may refer to the story to aid learning. Every story beat and every cost lives in the chapter. Full rules: `docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`, section 2.
+
+## Cost and canon rules (Sorkin Desk review of PR #32, adopted 2026-10-26)
+
+1. **No refunds.** A promotion, raise, or act of forgiveness may not offset any cost charged to Ethan in the same or the previous chapter. A relationship that moves through an action (a call about an unrelated switch, with nothing said) is not a refund. A speech, a promotion, or a restored status is.
+2. **Not the center of the web.** Each act has at least one incident that belongs to someone else, which Ethan hears about secondhand. Each act also has at least one thing Ethan saves or prepares that turns out not to matter.
+3. **No narrator foreshadowing.** Cut lines such as "it would matter more than I knew."
+4. **Carry-forwards must change action.** A carry-forward counts only when it changes what someone does in a later scene. A grudge may not be restated in more than two chapters without moving.
+5. **Every chapter charges Ethan a personal cost** in time, money, opportunity, or standing, and nobody refunds it. Costs to other people are welcome but do not replace it.
+6. **Standing struggles.** Ethan's standing struggles are named in the bible, and they drive each of his wrong turns. Do not invent a new flaw for each chapter.
+7. **No repeated entrances.** No recurring character enters or exits with the same action, phrase, or device twice in an act. Each return opens on what changed since the last appearance.
+8. **Dates are checked.** Check every date and season against `docs/research/PORTLAND_TIMELINE.md` before merge. Run `python3 tools/check_dates.py`, which checks exact months, seasons, weekdays between chapter and lab, months on the desk, ISO dates, ticket ID order, the cast registry, and staging devices. A `date-ok` marker must give its reason: `<!-- date-ok: back-reference to the October posting -->`.
+9. **Narrative file only.** A cost counts only if it is in the narrative file.
+10. **Names the way people use them.** Use a surname only on introduction or when it matters (a formal report, an email signature, a stern manager). Otherwise use first names.
+11. **No shared staging devices.** No two characters in the same act enter with the same staging device: an object carried "like" something, a burst into the aisle, or a phone ringing as the scene opens. `check_dates.py` flags "burst into" anywhere and a carried "like a" entrance used twice in one act.
+12. **Rule conflicts.** When two cost and canon rules conflict, the lower-numbered rule wins unless this framework names an exception. Every exception is written here. (Exception 1: rule 1's action clause above settles rule 1 against rule 4.)
+13. **Identifiers are canon.** Every identifier that encodes a date, a name, or a sequence (ticket, escalation, evidence tag, email address) must agree with the timeline and the cast list. Ticket, escalation, and evidence IDs carry no year: they use one increasing counter per prefix in the style `INC0048192`, unique, and in episode order. `check_dates.py` checks this.
+14. **One surname per character.** Every named character has one row in the cast registry in `docs/research/PORTLAND_AUTHOR_BIBLE.md` (section 3.4). Labs, artifacts, and scripts may use only that surname, and `check_dates.py` checks names and email addresses against it.
+
 ## Worked example: Portland Desk Chapters 00–2
 
 These are short illustrations of each principle drawn from the review. The full review is in PR #29.

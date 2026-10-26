@@ -41,7 +41,7 @@ C:\\Users\\admin.emercer> arp -a 10.100.4.55
 
 "A classic duplicate IP address conflict," Jules observed, leaning back in her chair. "Every time one device transmits a frame, it emits an Address Resolution Protocol announcement. That announcement overwrites the switch MAC table and poisons the ARP cache of neighboring workstations. Frank's machine and the mystery device are waging an endless Layer 2 war over that IP address."
 
-Jared Vance checked our centralized DHCP scope logs on his workstation. "Our DHCP server assigned `10.100.4.55` to Frank's Dell workstation during the lease renewal earlier this morning. That means the second device was configured with a static IP address inside our dynamic pool. If that rogue host keeps broadcasting, it will poison the entire warehouse switch stack before the noon freight trucks arrive."
+Jared Lindqvist checked our centralized DHCP scope logs on his workstation. "Our DHCP server assigned `10.100.4.55` to Frank's Dell workstation during the lease renewal earlier this morning. That means the second device was configured with a static IP address inside our dynamic pool. If that rogue host keeps broadcasting, it will poison the entire warehouse switch stack before the noon freight trucks arrive."
 
 Jules looked at me, her pen hovering over the ticket queue.
 
