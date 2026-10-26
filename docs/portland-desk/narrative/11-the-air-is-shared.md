@@ -6,7 +6,7 @@ Friday morning opened with the whine of the vacuum cleaner in the hallway and Ma
 
 "Wired connections have physical copper you can trace with your fingers," Jules said, stepping out of the server closet with a handheld spectrum analyzer. "Wireless is invisible friction. Verify the BSSID, enforce 802.1X enterprise authentication over convenience, and treat any sudden open twin as hostile."
 
-Ken had called my desk line twice that week, once about a printer and once about nothing in particular. The second call ended with him asking whether the barcode scanners in the warehouse were safe on Wi-Fi. I had said yes. By Thursday I was less sure.
+Ken had not called my desk line since the laptop. When he finally wrote, it was a two-line email asking whether the barcode scanners in the warehouse were safe on Wi-Fi. I wrote back that they were. By Thursday I was less sure.
 
 The board dinged with Maya's ticket: *Can't join CorpWifi — worked yesterday — executive meeting in 20.*
 
@@ -81,7 +81,17 @@ Owen walked the lobby with me and pointed out what I had walked past for two yea
 
 "Somebody sat here long enough to tape that up," he said. "Nobody stopped them because the lobby's public. That's on purpose. The question is where public stops." We wrote down the three places it stopped: the inner badge door, the server closet lock, and the camera blind spot that needed fixing.
 
-## The Handoff Gate
+## The Bench and the Barcode Guns
+
+We found the travel router under the credenza in 3B and shut its switch port. The barcode scanners reassociated with our access points, and Dev's laptop came back over 802.1X.
+
+Owen took the lobby personally. He had the side door re-keyed that week and put in for a second camera. The camera did not come that month.
+
+It still slowed the dock, and it cost me a Saturday. Re-enrolling the scanners onto 802.1X took most of the next morning, and Ken's crew scanned by hand at two doors until noon. He called my desk line to tell me exactly how many pallets that had cost. It was the first time he had called me since the laptop.
+
+Jules had told me to keep the survey data. "Save what normal looks like," she said, "or you'll never know what weird is." I saved the wireless baseline to the shared drive with a note to her and added to it every week after that, mostly because she checked.
+
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: Wireless Security, 802.1X Enterprise, & Rogue AP Triage
@@ -90,5 +100,5 @@ domain: CompTIA Security+ SY0-701 • Domain 2.1 & 3.2
 badge: The Hands-On Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift. Decode 802.11 association frames and RADIUS Access-Request packets, triangulate rogue BSSID signal strength (RSSI), locate the unauthorized switch port, and submit the Tier 1 Rogue AP Containment & Wireless Remediation note.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

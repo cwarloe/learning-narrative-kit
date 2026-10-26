@@ -29,7 +29,7 @@ When a character chooses between opening port 23 versus port 22, the learning ob
 2. ~~**Employer and place.**~~ Resolved 2026-10-21: everything is Harrowmere Equipment Group. The Gresham dock is Harrowmere's distribution warehouse; PROC is Harrowmere's Portland Regional Operations Center.
 3. **Nia's title.** Senior Incident Response Lead at Chicago HQ here. Security Operations Manager there.
 4. **Leah's role.** Senior Controls Tech at the Willamette plant here. Enterprise Applications Lead there.
-5. **Dana.** A vendor engineer (Ep 7) and a finance contact (Ep 9) here. The mentor Dana Shah there. They are different people, so one may need a new name.
+5. ~~**Dana.**~~ Resolved 2026-10-26: the name Dana is reserved for the NADF mentor Dana Shah. The Ep 07 and 08 vendor engineer is Dale Okafor, the Ep 09 AP specialist is Marisol, and the Ep 10 facilities lead is Rina Rostova.
 6. ~~**The validator.**~~ Resolved 2026-10-21: the ban on "Harrowmere" is lifted. "Priya" is still banned in Book 0 narrative.
 7. ~~**Leah's age.**~~ Resolved 2026-10-21: she is 36 in both stories.
 8. ~~**Ep 00's day job.**~~ Resolved 2026-10-21: it is the same job. Ep 00 and Ep 01 both put Ethan on the dock at Harrowmere's Gresham distribution warehouse.
@@ -47,7 +47,7 @@ Ethan goes from a graveyard dock job and a failed exam to a seat on the help des
 On the desk, Ethan learns addressing, name resolution, transport, and switching under real deadlines. The act ends with the flood, where he earns Jules's trust for night work.
 
 ### Act III: Identity, Threats, and Escalation (Ep 07 to 12, Security+)
-Ethan moves from fixing things to protecting them. He is promoted to Tier 2 after Ep 08. The act ends with an incident he contains at a real cost, and a role change into Harrowmere security operations in Portland. He never relocates.
+Ethan moves from fixing things to protecting them. He misses the October Tier 2 round because of the Ep 08 tone complaint and is promoted in January, between Ep 09 and Ep 10. The act ends with an incident he contains at a real cost, and a role change into Harrowmere security operations in Portland. He never relocates.
 
 
 ---
@@ -84,10 +84,13 @@ graph LR
 ### 3.1 Primary Characters
 
 #### Ethan Mercer — Protagonist & POV
-- **Role:** Graveyard dock worker (Ep 00 to 01), IT rotation (off-page), Tier 1 Support Technician (Ep 02 to 08), promoted to Tier 2 Help Desk Lead after Ep 08 (Ep 09 to 12).
+- **Role:** Graveyard dock worker (Ep 00 to 01), IT rotation (off-page), Tier 1 Support Technician (Ep 02 to 09), promoted to Tier 2 in January of Year 4 after missing the October round (Ep 10 to 12), then analyst on Harrowmere security operations in Portland (August, after Ep 12).
 - **Age:** 20 at Episode 0; 21 at Episodes 1–2; 23 by Episode 12; 23 turning 24 when NADF begins.
 - **Background:** Raised in East Portland / Gresham. His father, now retired, was a precision machinist at a metal fabrication shop who taught him how to respect physical tools. Ethan skipped the four-year university track due to financial constraints. He spent up to two years in a restaurant job, then about fourteen months on Harrowmere's graveyard dock in Gresham, studying by day. After the Line 4 fix, Ken's internal referral moved him into a six-month day-shift IT rotation at a slight pay cut, and then onto Jules's help desk. The certs are spaced out: A+ after about ten months of study, Network+ about thirteen months into IT, Security+ about twenty-six months into IT (after Book 0 ends). Full table: `PORTLAND_TIMELINE.md` §4.
 - **Psychological Profile:** Highly observant, earnest, and intrinsically motivated, but initially burdened by severe imposter syndrome. In the early episodes, he treats technical standards as moral dogma and clings to flashcard taxonomies like a security blanket. When faced with ambiguous failures, his instinct is to freeze or over-engineer theoretical solutions. Over Book 0 (about three years, about 22 months of it on the desk), he develops emotional resilience, learning that troubleshooting is an iterative discipline of hypothesis testing, root-cause isolation, and empathetic communication.
+- **Standing struggles (adopted 2026-10-26).** These two drive every wrong turn Ethan takes. Do not invent a new flaw for each chapter.
+  1. **He acts before he has the whole picture when someone is waiting on him.** The breaker (Ep 01), the re-image offer (Ep 02), the wrong Gresham port (Ep 07), and the early isolation (Ep 12).
+  2. **He works alone when he should ask, and he gets curt when he is sure he is right.** Scrolling past the alert instead of raising it (Ep 05), texting Jared instead of calling on-call (Ep 07), and the written no to Todd's manager (Ep 08).
 - **Narrative Voice:** First-person past tense. Analytical, reflective, grounded, and intensely aware of physical textures—smells of damp rain jackets, hum of server racks, clicking of mechanical clipboards. He does not speak in stylized action-movie tropes; he narrates like an authentic junior engineer reflecting on how he learned to do the work.
 
 #### Jules Brooks — Desk Lead & Mentor
@@ -120,6 +123,10 @@ graph LR
 ### 3.2 Supporting Cast
 - **Rosa Ibarra (Night Maintenance Tech, Gresham):** Forty-four, headlamp over a beanie. Covers Hank's routes in Ep 01. Knows motors, fuses, and meters, and says plainly what she does not know about computers. A recurring knowledgeable peer (framework principle 3a), not a mentor.
 - **Ken (Warehouse Logistics Supervisor):** Fifty-year-old shipping veteran. Manages the high-bay distribution annex. If his forklift operators cannot scan pallets because steel racking blocks Wi-Fi signals, Ken buys an off-the-shelf consumer router from an electronics store and plugs it into the nearest wall jack. He views IT as an obstacle to shipping pallets on time.
+- **Lena Chen (Tier 2 Systems Administrator, Portland ROC):** Owns the VPN gateway and the Hillsboro DHCP failover. Ethan escalates to her in Ep 04. Not to be confused with Lena Cho in legal.
+- **Marisol (Accounts Payable, works with Maya):** Nine years in AP and knows every vendor's real domain. She verifies the Ep 09 wire request by phone and pays for the save with an afternoon of callbacks.
+- **Dale Okafor (Facilities Vendor Engineer):** The appliance engineer from Ep 07 who calls from his truck, and again in Ep 08.
+- **Rina Rostova (Facilities Lead):** Her team folder is encrypted in Ep 10.
 - **Owen (Facilities Field Technician):** Practical, always on the move with a heavy tool belt. Manages building management systems (BMS), badge readers, HVAC controllers, and network printers. Pragmatic to a fault; frequently attempts to push unauthenticated firmware updates across user subnets to beat his transit schedule.
 - **Dee (Network Monitoring Specialist):** Sits in the network bullpen. Obsessed with clean Grafana dashboards and switch interface telemetry. Prefers default SNMP templates because they "just graph without a fight," serving as Jared’s junior co-conspirator.
 - **Lena Cho (Legal & Compliance Junior Associate):** Detail-oriented, newly hired attorney who struggles through corporate onboarding. Her encounters with Active Directory domain joins, Kerberos ticket expiration, and document classification policies highlight the operational friction of enterprise compliance.
@@ -143,7 +150,7 @@ graph LR
 | 05 | The Wire Has Two Ends | Find why a management station's connections keep failing. | The Tuesday backups for three shares never ran; Jared re-runs the sweep and stays until nine. Ethan had scrolled past the first failure twice. | Connection pooling becomes a change request with Jared's name on it. |
 | 06 | The Portland Flood | Restore the network for 150 endpoints before the doors unlock. | Twelve shipping label printers stay down until ten, and the pooling change slips two weeks. | Midpoint capstone. Ethan has earned Jules's trust for night work. |
 | 07 | The Port That Is Open | Handle a pile of requests that all want ports opened. | Six old switches get a jump-host patch instead of a fix, and Jared stops answering Ethan quickly. | Leah enters as the plant voice. Jared's scripts remain a risk. |
-| 08 | Prove Who You Are | Clear a lockout queue before standup. | Todd's manager complains about Ethan's tone; the complaint and Jules's reply go into his promotion file. | Ethan is promoted to Tier 2 after this episode. |
+| 08 | Prove Who You Are | Clear a lockout queue before standup. | Todd's manager complains about Ethan's tone; the complaint and Jules's reply go into his promotion file. | Ethan misses the October Tier 2 round. He is promoted in January, after Ep 09. |
 | 09 | Don't Click That | Stop a spoofed CFO wire-change request before the afternoon batch. | AP holds the wire batch three hours; two real vendor payments go out a day late and the controller complains. | The phishing campaign is a scout for what comes in Ep 12. |
 | 10 | Something on the Box | Contain a bundled installer before it spreads. | Ethan trusts a valid but revoked code signature for two minutes; Ken's laptop is reimaged and he loses two years of local notes. | Ken's loop from Ep 01 closes: he calls Ethan directly. |
 | 11 | The Air Is Shared | Keep the barcode scanners on the right network. | Ken's dock scans by hand at two doors until noon while scanners are re-enrolled. | The baseline from this work helps flag the Ep 12 intrusion. |
@@ -277,7 +284,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 ### Card 07: The Port That Is Open
 
 - **Placement:** Act III, Phase 3. Year 3, August. 1 year on the desk. Ethan is 22.
-- **Setting and cast:** Portland ROC and a call from the plant. Jules, Jared, Dana, Leah Moreno, Maya, Sam.
+- **Setting and cast:** Portland ROC and a call from the plant. Jules, Jared, Dale Okafor, Leah Moreno, Maya, Sam.
 - **Goal:** Handle a pile of requests that all want ports opened.
 - **Complication:** Jared wants Telnet for an old script; others want cleartext mail and FTP.
 - **Pivot:** Ethan proves the cleartext risk from a capture and steers each request to a secure protocol.
@@ -293,17 +300,17 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Complication:** A runaway script locks Dev out, Todd insists password plus PIN is MFA, and Nora keeps choosing seasonal passwords.
 - **Pivot:** Ethan triages each by factor type and lockout cause.
 - **Cost:** Todd's manager complains about Ethan's tone; the complaint and Jules's reply go into his promotion file.
-- **Carries forward:** Ethan is promoted to Tier 2 after this episode.
+- **Carries forward:** Ethan misses the October Tier 2 round because of the complaint. He reapplies in December and is promoted in January.
 - **Knowledge load:** Security+: authentication factors, MFA, TOTP, MFA fatigue, lockout, biometrics, identity providers.
 - **Fold-in (written into the chapter 2026-10-26):** Fold in physical security: the lockout morning includes a tailgating report at the badge door, so Ethan sees that physical access is also an authentication factor. 
 
 ### Card 09: Don't Click That
 
-- **Placement:** Act III, Phase 3. Year 3, December. 16 months on the desk. First episode as Tier 2. Ethan is 23.
-- **Setting and cast:** Portland ROC. Jules, Dana, Maya, Nora, Sam, Todd, Avery in AP.
+- **Placement:** Act III, Phase 3. Year 3, December. 16 months on the desk. Still Tier 1; the Tier 2 posting reopens this month. Ethan is 23.
+- **Setting and cast:** Portland ROC. Jules, Marisol, Maya, Nora, Sam, Todd, Avery in AP.
 - **Goal:** Stop a spoofed CFO wire-change request before the afternoon batch.
 - **Complication:** A $48,000 wire request, an archive attachment, and MFA fatigue pushes on Dev's phone, all at once.
-- **Pivot:** Ethan pulls headers, checks SPF, DKIM, and DMARC, and gets a quarantine hash to the mail gateway; Dana verifies by phone.
+- **Pivot:** Ethan pulls headers, checks SPF, DKIM, and DMARC, and gets a quarantine hash to the mail gateway, and Marisol verifies by phone.
 - **Cost:** AP holds the wire batch three hours; two real vendor payments go out a day late and the controller complains.
 - **Carries forward:** The phishing campaign is a scout for what comes in Ep 12.
 - **Knowledge load:** Security+: phishing types, BEC, typosquatting, credential harvesting, MFA fatigue.
@@ -368,7 +375,7 @@ Every chapter submitted to the Portland Help Desk track must satisfy the followi
    - Prohibit section-final aphorisms, rhyming slogans, and the *"X is not Y"* rhetorical formula.
 
 5. **Operational Accounting (The Goldratt Check):**
-   Before submitting an episode, answer this single question in writing: *What did the protagonist’s decision cost the business?* If the answer is "nothing, everyone was happy," the draft fails the realism mandate. Name the cost in time, money, friction, hardware, or deferred maintenance.
+   Before submitting an episode, answer two questions in writing, using only what is in the narrative file. First: *What did this cost Ethan personally,* in time, money, opportunity, or standing, with nothing refunded in this chapter or the next? Second: *What did it cost the business or another person?* If the first answer is empty, the draft fails, whatever the second answer or the lab says. See the cost and canon rules in `docs/craft/learning-narrative-framework.md`.
 
 ### 7.2 Validation & Quality Pipeline
 Before committing any new unit to the repository, contributors must execute the automated validation suite:

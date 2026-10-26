@@ -4,8 +4,6 @@
 
 A blustery April downpour lashed the high windows of the Portland Operations Center, turning the riverfront bridges into gray silhouettes. I was eight months into my tenure on the service desk, my workstation flanked by a crate of spare patch cords and two Dell OptiPlex towers staged for imaging.
 
-Jared had not warmed up much since the DNS escalation. When I asked him which station ran the nightly archive sweep, he pointed at a rack diagram taped to the wall instead of answering, and went back to his syslog window.
-
 Across the aisle, Jared Vance was already in mid-crisis. His elbows were dug into his desk blotter, his mechanical keyboard clattering furiously under a stack of router terminal windows. His automated configuration backup script had aborted at quarter past three in the morning, leaving three hundred switches unarchived and filling his console with red stack traces.
 
 "Central IT pushed an unannounced firewall update across the distribution layer again," Jared snapped, spinning around with a grimace. "Chicago always tweaks access lists without logging a change ticket. Port 8443 is blocked between our subnet and the central archive cluster, and it blew up my whole morning."
@@ -161,6 +159,22 @@ Jared slumped into his chair, rubbing his temples. "The disaster recovery audit 
 
 I looked at the mountain of frozen TIME_WAIT sockets. The wire had two ends, and right now, our own management station was starving itself to death. I needed to isolate the dynamic port depletion, calculate the socket reuse rates, and implement connection pooling before the next scheduled archive sweep failed.
 
+## Both Ends of the Wire
+
+Jared's archive script opened a new connection for every one of four hundred devices, sent a few hundred bytes, and closed it, leaving each socket in TIME_WAIT for two minutes. His own workstation had run out of ephemeral ports.
+
+"My own machine starved itself," he said, leaning back.
+
+"You bought a new phone for every call and threw it in a bucket that takes two minutes to empty," Jules said. "Pool the connections."
+
+Jared rewrote the script to reuse a pool of sixteen persistent connections, and I lowered `TcpTimedWaitDelay` on his workstation from 120 seconds to 30 so idle sockets recycled faster. The next run finished all four hundred devices in under three minutes.
+
+It still cost us a night. The archive sweep had already failed at two in the morning, before anyone opened a ticket, so the Tuesday backups for three file shares did not exist. Jared re-ran the sweep by hand that evening and stayed until nine to watch it finish. He copied me on the change request for connection pooling, with my name in the "found by" field and his in the "owner" field.
+
+"Next time, open the ticket when the first sweep fails," he said on his way out. He was right. The first failure had sat in the monitoring queue for six hours, and I had scrolled past it twice.
+
+I stayed with him until nine, because it was my miss as much as his. I had also printed the morning's port-state table for every device, eight pages, in case anyone asked how we found it. Nobody ever did.
+
 ## Vocabulary & Concepts
 
 | Concept / Term | Formal Examination Definition | Help Desk Operational Translation |
@@ -172,7 +186,7 @@ I looked at the mountain of frozen TIME_WAIT sockets. The wire had two ends, and
 | **[[ephemeral_port|Ephemeral Port]]** | A dynamic, short-lived transport layer port assigned automatically by a client operating system from a high-numbered range (typically 49152 to 65535) to identify an outbound session. | A temporary port number assigned to a client computer for an outbound connection so the server knows where to send replies. |
 | **[[port_exhaustion|Ephemeral Port Exhaustion]]** | A state where a client operating system depletes its entire range of dynamic outbound ports, preventing any new outbound network connections from establishing. | A client-side bottleneck where an application opens and closes connections so rapidly that all available outbound port numbers become trapped in TIME_WAIT. |
 
-## The Handoff Gate
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: TCP Sockets, Port States, & Handshake Diagnostics
@@ -180,5 +194,5 @@ target: workbench/05-the-wire-has-two-ends.md
 domain: CompTIA Network+ N10-008/009 • Domain 1.1, 1.4 & 4.1
 badge: Hands-on Lab
 ---
-Take over Ethan's triage console. Diagnose the client-side ephemeral port exhaustion storm in interactive netstat drills, calculate the 2MSL socket recycling rates, configure connection pooling, and submit the Tier 1 Transport Resolution Note.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

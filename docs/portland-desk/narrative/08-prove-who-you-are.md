@@ -6,8 +6,6 @@ The smell of wet wool and radiator steam filled the fourth floor long before the
 
 "Two dozen people locked themselves out between Friday night and seven this morning," Jules said, capping the blue marker with a sharp snap. "Half of them will swear up and down that typing a password and a PIN counts as multifactor. Don't argue with their frustration, Ethan. Separate what they know from what they hold."
 
-Jared had not forgotten the Telnet capture. He still answered my messages, just never on the same day, so I had learned to send him tickets instead of questions.
-
 On the dispatch display, the first incident ticket was already flashing red.
 
 ## Nora and the policy that keeps changing the locks
@@ -105,7 +103,23 @@ Before the lockouts peaked, Owen came up from facilities with a printout of the 
 
 "Call it what you want. The badge is something you have," Owen said. "The person holding the door just let somebody borrow it." He did not know how to tie the badge system to account lockouts, and neither did I. I added the stairwell door to the lockout ticket anyway, as one more place where proof of who you are had been handed to a stranger, and Owen went to ask the camera which badge it was.
 
-## The Handoff Gate
+## Who You Are, and Who Signs Off
+
+By mid-morning we had found the machine Dev's script was running from by reading the caller computer name on the lockout events. Dev moved the script's credentials into the secrets vault, we cleared the lockout, and the bad-password counter stayed at zero.
+
+Todd called across the aisle. "Sign in with company worked. Push prompt, two digits, straight into the CRM."
+
+"Two different factor types," I said. "That's the point."
+
+Not everyone liked the fixes. Todd's manager had wanted an exception so the sales team could keep PIN-plus-password logins through quarter-end, and I had said no in writing. She forwarded my reply to Jules with one line: *Is this the tone we want from the desk?*
+
+Jules answered her and copied me. The answer was polite and did not move an inch. Then she walked over to my desk. "You were right and you were curt. Next time, be right and give her a date."
+
+The Tier 2 posting closed two weeks later. I did not get it. Jules told me the panel had read the complaint, and that it was not the only reason, but it was one of them. The posting would reopen in December, and promotions from that round would not land until January. <!-- date-ok -->
+
+Owen never did get a clean answer from the camera that day. The footage showed the back of a gray jacket, and he said he would keep pulling badge logs when he had time.
+
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: Identity, Authentication Factors, & Password Policy Triage
@@ -114,5 +128,5 @@ domain: CompTIA Security+ SY0-701 • Domain 4.2 & 1.3
 badge: The Hands-On Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift. Classify authentication factors to stop false MFA claims, inspect Active Directory Security Event Logs (Event ID 4625 and 4740) to locate the rogue caller device locking out accounts, guide users to NIST SP 800-63B passphrases, and complete the Tier 1 Identity Triage note.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

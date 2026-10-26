@@ -6,7 +6,7 @@ A gusting Wednesday rain swept across the Willamette as I stepped onto the fourt
 
 The dispatch board read forty-two open items at eight in the morning: forgotten passwords, jammed label printers, and a conference room projector that refused to handshake over HDMI. But by two in the afternoon, the board had gone dead silent. That silence is the first thing you learn to fear on an operations floor. When the phones stop ringing, it usually means the fire has moved into the walls.
 
-The wireless baseline from April was still open in a tab on my second monitor. I had added to it every week since, mostly out of habit, and it was the first thing that made the morning's quiet tickets look wrong.
+Jules had made me keep the wireless baseline from April, and she checked it every Friday. Against it, the morning's quiet tickets looked wrong. <!-- date-ok -->
 
 ## Maya and the laptop that must die
 
@@ -109,15 +109,36 @@ I looked down at the red binder. Three years ago, I was an anxious twenty-year-o
 
 Today, there were no multiple-choice questions. The municipal grid was on the line, and Jules had handed me the incident pen to brief Nia Alvarez.
 
----
+## What It Cost
 
-> [!IMPORTANT]
-> ### The Book 0 Crucible: The CSIRT Escalation Gate
-> Multi-vector indicators have aligned across finance, sales, and industrial plant telemetry. Nora's C2 beacon is live, Todd's host is enumerating lateral shares, and the Willamette River gateway is attempting external egress.
-> 
-> **Your Turn at the Console:** Step up to the Incident Console on the Workbench. Execute the live memory acquisition, preserve the Order of Volatility, compute the cryptographic SHA-256 verification hashes, and deliver the formal CSIRT Escalation Dossier to Senior CSIRT Lead Nia Alvarez and Jules Brooks before the incident command team takes the floor.
-> 
-> [Take the Ticket & Open the Lab →](workbench/12-when-the-ticket-escalates.md)
+By 4:30 the rain had eased to a mist over the Willamette. Jules signed the receiving line on Evidence Pouch `#EVD-2026-0624-01` and slid the red binder into the CSIRT handoff rack.
+
+The intrusion was contained, but not cleanly. To cut the attacker's path into the plant, we had isolated the Willamette River gateway, and Leah's crew ran the treatment line on manual override for the rest of the shift. She called at six to say they had held it, and that three operators were working a double because of it. She did not sound angry. She sounded tired, and she wanted to know when the gateway was coming back. It came back nine days later, after Jared rebuilt it.
+
+## The After-Action Review
+
+The review was the following Tuesday, with Nia on the bridge from Chicago and Jules, Jared, Leah, and me in the fourth-floor conference room. On the table were the timeline printout, the evidence log, Jared's rebuild ticket for the gateway, and a list of the indicators I had saved since December. <!-- date-ok -->
+
+Leah started before Nia did. "I found out my gateway was going dark from a phone call, not from a plan."
+
+"There was no plan," Jules said. "That's on us, not on Ethan."
+
+"Then whose is it?" Leah asked. Nobody answered quickly enough. Nia wrote *plant isolation playbook, owner TBD* at the top of the preparation list, and under it Owen's lobby camera, which was still on order.
+
+Nia ran down the indicator list next. None of my saved hashes or domains from December or February had matched anything in this intrusion. "Keep saving them," she said. "Just don't expect them to be the thing that catches the next one." <!-- date-ok -->
+
+Then she got to containment, and my name came up. I had isolated Todd's workstation before the second memory capture finished, because I saw it start enumerating shares and wanted it off the wire. The first capture was good. The second would have shown whether the attacker had moved a tool into memory after the first. We would never know.
+
+"It was a defensible call," Nia said. "It was also a call that cost us evidence. Write down why you made it, and what you would need to see next time to wait sixty more seconds." I wrote it down. It went into the lessons-learned section with my name on it, next to the missing plant playbook.
+
+## August <!-- date-ok -->
+
+The analyst opening on Harrowmere's security operations team posted in July. I applied. Nia asked about the containment note in my second interview, and I told her what I had written. The offer came in August, with a ninety-day review and a night rotation of its own. <!-- date-ok -->
+
+The team sat on the fifth floor. Same building, same river outside the window, same bike rack by the door.
+
+"You're not leaving," Jules said when she handed me the navy lanyard. "You're moving upstairs. You'll still get calls from Ken." He called the next morning to ask who was taking my desk line.
+
 
 ## Vocabulary & Concepts
 
@@ -139,5 +160,5 @@ domain: CompTIA Security+ SY0-701 • Domain 4.0 Incident Response & Operations
 badge: Final Capstone Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Senior CSIRT Lead Nia Alvarez and Jules Brooks.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

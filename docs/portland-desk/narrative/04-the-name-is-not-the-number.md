@@ -4,7 +4,7 @@
 
 A gray March downpour beat against the high double-paned windows of the fourth floor. Seven months on the Portland Operations Center desk had taught me the rhythms of the building: which closet switches ran warm, which departments panicked before payroll cutoff, and how fast a wet morning turned into a ticket surge.
 
-The Gresham static list was still taped to the side of my monitor. Five of the eleven devices were down to proper reservations. The other six belonged to people who had not returned my emails, and one of them, a staging laptop Owen had set up in a trailer the previous September, was about to matter more than I knew.
+The Gresham static list was still taped to the side of my monitor. Five of the eleven devices were down to proper reservations. The other six belonged to people who had not returned my emails, and one of them, a staging laptop Owen had set up in a trailer the previous September. <!-- date-ok -->
 
 Across the center aisle, Tier 2 systems administrator Lena Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules Brooks sat to my left, finishing her first coffee while auditing overnight firewall changes.
 
@@ -41,7 +41,7 @@ I leaned forward and examined the terminal window on Greg's remote screen. Inste
 
 "A `192.168.1.50` address is private non-routable space that belongs on a domestic local network," Maya pointed out. She wheeled her chair into our row. "Check the local static configuration files before you do anything else."
 
-I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the local [[hosts_file|hosts file]] in an elevated text editor. Right beneath the default commented loopback entries, someone had manually appended three hardcoded lines during the previous autumn:
+I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the local [[hosts_file|hosts file]] in an elevated text editor. Right beneath the default commented loopback entries, someone had manually appended three hardcoded lines during the previous autumn: <!-- date-ok -->
 
 ```text
 # Temporary development override - DO NOT REMOVE
@@ -49,7 +49,7 @@ I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the loc
 192.168.1.51    wiki.harrowmere.local
 ```
 
-"A contract software developer had this machine out in a staging trailer last September," I said. "They must have hardcoded those static mappings to point to a portable test server on their switch. Nobody ever cleaned the file before reissuing the laptop to accounting."
+"A contract software developer had this machine out in a staging trailer last September," I said. "They must have hardcoded those static mappings to point to a portable test server on their switch. Nobody ever cleaned the file before reissuing the laptop to accounting." <!-- date-ok -->
 
 "The operating system checks the local cache and the static file before it ever asks an external server," Jules remarked. She crossed her arms. "Remove those obsolete entries and flush the resolver cache. Let us see what happens when the computer actually asks for directions."
 
@@ -119,6 +119,24 @@ She looked back over her monitor. "You have fifteen minutes before accounting ca
 
 I looked at the terminal output and the dual adapter configuration. The tunnel was wide open, but the packets were flying blind. I needed to isolate the DNS leak, calculate the corrected adapter metrics, and draft the infrastructure escalation before the morning payroll deadline expired.
 
+## Asking the Right Stranger
+
+The tunnel adapter had a worse interface metric than the hotel Wi-Fi, and the client had no `harrowmere.local` suffix to try, so internal names went out to public DNS and came back as a parked domain. I took the evidence to Lena Chen, our Tier 2 systems administrator, because the VPN gateway was hers and not mine to change. She pushed a client profile revision with an interface metric of 10 on the tunnel adapter, the internal suffix on the search list, and smart multi-homed resolution turned off.
+
+I sent the affected users three steps: disconnect, reconnect to pull the new profile, and run `ipconfig /flushdns` to clear the cached failures. Within twelve minutes, seventy-five endpoints had the fix. Greg in Hillsboro watched the parked page turn into our payroll login and submitted his timesheets.
+
+The fix for the users held, but the real problem was not mine to fix. I wrote the escalation for the split-horizon records and sent it to Jared before lunch. He read it at his desk with his jaw set.
+
+"You're telling me my internal zone has been leaking for a year," he said.
+
+"I'm telling you what the lookups did," I said. "I don't know why the zone is set up that way."
+
+"It's set up that way because nobody gave me a maintenance window in a year." He moved the ticket into his queue without replying. For the next two weeks he answered my questions one word at a time.
+
+"You spent two hours on someone else's configuration," Jules said on her way out, "but you didn't spend it guessing. Most of the time the application is fine and the client is asking the wrong stranger for directions."
+
+That same afternoon, the Hillsboro DHCP failover broke. Lena fixed it while I was on the VPN calls, and I only read about it in her closure note the next morning. My own queue sat untouched the whole time, and four tickets went past their response target. Jules wrote them up on my weekly review without comment.
+
 ## Vocabulary & Concepts
 
 | Concept / Term | Formal Examination Definition | Help Desk Operational Translation |
@@ -130,7 +148,7 @@ I looked at the terminal output and the dual adapter configuration. The tunnel w
 | **[[dns_ttl|DNS TTL]]** | A 32-bit integer in a DNS resource record determining the duration in seconds that intermediate resolvers and client caches may retain the record before re-querying. | The expiration timer that tells your laptop how long to remember a good or bad answer; if set too high, it traps users on stale or broken addresses after an outage. |
 | **[[cname_record|CNAME Record]]** | A DNS Canonical Name resource record that establishes an alias from one domain name to another fully qualified domain name rather than to an IP address. | An alias pointer that routes a friendly hostname (like `wiki.harrowmere.com`) to an external cloud or vendor URL where the real web application lives. |
 
-## The Handoff Gate
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: DNS Plumbing, Name Resolution Triage, & Split-Horizon Analysis
@@ -138,5 +156,5 @@ target: workbench/04-the-name-is-not-the-number.md
 domain: CompTIA Network+ N10-008 • Domain 1.0 & 4.0
 badge: Hands-On Lab
 ---
-Take over Ethan's workstation. Triage the multi-homed VPN DNS leak in interactive terminal drills, correct the interface metrics and domain suffix bindings, wipe the stale negative cache, and draft the Tier 2 Infrastructure Escalation Note.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

@@ -627,5 +627,5 @@ target: workbench/00-the-four-rubber-bands.md
 domain: CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations
 badge: Hands-On Lab
 ---
-Deconstruct the computer from scratch with Ethan's four rubber bands: volatile memory isolation, Layer 2 vs. Layer 3 address triage, live command-line diagnostics (`whoami`, `hostname`, `ipconfig`), and the First-Contact Diagnostic Checklist.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

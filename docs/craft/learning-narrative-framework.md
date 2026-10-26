@@ -126,6 +126,22 @@ Early chapters can be gentler, since a beginner reader needs some safety. Gentle
 - Ethan is the punching bag. He can struggle with anxiety, distraction, bad reactions to certain kinds of questions, or a learning disability he discovers along the way. Give him the problems real learners are likely to have, with real consequences, and let him work through them on the page. Keep it realistic, though: Ethan is not a "Mr. Glass" who is broken in every way. Give him a small, consistent set of personal struggles that fits who he is. Bring in other common problems vicariously, through coworkers' incidents, tickets he reads, war stories from mentors, or things he overhears. The rule of thumb is that each chapter costs Ethan something real, but not every lesson has to be his own pain.
 - Keep the passive-playback guard from the pedagogy doc. Ethan's hard-won lesson should not spend the learner's discovery for them. The workbench is still where the reader solves it.
 
+## Decision (Charles, 2026-10-26): the story may give away the answer
+
+This replaces any earlier rule about holding the answer back for the lab. Each chapter is the best standalone story it can be, cliffhanger or not, and it may show Ethan solving the problem. The lab opens with a worked example of exactly the same incident, with the solution known, and ends with one transfer problem that shares the principle but differs on the surface. There are no "what would you do" handoffs before training, no lab epilogues, and no story Easter eggs. Labs may refer to the story to aid learning. Every story beat and every cost lives in the chapter. Full rules: `docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`, section 2.
+
+## Cost and canon rules (Sorkin Desk review of PR #32, adopted 2026-10-26)
+
+1. **No refunds.** A promotion, raise, or act of forgiveness may not offset a cost in the same chapter or the next one.
+2. **Not the center of the web.** Each act has at least one incident that belongs to someone else, which Ethan hears about secondhand. Each act also has at least one thing Ethan saves or prepares that turns out not to matter.
+3. **No narrator foreshadowing.** Cut lines such as "it would matter more than I knew."
+4. **Carry-forwards must change action.** A carry-forward counts only when it changes what someone does in a later scene. A grudge may not be restated in more than two chapters without moving.
+5. **Every chapter charges Ethan a personal cost** in time, money, opportunity, or standing, and nobody refunds it. Costs to other people are welcome but do not replace it.
+6. **Standing struggles.** Ethan's standing struggles are named in the bible, and they drive each of his wrong turns. Do not invent a new flaw for each chapter.
+7. **No repeated entrances.** No recurring character enters or exits a scene the same way twice.
+8. **Dates are checked.** Check every date and season against `docs/research/PORTLAND_TIMELINE.md` before merge. Run `python3 tools/check_dates.py`.
+9. **Narrative file only.** A cost counts only if it is in the narrative file.
+
 ## Worked example: Portland Desk Chapters 00–2
 
 These are short illustrations of each principle drawn from the review. The full review is in PR #29.

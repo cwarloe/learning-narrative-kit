@@ -168,6 +168,20 @@ Jules looked at me, tapping her pen against the edge of the desk.
 
 I pulled up the switch interface monitor and opened the passdown template. I had a flapping ARP entry to isolate, an unmanaged printer to hunt down, and a scope to reconfigure.
 
+## Port Twenty-Eight
+
+I had Ken check the warehouse floor for anything that had been moved or plugged in since yesterday. He groaned over the radio. Owen had wheeled an old HP LaserJet 4050 into the breakroom the afternoon before and typed in the static settings from a faded label under its paper tray, `10.100.4.55`, the address DHCP had already leased to Frank.
+
+While I walked the warehouse patch panel looking for port twenty-eight, Ken held dock door six closed for forty minutes so bad weights could not post into the freight system. Two Portland-bound trailers loaded late, and Ken said so on the phone in a voice I remembered from Line 4.
+
+"I'll put it in my notes that you found it," he said. "I'll also put in my notes that it took forty minutes."
+
+We unplugged the printer's drop, and the pings from Frank's machine settled into clean two-millisecond replies. I moved the printer to a DHCP reservation at `10.100.4.240`, outside the dynamic pool, so it could not collide again.
+
+Back upstairs, Jules opened a capture of Frank's browser reaching a logistics portal in Seattle and made me walk the packet. Frank's machine applied its mask, saw the destination was remote, and addressed the frame to the gateway's MAC while the IP header kept the real destination the whole way. "The gateway does not care how urgent your ticket feels," she said. "It cares whether you addressed the frame to it."
+
+Before I left, I ran a quick sweep of the warehouse network. Eleven more devices had hand-typed static addresses that nobody had written down. Jared added a line to his list: *Gresham static sprawl, owner unknown.* He did not say whose problem it was going to be. I stayed two hours past my shift tagging all eleven on the switch port descriptions. Jules had not approved overtime, so I did it off the clock, which she found out about and told me never to do again.
+
 ## Vocabulary & Concepts
 
 | Concept / Term | Formal Examination Definition | Help Desk Operational Translation |
@@ -179,7 +193,7 @@ I pulled up the switch interface monitor and opened the passdown template. I had
 | **[[default_gateway|Default Gateway]]** | A Layer 3 router interface on the local subnet to which a host forwards IP packets destined for remote networks outside its own broadcast domain. | The local exit door for traffic leaving the local subnet; without it, a computer cannot reach any server across the router or on the internet. |
 | **[[arp_cache|ARP Cache]]** | A volatile local operating system table that maps Layer 3 IPv4 addresses to their corresponding Layer 2 physical MAC addresses for hosts on the local network segment. | The computer temporary lookup table linking IP addresses to physical network cards; if corrupted or conflicting, traffic goes to the wrong machine. |
 
-## The Handoff Gate
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
@@ -187,5 +201,5 @@ target: workbench/03-the-default-gateway-doesnt-care.md
 domain: CompTIA Network+ N10-008/009 • Domain 1.4 & 4.1
 badge: Hands-On Lab
 ---
-Take over Ethan's triage console. Isolate the Layer 3 ARP flapping conflict between Frank's shipping PC and the rogue device, resolve the DHCP dynamic pool collision, audit the /26 subnet boundaries, and draft the Tier 1 Addressing Passdown Note.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

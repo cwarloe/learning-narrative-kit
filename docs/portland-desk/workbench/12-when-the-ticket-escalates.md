@@ -20,6 +20,22 @@
 
 ---
 
+## Worked Example: The quiet mailbox intrusion
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Quiet mailbox rules, a USB in the warehouse, and lateral movement toward the plant gateway.
+
+1. Recognize the pattern as an incident and declare it, which moves you from tickets into the IR lifecycle.
+2. Capture volatile evidence in order: memory first, then network state, then disk.
+3. Contain: isolate the compromised workstation and the plant gateway.
+4. Keep chain of custody on every artifact.
+5. Eradicate and recover with the owners of each system.
+6. Run the after-action review and write down what you would do differently.
+7. Result: contained, with a lost second memory capture, a plant on manual override, and a missing plant playbook.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,7 +47,7 @@ prompt: "Clean technical cutaway illustration of a computer forensic examination
 
 
 ### The Situation
-It is 14:15 on a wind-whipped Thursday in late October. Outside the fourth-floor windows of the Portland Operations Center, sheets of gray rain sweep across the Willamette River, obscuring the Hawthorne Bridge and the steel industrial warehouses of the Central Eastside. Inside, the dispatch floor smells of wet wool jackets, ozone from the server room exhaust blowers, and Jules Brooks’s dark French roast coffee.
+It is 14:15 on a wind-whipped Thursday in late June. Outside the fourth-floor windows of the Portland Operations Center, sheets of gray rain sweep across the Willamette River, obscuring the Hawthorne Bridge and the steel industrial warehouses of the Central Eastside. Inside, the dispatch floor smells of wet wool jackets, ozone from the server room exhaust blowers, and Jules Brooks’s dark French roast coffee.
 
 On the corkboard above the primary dispatch console, Jules’s morning sticky note (*"which decision?"*) has been covered with a fresh neon-orange square:
 
@@ -731,50 +747,10 @@ Before Ethan closes the red folder and hands the physical binder to Jules Brooks
 
 ---
 
-## 6. Shift Resolution Epilogue
-
-```callout-panel
-title: "FIGURE 12.2: CSIRT INCIDENT HANDOFF & THE BRIDGE TO BOOK 1"
-badge: "Shift Epilogue"
-caption: "Operations bullpen: At 05:45 PM, the June rain eases over the Willamette River. Jules Brooks hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
-prompt: "Clean graphic novel cutaway panel of an IT support operations floor at twilight. Warm indoor desk light contrasts with blue twilight outside the floor-to-ceiling windows showing city bridges and river. A senior technician hands a new security access keycard lanyard to a junior technician across an open incident binder. Clean ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
-```
-
-## After the rain
-
-At 5:45 the queue was quieter. Jules clipped her bike lights on.
-
-"Tell Wednesday," she said, "without listing a lifecycle."
-
-I told her: I had nearly wiped a loud nothing. I had stopped a quiet something without turning it into a parade. I am [[first_responder|first touch]], not freelance forensics.
-
-She nodded once, then remembered the USB on her wall. "Keep asking what it did before you decide what it is."
-
-The queue showed one more URGENT. I opened it anyway — criteria first, adrenaline second. The subject was louder than the evidence. I left it in the queue with a note, and I left the imaging USB where she had put it.
-
-## The Step Beyond the Desk
-
-By 4:30 the rain had eased to a mist over the Willamette. Jules signed the receiving line on Evidence Pouch `#EVD-2026-1022-01` and slid the red binder into the CSIRT handoff rack.
-
-The intrusion was contained, but not cleanly. To cut the attacker's path into the plant, we had isolated the Willamette River gateway, and Leah's crew ran the treatment line on manual override for the rest of the shift. She called me at six to say they had held it, and that she had three operators working a double because of it. She did not sound angry. She sounded tired, and she wanted to know when the gateway was coming back.
-
-## The After-Action Review
-
-The after-action review was the following Tuesday, with Nia on the bridge from Chicago and Jules, Jared, Leah, and me in the fourth-floor conference room. Nia walked it phase by phase: preparation, identification, containment, eradication, recovery, and lessons learned.
-
-Preparation was where we were weakest. We had no written playbook for isolating the plant gateway, which was why Leah found out from a phone call instead of a plan. Identification was where the baseline earned its keep. Eradication and recovery belonged to Chicago and Jared, and recovery took nine days because the gateway had to be rebuilt.
-
-Containment was where my name came up. I had isolated Todd's workstation from the network before the second memory capture finished, because I saw it start enumerating shares and wanted it off the wire. Nia said the first capture was good and the second would have shown whether the attacker had moved a tool into memory after the first. We would never know.
-
-"It was a defensible call," she said. "It was also a call that cost us evidence. Write down why you made it, and what you would need to see next time to wait sixty more seconds." I wrote it down. It went into the lessons-learned section with my name on it, next to the line about the missing plant playbook.
-
-## Monday
-
-Two weeks later, Jules handed me a navy blue lanyard with a keycard for the fifth floor, where Harrowmere's security operations team worked. Same building, same river outside the window, same bike rack by the door. Nia had asked whether I wanted to apply for the analyst opening, and I had.
-
-"You're not leaving," Jules said. "You're moving upstairs. You'll still get calls from Ken." She was right about that. He called the next morning to ask who was taking my desk line.
-
 ---
 
-*This concludes **Book 0: Zero-to-One (Portland Desk)**. Ethan's work continues in the [Network Analyst Development Framework](https://github.com/cwarloe/network-analyst-development-framework), which starts with packet captures and analyst judgment.*
+## 6. Transfer Problem
 
+This problem looks different from the quiet mailbox intrusion, but it works the same way. Use the worked example and your notes.
+
+A manager's account sends an unusual forwarding rule to an outside address, and an hour later the same account signs in from two countries. Walk the incident lifecycle for this case, name what you capture first, and name one containment call that could cost you evidence.

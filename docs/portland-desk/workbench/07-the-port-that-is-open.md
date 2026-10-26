@@ -20,6 +20,20 @@
 
 ---
 
+## Worked Example: The open-port queue
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** A scan showed RDP, LDAP, FTP, Telnet, and SNMP `public` in use, and a sales VP asked for 3389 to the internet.
+
+1. For each request, name the port and ask what it exposes in clear text.
+2. Show the risk with a capture. Jared's Telnet password scrolled past.
+3. Swap each protocol for its secure twin: VPN plus a jump host for RDP, LDAPS on 636, SFTP, SSH, and SNMPv3.
+4. Where a device cannot run the secure twin, isolate it on a management VLAN behind a jump host.
+5. Result: a narrow firewall rule, six old switches patched around instead of fixed, and a Saturday outage when the jump host rebooted.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -299,7 +313,7 @@ ssh admin@192.168.10.50: |
 </div>
 
 
-#### Ticket 1: Dana Okafor (Facilities HVAC Vendor) — `INC-2026-1043`
+#### Ticket 1: Dale Okafor (Facilities HVAC Vendor) — `INC-2026-1043`
 *Request:* "Open FTP (Port 21) inbound through the perimeter firewall to internal server `192.168.10.85` so our diagnostic laptop can push building HVAC controller firmware."
 
 * **Your Action:** [ Allow / Deny / Redirect ]
@@ -335,7 +349,7 @@ ssh admin@192.168.10.50: |
 
 ---
 
-#### Ticket 3: Lena Chen (Legal Dept Onboarding) — `INC-2026-1045`
+#### Ticket 3: Lena Cho (Legal Dept Onboarding) — `INC-2026-1045`
 *Request:* "Connecting from Guest Wi-Fi in the lobby. Password reset portal reports `LDAP error 81 (Cannot contact directory server)`. Connecting to dock gives `Kerberos clock skew error`."
 
 * **Your Action:** [ Diagnostic & Configuration Changes ]
@@ -508,35 +522,10 @@ Classification:   OT/SCADA Perimeter Traversal Exception Request
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 7.2: HARDENED PROTOCOL ARCHITECTURE"
-badge: "Shift Epilogue"
-caption: "Operations center: At 05:40 PM, the rain clears over the Willamette River. On Ethan's desk, index cards sit neatly paired in secure couples as external port 3389 and 445 scanners hit zero open sockets."
-prompt: "Clean graphic novel cutaway panel of an IT support technician desk at twilight. Rain streaks down the window behind the desk, showing twilight city lights over an industrial river. On the laminate desk, index cards are neatly stacked in pairs beside an empty coffee mug. A dual-monitor display shows green firewall access rule tables. Ligne Claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-With the security matrix completed, I called Sam back in Seattle. "We will get you onto the corporate VPN first, and from there you will remote into a dedicated jump host. We do not open raw port 3389 to the public internet, not even for an hour, for the same reason we do not expose SMB on port 445 off the outside of the building."
+This problem looks different from the open-port queue, but it works the same way. Use the worked example and your notes.
 
-Sam groaned over the line, then gave in. "I already have the VPN profile from the last gig. A jump box is fine if somebody sends me the hostname. It is honestly nicer than hoping the hotel Wi-Fi is friendly."
-
-The firewall rule we submitted was narrow on purpose: source the VPN client address pool, destination the hardened jump host, port 3389, TCP, allow—with all direct internet access to internal workstations blocked. Jules initialed the ticket on her way past.
-
-Across the rest of the queue, the legacy cleartext protocols fell into line. We moved the legal directory tool from LDAP on 389 to LDAPS on 636, synchronized Lena's skewed clock with internal NTP on UDP 123 to restore Kerberos ticket validation, and rejected unauthenticated SNMP `public` polling in favor of SNMPv3 with SHA authentication and AES encryption. When facilities tech Owen needed printer firmware, we restricted TFTP to a transient staging segment and closed the port behind him.
-
-By 5:40 PM the queue was down to noise. The index cards were still out on my desk, and I had been pairing them off all afternoon without meaning to: Telnet next to SSH, HTTP next to HTTPS, FTP next to SFTP and FTPS, POP and IMAP next to their TLS versions, LDAP next to LDAPS, SNMP next to SNMPv3, syslog next to 6514. None of the port numbers had changed.
-
-Jules stopped at my cube on her way out, raincoat on, bike lights already clipped to her pack strap.
-
-"How many ports did you memorize today, Ethan?"
-
-"None," I answered with a tired grin. "I collected some war stories and made a few swaps."
-
-"Keep the cards if they help you get started," Jules said, giving my desk partition a nod of approval. "Throw them out when the person on the phone already knows the number, and what they actually need from you is the other half."
-
-That was the one I wrote down in my technical notebook. I locked the drawer and went out into the rain to catch the MAX.
-
-Saying no to Jared had a price. He did not argue with the capture once he saw his own password scroll past in plain text, but he did not thank me either. His script still needed Telnet on six older switches that could not run SSH without a firmware upgrade, so we wrapped those six in a management VLAN and a jump host instead of fixing them. It was a patch, and we both knew it.
-
-"The script's going to break the first time the jump host reboots," Jared said. "When it does, you're the one I'm calling." He meant it. Two weeks later, when I needed a switch port traced on a Saturday, he took four hours to answer.
+A new badge-printer vendor asks you to open TCP 23 and UDP 161 with community `public` so their support can reach the printer. Name what each port is, what crosses the wire in clear text, and the secure alternative you would offer for each.

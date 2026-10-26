@@ -119,7 +119,9 @@ To ground the learner in authentic operational tradecraft, **every single learni
 
 ---
 
-## 3. The 4-Beat Story-to-Workbench Progression (The Universal Engine)
+## 3. The Story-to-Workbench Progression
+
+> **Current model (Charles, 2026-10-26).** The chapter tells the whole incident, including the answer and its cost. The lab opens with a worked example of that same incident, with the solution known. Sections 1 to 5 practice the steps. Section 6 is one transfer problem that shares the principle but differs on the surface. There are no lab epilogues and no story Easter eggs; labs may refer to the story to aid learning. `PEDAGOGICAL_AGENCY_ARCHITECTURE.md` section 2 has the full rules. Where the beats below mention an epilogue or a story handoff, this note wins.
 
 Every module across the Portland Desk follows a rigorous 6-beat instructional architecture that tightly binds dramatic narrative stakes to empirical technical mastery:
 
@@ -136,7 +138,6 @@ flowchart TD
     end
 
     B2 -.->|"Bridge Card Handshake"| B3
-    B6 -.->|"Shift Epilogue Unlocked"| Narrative_Track
 
     style B1 fill:#991b1b,stroke:#7f1d1d,color:#fff
     style B2 fill:#1e40af,stroke:#1e3a8a,color:#fff
@@ -266,7 +267,7 @@ Module 00 (*"The Four Rubber Bands"*) serves as the design benchmark for the ent
 │ OPERATIONAL DELIVERABLES: Sections 4 & 5                                               │
 │ • Section 4: First-Contact Diagnostic Worksheet (T1-INIT-2026-001)                     │
 │ • Section 5: Lead Sign-Off Checklist & 100-Point Shift Grading Rubric                  │
-│ • Section 6: Shift Resolution Epilogue (02:15 AM kitchen table; passing score 690 on the second attempt)     │
+│ • Section 6: Transfer Problem                                                                               │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -320,7 +321,7 @@ Module 00 (*"The Four Rubber Bands"*) serves as the design benchmark for the ent
 ### 5.6 Beat 6: Operational Deliverables (Workbench Sections 4 & 5)
 - **Section 4: Your Ticket Notes:** Learner fills out the standardized *First-Contact Diagnostic Intake Worksheet* (`T1-INIT-2026-001`), committing their CBYT hypothesis, documenting the 5-step ping ladder results, and recording actionable, jargon-free advice for the user.
 - **Section 5: What Good Looks Like:** Evaluated against the *Shift Grading Rubric* (Component Identification: 25pts; Layer Isolation & Identity: 25pts; Command Telemetry Literacy: 25pts; Diagnostic Discipline [CBYT]: 25pts; Passing Score: 85pts).
-- **Section 6: Shift Resolution & Epilogue:** Unlocks the narrative conclusion at 02:15 AM on the duplex kitchen table, Jules' quiet pride, and Ethan's 685 score report in the Beaverton rain.
+- **Section 6: Transfer Problem:** One new problem that uses the same mental model on a different machine and a different user. The Ep 00 story, including the failed first exam (592) and the pass on the second attempt (690), is told in the chapter.
 
 ---
 
@@ -518,7 +519,7 @@ Before any module (00 to 12) is merged into the repository, it must pass this 8-
 - [ ] **5. Flashcard Isolation:** Are flashcards strictly limited to Red Band under-10-second atomic recall cards? Are multi-step troubleshooting sequences, scripts, and narrative plot lines 100% excluded from flashcards?
 - [ ] **6. Interactive Terminal Fidelity:** Does the mock CLI terminal widget output authentic, un-hallucinated syntax and responses that match the hostnames, user accounts, and IP subnets established in the lesson text?
 - [ ] **7. Shift Notes & Rubric Completeness:** Does the workbench include both Section 4 (*Your Ticket Notes*) with an authentic worksheet template and Section 5 (*What Good Looks Like*) with a 100-point rubric and Lead Sign-Off Checklist?
-- [ ] **8. Narrative-to-Workbench Bridge:** Does the narrative file conclude with an authentic `callout-panel` or `bridge-card` linking directly to the companion workbench lab? Does the workbench Section 6 Epilogue provide an emotionally satisfying narrative debrief?
+- [ ] **8. Narrative-to-Workbench Bridge:** Does the narrative file conclude with an authentic `callout-panel` or `bridge-card` linking directly to the companion workbench lab? Does the workbench open with a worked example of the chapter's incident, and does Section 6 give one transfer problem? Is every story cost in the chapter, with no lab epilogue?
 
 ---
 

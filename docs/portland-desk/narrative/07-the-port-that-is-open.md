@@ -63,9 +63,9 @@ We changed the profile together, sent a test message, and the red banner went aw
 
 The facilities vendor needed a building controller config sent over, and the ticket said, cheerfully, to drop it on their [[ftp|FTP]] server.
 
-I called instead of typing a lecture at them. Their engineer, Dana, sounded like she was in a truck, with a radio going somewhere behind her.
+I called instead of typing a lecture at them. Their engineer, Dale, sounded like she was in a truck, with a radio going somewhere behind her.
 
-"FTP is what the appliance documentation still shows," Dana said. "Twenty-one, username, done. I've done it that way on every install since sometime in the 2010s."
+"FTP is what the appliance documentation still shows," Dale said. "Twenty-one, username, done. I've done it that way on every install since sometime in the 2010s."
 
 "The password and the filenames both ride in the clear on FTP," I said. "We can push it over [[sftp|SFTP]] instead."
 
@@ -75,11 +75,11 @@ Everybody mixes the letters up. I'd done it in front of Jules a month earlier an
 
 "They're not the same," I said. "[[sftp|SFTP]] is file transfer running as a subsystem inside SSH, so it lives on port twenty-two. [[ftps|FTPS]] is FTP secured with TLS. While legacy appliances sometimes run implicit FTPS on port 990, standard explicit FTPS negotiates TLS right on standard port twenty-one using the AUTH TLS command. Different ports, different protocol handshakes. What we are not doing is unencrypted FTP across the perimeter."
 
-Dana exhaled. "FTPS I can turn on. I got burned once when a firewall guy opened twenty-one and then couldn't work out why the data connection hung. Active mode, port twenty, whole mess. Where do you want me to land it?"
+Dale exhaled. "FTPS I can turn on. I got burned once when a firewall guy opened twenty-one and then couldn't work out why the data connection hung. Active mode, port twenty, whole mess. Where do you want me to land it?"
 
 "On a jump host we control."
 
-Before Dana's transfer finished, Leah Moreno from Portland plant operations called from the treatment facility down by the river. Leah ran plant ops with a steel clipboard and zero patience for corporate drift, and when plant operations called the desk, it was never about a jammed printer.
+Before Dale's transfer finished, Leah Moreno from Portland plant operations called from the treatment facility down by the river. Leah ran plant ops with a steel clipboard and zero patience for corporate drift, and when plant operations called the desk, it was never about a jammed printer.
 
 "Ethan," Leah said, industrial pumps humming through the handset. "Our telemetry gateway stopped feeding sensor metrics to the central plant board. A field contractor wants an emergency firewall rule opening Modbus and DNP3 across the inter-site WAN so the overflow alarms stop chirping. Can you just punch the ports through?"
 
@@ -123,7 +123,25 @@ She pointed to the queue monitor above our heads. A facilities tech was asking f
 
 I looked at the stack of port index cards on my desk. Memorizing port numbers was easy; the hard part was standing between busy people and bad habits. I needed to build the protocol defense matrix, lock down the open sockets, and prove the secure paths before someone punched a hole in our firewall.
 
-## The Handoff Gate
+## The Other Half
+
+I called Sam back. "VPN first, then remote into a jump host. We don't open 3389 to the internet, not even for an hour." He grumbled and then admitted the jump box was nicer than trusting hotel Wi-Fi. The firewall rule was narrow on purpose: VPN pool to one hardened host on 3389, nothing else.
+
+The rest of the queue got the secure twin of whatever it had asked for. The legal tool moved from LDAP on 389 to LDAPS on 636. Dale's appliance moved from FTP to SFTP. SNMP `public` polling was replaced with SNMPv3.
+
+Jared did not argue once he watched his own password scroll past in the capture, but he did not thank me either. Six of his older switches could not run SSH without a firmware upgrade, so we wrapped them in a management VLAN behind a jump host instead of fixing them. It was a patch, and we both knew it.
+
+"The script's going to break the first time the jump host reboots," he said. "When it does, you're the one I'm calling."
+
+It broke on a Saturday two weeks later, on my overnight-into-morning shift. A Gresham closet switch stopped answering, and I needed Jared to tell me which uplink fed the label printers. He took four hours to answer. In the second hour, I guessed, shut the wrong port, and dropped the Gresham pack station for thirty-five minutes while Ken's weekend crew stood around. When Jared finally called in, he traced the right port in five minutes from his kitchen.
+
+"You should've called the on-call line instead of texting me," he said. "I'd have picked up."
+
+"I didn't think you would."
+
+He was quiet for a second. "Fair. Call anyway." After that, he answered my tickets the same day.
+
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: Protocol Triage, Port Hardening, & Perimeter Defense
@@ -131,5 +149,5 @@ target: workbench/07-the-port-that-is-open.md
 domain: CompTIA Security+ SY0-701 • Domain 1.4 & 2.5
 badge: The Hands-On Lab
 ---
-Take over Ethan's workstation. Triage cleartext Telnet, FTP, and HTTP traffic in packet capture drills, map insecure legacy services to encrypted replacements (SSH, SFTP, FTPS, LDAPS, SNMPv3), design the jump host firewall rule, and draft the Tier 1 Security Escalation Dossier.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

@@ -145,6 +145,18 @@ Jules set her flashlight down on the rack rail and looked directly at me.
 
 I looked at the red warning icons multiplying across the monitoring board. Four hours of sweating in rubber boots in an ankle-deep flood came down to the next twenty-five minutes. I needed to execute the DHCP reconciliation, restore address leases to one hundred and fifty endpoints, and run the end-to-end verification checklist before the doors unlocked.
 
+## Mostly Restored
+
+The DHCP scope was full of stale leases from devices that had dropped off the flooded switch. I cleared the abandoned leases, eighty-four of them, and watched the monitoring board fill with renewals. A test workstation on the billing floor pulled `10.20.10.74` with the right mask and gateway, and the billing application loaded.
+
+Jules would not sign the punch list until I had walked the verification out loud, layer by layer: links up at full duplex with no CRC errors, both LACP members active and spanning tree quiet, all three gateways answering, and telemetry, phones, and order terminals actually working. I said each one before I typed it.
+
+"Not bad for four hours in rubber boots, kid," Jared said, latching his toolcase.
+
+Mostly restored was the honest word. When the doors unlocked, the twelve label printers in shipping were still on the old VLAN behind a patch cord I had not had time to move, and the morning crew printed shipping labels by hand from a spreadsheet until ten. Jared's connection-pooling change, which had been scheduled for that night, slipped to the next window, two weeks out.
+
+On Thursday, Jules put my name on the overnight rotation. "You were useful at three in the morning," she said. "That is not a compliment. It is a schedule."
+
 ## Desk Translation Table
 
 | Concept / Term | Formal Examination Definition | Help Desk Operational Translation |
@@ -156,7 +168,7 @@ I looked at the red warning icons multiplying across the monitoring board. Four 
 | **[[spanning_tree|Spanning Tree Protocol (STP)]]** | A Layer 2 network protocol that monitors bridge topology and dynamically places redundant switch ports into blocking state to prevent catastrophic broadcast storms and switching loops. | The network traffic cop that turns off duplicate switch cables so broadcast loops do not circle endlessly and crash the entire building network. |
 | **[[link_aggregation|Link Aggregation (LACP)]]** | A networking standard (Link Aggregation Control Protocol) that bundles multiple physical Ethernet interfaces into a single logical channel to provide multiplied bandwidth and active redundancy. | The team-up protocol that binds two or more network cables together to act like one double-speed wire that stays up even if one cable snaps. |
 
-## The Handoff Gate
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: The Campus Flood & Disaster Recovery Crucible
@@ -164,5 +176,5 @@ target: workbench/06-the-portland-flood.md
 domain: CompTIA Network+ N10-008/009 • Disaster Recovery & Layer 1-4 Rebuild
 badge: The Hands-On Lab
 ---
-Take over Ethan's console at 07:35 AM in the flooded vault. Execute the PowerShell DHCP reconciliation to clear 84 stale leases, reduce lease durations, expand pool capacity, and run the Layer 1-4 verification checklist before the 08:00 AM opening.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

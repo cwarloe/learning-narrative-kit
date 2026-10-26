@@ -20,6 +20,21 @@
 
 ---
 
+## Worked Example: Maya's payroll workstation
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Maya's payroll client crashed and her screens went black after an overnight driver update.
+
+1. Resist the re-image. It would cost three hours and her unsaved work.
+2. Boot to Safe Mode. The crash stops, so the cause is a driver or startup item, not her data.
+3. Read Event Viewer: Application Error 1000 on `PDXPayClient.exe` and Event 4101 display driver resets point at the AMD driver.
+4. Turn off hardware acceleration in the client so payroll can run on the CPU.
+5. Roll the driver back from `v31.0.12024.2005` to `v30.0.15021.1101`, and ask the desktop team to block the update.
+6. Result: payroll ran, and Maya copied Jules on Ethan's tickets for weeks.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -565,33 +580,10 @@ Status:           RESOLVED & VERIFIED
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 2.2: THE LIVE BOARD RESOLUTION"
-badge: "Shift Epilogue"
-caption: "Bullpen view: At 09:12 AM, workstation 14's dispatch ticket flips from amber to green. Outside the casement windows, rain sweeps across the Hawthorne Bridge as Jules Brooks signs the onboarding slip."
-prompt: "Clean graphic novel panel of an IT help desk office bullpen in the Pacific Northwest. Rain streaks against large casement windows overlooking an industrial river bridge. A computer monitor displays a green resolved ticket badge. On the laminate desk, a blue visitor badge slip sits signed next to a ceramic coffee mug. Ligne Claire style, crisp technical lines, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-By 09:05 AM, the terminal logs had told the full story. The overnight maintenance update had installed generic AMD Radeon graphics driver package `v31.0.12024.2005`, clashing directly with `PDXPayClient.exe`'s Direct3D hardware acceleration engine.
+This problem looks different from Maya's payroll workstation, but it works the same way. Use the worked example and your notes.
 
-Following the remediation plan, I opened the advanced client configuration file, disabled hardware acceleration to route chart rendering through the stable GDI+ CPU pipeline, and executed a clean driver rollback in Device Manager to enterprise build `v30.0.15021.1101`.
-
-"Maya, please go ahead and launch the payroll database," I said over the headset. "Enter your credentials and run a test calculation on the batch summary report."
-
-Across the remote desktop session, we watched the accounting matrices populate instantly. Thirty-six pages of wage distributions and one hundred forty-two employee records calculated in four seconds without dropping a single frame.
-
-"It works," Maya exclaimed, her voice flooding with relief over the softphone line. "The calculation finished, and both of my screens stayed on. You just saved our entire payroll run for the week, Ethan."
-
-"Thank you for your patience while we isolated the driver issue, Maya," I said. "I am updating ticket forty-two hundred with the driver rollback details right now so our desktop team can blacklist that update across your department."
-
-I clicked disconnect on the softphone, slid the headset off, and completed the standardized resolution note. Jules stood behind my chair, reading through each section: the symptom description, the Safe Mode boundary test, the Event ID 1000 and 4101 analysis, and the preventive escalation to engineering.
-
-"Your technical isolation was disciplined, Ethan," Jules said, setting her empty travel mug on the divider. "You didn't burn down the house with a re-image. You divided the problem in half with Safe Mode, let Event Viewer give you the exact driver module, and fixed the root cause without eighteen wasted reboots."
-
-She paused, pulling a blue visitor badge exchange slip from her desk drawer and signing her initials across the authorization line.
-
-"You start on the desk Monday morning at seven-thirty," she said. "Twenty-four an hour to start, with a step review after your first year. Overnight coverage comes around on the rotation like it does for everyone. Bring your own coffee mug, and leave the flashcards in your backpack."
-
-I thanked her, shook her hand, and walked out into the cool Portland rain. Across the river, the steel arches of the Hawthorne Bridge emerged from the morning fog, and for the first time since I left the dock, I felt like I was standing on solid ground.
+A warehouse supervisor's shipping app freezes every time he opens the map view, starting the morning after a Windows update. The app is fine in Safe Mode. Which two Event Viewer entries would you look for, what would you change first so he can keep working, and what would you change second to fix the cause?

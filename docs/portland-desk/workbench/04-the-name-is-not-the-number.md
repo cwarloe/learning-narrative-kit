@@ -20,6 +20,21 @@
 
 ---
 
+## Worked Example: The Hillsboro VPN users
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Remote users on VPN saw a parked web page instead of the payroll login.
+
+1. Run `nslookup` for the internal name with and without the VPN up.
+2. See the query leave through the hotel Wi-Fi adapter because the tunnel had a worse interface metric.
+3. See that the client had no `harrowmere.local` search suffix, so the short name went to public DNS.
+4. Escalate to the gateway owner: a profile with tunnel metric 10, the internal suffix, and smart multi-homed resolution off.
+5. Have users reconnect and run `ipconfig /flushdns`.
+6. Result: seventy-five endpoints fixed in twelve minutes, and a split-horizon escalation that Jared did not enjoy reading.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -587,35 +602,10 @@ Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDO
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 4.2: RESOLVED REMOTE ACCESS RESOLUTION"
-badge: "Shift Epilogue"
-caption: "Operations center bullpen: At 10:15 AM, the remote dispatch queue returns to green. On Greg's remote desktop, the internal payroll timesheet portal renders cleanly over the encrypted tunnel."
-prompt: "Clean graphic novel cutaway panel of a corporate IT help desk operations center. Outside the panoramic windows, morning rain clears over the Willamette River. On a large wall-mounted operations monitor, a network traffic graph displays balanced green metrics. A technician types at a dual-monitor workstation. Ligne Claire style, sharp technical lines, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-With the root cause identified, Lena Chen pulled up the centralized VPN gateway management console on her workstation. She pushed a mandatory client profile revision across the cluster, enforcing an interface metric of 10 on the virtual tunnel adapter, appending `harrowmere.local` to the suffix search list, and disabling multi-homed smart resolution.
+This problem looks different from the Hillsboro VPN users, but it works the same way. Use the worked example and your notes.
 
-"I will handle the queue," I told Maya, opening our mass notification template. I broadcasted the three-step resolution instructions to affected staff: disconnect the client session, reconnect to pull the revised profile from the gateway cluster, and run `ipconfig /flushdns` in an elevated prompt to wipe the negative NXDOMAIN cache.
-
-Within twelve minutes, the gateway logs confirmed that seventy-five remote endpoints had downloaded the corrected configuration. I called Greg back in Hillsboro. I walked him through the reconnection and cache flush, and watched his screen over remote control as he refreshed the browser.
-
-The bright orange GoDaddy parked domain page vanished immediately. It was replaced by the clean green-and-white header of our internal payroll application. Greg let out an audible sigh of relief over the line, murmuring that he could finally submit his department's morning timesheets, and thanked us before hanging up. One by one, the remaining seventeen tickets on the board were updated, verified, and resolved.
-
-Jared walked back past our row with a fresh cup of coffee. He glanced at the green status board, and gave a brief, sheepish shrug before heading back toward the network closet. He did not say another word about CenturyLink backhoes.
-
-Jules smiled faintly and set her empty mug down on the edge of the partition. She unclipped her helmet from the display arm.
-
-"You spent two hours chasing down someone else's bad configuration, Ethan, but you did not spend it guessing," Jules said. "Remember this shift the next time someone tells you an application is broken. The application is almost never broken. Most of the time, the client is just asking the wrong stranger for directions."
-
-I wrote her words down in my technical journal. I saved the ticket escalation notes for Maya's post-incident review, and turned back to the queue as the rain outside softened into a quiet, steady mist.
-
-The fix for Maya held, but the real problem was not mine to fix. I wrote the escalation for the split-horizon records and sent it to Jared before lunch. He read it at his desk with his jaw set.
-
-"You're telling me my internal zone has been leaking for a year," he said.
-
-"I'm telling you what the lookups did," I said. "I don't know why the zone is set up that way."
-
-"It's set up that way because nobody gave me a maintenance window in a year." He moved the ticket into his queue without replying to it. The DNS cleanup went onto his list under the Gresham static sprawl, and for the next two weeks he answered my questions with one word at a time.
+A user on home Wi-Fi with VPN up can reach `files.harrowmere.local` by IP but not by name, and only on her personal router. Her router hands out a public DNS server. List the commands you would run, the two client settings you would check, and who owns the fix.

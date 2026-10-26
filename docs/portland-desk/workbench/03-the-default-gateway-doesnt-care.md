@@ -20,6 +20,22 @@
 
 ---
 
+## Worked Example: Frank's flapping connection in Gresham
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Frank's desktop and a breakroom printer were fighting over `10.100.4.55`.
+
+1. Ping and watch the replies flap between good and dead.
+2. Run `arp -a` and see two MAC addresses claim the same IP over time.
+3. Check the switch MAC table to find the ports: Frank on Gi1/0/12, the unknown HP card on Gi1/0/28.
+4. Check DHCP: the server leased .55 to Frank, so the other device is a static address inside the pool.
+5. Walk to port 28, find the old LaserJet, and unplug it.
+6. Move the printer to a reservation at `10.100.4.240`, outside the pool.
+7. Result: clean replies, two late trailers while Ken held door six, and eleven more undocumented statics to clean up.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -576,37 +592,10 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 3.2: THE RESOLVED WAREHOUSE DOCK"
-badge: "Shift Epilogue"
-caption: "Dock view: At 11:20 AM, intake scales and barcode scanners in Building B operate smoothly under clear skies as freight manifests stream across the restored network."
-prompt: "Clean graphic novel cutaway panel of a bustling freight warehouse shipping dock in the Pacific Northwest. Pallet jacks and freight scales operate under bright industrial overhead lighting. A desktop monitor displays an active green logistics manifest. Outside open bay doors, rain has cleared over the river. Clean line art, technical precision, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-Following the Layer 2 triage, I instructed Ken to check the warehouse floor for any newly relocated equipment. Ken groaned over the radio—facilities technician Owen had wheeled a legacy HP LaserJet 4050 into the breakroom yesterday afternoon, copying its static network settings from an outdated label beneath the paper tray.
+This problem looks different from Frank's flapping connection in Gresham, but it works the same way. Use the worked example and your notes.
 
-We unplugged the printer's network drop immediately. The ping replies on Frank's machine leveled out into an unbroken stream of clean two-millisecond responses. To prevent future scope collisions, I logged into the printer's web interface, shifted its addressing to dynamic DHCP reservation, and configured an explicit reservation in our Windows DHCP server at `10.100.4.240`, safely outside the dynamic client allocation pool.
-
-With the tickets resolved and the queues subsiding to their normal rhythm, Jules opened a packet capture file on her secondary monitor. The trace displayed an HTTP exchange originating from Frank's workstation and terminating at a cloud logistics portal in Seattle at `198.51.100.44`.
-
-"Let us review how that packet traversed the network, Ethan," Jules said, turning her chair toward me. "Frank's browser wanted to fetch a web page from `198.51.100.44`. When Frank's network adapter assembled the Ethernet frame on the wire, whose MAC address did it place in the destination field?"
-
-"Frank's computer applied its subnet mask to the target IP address first," I answered, following the logic step by step. "The bitwise comparison proved that `198.51.100.44` was on a remote network. Because the target was remote, the workstation looked up the Layer 2 address of its local default gateway in its ARP cache."
-
-"Exactly," Jules said, clicking on the detailed frame decode in Wireshark. "The destination IP address remained `198.51.100.44` throughout the entire journey across the internet. The time-to-live counter decremented at each hop, but the IP header stayed intact. The Layer 2 Ethernet frame was addressed directly to the gateway's router interface MAC at `10.100.4.1`. When the router received the frame, it stripped the Layer 2 header, evaluated its routing table, generated a brand new Layer 2 frame with its own source MAC, and forwarded the packet along the next hop."
-
-She gestured toward the packet trace on her screen with the tip of her pen.
-
-"The default gateway does not care what application you run, or what operating system you boot. It does not care how urgent your ticket feels. It only cares whether you addressed the Layer 2 frame to its physical MAC address. And it cares whether its routing table contains a valid route to forward your Layer 3 packet toward its destination."
-
-I nodded slowly, watching the encapsulation layers light up under her cursor. I opened my technical journal and recorded the lesson alongside my earlier subnet sketches.
-
-Outside our fourth-floor window, the low cloud deck began to lift over the Willamette. Pale patches of afternoon sky appeared above the river. Jared picked up his empty tea mug and headed toward the server room to audit switch configurations. Jules reached for her helmet, unhooking it from the monitor arm as the afternoon shift logged into the queue. I saved my incident notes into the ticketing system and closed my terminal sessions, standing on solid ground.
-
-The fix was not free. While I walked the warehouse patch panel looking for port twenty-eight, Ken held dock door six closed for forty minutes so the rogue scale terminal could not post bad weights into the freight system. Two Portland-bound trailers loaded late, and Ken said so on the phone in a voice I remembered from Line 4.
-
-"I'll put it in my notes that you found it," he said. "I'll also put in my notes that it took forty minutes."
-
-The rogue was a label station somebody in shipping had cloned from the scale terminal's configuration, static address and all. I locked down the DHCP pool and logged the duplicate, but when I ran a quick sweep before leaving, eleven more devices on the warehouse network had hand-typed static addresses nobody had written down. Jared added a line to his list: *Gresham static sprawl, owner unknown.* He did not say whose problem it was going to be. He did not have to.
+A conference room phone in Hillsboro keeps dropping calls, and a laptop in the same room loses its network every few minutes. `arp -a` on the router shows the phone's IP flipping between two MAC addresses. Write the steps to find the second device and the change that keeps it from happening again.
