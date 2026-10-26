@@ -215,20 +215,20 @@ For standard **8-N-1** transmission (1 start bit + 8 data bits + 0 parity bits +
 | **$115200$ Baud** | $\frac{1}{115200} \approx 8.68\,\mu\text{s}$ | $0.087\,\text{ms}$ | $11520\,\text{char/sec}$ |
 
 #### The Baud Rate Mismatch Pathology
-When the Toledo scale transmits at **9600 baud** ($T_{\text{bit}} = 104.17\,\mu\text{s}$) but the terminal UART is configured for **19200 baud** ($T_{\text{bit}} = 52.08\,\mu\text{s}$):
-1. The receiving terminal expects each bit to arrive twice as fast as it is actually sent.
-2. The terminal samples the line at $26\,\mu\text{s}$ (reading the Start Bit), then at $78\,\mu\text{s}$ (still sampling the Start Bit!), then at $130\,\mu\text{s}$ (sampling Bit 0).
-3. By the time the terminal reaches its expected Stop Bit at $520.8\,\mu\text{s}$, the transmitter is only halfway through transmitting Data Bit 4!
-4. If Data Bit 4 happens to be low (logical 0 / SPACE), the receiver fails to see the required Stop Bit mark condition.
-5. The UART immediately triggers a **Hardware Framing Error (`FE`)**, discards the corrupted character, and outputs random ASCII symbols (`?`, `~`, `\x00`, `\xFE`) onto the console.
+When Ethan hard-cut the power, the terminal UART fell back to its factory default of **9600 baud** ($T_{\text{bit}} = 104.17\,\mu\text{s}$), while the Toledo scale kept transmitting at its configured **19200 baud** ($T_{\text{bit}} = 52.08\,\mu\text{s}$):
+1. The receiving terminal expects each bit to last twice as long as it actually does.
+2. The terminal samples the middle of each expected bit cell at $52\,\mu\text{s}$, $156\,\mu\text{s}$, $260\,\mu\text{s}$, and so on, so it reads only every second transmitted bit.
+3. By the time the terminal looks for its Stop Bit at about $990\,\mu\text{s}$, the scale has already finished this character and is partway through the next one.
+4. If the line happens to be low (logical 0 / SPACE) at that moment, the receiver does not see the required Stop Bit mark condition.
+5. The UART triggers a **Hardware Framing Error (`FE`)**, discards the corrupted character, and outputs random ASCII symbols (`?`, `~`, `\x00`, `\xFE`) onto the console.
 
 ```
-Transmitter (9600 Baud):
-[ Start: 104µs ][ Bit 0: 104µs ][ Bit 1: 104µs ][ Bit 2: 104µs ][ Bit 3: 104µs ][ Bit 4: 104µs ]
-Receiver (19200 Baud):
-[S:52µs][B0:52µs][B1:52µs][B2:52µs][B3:52µs][B4:52µs][B5:52µs][B6:52µs][B7:52µs][STOP:52µs]
-                                                                                  ▲
-                                                                          FRAMING ERROR!
+Transmitter (19200 Baud):
+[S:52µs][B0:52µs][B1:52µs][B2:52µs][B3:52µs][B4:52µs][B5:52µs][B6:52µs][B7:52µs][STOP:52µs][next char...]
+Receiver (9600 Baud):
+[ Start: 104µs ][ Bit 0: 104µs ][ Bit 1: 104µs ][ Bit 2: 104µs ][ Bit 3: 104µs ][ ... ][ STOP ]
+                                                                                          ▲
+                                                                                  FRAMING ERROR!
 ```
 
 
@@ -251,36 +251,36 @@ objectives:
     label: "Inspect SW1 DIP switch hardware clock divider"
     trigger: "read-dips"
   - id: "obj-baud"
-    label: "Recalibrate baud rate clock divider to 9600"
-    trigger: "set-baud 9600"
+    label: "Recalibrate baud rate clock divider to 19200"
+    trigger: "set-baud 19200"
 ---
 status: |
   Interface: COM1 (RS-232 Asynchronous)
   Hardware Address: 0x03F8 (IRQ 4)
-  Baud Rate: 19200
+  Baud Rate: 9600
   Data Bits: 8 | Parity: None | Stop Bits: 1 (8-N-1)
   Interface Status: DSR=ON, CTS=ON, Carrier=DETECTED
   Packet Diagnostics:
     - Bytes Received: 14,892
     - Framing Errors (FE): 14,892 (100% CORRUPTION)
     - Buffer Contents: "\xFE\x00???\xFE\x12??~~\x00\xFF"
-  Warning: Framing rate desynchronized. Clock frequency exceeds sender symbol duration.
+  Warning: Framing rate desynchronized. Receiver clock is slower than the sender's symbol rate.
 
 read-dips: |
   Motherboard Sub-Plate: DIP Switch Bank SW1 Status
   [SW1-1: ON ] - Controller Bus Address: 0x01
   [SW1-2: ON ] - Termination Resistor: 120 Ohm ENABLED
-  [SW1-3: ON ] - Clock Divider Prescaler A: 2x (19200 Baud)
-  [SW1-4: OFF] - Clock Divider Prescaler B: 1x (9600 Baud)
-  Diagnostics: Switch 3 is ON, locking the UART receiver to 19200 baud.
-  Scale transmitter hardware is calibrated for 9600 baud.
-  Action Required: Set Switch 3 OFF, Switch 4 ON.
+  [SW1-3: OFF] - Clock Divider Prescaler A: 2x (19200 Baud)
+  [SW1-4: ON ] - Clock Divider Prescaler B: 1x (9600 Baud, factory default)
+  Diagnostics: The power loss reset the UART to its 9600 baud factory default.
+  Scale transmitter is configured for 19200 baud.
+  Action Required: Set Switch 3 ON, Switch 4 OFF.
 
-set-baud 9600: |
+set-baud 19200: |
   Executing clock divider adjustment:
-  Strapping SW1-3 -> OFF, SW1-4 -> ON...
-  UART Master Clock Divider set to: 12 (115200 / 12 = 9600 Baud)
-  Bit Duration recalibrated: 104.17 microseconds per bit cell.
+  Strapping SW1-3 -> ON, SW1-4 -> OFF...
+  UART Master Clock Divider set to: 6 (115200 / 6 = 19200 Baud)
+  Bit Duration recalibrated: 52.08 microseconds per bit cell.
   Restarting Toledo polling daemon...
   
   [OK] Carrier Lock Established.
@@ -360,7 +360,7 @@ test-telemetry: |
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failure Layer:** Layer 1 / 2 (Asynchronous Physical Framing & Clock Synchronization).
-- **Root Cause:** Baud Rate Mismatch. The peripheral sensor is transmitting at 9600 baud, while the receiving computer UART is clocked at 19200 baud (or vice versa). Because the receiver samples the voltage line at the wrong time intervals, it misses the required high Stop Bit, triggering continuous UART Framing Errors (`FE`) and rendering the ASCII bit stream into undecodable binary noise.
+- **Root Cause:** Baud Rate Mismatch. The peripheral sensor is transmitting at 19200 baud, while the receiving computer UART is clocked at 9600 baud (or vice versa). Because the receiver samples the voltage line at the wrong time intervals, it misses the required high Stop Bit, triggering continuous UART Framing Errors (`FE`) and rendering the ASCII bit stream into undecodable binary noise.
 - **Physical Action:** Consult the peripheral hardware manual. Inspect the computer motherboard or expansion card DIP switches. Toggle the hardware clock divider switches to align the baud rate to exactly 9600 8-N-1 on both ends of the serial cable.
 </details>
 
@@ -473,10 +473,10 @@ SHIFT SUPERVISOR   : Ken Vance (Gresham Logistics Dispatch)
      * Pin 2 (RxD - Receive Data) was bent flush against the connector housing, shorting against the metal chassis shell.
      * Straightened Pin 2 to true 90-degree alignment using 0.5mm brass drafting pencil sleeve.
    - Telemetry stream still corrupted (streaming garbled ASCII characters and null bytes):
-     * Cross-referenced Toledo scale manual: Transmitter factory-set for 9600 Baud, 8-N-1.
-     * Inspected motherboard SW1 DIP switch bank: Terminal configured for 19200 Baud.
-     * Reset SW1 Switch 3 to OFF, Switch 4 to ON (Setting hardware clock to 9600 Baud).
-   - Restarted serial telemetry daemon (`/opt/scale/bin/scaled --port=/dev/ttyS0 --baud=9600`).
+     * Cross-referenced Toledo scale configuration: Transmitter set for 19200 Baud, 8-N-1.
+     * Inspected motherboard SW1 DIP switch bank: Terminal reset to 9600 Baud factory default by the hard power cycle.
+     * Set SW1 Switch 3 to ON, Switch 4 to OFF (Setting hardware clock to 19200 Baud).
+   - Restarted serial telemetry daemon (`/opt/scale/bin/scaled --port=/dev/ttyS0 --baud=19200`).
    - Verified clean telemetry: "SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL".
 
 5. OPERATIONAL RECOVERY & DISPATCH DISPOSITION:
@@ -516,14 +516,14 @@ with zip ties.
 
 SECONDARY ISSUE:
 Scale serial telemetry experienced framing errors due to a bent Rx pin (Pin 2) on the DB-9
-connector and a baud rate mismatch (terminal board SW1 was strapped for 19200 baud; Toledo
-scale transmits at 9600 8-N-1). Pin straightened and SW1 DIP switches set to 9600.
+connector and a baud rate mismatch (terminal board fell back to 9600 baud after a hard power cycle; Toledo
+scale transmits at 19200 8-N-1). Pin straightened and SW1 DIP switches set to 19200.
 
 CURRENT STATUS:
 Line 4 is FULLY OPERATIONAL. Boise departed on time. Seattle departed 51 minutes late (see dispatch report).
 
 ACTION REQUIRED FOR DAY SHIFT:
-1. Do not touch DIP switch SW1 on Line 4 (leave switches 3-OFF, 4-ON).
+1. Do not touch DIP switch SW1 on Line 4 (leave switches 3-ON, 4-OFF).
 2. Permanent replacement 40-pin ribbon cable (Part #CBL-40P-IND) ordered from stockroom.
 
 3. Need facilities to install split-rubber grommets on sheet metal partition before Sunday.
@@ -541,7 +541,7 @@ Before handing the clipboard to Ken Vance and signing off on the Line 4 dispatch
 * [ ] **Flea Power Hygiene:** AC mains disconnected and residual capacitor charge drained for 20 seconds before touching internal bus components.
 * [ ] **Quantitative Power Telemetry:** Multimeter measurements recorded with exact DC voltages (+12V, +5V, +3.3V) and tolerance calculations.
 * [ ] **Physical Layer Continuity:** Ground fault isolated with audible continuity beeper; harness insulated with high-temp Kapton tape and strain-relief zip ties.
-* [ ] **Serial Timing & Baud Alignment:** DB-9 Pin 2 straightened without fracturing; motherboard SW1 DIP switch clock dividers matched to Toledo scale baud rate (9600 8-N-1).
+* [ ] **Serial Timing & Baud Alignment:** DB-9 Pin 2 straightened without fracturing; motherboard SW1 DIP switch clock dividers matched to Toledo scale baud rate (19200 8-N-1).
 * [ ] **Operational Root Cause Reporting:** Formal passdown log drafted detailing failure mechanism, corrective action, and preventative maintenance action items for facilities.
 
 ---
@@ -555,7 +555,7 @@ Use this objective scoring guide to assess technician performance across the fiv
 | **1. Physical Safety & Flea Power Hygiene** | **15** | Technician safely disconnects AC mains, checks chassis ground continuity, and executes a 20-second flea power discharge before manipulating internal electronics. | Technician disconnects AC mains but fails to drain flea power, risking controller latch-up or capacitor shock. | Technician works inside live NEMA enclosure without checking grounding or disconnecting AC power. |
 | **2. Power Supply Voltage Verification** | **25** | Correctly measures DC rails under load (+12V, +5V, +3.3V) with DMM; accurately calculates percentage tolerance ($\pm 5\%$); validates `PWR_OK` logic signal before guessing component faults. | Measures voltage but fails to calculate percentage tolerance; misidentifies yellow vs red wire voltage roles. | Replaces motherboard or storage drive blindly without testing power supply rails with a multimeter. |
 | **3. Layer 1 Bus & Continuity Diagnostics** | **30** | Systematically isolates POST hex code `E0`; uses DMM continuity beeper to trace physical short to ground; locates chafed ribbon conductor against chassis edge; executes reliable repair. | Identifies cable issue visually but fails to verify electrical short with continuity test; uses improper tape. | Ignores physical cable inspection; attempts repeated software resets or assumes motherboard silicon is dead. |
-| **4. Asynchronous Serial & Clocking Triage** | **20** | Identifies bent DB-9 Pin 2 without breaking pin; diagnoses baud rate framing error (9600 vs 19200); correctly configures motherboard DIP switches to match scale timing parameters. | Straightens pin but cannot explain framing error cause; guesses baud rate without consulting scale manual. | Forces bent pin into socket causing permanent destruction; fails to match baud rate on terminal. |
+| **4. Asynchronous Serial & Clocking Triage** | **20** | Identifies bent DB-9 Pin 2 without breaking pin; diagnoses baud rate framing error (19200 scale vs 9600 terminal); correctly configures motherboard DIP switches to match scale timing parameters. | Straightens pin but cannot explain framing error cause; guesses baud rate without consulting scale manual. | Forces bent pin into socket causing permanent destruction; fails to match baud rate on terminal. |
 | **5. Operational Passdown & Root Cause Reporting** | **10** | Authors comprehensive incident report with quantitative voltage measurements, root-cause analysis, preventative actions, and clear day-shift passdown note. | Passdown note missing voltage data or preventative maintenance recommendations. | Submits vague passdown ("Line 4 fixed"); fails to document hardware changes or alert team to temporary patch. |
 | **TOTAL** | **100** | **Passing Score: 85 Points or higher** | | |
 
@@ -573,7 +573,7 @@ prompt: "Clean graphic novel cutaway panel of an industrial freight warehouse cr
 
 *The following operational debrief records the physical resolution on the warehouse floor once the clock divider fix is verified:*
 
-With the clock divider calculation verified on the console, I located DIP switch bank `SW1` in the lower corner of the motherboard. Using the fine flat tip of my father's jeweler's screwdriver, I reached into the chassis. I clicked switch 3 from ON down to OFF, and pushed switch 4 from OFF up to ON.
+With the clock divider calculation verified on the console, I located DIP switch bank `SW1` in the lower corner of the motherboard. Using the fine flat tip of my father's jeweler's screwdriver, I reached into the chassis. I pushed switch 3 from OFF up to ON, and clicked switch 4 from ON down to OFF.
 
 The mechanical click of the miniature plastic toggles felt sharp and definitive in the quiet cabinet.
 

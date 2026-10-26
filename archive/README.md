@@ -35,3 +35,9 @@ To add a file here, use `git mv` so its history follows it, and add a row to thi
 | `docs-research/REPO_STRUCTURE_RECOMMENDATION.md` | `AGENTS.md` and this archive | Proposal from 2026-10-21. The parts that mattered (one Portland Desk source, precedence) were done another way. |
 | `docs-research/PORTLAND_CURRICULUM_PLAN.md` | `docs/research/PORTLAND_AUTHOR_BIBLE.md` section 6 | An older episode plan with different titles and plots than the shipped series. |
 | `docs-research/FLASHCARD_AND_FIELD_SLATE_ARCHITECTURE.md` | `docs/research/ATOMIC_CONCEPTUAL_FLASHCARD_STANDARD.md` | Two flashcard standards; Charles kept the atomic one. |
+
+## Standalone episode copies (archived 2026-10-26, approved by Charles)
+
+| Path | Superseded by | Why |
+|---|---|---|
+| `examples/a-plus-hardware-helpdesk`, `a-plus-os-helpdesk`, `netplus-addressing-helpdesk`, `netplus-dns-helpdesk`, `netplus-flood-capstone`, `netplus-transport-helpdesk`, and their `docs/` output | `docs/portland-desk/` Ep 01 to 06 | Standalone copies of series episodes that had drifted from the series. |
