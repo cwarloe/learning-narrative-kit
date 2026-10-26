@@ -18,7 +18,7 @@
 ## 2. Master Character DNA Anchors (Prompt Locks)
 
 * **Ethan Mercer:**
-  > `"Ethan Mercer, a 19-to-20-year-old frontline technician, slender athletic build, messy tousled dark wavy brown hair, clean-shaven, wide expressive hazel eyes. Wears a light heather-grey crew-neck t-shirt or grey hoodie under a dark canvas jacket, work boots, single-ear Plantronics telephone headset, stainless-steel mechanical pencil clipped in pocket."`
+  > `"Ethan Mercer, a 20-to-23-year-old frontline technician (use 20 to 21 for Ep 00 to 02 and 22 to 23 for Ep 03 to 12), slender athletic build, messy tousled dark wavy brown hair, clean-shaven, wide expressive hazel eyes. Wears a light heather-grey crew-neck t-shirt or grey hoodie under a dark canvas jacket, work boots, single-ear Plantronics telephone headset, stainless-steel mechanical pencil clipped in pocket."`
 * **Jules Brooks:**
   > `"Jules Brooks, 34-year-old female Lead Support Specialist, sharp intelligent features, shoulder-length straight dark hair with subtle silver streaks tucked behind one ear, wearing an unstructured charcoal blazer over a black tee or dark flannel shirt, wired headset over one ear, one hand on her headset ear-cup, matte silver commuter bicycle helmet nearby. Focused, high-stakes mentor posture — leaning in, not leaning back."`
 * **Ken:**

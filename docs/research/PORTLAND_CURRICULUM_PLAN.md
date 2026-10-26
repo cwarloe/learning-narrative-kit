@@ -49,11 +49,11 @@ flowchart LR
 
 ## 2. Performance-First Capability Continuum
 
-Ethan’s journey spans 24 months of narrative time, tracking a realistic progression of cognitive maturity, technical capability, and emotional resilience.
+Ethan’s journey spans about three years of narrative time (see `PORTLAND_TIMELINE.md`), with about 22 months on the desk. The stage months below count desk months, tracking a realistic progression of cognitive maturity, technical capability, and emotional resilience.
 
 ```mermaid
 journey
-    title Ethan's 24-Month Capability & Confidence Trajectory
+    title Ethan's Capability & Confidence Trajectory (desk months)
     section Foundations
       High School & Retail (Fred Meyer Stocker): 1: Ethan
       Self-Study (A+ Flashcards & PC Tear-Down): 2: Ethan
@@ -179,7 +179,7 @@ gantt
 #### 1. Context & Operational Domain Mapping
 - **Role:** Pre-IT Aspirant / Warehouse Freight Stocker (Gresham, Oregon).
 - **Certification Objectives:** CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations (Computer Anatomy, Memory Hierarchy, Peripheral Interconnects, Basic CLI Primitives).
-- **Setting:** Month 0 (May). Ethan's kitchen table in an East Portland duplex. $83 left in his checking account after purchasing a Pearson VUE exam voucher. An 800-page CompTIA study guide, 300 index cards, and total cognitive overwhelm.
+- **Setting:** Late July, Year 1. Ethan's kitchen table in an East Portland duplex. $41.16 left in his checking account after paying $246 for a CompTIA exam voucher. An 800-page CompTIA study guide, 300 index cards, and total cognitive overwhelm.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
 - **Task 0.1 (The Study Panic & Practice Exam Failure):** Ethan scores 58% on a timed practice test, stumbling over laser printer corona wire voltages, DVI dual-link pinouts, and RAM clock timings. Learner must classify 40 practice exam questions into "Exam Passport Trivia" (ephemeral specs to cram for Thursday) vs. "Core Machine Principles" (enduring mental models needed on the job).

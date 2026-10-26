@@ -69,7 +69,7 @@ Unrelated cleanup to schedule: `docs/portland-desk/` and `docs/portland-desk/` a
 
 1. **Decide the six open conflicts** (bible §1.3). Proposed defaults:
    - **Employer:** Portland ROC *is* Harrowmere's Portland site. Book 0 never names the parent company until Ep 12.
-   - **Age:** Book 0 covers ages 18–20, then a gap of about 6 years before Book 1 at 27. That matches the "several years of support" line.
+   - **Age:** Book 0 covers ages 20 to 23 (`PORTLAND_TIMELINE.md` section 4). NADF Book 1 opens at 23, turning 24. NADF's bible must match.
    - **Titles:** Nia and Leah are promoted between books, so their titles differ on purpose.
    - **Dana:** rename Book 0's vendor and finance Danas.
 

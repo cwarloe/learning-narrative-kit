@@ -6,7 +6,7 @@
 ## 1. Executive Summary & Series Overview
 
 ### 1.1 Premise and Mandate
-The Portland Help Desk Prequel (*Book 0: Zero-to-One*) is a twelve-episode narrative learning track that bridges foundational IT support and practical cybersecurity operations. This series chronicles the professional formation of Ethan Mercer as he evolves from a twenty-year-old warehouse worker, two years out of high school and trapped in rote certification memorization, into a battle-tested Tier 2 Help Desk Lead at Harrowmere Equipment Group's Portland Regional Operations Center.
+The Portland Help Desk Prequel (*Book 0: Zero-to-One*) is a thirteen-episode narrative learning track (Ep 00 to 12) that bridges foundational IT support and practical cybersecurity operations. This series chronicles the professional formation of Ethan Mercer as he evolves from a twenty-year-old warehouse worker, two years out of high school and trapped in rote certification memorization, into a battle-tested Tier 2 Help Desk Lead at Harrowmere Equipment Group's Portland Regional Operations Center.
 
 Where standard certification prep materials treat IT concepts as isolated flashcard definitions, *Book 0* demonstrates how technical protocols, access controls, physical infrastructure, and incident response lifecycles interact within messy, high-pressure human organizations. Every episode operates under the tradition of Eliyahu M. Goldratt’s *The Goal*: technology is never an end in itself, but rather a mechanism for maintaining operational throughput in the face of competing business incentives, organizational friction, and technical debt.
 
@@ -107,10 +107,10 @@ graph LR
 ### 3.1 Primary Characters
 
 #### Ethan Mercer — Protagonist & POV
-- **Role:** Tier 1 Support Technician (Episodes 1–7), promoted to Tier 2 Help Desk Lead (Episodes 8–12).
+- **Role:** Graveyard dock worker (Ep 00 to 01), IT rotation (off-page), Tier 1 Support Technician (Ep 02 to 08), promoted to Tier 2 Help Desk Lead after Ep 08 (Ep 09 to 12).
 - **Age:** 20 at Episode 0; 21 at Episodes 1–2; 23 by Episode 12; 23 turning 24 when NADF begins.
 - **Background:** Raised in East Portland / Gresham. His father, now retired, was a precision machinist at a metal fabrication shop who taught him how to respect physical tools. Ethan skipped the four-year university track due to financial constraints. He spent up to two years in a restaurant job, then about fourteen months on Harrowmere's graveyard dock in Gresham, studying by day. After the Line 4 fix, Ken's internal referral moved him into a six-month day-shift IT rotation at a slight pay cut, and then onto Jules's help desk. The certs are spaced out: A+ after about ten months of study, Network+ about thirteen months into IT, Security+ about twenty-six months into IT (after Book 0 ends). Full table: `PORTLAND_TIMELINE.md` §4.
-- **Psychological Profile:** Highly observant, earnest, and intrinsically motivated, but initially burdened by severe imposter syndrome. In the early episodes, he treats technical standards as moral dogma and clings to flashcard taxonomies like a security blanket. When faced with ambiguous failures, his instinct is to freeze or over-engineer theoretical solutions. Over 24 months, he develops emotional resilience, learning that troubleshooting is an iterative discipline of hypothesis testing, root-cause isolation, and empathetic communication.
+- **Psychological Profile:** Highly observant, earnest, and intrinsically motivated, but initially burdened by severe imposter syndrome. In the early episodes, he treats technical standards as moral dogma and clings to flashcard taxonomies like a security blanket. When faced with ambiguous failures, his instinct is to freeze or over-engineer theoretical solutions. Over Book 0 (about three years, about 22 months of it on the desk), he develops emotional resilience, learning that troubleshooting is an iterative discipline of hypothesis testing, root-cause isolation, and empathetic communication.
 - **Narrative Voice:** First-person past tense. Analytical, reflective, grounded, and intensely aware of physical textures—smells of damp rain jackets, hum of server racks, clicking of mechanical clipboards. He does not speak in stylized action-movie tropes; he narrates like an authentic junior engineer reflecting on how he learned to do the work.
 
 #### Jules Brooks — Desk Lead & Mentor
@@ -228,7 +228,7 @@ Every episode must reflect the principles of industrial throughput and organizat
 **Point of View:** Ethan Mercer (Age 20).  
 
 #### Core Dilemma & Goldratt Friction
-Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loading lumber on the loading dock at Harrowmere's distribution warehouse in Gresham. His debit card shows $83 left after paying $246 for a CompTIA A+ exam voucher. If he fails, he cannot make rent. He is drowning in 800 pages of pedantic syllabus trivia—laser printer transfer rollers, DVI connector pinouts, SATA revisions, and RAM clock timings. When he fails an online practice exam with a 58%, he breaks down in exhaustion and cynical rage, throwing his index cards across the linoleum. He faces the beginner's ultimate gatekeeping trap: believing that because he cannot memorize a manufacturer parts catalog, he is too stupid to work in technology.
+Ethan is working 32 hours a week hauling 80-pound bags of Quikrete concrete mix (42 to a pallet) and loading lumber on the loading dock at Harrowmere's distribution warehouse in Gresham. His checking account shows $41.16 left after paying $246 for a CompTIA A+ exam voucher. If he fails, he cannot make rent. He is drowning in 800 pages of pedantic syllabus trivia—laser printer transfer rollers, DVI connector pinouts, SATA revisions, and RAM clock timings. When he fails an online practice exam with a 58%, he breaks down in exhaustion and cynical rage, throwing his index cards across the linoleum. He faces the beginner's ultimate gatekeeping trap: believing that because he cannot memorize a manufacturer parts catalog, he is too stupid to work in technology.
 
 #### Narrative Synopsis
 1. **Goal:** Ethan wants to pass the CompTIA A+ exam on Thursday to escape blue-collar manual labor and qualify for an IT job instead of a dock job.
@@ -262,7 +262,7 @@ Ethan is working 32 hours a week hauling 50-pound bags of concrete mix and loadi
 
 ### Episode Architecture Card 01
 **Title:** The Paper Cert  
-**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 1 of 12  
+**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 01 of 00 to 12  
 **Timeline:** About 14 months on the dock (February, Late Winter)  
 **Setting:** Graveyard shift at Harrowmere's Gresham distribution warehouse, Oregon; high-bay industrial racking, hum of forklift chargers, dust motes under metal-halide lamps.  
 **Point of View:** Ethan Mercer (Age 21).  
@@ -300,7 +300,7 @@ Ethan saves the morning freight run, but ruins a fifty-dollar staging cable, sev
 
 ### Episode Architecture Card 02
 **Title:** The Live Board  
-**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 2 of 12  
+**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 02 of 00 to 12  
 **Timeline:** Late August, at the end of a six-month day-shift IT rotation  
 **Setting:** Harrowmere Portland Regional Operations Center, Central Help Desk bullpen; fourth-floor interior office overlooking rain-slicked industrial roofs, rows of dual-monitor cubicles, hum of HVAC and muted phone ringers.  
 **Point of View:** Ethan Mercer.  
@@ -338,7 +338,7 @@ Ethan secures the entry-level role, but his pride is punctured. He realizes that
 
 ### Episode Architecture Card 03
 **Title:** The Cleartext Habit  
-**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 3 of 12  
+**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 03 of 00 to 12  
 **Timeline:** Month 4 (October, Autumn rain begins)  
 **Setting:** Portland Operations Help Desk bullpen; overcast morning, sound of steady Pacific Northwest rain against the glass, monitors glowing with the Tier 1 ticket queue.  
 **Point of View:** Ethan Mercer.  
@@ -375,7 +375,7 @@ Ethan achieves protocol hardening, but burns through political capital with Jare
 
 ### Episode Architecture Card 04
 **Title:** The Plant Floor Collision  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 4 of 12  
+**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 04 of 00 to 12  
 **Timeline:** Month 6 (December, Winter freeze)  
 **Setting:** Harrowmere Willamette River Plant (machining, coatings, and process-water treatment); vast concrete echoing spaces, smell of ozone, chlorine, and damp river silt, vibration of 500-horsepower electric centrifugal pumps.  
 **Point of View:** Ethan Mercer.  
@@ -412,7 +412,7 @@ Ethan earns Leah Moreno’s grudging respect, but freezes his boots on the concr
 
 ### Episode Architecture Card 05
 **Title:** The Roaming Rogue  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 5 of 12  
+**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 05 of 00 to 12  
 **Timeline:** Month 8 (February, Mid-winter rain)  
 **Setting:** Portland Distribution Logistics Warehouse; three-story high-bay metal racking, diesel exhaust from yard hostlers, concrete flooring, radio static.  
 **Point of View:** Ethan Mercer.  
@@ -449,7 +449,7 @@ Ethan resolves the network outage, but Ken files a grievance over lost throughpu
 
 ### Episode Architecture Card 06
 **Title:** The Phantom Ransomware  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 6 of 12  
+**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 06 of 00 to 12  
 **Timeline:** Month 10 (April, Spring showers)  
 **Setting:** Portland Operations Desk bullpen and Executive Conference Room; humid morning, flashing high-priority ticket banners on the monitoring screen.  
 **Point of View:** Ethan Mercer.  
@@ -486,7 +486,7 @@ Maya saves her meeting, but Ethan suffers public embarrassment in front of the d
 
 ### Episode Architecture Card 07
 **Title:** The Identity Drift  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 7 of 12  
+**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 07 of 00 to 12  
 **Timeline:** Month 12 (June, Early Summer)  
 **Setting:** Portland Operations Center, Server Closet 2B and Open Bullpen; dry air conditioning, hum of rack fans, bright morning sun reflecting off the Willamette.  
 **Point of View:** Ethan Mercer.  
@@ -523,7 +523,7 @@ Ethan restores enterprise login services, but incurs complaints from administrat
 
 ### Episode Architecture Card 08
 **Title:** The Supply Chain Firmware  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 8 of 12  
+**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 08 of 00 to 12  
 **Timeline:** Month 14 (August, Late Summer heat)  
 **Setting:** Third-floor staging closet and facilities service corridors; hot, cramped room smelling of warm circuit boards, cardboard boxes, and uncoiled Cat6 copper cables.  
 **Point of View:** Ethan Mercer.  
@@ -560,7 +560,7 @@ Ethan earns his promotion to Tier 2 Lead, but sacrifices his physical comfort in
 
 ### Episode Architecture Card 09
 **Title:** The Quiet Mailbox  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 9 of 12  
+**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 09 of 00 to 12  
 **Timeline:** Month 16 (October, Second Autumn)  
 **Setting:** Tier 2 Lead desk, Portland Operations Center; quiet late-afternoon shift, rain streaking the glass, soft tapping of mechanical keyboards.  
 **Point of View:** Ethan Mercer (Promoted to Tier 2 Lead).  
@@ -597,7 +597,7 @@ Ethan saves the company from catastrophic financial loss, but endures intense ho
 
 ### Episode Architecture Card 10
 **Title:** The Certificate Winter  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 10 of 12  
+**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 10 of 00 to 12  
 **Timeline:** Month 18 (December, Deep Winter)  
 **Setting:** Portland Operations Bullpen, Distribution Loading Docks, and Plant Telemetry Kiosks; freezing wind, snow flurries against the bay doors, yellow warning lights flashing.  
 **Point of View:** Ethan Mercer.  
@@ -634,7 +634,7 @@ Ethan saves the facility from freezing damage, but takes on the long-term operat
 
 ### Episode Architecture Card 11
 **Title:** The Living Off the Land Scare  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 11 of 12  
+**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 11 of 00 to 12  
 **Timeline:** Month 21 (March, Early Spring)  
 **Setting:** Portland Desk bullpen and remote Chicago SOC phone bridge; pitch-black 3:00 AM emergency triage, glow of multi-monitor security consoles, rain drumming against the roof.  
 **Point of View:** Ethan Mercer.  
@@ -671,8 +671,8 @@ Ethan saves the facility from an unwarranted corporate network disconnect, but e
 
 ### Episode Architecture Card 12
 **Title:** The Rivergate Handshake  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 12 of 12  
-**Timeline:** Month 24 (July, Midsummer — Two years since Episode 1)  
+**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 12 of 00 to 12  
+**Timeline:** Late June, Year 4 (about 22 months on the desk; about three years since Episode 00)  
 **Setting:** Portland Operations Desk Lead station, Leah Moreno’s Plant SCADA Control Room, and high-priority Chicago SOC bridge; humid Pacific Northwest summer afternoon, drone of cooling fans, smell of river water and hot silicon.  
 **Point of View:** Ethan Mercer.  
 

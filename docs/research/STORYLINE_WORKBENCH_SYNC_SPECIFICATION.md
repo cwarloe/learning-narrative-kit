@@ -272,7 +272,7 @@ Module 00 (*"The Four Rubber Bands"*) serves as the design benchmark for the ent
 
 ### 5.1 Beat 1: The Inciting Workplace Incident (In Story)
 - **Setting:** East Portland duplex kitchen, July night, 11:30 PM. Warped box fan buzzing in doorway. Fluorescent ballast humming at 60 Hz.
-- **Human Stakes:** Ethan is 20 years old, lower back aching from hauling 80lb bags of mortar at Harrowmere's Gresham freight warehouse. His checking account has exactly $41.16 remaining. Six weeks earlier, he failed CompTIA Core 1 in Beaverton with a 592 (passing is 675), forfeiting $246. Retake voucher #2 is scheduled for tomorrow at 8:00 AM.
+- **Human Stakes:** Ethan is 20 years old, lower back aching from hauling 80 lb bags of Quikrete concrete mix at Harrowmere's Gresham freight warehouse. His checking account has exactly $41.16 remaining. Six weeks earlier, he failed CompTIA Core 1 in Beaverton with a 592 (passing is 675), forfeiting $246. Retake voucher #2 is scheduled for tomorrow at 8:00 AM.
 - **The Crucible:** He takes an online practice exam on his secondhand ThinkPad. Screen flashes crimson: 61% failure. He panics, knocking his 300 handwritten index cards across the linoleum floor.
 
 ### 5.2 Beat 2: The Worked Example / Incident 00.1 (In Story)

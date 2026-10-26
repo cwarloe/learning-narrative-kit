@@ -103,7 +103,7 @@ She pointed to the anti-static evidence pouches on my desk.
 
 You are the first responder on this shift. Follow the [[order_of_volatility|Order of Volatility]]. Isolate the endpoints from the wire, execute a forensically sound live memory capture, compute the cryptographic SHA-256 hashes before you touch storage, establish the legal chain of custody, and build the formal CSIRT Escalation Dossier before the clock runs out."
 
-I looked down at the red binder. Twenty-two months ago, I was an anxious nineteen-year-old kid on the Gresham loading dock, clutching an eight-hundred-page textbook and terrified of failing a multiple-choice test in a Beaverton strip mall. 
+I looked down at the red binder. Three years ago, I was an anxious twenty-year-old kid on the Gresham loading dock, clutching an eight-hundred-page textbook and terrified of failing a multiple-choice test in a Beaverton strip mall. 
 
 Today, there were no multiple-choice questions. The municipal grid was on the line, and Jules had handed me the incident pen to brief Nia Alvarez.
 

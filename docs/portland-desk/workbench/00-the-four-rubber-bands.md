@@ -1,6 +1,6 @@
 # Portland Desk Lab: The Beginner's Mental Model of a Computer
 
-> **The Situation:** Ethan's kitchen table in East Portland • 11:30 PM with $83 in checking  
+> **The Situation:** Ethan's kitchen table in East Portland • 11:30 PM with $41.16 in checking  
 > **Your Role:** Aspiring Technician (Pre-Helpdesk, Gresham Warehouse Associate)  
 > **The Objective:** Build the four physical computer building blocks (CPU, RAM, Storage, Network) and study triage reflexes so you stop guessing and start diagnosing.  
 > **Estimated Time:** 45–60 minutes • Self-paced • Zero prerequisites  

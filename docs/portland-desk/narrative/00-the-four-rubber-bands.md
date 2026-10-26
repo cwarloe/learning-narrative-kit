@@ -4,7 +4,7 @@
 
 The overhead fluorescent fixture above the kitchen sink hummed with a flat, sixty-cycle buzz that seemed to vibrate inside my teeth. Outside the kitchen window, the July night had cooled to sixty degrees, but inside our cramped East Portland duplex, the heat stayed trapped beneath the low ceiling. A cheap plastic box fan stood propped on a cardboard box in the doorway, rattling its warped blades against the housing every few seconds. On the scarred laminate table, an eight-hundred-page certification guide sat propped open against a ceramic mug half-filled with cold instant coffee.
 
-My shift had ended four hours earlier at Harrowmere's freight distribution warehouse out on Division Street in Gresham. I was twenty years old with an aching lower back. For nine straight hours, I had unloaded eighty-pound bags of mortar and stacked drywall sheets across wooden bunks. A faint grey haze of gypsum dust remained caked into the seams of my work boots and beneath my fingernails. 
+My shift had ended four hours earlier at Harrowmere's freight distribution warehouse out on Division Street in Gresham. I was twenty years old with an aching lower back. For nine straight hours, I had unloaded eighty-pound bags of Quikrete concrete mix and stacked drywall sheets across wooden bunks. A faint grey haze of gypsum dust remained caked into the seams of my work boots and beneath my fingernails. 
 
 My checking account held exactly forty-one dollars and sixteen cents. 
 
@@ -604,7 +604,7 @@ I passed by ten points. Two questions.
 
 I sat back against the fabric chair and let out a long breath that fogged the plastic bezel of the display. At the reception counter, the proctor stamped an embossed seal onto my paper score report and slid the document across the laminate. 
 
-The paper did not make me a senior engineer. It did not erase the mortar dust on my boots or put money back into my bank account. But as I walked out into the cool Beaverton rain, holding the physical proof that I had earned my license to step through the door, my hands finally stopped shaking.
+The paper did not make me a senior engineer. It did not erase the concrete dust on my boots or put money back into my bank account. But as I walked out into the cool Beaverton rain, holding the physical proof that I had earned my license to step through the door, my hands finally stopped shaking.
 
 I set the score report on the passenger seat of my Civic, twisted the ignition key, and pulled out into the midday traffic on Highway 217.
 
