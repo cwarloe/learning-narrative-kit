@@ -58,7 +58,7 @@ $$\text{Modeling} \longrightarrow \text{Scaffolding} \longrightarrow \text{Coach
 * **The Handoff Gate:** The prose halts at peak suspense:  
   > *"The conveyor is cold, Ken is counting trailers, and the scale is streaming corrupted bytes. Step up to Station 01 on the Workbench. Match the clock divider and prove the fix before the 05:00 AM dispatch."*
 * **The Workbench Lab:** The learner enters the lab, uses the interactive terminal, runs the diagnostics, and finds the root cause.
-* **Part 2 (The Shift Resolution & Epilogue):** Placed at the end of the lab (Section 6), the learner unlocks the satisfying conclusion: Ethan executes the verified fix, the motors spool up, the route is saved, and Ethan reflects on what real tradecraft means.
+* **Part 2 (The Shift Resolution & Epilogue):** Placed at the end of the lab (Section 6), the learner unlocks the story's resolution: Ethan executes the verified fix and pays a realistic cost for it. The learner's satisfaction comes from solving it in the lab, not from a clean ending for Ethan (decision of 2026-10-26).
 
 ### Model 3: The Co-Pilot / Radio Dispatcher (Act III: Episodes 07–10)
 * **The Dynamic:** Distributed cognition. Ethan is physically on the floor (in the unventilated wiring closet, under a desk, or in the warehouse annex with cables and a flashlight). The learner sits at the central console.
@@ -74,4 +74,4 @@ $$\text{Modeling} \longrightarrow \text{Scaffolding} \longrightarrow \text{Coach
 1. **Never write past the turning point in Part 1** of a Cliffhanger episode. Leave the mystery open.
 2. **Mentors offer rules of thumb, never solutions.** Jules Brooks is a compass, not a cheat sheet.
 3. **The Lab must match the story state exactly.** Hostnames, IP addresses, error codes, and symptoms in the interactive terminal must match what Ethan observed in the prose.
-4. **Epilogues explore human consequences, not mechanics.** Focus on user gratitude or pushback, supervisor feedback, documentation hygiene, and the quiet satisfaction of a saved shift.
+4. **Epilogues explore human consequences, not mechanics.** Show user gratitude or pushback, supervisor feedback, documentation hygiene, and what the fix cost Ethan or someone else (see `docs/craft/learning-narrative-framework.md`).
