@@ -603,4 +603,8 @@ Jules wheeled her chair over to my desk with a printed network diagram of the Gr
 
 "Keep that page in your notebook," Jules said, tapping the paper with her pen. "Next month when someone insists the network is broken because an application cannot connect, you will not waste your morning opening emergency firewall tickets. You will check whether anyone is listening first."
 
-She wheeled her chair back to her desk and unhooked her bicycle helmet from the monitor arm as the afternoon shift technicians began logging into the queue. I saved my ticket notes into the service management portal, closed my terminal sessions, and turned back to the incoming queue with the quiet confidence of an engineer who knows how to listen to the wire.
+She wheeled her chair back to her desk and unhooked her bicycle helmet from the monitor arm as the afternoon shift technicians began logging into the queue. I saved my ticket notes into the service management portal, closed my terminal sessions, and turned back to the incoming queue.
+
+It still cost us a night. The archive sweep had already failed at two in the morning before anyone opened a ticket, so the Tuesday backups for three file shares did not exist. Jared re-ran the sweep by hand that evening and stayed until nine to watch it finish. He did not complain to me about it, but he did copy me on the change request for connection pooling, with my name in the "found by" field and his in the "owner" field.
+
+"Next time, open the ticket when the first sweep fails," he said on his way out. "Not when somebody notices the second one." He was right. The first failure had been sitting in the monitoring queue for six hours, and I had scrolled past it twice.

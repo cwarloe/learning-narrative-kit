@@ -611,3 +611,11 @@ Jules smiled faintly and set her empty mug down on the edge of the partition. Sh
 "You spent two hours chasing down someone else's bad configuration, Ethan, but you did not spend it guessing," Jules said. "Remember this shift the next time someone tells you an application is broken. The application is almost never broken. Most of the time, the client is just asking the wrong stranger for directions."
 
 I wrote her words down in my technical journal. I saved the ticket escalation notes for Maya's post-incident review, and turned back to the queue as the rain outside softened into a quiet, steady mist.
+
+The fix for Maya held, but the real problem was not mine to fix. I wrote the escalation for the split-horizon records and sent it to Jared before lunch. He read it at his desk with his jaw set.
+
+"You're telling me my internal zone has been leaking for a year," he said.
+
+"I'm telling you what the lookups did," I said. "I don't know why the zone is set up that way."
+
+"It's set up that way because nobody gave me a maintenance window in a year." He moved the ticket into his queue without replying to it. The DNS cleanup went onto his list under the Gresham static sprawl, and for the next two weeks he answered my questions with one word at a time.

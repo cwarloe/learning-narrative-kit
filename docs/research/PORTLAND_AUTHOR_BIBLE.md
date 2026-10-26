@@ -138,15 +138,15 @@ graph LR
 | 00 | The Four Rubber Bands | Pass the A+ Core 1 retake tomorrow morning after failing the first attempt six weeks earlier with a 592. | He passes the retake with a 690, fifteen points over the line. The first attempt cost him $246 and six weeks of extra graveyard shifts. The paper does not get him off the dock. | The cert is the first line Ken will point to in the referral. The four bands stay in his pocket for years. |
 | 01 | The Paper Cert | Line 4's scale terminal dies. Seattle and Boise trailers roll at 5:00 AM. Fixing it is not Ethan's job; he stages freight. | Seattle leaves 51 minutes late and the late report carries Ken's name. Ken remembers it. Bloody knuckles and a broken latch. | Ken writes the internal referral anyway: the first line says Ethan cost him a trailer, the second says he is worth training. Rosa becomes a recurring peer. |
 | 02 | The Live Board | Pass Jules's supervised practical and join the desk. | Maya's trust is dented by the re-image suggestion. The fix lands in the lab, not in the story. | He joins the desk the next Monday at about $24 an hour. |
-| 03 | The Default Gateway Doesn't Care | Restore a freight system that keeps dropping off the network. | Plan: Ken has to hold the dock while Ethan traces the port. Set the exact cost when the chapter is revised. | Static addressing sprawl becomes a standing problem on the warehouse network. |
-| 04 | The Name Is Not the Number | Get Maya's VPN session reaching internal payroll before the payroll deadline. | Plan: the infrastructure escalation has to go to Jared, who is not happy to get it. | The DNS design debt goes on Jared's list. |
-| 05 | The Wire Has Two Ends | Find why a management station's connections keep failing. | Plan: an archive sweep fails before the fix lands. | Connection pooling becomes a change request with Jared's name on it. |
-| 06 | The Portland Flood | Restore the network for 150 endpoints before the doors unlock. | Plan: hours in an ankle-deep flood, and some endpoints are still down when the doors open. | Midpoint capstone. Ethan has earned Jules's trust for night work. |
-| 07 | The Port That Is Open | Handle a pile of requests that all want ports opened. | Plan: saying no to Jared costs Ethan goodwill he will need later. | Leah enters as the plant voice. Jared's scripts remain a risk. |
-| 08 | Prove Who You Are | Clear a lockout queue before standup. | Plan: one of his fixes annoys a manager who wanted an exception. | Ethan is promoted to Tier 2 after this episode. |
-| 09 | Don't Click That | Stop a spoofed CFO wire-change request before the afternoon batch. | Plan: AP's batch is delayed and finance is unhappy. | The phishing campaign is a scout for what comes in Ep 12. |
-| 10 | Something on the Box | Contain a bundled installer before it spreads. | Plan: Ken's laptop is wiped and he loses local files. | Ken's loop from Ep 01 closes: he calls Ethan directly. |
-| 11 | The Air Is Shared | Keep the barcode scanners on the right network. | Plan: shipping slows while scanners are re-enrolled. | The baseline from this work helps flag the Ep 12 intrusion. |
+| 03 | The Default Gateway Doesn't Care | Restore a freight system that keeps dropping off the network. | Ken holds dock door six for forty minutes and two trailers load late. Eleven more undocumented static devices turn up. | Static addressing sprawl becomes a standing problem on the warehouse network. |
+| 04 | The Name Is Not the Number | Get Maya's VPN session reaching internal payroll before the payroll deadline. | The escalation lands on Jared, who resents it and answers in one-word replies for two weeks. | The DNS design debt goes on Jared's list. |
+| 05 | The Wire Has Two Ends | Find why a management station's connections keep failing. | The Tuesday backups for three shares never ran; Jared re-runs the sweep and stays until nine. Ethan had scrolled past the first failure twice. | Connection pooling becomes a change request with Jared's name on it. |
+| 06 | The Portland Flood | Restore the network for 150 endpoints before the doors unlock. | Twelve shipping label printers stay down until ten, and the pooling change slips two weeks. | Midpoint capstone. Ethan has earned Jules's trust for night work. |
+| 07 | The Port That Is Open | Handle a pile of requests that all want ports opened. | Six old switches get a jump-host patch instead of a fix, and Jared stops answering Ethan quickly. | Leah enters as the plant voice. Jared's scripts remain a risk. |
+| 08 | Prove Who You Are | Clear a lockout queue before standup. | Todd's manager complains about Ethan's tone; the complaint and Jules's reply go into his promotion file. | Ethan is promoted to Tier 2 after this episode. |
+| 09 | Don't Click That | Stop a spoofed CFO wire-change request before the afternoon batch. | AP holds the wire batch three hours; two real vendor payments go out a day late and the controller complains. | The phishing campaign is a scout for what comes in Ep 12. |
+| 10 | Something on the Box | Contain a bundled installer before it spreads. | Ethan trusts a valid but revoked code signature for two minutes; Ken's laptop is reimaged and he loses two years of local notes. | Ken's loop from Ep 01 closes: he calls Ethan directly. |
+| 11 | The Air Is Shared | Keep the barcode scanners on the right network. | Ken's dock scans by hand at two doors until noon while scanners are re-enrolled. | The baseline from this work helps flag the Ep 12 intrusion. |
 | 12 | When the Ticket Escalates | Turn four quiet tickets into one correct incident escalation. | The plant loses a shift to manual override while the gateway is isolated. In the after-action review, one of Ethan's containment calls is second-guessed: he isolated a host before a second memory capture was done. | Nia offers him a role change into Harrowmere security operations, based in Portland. Ethan stays in Portland. |
 
 ---
@@ -195,7 +195,7 @@ Every episode must reflect the principles of industrial throughput and organizat
 
 ## 6. Episode Cards (Ep 00 to 12, rewritten 2026-10-26 to match the shipped episodes)
 
-These cards describe the episodes as shipped in `docs/portland-desk/narrative/`. The shipped episodes are canon. Lines marked "Plan" are not on the page yet; they are notes for the next revision. Ages and months come from `PORTLAND_TIMELINE.md`.
+These cards describe the episodes as shipped in `docs/portland-desk/narrative/`. The shipped episodes are canon. The costs, carry-forwards, and fold-ins below were written into the chapters on 2026-10-26. Ages and months come from `PORTLAND_TIMELINE.md`.
 
 ### Card 00: The Four Rubber Bands
 
@@ -237,7 +237,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Goal:** Restore a freight system that keeps dropping off the network.
 - **Complication:** Two machines claim the same static address; one halts freight, the other sits on an unknown warehouse port.
 - **Pivot:** Ethan reads subnet masks, gateways, and ARP to find the rogue host and lock down the DHCP pool.
-- **Cost:** Plan: Ken has to hold the dock while Ethan traces the port. Set the exact cost when the chapter is revised.
+- **Cost:** Ken holds dock door six for forty minutes and two trailers load late. Eleven more undocumented static devices turn up.
 - **Carries forward:** Static addressing sprawl becomes a standing problem on the warehouse network.
 - **Knowledge load:** Network+: APIPA, DHCP DORA, broadcast domains, subnet masks, default gateway, ARP cache.
 
@@ -248,7 +248,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Goal:** Get Maya's VPN session reaching internal payroll before the payroll deadline.
 - **Complication:** Stale hosts-file entries and a split-horizon DNS setup send her lookups the wrong way; the tunnel is up but packets fly blind.
 - **Pivot:** Ethan flushes the cache, removes obsolete entries, and traces the DNS leak to adapter metrics.
-- **Cost:** Plan: the infrastructure escalation has to go to Jared, who is not happy to get it.
+- **Cost:** The escalation lands on Jared, who resents it and answers in one-word replies for two weeks.
 - **Carries forward:** The DNS design debt goes on Jared's list.
 - **Knowledge load:** Network+: split-horizon DNS, DNS leak, hosts file, recursive resolver, TTL, CNAME.
 
@@ -259,7 +259,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Goal:** Find why a management station's connections keep failing.
 - **Complication:** Nothing listens on the expected port, and the station is drowning in TIME_WAIT sockets.
 - **Pivot:** Ethan reads socket states and finds ephemeral port exhaustion on their own management station.
-- **Cost:** Plan: an archive sweep fails before the fix lands.
+- **Cost:** The Tuesday backups for three shares never ran; Jared re-runs the sweep and stays until nine. Ethan had scrolled past the first failure twice.
 - **Carries forward:** Connection pooling becomes a change request with Jared's name on it.
 - **Knowledge load:** Network+: TCP handshake, socket states, listening ports, RST, ephemeral ports and exhaustion.
 
@@ -270,7 +270,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Goal:** Restore the network for 150 endpoints before the doors unlock.
 - **Complication:** Flooded closets, a broadcast loop, and DHCP scope exhaustion.
 - **Pivot:** Trunking across fiber, spanning tree, and DHCP reconciliation under a deadline.
-- **Cost:** Plan: hours in an ankle-deep flood, and some endpoints are still down when the doors open.
+- **Cost:** Twelve shipping label printers stay down until ten, and the pooling change slips two weeks.
 - **Carries forward:** Midpoint capstone. Ethan has earned Jules's trust for night work.
 - **Knowledge load:** Network+: 802.1Q trunking, DHCP scope exhaustion, patch panels, flea power, STP, LACP.
 
@@ -281,7 +281,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Goal:** Handle a pile of requests that all want ports opened.
 - **Complication:** Jared wants Telnet for an old script; others want cleartext mail and FTP.
 - **Pivot:** Ethan proves the cleartext risk from a capture and steers each request to a secure protocol.
-- **Cost:** Plan: saying no to Jared costs Ethan goodwill he will need later.
+- **Cost:** Six old switches get a jump-host patch instead of a fix, and Jared stops answering Ethan quickly.
 - **Carries forward:** Leah enters as the plant voice. Jared's scripts remain a risk.
 - **Knowledge load:** Security+: secure versus insecure protocols and ports (Telnet, SSH, FTP, SFTP, FTPS, SMTP, IMAP, POP3, TLS, STARTTLS).
 
@@ -292,10 +292,10 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Goal:** Clear a lockout queue before standup.
 - **Complication:** A runaway script locks Dev out, Todd insists password plus PIN is MFA, and Nora keeps choosing seasonal passwords.
 - **Pivot:** Ethan triages each by factor type and lockout cause.
-- **Cost:** Plan: one of his fixes annoys a manager who wanted an exception.
+- **Cost:** Todd's manager complains about Ethan's tone; the complaint and Jules's reply go into his promotion file.
 - **Carries forward:** Ethan is promoted to Tier 2 after this episode.
 - **Knowledge load:** Security+: authentication factors, MFA, TOTP, MFA fatigue, lockout, biometrics, identity providers.
-- **Plan note:** Fold in physical security: the lockout morning includes a tailgating report at the badge door, so Ethan sees that physical access is also an authentication factor. Plan note only; no new chapter.
+- **Fold-in (written into the chapter 2026-10-26):** Fold in physical security: the lockout morning includes a tailgating report at the badge door, so Ethan sees that physical access is also an authentication factor. 
 
 ### Card 09: Don't Click That
 
@@ -304,10 +304,10 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Goal:** Stop a spoofed CFO wire-change request before the afternoon batch.
 - **Complication:** A $48,000 wire request, an archive attachment, and MFA fatigue pushes on Dev's phone, all at once.
 - **Pivot:** Ethan pulls headers, checks SPF, DKIM, and DMARC, and gets a quarantine hash to the mail gateway; Dana verifies by phone.
-- **Cost:** Plan: AP's batch is delayed and finance is unhappy.
+- **Cost:** AP holds the wire batch three hours; two real vendor payments go out a day late and the controller complains.
 - **Carries forward:** The phishing campaign is a scout for what comes in Ep 12.
 - **Knowledge load:** Security+: phishing types, BEC, typosquatting, credential harvesting, MFA fatigue.
-- **Plan note:** Fold in PKI: DKIM signatures lead to one short scene where Ethan checks a certificate chain on the spoofed site and learns why a padlock icon is not trust. Plan note only.
+- **Fold-in (written into the chapter 2026-10-26):** Fold in PKI: DKIM signatures lead to one short scene where Ethan checks a certificate chain on the spoofed site and learns why a padlock icon is not trust. 
 
 ### Card 10: Something on the Box
 
@@ -316,10 +316,10 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Goal:** Contain a bundled installer before it spreads.
 - **Complication:** A PDF tool came with adware and a dropper; Ken's logistics laptop shows the same signs.
 - **Pivot:** Ethan isolates, quarantines, and separates signature hits from heuristics.
-- **Cost:** Plan: Ken's laptop is wiped and he loses local files.
+- **Cost:** Ethan trusts a valid but revoked code signature for two minutes; Ken's laptop is reimaged and he loses two years of local notes.
 - **Carries forward:** Ken's loop from Ep 01 closes: he calls Ethan directly.
 - **Knowledge load:** Security+: malware types, droppers, payloads, AV versus EDR, signatures versus heuristics, IoCs.
-- **Plan note:** Fold in PKI: a code-signing certificate on the dropper turns out to be valid but stolen, so Ethan learns that a valid signature is not the same as a trusted publisher. Plan note only.
+- **Fold-in (written into the chapter 2026-10-26):** Fold in PKI: a code-signing certificate on the dropper turns out to be valid but stolen, so Ethan learns that a valid signature is not the same as a trusted publisher. 
 
 ### Card 11: The Air Is Shared
 
@@ -328,10 +328,10 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Goal:** Keep the barcode scanners on the right network.
 - **Complication:** A rogue travel router on the data VLAN, an evil twin in the lobby, and deauth floods.
 - **Pivot:** Ethan uses a Wi-Fi analyzer and 802.1X to separate rogue from real.
-- **Cost:** Plan: shipping slows while scanners are re-enrolled.
+- **Cost:** Ken's dock scans by hand at two doors until noon while scanners are re-enrolled.
 - **Carries forward:** The baseline from this work helps flag the Ep 12 intrusion.
 - **Knowledge load:** Security+: rogue AP, evil twin, deauthentication, 802.1X, RADIUS, WPA-Enterprise, PSK, captive portal.
-- **Plan note:** Fold in physical security: the evil twin hardware is found in the lobby, which leads to a short walk-through of badge areas, locks, and cameras with Owen. Plan note only.
+- **Fold-in (written into the chapter 2026-10-26):** Fold in physical security: the evil twin hardware is found in the lobby, which leads to a short walk-through of badge areas, locks, and cameras with Owen. 
 
 ### Card 12: When the Ticket Escalates
 
@@ -343,7 +343,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Cost:** The plant loses a shift to manual override while the gateway is isolated. In the after-action review, one of Ethan's containment calls is second-guessed: he isolated a host before a second memory capture was done.
 - **Carries forward:** Nia offers him a role change into Harrowmere security operations, based in Portland. Ethan stays in Portland.
 - **Knowledge load:** Security+: incident versus event, order of volatility, chain of custody, isolation, IoCs, CSIRT.
-- **Plan note:** Fold in the IR lifecycle: the after-action review walks the six phases (preparation, identification, containment, eradication, recovery, lessons learned), and the second-guessed call is discussed as a containment-phase tradeoff. Plan note only.
+- **Fold-in (written into the chapter 2026-10-26):** Fold in the IR lifecycle: the after-action review walks the six phases (preparation, identification, containment, eradication, recovery, lessons learned), and the second-guessed call is discussed as a containment-phase tradeoff. 
 
 ---
 

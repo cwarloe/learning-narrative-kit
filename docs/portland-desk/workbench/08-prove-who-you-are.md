@@ -602,6 +602,12 @@ Across the aisle, Todd was back at his desk, staring at his phone. "Sign in with
 
 "Told you," I said. "Two distinct factor types. Identification is claiming who you are; authentication is proving it."
 
+Not everyone liked the fixes. Todd's manager had wanted an exception so the sales team could keep their PIN-plus-password logins through quarter-end, and I had said no in writing. She forwarded my reply to Jules with one line: *Is this the tone we want from the desk?*
+
+Jules answered her and copied me. The answer was polite and did not move an inch. Then she walked over to my desk.
+
+"You were right and you were curt," she said. "Next time, be right and give her a date." Two weeks later, I was promoted to Tier 2. The complaint was in the file Jules handed to the hiring panel, and so was her reply.
+
 ## Offboarding leftovers and the admin sticky
 
 Afternoon started with HR pinging offboarding for a contractor who had left Friday. Badge returned. Laptop wiped. Access had not followed.

@@ -6,6 +6,8 @@ A fierce October squall was rattling the fourth-floor casement windows when the 
 
 "Malware isn't a theory in a textbook, Ethan," Jules said, tracking an alert across the network operations dashboard. "Your job is containment: quarantine the dropper, isolate the host, and protect the shared drives. Do not hunt Latin names or argue with a ransom note while the box is actively beaconing across the subnet."
 
+Finance still brought up the delayed wire run whenever the desk came up in a meeting. I had stopped flinching at it. I had not stopped thinking about it.
+
 I clicked into the high-priority queue.
 
 ```ticket
@@ -159,6 +161,16 @@ Dana unplugged. Jules was already on the bridge with SOC. They asked about backu
 Dana asked if she should try the attacker's support chat anyway, "just to see if the test file comes back." I said no. She asked when her files would be back. I said after SOC and backups, not this afternoon. She stayed on the slow spare printer for the rest of the day and was not polite about it. I wrote that in the ticket because politeness is not a restore code either.
 
 Jules turned from the ops bridge, her headset resting around her collar. "Todd's laptop is spinning fans at 100% executing encoded PowerShell payloads across warehouse shares, an unknown USB dropper sits on the scan bench, and Dana's endpoint is locked with a crypto-malware demand. If you let that PowerShell beacon run another thirty seconds, the entire warehouse VLAN is toast. Isolate the network endpoints, decode that Base64 payload, hunt down the persistence run keys in Autoruns, and trace Event ID 7045 in the System log before lateral movement takes down the domain."
+
+## Ken and the signature that checked out
+
+Ken called from Gresham before ten. His logistics laptop had the same coupon-carnival browser as Maya's, and when I pulled the installer properties remotely, the dropper was digitally signed. The signature checked out. The publisher name was a real software company.
+
+"It's signed," I told Jules. "Valid certificate, valid chain. That's why the AV let it through."
+
+"Signed by whom?" she asked.
+
+I looked again. The certificate was real, but the company had published a revocation notice for it four days earlier, after its signing key was stolen. My laptop's check had not pulled the revocation list yet. A valid signature had told me who held the key. It had not told me whether the right person was holding it. I had trusted it for about two minutes, which was long enough to tell Ken his laptop was probably fine.
 
 ## The Handoff Gate
 

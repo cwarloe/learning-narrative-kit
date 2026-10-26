@@ -610,6 +610,10 @@ With the malicious header trace verified and the originating IP and typosquatted
 
 Across the floor, the human layer kept moving.
 
+The save cost the afternoon. AP held the batch wire for three hours while Dana called every vendor on the run to confirm their banking details by phone, and two real payments went out a day late. The controller sent a note to Jules asking why a phishing email had delayed legitimate vendors.
+
+I saved the campaign's typo domain, the certificate serial number, and the zip file's hash into the indicator list for the SOC. Nobody asked me to. It seemed like the kind of thing somebody would want later.
+
 ## Doors, shoulders, and the recycling bin
 
 Facilities walked a visitor past the badge reader. The visitor smiled, held a coffee tray for three, and waited for someone to beep in. Two people held the door because manners. One of them was me for half a second.

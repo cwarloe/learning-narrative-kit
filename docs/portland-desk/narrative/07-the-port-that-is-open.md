@@ -4,6 +4,8 @@
 
 I was a year into my tenure at the Portland Operations Center—long past the rookie freeze of my first payroll outage, but still carrying the habit of checking twice before recommending a firewall change. In my top drawer sat my red-banded index cards for Security+: service names on the front, port numbers and transport protocols on the back. I knew the numbers by heart now, but when the queue started barking, holding the paper kept my hands from jumping.
 
+It was my second overnight week on the rotation, and I was on days again only because Jules had moved me to cover a vacation. The flood had left a list of small debts: two closet switches still running on borrowed power supplies, and Jared's pooling change still waiting for a window.
+
 Jules Brooks glanced over from her workstation, mug in hand. On the bezel of her primary monitor, her faded yellow sticky note asked *Which decision?* under the ceiling lights.
 
 "You already know the numbers, Ethan," she said, catching me glancing toward the drawer. "The port numbers aren't what's slowing you down. It's knowing which habits to challenge."

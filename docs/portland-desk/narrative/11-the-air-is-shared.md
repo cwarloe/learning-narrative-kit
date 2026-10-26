@@ -6,6 +6,8 @@ Friday morning opened with the whine of the vacuum cleaner in the hallway and Ma
 
 "Wired connections have physical copper you can trace with your fingers," Jules said, stepping out of the server closet with a handheld spectrum analyzer. "Wireless is invisible friction. Verify the BSSID, enforce 802.1X enterprise authentication over convenience, and treat any sudden open twin as hostile."
 
+Ken had called my desk line twice that week, once about a printer and once about nothing in particular. The second call ended with him asking whether the barcode scanners in the warehouse were safe on Wi-Fi. I had said yes. By Thursday I was less sure.
+
 The board dinged with Maya's ticket: *Can't join CorpWifi — worked yesterday — executive meeting in 20.*
 
 ## Maya and the password that is everyone
@@ -70,6 +72,14 @@ Wireless ops had a note on the bridge: bursts of spoofed [[disassociation|deauth
 Dev docked. The flapping stopped because copper does not care about deauth theater.
 
 Jules leaned over from the wireless management console. "We have a rogue consumer router bridging unknown devices straight onto the corporate data VLAN in conference room 3B, an active Evil Twin spoofing our SSID in the lobby, and deauthentication flood attacks kicking laptops off the air. If those barcode scanners in the warehouse lose connection or authenticate to the rogue, shipping stops. Grab the Wi-Fi analyzer, decode the 802.11 association frames, triangulate the rogue BSSID signal, and trace the physical switch port to shut down the rogue AP before the morning standup."
+
+## Owen and the bench in the lobby
+
+The evil twin was not in the air. It was in the lobby, a small battery-powered access point taped under a bench by the visitor sign-in tablet. I called Owen up from facilities before I touched it.
+
+Owen walked the lobby with me and pointed out what I had walked past for two years: the camera over the front desk did not cover the benches, the badge reader on the inner door was the only controlled boundary, and the cleaning crew propped the side door during evening rounds. He knew the cameras, locks, and doors, and he said plainly that he did not know what the device under the bench was doing on the network.
+
+"Somebody sat here long enough to tape that up," he said. "Nobody stopped them because the lobby's public. That's on purpose. The question is where public stops." We wrote down the three places it stopped: the inner badge door, the server closet lock, and the camera blind spot that needed fixing.
 
 ## The Handoff Gate
 

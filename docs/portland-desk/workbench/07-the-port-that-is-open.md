@@ -536,3 +536,7 @@ Jules stopped at my cube on her way out, raincoat on, bike lights already clippe
 "Keep the cards if they help you get started," Jules said, giving my desk partition a nod of approval. "Throw them out when the person on the phone already knows the number, and what they actually need from you is the other half."
 
 That was the one I wrote down in my technical notebook. I locked the drawer and went out into the rain to catch the MAX.
+
+Saying no to Jared had a price. He did not argue with the capture once he saw his own password scroll past in plain text, but he did not thank me either. His script still needed Telnet on six older switches that could not run SSH without a firmware upgrade, so we wrapped those six in a management VLAN and a jump host instead of fixing them. It was a patch, and we both knew it.
+
+"The script's going to break the first time the jump host reboots," Jared said. "When it does, you're the one I'm calling." He meant it. Two weeks later, when I needed a switch port traced on a Saturday, he took four hours to answer.

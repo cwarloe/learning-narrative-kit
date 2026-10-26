@@ -4,6 +4,8 @@
 
 A gray March downpour beat against the high double-paned windows of the fourth floor. Seven months on the Portland Operations Center desk had taught me the rhythms of the building: which closet switches ran warm, which departments panicked before payroll cutoff, and how fast a wet morning turned into a ticket surge.
 
+The Gresham static list was still taped to the side of my monitor. Five of the eleven devices were down to proper reservations. The other six belonged to people who had not returned my emails, and one of them, a staging laptop Owen had set up in a trailer the previous September, was about to matter more than I knew.
+
 Across the center aisle, Tier 2 systems administrator Lena Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules Brooks sat to my left, finishing her first coffee while auditing overnight firewall changes.
 
 By eight thirty, the incoming ticket board on our wall monitor began flashing amber with nine high-priority incidents. Remote employees working across Multnomah and Washington counties were calling in with identical complaints. They had connected their laptops to our corporate virtual private network without any errors. Yet whenever they tried to open the internal payroll portal or the plant telemetry wiki, their browsers spun endlessly. Some requests timed out completely, while others redirected users to an unfamiliar public domain parking page. Meanwhile, accountants and dispatchers working inside the building were browsing those exact same internal websites without any trouble.

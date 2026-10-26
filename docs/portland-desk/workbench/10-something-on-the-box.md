@@ -665,6 +665,10 @@ With Todd's laptop disconnected and the obfuscated PowerShell payload decoded, S
 
 Across the bullpen, the rest of the shift brought the quieter, deeper variants of persistence.
 
+Ken's laptop was not fine. We isolated it and reimaged it, and the spreadsheets he kept on the local drive instead of the share went with it: two years of carrier contact notes and his own trailer-tracking sheet.
+
+"That's twice, Mercer," he said on the phone. "Once you cost me a trailer. Now you cost me my notes." Then he was quiet for a moment. "You called me back in ten minutes, though. The contractor would've taken a day." After that, Ken stopped opening tickets. He called my desk line directly.
+
 ## Keyboards, roots, and the process that hides
 
 Afternoon was quieter and worse, which is a combination I am starting to recognize.

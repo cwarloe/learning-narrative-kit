@@ -604,3 +604,9 @@ She gestured toward the packet trace on her screen with the tip of her pen.
 I nodded slowly, watching the encapsulation layers light up under her cursor. I opened my technical journal and recorded the lesson alongside my earlier subnet sketches.
 
 Outside our fourth-floor window, the low cloud deck began to lift over the Willamette. Pale patches of afternoon sky appeared above the river. Jared picked up his empty tea mug and headed toward the server room to audit switch configurations. Jules reached for her helmet, unhooking it from the monitor arm as the afternoon shift logged into the queue. I saved my incident notes into the ticketing system and closed my terminal sessions, standing on solid ground.
+
+The fix was not free. While I walked the warehouse patch panel looking for port twenty-eight, Ken held dock door six closed for forty minutes so the rogue scale terminal could not post bad weights into the freight system. Two Portland-bound trailers loaded late, and Ken said so on the phone in a voice I remembered from Line 4.
+
+"I'll put it in my notes that you found it," he said. "I'll also put in my notes that it took forty minutes."
+
+The rogue was a label station somebody in shipping had cloned from the scale terminal's configuration, static address and all. I locked down the DHCP pool and logged the duplicate, but when I ran a quick sweep before leaving, eleven more devices on the warehouse network had hand-typed static addresses nobody had written down. Jared added a line to his list: *Gresham static sprawl, owner unknown.* He did not say whose problem it was going to be. He did not have to.

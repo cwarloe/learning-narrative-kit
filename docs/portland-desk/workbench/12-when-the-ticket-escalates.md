@@ -736,7 +736,7 @@ Before Ethan closes the red folder and hands the physical binder to Jules Brooks
 ```callout-panel
 title: "FIGURE 12.2: CSIRT INCIDENT HANDOFF & THE BRIDGE TO BOOK 1"
 badge: "Shift Epilogue"
-caption: "Operations bullpen: At 05:45 PM, the autumn rain eases over the Willamette River. Jules Brooks hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
+caption: "Operations bullpen: At 05:45 PM, the June rain eases over the Willamette River. Jules Brooks hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
 prompt: "Clean graphic novel cutaway panel of an IT support operations floor at twilight. Warm indoor desk light contrasts with blue twilight outside the floor-to-ceiling windows showing city bridges and river. A senior technician hands a new security access keycard lanyard to a junior technician across an open incident binder. Clean ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
 ```
 
@@ -754,14 +754,25 @@ The queue showed one more URGENT. I opened it anyway — criteria first, adrenal
 
 ## The Step Beyond the Desk
 
-At 16:30, the autumn rain finally eases to a mist over the Willamette. The river reflects the amber streetlights turning on along the Eastbank Esplanade. In the quiet of the fourth-floor dispatch bullpen, Jules Brooks signs her name on the receiving line of Evidence Pouch `#EVD-2026-1022-01`, slides the red binder into the CSIRT handoff rack, and turns her desk chair toward Ethan.
+By 4:30 the rain had eased to a mist over the Willamette. Jules signed the receiving line on Evidence Pouch `#EVD-2026-1022-01` and slid the red binder into the CSIRT handoff rack.
 
-"You didn't wipe Maya's machine," she says, her voice steady and quiet. "And you didn't let Ken plug his stick back in. But more importantly: when Nora's Sent folder looked empty, you didn't see a software bug. You saw the wire."
+The intrusion was contained, but not cleanly. To cut the attacker's path into the plant, we had isolated the Willamette River gateway, and Leah's crew ran the treatment line on manual override for the rest of the shift. She called me at six to say they had held it, and that she had three operators working a double because of it. She did not sound angry. She sounded tired, and she wanted to know when the gateway was coming back.
 
-She reaches into her desk drawer and pulls out a new lanyard—dark navy blue with a magnetic keycard that opens the fifth-floor glass doors where the Portland Security Operations Center (SOC) monitors traffic across seven regional districts.
+## The After-Action Review
 
-"Book 0 is over, Ethan. You're done pulling cables and resetting passwords on the help desk. On Monday morning, you sit on the Tier 1 SOC bridge. You're going to learn how to hunt what you just contained."
+The after-action review was the following Tuesday, with Nia on the bridge from Chicago and Jules, Jared, Leah, and me in the fourth-floor conference room. Nia walked it phase by phase: preparation, identification, containment, eradication, recovery, and lessons learned.
 
+Preparation was where we were weakest. We had no written playbook for isolating the plant gateway, which was why Leah found out from a phone call instead of a plan. Identification was where the baseline earned its keep. Eradication and recovery belonged to Chicago and Jared, and recovery took nine days because the gateway had to be rebuilt.
+
+Containment was where my name came up. I had isolated Todd's workstation from the network before the second memory capture finished, because I saw it start enumerating shares and wanted it off the wire. Nia said the first capture was good and the second would have shown whether the attacker had moved a tool into memory after the first. We would never know.
+
+"It was a defensible call," she said. "It was also a call that cost us evidence. Write down why you made it, and what you would need to see next time to wait sixty more seconds." I wrote it down. It went into the lessons-learned section with my name on it, next to the line about the missing plant playbook.
+
+## Monday
+
+Two weeks later, Jules handed me a navy blue lanyard with a keycard for the fifth floor, where Harrowmere's security operations team worked. Same building, same river outside the window, same bike rack by the door. Nia had asked whether I wanted to apply for the analyst opening, and I had.
+
+"You're not leaving," Jules said. "You're moving upstairs. You'll still get calls from Ken." She was right about that. He called the next morning to ask who was taking my desk line.
 
 ---
 

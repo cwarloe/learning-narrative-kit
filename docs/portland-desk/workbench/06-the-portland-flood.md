@@ -696,8 +696,12 @@ I closed my active terminal windows and reported that all three network segments
 
 Jared latched his toolcase and slung his cable harness over his shoulder with a weary grin. "Not bad for four hours in rubber boots, kid. You handled that DHCP pool storm faster than our third-shift network admin did last winter."
 
-Outside the high basement windows, the rain had finally tapered off to a gentle Pacific Northwest drizzle. The dark storm clouds were breaking over the Willamette River. Pale winter morning light reflected across the wet asphalt of the loading bay. Upstairs, the faint chime of the freight elevator signaled the arrival of the morning staff as the eight o'clock bell rang out across the campus.
+Outside the high basement windows, the rain had finally tapered off to a gentle Pacific Northwest drizzle. The dark storm clouds were breaking over the Willamette River. Pale late-spring morning light reflected across the wet asphalt of the loading bay. Upstairs, the faint chime of the freight elevator signaled the arrival of the morning staff as the eight o'clock bell rang out across the campus.
 
 Jules switched off her halogen lantern and hooked her bicycle helmet to her pack. "You did not panic when the scope exhausted, Ethan," she said, looking at me with a quiet nod of approval. "You followed the protocol stack from the wet concrete up to the transport layer, and you committed your decisions before you typed them. That is the difference between guessing in the dark and doing the work."
 
-We hauled our empty cartons and spent gear up the stairwell to Jared's truck, leaving the basement telecommunications vault secure, elevated, and fully restored.
+We hauled our empty cartons and spent gear up the stairwell to Jared's truck, leaving the basement telecommunications vault dry, elevated, and mostly restored.
+
+Mostly restored was the honest word. When the doors unlocked, the twelve label printers in shipping were still on the old VLAN behind a patch cord I had not had time to move, and the morning crew printed shipping labels by hand from a spreadsheet until ten. The connection-pooling change was pushed to the next window, two weeks out.
+
+On Thursday, Jules put my name on the overnight rotation. "You were useful at three in the morning," she said. "That is not a compliment. It is a schedule."

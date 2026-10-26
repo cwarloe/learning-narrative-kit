@@ -6,6 +6,8 @@ The smell of wet wool and radiator steam filled the fourth floor long before the
 
 "Two dozen people locked themselves out between Friday night and seven this morning," Jules said, capping the blue marker with a sharp snap. "Half of them will swear up and down that typing a password and a PIN counts as multifactor. Don't argue with their frustration, Ethan. Separate what they know from what they hold."
 
+Jared had not forgotten the Telnet capture. He still answered my messages, just never on the same day, so I had learned to send him tickets instead of questions.
+
 On the dispatch display, the first incident ticket was already flashing red.
 
 ## Nora and the policy that keeps changing the locks
@@ -92,6 +94,16 @@ While Dev waited, Lila from HR stopped by with a laptop lid.
 She kept the app. She looked like someone who had hoped for a shorter answer.
 
 Jules looked across the divider. "Dev's account is locked out from a runaway script hammering the domain controller, Todd is insisting Password plus PIN is multifactor, and Nora has locked herself out with another seasonal password. You have ten minutes before the morning standup. Step up to the console and triage the queue."
+
+## Owen and the door that let two people in
+
+Before the lockouts peaked, Owen came up from facilities with a printout of the badge reader log for the east stairwell door. Owen ran the badge system the way Rosa ran Hank's routes in Gresham: he knew every reader and every lock on the building, and he said plainly that Active Directory was not his department.
+
+"Two entries, one badge, eleven seconds apart," he said, tapping the paper. "Door only logged one swipe. Camera shows two people. Somebody held it."
+
+"Tailgating," I said. I had a card for the word in my drawer.
+
+"Call it what you want. The badge is something you have," Owen said. "The person holding the door just let somebody borrow it." He did not know how to tie the badge system to account lockouts, and neither did I. I added the stairwell door to the lockout ticket anyway, as one more place where proof of who you are had been handed to a stranger, and Owen went to ask the camera which badge it was.
 
 ## The Handoff Gate
 

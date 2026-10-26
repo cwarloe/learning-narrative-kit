@@ -6,6 +6,8 @@ A gusting Wednesday rain swept across the Willamette as I stepped onto the fourt
 
 The dispatch board read forty-two open items at eight in the morning: forgotten passwords, jammed label printers, and a conference room projector that refused to handshake over HDMI. But by two in the afternoon, the board had gone dead silent. That silence is the first thing you learn to fear on an operations floor. When the phones stop ringing, it usually means the fire has moved into the walls.
 
+The wireless baseline from April was still open in a tab on my second monitor. I had added to it every week since, mostly out of habit, and it was the first thing that made the morning's quiet tickets look wrong.
+
 ## Maya and the laptop that must die
 
 ```callout-panel

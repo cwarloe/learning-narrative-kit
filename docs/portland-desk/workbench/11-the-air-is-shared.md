@@ -605,6 +605,10 @@ With the rogue AP located under the conference credenza and its switch port admi
 
 Across the rest of the facility, wireless architecture and hygiene fell into place.
 
+It still slowed the dock. Re-enrolling the barcode scanners onto 802.1X took most of the next morning, and Ken's crew scanned by hand at two doors until noon. He called to tell me exactly how many pallets that had cost.
+
+I kept the survey data. For two years I had looked at the wireless network one ticket at a time. Now I had a picture of what normal looked like on the warehouse floor and in the plant annex: which access points, which clients, which hours. I saved the baseline into the shared drive with a note to Jules. It was the most boring file I had ever written. It turned out to be the one I needed most.
+
 ## Guest Wi-Fi, segmentation, and the printer that should not see payroll
 
 Nora needed a vendor on site to update a badge printer. The vendor wanted Wi-Fi. Nora wanted them productive. Finance wanted them nowhere near file shares.

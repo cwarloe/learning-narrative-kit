@@ -6,6 +6,8 @@ By eight in the morning, the bullpen on the fourth floor of the Portland Regiona
 
 Jules Brooks had already hung her wet rain shell behind her desk and was working through her first mug of black coffee. Across from my station, the wall-mounted queue monitor blinked and shifted from dark green to bright amber. Fourteen priority incident tickets landed within three minutes, all tagged with the same origin: Building B at the logistics annex and water pump station two miles south.
 
+Two months on the desk had not erased my first week. Maya still copied Jules on every ticket she sent me, a quiet habit she had started the morning I suggested re-imaging her machine. I did not blame her. I answered her tickets faster than anyone else's and kept my notes long enough that Jules never had to ask what I had done.
+
 Both incoming telephone lines lit up at once. On line one, warehouse supervisor Ken was shouting over the clatter of a backed-up freight bay. On line two, facilities specialist Owen reported that automated pump loggers had dropped offline.
 
 ## The ghost in the sixteen-hundred block

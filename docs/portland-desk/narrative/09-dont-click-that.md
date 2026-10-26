@@ -6,6 +6,8 @@ Wednesday morning smelled of wet pavement and burnt French roast. I was hanging 
 
 "Social engineering isn't about breaking cryptography, Ethan," Jules said, her voice cutting through the hum of the HVAC blowers. "Attackers borrow our manners, our hierarchy, and our panic. Notice which manners got borrowed before you click a single link."
 
+It was my first week as Tier 2. I had a new title in the directory and the same desk, and I had not forgotten the line in my file about tone.
+
 The wallboard chimed: a high-priority ticket flagged *URGENT — mailbox locked, verify now.*
 
 ## Maya and the padlock that is not ours
@@ -84,6 +86,16 @@ Afternoon: Dev from engineering pinged that his phone was buzzing Approve/Deny e
 We walked Deny, report, password rotate, then checked recent user-reported mail for his address. Nothing from Maya's campaign sat in his inbox, but a lookalike travel portal did. Dev put the phone face-down. "Deny if I did not ask. I already had that line once. Apparently I needed it twice."
 
 Jules stepped over to my terminal. "We have a spoofed CFO email demanding a forty-eight-thousand-dollar wire change, Sam hovering over an archive attachment, and Dev's phone buzzing with credential stuffing MFA fatigue pushes. You have ten minutes before AP cuts the afternoon batch wire. Pull the raw email headers, trace the originating IP, verify SPF, DKIM, and DMARC alignment, and get the quarantine hash to the mail gateway before money walks out the door."
+
+## The padlock on the wrong name
+
+The spoofed invoice link went to a domain one letter off from our vendor's. I opened it in the sandbox browser and stopped at the padlock. The site had a valid certificate, issued two days earlier, chained up through an intermediate to a public root my browser trusted.
+
+"It has a padlock," Sam said behind me, a little too relieved.
+
+"It has a certificate for the wrong name," I said. That was only half right, and I knew it as I said it. The certificate was valid for exactly the name it claimed. The name was the lie. A certificate authority had checked that whoever asked for it controlled that typo domain, which they did. The padlock meant the connection was encrypted to the attacker. It did not mean the attacker was our vendor.
+
+I wrote the chain into the ticket: leaf certificate, intermediate, root, issue date, and the domain it was really for. Dana, who had worked accounts payable for nine years and knew every vendor's real domain from memory, read the ticket over my shoulder and said the vendor had never used that domain. She could not tell me what an intermediate certificate was, and I could not have told her the vendor's remit-to address. We needed both.
 
 ## The Handoff Gate
 
