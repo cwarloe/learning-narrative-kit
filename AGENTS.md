@@ -2,6 +2,10 @@
 
 Use this file when an LLM (or human) authors a new unit **without** a specialized bot. Schema wins if anything conflicts: `schema/README.md`.
 
+## Archived material (read this first)
+
+`archive/` holds superseded documents. Do not read it, cite it, or follow its rules unless the author names a specific file and asks you to. If an active document links into `archive/`, treat the link as history, not as a source. See `archive/README.md` for what moved and what replaced it. `docs/AUDIT-2026-10.md` lists documents whose status is still undecided.
+
 ## What this kit is
 
 Story-first pedagogy: a cohesive term set woven into **one** meaningful narrative so the words gain shared context. Hover glossaries and review decks are secondary lookup/retrieval — not the point.
@@ -25,6 +29,7 @@ tracks/<track>.yaml     # reading order for a track → contents page + prev/nex
 briefs/<brief_id>.brief.yaml   # the author's instructions for one job (schema/BRIEF.md)
 workshop/<brief_id>/    # plan, status, reviews, CANDIDATE chapters; never published
 research/               # background notes (schema wins on conflict)
+archive/                # SUPERSEDED. Do not use as a source (see archive/README.md)
 ```
 
 Marks in prose: `[[term_id|surface text]]`
