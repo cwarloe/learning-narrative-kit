@@ -755,3 +755,288 @@
   color: #0f172a;
   font-weight: 600;
 }
+
+/* ==========================================================================
+       3x5 CARD STAGE: FULL CANVAS UTILIZATION (Zero Wasted Space)
+       ========================================================================== */
+    .card-stage {
+      width: 100%;
+      max-width: 840px;
+      height: 504px; /* True 3:5 proportion (840 x 504) */
+      perspective: 1600px;
+      user-select: none;
+      cursor: pointer;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-flipper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.34, 1.45, 0.64, 1);
+    }
+    .card-flipper.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      padding: 1.1rem 1.6rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Paper Styles */
+    .style-white {
+      transform: rotate(-1.3deg);
+      transition: transform 0.3s ease;
+    }
+    .style-white:hover { transform: rotate(-0.5deg) scale(1.008); }
+    .style-white .card-face {
+      background-color: #ffffff;
+      border: 3.5px solid #111827;
+      border-radius: 4px 16px 5px 14px / 14px 5px 16px 4px;
+      box-shadow: 
+        7px 9px 0px #090d16,
+        0 20px 35px rgba(0, 0, 0, 0.55);
+    }
+
+    .style-ruled {
+      transform: rotate(0.4deg);
+      transition: transform 0.3s ease;
+    }
+    .style-ruled:hover { transform: rotate(0deg) scale(1.008); }
+    .style-ruled .card-face {
+      background-color: #fdfbf7;
+      background-image: 
+        linear-gradient(180deg, transparent 58px, #fca5a5 59px, #fca5a5 60px, transparent 61px),
+        repeating-linear-gradient(180deg, transparent, transparent 33px, #cbd5e1 34px);
+      border: 2px solid #cbd5e1;
+      border-radius: 6px;
+      box-shadow: 4px 6px 0px rgba(15, 23, 42, 0.6), 0 18px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .style-quad {
+      transform: rotate(-0.8deg);
+      transition: transform 0.3s ease;
+    }
+    .style-quad:hover { transform: rotate(0deg) scale(1.008); }
+    .style-quad .card-face {
+      background-color: #f8fafc;
+      background-image: 
+        linear-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.22) 1px, transparent 1px);
+      background-size: 20px 20px;
+      border: 3px solid #1e293b;
+      border-radius: 3px 8px 3px 7px;
+      box-shadow: 6px 6px 0px #0f172a, 0 18px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .style-manila {
+      transform: rotate(1.2deg);
+      transition: transform 0.3s ease;
+    }
+    .style-manila:hover { transform: rotate(0deg) scale(1.008); }
+    .style-manila .card-face {
+      background-color: #f6eedb;
+      border: 4px solid #18181b;
+      border-radius: 8px 3px 10px 4px / 4px 10px 3px 8px;
+      box-shadow: 9px 11px 0px #09090b, 0 24px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ==========================================================================
+       WIDE HIGHLIGHTER SWIPE ACROSS THE TOP (88% Width - Massive Chisel Stroke)
+       ========================================================================== */
+    .marker-slash {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      right: 75px; /* Spans 88% across card width */
+      height: 40px;
+      padding: 4px 18px;
+      transform: rotate(-0.8deg);
+      border-radius: 4px;
+      font-family: 'Bangers', cursive;
+      font-size: 1.65rem;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-num-scrawl {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      font-family: 'Bangers', cursive;
+      font-size: 1.8rem;
+      color: #334155;
+      line-height: 1;
+    }
+
+    /* ==========================================================================
+       FRONT LAYOUT: 60/40 SPLIT WITH ZERO WASTED SPACE
+       ========================================================================== */
+    .front-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      align-items: center;
+      gap: 1.8rem;
+      flex-grow: 1;
+      margin-top: 2.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .drawing-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .drawing-note {
+      font-family: 'Rock Salt', cursive;
+      font-size: 1rem;
+      color: #64748b;
+      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .front-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .front-big-question {
+      font-weight: 700;
+      color: var(--pen-black);
+      letter-spacing: -0.01em;
+    }
+
+    .front-hint-scrawl {
+      font-family: 'Rock Salt', cursive;
+      font-size: 1.25rem;
+      color: var(--pen-red);
+      margin-top: 1rem;
+      line-height: 1.25;
+    }
+
+    /* ==========================================================================
+       BACK LAYOUT: HIGH IMPACT ANSWER & LEAN INVARIANTS
+       ========================================================================== */
+    .back-layout {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+      margin-top: 2.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .back-huge-answer {
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .back-bullet-point {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .back-trap-box {
+      margin-top: 0.75rem;
+      padding-top: 0.65rem;
+      border-top: 2.5px dashed #cbd5e1;
+      line-height: 1.25;
+      color: var(--pen-red);
+    }
+
+    .tap-to-flip-guide {
+      text-align: right;
+      font-family: 'Bangers', cursive;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+    }
+
+    
+/* Deck Controls Below Card */
+    .controls-zone {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .ctrl-btn:hover { background: #334155; color: #fff; }
+    .ctrl-btn.primary { background: #2563eb; border-color: #2563eb; }
+    .ctrl-btn.primary:hover { background: #1d4ed8; }
+
+    @media (max-width: 760px) {
+      .card-stage { height: 530px; }
+      .front-layout { grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
+      .marker-slash { font-size: 1.25rem; height: 32px; right: 55px; }
+      .card-num-scrawl { font-size: 1.4rem; }
+      .front-big-question { font-size: 1.9rem !important; }
+      .back-huge-answer { font-size: 2.6rem !important; }
+      .back-bullet-point { font-size: 1.3rem !important; }
+      .back-trap-box { font-size: 1.15rem !important; }
+    }
+  
+
+/* Default Font Sizes for Story Narrative Cards */
+.card-stage .front-big-question {
+  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-weight: 700;
+  font-size: 2.15rem;
+  line-height: 1.25;
+  color: #0f172a;
+}
+
+.card-stage .back-huge-answer {
+  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-weight: 700;
+  font-size: 2.95rem;
+  line-height: 1.05;
+  color: #15803d;
+}
+
+.card-stage .back-bullet-point {
+  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: #1e293b;
+}
+
+.card-stage .back-trap-box {
+  font-family: 'Rock Salt', cursive;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: #b91c1c;
+}

@@ -63,6 +63,43 @@ Only one stack belonged in a flashcard deck: **The Red Rubber Band**.
 
 Into the Red Band went the raw, arbitrary exam passport trivia—the disposable facts that CompTIA tests to verify syllabus compliance: laser printer pickup rollers, the six stages of the electrophotographic cycle, the pin counts of legacy parallel cables, and maximum cable run lengths. These were facts with zero moving parts. You either recalled them in under ten seconds or you didn't. I wrapped the thick red rubber band around the forty true trivia cards. This was my **Passport Deck**—the cram stack I would drill for speed, spit out onto the exam scratch plastic in Beaverton, and discard in the parking lot.
 
+
+### Ethan's 3x5 Trivia Cards (The Red Rubber Band)
+
+<div class="card-stage style-white" id="storyTriviaCardStage" style="margin: 2rem auto;">
+<div class="card-flipper" id="storyTriviaFlipper">
+<div class="card-face card-front">
+<div class="marker-slash" style="background: rgba(239, 68, 68, 0.45); color: #991b1b;">TRIVIA</div>
+<div class="card-num-scrawl" id="storyCardNumFront">#01</div>
+<div class="front-layout" style="grid-template-columns: 1fr; margin-top: 2.2rem;">
+<div class="front-text-col">
+<div class="front-big-question" id="storyCardQ">Loading question...</div>
+<div class="front-hint-scrawl" id="storyCardHint">Loading hint...</div>
+</div>
+</div>
+<div class="tap-to-flip-guide" id="storyCardCounter">[ CLICK OR SPACEBAR TO FLIP ]</div>
+</div>
+<div class="card-face card-back">
+<div class="marker-slash" style="background: rgba(239, 68, 68, 0.45); color: #991b1b;">TRIVIA</div>
+<div class="card-num-scrawl" id="storyCardNumBack">#01</div>
+<div class="back-layout" style="margin-top: 2.2rem;">
+<div class="back-huge-answer" id="storyCardA">Loading answer...</div>
+<div class="back-bullet-point" id="storyCardR1">Loading rule 1...</div>
+<div class="back-bullet-point" id="storyCardR2">Loading rule 2...</div>
+<div class="back-trap-box" id="storyCardTrap">Loading trap...</div>
+</div>
+<div class="tap-to-flip-guide">[ CLICK TO FLIP BACK ]</div>
+</div>
+</div>
+</div>
+<div class="controls-zone" style="margin-bottom: 2.5rem;">
+<button type="button" class="ctrl-btn" id="storyCardPrevBtn">&larr; Previous Card</button>
+<button type="button" class="ctrl-btn primary" id="storyCardFlipBtn">Flip Card (Spacebar)</button>
+<button type="button" class="ctrl-btn" id="storyCardNextBtn">Next Card &rarr;</button>
+<button type="button" class="ctrl-btn" id="storyCardShuffleBtn">Shuffle / Interleave</button>
+</div>
+
+
 The other three stacks weren't flashcards at all. They were **instruments**. Trying to memorize them as flashcards was like trying to memorize the blueprint of a lathe instead of standing in front of the chuck. They needed to be tools I could look at, lay flat on a workbench, and consult while my hands were inside a chassis.
 
 I opened an old text editor on my secondhand ThinkPad and spent the next hour drafting three clean, structured reference sheets formatted to fit four-by-six cardstock:
@@ -84,38 +121,160 @@ They wouldn't be pretty. They wouldn't look like professional laminated pocket g
 
 I snapped the red rubber band around the forty trivia cards, banded the draft sheets into three distinct stacks, and finally clicked off the buzzing fluorescent fixture.
 
-<div class="kitchen-table-plate">
-  <div class="kitchen-plate-header">
-    <div class="kitchen-plate-badge">[ ARTIFACT // ETHAN'S KITCHEN TABLE — 02:45 AM ]</div>
-    <div class="kitchen-plate-subtext">Walgreens 3x5 Cards (The Red Cram Deck) & 4x6 Taped Field Slates</div>
-  </div>
 
-  <div class="kitchen-plate-section-title title-red">The Red Rubber Band // 3x5 Trivia Cards (Active Retrieval)</div>
-  
-  <div class="passport-deck-container" data-deck="narrative-red-trivia">
-    <div class="passport-card-stage stacked-deck">
-      <!-- Card 1 -->
-      <div class="passport-card active">
-        <div class="passport-face face-front">
-          <div class="passport-highlight-bar">TRIVIA</div>
-          <div class="passport-prompt-text">What are the six stages of the laser printing electrophotographic (EP) cycle in exact order?</div>
-          <div class="passport-footer-prompt">
-            <span>Card 1 of 7</span>
-            <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
-          </div>
-        </div>
-        <div class="passport-face face-back">
-          <div class="passport-highlight-bar">TRIVIA</div>
-          <div class="passport-answer-text">
-            <div class="passport-answer-rule">Processing -> Charging -> Exposing -> Developing -> Transferring -> Fusing</div>
-            <div class="passport-why-text">Cleaning clears remnant toner/charge. Fusing melts toner at ~200°C.</div>
-          </div>
-          <div class="passport-footer-prompt">
-            <span>Target Recall: &lt; 10s</span>
-            <span class="flip-hint">[ Memory trick: People Can Easily Do The Fix ]</span>
-          </div>
-        </div>
-      </div>
+### Ethan's 4x6 Taped Field Slates
+
+<div class="taped-field-slate" style="margin: 2rem auto;">
+<div class="slate-top-bar">
+<div class="slate-eyelet"></div>
+<div class="slate-selector-tabs">
+<button type="button" class="slate-tab-btn active" data-band="green">Green: Anatomy</button>
+<button type="button" class="slate-tab-btn" data-band="yellow">Yellow: Identity Triad</button>
+<button type="button" class="slate-tab-btn" data-band="blue">Blue: Triage Compass</button>
+</div>
+<div class="slate-side-toggle">
+<button type="button" class="slate-side-btn active" data-side="a">Side A (Ground Truth)</button>
+<button type="button" class="slate-side-btn" data-side="b">Side B (Diagnostics)</button>
+</div>
+</div>
+
+<div class="slate-content-body">
+<!-- Green Side A -->
+<div class="slate-sheet active" data-band="green" data-side="a">
+<div class="slate-grid-row">
+<div class="slate-spec-card">
+<div class="slate-spec-title">1. Central Processing Unit (CPU)</div>
+<div class="slate-spec-desc">Executes serialized instruction cycles. Fetches from L1/L2 cache and memory. Halted if clock or power rail ripples.</div>
+<span class="slate-spec-cmd">Status: Core Engine</span>
+</div>
+<div class="slate-spec-card">
+<div class="slate-spec-title">2. Volatile Memory (RAM)</div>
+<div class="slate-spec-desc">Active workspace for OS kernel, open buffers, and running programs. Drops to absolute zero when electrical current halts.</div>
+<span class="slate-spec-cmd">Status: Ephemeral Workspace</span>
+</div>
+</div>
+<div class="slate-grid-row">
+<div class="slate-spec-card">
+<div class="slate-spec-title">3. Non-Volatile Storage</div>
+<div class="slate-spec-desc">Magnetic platters (HDD) or NAND cells (SSD). Preserves OS system files, logs, and registry across power cycles.</div>
+<span class="slate-spec-cmd">Status: Persistent Record</span>
+</div>
+<div class="slate-spec-card">
+<div class="slate-spec-title">4. System Bus & Firmware (POST)</div>
+<div class="slate-spec-desc">Motherboard traces linking components. UEFI/BIOS runs power-on self-test before handing bootstrap to the boot loader.</div>
+<span class="slate-spec-cmd">Status: Physical Interconnect</span>
+</div>
+</div>
+</div>
+
+<!-- Green Side B -->
+<div class="slate-sheet" data-band="green" data-side="b">
+<div class="slate-grid-row">
+<div class="slate-spec-card">
+<div class="slate-spec-title">Physical Capacitor Inspection</div>
+<div class="slate-spec-desc">Inspect silver cylinders near CPU socket. Flat top = Healthy. Domed top or crusty brown electrolyte vent = Blown voltage regulator.</div>
+<span class="slate-spec-cmd">Check: Visual Inspection</span>
+</div>
+<div class="slate-spec-card">
+<div class="slate-spec-title">Flea Power Residual Drain</div>
+<div class="slate-spec-desc">Power capacitors hold residual DC charge. Pull wall power, hold chassis power button for 30 seconds to bleed circuits to true ground.</div>
+<span class="slate-spec-cmd">Action: 30s Hold to Drain</span>
+</div>
+</div>
+</div>
+
+<!-- Yellow Side A -->
+<div class="slate-sheet" data-band="yellow" data-side="a">
+<div class="slate-grid-row">
+<div class="slate-spec-card">
+<div class="slate-spec-title">Layer 2: Hardware MAC Address</div>
+<div class="slate-spec-desc">Physical 48-bit address burned into NIC ROM. Directs Ethernet frames across the immediate local wire or switch port.</div>
+<span class="slate-spec-cmd">Command: getmac / ipconfig /all</span>
+</div>
+<div class="slate-spec-card">
+<div class="slate-spec-title">Layer 3: Logical IP Address</div>
+<div class="slate-spec-desc">32-bit IPv4 address assigned dynamically (DHCP) or statically. Dictates where host sits in routed network topology.</div>
+<span class="slate-spec-cmd">Command: ipconfig /renew</span>
+</div>
+</div>
+<div class="slate-grid-row">
+<div class="slate-spec-card">
+<div class="slate-spec-title">Layer 4: Transport Port Number</div>
+<div class="slate-spec-desc">16-bit software port directing packets to the correct application socket buffer (e.g. Port 80 HTTP, Port 443 HTTPS).</div>
+<span class="slate-spec-cmd">Command: netstat -ano</span>
+</div>
+<div class="slate-spec-card">
+<div class="slate-spec-title">Default Gateway Exit Door</div>
+<div class="slate-spec-desc">Local router interface. If gateway is unreachable, host can talk to local roommates but cannot traverse to the outside internet.</div>
+<span class="slate-spec-cmd">Test: ping [default_gateway]</span>
+</div>
+</div>
+</div>
+
+<!-- Yellow Side B -->
+<div class="slate-sheet" data-band="yellow" data-side="b">
+<div class="slate-grid-row">
+<div class="slate-spec-card">
+<div class="slate-spec-title">APIPA 169.254.x.x Tell</div>
+<div class="slate-spec-desc">If host has an address starting with 169.254, Layer 1/2 copper link is up, but DHCP server failed to answer lease requests.</div>
+<span class="slate-spec-cmd">Symptom: DHCP Exhaustion or Unreachability</span>
+</div>
+<div class="slate-spec-card">
+<div class="slate-spec-title">Loopback Invariant Check</div>
+<div class="slate-spec-desc">Pinging 127.0.0.1 tests host OS TCP/IP protocol stack internally. Replies prove software stack works; does not test physical cable.</div>
+<span class="slate-spec-cmd">Test: ping 127.0.0.1</span>
+</div>
+</div>
+</div>
+
+<!-- Blue Side A -->
+<div class="slate-sheet" data-band="blue" data-side="a">
+<div class="slate-grid-row">
+<div class="slate-spec-card">
+<div class="slate-spec-title">Step 1: Identify the Problem</div>
+<div class="slate-spec-desc">Question user, identify symptoms, review environmental changes, determine if anything changed before failure occurred.</div>
+<span class="slate-spec-cmd">Rule: Question the user</span>
+</div>
+<div class="slate-spec-card">
+<div class="slate-spec-title">Step 2: Establish Theory of Cause</div>
+<div class="slate-spec-desc">Question the obvious. Consider multiple approaches. Establish a single falsifiable theory of probable cause.</div>
+<span class="slate-spec-cmd">Rule: Simplest explanation first</span>
+</div>
+</div>
+<div class="slate-grid-row">
+<div class="slate-spec-card">
+<div class="slate-spec-title">Step 3: Test Theory to Determine Cause</div>
+<div class="slate-spec-desc">Run simplest non-destructive test. If confirmed, determine next steps. If disproven, establish new theory.</div>
+<span class="slate-spec-cmd">Rule: Never guess blindly</span>
+</div>
+<div class="slate-spec-card">
+<div class="slate-spec-title">Step 4: Plan of Action & Resolution</div>
+<div class="slate-spec-desc">Establish plan to resolve problem and implement solution. Identify potential unintended side-effects.</div>
+<span class="slate-spec-cmd">Rule: Change one variable at a time</span>
+</div>
+</div>
+</div>
+
+<!-- Blue Side B -->
+<div class="slate-sheet" data-band="blue" data-side="b">
+<div class="slate-grid-row">
+<div class="slate-spec-card">
+<div class="slate-spec-title">Step 5: Verify Full System Functionality</div>
+<div class="slate-spec-desc">Verify complete system functionality and, if applicable, implement preventive measures to stop recurrence.</div>
+<span class="slate-spec-cmd">Rule: Confirm with the customer</span>
+</div>
+<div class="slate-spec-card">
+<div class="slate-spec-title">Step 6: Document Findings & Actions</div>
+<div class="slate-spec-desc">Document findings, actions taken, and operational outcomes in passdown ticket notes for team handoff.</div>
+<span class="slate-spec-cmd">Rule: If it isn't documented, it didn't happen</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
 
       <!-- Card 2 -->
       <div class="passport-card">
@@ -416,6 +575,7 @@ I snapped the red rubber band around the forty trivia cards, banded the draft sh
     </div>
   </div>
 </div>
+
 
 
 ## The Strip Mall in Beaverton

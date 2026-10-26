@@ -475,6 +475,189 @@
     });
   }
 
+
+  /* ==========================================================================
+     Ethan's 3x5 Kitchen Table Trivia Deck Engine (Full Canvas Comic)
+     ========================================================================== */
+
+  const storyTriviaDeck = [
+    {
+      num: '#01',
+      tag: 'TRIVIA',
+      q: 'What are the six stages of the laser printing electrophotographic (EP) cycle in exact order?',
+      hint: 'Memory trick: People Can Easily Do The Fix...',
+      a: 'Processing -> Charging -> Exposing -> Developing -> Transferring -> Fusing',
+      r1: '- Charging applies -600V DC to photosensitive drum using primary corona wire or roller.',
+      r2: '- Exposing uses laser to write electrostatic latent image by discharging drum to -100V.',
+      trap: 'Exam trap: Cleaning happens before Processing or after Fusing to scrape remnant toner.'
+    },
+    {
+      num: '#02',
+      tag: 'TRIVIA',
+      q: 'Toner smudges off a freshly printed page onto your fingers like loose charcoal dust. What part failed?',
+      hint: 'Toner is plastic powder that must be melted into paper fibers...',
+      a: 'The Fuser Assembly',
+      r1: '- Failed to reach ~200°C (~390°F) to melt plastic toner resin into paper fibers.',
+      r2: '- Pressure roller failed to squeeze melted resin into the grain.',
+      trap: 'Exam trap: Faded page = empty toner or transfer roller. Smearing loose powder = cold fuser.'
+    },
+    {
+      num: '#03',
+      tag: 'TRIVIA',
+      q: 'What are the pin counts for a legacy parallel printer cable on PC vs. printer?',
+      hint: 'DB-25 has screws, Centronics has wire spring clips...',
+      a: '25-pin DB-25 on PC, 36-pin Centronics on Printer',
+      r1: '- IEEE 1284 standard for legacy bidirectional parallel communications.',
+      r2: '- Maximum certified cable length is strictly 10 feet (3 meters).',
+      trap: 'Exam trap: Serial is 9-pin (DB-9) or 25-pin (DB-25); Parallel printer is always 36-pin Centronics.'
+    },
+    {
+      num: '#04',
+      tag: 'TRIVIA',
+      q: 'What DC voltages correspond to Orange, Red, and Yellow wires on a standard ATX power harness?',
+      hint: 'Black is always Ground (0V)...',
+      a: 'Orange = +3.3V, Red = +5V, Yellow = +12V',
+      r1: '- Orange (+3.3V): Logic chips, chipset, PCIe signaling, RAM.',
+      r2: '- Red (+5V): Legacy chips, USB ports, SATA logic.',
+      trap: 'Exam trap: Yellow (+12V) drives motors, fans, and CPU VRMs. Blue is -12V.'
+    },
+    {
+      num: '#05',
+      tag: 'TRIVIA',
+      q: 'What is the maximum certified channel distance for a Cat5e or Cat6 UTP Ethernet run?',
+      hint: 'Includes solid structural horizontal run plus stranded patch cords...',
+      a: '100 meters (328 feet total)',
+      r1: '- 90 meters solid-core horizontal run from patch panel to wall jack.',
+      r2: '- 10 meters total stranded patch cables (5m in closet + 5m at desk).',
+      trap: 'Exam trap: Beyond 100m causes signal attenuation and Ethernet collision timing failures.'
+    },
+    {
+      num: '#06',
+      tag: 'TRIVIA',
+      q: 'Power cuts abruptly during an office outage. Does data in dynamic RAM survive the drop?',
+      hint: 'Compare capacitors needing refresh cycles to magnetic/NAND storage...',
+      a: 'No. Dynamic RAM is Volatile',
+      r1: '- DRAM bits are stored as microscopic electrical charges in capacitors.',
+      r2: '- Without power delivering refresh cycles every few milliseconds, charge leaks to zero.',
+      trap: 'Exam trap: Non-volatile storage (SSD, HDD, NVMe, USB) retains bits; RAM collapses instantly.'
+    },
+    {
+      num: '#07',
+      tag: 'TRIVIA',
+      q: 'A workstation powers on, fans spin loudly, monitor shows "No Signal", and BIOS emits 1 long beep + 2 short beeps. What failed?',
+      hint: 'Standard AMI/Award BIOS power-on self test video alert...',
+      a: 'Display / Video Adapter Fault (GPU)',
+      r1: '- POST completed CPU check, but failed to initialize video adapter hardware.',
+      r2: '- Immediate action: Reseat the PCIe graphics card and verify auxiliary power harness.',
+      trap: 'Exam trap: Continuous long beeps = RAM missing/unseated. 1 Long + 2 Short = Video error.'
+    }
+  ];
+
+  let currentTriviaIdx = 0;
+
+  function renderTriviaCard() {
+    const stage = document.getElementById('storyTriviaCardStage');
+    if (!stage) return;
+    const card = storyTriviaDeck[currentTriviaIdx];
+    if (!card) return;
+
+    const flipper = document.getElementById('storyTriviaFlipper');
+    if (flipper) flipper.classList.remove('is-flipped');
+
+    const numFront = document.getElementById('storyCardNumFront');
+    const numBack = document.getElementById('storyCardNumBack');
+    const qEl = document.getElementById('storyCardQ');
+    const hintEl = document.getElementById('storyCardHint');
+    const aEl = document.getElementById('storyCardA');
+    const r1El = document.getElementById('storyCardR1');
+    const r2El = document.getElementById('storyCardR2');
+    const trapEl = document.getElementById('storyCardTrap');
+    const counterEl = document.getElementById('storyCardCounter');
+
+    if (numFront) numFront.textContent = card.num;
+    if (numBack) numBack.textContent = card.num;
+    if (qEl) qEl.textContent = card.q;
+    if (hintEl) hintEl.textContent = card.hint;
+    if (aEl) aEl.textContent = card.a;
+    if (r1El) r1El.textContent = card.r1;
+    if (r2El) r2El.textContent = card.r2;
+    if (trapEl) trapEl.textContent = card.trap;
+    if (counterEl) counterEl.textContent = 'CARD ' + (currentTriviaIdx + 1) + ' OF ' + storyTriviaDeck.length;
+  }
+
+  function initStoryTriviaDeck() {
+    const stage = document.getElementById('storyTriviaCardStage');
+    if (!stage) return;
+    if (stage._initialized) return;
+    stage._initialized = true;
+
+    const flipper = document.getElementById('storyTriviaFlipper');
+    const prevBtn = document.getElementById('storyCardPrevBtn');
+    const nextBtn = document.getElementById('storyCardNextBtn');
+    const flipBtn = document.getElementById('storyCardFlipBtn');
+    const shuffleBtn = document.getElementById('storyCardShuffleBtn');
+
+    if (flipper) {
+      flipper.addEventListener('click', function() {
+        flipper.classList.toggle('is-flipped');
+      });
+    }
+
+    if (flipBtn) {
+      flipBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (flipper) flipper.classList.toggle('is-flipped');
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentTriviaIdx = (currentTriviaIdx - 1 + storyTriviaDeck.length) % storyTriviaDeck.length;
+        renderTriviaCard();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentTriviaIdx = (currentTriviaIdx + 1) % storyTriviaDeck.length;
+        renderTriviaCard();
+      });
+    }
+
+    if (shuffleBtn) {
+      shuffleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        let nextIdx;
+        do {
+          nextIdx = Math.floor(Math.random() * storyTriviaDeck.length);
+        } while (nextIdx === currentTriviaIdx && storyTriviaDeck.length > 1);
+        currentTriviaIdx = nextIdx;
+        renderTriviaCard();
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      const activeStage = document.getElementById('storyTriviaCardStage');
+      if (!activeStage) return;
+      if (e.code === 'Space' && activeStage.matches(':hover')) {
+        e.preventDefault();
+        if (flipper) flipper.classList.toggle('is-flipped');
+      } else if (e.code === 'ArrowRight' && activeStage.matches(':hover')) {
+        e.preventDefault();
+        currentTriviaIdx = (currentTriviaIdx + 1) % storyTriviaDeck.length;
+        renderTriviaCard();
+      } else if (e.code === 'ArrowLeft' && activeStage.matches(':hover')) {
+        e.preventDefault();
+        currentTriviaIdx = (currentTriviaIdx - 1 + storyTriviaDeck.length) % storyTriviaDeck.length;
+        renderTriviaCard();
+      }
+    });
+
+    renderTriviaCard();
+  }
+
   /* ==========================================================================
      Taped Field Slate Tab & Side Switcher
      ========================================================================== */
@@ -537,6 +720,7 @@
         initPassportDecks();
         initJobAidTabs();
         initTapedSlates();
+        initStoryTriviaDeck();
 
         // If glossary.json was in-flight, poll until populated
         if (!window.__GLOSSARY__ || Object.keys(window.__GLOSSARY__).length === 0) {
