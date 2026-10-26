@@ -2,7 +2,7 @@
 
 *A Security+ ports-and-protocols precursor • Hover over highlighted terms for exam definitions and supporting desk/network jargon.*
 
-I was eight months into my tenure at the Portland Operations Center—long past the rookie freeze of my first payroll outage, but still carrying the habit of checking twice before recommending a firewall change. In my top drawer sat my red-banded index cards for Security+: service names on the front, port numbers and transport protocols on the back. I knew the numbers by heart now, but when the queue started barking, holding the paper kept my hands from jumping.
+I was a year into my tenure at the Portland Operations Center—long past the rookie freeze of my first payroll outage, but still carrying the habit of checking twice before recommending a firewall change. In my top drawer sat my red-banded index cards for Security+: service names on the front, port numbers and transport protocols on the back. I knew the numbers by heart now, but when the queue started barking, holding the paper kept my hands from jumping.
 
 Jules Brooks glanced over from her workstation, mug in hand. On the bezel of her primary monitor, her faded yellow sticky note asked *Which decision?* under the ceiling lights.
 
@@ -114,7 +114,8 @@ Jules reached over and tapped the edge of my monitor with her pen. "Read that re
 "Right. Now read the second half of it out loud," Jules said, her voice quiet and direct. "Our cyber insurance renewal questionnaire asks whether port 3389 faces the public internet. That is a policy termination conversation, not a movie plot. Automated ransomware scripts scan that port every second of every day. And Sam is not the only ticket on the board right now."
 
 She pointed to the queue monitor above our heads. A facilities tech was asking for unauthenticated UDP TFTP on port 69 across the user VLAN, legal could not bind to cleartext TCP LDAP on 389 across the guest SSID, and network monitoring was asking to poll edge switches using cleartext UDP SNMP on 161 with a community string of `public`.
-
+
+
 
 "Six tickets, six shortcuts," Jules said, her voice dropping into operational focus. "Sam wants RDP to the open street, and five other teams want to send credentials in cleartext. Map every legacy port to its encrypted replacement, configure the jump host rule, and submit the firewall change before someone punches an uninsurable hole in our edge."
 

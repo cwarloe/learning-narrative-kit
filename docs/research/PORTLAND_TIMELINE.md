@@ -29,8 +29,10 @@ $$\text{Laborer / Student} \longrightarrow \text{IT Rotation} \longrightarrow \t
 │ Ep 00   │ The Four Rubber      │ Year 1:     │ About 7 months on the graveyard dock at │
 │         │ Bands (A+ Prologue)  │ Late July   │ Harrowmere Gresham, unloading 80 lb     │
 │         │                      │ (20)        │ bags of Quikrete Concrete Mix. Studies  │
-│         │                      │             │ flashcards by day at the kitchen table  │
-│         │                      │             │ in the East Portland duplex.            │
+│         │                      │             │ flashcards on his night off at the      │
+│         │                      │             │ kitchen table. Failed Core 1 six weeks  │
+│         │                      │             │ ago (592); passes the retake next       │
+│         │                      │             │ morning with 690.                       │
 ├─────────┼──────────────────────┼─────────────┼─────────────────────────────────────────┤
 │ Ep 01   │ The Paper Cert (A+   │ Year 2:     │ Graveyard dock, ~14 months in. Sorting  │
 │         │ Core 1 Hardware)     │ February    │ Line 4; multimeter and Kapton tape. Ken │
@@ -51,8 +53,8 @@ $$\text{Laborer / Student} \longrightarrow \text{IT Rotation} \longrightarrow \t
 │         │ Doesn't Care (Net+)  │ October     │ solo; rogue static IPs and broadcast    │
 │         │                      │ (22)        │ boundaries.                             │
 ├─────────┼──────────────────────┼─────────────┼─────────────────────────────────────────┤
-│ Ep 04   │ The Name Is Not the  │ Year 3:     │ 5 months on the desk. Flashcards moved  │
-│         │ Number (Net+ DNS)    │ January     │ to the desk drawer. Split-horizon DNS   │
+│ Ep 04   │ The Name Is Not the  │ Year 3:     │ 7 months on the desk. Flashcards moved  │
+│         │ Number (Net+ DNS)    │ March       │ to the desk drawer. Split-horizon DNS   │
 │         │                      │ (22)        │ and a stale hosts file.                 │
 ├─────────┼──────────────────────┼─────────────┼─────────────────────────────────────────┤
 │ Ep 05   │ The Wire Has Two     │ Year 3:     │ 8 months on the desk. Cable plant,      │
@@ -143,7 +145,7 @@ Most of this is off the page. It exists so every episode and NADF agree on how E
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | June, year of graduation | 18 | Graduates high school; no money for college | — | — | Off |
 | Up to 2 years | 18–20 | Restaurant job (line cook, later shift lead). Drift: the pay is fine, the future is not | — | ~$18–23/hr | Off (Ep 00 memory) |
-| ~14 months | 20–21 | Non-technical graveyard dock job, Harrowmere Gresham distribution warehouse; studies by day | A+ (~10 months of study) | ~freight median ($22.17) + night differential | Ep 00–01 |
+| ~14 months | 20–21 | Non-technical graveyard dock job, Harrowmere Gresham distribution warehouse; studies by day and on nights off | A+ Core 1: failed first attempt in mid-June of Year 1 (592), passed the retake in late July (690). Core 2 followed before Ep 01 | ~freight median ($22.17) + night differential | Ep 00–01 |
 | February | 21 | Line 4 sorting-line fix; Ken writes the internal referral | — | — | Ep 01 |
 | ~6 months | 21 | IT rotation on day shift (imaging bench, deployments, desk-side, one overnight week). Quasi-apprenticeship, not a formal internship | Net+ study begins | ~$20–21/hr: a slight cut, traded for day shift | Covered at the start of Ep 02 |
 | Late August | 21 | Passes Jules's practical; joins the desk | — | ~$24/hr | Ep 02 |

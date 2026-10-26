@@ -2,7 +2,7 @@
 
 *A CompTIA Network+ transport layer and socket diagnostics precursor • Hover over highlighted terms for technical definitions and triage mechanics.*
 
-A blustery October downpour lashed the high windows of the Portland Operations Center, turning the riverfront bridges into gray silhouettes. I was four months into my probationary tenure on the service desk, my workstation flanked by a crate of spare patch cords and two Dell OptiPlex towers staged for imaging.
+A blustery April downpour lashed the high windows of the Portland Operations Center, turning the riverfront bridges into gray silhouettes. I was eight months into my tenure on the service desk, my workstation flanked by a crate of spare patch cords and two Dell OptiPlex towers staged for imaging.
 
 Across the aisle, Jared Vance was already in mid-crisis. His elbows were dug into his desk blotter, his mechanical keyboard clattering furiously under a stack of router terminal windows. His automated configuration backup script had aborted at quarter past three in the morning, leaving three hundred switches unarchived and filling his console with red stack traces.
 
