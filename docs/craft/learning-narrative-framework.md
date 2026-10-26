@@ -108,6 +108,14 @@ Early chapters can be gentler, since a beginner reader needs some safety. Gentle
 9. **The costs are proportionate.** The chapter is not melodrama, and the reader is never lost even when the narrator is.
 10. **The existing gates still pass:** `validate_unit.py`, the cover test, density, term placement, and the `schema/VOICE.md` repair pass.
 
+
+## Decision (Charles, 2026-10-26): the learner is safe, Ethan is not
+
+- "Satisfying conclusion" is not a rule. No research in the kit requires it; it was a design choice in the pedagogy doc. The learner's satisfaction comes from the workbench: they solve the worked example completely, then apply it to at least one more example there. Ethan's chapter ending does not have to be satisfying. He can learn the concept the hard way, pay for it, and move on.
+- "Zero test anxiety" applies only to the learner, and the workbench already gives them a safe place to practice. Ethan can have as much test anxiety as the story needs.
+- Ethan is the punching bag. He can struggle with anxiety, distraction, bad reactions to certain kinds of questions, or a learning disability he discovers along the way. Give him the problems real learners are likely to have, with real consequences, and let him work through them on the page. More problems are better, as long as each one serves a lesson or a struggle the reader recognizes.
+- Keep the passive-playback guard from the pedagogy doc. Ethan's hard-won lesson should not spend the learner's discovery for them. The workbench is still where the reader solves it.
+
 ## Worked example: Portland Desk Chapters 00–2
 
 These are short illustrations of each principle drawn from the review. The full review is in PR #29.
@@ -123,8 +131,8 @@ These are short illustrations of each principle drawn from the review. The full 
 
 The following existing rules pull against this framework. None of them has been changed. Each needs an author decision.
 
-1. **`docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`, §3, Model 2, Part 2.** It says "the learner unlocks the satisfying conclusion: Ethan executes the verified fix, the motors spool up, the route is saved." Authoring checklist item 4 says to focus on "the quiet satisfaction of a saved shift." Both prescribe the clean, happy resolution this framework argues against (principles 2 and 5). A possible reconciliation is to keep the epilogue and require it to charge a cost and leave a carry-forward item.
-2. **`docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`, §3, Model 1 (Episodes 00–02).** It says "Maximum safety and zero test anxiety." That is compatible with low reader anxiety, but it is often read as "nothing goes wrong for Ethan," which conflicts with principle 4. This framework's position is that early chapters get smaller costs, not zero costs.
+1. **(Resolved 2026-10-26, see Decision above.)** **`docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`, §3, Model 2, Part 2.** It says "the learner unlocks the satisfying conclusion: Ethan executes the verified fix, the motors spool up, the route is saved." Authoring checklist item 4 says to focus on "the quiet satisfaction of a saved shift." Both prescribe the clean, happy resolution this framework argues against (principles 2 and 5). A possible reconciliation is to keep the epilogue and require it to charge a cost and leave a carry-forward item.
+2. **(Resolved 2026-10-26, see Decision above.)** **`docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`, §3, Model 1 (Episodes 00–02).** It says "Maximum safety and zero test anxiety." That is compatible with low reader anxiety, but it is often read as "nothing goes wrong for Ethan," which conflicts with principle 4. This framework's position is that early chapters get smaller costs, not zero costs.
 3. **`docs/research/PORTLAND_AUTHOR_BIBLE.md`, Episode 00 card, "Resolution & Cost."** It says "Ethan... clicks submit with sweating palms, and scores a 742/900." The PR #29 review recommends a narrower pass or a failed exam. The bible's listed cost ("His bank account is still drained") is a condition that already existed, not a cost of the decision. The canon score stays at 742 until the author decides otherwise.
 4. **`docs/research/PORTLAND_AUTHOR_BIBLE.md`, Episode 01 card.** It says "The trucks depart on time." The PR #29 review suggests that one trailer should miss. Note that the bible *does* charge costs that the current chapter text drops: "ruins a fifty-dollar staging cable, severely bruises his knuckles." Restoring those costs needs no rule change. Making a truck miss does.
 5. **`docs/research/PORTLAND_AUTHOR_BIBLE.md`, Episode 01 pivot.** Ethan "repairs the physical insulation, straightens a bent pin with a mechanical pencil, and matches the serial baud rate using DIP switches." He does all of it alone, and no knowledgeable second person appears. That pulls against principle 3. It does not forbid adding a helper, but it does not ask for one either.
