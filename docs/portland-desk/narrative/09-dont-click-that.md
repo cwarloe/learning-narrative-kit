@@ -51,7 +51,7 @@ Jules appeared at my cube wall.
 
 "Read the From," she said. "Not the display. The actual From."
 
-Display name: *Avery Chen, CFO*. Address: `avery.chen@c0mpany-mail[.]biz`. Reply-To somewhere else entirely. The logo in the signature was crisp.
+Display name: *Avery Holloway, CFO*. Address: `avery.holloway@c0mpany-mail[.]biz`. Reply-To somewhere else entirely. The logo in the signature was crisp.
 
 "Spoofing the display name," I said. "Executive impersonation of our CFO. When an attacker targets the executive directly, that's [[whaling|whaling]]; when they impersonate the executive to trick accounts payable into wiring money, that is classic CEO Fraud under [[bec|business email compromise (BEC)]]. Nobody confirms wiring instructions from an email thread. Call Avery on an internal extension from the badge directory, not the phone number in that email footer."
 

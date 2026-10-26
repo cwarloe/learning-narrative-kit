@@ -10,8 +10,8 @@ Authentication-Results: mail-gateway02.harrowmere.com;
 	spf=softfail (mail-gateway02.harrowmere.com: domain of transition-exec@harrowrnere.com does not designate 185.220.101.42 as permitted sender) smtp.mailfrom=transition-exec@harrowrnere.com;
 	dmarc=fail (p=quarantine dis=quarantine) header.from=harrowrnere.com
 Received-SPF: softfail (mail-gateway02.harrowmere.com: domain of transition-exec@harrowrnere.com does not designate 185.220.101.42 as permitted sender) client-ip=185.220.101.42;
-From: "Avery Chen (CFO)" <achen@harrowrnere.com>
-Reply-To: "Avery Chen (Personal Mobile)" <avery.chen.cfo78@gmail.com>
+From: "Avery Holloway (CFO)" <aholloway@harrowrnere.com>
+Reply-To: "Avery Holloway (Personal Mobile)" <avery.holloway.cfo78@gmail.com>
 To: nora.higgins@harrowmere.com
 Subject: URGENT: Off-cycle payroll direct deposit account update - Confidential
 Date: Wed, 10 Dec 2025 08:11:45 -0800
@@ -38,12 +38,12 @@ Confirm once updated in ADP/Workday. Keep this confidential until my return tomo
 
 Best regards,
 
-Avery Chen
+Avery Holloway
 Chief Financial Officer
 Harrowmere Equipment Group
 ------=_Part_9281_10482910.1697897505
-Content-Type: application/octet-stream; name="AveryChen_VoidedCheck_RoutingUpdate.pdf.exe"
-Content-Disposition: attachment; filename="AveryChen_VoidedCheck_RoutingUpdate.pdf.exe"
+Content-Type: application/octet-stream; name="AveryHolloway_VoidedCheck_RoutingUpdate.pdf.exe"
+Content-Disposition: attachment; filename="AveryHolloway_VoidedCheck_RoutingUpdate.pdf.exe"
 Content-Transfer-Encoding: base64
 
 TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

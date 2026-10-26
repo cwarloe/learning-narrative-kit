@@ -345,7 +345,7 @@ ssh jared@10.0.4.15: |
 
 ---
 
-#### Ticket 3: Lena Cho (Legal Dept Onboarding) — `INC0063144`
+#### Ticket 3: Bettina Szabo (Legal Dept Onboarding) — `INC0063144`
 *Request:* "Connecting from Guest Wi-Fi in the lobby. Password reset portal reports `LDAP error 81 (Cannot contact directory server)`. Connecting to dock gives `Kerberos clock skew error`."
 
 * **Your Action:** [ Diagnostic & Configuration Changes ]

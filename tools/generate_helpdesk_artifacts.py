@@ -161,7 +161,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
         },
         {
             "ticket_id": "INC0063144",
-            "requester_name": "Lena Chen",
+            "requester_name": "Bettina Szabo",
             "requester_email": "lchen@portland-ops.local",
             "department": "Legal",
             "priority": "P2 - High",

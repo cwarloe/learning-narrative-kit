@@ -123,13 +123,13 @@ graph LR
 ### 3.2 Supporting Cast
 - **Rosa Ibarra (Night Maintenance Tech, Gresham):** Forty-four, headlamp over a beanie. Covers Hank's routes in Ep 01. Knows motors, fuses, and meters, and says plainly what she does not know about computers. A recurring knowledgeable peer (framework principle 3a), not a mentor.
 - **Ken (Warehouse Logistics Supervisor):** Fifty-year-old shipping veteran. Manages the high-bay distribution annex. If his forklift operators cannot scan pallets because steel racking blocks Wi-Fi signals, Ken buys an off-the-shelf consumer router from an electronics store and plugs it into the nearest wall jack. He views IT as an obstacle to shipping pallets on time.
-- **Lena Chen (Tier 2 Systems Administrator, Portland ROC):** Owns the VPN gateway and the Hillsboro DHCP failover. Ethan escalates to her in Ep 04. Not to be confused with Lena Cho in legal.
+- **Lena Chen (Tier 2 Systems Administrator, Portland ROC):** Owns the VPN gateway and the Hillsboro DHCP failover. Ethan escalates to her in Ep 04.
 - **Marisol (Accounts Payable, works with Maya):** Nine years in AP and knows every vendor's real domain. She verifies the Ep 09 wire request by phone and pays for the save with an afternoon of callbacks.
 - **Dale Okafor (Facilities Vendor Engineer):** The appliance engineer from Ep 07 who calls from his truck, and again in Ep 08.
 - **Rina Rostova (Facilities Lead):** Her team folder is encrypted in Ep 10.
 - **Owen (Facilities Field Technician):** Practical, always on the move with a heavy tool belt. Manages building management systems (BMS), badge readers, HVAC controllers, and network printers. Pragmatic to a fault; frequently attempts to push unauthenticated firmware updates across user subnets to beat his transit schedule.
 - **Dee (Network Monitoring Specialist):** Sits in the network bullpen. Obsessed with clean Grafana dashboards and switch interface telemetry. Prefers default SNMP templates because they "just graph without a fight," serving as Jared’s junior co-conspirator.
-- **Lena Cho (Legal & Compliance Junior Associate):** Detail-oriented, newly hired attorney who struggles through corporate onboarding. Her encounters with Active Directory domain joins, Kerberos ticket expiration, and document classification policies highlight the operational friction of enterprise compliance.
+- **Bettina Szabo (Legal & Compliance Junior Associate):** Detail-oriented, newly hired attorney who struggles through corporate onboarding. Her encounters with Active Directory domain joins, Kerberos ticket expiration, and document classification policies highlight the operational friction of enterprise compliance.
 - **Marco (Cabling & Closet Technician):** Junior field contractor responsible for physical patch panels, structured cabling, and telecommunications closets. Frequently creates unintentional Layer 2 switching loops and cleartext syslog diversions out of convenience.
 
 ### 3.3 The Chicago Presence
@@ -154,9 +154,9 @@ graph LR
 | Sam | Kelly | Finance contractor |
 | Leah | Moreno | Willamette River plant operations lead |
 | Lena | Chen | Tier 2 systems administrator |
-| Lena | Cho | Legal and compliance associate |
+| Bettina | Szabo | Legal and compliance associate |
 | Marisol | none | Accounts payable |
-| Avery | Chen | Chief financial officer |
+| Avery | Holloway | Chief financial officer |
 | Dale | Okafor | Facilities vendor engineer |
 | Rina | Rostova | Facilities lead |
 | Owen | Castillo | Facilities field technician |
@@ -344,7 +344,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 ### Card 09: Don't Click That
 
 - **Placement:** Act III, Phase 3. Year 3, December. 16 months on the desk. Still Tier 1; the Tier 2 posting reopens this month. Ethan is 23.
-- **Setting and cast:** Portland ROC. Jules, Marisol (AP), Maya, Nora, Sam, Todd, and Avery Chen (CFO, impersonated).
+- **Setting and cast:** Portland ROC. Jules, Marisol (AP), Maya, Nora, Sam, Todd, and Avery Holloway (CFO, impersonated).
 - **Goal:** Stop a spoofed CFO wire-change request before the afternoon batch.
 - **Complication:** A $48,000 wire request, an archive attachment, and MFA fatigue pushes on Dev's phone, all at once.
 - **Pivot:** Ethan pulls headers, checks SPF, DKIM, and DMARC, and gets a quarantine hash to the mail gateway, and Marisol verifies by phone.
