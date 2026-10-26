@@ -23,7 +23,7 @@ At 08:30, Maya Lin from Accounting marched past the glass partition holding her 
 
 "It is possessed, Ethan," Maya said, dropping the machine onto my staging mat with a plastic clatter. "Pop-ups. Every time I open Chrome, five tabs try to sell me Caribbean cruises. The fan is screaming. My standup with the VP is in twelve minutes. Wipe it clean and image it from the thumb drive."
 
-Twenty-two months ago, I would have reached straight into the drawer for the bootable USB. Back then, "possessed" meant fire, and fire meant formatting the disk. I took the laptop, reached for the Ethernet jack to pull the copper, and had my hand on the imaging drive when Jules set her coffee mug on the divider wall with a dull *clack*.
+Twenty-two months ago, I would have reached straight into the drawer for the bootable USB. Back then, "possessed" meant fire, and fire meant formatting the disk. I took the laptop, reached for the Ethernet jack to pull the copper, and had my hand on the imaging drive when Jules said my name once, without turning around.
 
 "What did the box do, Ethan?" Jules asked, without looking up from her screen. "Besides scare Maya?"
 
@@ -79,15 +79,15 @@ Before Jules could answer, Jared Vance burst into our aisle from the server room
 
 "He clicked `SOW_final.pdf.exe`," Jared answered. "The file spawned a hidden PowerShell loop. I just checked our distribution core switch. Todd's machine is running automated SMB share sweeps across `10.100.0.0/16`, spraying harvested credentials across every administrative share it can find."
 
-"The same hash as Sam's quarantine sample from two weeks ago," I said, pulling the SHA-256 ledger from my desk notebook: `9f2c8d1e...c41a`. "The threat actor had a physical USB drop coordinated with the cloud credential phishing."
+Jared found the link first, in the switch logs. Todd's workstation had opened a session to the staging jump host four minutes after the USB went in. "Same jump host Nora's account just hit," he said. "This is one intrusion, not two."
 
 "It's worse than that," Jared said, tapping my secondary screen. "Look at the authentication logs on `SRV-STAGE-01`."
 
-My screen refreshed. `SRV-STAGE-01` was the dual-homed staging jump host we had hardened in Episode 07. It bridged the corporate management subnet with the isolated industrial operations network. Thirty seconds ago, Nora's compromised credentials had successfully authenticated against the jump host via SSH from `FIN-NORA-02`.
+My screen refreshed. `SRV-STAGE-01` was the dual-homed staging jump host Jared had hardened the summer before. It bridged the corporate management subnet with the isolated industrial operations network. Thirty seconds ago, Nora's compromised credentials had successfully authenticated against the jump host via SSH from `FIN-NORA-02`.
 
 And thirty seconds after that, the network edge firewall logged an outbound connection attempt on port 8443 originating from `GW-PLANT-04`—the SCADA edge gateway at the Willamette River Water Treatment Facility—reaching out to the exact same external command-and-control IP: `185.22.112.14`.
 
-The pieces snapped together with terrifying clarity. This was not four random help desk tickets. This was a synchronized, multi-vector enterprise intrusion: credential phishing, memory-resident C2 beaconing, physical removable media lateral movement, and a direct pivot into the critical municipal water utility grid.
+The pieces snapped together with terrifying clarity. This was not four random help desk tickets. This was a synchronized, multi-vector enterprise intrusion: credential phishing, memory-resident C2 beaconing, physical removable media lateral movement, and a direct pivot toward the Willamette River plant's control network.
 
 ## The red binder and the clock
 
@@ -101,13 +101,7 @@ She set the red binder in front of my keyboard.
 
 She pointed to the anti-static evidence pouches on my desk.
 
-"You have two compromised endpoints on this floor, an active exfiltration pipeline, and a live connection into the plant SCADA network. If you pull the power plugs, the adversary's encryption keys and volatile process handles in [[ram_memory|RAM]] evaporate into zero bits forever. If you leave them on the network, the exfiltration script drains the water plant telemetry. 
-
-You are the first responder on this shift. Follow the [[order_of_volatility|Order of Volatility]]. Isolate the endpoints from the wire, execute a forensically sound live memory capture, compute the cryptographic SHA-256 hashes before you touch storage, establish the legal chain of custody, and build the formal CSIRT Escalation Dossier before the clock runs out."
-
-I looked down at the red binder. Three years ago, I was an anxious twenty-year-old kid on the Gresham loading dock, clutching an eight-hundred-page textbook and terrified of failing a multiple-choice test in a Beaverton strip mall. 
-
-Today, there were no multiple-choice questions. The municipal grid was on the line, and Jules had handed me the incident pen to brief Nia Alvarez.
+I started the memory capture on Todd's workstation while Jared pulled the port list for the jump host. Nia joined the bridge at 2:52 and asked for the hashes before she asked for anything else. I read them off the capture log while the second capture was still running.
 
 ## What It Cost
 

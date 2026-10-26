@@ -162,12 +162,6 @@ Vlan    Mac Address       Type        Ports
 
 Jared Vance checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here."
 
-Jules looked at me, tapping her pen against the edge of the desk.
-
-"Two physical machines fighting over one Layer 3 address, Ethan. One is halting freight, and the other is plugged into port twenty-eight somewhere out in that warehouse. How do you isolate the conflict, track down the rogue hardware, and lock down the DHCP pool before Ken has to shut down the dock?"
-
-I pulled up the switch interface monitor and opened the passdown template. I had a flapping ARP entry to isolate, an unmanaged printer to hunt down, and a scope to reconfigure.
-
 ## Port Twenty-Eight
 
 I had Ken check the warehouse floor for anything that had been moved or plugged in since yesterday. He groaned over the radio. Owen had wheeled an old HP LaserJet 4050 into the breakroom the afternoon before and typed in the static settings from a faded label under its paper tray, `10.100.4.55`, the address DHCP had already leased to Frank.

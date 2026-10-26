@@ -24,7 +24,7 @@
 
 This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
 
-**The incident.** A scan showed RDP, LDAP, FTP, Telnet, and SNMP `public` in use, and a sales VP asked for 3389 to the internet.
+**The incident.** A scan showed RDP, LDAP, FTP, Telnet, and SNMP `public` in use, and Sam, a contractor on the road, asked for 3389 to the internet.
 
 1. For each request, name the port and ask what it exposes in clear text.
 2. Show the risk with a capture. Jared's Telnet password scrolled past.
@@ -45,14 +45,9 @@ prompt: "Clean technical schematic of a corporate network perimeter under bright
 
 
 ### The Situation
-It is 08:30 on a rain-soaked Tuesday morning on the east side of Portland. You are three weeks into your role on the Portland service desk. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet slung over her monitor arm, sipping black coffee. On the edge of her screen is a faded yellow sticky note:
+It is a Tuesday in August, and Ethan has been on the Portland desk for a year. The queue is full of people carrying habits from somewhere else. Jared's switch script still speaks Telnet. Sam, a contractor traveling for a client, wants RDP on 3389 opened to the internet. Dale Okafor, a facilities vendor engineer, wants FTP on 21 for an appliance. Legal's tool binds to cleartext LDAP on 389. Leah Moreno at the Willamette River plant wants telemetry across the perimeter, and HR's benefits portal still loads over HTTP.
 
-$$\boxed{\textbf{Which decision?}}$$
-
-Ethan’s desk drawer is packed with port flashcards—`22`, `23`, `25`, `80`, `110`, `143`, `443`, `993`, `995`. But as Jules made clear before the first sip of coffee:
-> *"Memorizing the numbers gets you past a multiple-choice flashcard. It does not save you on the phone when an engineer wants port 23 opened, an accountant is locked out of her email on hotel Wi-Fi, or plant operations wants raw Modbus routed across a public WAN. On this desk, a port request is never just a number—it is a security decision."*
-
-The morning queue has 14 incoming tickets. Users and department heads are demanding quick firewall exceptions, legacy scripts are failing against hardened closet switches, and contractors want Remote Desktop open directly to the internet.
+This lab follows those requests. For each one, name the port, name what crosses the wire in clear text, and offer the secure twin.
 
 ### The Ground Truth Rules of the Desk
 1. **Ports are Doors, Protocols are Languages:** Opening a port allows traffic to reach a listening daemon. If that protocol speaks cleartext, any intermediary on the path (an attacker on guest Wi-Fi, a compromised switch span port, an ISP tap) can harvest passwords, session tokens, and business data without triggering alarms.

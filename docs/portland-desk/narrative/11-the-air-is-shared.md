@@ -2,9 +2,9 @@
 
 *A Security+ wireless precursor • Hover over highlighted terms for exam definitions and supporting desk jargon.*
 
-Friday morning opened with the whine of the vacuum cleaner in the hallway and Maya Lin already standing at the front counter holding an iPad.
+Friday morning opened with the whine of the vacuum cleaner in the hallway and a ticket from Maya Lin that had been sent from the lobby.
 
-"Wired connections have physical copper you can trace with your fingers," Jules said, stepping out of the server closet with a handheld spectrum analyzer. "Wireless is invisible friction. Verify the BSSID, enforce 802.1X enterprise authentication over convenience, and treat any sudden open twin as hostile."
+Jules came out of the server closet with a handheld spectrum analyzer and set it on my desk without a word. The display was already busier than it should have been.
 
 Ken had not called my desk line since the laptop. When he finally wrote, it was a two-line email asking whether the barcode scanners in the warehouse were safe on Wi-Fi. I wrote back that they were. By Thursday I was less sure.
 
@@ -61,7 +61,7 @@ While we were there, the analyzer showed our real APs alongside faint guest beac
 
 ## Disassociation, jamming, and the reconnect reflex
 
-Afternoon: Dev from engineering pinged that his laptop kept dropping Wi-Fi every few minutes, then auto-joined whatever answered first. He was in the cafe seating near the lobby glass.
+Dev showed up at the help desk window holding his laptop like a tray, because it kept dropping Wi-Fi every few minutes, then auto-joined whatever answered first. He was in the cafe seating near the lobby glass.
 
 "I did not change anything," he said. "It just flaps. Then it asks for passwords it already knew."
 
@@ -71,13 +71,11 @@ Wireless ops had a note on the bridge: bursts of spoofed [[disassociation|deauth
 
 Dev docked. The flapping stopped because copper does not care about deauth theater.
 
-Jules leaned over from the wireless management console. "We have a rogue consumer router bridging unknown devices straight onto the corporate data VLAN in conference room 3B, an active Evil Twin spoofing our SSID in the lobby, and deauthentication flood attacks kicking laptops off the air. If those barcode scanners in the warehouse lose connection or authenticate to the rogue, shipping stops. Grab the Wi-Fi analyzer, decode the 802.11 association frames, triangulate the rogue BSSID signal, and trace the physical switch port to shut down the rogue AP before the morning standup."
-
 ## Owen and the bench in the lobby
 
-The evil twin was not in the air. It was in the lobby, a small battery-powered access point taped under a bench by the visitor sign-in tablet. I called Owen up from facilities before I touched it.
+The evil twin was not in the air. It was in the lobby, a small battery-powered access point taped under a bench by the visitor sign-in tablet. I found Owen in the loading dock vestibule, where he was replacing a door closer, and he followed me back.
 
-Owen walked the lobby with me and pointed out what I had walked past for two years: the camera over the front desk did not cover the benches, the badge reader on the inner door was the only controlled boundary, and the cleaning crew propped the side door during evening rounds. He knew the cameras, locks, and doors, and he said plainly that he did not know what the device under the bench was doing on the network.
+Owen walked the lobby with me and pointed out what I had walked past for two years: the camera over the front desk did not cover the benches, the badge reader on the inner door was the only controlled boundary, and the cleaning crew propped the side door during evening rounds. He knew the cameras, locks, and doors, and he admitted right away that he did not know what the device under the bench was doing on the network.
 
 "Somebody sat here long enough to tape that up," he said. "Nobody stopped them because the lobby's public. That's on purpose. The question is where public stops." We wrote down the three places it stopped: the inner badge door, the server closet lock, and the camera blind spot that needed fixing.
 
@@ -87,7 +85,7 @@ We found the travel router under the credenza in 3B and shut its switch port. Th
 
 Owen took the lobby personally. He had the side door re-keyed that week and put in for a second camera. The camera did not come that month.
 
-It still slowed the dock, and it cost me a Saturday. Re-enrolling the scanners onto 802.1X took most of the next morning, and Ken's crew scanned by hand at two doors until noon. He called my desk line to tell me exactly how many pallets that had cost. It was the first time he had called me since the laptop.
+It still slowed the dock, and it cost me a Saturday. Re-enrolling the scanners onto 802.1X took most of the next morning, and Ken's crew scanned by hand at two doors until noon. He drove up from Gresham that afternoon and stood at my desk to tell me exactly how many pallets that had cost. It was the first time he had spoken to me since the laptop.
 
 Jules had told me to keep the survey data. "Save what normal looks like," she said, "or you'll never know what weird is." I saved the wireless baseline to the shared drive with a note to her and added to it every week after that, mostly because she checked.
 

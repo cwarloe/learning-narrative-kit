@@ -47,12 +47,9 @@ prompt: "Clear technical cutaway illustration of a network architecture schemati
 
 
 ### The Situation
-It is 08:20 on a damp Tuesday morning in late September. Low clouds hang over the Willamette River, and early morning squalls have swept through East Portland. Outside the operations center, rainwater drains along the roof gutters. Inside the facility, the service desk ticket queue has spiked with fourteen critical incidents originating from Building B—the logistics annex and water pump station two miles south.
+It is 08:00 on a damp Tuesday in October, and Ethan has been on the Portland service desk for two months. Early squalls along the Willamette have knocked out utility power across the industrial district, and fourteen priority tickets land within three minutes. Ken calls from the Gresham dock: three freight clerks in Building B have lost the network. Owen calls from facilities: the new pump telemetry loggers have dropped offline.
 
-Workstations on the warehouse intake dock, barcode scanners on shipping line four, and automated water pump loggers cannot connect to central services. The freight clerks report that shipping portals have frozen with socket errors, and facilities technicians report that telemetry feeds have dropped. Desks report that "the internet is dead." 
-
-When apprentice technician Ethan Mercer instinctively grabs the telephone to report an external carrier fiber cut to CenturyLink, Desk Lead Jules Brooks stops him in his tracks:
-> *"Put the telephone down, Ethan, and look at your own desk first. Can you ping the gateway for that subnet from our core switch? Can you ping the loopback address on one of their endpoints? You do not know if their local operating system stack is functioning. Start on your side of the glass. Never jump to the WAN when your own gateway hasn't answered you."*
+This lab follows the same morning as the chapter. Building B's workstations show `169.254.x.x` addresses, which point at DHCP, not a fiber cut. The pump logger `PDX-PUMP-LOG02` sits on the wrong side of a `/26` boundary from its own gateway. Frank's desktop and a breakroom printer both claim `10.100.4.55`, and the printer is plugged into port twenty-eight.
 
 ### The Ground Truth Rules of IP Addressing & Local Delivery
 

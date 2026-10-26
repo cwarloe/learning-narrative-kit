@@ -4,7 +4,7 @@
 
 A gray March downpour beat against the high double-paned windows of the fourth floor. Seven months on the Portland Operations Center desk had taught me the rhythms of the building: which closet switches ran warm, which departments panicked before payroll cutoff, and how fast a wet morning turned into a ticket surge.
 
-The Gresham static list was still taped to the side of my monitor. Five of the eleven devices were down to proper reservations. The other six belonged to people who had not returned my emails, and one of them, a staging laptop Owen had set up in a trailer the previous September. <!-- date-ok -->
+The Gresham static list was still taped to the side of my monitor. Five of the eleven devices were down to proper reservations. The other six belonged to people who had not returned my emails, and one of them was a staging laptop that a contract developer had set up in a trailer the previous September. <!-- date-ok -->
 
 Across the center aisle, Tier 2 systems administrator Lena Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules Brooks sat to my left, finishing her first coffee while auditing overnight firewall changes.
 
@@ -31,7 +31,7 @@ Jules took a sip from her ceramic mug and leaned over my cubicle partition. She 
 
 "Jared thinks the residential internet providers are dropping our internal routes," I replied. I brought up a command prompt on Greg's desktop. "I was going to ping the web server name to see where the packets die along the path."
 
-Jules set her coffee mug down with a soft ceramic clink. "If you try to ping a domain name that cannot be resolved, ping will not tell you anything about routing health. It will simply tell you that your operating system has no idea what destination address to put into the packet header. When a user tells you a website is down, remember that the name is not the number. Trace who answers the question before you assume the wire is broken."
+Jules did not look away from her own screen. "If you try to ping a domain name that cannot be resolved, ping will not tell you anything about routing health. It will simply tell you that your operating system has no idea what destination address to put into the packet header. When a user tells you a website is down, remember that the name is not the number. Trace who answers the question before you assume the wire is broken."
 
 ## The contractor's forgotten shortcut
 
@@ -111,19 +111,13 @@ DNSServer                    : 10.100.10.2, 10.100.10.3
 
 "To make matters worse, look at the negative response caching," Lena added, pulling up the resolver cache. "Windows aggressively caches that NXDOMAIN using the negative TTL defined in the upstream SOA record. So even if the employee restarts their browser or reconnects the tunnel, the operating system keeps serving the failure until the negative cache expires or you flush it."
 
-Jules set her mug down and leaned over the cubicle partition, her eyes scanning the board where eighteen tickets continued to flash amber.
-
-Jules picked up her phone to intercept another incoming call from finance. "We have eighty-two tunnels open and seventy remote workers locked out of payroll while Jared is ready to yell at Comcast. The XML profile fix has to push cleanly, the adapter metrics need to prioritize the tunnel, and that negative cache trap has to clear without rebooting eighty laptops in the middle of their shift."
-
-She looked back over her monitor. "You have fifteen minutes before accounting calls the Director, Ethan. Fix the plumbing."
-
-I looked at the terminal output and the dual adapter configuration. The tunnel was wide open, but the packets were flying blind. I needed to isolate the DNS leak, calculate the corrected adapter metrics, and draft the infrastructure escalation before the morning payroll deadline expired.
+Jules stood to stretch her back, her eyes scanning the board where eighteen tickets continued to flash amber.
 
 ## Asking the Right Stranger
 
 The tunnel adapter had a worse interface metric than the hotel Wi-Fi, and the client had no `harrowmere.local` suffix to try, so internal names went out to public DNS and came back as a parked domain. I took the evidence to Lena Chen, our Tier 2 systems administrator, because the VPN gateway was hers and not mine to change. She pushed a client profile revision with an interface metric of 10 on the tunnel adapter, the internal suffix on the search list, and smart multi-homed resolution turned off.
 
-I sent the affected users three steps: disconnect, reconnect to pull the new profile, and run `ipconfig /flushdns` to clear the cached failures. Within twelve minutes, seventy-five endpoints had the fix. Greg in Hillsboro watched the parked page turn into our payroll login and submitted his timesheets.
+I sent the affected users three steps: disconnect, reconnect to pull the new profile, and run `ipconfig /flushdns` to clear the cached failures. Within twelve minutes, all seventy locked-out users had the fix. Greg in Hillsboro watched the parked page turn into our payroll login and submitted his timesheets.
 
 The fix for the users held, but the real problem was not mine to fix. I wrote the escalation for the split-horizon records and sent it to Jared before lunch. He read it at his desk with his jaw set.
 
@@ -133,7 +127,7 @@ The fix for the users held, but the real problem was not mine to fix. I wrote th
 
 "It's set up that way because nobody gave me a maintenance window in a year." He moved the ticket into his queue without replying. For the next two weeks he answered my questions one word at a time.
 
-"You spent two hours on someone else's configuration," Jules said on her way out, "but you didn't spend it guessing. Most of the time the application is fine and the client is asking the wrong stranger for directions."
+"You spent two hours on someone else's configuration," Jules said at the end of the day, while she wound her bike lock around her wrist, "but you didn't spend it guessing. Most of the time the application is fine and the client is asking the wrong stranger for directions."
 
 That same afternoon, the Hillsboro DHCP failover broke. Lena fixed it while I was on the VPN calls, and I only read about it in her closure note the next morning. My own queue sat untouched the whole time, and four tickets went past their response target. Jules wrote them up on my weekly review without comment.
 

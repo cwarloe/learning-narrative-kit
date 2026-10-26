@@ -10,7 +10,7 @@ Across the aisle, Jared Vance was already in mid-crisis. His elbows were dug int
 
 Jules Brooks, sitting at the pod desk beside me, didn't look up from her coffee. "The core firewall didn't drop a single packet overnight, Jared. I talked to the Chicago operator at seven-thirty. If you're going to blame the perimeter for a broken script, bring a packet trace that proves it."
 
-The dispatch board above our heads chimed with three sharp tones, flashing an amber alert across the screen. Two incoming telephone lines illuminated simultaneously. Our freight supervisor Ken reported that intake clerks at the Gresham logistics warehouse could not reach the shipping database. At the same time, facilities technician Owen reported that water pump telemetry loggers in the utility annex were throwing persistent socket errors.
+The dispatch board above our heads chimed with three sharp tones, flashing an amber alert across the screen. Then Ken reported that intake clerks at the Gresham logistics warehouse could not reach the shipping database.
 
 ## The firewall that did nothing wrong
 
@@ -43,7 +43,7 @@ TcpTestSucceeded       : False
 
 "Terminal four is getting blocked at the transport layer," I said, glancing over toward Jared. "The ping succeeds because the gateway permits ICMP traffic. Port 8443 fails immediately. That means the firewall is rejecting our transport connection."
 
-Jules set her coffee mug onto a cork coaster beside my keyboard and tapped the terminal display. "Look at the timing, Ethan. If an edge firewall silently dropped that SYN packet, what would the client see?"
+Jules leaned over and tapped the terminal display with the cap of her pen. "Look at the timing, Ethan. If an edge firewall silently dropped that SYN packet, what would the client see?"
 
 "A timeout," I said. "Three retransmissions and twenty-one seconds of dead silence."
 
@@ -155,9 +155,7 @@ Jared leaned in, squinting at the numbers as the color drained from his face. "T
 
 Jared slumped into his chair, rubbing his temples. "The disaster recovery audit is at noon. Every switch in the district is waiting."
 
-"Then stop kicking the trash can," Jules said. "Ethan, take his terminal, calculate the TCP recycling timer, and get connection pooling in place before we lose another hour of archives."
-
-I looked at the mountain of frozen TIME_WAIT sockets. The wire had two ends, and right now, our own management station was starving itself to death. I needed to isolate the dynamic port depletion, calculate the socket reuse rates, and implement connection pooling before the next scheduled archive sweep failed.
+"Then stop kicking the trash can," Jules said, and rolled her chair over to look at his socket table with us.
 
 ## Both Ends of the Wire
 

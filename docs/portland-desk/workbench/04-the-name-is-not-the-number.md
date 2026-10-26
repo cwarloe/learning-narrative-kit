@@ -24,14 +24,15 @@
 
 This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
 
-**The incident.** Remote users on VPN saw a parked web page instead of the payroll login.
+**The incident.** Remote users on the VPN could reach shares by IP, but internal names such as `payroll.harrowmere.local` failed.
 
-1. Run `nslookup` for the internal name with and without the VPN up.
-2. See the query leave through the hotel Wi-Fi adapter because the tunnel had a worse interface metric.
-3. See that the client had no `harrowmere.local` search suffix, so the short name went to public DNS.
-4. Escalate to the gateway owner: a profile with tunnel metric 10, the internal suffix, and smart multi-homed resolution off.
-5. Have users reconnect and run `ipconfig /flushdns`.
-6. Result: seventy-five endpoints fixed in twelve minutes, and a split-horizon escalation that Jared did not enjoy reading.
+1. Check Greg's hosts file. It held three stale lines from a contract developer. Removing them fixed nothing for the other seventeen tickets, so keep going.
+2. Run `ipconfig /displaydns` and `nslookup payroll.harrowmere.local` with the VPN up.
+3. See the query go to Greg's home Wi-Fi gateway at `192.168.1.1` instead of the domain controller at `10.100.10.2`. The tunnel adapter had a worse interface metric than the Wi-Fi adapter.
+4. See that the client had no `harrowmere.local` search suffix, so the name went to Comcast's public resolvers and failed.
+5. Escalate to Lena Chen, who owns the gateway: a client profile with tunnel metric 10, the internal suffix, and smart multi-homed resolution off.
+6. Have users disconnect, reconnect to pull the new profile, and run `ipconfig /flushdns`.
+7. Result: all seventy locked-out users fixed within twelve minutes, four of Ethan's own tickets past target, and a split-horizon escalation that Jared did not enjoy reading.
 
 ---
 
@@ -46,14 +47,9 @@ prompt: "Clean technical cutaway diagram of a computer desktop screen displaying
 
 
 ### The Situation
-It is 08:30 on an overcast Tuesday morning in East Portland. Outside, rain streams down the high double-paned windows facing the river. Inside the operations center, the incoming service desk ticket queue has spiked with nine critical incidents within twenty minutes.
+It is 08:30 on a gray Tuesday in March. Ethan has been on the desk for seven months. Remote employees on the VPN can reach file shares by IP address, but internal names such as `payroll.harrowmere.local` fail. Nine high-priority tickets become eighteen by mid-morning. Jared blames Comcast. Lena Chen, the Tier 2 systems administrator who owns the VPN gateway, points out that eighty-two tunnels are up and healthy.
 
-Remote employees working from home across Multnomah and Washington counties have established secure VPN tunnels into the corporate network. Their network adapters report valid IP addresses on the `10.200.15.0/24` VPN pool. Yet whenever they attempt to browse internal business tools—specifically `payroll.harrowmere.local` and `wiki.harrowmere.local`—their browsers either time out with `DNS_PROBE_FINISHED_NXDOMAIN` or redirect to public registrar parking pages. Meanwhile, workstations physically plugged into the office local area network resolve those exact same resources instantly.
-
-Jared Vance from network operations insists that residential internet service providers are experiencing routing failures. But Desk Lead Jules Brooks and Tier 2 Systems Administrator Lena Chen point out that the encrypted tunnel is fully operational. 
-
-As Jules reminds the desk before anyone touches a configuration:
-> *"When a user tells you a website is down, the website is almost never down. The client simply does not know what number to dial. The name is not the number. Trace who answers the question before you assume the wire is broken."*
+The first ticket is from Greg, an accounts payable clerk working from home in Hillsboro. His hosts file holds three stale lines left by a contract developer, which explains his laptop but not the other seventeen tickets. The real cause is that his DNS queries go to his home Wi-Fi gateway at `192.168.1.1` instead of the domain controller at `10.100.10.2`, because the tunnel adapter has a worse interface metric and the client has no internal search suffix.
 
 ### The Ground Truth Rules of DNS Triage
 

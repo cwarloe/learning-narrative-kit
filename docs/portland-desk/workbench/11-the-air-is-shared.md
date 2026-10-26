@@ -26,7 +26,7 @@ This lab starts with the same incident Ethan worked in the chapter, with the ans
 
 **The incident.** Warehouse scanners and a laptop dropped and reconnected to the wrong network.
 
-1. Survey the air and compare it with a known-good baseline.
+1. Survey the air and compare it with the controller's list of known BSSIDs. There is no baseline yet.
 2. Find an SSID you do not own broadcasting on a channel you do not use.
 3. Locate it by signal strength: a travel router under the credenza in 3B.
 4. Shut its switch port.
@@ -46,24 +46,9 @@ prompt: "Clean technical cutaway diagram of radio frequency spectrum channels un
 
 
 ### The Situation
-It is 08:35 on a brisk Friday morning on the east side of Portland. Mist clings to the brick facade of the industrial park near the Central Eastside railroad tracks. Inside the service desk bullpen, the morning coffee is fresh, but the dispatch dashboard is flashing amber. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet resting against her primary monitor arm, methodically parsing tickets.
+It is a Friday in April. Maya sends a ticket from the lobby: two networks named `CORP-EMPLOYEE` are on the air, and one has a stronger signal and a BSSID that is not ours. Todd calls from a hotel, proud of a workaround. Rita in marketing has plugged a travel router with an open SSID, `FreeConfQuick`, into a wall jack under the credenza in conference room 3B. Dev's laptop keeps getting knocked off Wi-Fi by deauthentication frames. Ken's barcode scanners in the warehouse are dropping and rejoining the wrong network.
 
-On the whiteboard beside the dispatch screen, Jules has pinned a faded yellow sticky note:
-
-$$\boxed{\textbf{Which SSID am I actually on?}}$$
-
-Ethan’s desk drawer still holds his port index cards and Active Directory lockout sheets, but Friday's queue is entirely about the invisible medium outside the copper wire: the shared corporate radio frequencies.
-
-Three critical wireless incidents have hit the board simultaneously:
-1. **The Warehouse Annex Barcode Outage:** At 08:15, Ken Vance from Warehouse Operations and his logistics team reported that six mobile Zebra barcode scanners mounted on forklifts in the Warehouse Annex (Bay 4) abruptly stopped transmitting inventory updates to the Warehouse Management System (`WMS-APP-01` at `10.10.20.5`). The forklift drivers are idling, logistics trucks are backing up at loading docks 3 and 4, and scanner screens display `Connection Timeout - Host Unreachable`.
-2. **The Annex DHCP Storm:** Network monitoring flagged a critical DHCP scope anomaly on VLAN 20 (Warehouse Operations). Workstations and mobile scanners in the annex are suddenly dropping their legitimate corporate IP leases (`10.10.20.x`) and picking up bizarre addresses in the `192.168.1.x` pool with a default gateway of `192.168.1.1`—a non-routable consumer address that does not exist on the corporate network map!
-3. **Maya Lin and the Lobby Lookalike:** Maya Lin from Accounting walked up to the help desk counter with a corporate loaner laptop. She has an urgent executive finance meeting in fifteen minutes and cannot connect to Wi-Fi. In the Windows network list, right beside the legitimate corporate network `CORP-EMPLOYEE`, sits an unencrypted lookalike named `CORP-EMPLOYE` (missing the trailing "E") transmitting with maximum signal strength, along with an open hotel-style captive portal named `FreeConfQuick`. When Maya tried connecting to the corporate SSID, Windows threw an alarming banner: *"The server certificate presented by the network could not be verified."*
-
-Jules spins her coffee mug and looks directly at Ethan:
-> *"Wired networking has a plastic jack and copper patch cord you can trace with your fingers. Wireless has manners, radio physics, and mathematics. When an employee plugs a rogue consumer box into a warehouse drop because their Wi-Fi was weak, or an attacker stands up an evil twin in the parking lot with an amplified antenna, the air does not care who has permission. The air is shared. On this desk, we don't guess SSIDs, we don't click past certificate warnings, and we contain rogues at the switch port before we ask who bought them."*
-
-
----
+This lab follows the chapter. There is no wireless baseline yet. Ethan builds the first one at the end of this episode, so the survey in this lab starts from the access point inventory and the controller's list of known BSSIDs.
 
 ### The Ground Truth Rules of the Desk
 
@@ -480,14 +465,14 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 In enterprise support environments, your ticket documentation is a legal and operational record. Below are the two mandatory templates you must master:
 
-#### Part A: Standard Tier 1 Resolution Note (Example: Ken's Rogue AP / INC-2026-1101)
+#### Part A: Standard Tier 1 Resolution Note (Example: Rita's Travel Router / INC-2026-1101)
 
 ```text
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1101
-Requester:        Ken Vance (Warehouse Operations / Logistics Logistics)
+Requester:        Rita (Marketing, Conference Room 3B)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks (Service Desk Lead)
 Date/Time:        2026-10-23 09:15:44 PST
@@ -548,7 +533,7 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
 
 1. INCIDENT OVERVIEW:
    A coordinated wireless attack was detected targeting the East Lobby and 
-   Executive Courtyard. Multiple endpoints (including CEO Maya Lin's loaner laptop 
+   Executive Courtyard. Multiple endpoints (including Maya Lin's loaner laptop 
    and Engineering staff) reported repeated wireless disconnects followed by 
    untrusted certificate prompts and lookalike network advertisements.
 
@@ -557,7 +542,7 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
      floods (Type 0, Subtype 12 - Deauth) using spoofed source MAC addresses of 
      legitimate AP-LOBBY-01 (70:69:79:01:aa:01), kicking corporate clients offline.
    - Evil Twin Deployment: Handheld RF analyzer detected rogue radio broadcasting:
-       * Rogue SSID:     'CORP-EMPLOYE' (Typosquat - omitted trailing 'E')
+       * Rogue SSID:     'CORP-EMPLOYEE' (identical SSID, unknown BSSID)
        * Rogue BSSID:    00:c0:ca:98:76:54 (ALFA Networks High-Gain USB adapter)
        * Frequency/Ch:   2.437 GHz (Channel 6) @ +28 dBm transmission power
        * RSSI in Lobby:  -38 dBm (Stronger than internal corporate APs)

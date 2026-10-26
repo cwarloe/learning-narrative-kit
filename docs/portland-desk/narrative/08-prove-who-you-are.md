@@ -4,9 +4,11 @@
 
 The smell of wet wool and radiator steam filled the fourth floor long before the eight o'clock chime. Across the partition, Jules was running a dry-erase marker down a list of ninety-day password expiration notices that had triggered over the weekend.
 
-"Two dozen people locked themselves out between Friday night and seven this morning," Jules said, capping the blue marker with a sharp snap. "Half of them will swear up and down that typing a password and a PIN counts as multifactor. Don't argue with their frustration, Ethan. Separate what they know from what they hold."
+"Two dozen people locked themselves out between Friday night and seven this Monday morning," Jules said, capping the blue marker with a sharp snap. "Half of them will swear up and down that typing a password and a PIN counts as multifactor. Don't argue with their frustration, Ethan. Separate what they know from what they hold."
 
 On the dispatch display, the first incident ticket was already flashing red.
+
+Jared had called my desk line on Tuesday about an unrelated switch, which he had never done before. He did not mention the Saturday, and neither did I. His tickets came back the same day after that. <!-- date-ok -->
 
 ## Nora and the policy that keeps changing the locks
 
@@ -75,7 +77,7 @@ Across the aisle, Rita from marketing wanted the same enrollment but "without th
 
 ## Lockout, biometrics, and the laptop that thinks it knows a face
 
-Mid-morning: Dev from engineering, [[account_lockout|account lockout]] after a script retried a stale secret forty times. He was embarrassed and late for a stand-up.
+Dev from engineering came to my desk in person, which engineers never do, with his laptop open to an [[account_lockout|account lockout]]. A script had retried a stale secret forty times. He was embarrassed and late for a stand-up.
 
 "I pointed a job at the old service password," Dev said. "It hammered. Now I cannot even get in to fix the hammer."
 
@@ -91,11 +93,9 @@ While Dev waited, Lila from HR stopped by with a laptop lid.
 
 She kept the app. She looked like someone who had hoped for a shorter answer.
 
-Jules looked across the divider. "Dev's account is locked out from a runaway script hammering the domain controller, Todd is insisting Password plus PIN is multifactor, and Nora has locked herself out with another seasonal password. You have ten minutes before the morning standup. Step up to the console and triage the queue."
-
 ## Owen and the door that let two people in
 
-Before the lockouts peaked, Owen came up from facilities with a printout of the badge reader log for the east stairwell door. Owen ran the badge system the way Rosa ran Hank's routes in Gresham: he knew every reader and every lock on the building, and he said plainly that Active Directory was not his department.
+Before the lockouts peaked, Owen came up from facilities with a printout of the badge reader log for the east stairwell door. Owen ran the badge system the way Rosa ran Hank's routes in Gresham: he knew every reader and every lock on the building, and he told me up front that Active Directory was not his department.
 
 "Two entries, one badge, eleven seconds apart," he said, tapping the paper. "Door only logged one swipe. Camera shows two people. Somebody held it."
 

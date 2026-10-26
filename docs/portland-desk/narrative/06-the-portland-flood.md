@@ -8,7 +8,7 @@ Jared's connection-pooling change was supposed to go in that Monday night. The f
 
 Desk lead Jules Brooks was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses the regional order desk, field-service dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
 
-I pulled on my insulated coveralls and laced my rubber mud boots by the kitchen door. Five months on the Portland desk had transformed my habits. The work had replaced my old panic with an instinct for preparation. I packed my punchdown tool, an optical fiber light tester, spare patch cords, and two rolls of hook-and-loop cable ties into my canvas bag. As I drove my beat-up truck across the Morrison Bridge through blinding sheets of rain, the dark river churned violently beneath the piers.
+I pulled on my insulated coveralls and laced my rubber mud boots by the kitchen door. Nine months on the Portland desk had transformed my habits. The work had replaced my old panic with an instinct for preparation. I packed my punchdown tool, an optical fiber light tester, spare patch cords, and two rolls of hook-and-loop cable ties into my canvas bag. As I drove my beat-up truck across the Morrison Bridge through blinding sheets of rain, the dark river churned violently beneath the piers.
 
 ## The basement vault at four in the morning
 
@@ -139,15 +139,9 @@ When commercial power returned, eighty workstations booted up alongside fifty ne
 
 "The scope ran out of addresses because transient MACs claimed the buffer," I explained to Jules and Jared. "The lease duration was set to eight days, so last week's inactive mobile devices never released their reservations. When the dock hardware grabbed the remaining twenty dynamic addresses, there was zero room left in the pool for the booting desks."
 
-Jules set her flashlight down on the rack rail and looked directly at me.
-
-"We have twenty-five minutes before the parts counter opens upstairs, Ethan," Jules said, her voice cutting through the hum of the cooling fans. "Eighty order clerks are locked out, twenty printers are dead, and the dispatchers cannot reach the safety line. If this building is not fully online at eight o'clock, Rivergate cannot take or ship a single order. What is your plan of action? How do you flush the stale leases, re-architect the scope duration, expand the dynamic pool without colliding with static equipment, and verify the entire four-layer protocol stack before that bell rings? Call your shot, Ethan."
-
-I looked at the red warning icons multiplying across the monitoring board. Four hours of sweating in rubber boots in an ankle-deep flood came down to the next twenty-five minutes. I needed to execute the DHCP reconciliation, restore address leases to one hundred and fifty endpoints, and run the end-to-end verification checklist before the doors unlocked.
-
 ## Mostly Restored
 
-The DHCP scope was full of stale leases from devices that had dropped off the flooded switch. I cleared the abandoned leases, eighty-four of them, and watched the monitoring board fill with renewals. A test workstation on the billing floor pulled `10.20.10.74` with the right mask and gateway, and the billing application loaded.
+The DHCP scope was full of stale leases from devices that had dropped off the flooded switch. I cleared the abandoned leases, eighty-four of them, and cut the scope's lease duration from eight days to eight hours so the next wave of dock scanners could not pin the pool again. Then I watched the monitoring board fill with renewals. A test workstation on the billing floor pulled `10.20.10.74` with the right mask and gateway, and the billing application loaded.
 
 Jules would not sign the punch list until I had walked the verification out loud, layer by layer: links up at full duplex with no CRC errors, both LACP members active and spanning tree quiet, all three gateways answering, and telemetry, phones, and order terminals actually working. I said each one before I typed it.
 

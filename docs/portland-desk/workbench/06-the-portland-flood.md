@@ -24,13 +24,13 @@
 
 This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
 
-**The incident.** The flood took down the core closet, and users could not get addresses after the switches came back.
+**The incident.** The flood took down the Building C closet, and clients could not get addresses after the switches came back.
 
-1. Rebuild bottom up: links and duplex, then LACP and spanning tree, then the three VLAN gateways.
+1. Rebuild bottom up: dry patch panels, links and duplex, then LACP and spanning tree, then the three VLAN gateways.
 2. Test one client: no lease.
-3. Look at the DHCP scope and find it full of stale leases from dead devices.
-4. Clear the abandoned leases and watch renewals arrive.
-5. Verify out loud, layer by layer, before calling it fixed.
+3. Look at the DHCP scope. The lease duration is eight days, and last week's transient dock devices still hold most of the pool.
+4. Clear the abandoned leases and cut the lease duration to eight hours so the pool cannot fill the same way again.
+5. Watch renewals arrive, then verify out loud, layer by layer, before calling it fixed.
 6. Result: mostly restored. The shipping label printers stayed on the old VLAN until ten.
 
 ---
@@ -45,29 +45,10 @@ prompt: "Clean technical cutaway illustration of a server room during a water le
 ```
 
 
-### The Shift Crucible: Four Inches in Twelve Hours
-It is 04:00 AM on a cold Monday in late May. A severe Pacific Northwest atmospheric river has stalled over the Willamette Valley, dumping over four inches of driving rain in twelve hours. The Willamette River has breached low-lying revetments along the industrial corridor, backing up the city storm drains.
+### The Situation
+It is 04:00 on a Monday in late May. An atmospheric river has stalled over the Willamette Valley, and ankle-deep water has come into the Building C telecommunications vault. Ethan, nine months on the desk, meets Jules and Jared at the closet. The order desk, field-service dispatch, and the will-call parts counter open at 08:00.
 
-In the basement telecommunications vault of Building C—which houses the Rivergate order desk, field-service dispatch, and plant telemetry loggers—eight inches of muddy river water covers the concrete floor. When the utility pole transformer arced on the corner, commercial grid power failed. The campus diesel generator engaged six seconds later, but the resulting electrical transient surge blew out two aging twenty-four-port edge switches on the bottom rack unit. 
-
-The order desk, field-service dispatch, and the will-call parts counter open at 08:00 AM sharp. Apprentice technician Ethan Mercer, Desk Lead Jules Brooks, and Senior Network Engineer Jared Vance stand in rubber boots in the flooded vault with headlamps and toolkits. They have exactly four hours to physically condemn dead hardware, rack and power spare switches, restore Layer 1 structured cabling, configure 802.1Q VLAN trunking and LACP link aggregation, and resolve a massive 150-device DHCP scope exhaustion storm before the site opens.
-
-```mermaid
-timeline
-    title 04:00 to 08:00 Disaster Recovery Timeline
-    04:00 : Arrive on site in rubber boots : Verify electrical safety & sump drainage
-    04:30 : Bleed flea power : Condemn blown switches : Mount spare 48-port switches high
-    05:15 : Wipe damp patch panels : Punch down loose pairs : Test continuity
-    06:00 : Configure VLANs (10, 20, 30) : 802.1Q trunking : LACP Port-Channel 1
-    06:45 : Verify Spanning Tree Protocol (RSTP) : Root bridge forwarding verified
-    07:15 : Commercial power restored : 150 devices boot : DHCP scope exhaustion storm
-    07:35 : Reconcile DHCP leases : Reduce lease to 8 hours : Expand pool
-    07:50 : End-to-end verification (L1-L4) : Modbus telemetry flowing : Billing green
-    08:00 : Public opening bell : Zero operational downtime for staff
-```
-
-
----
+This lab follows the chapter's rebuild from the bottom up: dry patch panels and links, then the LACP trunk and spanning tree, then the three VLAN gateways. When the switches are back, clients still cannot get addresses. The DHCP scope has an eight-day lease, and last week's transient dock devices are still holding leases in the pool.
 
 ### The Five Unbreakable Rules of Disaster Recovery
 
@@ -552,7 +533,7 @@ OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
 1. EXECUTIVE SUMMARY & BUSINESS IMPACT:
    At 03:15 PST during a severe atmospheric river storm (Willamette River cresting 
    at flood stage), the basement telecommunications vault of Building C took on 
-   eight inches of floodwater due to stormwater backflow. A concurrent electrical 
+   ankle-deep floodwater due to stormwater backflow. A concurrent electrical 
    transformer arc triggered a generator transfer surge that destroyed two lower-tier 
    24-port edge switches. Building C lost all network connectivity, cutting off 
    the Rivergate order desk, field-service dispatch, and plant SCADA telemetry loggers.
@@ -626,7 +607,7 @@ OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
 
 ## 5. What Good Looks Like / Lead Sign-Off Checklist
 
-To achieve full operational qualification on the Midpoint Capstone, apprentice technicians must demonstrate mastery across five core operational dimensions evaluated by Desk Lead Jules Brooks.
+To achieve full operational qualification on the Midpoint Capstone, help desk technicians must demonstrate mastery across five core operational dimensions evaluated by Desk Lead Jules Brooks.
 
 ```mermaid
 pie title Midpoint Capstone Competency Evaluation Weighting
@@ -656,7 +637,7 @@ pie title Midpoint Capstone Competency Evaluation Weighting
 ================================================================================
 PORTLAND HELP DESK (BOOK 0) — MIDPOINT CAPSTONE QUALIFICATION
 ================================================================================
-CANDIDATE:        Ethan Mercer, Apprentice Support Specialist
+CANDIDATE:        Ethan Mercer, Support Specialist
 SUPERVISING LEAD: Jules Brooks, Help Desk Lead
 NETWORK ENGINEER: Jared Vance, Senior Network Infrastructure Engineer
 DATE OF SIGN-OFF: 2026-12-15 08:15:00 PST

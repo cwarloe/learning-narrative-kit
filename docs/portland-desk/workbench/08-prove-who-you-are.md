@@ -30,7 +30,7 @@ This lab starts with the same incident Ethan worked in the chapter, with the ans
 2. Find Dev's script on that machine still using an old password, and move its credentials to the vault.
 3. Explain that a PIN and a password are both something you know, so together they are not MFA.
 4. Move Todd's team to push MFA with number matching.
-5. Put the decision in writing with a date, not just a no.
+5. Put the decision in writing, and include a date for when the exception ends or the change lands. Ethan wrote a plain no without a date, and that cost him.
 6. Result: the lockouts stopped. The tone of the written no cost Ethan the October promotion round.
 
 ---
@@ -46,19 +46,9 @@ prompt: "Clean technical illustration of a smartphone on an office desk next to 
 
 
 ### The Situation
-It is 08:15 on a gusty Wednesday morning in East Portland. Low gray clouds drag across the Willamette, and the service desk floor smells of damp rain jackets and burnt roast coffee. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet clipped to her monitor arm, scanning the incoming identity dispatch queue.
+It is 08:00 on a Monday in October, and Ethan has been on the desk for fourteen months. Two dozen people locked themselves out between Friday night and Monday morning, after ninety-day password expiration notices went out over the weekend.
 
-On the whiteboard beside her desk, the sticky note from the networking rotation (*which decision?*) has been swapped for a fresh yellow square:
-
-$$\boxed{\textbf{Which factor?}}$$
-
-Ethan’s desk drawer still holds his port flashcards, but this morning's tickets are not about firewalls or packet headers. They are about humans, identity stores, and passwords:
-* **Nora in Finance** is locked out after her quarterly password rotation failed. She tried `Spring2024!`, `Summer2024!`, and `Fall2024!`. Active Directory rejected all of them, policy requires sixteen characters, and she is threatening to write her new password on a bright green Post-it note stuck to her bezel.
-* **Todd Miller in Sales** wiped his phone over the weekend, lost access to his CRM, and insists he already has multifactor authentication because he types a **Password** and a **PIN** into his laptop. He calls it "two things" and wants a quick bypass.
-* **Dev in Engineering** ran a test script with hardcoded credentials that failed forty times in two minutes, triggering an enterprise account lockout storm that halted his deployment stand-up.
-
-Jules spins her mug and looks across the divider:
-> *"Memorizing that MFA stands for Multifactor Authentication will get you through a multiple-choice question on an exam. It will not save you when an executive screams that typing a password and a PIN is two things, or when a user's account re-locks every fifteen minutes while they swear they haven't touched their keyboard. On this desk, identity is not a buzzword—it is the cryptographic boundary of the entire enterprise."*
+This lab follows the chapter's queue. Nora in finance rotates seasonal passwords (`Spring2024!`, `Summer2024!`) and has hit the ninety-day expiry. Todd in sales insists that a password plus a PIN is multifactor. Dev's script is locking his account by retrying a stale secret forty times. Lila in HR asks whether Windows Hello counts as biometrics. Owen brings a badge log that shows one swipe and two people at the east stairwell door.
 
 ### The Ground Truth Rules of the Desk
 1. **Two Nouns Do Not Equal Two Factors:** Multifactor authentication requires **two or more distinct categories** of credentials: *Something you know* (knowledge), *Something you have* (possession), *Something you are* (inherence/biometrics), or *Somewhere you are* (location/context). A password plus a PIN is simply two things you know ($1 + 1 = 1$). It is single-factor authentication with extra typing.
@@ -512,7 +502,7 @@ Status:           RESOLVED
 
 1. ISSUE SUMMARY:
    User reported repeated Active Directory domain account lockouts immediately 
-   following quarterly password rotation. Unlocking via ADUC resulted in secondary 
+   following ninety-day password expiration. Unlocking via ADUC resulted in secondary 
    lockout within five minutes without active user input.
 
 2. ROOT CAUSE ANALYSIS & EVENT LOG TRIAGE:

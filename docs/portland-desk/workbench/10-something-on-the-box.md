@@ -47,22 +47,9 @@ prompt: "Clean technical illustration of a computer monitor displaying a system 
 
 
 ### The Situation
-It is 08:45 on a gray Thursday morning in East Portland. Outside, rain needles the double-paned windows facing the Central Eastside Industrial District, and the desk floor hums with the electric drone of fluorescent lights and server rack blowers. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet clipped to her dual-monitor arm, steam curling off her dark roast coffee.
+It is a Thursday in February. Ethan is in his third week as Tier 2. Maya's browser is full of coupon toolbars after an installer ran at 07:41. Sam drops a branded USB stick on the counter that he plugged in at home. Todd's laptop is running encoded PowerShell and copying itself across warehouse shares. Rina Rostova in facilities finds her team folder encrypted, with a ransom note on the desktop. In the afternoon, Ken calls from Gresham with a laptop that is running a signed dropper.
 
-On the whiteboard beside the dispatch monitor, the sticky note from yesterday's authentication shift (*which factor?*) has been replaced with a fresh neon-yellow square:
-
-$$\boxed{\textbf{Does this need to leave the network?}}$$
-
-Ethan’s desk drawer still holds his port flashcards and factor reference tables, but Thursday morning's queue is not about firewall rules or forgotten passwords. It is about malicious execution, compromised endpoints, and host persistence:
-* **Todd Miller from Inside Sales** walked into the dispatch bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scribbled in blue sharpie. Within four minutes of plugging it into his laptop (`TODD-SALES-14`) to check a proposal, his laptop cooling fans spun up to an ear-splitting 100%, and EDR raised high-priority alerts: a hidden PowerShell process was enumerating domain shares and copying itself across the warehouse network (`\\WH-PACK-02\share$`).
-* **Maya in Accounting** downloaded an unauthorized "free PDF merger" from an external forum. While the merger works, her browser opened twenty coupon pop-ups, and a background task named `OptimizeRAM.exe` began injecting ads and phoning home.
-* **Rina in Facilities** called in a voice forced to a calm whisper: every spreadsheet and work order on her desktop has been renamed with a `.locked` extension, and a text file named `README_RESTORE.txt` demands 0.5 Bitcoin within 72 hours.
-* **Lila in HR** noticed significant keyboard lag; Task Manager revealed a suspicious process named `FontUpdateHelper.exe` capturing keystrokes via Windows API hooks.
-* **Dev in Engineering** reported that his local file explorer looked normal, but host EDR flagged an unsigned kernel driver hooking disk input/output calls—a rootkit concealing disk writes.
-* **Nora in Finance** forwarded a screenshot of a fleeting black PowerShell window. Her antivirus reported 100% clean, but network telemetry showed persistent HTTPS beacons phoning home to an external IP (`185.22.112.14:443`) every 300 seconds.
-
-Jules spins her ceramic mug and fixes her eyes on Ethan:
-> *"Malware is a category; your job is the decision. You do not negotiate with a padlock, you do not hunt Latin taxonomy while a machine is broadcasting across the warehouse subnet, and you never let an infected box stay plugged in while you satisfy your curiosity. On this desk, isolation comes before forensics."*
+This lab follows those cases in that order: adware, removable media, a worm, ransomware, and a signed file whose certificate has been revoked.
 
 ### The Ground Truth Rules of the Desk
 1. **Isolate First, Investigate Later:** Containment precedes analysis. When an endpoint displays worm-like lateral spread, active ransomware encryption, or persistent command-and-control (C2) beaconing, immediately sever its network connectivity—pull the physical Ethernet cable, disengage Wi-Fi, and issue an EDR network quarantine. An unplugged machine cannot compromise adjacent subnets, cannot exfiltrate corporate databases, and cannot receive execution instructions.
@@ -428,7 +415,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 </div>
 
 
-#### Ticket 1: Todd Miller (Sales / Warehouse) — `INC-2026-1181`
+#### Ticket 1 (practice case, not from the chapter): Warehouse Clerk (Shipping Bay) — `INC-2026-1181`
 *Request:* "Found an unlabeled USB stick in the shipping bay. Plugged it in to see who owns it, and my laptop fans immediately spun up to 100%. Antivirus quarantined `SOW_final.pdf.exe`. Can I just unplug the USB, empty my recycle bin, and keep working on my sales forecast?"
 
 * **Your Action:** [ Clear Alert & Resume / Isolate Host & Audit Network Shares / Scan USB on Laptop ]
@@ -464,7 +451,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 3: Nora Higgins (Finance Specialist) — `INC-2026-1183`
+#### Ticket 3 (practice case, not from the chapter): Nora Higgins (Finance Specialist) — `INC-2026-1183`
 *Request:* "A black terminal window flashed on my screen for half a second while I was reviewing budget spreadsheets. My local antivirus widget says 'System Protected - 0 Threats Found'. I have payroll due in two hours—can I ignore it?"
 
 * **Your Action:** [ Dismiss Ticket / Query Network Telemetry & Isolate Host ]
@@ -482,7 +469,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 4: Jordan Reed (Operations Specialist) — `INC-2026-1184`
+#### Ticket 4 (practice case, not from the chapter): Jordan Reed (Operations Specialist) — `INC-2026-1184`
 *Request:* "Was reviewing scheduled tasks on our staging host `SRV-STAGE-01` and found a task named `StagingMaintenance`. The action is `powershell.exe -File C:\stage\cleanup.ps1`, and the trigger condition checks if a departed contractor's Active Directory account is disabled. Should I run the script manually to see what it cleans?"
 
 * **Your Action:** [ Run Script / Delete Task / Disable Task, Preserve Evidence, & Escalate ]
@@ -500,7 +487,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 5: Dev Patel (Software Engineer) — `INC-2026-1185`
+#### Ticket 5 (practice case, not from the chapter): Dev Patel (Software Engineer) — `INC-2026-1185`
 *Request:* "My terminal command `dir C:\Windows\System32\drivers` looks completely normal, but EDR generated an alert claiming an unsigned driver is hooking file system I/O. I downloaded a free rootkit remover tool from an internet forum; can I run it with admin rights?"
 
 * **Your Action:** [ Run Free Cleaner / Reimage Host from Known-Good Media ]

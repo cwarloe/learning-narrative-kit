@@ -47,36 +47,9 @@ prompt: "Clean technical cutaway illustration of a computer forensic examination
 
 
 ### The Situation
-It is 14:15 on a wind-whipped Thursday in late June. Outside the fourth-floor windows of the Portland Operations Center, sheets of gray rain sweep across the Willamette River, obscuring the Hawthorne Bridge and the steel industrial warehouses of the Central Eastside. Inside, the dispatch floor smells of wet wool jackets, ozone from the server room exhaust blowers, and Jules Brooks’s dark French roast coffee.
+It is a Wednesday in late June. Ethan has been on the desk for twenty-two months. At 08:30, Maya brings in a laptop that turns out to be quarantined adware. At 11:15, Nora Higgins in finance sends a quiet ticket: her wire confirmations are missing from Sent Items, and there is an Outlook rule she does not remember creating. In the early afternoon, Jared relays a call from Todd Miller in Inside Sales, who found an unbranded USB stick labeled *Client Deck Final* on the shipping office floor and plugged it into `TODD-SALES-14`. Then Nora's credentials authenticate to the staging jump host `SRV-STAGE-01`, which bridges into the Willamette River plant network.
 
-On the corkboard above the primary dispatch console, Jules’s morning sticky note (*"which decision?"*) has been covered with a fresh neon-orange square:
-
-$$\boxed{\textbf{Preserve before you touch. Who else needs to know?}}$$
-
-Ethan’s queue on Wednesday morning had been full of loud, theatrical panic—users demanding instant laptop wipes for pop-up toolbars that antivirus had already disarmed. But this afternoon, the queue is eerily quiet. The tickets trickling in do not scream in all caps; they murmur. And when multiple quiet tickets arrive from different departments within a three-hour window, Jules does not look at the queue as four separate tickets. She looks at it as a single unfolding story.
-
-Over the span of three hours, four distinct tickets land across Ethan's dispatch screen:
-
-1. **Ticket 1: Nora Higgins in Finance (`FIN-NORA-02`):**  
-   Nora submitted a low-priority ticket yesterday morning asking why her email "Sent Items" folder was intermittently empty. Her local antivirus reported 100% clean. However, an audit of the Microsoft 365 tenant portal revealed an unauthorized inbox forwarding rule created at 02:13 a.m. named `InvoiceProcess`. The rule silently redirects every incoming email containing the words *"wire"*, *"invoice"*, *"payroll"*, or *"confidential"* to an external drop address (`exfil@pay-secure-audit.com`), marks the message as read, and moves it directly to the hidden `RSS Feeds` folder. Azure Active Directory logs confirm an MFA reset and interactive logon originating from IP `198.51.100.77` (a hosting provider in Frankfurt, Germany).
-
-2. **Ticket 2: Todd Miller in Sales/Warehouse (`TODD-SALES-14`):**  
-   Ken walked into the help desk bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scrawled in faded blue marker. Todd plugged the drive into his corporate laptop to inspect an invoice. His cooling fans surged to 100% before he pulled the stick. Local antivirus quarantined a file named `SOW_final.pdf.exe` (`Trojan:Win32/Dropper.B`). While Ken believed the incident was resolved because the drive was removed, EDR telemetry revealed a hidden background process (`powershell.exe`) executing internal SMB share enumeration (`net view /all`), probing the warehouse storage server (`\\WH-PACK-02\share$`), and registering a scheduled persistence task named `CacheCleanup` configured to run under `NT AUTHORITY\SYSTEM` at system boot.
-
-3. **Ticket 3: Leah Moreno at the Willamette River Plant (`GW-PLANT-04`):**  
-   Leah Moreno, Senior SCADA and Industrial Systems Technician, called Ethan via the secure plant landline. Network monitoring on the operational technology (OT) edge detected anomalous outbound TLS egress traffic originating from telemetry gateway `GW-PLANT-04` destined for an external IP address (`185.22.112.14:8443`). Telemetry showed the connection was initiated not by the plant controller firmware, but from an internal staging jump box (`SRV-STAGE-01`) that bridges the corporate IT network and the plant SCADA supervisory zone.
-
-4. **Ticket 4: Central Network & EDR Telemetry (Host C2 Beaconing):**  
-   Cross-referencing perimeter firewall flow logs with host-level EDR data, Ethan spots a chilling synchronization: workstation `FIN-NORA-02` (Nora Higgins) has been establishing regular outbound HTTPS connections to `185.22.112.14:443` every 300 seconds ($\pm 5\%$ randomized jitter). Memory analysis alerts indicate unauthorized process injection: an unsigned thread within `powershell.exe` has initiated handle access against `lsass.exe` (Local Security Authority Subsystem Service), attempting to dump cached domain credentials from memory.
-
-Jules Brooks stands behind Ethan’s chair, sets her ceramic mug down without making a sound, and pulls a heavy red binder from the fireproof cabinet.
-
-> *"Ethan, listen to me carefully. A novice tech sees four tickets: a mailbox glitch, a dirty USB, a weird plant router alert, and a slow laptop. They run a scanner, wipe Nora's drive, tell Ken not to do it again, and go home at five.  
-> If you do that today, you destroy the only evidence of a coordinated intrusion campaign. Nora's stolen credentials opened the door; Todd's USB dropped the staging script; the script hopped to the staging jump box; and now an adversary is probing our plant process telemetry.  
-> You are the first responder on this desk. That means your first job is not heroics and it is not freelance forensics. Your job is preservation, containment, and chain of custody. You are going to assemble the formal CSIRT Escalation Dossier under my eye. If it isn't documented with a timestamp and a SHA-256 hash, it didn't happen."*
-
-
----
+This lab follows the chapter from the moment Jules declares an incident: order of volatility, memory capture, hashes, containment, chain of custody, and the handoff to Nia Alvarez.
 
 ### The Ground Truth Rules of the Desk
 
@@ -233,7 +206,7 @@ First responders must make split-second containment decisions. The wrong choice 
 
 | Scenario / Threat Pattern | Containment Action | Technical Mechanism | Why This Choice? (Exam & Desk Justification) |
 | :--- | :--- | :--- | :--- |
-| **Active C2 Beaconing or Worm Spread** (e.g., Nora's endpoint, Ken's share scanning) | **EDR Network Isolation or Physical Cable Disconnect** | Issue EDR network quarantine command; physically disconnect RJ-45 Ethernet; disable 802.11 Wi-Fi. Keep PC powered ON. | **Preserves RAM and process tree.** EDR retains a secure out-of-band management tunnel to collect live memory and process dumps while blocking all internal and external communication. |
+| **Active C2 Beaconing or Worm Spread** (e.g., Nora's endpoint, Todd's share scanning) | **EDR Network Isolation or Physical Cable Disconnect** | Issue EDR network quarantine command; physically disconnect RJ-45 Ethernet; disable 802.11 Wi-Fi. Keep PC powered ON. | **Preserves RAM and process tree.** EDR retains a secure out-of-band management tunnel to collect live memory and process dumps while blocking all internal and external communication. |
 | **Active Ransomware Encryption in Progress** (e.g., mass `.locked` file renames) | **Immediate Physical Power Sever (Pull the Plug)** | Yank AC power cable directly from desktop power supply; immediately strip laptop battery. | **Data preservation emergency.** Ransomware encrypts at gigabytes per second. Live memory capture takes 10–15 minutes, during which critical databases and network shares are permanently lost. Stopping encryption takes absolute precedence over memory forensics. |
 | **Suspected Rootkit or Kernel Evasion** (e.g., unsigned kernel driver hooking disk I/O) | **Hypervisor Snapshot / Live Memory Dump under Isolation** | Suspend VM or take live hypervisor snapshot; for bare-metal, isolate network and run hardware-based/live memory capture tool. | **Userland tools cannot be trusted.** If the kernel is compromised, userland executables (`tasklist`, `netstat`) return falsified data. Hypervisor-level or raw memory capture bypasses kernel hooks. |
 | **Unauthorized Cloud Mailbox Rule / Stolen Session Token** | **Revoke Active Tokens & Purge Mailbox Forwarding** | Execute `Revoke-AzureADUserAllRefreshToken`; delete malicious inbox rule via Exchange PowerShell; force password reset. | **Host isolation does not fix cloud exfiltration.** If the attacker possesses an OAuth token or session cookie, pulling the user's laptop cable accomplishes nothing. Remediation must occur at the identity provider (IdP) layer. |
@@ -307,7 +280,7 @@ Your Ranking Order:
 > **The Rule of the Desk:** A forensic image without a matching hash is just a copy of a story you can't prove in court. Verify the math before you touch the drive.
 
 #### Scenario Walkthrough
-Ethan connects Ken Vance’s confiscated 32GB USB flash drive (`CLIENT DECK`) to the dedicated forensic workstation (`PORT-IR-WK01`). The forensic station is equipped with a hardware write blocker (Tableau T8u USB 3.0 Forensic Bridge) that physically prevents write requests (`SCSI WRITE`, `USB Bulk-Only Write`) from reaching the storage controller.
+Ethan connects Todd Miller's confiscated 32GB USB flash drive (`CLIENT DECK`) to the dedicated forensic workstation (`PORT-IR-WK01`). The forensic station is equipped with a hardware write blocker (Tableau T8u USB 3.0 Forensic Bridge) that physically prevents write requests (`SCSI WRITE`, `USB Bulk-Only Write`) from reaching the storage controller.
 
 Ethan executes a bit-stream raw disk acquisition to create an exact forensic disk image:
 
@@ -337,14 +310,14 @@ SHA256          9F2C8D1E3A4B5C6D7E8F0A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9BC41A
 
 #### Diagnostic Evaluation Questions
 1. Compare the `input hash` and `output hash` in Step 2. What does this mathematical comparison prove regarding evidence integrity?
-2. Suppose a junior technician took Ken’s USB drive, plugged it directly into a standard Windows 11 laptop *without* a write blocker, and browsed the drive using Windows File Explorer before running the hash. Would the SHA-256 hash still match `A4F2C99...`? Why or why not?
+2. Suppose a junior technician took Todd's USB drive, plugged it directly into a standard Windows 11 laptop *without* a write blocker, and browsed the drive using Windows File Explorer before running the hash. Would the SHA-256 hash still match `A4F2C99...`? Why or why not?
 3. Review the following snippet from a chain of custody ledger. Identify the fatal procedural error that would compromise evidence admissibility:
 
 ```text
 ITEM: EVD-2026-1022-USB
 SEIZED: 2026-10-22 14:40 PST by Ethan Mercer (Tier 1 Support)
 CUSTODY LOG:
-- 14:40 PST: Seized from Ken Vance desk by Ethan Mercer. Placed in backpack.
+- 14:40 PST: Seized from Todd Miller's desk (TODD-SALES-14) by Ethan Mercer. Placed in backpack.
 - 15:05 PST: Ethan Mercer arrived at Operations Center; placed USB on desk beside coffee.
 - 15:10 PST: Connected to PORT-IR-WK01 for bit-stream acquisition.
 - 15:30 PST: Transferred to Jules Brooks (CSIRT Lead). Signature: J. Brooks.
@@ -454,7 +427,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 ---
 
 #### Case 2: Todd Miller (Sales & Warehouse) — `INC-2026-1202`
-*Telemetry & Symptoms:* Todd plugged in an unbranded USB drive. Antivirus quarantined `SOW_final.pdf.exe` on drive `E:\`. Ken unplugged the stick and wants his ticket closed. However, EDR process history indicates that before quarantine, the dropper spawned `powershell.exe -w hidden`, which executed `net view /all`, probed writable shares on `\\WH-PACK-02\share$`, and created a persistent scheduled task named `CacheCleanup` configured to execute at system startup.
+*Telemetry & Symptoms:* Todd plugged in an unbranded USB drive. Antivirus quarantined `SOW_final.pdf.exe` on drive `E:\`. Todd unplugged the stick and wants his ticket closed. However, EDR process history indicates that before quarantine, the dropper spawned `powershell.exe -w hidden`, which executed `net view /all`, probed writable shares on `\\WH-PACK-02\share$`, and created a persistent scheduled task named `CacheCleanup` configured to execute at system startup.
 
 * **Your Action:**  
   [ A. Close Ticket with Warning / B. Delete Scheduled Task & Reconnect / C. Isolate Host Immediately, Confiscate USB Drive, Audit Target Network Shares ]
@@ -467,8 +440,8 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 * **Action:** **C. Isolate Host Immediately, Confiscate Physical USB Drive for Chain of Custody, and Audit Target Network Shares.**
 * **Threat Classification & IR Phase:** **Trojan Dropper / Worm-like Lateral Movement / Persistence**; Lifecycle Phase: **Containment & Identification**.
 * **Jules' Critique:**  
-  "Ken thinks because the USB is sitting on his mousepad and AV popped a green box, the problem is gone. The green box is a lie. The dropper had four seconds of life before AV intervened, and in those four seconds it spawned a detached PowerShell worker, established machine persistence via `CacheCleanup`, and reached across the warehouse subnet.  
-  Sever Ken's network connection immediately. Place the USB in a tamper-evident evidence pouch. Then immediately notify Storage Engineering to inspect `\\WH-PACK-02\share$` for newly dropped payload files. Never let a user convince you an infection is dead just because they pulled the plastic."
+  "Todd thinks because the USB is sitting on his mousepad and AV popped a green box, the problem is gone. The green box is a lie. The dropper had four seconds of life before AV intervened, and in those four seconds it spawned a detached PowerShell worker, established machine persistence via `CacheCleanup`, and reached across the warehouse subnet.  
+  Sever Todd's network connection immediately. Place the USB in a tamper-evident evidence pouch. Then immediately notify Storage Engineering to inspect `\\WH-PACK-02\share$` for newly dropped payload files. Never let a user convince you an infection is dead just because they pulled the plastic."
 </details>
 
 
@@ -654,7 +627,7 @@ Timestamp (PST) | Action Executed & Technical Details
                 | Online PowerShell (Remove-InboxRule -Mailbox nhiggins -Identity ...).
 14:25:10        | Physical Network Isolation of TODD-SALES-14: Disconnected RJ-45 
                 | Ethernet cable. Disengaged physical Wi-Fi hardware toggle.
-14:28:45        | Physical Media Seizure: Seized 32GB USB flash drive from Ken Vance.
+14:28:45        | Physical Media Seizure: Seized 32GB USB flash drive from Todd Miller.
                 | Packaged in Anti-Static Evidence Pouch #EVD-2026-1022-01 with 
                 | tamper-evident seal #SEAL-90412.
 14:32:00        | Industrial OT Boundary Containment: Network Operations disabled 
@@ -670,7 +643,7 @@ Timestamp (PST) | Action Executed & Technical Details
 Item Number:      EVD-2026-1022-01
 Item Description: SanDisk Ultra 32GB USB 3.0 Flash Drive (Black casing, blue sharpie)
 Serial Number:    4C530001220914112102
-Seized From:      Ken Vance desk (Warehouse Operations, Cubicle W-12)
+Seized From:      Todd Miller desk (Inside Sales, TODD-SALES-14)
 Seized Date/Time: 2026-10-22 14:28:45 PST
 Seizing Tech:     Ethan Mercer (Badge #IT-8842)
 SHA-256 Digest:   a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10

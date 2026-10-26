@@ -24,14 +24,16 @@
 
 This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
 
-**The incident.** Jared's nightly backup script failed partway through four hundred devices.
+**The incident.** Gresham terminals failed in two different ways, and Jared's nightly backup sweep died partway through four hundred devices.
 
-1. Run `netstat -ano` on the machine that runs the script, not the targets.
-2. Count thousands of sockets in TIME_WAIT. Each device got a brand new connection, and each closed socket waited 120 seconds.
-3. Recognize ephemeral port exhaustion on the client.
-4. Fix the cause: pool sixteen persistent connections instead of one per device.
-5. Shorten `TcpTimedWaitDelay` from 120 to 30 seconds as a safety margin, not as the fix.
-6. Result: the sweep finished in under three minutes, after a night of missing backups that started with an alert nobody opened.
+1. Compare the two failures. Terminal four got `connection refused` instantly, which is a TCP reset: the packet reached the server and nothing was listening. Terminal seven timed out after a minute.
+2. Ping `10.100.4.20` and run `Test-NetConnection` on port 8443. Routing works, and the port refuses.
+3. Run `netstat -ano` on `PDX-ARCHIVE01`. Nothing is listening on 8443 because the backup agent crashed. Restart it and confirm `LISTENING` on PID 4112.
+4. Now look at Jared's own workstation, which runs the sweep. Run `netstat -ano` there and count thousands of sockets in TIME_WAIT. Each device got a brand new connection, and each closed socket waited 120 seconds.
+5. Recognize ephemeral port exhaustion on the client.
+6. Fix the cause: pool sixteen persistent connections instead of one per device.
+7. Shorten `TcpTimedWaitDelay` from 120 to 30 seconds as a safety margin, not as the fix.
+8. Result: the sweep finished in under three minutes, after a night of missing backups that started with an alert Ethan scrolled past twice.
 
 ---
 
@@ -46,12 +48,9 @@ prompt: "Clean technical cutaway diagram of a network protocol state machine und
 
 
 ### The Situation
-It is 08:15 on a stormy Tuesday morning in late April. Cold rain lashes the fourth-floor glass of the Portland Regional Operations Center. Inside the facility bullpen, network infrastructure engineer Jared Vance is furiously pounding his keyboard. His automated configuration backup script failed at 03:15 AM, failing to archive 300 field switches and throwing thousands of red errors across server `PDX-ARCHIVE01`. Jared is convinced that Central IT in Chicago pushed an unannounced perimeter firewall change that severed access to port 8443.
+It is a wet April morning, and Ethan has been on the desk for eight months. Jared's configuration backup script aborted at quarter past three, and he blames a Chicago firewall change. Ken calls from the Gresham warehouse: terminal four gets "connection refused" instantly, and terminal seven spins for almost a minute before it times out.
 
-Simultaneously, freight supervisor Ken at the Gresham logistics annex reports critical intake terminal failures. Terminal four fails instantly with an error stating "Connection refused," while terminal seven hangs spinning for nearly a minute before throwing "Connection timed out."
-
-When apprentice technician Ethan Mercer prepares to submit an emergency firewall escalation ticket to Chicago, Desk Lead Jules Brooks stops him:
-> *"The wire has two ends, Ethan. Just because the door is open doesn't mean anyone is home. Is the service listening, or did the firewall drop the SYN? You don't ask the firewall team to open a port until you have logged onto the destination host and verified that a process is actually bound to the socket."*
+This lab follows the chapter in two halves. First, the difference between a reset and a timeout shows that nothing on the path is dropping packets: the backup agent on `PDX-ARCHIVE01` has crashed and nothing is listening on port 8443. Second, Jared's own workstation is out of ephemeral ports, because his script opens a new connection for each of four hundred devices and leaves every socket in TIME_WAIT for 120 seconds.
 
 ### The Ground Truth Rules of Transport & Socket Diagnostics
 
@@ -458,7 +457,7 @@ Before running any network command, enforce the CBYT protocol:
 TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1024
-Requester:        Ken Henderson (Freight Supervisor, Gresham Logistics Annex)
+Requester:        Ken Vance (Freight Supervisor, Gresham Logistics Annex)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
 Date / Time:      2026-10-24 09:30:15 PDT

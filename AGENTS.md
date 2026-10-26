@@ -26,7 +26,16 @@ Canon that is settled: the employer is Harrowmere Equipment Group, the setting i
 
 - The chapter may give away the answer. Write it as a complete story, cliffhanger or not.
 - The lab opens with a worked example of the same incident, solution known, and ends with one transfer problem (same principle, different surface). No "what would you do" handoffs before training, no lab epilogues, and no story Easter eggs. Labs may refer to the story.
-- Cost rules, in short: no promotion or forgiveness offsets a cost in the same or next chapter; each act has one incident that belongs to someone else and one thing Ethan saves that does not matter; no narrator foreshadowing; a carry-forward must change action, and a grudge may not be restated in more than two chapters without moving; every chapter charges Ethan a personal cost; his standing struggles (named in the bible) drive his wrong turns; no recurring character enters or exits the same way twice; run `python3 tools/check_dates.py` before merge; a cost counts only if it is in the narrative file. Details: `docs/craft/learning-narrative-framework.md`.
+- Cost and canon rules (numbering matches `docs/craft/learning-narrative-framework.md`):
+  1. No promotion, raise, or forgiveness offsets any cost charged to Ethan in the same or the previous chapter.
+  2. Each act has one incident that belongs to someone else (Ethan hears about it secondhand) and one thing Ethan saves that does not matter.
+  3. No narrator foreshadowing.
+  4. A carry-forward must change action. A grudge may not be restated in more than two chapters without moving.
+  5. Every chapter charges Ethan a personal cost that nobody refunds.
+  6. Ethan's standing struggles, named in the bible, drive his wrong turns.
+  7. No recurring character enters or exits with the same action, phrase, or device twice in an act. Each return opens on what changed since the last appearance.
+  8. Run `python3 tools/check_dates.py` before merge.
+  9. A cost counts only if it is in the narrative file.
 
 ## What this kit is
 

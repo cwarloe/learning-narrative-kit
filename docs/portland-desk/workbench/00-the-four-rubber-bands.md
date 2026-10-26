@@ -51,7 +51,7 @@ The certification consists of two separate examinations:
 - **CompTIA A+ Core 1 (220-1101):** Hardware, mobile devices, networking technology, and virtualization ($246 retail voucher fee).
 - **CompTIA A+ Core 2 (220-1102):** Operating systems, security principles, software troubleshooting, and operational procedures ($246 retail voucher fee).
 
-Together, the two vouchers total **$492**. When your bank account holds less than one hundred dollars after paying rent, failing an exam does not mean scheduling a casual retake next Tuesday. It means forfeiting two weeks of food money, gas, or rent. 
+Together, the two vouchers total **$492**. When your bank account holds less than one hundred dollars after paying rent, failing an exam does not mean scheduling a casual retake next Tuesday. It means forfeiting two weeks of food money, gas, or rent.  <!-- date-ok -->
 
 This financial terror produces a distinct cognitive pathology: **rote flashcard panic**. Stressed candidates purchase eight-hundred-page textbooks and try to memorize every noun, acronym, pin count, and cable specification as if preparing for a spelling bee. They drown in trivia—laser printer corona wires, DDR4 pinouts, and DVI connector variants—while failing to develop the mental models required to troubleshoot a machine in the real world.
 
