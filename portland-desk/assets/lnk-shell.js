@@ -315,6 +315,166 @@
     }
   }
 
+  
+  /* ==========================================================================
+     Multi-Card Flashcard Deck Engine
+     ========================================================================== */
+
+  function initPassportDecks() {
+    document.querySelectorAll('.passport-deck-container').forEach(function(deck) {
+      if (deck._initialized) return;
+      deck._initialized = true;
+
+      const cards = deck.querySelectorAll('.passport-card');
+      if (cards.length === 0) return;
+
+      let activeIdx = 0;
+      const currIdxEl = deck.querySelector('.deck-curr-idx');
+      const totalCountEl = deck.querySelector('.deck-total-count');
+      const dotsContainer = deck.querySelector('.passport-progress-dots');
+
+      if (totalCountEl) totalCountEl.textContent = cards.length;
+
+      // Populate dots if empty
+      if (dotsContainer && dotsContainer.children.length === 0) {
+        cards.forEach(function(_, i) {
+          const dot = document.createElement('span');
+          dot.className = 'dot' + (i === 0 ? ' active' : '');
+          dot.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showCard(i);
+          });
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      function showCard(idx) {
+        activeIdx = (idx + cards.length) % cards.length;
+        cards.forEach(function(c, i) {
+          c.classList.remove('active', 'flipped');
+          if (i === activeIdx) c.classList.add('active');
+        });
+        if (dotsContainer) {
+          const dots = dotsContainer.querySelectorAll('.dot');
+          dots.forEach(function(d, i) {
+            d.classList.toggle('active', i === activeIdx);
+          });
+        }
+        if (currIdxEl) currIdxEl.textContent = activeIdx + 1;
+      }
+
+      // Card click anywhere to flip
+      cards.forEach(function(card) {
+        card.addEventListener('click', function(e) {
+          if (e.target.tagName !== 'BUTTON' && !e.target.closest('button')) {
+            card.classList.toggle('flipped');
+          }
+        });
+      });
+
+      // Dedicated flip button
+      const flipBtn = deck.querySelector('.flip-btn');
+      if (flipBtn) {
+        flipBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const activeCard = deck.querySelector('.passport-card.active');
+          if (activeCard) activeCard.classList.toggle('flipped');
+        });
+      }
+
+      // Next / Prev buttons
+      const nextBtn = deck.querySelector('.next-btn');
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          showCard(activeIdx + 1);
+        });
+      }
+
+      const prevBtn = deck.querySelector('.prev-btn');
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          showCard(activeIdx - 1);
+        });
+      }
+
+      // Shuffle button
+      const shuffleBtn = deck.querySelector('.shuffle-btn');
+      if (shuffleBtn) {
+        shuffleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (cards.length > 1) {
+            let nextRand;
+            do {
+              nextRand = Math.floor(Math.random() * cards.length);
+            } while (nextRand === activeIdx);
+            showCard(nextRand);
+          }
+        });
+      }
+
+      // Keyboard controls when hovering deck
+      let isHovered = false;
+      deck.addEventListener('mouseenter', function() { isHovered = true; });
+      deck.addEventListener('mouseleave', function() { isHovered = false; });
+
+      document.addEventListener('keydown', function(e) {
+        if (!isHovered) return;
+        if (e.code === 'Space') {
+          e.preventDefault();
+          const activeCard = deck.querySelector('.passport-card.active');
+          if (activeCard) activeCard.classList.toggle('flipped');
+        } else if (e.code === 'ArrowRight') {
+          e.preventDefault();
+          showCard(activeIdx + 1);
+        } else if (e.code === 'ArrowLeft') {
+          e.preventDefault();
+          showCard(activeIdx - 1);
+        }
+      });
+
+      // Show initial card
+      showCard(0);
+    });
+  }
+
+  /* ==========================================================================
+     Job Aid Dual-Face Tab Switcher
+     ========================================================================== */
+
+  function initJobAidTabs() {
+    document.querySelectorAll('.lnk-job-aid-card').forEach(function(card) {
+      if (card._initializedTabs) return;
+      card._initializedTabs = true;
+
+      const tabBtns = card.querySelectorAll('.aid-tab-btn');
+      const faceA = card.querySelector('.aid-face.side-a');
+      const faceB = card.querySelector('.aid-face.side-b');
+
+      tabBtns.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = btn.getAttribute('data-target');
+          tabBtns.forEach(function(b) {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+
+          if (target === 'side-a') {
+            if (faceA) faceA.classList.add('active');
+            if (faceB) faceB.classList.remove('active');
+          } else {
+            if (faceB) faceB.classList.add('active');
+            if (faceA) faceA.classList.remove('active');
+          }
+        });
+      });
+    });
+  }
+
   /* ==========================================================================
      Docsify Lifecycle Integration
      ========================================================================== */
@@ -326,6 +486,8 @@
         mountModeSwitcher();
         mountGlossaryAside();
         initScratchpads();
+        initPassportDecks();
+        initJobAidTabs();
 
         // If glossary.json was in-flight, poll until populated
         if (!window.__GLOSSARY__ || Object.keys(window.__GLOSSARY__).length === 0) {

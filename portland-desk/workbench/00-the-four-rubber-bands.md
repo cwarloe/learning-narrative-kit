@@ -76,76 +76,117 @@ The certification voucher buys an HR passport. But once you walk through the cor
 
 ## 2. Technical Reference & Triage Matrix
 
-```job-aid
-band: yellow
-id: slate-0-identity
-title: "Slate 0: The Core Machine & Identity Compass"
-form: "4x6"
-side_a_label: "Side A: Decision Flow"
-side_b_label: "Side B: Invariants & Telemetry"
----
-### SIDE A: Core Triage Decision Ladder
-
-```mermaid
-flowchart TD
-    S["Observed Failure / Ticket Drop"] --> L1{"1. Physical & Power (Layer 1)<br/>LEDs on? Fans spinning? Relays click?"}
-    L1 -- No --> P1["Triage Power Supply / Rails (Green Band)<br/>Check 12V / 5V rails & fuses with DMM"]
-    L1 -- Yes --> L2{"2. System Integrity (Firmware / POST)<br/>POST beeps? Hex code halts? Screen displays?"}
-    L2 -- Halts --> P2["Triage Memory / Bus / Expansion<br/>Reseat RAM, drain flea power, check capacitors"]
-    L2 -- Clears --> L3{"3. Storage Persistence (OS Boot)<br/>Loads kernel from non-volatile disk?"}
-    L3 -- Fails --> P3["Triage Disk / Partition / BCD<br/>Check SMART logs, boot order, file tables"]
-    L3 -- Boots --> L4{"4. Network Identity (Layer 2 / 3)<br/>Valid IP or 169.254.x.x APIPA timeout?"}
-    L4 -- APIPA --> P4["Triage DHCP / Scope Exhaustion<br/>Check link lights, renew lease, check relay"]
-    L4 -- Valid IP --> L5{"5. Layer 3 Routing (Gateway)<br/>Ping local gateway vs remote IP"}
-    L5 -- Fails GW --> P5["Triage Local Switch & Default Gateway"]
-    L5 -- Passes GW --> P6["Triage DNS (Layer 7) & Sockets (Layer 4)"]
-```
-
-1. **The Machine Has No Magic:** Never troubleshoot software when physical LEDs or power rails fluctuate.
-2. **Binary Search Protocol:** Test the midpoint (Default Gateway) before guessing internet or DNS failure.
----
-### SIDE B: System Invariants & CLI Command Primitives
-
-| Subsystem | Physical Medium | Volatility | Failure Tell | Primary CLI Telemetry |
-|:---|:---|:---|:---|:---|
-| **1. Compute (CPU)** | Silicon ALU / Core Registers | **Volatile** (Zeroed on reset) | Instant thermal halt, POST `00`/`FF` | `wmic cpu get status` / BIOS Health |
-| **2. Memory (RAM)** | DRAM Transistor-Capacitor Cells | **Volatile** (Requires refresh) | BSOD `MEMORY_MANAGEMENT`, POST beeps | `wmic memorychip get speed,capacity` |
-| **3. Storage (Disk)** | NAND Flash / Magnetic Platter | **Non-Volatile** (Persists) | "OS Not Found", SMART disk errors | `diskmgmt.msc` / `chkdsk` / SMART logs |
-| **4. Network (NIC)** | Ethernet PHY / MAC Transceiver | **Mixed** (Firmware MAC persists) | APIPA `169.254.x.x`, dark link LEDs | `ipconfig /all` / `getmac` / `ping` |
-
-#### The Five-Step Ping Ladder:
-1. `ping 127.0.0.1` — Verifies local TCP/IP kernel stack (tcpip.sys).
-2. `ping <Host_IP>` — Verifies local NIC driver binding.
-3. `ping <Gateway_IP>` — Verifies physical cable/switch link to local router.
-4. `ping 8.8.8.8` — Verifies WAN routing and internet transit.
-5. `ping google.com` — Verifies DNS name resolution.
-```
+<aside class="lnk-job-aid-card band-yellow form-4x6" id="slate-0-identity" role="region" aria-label="Reference Slate: The Core Machine & Identity Compass">
+  <div class="aid-header">
+    <div class="aid-rivet" aria-hidden="true"></div>
+    <div class="aid-meta">
+      <span class="aid-tag">IDENTITY & TRIAGE</span>
+      <span class="aid-id">4x6 SLATE 0</span>
+    </div>
+    <div class="aid-title">Slate 0: The Core Machine & Identity Compass</div>
+    <div class="aid-controls">
+      <button type="button" class="aid-tab-btn active" data-target="side-a" aria-pressed="true">Side A: Decision Flow</button>
+      <button type="button" class="aid-tab-btn" data-target="side-b" aria-pressed="false">Side B: Invariants & Ping Ladder</button>
+    </div>
+  </div>
+  <div class="aid-body">
+    <div class="aid-face side-a active">
+      <div style="font-weight: 700; color: #f59e0b; margin-bottom: 0.75rem; font-size: 0.95rem;">THE 5-STEP CORE TRIAGE DECISION LADDER</div>
+      <div class="triage-ladder-board">
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 1</div>
+          <div class="triage-step-check"><strong>Physical & Power (Layer 1):</strong> Chassis LEDs lit? Fans spinning? Relays clicking?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: Test 12V/5V PSU Rails (Green Band)</span></div>
+        </div>
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 2</div>
+          <div class="triage-step-check"><strong>System Integrity (POST):</strong> BIOS beeps? Video signal output? Clean POST banner?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: Reseat RAM / GPU & Drain Flea Power</span></div>
+        </div>
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 3</div>
+          <div class="triage-step-check"><strong>Storage Persistence (OS Boot):</strong> Kernel loads from non-volatile NVMe/SATA disk?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: Check BCD / SMART Disk Errors</span></div>
+        </div>
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 4</div>
+          <div class="triage-step-check"><strong>Network Identity (Layer 2/3):</strong> Valid IP lease or 169.254.x.x APIPA timeout?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: DHCP Scope Exhaustion / Link Down</span></div>
+        </div>
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 5</div>
+          <div class="triage-step-check"><strong>Layer 3 Routing (Gateway):</strong> Can ping local Default Gateway vs remote WAN IP?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: Default Gateway Down / ARP Mismatch</span></div>
+        </div>
+      </div>
+      <div style="font-size: 0.82rem; color: #94a3b8; font-style: italic; margin-top: 0.5rem;">Rule of the Wire: Always test the midpoint (Default Gateway) before assuming internet or DNS failure.</div>
+    </div>
+    <div class="aid-face side-b">
+      <div style="font-weight: 700; color: #f59e0b; margin-bottom: 0.75rem; font-size: 0.95rem;">SUBSYSTEM VOLATILITY & COMMAND PRIMITIVES</div>
+      <table style="margin-bottom: 1rem;">
+        <thead>
+          <tr><th>Subsystem</th><th>Medium</th><th>Volatility</th><th>Failure Tell</th><th>Primary CLI Telemetry</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>1. Compute (CPU)</strong></td><td>Silicon ALU / Registers</td><td><strong style="color: #f87171;">Volatile</strong></td><td>Thermal halt, POST 00/FF</td><td><code>wmic cpu get status</code></td></tr>
+          <tr><td><strong>2. Memory (RAM)</strong></td><td>DRAM Cells</td><td><strong style="color: #f87171;">Volatile</strong></td><td>BSOD MEMORY_MGMT, beeps</td><td><code>wmic memorychip get speed</code></td></tr>
+          <tr><td><strong>3. Storage (Disk)</strong></td><td>NAND Flash / HDD</td><td><strong style="color: #34d399;">Non-Volatile</strong></td><td>OS Not Found, SMART errors</td><td><code>diskmgmt.msc / chkdsk</code></td></tr>
+          <tr><td><strong>4. Network (NIC)</strong></td><td>Ethernet PHY / MAC</td><td><strong style="color: #fbbf24;">Mixed</strong></td><td>APIPA 169.254.x.x, dark LEDs</td><td><code>ipconfig /all & getmac</code></td></tr>
+        </tbody>
+      </table>
+      <div style="background: #0b1120; border: 1px solid #1e293b; border-radius: 6px; padding: 0.75rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">
+        <span style="color: #38bdf8; font-weight: 700;">THE 5-STEP PING LADDER:</span><br/>
+        1. <code>ping 127.0.0.1</code> — Verifies local TCP/IP kernel stack (tcpip.sys)<br/>
+        2. <code>ping &lt;Host_IP&gt;</code> — Verifies local NIC driver binding<br/>
+        3. <code>ping &lt;Gateway_IP&gt;</code> — Verifies physical cable/switch link to local router<br/>
+        4. <code>ping 8.8.8.8</code> — Verifies WAN routing and internet transit<br/>
+        5. <code>ping google.com</code> — Verifies DNS name resolution
+      </div>
+    </div>
+  </div>
+  <div class="aid-footer">
+    <span class="aid-scale-badge">STANDARDIZED 4x6 PACKING-TAPE LAMINATED SLATE</span>
+    <button type="button" class="aid-print-btn" onclick="window.print()">🖨️ Print Laminate</button>
+  </div>
+</aside>
 
 
 ### 2.1 The 4 Core Building Blocks of a Computer
 Across microcontrollers, smartphones, enterprise servers, and industrial sorting terminals, all von Neumann digital computers consist of four immutable subsystems:
 
-```mermaid
-flowchart TD
-    subgraph ComputerChassis["Computer Chassis (Motherboard Interconnect)"]
-        CPU["1. COMPUTE (CPU)<br/>Registers • ALU • Control Unit<br/>Executes Instructions"]
-        RAM["2. VOLATILE MEMORY (RAM)<br/>DDR4 / DDR5 DRAM<br/>Requires Continuous Power"]
-        DISK["3. NON-VOLATILE STORAGE<br/>NVMe SSD / SATA HDD / Flash<br/>Retains Data Power-Off"]
-        NIC["4. COMMUNICATION (NIC)<br/>Layer 1 PHY Transceiver • Layer 2 MAC<br/>Serializes Bits onto Media"]
-        
-        CPU <-->|"High-Speed Memory Bus"| RAM
-        CPU <-->|"PCIe / Direct Bus"| DISK
-        CPU <-->|"PCIe / USB System Bus"| NIC
-    end
-    
-    EXT["Network Cable / Wi-Fi Media"] <--> NIC
-    FIRM["Firmware ROM (BIOS / UEFI)<br/>Executes POST Pulse-Check"] -.->|"Initial Bootstrap"| CPU
+<div class="hardware-architecture-grid">
+  <div class="hardware-card card-cpu">
+    <span class="hardware-card-badge">COMPUTE // SUB-01</span>
+    <div class="hardware-card-title">1. CPU (Central Processing Unit)</div>
+    <div class="hardware-card-volatility vol-volatile">VOLATILE (Zeroed upon Power Loss)</div>
+    <div class="hardware-card-desc">ALU, registers, and execution units. Fetches opcodes from RAM and manipulates mathematical state. If CPU thermal limits trip (>95°C), firmware halts power abruptly.</div>
+    <div class="hardware-card-telemetry">CLI: <code>wmic cpu get status</code></div>
+  </div>
 
-    style CPU fill:#2b6cb0,stroke:#2d3748,color:#fff
-    style RAM fill:#c53030,stroke:#2d3748,color:#fff
-    style DISK fill:#2f855a,stroke:#2d3748,color:#fff
-    style NIC fill:#d69e2e,stroke:#2d3748,color:#fff
-```
+  <div class="hardware-card card-ram">
+    <span class="hardware-card-badge">MEMORY // SUB-02</span>
+    <div class="hardware-card-title">2. RAM (Volatile Memory)</div>
+    <div class="hardware-card-volatility vol-volatile">VOLATILE (Requires Continuous 64ms Refresh)</div>
+    <div class="hardware-card-desc">High-speed dynamic scratchpad for running code, OS kernel tables, and active network sockets. Cutting electrical power purges all in-memory processes immediately.</div>
+    <div class="hardware-card-telemetry">CLI: <code>wmic memorychip get speed</code></div>
+  </div>
+
+  <div class="hardware-card card-storage">
+    <span class="hardware-card-badge">PERSISTENCE // SUB-03</span>
+    <div class="hardware-card-title">3. Storage (Non-Volatile Disk)</div>
+    <div class="hardware-card-volatility vol-nonvolatile">NON-VOLATILE (Persists Permanently)</div>
+    <div class="hardware-card-desc">NVMe SSD / SATA HDD containing the bootloader, kernel binaries, file systems, and malware payloads. Survives across reboots and power outages intact.</div>
+    <div class="hardware-card-telemetry">CLI: <code>diskmgmt.msc / chkdsk</code></div>
+  </div>
+
+  <div class="hardware-card card-nic">
+    <span class="hardware-card-badge">COMMUNICATION // SUB-04</span>
+    <div class="hardware-card-title">4. NIC (Network Interface)</div>
+    <div class="hardware-card-volatility vol-mixed">MIXED (Firmware MAC Persists)</div>
+    <div class="hardware-card-desc">Layer 1 physical transceiver & Layer 2 MAC controller. Serializes digital bits onto physical media. Configured dynamically via DHCP or assigned static IP envelopes.</div>
+    <div class="hardware-card-telemetry">CLI: <code>ipconfig /all & getmac</code></div>
+  </div>
+</div>
 
 #### Detailed Subsystem Matrix
 
@@ -344,7 +385,7 @@ Ethernet adapter Local Area Connection:
 2. What vital forensic artifacts were permanently destroyed by cutting power immediately?
 3. What will happen the moment you plug the power cable back in and power on the computer?
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Analysis 1 (Persistence vs Memory):** Pulling the plug **did not eradicate the infection**. It only cleared the volatile memory (RAM). The malware dropper almost certainly established non-volatile persistence on disk (e.g., in `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`, a Scheduled Task, or a Windows Service).
@@ -394,7 +435,7 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
 - Does traffic cross the Default Gateway?
 - What destination MAC address appears in the Layer 2 Ethernet frame?
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Destination 1 (Local Host B):**
@@ -490,7 +531,7 @@ ipconfig: |
 - **Symptom:** A desktop workstation was unplugged and moved across an office floor. When connected to power and turned on, the chassis fans spin loudly, the power LED turns on, but the monitor displays "No Signal" and the motherboard emits **one long beep followed by two short beeps**.
 - **Your Task:** Identify which of the 4 core components has failed, determine the layer of failure, and specify the physical action required before replacing any components.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 2/3 (Memory or Video Expansion Bus / Layer 1 Physical).
@@ -510,7 +551,7 @@ ipconfig: |
   ```
 - **Your Task:** Explain why this specific IP address exists, identify which network service has failed, and formulate a testable diagnostic test.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 4 (Network Communication / Layer 3 Logical Addressing).
@@ -528,7 +569,7 @@ ipconfig: |
 - **Symptom:** A user can print to the shared office network printer at `192.168.1.200` and can ping their desk neighbor at `192.168.1.55`. However, attempting to navigate to `google.com` or pinging `8.8.8.8` returns "Destination host unreachable."
 - **Your Task:** Isolate the exact network configuration parameter responsible using the Identity Triad.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 4 (Communication / Layer 3 Routing).
@@ -544,7 +585,7 @@ ipconfig: |
 - **Symptom:** A computer boots cleanly into Windows, runs fine for roughly 12 to 15 minutes, and then abruptly powers off or freezes solid with no blue screen error. Touching the top of the chassis near the exhaust fan reveals intense heat.
 - **Your Task:** Distinguish between a software operating system crash and a physical hardware fault. State which component is failing.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 1 (Compute / CPU Physical Thermals).
@@ -560,7 +601,7 @@ ipconfig: |
 - **Symptom:** A developer installs an internal testing web server on a support workstation. The service fails to start, displaying the error: `System Error: Bind() failed on 0.0.0.0:80. Address already in use.`
 - **Your Task:** Explain what "0.0.0.0:80" means in terms of Layer 4 architecture, and name the exact command used to find the conflicting program.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 4 / Layer 4 (Transport / Socket Port Binding).
@@ -579,40 +620,95 @@ ipconfig: |
 
 > **The Red Rubber Band Standard:** Test only one abstract concept per card. If saying the answer aloud takes more than 10 seconds, the card is overloaded. Click any card to flip between Question and Answer.
 
-<div class="passport-deck-container">
+<div class="passport-deck-container" id="passport-deck-00">
   <div class="passport-deck-header">
-    <span class="passport-deck-badge">RED BAND // ATOMIC RECALL DECK</span>
-    <span class="passport-deck-meta">3 Cards • Spaced Retrieval Warmup • CompTIA A+ Core 1</span>
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <span class="passport-deck-badge">RED BAND // ATOMIC RECALL DECK</span>
+      <span class="passport-deck-meta">Spaced Retrieval Warmup • CompTIA A+ Core 1</span>
+    </div>
+    <div class="passport-deck-counter">
+      CARD <span class="deck-curr-idx">1</span> / <span class="deck-total-count">3</span>
+    </div>
   </div>
   
   <div class="passport-card-stage">
     <!-- Card 1 -->
-    <div class="passport-card" id="card-00-1" tabindex="0" role="button" aria-label="Flashcard: Memory Volatility">
+    <div class="passport-card active" data-index="0" role="button" tabindex="0" aria-label="Flashcard 1: Memory Volatility">
       <div class="passport-face face-front">
         <span class="passport-highlight-bar">BOUNDARY // VOLATILITY</span>
         <div class="passport-prompt-text">Power cuts abruptly during an office outage. Does data in RAM survive the drop? (Yes/No and Why)</div>
         <div class="passport-footer-prompt">
           <span>Card 1 of 3</span>
-          <span>[ ⟳ Click to Flip ]</span>
+          <span class="flip-hint">[ ⟳ Click or Spacebar to Flip ]</span>
         </div>
       </div>
       <div class="passport-face face-back">
         <span class="passport-highlight-bar">GROUND TRUTH // THE LAW</span>
         <div class="passport-answer-text">
           <div class="passport-answer-rule">NO. Dynamic RAM is 100% volatile.</div>
-          <div class="passport-why-text">DRAM stores bits as electrical charges inside microscopic capacitor cells that require continuous refresh cycles every 64ms. The instant power drops, the charge dissipates, wiping all active processes, kernel tables, and in-memory malware immediately.</div>
+          <div class="passport-why-text">DRAM stores bits as electrical charges inside capacitor cells that require refresh cycles every 64ms. The instant power drops, charge dissipates immediately, purging all processes, kernel tables, and in-memory malware.</div>
         </div>
         <div class="passport-footer-prompt">
-          <span>Target Recall: &lt; 10 Seconds</span>
-          <span>[ ⟳ Click to Flip ]</span>
+          <span>Target Recall: &lt; 10s</span>
+          <span class="flip-hint">[ ⟳ Click to Flip ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="passport-card" data-index="1" role="button" tabindex="0" aria-label="Flashcard 2: Loopback Invariant">
+      <div class="passport-face face-front">
+        <span class="passport-highlight-bar">BOUNDARY // LOGICAL LOOPBACK</span>
+        <div class="passport-prompt-text">You run <code>ping 127.0.0.1</code> and get 4 successful replies. Does this prove your physical network cable is working? (Yes/No and Why)</div>
+        <div class="passport-footer-prompt">
+          <span>Card 2 of 3</span>
+          <span class="flip-hint">[ ⟳ Click or Spacebar to Flip ]</span>
+        </div>
+      </div>
+      <div class="passport-face face-back">
+        <span class="passport-highlight-bar">GROUND TRUTH // THE LAW</span>
+        <div class="passport-answer-text">
+          <div class="passport-answer-rule">NO. Loopback tests only internal TCP/IP software.</div>
+          <div class="passport-why-text">The loopback address (127.0.0.1) never sends electrical pulses to the network card PHY or physical Ethernet cable. It routes internally inside Windows kernel memory (tcpip.sys) to confirm the driver stack is initialized.</div>
+        </div>
+        <div class="passport-footer-prompt">
+          <span>Target Recall: &lt; 10s</span>
+          <span class="flip-hint">[ ⟳ Click to Flip ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="passport-card" data-index="2" role="button" tabindex="0" aria-label="Flashcard 3: Hardware Tell">
+      <div class="passport-face face-front">
+        <span class="passport-highlight-bar">DIAGNOSTIC // HARDWARE TELL</span>
+        <div class="passport-prompt-text">A moved workstation turns on, fans spin loudly, but monitor shows "No Signal" and BIOS emits 1 long beep + 2 short beeps. What failed?</div>
+        <div class="passport-footer-prompt">
+          <span>Card 3 of 3</span>
+          <span class="flip-hint">[ ⟳ Click or Spacebar to Flip ]</span>
+        </div>
+      </div>
+      <div class="passport-face face-back">
+        <span class="passport-highlight-bar">GROUND TRUTH // THE LAW</span>
+        <div class="passport-answer-text">
+          <div class="passport-answer-rule">Display Adapter (GPU) or Memory initialization failure.</div>
+          <div class="passport-why-text">POST beep codes indicate hardware failure before the video subsystem can initialize. Physical desk shock causes unlatched PCIe cards or RAM sticks to unseat. Immediate fix: drain flea power and firmly reseat components.</div>
+        </div>
+        <div class="passport-footer-prompt">
+          <span>Target Recall: &lt; 10s</span>
+          <span class="flip-hint">[ ⟳ Click to Flip ]</span>
         </div>
       </div>
     </div>
   </div>
   
   <div class="passport-deck-nav">
-    <button type="button" class="passport-btn" onclick="document.getElementById('card-00-1').classList.toggle('flipped')">Flip Card (Spacebar)</button>
+    <button type="button" class="passport-btn prev-btn">← Previous</button>
+    <button type="button" class="passport-btn flip-btn">⟳ Flip Card (Space)</button>
+    <button type="button" class="passport-btn next-btn">Next →</button>
+    <button type="button" class="passport-btn shuffle-btn">🔀 Shuffle</button>
   </div>
+  <div class="passport-progress-dots"></div>
 </div>
 
 

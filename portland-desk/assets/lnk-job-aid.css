@@ -293,6 +293,7 @@
 }
 
 .passport-card {
+  display: none !important;
   position: relative;
   width: 100%;
   min-height: 340px;
@@ -302,8 +303,47 @@
   border-radius: 10px;
 }
 
+.passport-card.active {
+  display: block !important;
+}
+
 .passport-card.flipped {
   transform: rotateY(180deg);
+}
+
+.passport-deck-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 4px;
+  padding: 0.2rem 0.65rem;
+}
+
+.passport-progress-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.passport-progress-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #334155;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.passport-progress-dots .dot.active {
+  background: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+  width: 22px;
+  border-radius: 4px;
 }
 
 .passport-face {
