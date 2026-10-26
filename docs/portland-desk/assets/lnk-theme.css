@@ -175,41 +175,57 @@ html, body {
 }
 
 /* ==========================================================================
-   Focused Center-Column Reading & Diagnostic Canvas
+   Focused Left-Anchored Reading & Diagnostic Canvas
    ========================================================================== */
 
 .content {
   background-color: var(--bg) !important;
   min-height: 100vh;
-  padding: 2.5rem 2rem 5rem !important;
-  max-width: 1040px !important;
-  margin: 0 auto !important;
-  display: block !important;
+  padding: 2.25rem 3rem 6rem !important;
   box-sizing: border-box !important;
-  position: relative !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 300px !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+body.close .content {
+  left: 0 !important;
+  padding: 2.25rem 2rem 6rem !important;
 }
 
 .markdown-section {
   width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
+  max-width: 980px !important;
+  margin: 0 0 3rem 0 !important;
   background: var(--surface) !important;
   border: 1px solid var(--surface-border) !important;
   border-radius: 12px !important;
-  padding: 3rem 2.75rem !important;
+  padding: 2.75rem 2.5rem !important;
   min-width: 0 !important;
   color: var(--text-main) !important;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
   box-sizing: border-box !important;
 }
 
-@media (max-width: 640px) {
+body.close .markdown-section {
+  margin: 0 auto 3rem auto !important;
+}
+
+@media (max-width: 768px) {
   .content {
-    padding: 1.25rem 0.75rem 3rem !important;
+    left: 0 !important;
+    padding: 1.25rem 0.85rem 4rem !important;
+    position: static !important;
   }
   .markdown-section {
     padding: 1.75rem 1.25rem !important;
     border-radius: 8px !important;
+    margin: 0 auto 2rem auto !important;
+    max-width: 100% !important;
   }
 }
 
@@ -460,10 +476,10 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 
 #lnk-glossary-aside {
   width: 100% !important;
-  max-width: 100% !important;
+  max-width: 980px !important;
   position: static !important;
   height: auto !important;
-  margin: 3.5rem 0 1.5rem !important;
+  margin: 0 0 2.5rem 0 !important;
   background: #0f172a !important;
   border: 1px solid #1e293b !important;
   border-top: 3px solid var(--primary) !important;
@@ -473,6 +489,10 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
   flex-direction: column !important;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
   box-sizing: border-box !important;
+}
+
+body.close #lnk-glossary-aside {
+  margin: 0 auto 2.5rem auto !important;
 }
 
 .glossary-header-bar {
