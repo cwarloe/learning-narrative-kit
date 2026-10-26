@@ -84,6 +84,340 @@ They wouldn't be pretty. They wouldn't look like professional laminated pocket g
 
 I snapped the red rubber band around the forty trivia cards, banded the draft sheets into three distinct stacks, and finally clicked off the buzzing fluorescent fixture.
 
+<div class="kitchen-table-plate">
+  <div class="kitchen-plate-header">
+    <div class="kitchen-plate-badge">[ ARTIFACT // ETHAN'S KITCHEN TABLE — 02:45 AM ]</div>
+    <div class="kitchen-plate-subtext">Walgreens 3x5 Cards (The Red Cram Deck) & 4x6 Taped Field Slates</div>
+  </div>
+
+  <div class="kitchen-plate-section-title title-red">The Red Rubber Band // 3x5 Trivia Cards (Active Retrieval)</div>
+  
+  <div class="passport-deck-container" data-deck="narrative-red-trivia">
+    <div class="passport-card-stage stacked-deck">
+      <!-- Card 1 -->
+      <div class="passport-card active">
+        <div class="passport-face face-front">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-prompt-text">What are the six stages of the laser printing electrophotographic (EP) cycle in exact order?</div>
+          <div class="passport-footer-prompt">
+            <span>Card 1 of 7</span>
+            <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
+          </div>
+        </div>
+        <div class="passport-face face-back">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-answer-text">
+            <div class="passport-answer-rule">Processing -> Charging -> Exposing -> Developing -> Transferring -> Fusing</div>
+            <div class="passport-why-text">Cleaning clears remnant toner/charge. Fusing melts toner at ~200°C.</div>
+          </div>
+          <div class="passport-footer-prompt">
+            <span>Target Recall: &lt; 10s</span>
+            <span class="flip-hint">[ Memory trick: People Can Easily Do The Fix ]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="passport-card">
+        <div class="passport-face face-front">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-prompt-text">Toner smudges off a freshly printed page onto your fingers like loose charcoal dust. What part failed?</div>
+          <div class="passport-footer-prompt">
+            <span>Card 2 of 7</span>
+            <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
+          </div>
+        </div>
+        <div class="passport-face face-back">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-answer-text">
+            <div class="passport-answer-rule">The Fuser Assembly</div>
+            <div class="passport-why-text">Toner is plastic resin dust. The fuser failed to reach ~200°C (~390°F) to melt toner into paper fibers.</div>
+          </div>
+          <div class="passport-footer-prompt">
+            <span>Target Recall: &lt; 10s</span>
+            <span class="flip-hint">[ Cold fuser = loose smudging toner ]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="passport-card">
+        <div class="passport-face face-front">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-prompt-text">What are the pin counts for a legacy parallel printer cable on the computer vs. printer sides?</div>
+          <div class="passport-footer-prompt">
+            <span>Card 3 of 7</span>
+            <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
+          </div>
+        </div>
+        <div class="passport-face face-back">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-answer-text">
+            <div class="passport-answer-rule">25-pin DB-25 on PC, 36-pin Centronics on Printer</div>
+            <div class="passport-why-text">IEEE 1284 standard. Maximum certified length is strictly 10 feet (3 meters).</div>
+          </div>
+          <div class="passport-footer-prompt">
+            <span>Target Recall: &lt; 10s</span>
+            <span class="flip-hint">[ Centronics has wire bails; DB-25 has screws ]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="passport-card">
+        <div class="passport-face face-front">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-prompt-text">What DC voltages correspond to the Orange, Red, and Yellow wires on a standard ATX power harness?</div>
+          <div class="passport-footer-prompt">
+            <span>Card 4 of 7</span>
+            <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
+          </div>
+        </div>
+        <div class="passport-face face-back">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-answer-text">
+            <div class="passport-answer-rule">Orange = +3.3V, Red = +5V, Yellow = +12V</div>
+            <div class="passport-why-text">Black = Ground (0V), Blue = -12V, Gray = Power Good (+5V signal).</div>
+          </div>
+          <div class="passport-footer-prompt">
+            <span>Target Recall: &lt; 10s</span>
+            <span class="flip-hint">[ Orange 3.3 / Red 5 / Yellow 12 ]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="passport-card">
+        <div class="passport-face face-front">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-prompt-text">What is the maximum certified channel distance for a Cat5e or Cat6 UTP Ethernet run?</div>
+          <div class="passport-footer-prompt">
+            <span>Card 5 of 7</span>
+            <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
+          </div>
+        </div>
+        <div class="passport-face face-back">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-answer-text">
+            <div class="passport-answer-rule">100 meters (328 feet total)</div>
+            <div class="passport-why-text">90 meters solid horizontal structural run + 10 meters total stranded patch cables.</div>
+          </div>
+          <div class="passport-footer-prompt">
+            <span>Target Recall: &lt; 10s</span>
+            <span class="flip-hint">[ Beyond 100m = attenuation & timing fail ]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="passport-card">
+        <div class="passport-face face-front">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-prompt-text">Power cuts abruptly during an office outage. Does data in RAM survive the drop? (Yes/No and Why)</div>
+          <div class="passport-footer-prompt">
+            <span>Card 6 of 7</span>
+            <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
+          </div>
+        </div>
+        <div class="passport-face face-back">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-answer-text">
+            <div class="passport-answer-rule">No. Dynamic RAM is volatile</div>
+            <div class="passport-why-text">DRAM capacitors require continuous electrical refresh every few milliseconds to hold charge.</div>
+          </div>
+          <div class="passport-footer-prompt">
+            <span>Target Recall: &lt; 10s</span>
+            <span class="flip-hint">[ Storage is non-volatile; RAM collapses ]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="passport-card">
+        <div class="passport-face face-front">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-prompt-text">A moved workstation turns on, fans spin loudly, monitor shows "No Signal", and BIOS emits 1 long beep + 2 short beeps. What failed?</div>
+          <div class="passport-footer-prompt">
+            <span>Card 7 of 7</span>
+            <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
+          </div>
+        </div>
+        <div class="passport-face face-back">
+          <div class="passport-highlight-bar">TRIVIA</div>
+          <div class="passport-answer-text">
+            <div class="passport-answer-rule">Display / Video Adapter Fault (GPU)</div>
+            <div class="passport-why-text">Standard Award/AMI POST code indicating uninitialized video hardware or unseated PCIe card.</div>
+          </div>
+          <div class="passport-footer-prompt">
+            <span>Target Recall: &lt; 10s</span>
+            <span class="flip-hint">[ Reseat the graphics card first ]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="passport-deck-nav">
+      <button type="button" class="passport-btn prev-btn">&larr; Previous</button>
+      <button type="button" class="passport-btn flip-btn">Flip Card (Spacebar)</button>
+      <button type="button" class="passport-btn next-btn">Next &rarr;</button>
+      <button type="button" class="passport-btn shuffle-btn">Shuffle Deck</button>
+    </div>
+    <div class="passport-progress-dots"></div>
+  </div>
+
+  <div class="kitchen-plate-section-title title-slate">The 4x6 Field Slates // FedEx Office Printouts (Scotch Tape Laminated)</div>
+
+  <div class="taped-field-slate">
+    <div class="slate-top-bar">
+      <div class="slate-eyelet"></div>
+      <div class="slate-selector-tabs">
+        <button type="button" class="slate-tab-btn active" data-band="green">Green: Anatomy</button>
+        <button type="button" class="slate-tab-btn" data-band="yellow">Yellow: Identity Triad</button>
+        <button type="button" class="slate-tab-btn" data-band="blue">Blue: Triage Compass</button>
+      </div>
+      <div class="slate-side-toggle">
+        <button type="button" class="slate-side-btn active" data-side="a">Side A (Ground Truth)</button>
+        <button type="button" class="slate-side-btn" data-side="b">Side B (Diagnostics)</button>
+      </div>
+    </div>
+
+    <div class="slate-content-body">
+      <!-- Green Side A -->
+      <div class="slate-sheet active" data-band="green" data-side="a">
+        <div class="slate-grid-row">
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">1. Central Processing Unit (CPU)</div>
+            <div class="slate-spec-desc">Executes serialized instruction cycles. Fetches from L1/L2 cache and memory. Halted if clock or power rail ripples.</div>
+            <span class="slate-spec-cmd">Status: Core Engine</span>
+          </div>
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">2. Volatile Memory (RAM)</div>
+            <div class="slate-spec-desc">Active workspace for OS kernel, open buffers, and running programs. Drops to absolute zero when electrical current halts.</div>
+            <span class="slate-spec-cmd">Status: Ephemeral Workspace</span>
+          </div>
+        </div>
+        <div class="slate-grid-row">
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">3. Non-Volatile Storage</div>
+            <div class="slate-spec-desc">Magnetic platters (HDD) or NAND cells (SSD). Preserves OS system files, logs, and registry across power cycles.</div>
+            <span class="slate-spec-cmd">Status: Persistent Record</span>
+          </div>
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">4. System Bus & Firmware (POST)</div>
+            <div class="slate-spec-desc">Motherboard traces linking components. UEFI/BIOS runs power-on self-test before handing bootstrap to the boot loader.</div>
+            <span class="slate-spec-cmd">Status: Physical Interconnect</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Green Side B -->
+      <div class="slate-sheet" data-band="green" data-side="b">
+        <div class="slate-grid-row">
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Physical Capacitor Inspection</div>
+            <div class="slate-spec-desc">Inspect silver cylinders near CPU socket. Flat top = Healthy. Domed top or crusty brown electrolyte vent = Blown voltage regulator.</div>
+            <span class="slate-spec-cmd">Check: Visual Inspection</span>
+          </div>
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Flea Power Residual Drain</div>
+            <div class="slate-spec-desc">Power capacitors hold residual DC charge. Pull wall power, hold chassis power button for 30 seconds to bleed circuits to true ground.</div>
+            <span class="slate-spec-cmd">Action: 30s Hold to Drain</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yellow Side A -->
+      <div class="slate-sheet" data-band="yellow" data-side="a">
+        <div class="slate-grid-row">
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Layer 2: Hardware MAC Address</div>
+            <div class="slate-spec-desc">Physical 48-bit address burned into NIC ROM. Directs Ethernet frames across the immediate local wire or switch port.</div>
+            <span class="slate-spec-cmd">Command: getmac / ipconfig /all</span>
+          </div>
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Layer 3: Logical IP Address</div>
+            <div class="slate-spec-desc">32-bit IPv4 address assigned dynamically (DHCP) or statically. Dictates where host sits in routed network topology.</div>
+            <span class="slate-spec-cmd">Command: ipconfig /renew</span>
+          </div>
+        </div>
+        <div class="slate-grid-row">
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Layer 4: Transport Port Number</div>
+            <div class="slate-spec-desc">16-bit software port directing packets to the correct application socket buffer (e.g. Port 80 HTTP, Port 443 HTTPS).</div>
+            <span class="slate-spec-cmd">Command: netstat -ano</span>
+          </div>
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Default Gateway Exit Door</div>
+            <div class="slate-spec-desc">Local router interface. If gateway is unreachable, host can talk to local roommates but cannot traverse to the outside internet.</div>
+            <span class="slate-spec-cmd">Test: ping [default_gateway]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yellow Side B -->
+      <div class="slate-sheet" data-band="yellow" data-side="b">
+        <div class="slate-grid-row">
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">APIPA 169.254.x.x Tell</div>
+            <div class="slate-spec-desc">If host has an address starting with 169.254, Layer 1/2 copper link is up, but DHCP server failed to answer lease requests.</div>
+            <span class="slate-spec-cmd">Symptom: DHCP Exhaustion or Unreachability</span>
+          </div>
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Loopback Invariant Check</div>
+            <div class="slate-spec-desc">Pinging 127.0.0.1 tests host OS TCP/IP protocol stack internally. Replies prove software stack works; does not test physical cable.</div>
+            <span class="slate-spec-cmd">Test: ping 127.0.0.1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blue Side A -->
+      <div class="slate-sheet" data-band="blue" data-side="a">
+        <div class="slate-grid-row">
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Step 1: Identify the Problem</div>
+            <div class="slate-spec-desc">Question user, identify symptoms, review environmental changes, determine if anything changed before failure occurred.</div>
+            <span class="slate-spec-cmd">Rule: Question the user</span>
+          </div>
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Step 2: Establish Theory of Cause</div>
+            <div class="slate-spec-desc">Question the obvious. Consider multiple approaches. Establish a single falsifiable theory of probable cause.</div>
+            <span class="slate-spec-cmd">Rule: Simplest explanation first</span>
+          </div>
+        </div>
+        <div class="slate-grid-row">
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Step 3: Test Theory to Determine Cause</div>
+            <div class="slate-spec-desc">Run simplest non-destructive test. If confirmed, determine next steps. If disproven, establish new theory.</div>
+            <span class="slate-spec-cmd">Rule: Never guess blindly</span>
+          </div>
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Step 4: Plan of Action & Resolution</div>
+            <div class="slate-spec-desc">Establish plan to resolve problem and implement solution. Identify potential unintended side-effects.</div>
+            <span class="slate-spec-cmd">Rule: Change one variable at a time</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blue Side B -->
+      <div class="slate-sheet" data-band="blue" data-side="b">
+        <div class="slate-grid-row">
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Step 5: Verify Full System Functionality</div>
+            <div class="slate-spec-desc">Verify complete system functionality and, if applicable, implement preventive measures to stop recurrence.</div>
+            <span class="slate-spec-cmd">Rule: Confirm with the customer</span>
+          </div>
+          <div class="slate-spec-card">
+            <div class="slate-spec-title">Step 6: Document Findings & Actions</div>
+            <div class="slate-spec-desc">Document findings, actions taken, and operational outcomes in passdown ticket notes for team handoff.</div>
+            <span class="slate-spec-cmd">Rule: If it isn't documented, it didn't happen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 ## The Strip Mall in Beaverton
 
 On Thursday morning at seven o'clock, a steady Pacific Northwest drizzle coated the windshield of my 2003 Honda Civic. The defroster blew lukewarm air against the glass as I drove west across the Ross Island Bridge, navigating through the commuter traffic toward Highway 217. My stomach felt hollow, churning on two gas-station donuts and black coffee.

@@ -476,6 +476,54 @@
   }
 
   /* ==========================================================================
+     Taped Field Slate Tab & Side Switcher
+     ========================================================================== */
+
+  function initTapedSlates() {
+    document.querySelectorAll('.taped-field-slate').forEach(function(slate) {
+      if (slate._initializedTaped) return;
+      slate._initializedTaped = true;
+
+      const tabBtns = slate.querySelectorAll('.slate-tab-btn');
+      const sideBtns = slate.querySelectorAll('.slate-side-btn');
+      let currentBand = 'green';
+      let currentSide = 'a';
+
+      function updateView() {
+        slate.querySelectorAll('.slate-sheet').forEach(function(s) {
+          const band = s.getAttribute('data-band');
+          const side = s.getAttribute('data-side');
+          s.classList.toggle('active', band === currentBand && side === currentSide);
+        });
+        tabBtns.forEach(function(b) {
+          b.classList.toggle('active', b.getAttribute('data-band') === currentBand);
+        });
+        sideBtns.forEach(function(b) {
+          b.classList.toggle('active', b.getAttribute('data-side') === currentSide);
+        });
+      }
+
+      tabBtns.forEach(function(b) {
+        b.addEventListener('click', function(e) {
+          e.preventDefault();
+          currentBand = b.getAttribute('data-band');
+          updateView();
+        });
+      });
+
+      sideBtns.forEach(function(b) {
+        b.addEventListener('click', function(e) {
+          e.preventDefault();
+          currentSide = b.getAttribute('data-side');
+          updateView();
+        });
+      });
+
+      updateView();
+    });
+  }
+
+  /* ==========================================================================
      Docsify Lifecycle Integration
      ========================================================================== */
 
@@ -488,6 +536,7 @@
         initScratchpads();
         initPassportDecks();
         initJobAidTabs();
+        initTapedSlates();
 
         // If glossary.json was in-flight, poll until populated
         if (!window.__GLOSSARY__ || Object.keys(window.__GLOSSARY__).length === 0) {
