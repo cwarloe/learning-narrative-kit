@@ -658,6 +658,255 @@
     renderTriviaCard();
   }
 
+
+  /* ==========================================================================
+     Ethan's 4x6 Taped Field Slates Deck Engine (Flippable Physical 3-Card Deck)
+     ========================================================================== */
+
+  const storySlatesDeck = [
+    {
+      band: 'THE ANATOMY SLATE (GREEN BAND)',
+      tagColor: 'rgba(34, 197, 94, 0.45)',
+      tagTextColor: '#14532d',
+      frontHtml: `
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-bottom: 0.65rem;">SIDE A: THE FOUR UNCHANGING MACHINE SUBSYSTEMS</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">1. CPU (Central Processing Unit)</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Executes serialized instructions. Reads from cache/RAM. Halted if clock or power rail ripples.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #15803d; margin-top: 4px;">[Core Engine]</div>
+          </div>
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">2. RAM (Volatile Memory)</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Ephemeral workspace for OS kernel and running programs. Drops to zero the moment current stops.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #b91c1c; margin-top: 4px;">[Volatile Workspace]</div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.75rem;">
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">3. Non-Volatile Storage</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Magnetic platters (HDD) or NAND cells (SSD). Preserves OS files, logs, and registry across reboots.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #15803d; margin-top: 4px;">[Persistent State]</div>
+          </div>
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">4. System Bus & POST Firmware</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Motherboard circuit paths. UEFI/BIOS runs power-on self-test before handing off to the boot loader.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">[Physical Interconnect]</div>
+          </div>
+        </div>
+      `,
+      backHtml: `
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-bottom: 0.65rem;">SIDE B: HARDWARE DIAGNOSTICS & TELLS</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">Capacitor Vent Inspection</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Inspect silver cylinders near CPU socket. Flat top = Healthy. Domed top or crusty brown vent = Blown voltage regulator.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #b91c1c; margin-top: 4px;">[Visual Tell: Voltage Ripple]</div>
+          </div>
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">Flea Power Residual Drain</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Power supply capacitors hold residual DC charge. Pull wall AC cord, hold power button for 30s to bleed circuits to ground.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">[Action: 30-Second Ground Bleed]</div>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; padding: 0.65rem 0.85rem; background: #fff; border: 1.5px solid #0f172a; border-radius: 4px;">
+          <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a; margin-bottom: 3px;">POST Tell Cheat-Sheet (AMI/Award):</div>
+          <div style="font-size: 0.72rem; color: #334155; font-family: 'JetBrains Mono', monospace;">
+            &bull; 1 Short Beep: Normal boot &bull; Continuous Beeps: Memory unseated<br>
+            &bull; 1 Long + 2 Short: Video/GPU fault &bull; Fans Max / No Beep: Dead VRM / CPU power unplugged
+          </div>
+        </div>
+      `
+    },
+    {
+      band: 'THE IDENTITY SLATE (YELLOW BAND)',
+      tagColor: 'rgba(234, 179, 8, 0.45)',
+      tagTextColor: '#713f12',
+      frontHtml: `
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-bottom: 0.65rem;">SIDE A: THE THREE NETWORK IDENTITY BOUNDARIES</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">Layer 2: Physical MAC Address</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">48-bit hex stamped on NIC. Directs Ethernet frames across the immediate wire or switch port.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">CLI: getmac /v &bull; ipconfig /all</div>
+          </div>
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">Layer 3: Logical IP Address</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">32-bit IPv4 address assigned by DHCP or static lease. Dictates location in routed topology.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">CLI: ipconfig /renew</div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.75rem;">
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">Layer 4: Transport Port Number</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">16-bit software doorway directing segments to the right application socket buffer.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">CLI: netstat -ano</div>
+          </div>
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">The Default Gateway Boundary</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Local router interface door. If gateway is dead, host talks to local roommates but cannot reach outside.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">CLI: ping [gateway_ip]</div>
+          </div>
+        </div>
+      `,
+      backHtml: `
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-bottom: 0.65rem;">SIDE B: IDENTITY DIAGNOSTICS & PING LADDER</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">The APIPA 169.254 Tell</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Host has 169.254.x.x. Layer 1/2 copper link is up, but DHCP lease timed out (scope exhausted or VLAN wrong).</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #b91c1c; margin-top: 4px;">[Symptom: DHCP Unreachable]</div>
+          </div>
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">The Loopback 127.0.0.1 Invariant</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Tests internal host TCP/IP software stack. Successful ping proves OS driver works; does NOT test physical wire.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #15803d; margin-top: 4px;">[Invariant: Stack Self-Test]</div>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; padding: 0.65rem 0.85rem; background: #fff; border: 1.5px solid #0f172a; border-radius: 4px;">
+          <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a; margin-bottom: 3px;">The 4-Step Ping Ladder (Shop Binary Search):</div>
+          <div style="font-size: 0.72rem; color: #334155; font-family: 'JetBrains Mono', monospace;">
+            1. ping 127.0.0.1 (Internal OS Stack) &rarr; 2. ping [Local_IP] (NIC Binding)<br>
+            3. ping [Default_Gateway] (Local Wire/Switch) &rarr; 4. ping 8.8.8.8 (External Internet)
+          </div>
+        </div>
+      `
+    },
+    {
+      band: 'THE TRIAGE COMPASS (BLUE BAND)',
+      tagColor: 'rgba(2, 132, 199, 0.45)',
+      tagTextColor: '#0c4a6e',
+      frontHtml: `
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-bottom: 0.65rem;">SIDE A: THE 6-STEP TROUBLESHOOTING ORDER OF OPERATIONS</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">1. Identify the Problem</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Question user, identify symptoms, review environmental changes, determine if anything changed before failure.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">[Rule: Question the user first]</div>
+          </div>
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">2. Establish Theory of Cause</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Question the obvious. Consider multiple approaches. Establish a single testable theory of probable cause.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">[Rule: Simplest explanation first]</div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.75rem;">
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">3. Test Theory to Determine Cause</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Run simplest non-destructive test. If confirmed, determine next steps. If disproven, establish new theory.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">[Rule: Never guess blindly]</div>
+          </div>
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">4. Plan of Action & Resolution</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Establish plan to resolve problem and implement solution. Identify potential unintended side-effects.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">[Rule: Change one variable at a time]</div>
+          </div>
+        </div>
+      `,
+      backHtml: `
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 700; color: #0f172a; margin-bottom: 0.65rem;">SIDE B: VERIFICATION, DOCUMENTATION & HANK'S RULES</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">5. Verify Full Functionality</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Verify complete system functionality and implement preventive measures to stop recurrence.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #15803d; margin-top: 4px;">[Rule: Customer signs off]</div>
+          </div>
+          <div style="border: 1.5px solid #0f172a; padding: 0.65rem 0.85rem; background: #fff; border-radius: 4px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a;">6. Document Everything</div>
+            <div style="font-size: 0.72rem; color: #334155; line-height: 1.35; margin-top: 3px;">Document findings, actions, and outcomes in ticket passdown notes for team handoff.</div>
+            <div style="font-size: 0.68rem; font-weight: 700; color: #0284c7; margin-top: 4px;">[Rule: If not documented, it didn't happen]</div>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem; padding: 0.65rem 0.85rem; background: #fff; border: 1.5px solid #0f172a; border-radius: 4px;">
+          <div style="font-weight: 700; font-size: 0.82rem; color: #0f172a; margin-bottom: 3px;">Hank's Machine Shop Law:</div>
+          <div style="font-size: 0.72rem; color: #334155; font-family: 'JetBrains Mono', monospace;">
+            &bull; "Power comes in, signal goes out. If copper don't have clean ground, the circuit is blind."<br>
+            &bull; Never adjust three adjustments at once out of panic. One change &rarr; Test &rarr; Verify.
+          </div>
+        </div>
+      `
+    }
+  ];
+
+  let currentSlateIdx = 0;
+
+  function renderSlateCard() {
+    const stage = document.getElementById('storySlateCardStage');
+    if (!stage) return;
+    const slate = storySlatesDeck[currentSlateIdx];
+    if (!slate) return;
+
+    const flipper = document.getElementById('storySlateFlipper');
+    if (flipper) flipper.classList.remove('is-flipped');
+
+    const markerFront = document.getElementById('slateMarkerFront');
+    const markerBack = document.getElementById('slateMarkerBack');
+    const numFront = document.getElementById('slateNumFront');
+    const numBack = document.getElementById('slateNumBack');
+    const frontContent = document.getElementById('slateFrontContent');
+    const backContent = document.getElementById('slateBackContent');
+    const counter = document.getElementById('slateCounter');
+
+    if (markerFront) {
+      markerFront.textContent = slate.band;
+      markerFront.style.background = slate.tagColor;
+      markerFront.style.color = slate.tagTextColor;
+    }
+    if (markerBack) {
+      markerBack.textContent = slate.band;
+      markerBack.style.background = slate.tagColor;
+      markerBack.style.color = slate.tagTextColor;
+    }
+    if (numFront) numFront.textContent = 'SIDE A';
+    if (numBack) numBack.textContent = 'SIDE B';
+    if (frontContent) frontContent.innerHTML = slate.frontHtml;
+    if (backContent) backContent.innerHTML = slate.backHtml;
+    if (counter) counter.textContent = '[ ' + (currentSlateIdx + 1) + ' OF 3 &bull; CLICK OR SPACEBAR TO FLIP TO SIDE B ]';
+  }
+
+  function initStorySlatesDeck() {
+    const stage = document.getElementById('storySlateCardStage');
+    if (!stage) return;
+    if (stage._initialized) return;
+    stage._initialized = true;
+
+    const flipper = document.getElementById('storySlateFlipper');
+    const prevBtn = document.getElementById('slatePrevBtn');
+    const nextBtn = document.getElementById('slateNextBtn');
+    const flipBtn = document.getElementById('slateFlipBtn');
+
+    if (flipper) {
+      flipper.addEventListener('click', function() {
+        flipper.classList.toggle('is-flipped');
+      });
+    }
+
+    if (flipBtn) {
+      flipBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (flipper) flipper.classList.toggle('is-flipped');
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentSlateIdx = (currentSlateIdx - 1 + storySlatesDeck.length) % storySlatesDeck.length;
+        renderSlateCard();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentSlateIdx = (currentSlateIdx + 1) % storySlatesDeck.length;
+        renderSlateCard();
+      });
+    }
+
+    renderSlateCard();
+  }
+
   /* ==========================================================================
      Taped Field Slate Tab & Side Switcher
      ========================================================================== */
@@ -721,6 +970,7 @@
         initJobAidTabs();
         initTapedSlates();
         initStoryTriviaDeck();
+        initStorySlatesDeck();
 
         // If glossary.json was in-flight, poll until populated
         if (!window.__GLOSSARY__ || Object.keys(window.__GLOSSARY__).length === 0) {
