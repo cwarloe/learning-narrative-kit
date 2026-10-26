@@ -3,7 +3,6 @@ import os
 base_dir = "C:/Users/charl/learning-narrative-kit"
 files = [
     os.path.join(base_dir, 'docs/research/PORTLAND_AUTHOR_BIBLE.md'),
-    os.path.join(base_dir, 'docs/research/PORTLAND_CURRICULUM_PLAN.md'),
     os.path.join(base_dir, 'docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md')
 ]
 

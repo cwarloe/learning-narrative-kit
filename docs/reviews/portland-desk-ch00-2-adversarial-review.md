@@ -1,6 +1,6 @@
 # Portland Desk, Chapters 00–2: Adversarial Review
 
-**Scope.** This review covers three chapters. "The Four Rubber Bands" (`examples/a-plus-foundations-prologue/narrative.md`, Chapter 00) takes place in an East Portland kitchen and a Beaverton testing center. "The Paper Cert" (`examples/a-plus-hardware-helpdesk/narrative.md`, Chapter 1) takes place at the Gresham warehouse. "The Live Board" (`examples/a-plus-os-helpdesk/narrative.md`, Chapter 2) takes place at the Portland ROC. All three are identical to `/workspace/sorkin-desk/portland-desk/narrative/00`, `01`, and `02`. I read all three in full. Chapter 00 is treated as a full chapter, not a prologue to be forgiven. This is a story-craft review only. Technical accuracy was handled in the 2026-10-22 nitpick pass and is not reopened here.
+**Scope.** This review covers three chapters. "The Four Rubber Bands" (`docs/portland-desk/narrative/00-the-four-rubber-bands.md`, Chapter 00) takes place in an East Portland kitchen and a Beaverton testing center. "The Paper Cert" (`examples/a-plus-hardware-helpdesk/narrative.md`, Chapter 1) takes place at the Gresham warehouse. "The Live Board" (`examples/a-plus-os-helpdesk/narrative.md`, Chapter 2) takes place at the Portland ROC. All three are identical to `/workspace/sorkin-desk/portland-desk/narrative/00`, `01`, and `02`. I read all three in full. Chapter 00 is treated as a full chapter, not a prologue to be forgiven. This is a story-craft review only. Technical accuracy was handled in the 2026-10-22 nitpick pass and is not reopened here.
 
 ## Verdict
 

@@ -24,3 +24,14 @@ To add a file here, use `git mv` so its history follows it, and add a row to thi
 | Path | Superseded by | Why |
 |---|---|---|
 | `portland-desk-root-copy/` (was `portland-desk/`) | `docs/portland-desk/` | The two were full duplicates. `docs/portland-desk/` is the one GitHub Pages serves and the hub links to, and it was the more complete copy (it alone has the fonts). Edit only `docs/portland-desk/`. |
+
+## Second batch (archived 2026-10-26, approved by Charles)
+
+| Path | Superseded by | Why |
+|---|---|---|
+| `examples/a-plus-foundations-prologue/` and `docs/a-plus-foundations-prologue/` | `docs/portland-desk/narrative/00-the-four-rubber-bands.md` | A standalone copy of Ep 00 that drifted from the series. |
+| `docs-research/PROSE_CRITIC_REVIEW_V2.md`, `TECHNICAL_NITPICKER_REVIEW_V2.md`, `DIGITAL_ART_DIRECTOR_REVIEW_V2.md` | Current episodes and the bible | Dated bot reviews. Some findings were applied; the rest are history. |
+| `docs-research/PROPOSED_VISUALS_AUDIT.md` | `docs/research/VISUAL_ART_DIRECTION.md` | Early visual catalog. |
+| `docs-research/REPO_STRUCTURE_RECOMMENDATION.md` | `AGENTS.md` and this archive | Proposal from 2026-10-21. The parts that mattered (one Portland Desk source, precedence) were done another way. |
+| `docs-research/PORTLAND_CURRICULUM_PLAN.md` | `docs/research/PORTLAND_AUTHOR_BIBLE.md` section 6 | An older episode plan with different titles and plots than the shipped series. |
+| `docs-research/FLASHCARD_AND_FIELD_SLATE_ARCHITECTURE.md` | `docs/research/ATOMIC_CONCEPTUAL_FLASHCARD_STANDARD.md` | Two flashcard standards; Charles kept the atomic one. |
