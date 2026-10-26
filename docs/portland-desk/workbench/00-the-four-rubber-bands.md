@@ -45,7 +45,7 @@ prompt: "Clean technical cutaway illustration in Pacific Northwest instructional
 
 
 ### The $500 Voucher Anxiety
-To an eighteen- or nineteen-year-old working an hourly retail, staging, or warehouse job, the CompTIA A+ certification is not an abstract professional milestone; it is an immense financial gamble. 
+To a twenty-year-old working an hourly retail, staging, or warehouse job, the CompTIA A+ certification is not an abstract professional milestone; it is an immense financial gamble. 
 
 The certification consists of two separate examinations:
 - **CompTIA A+ Core 1 (220-1101):** Hardware, mobile devices, networking technology, and virtualization ($246 retail voucher fee).
@@ -369,6 +369,8 @@ Ethernet adapter Local Area Connection:
 
 ## 3. Quick Checks & Skill Reps
 
+> **All practice cases.** Ethan's chapter is a study night at the kitchen table, not a ticket. Every case in this section is a practice case that uses the mental model he built that night.
+
 ### Drill 1 (practice case): The Panic Power Cut
 
 > **Ticket Drop:** `T1-INIT-2026-002` • Priority: P2-High • Subsystem: Component 2 (Memory) vs Component 3 (Storage)
@@ -411,7 +413,7 @@ Ethernet adapter Local Area Connection:
 
 ---
 
-### Drill 2: Layer 2 vs. Layer 3 Identity (Local vs. Gateway Traffic)
+### Drill 2 (practice case): Layer 2 vs. Layer 3 Identity (Local vs. Gateway Traffic)
 **Scenario:** Examine the network configuration of Workstation A and determine how it transmits data to two different destination IP addresses:
 
 ```
@@ -768,7 +770,7 @@ Use this standardized intake checklist when logging and triaging your first live
 FIRST-CONTACT DIAGNOSTIC INTAKE WORKSHEET · TIER 1 SUPPORT
 ========================================================================================
 TICKET REF   : T1-INIT-2026-001             DATE/TIME : 2023-07-27 09:30 PDT
-TECHNICIAN   : Ethan Mercer                 STATUS    : UNDER INVESTIGATION
+TECHNICIAN   : ____________________________ STATUS    : UNDER INVESTIGATION
 USER NAME    : ____________________________ ASSET TAG : _______________________________
 
 1. SUBSYSTEM ISOLATION (Which core component is failing?):
@@ -805,7 +807,7 @@ USER NAME    : ____________________________ ASSET TAG : ________________________
 
 ---
 
-### Part C: Standard 3-Block Ticket Resolution Note (ServiceNow / Jira Standard)
+### Part C (practice case): Standard 3-Block Ticket Resolution Note
 
 Before closing Incident `T1-INIT-2026-002`, draft the formal 3-Block passdown note separating internal technician telemetry from user-facing guidance:
 

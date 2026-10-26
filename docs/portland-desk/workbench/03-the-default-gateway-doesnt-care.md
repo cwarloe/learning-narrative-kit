@@ -258,7 +258,7 @@ Ethernet adapter Local Area Connection:
 
 ### Micro-Drill 2: CIDR Bitwise Subnet Boundary Math & Off-by-One Troubleshooting
 
-**Scenario:** Two newly racked company servers sit in the same equipment cabinet in the Willamette plant pump house, plugged into adjacent ports on the same switch:
+**Scenario:** Two newly racked company servers sit in the same equipment cabinet in the pump house next to the Gresham warehouse, plugged into adjacent ports on the same switch:
 - Server A (`PDX-PUMP-DB01`): `192.168.10.62` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
 - Server B (`PDX-PUMP-LOG02`): `192.168.10.65` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
 

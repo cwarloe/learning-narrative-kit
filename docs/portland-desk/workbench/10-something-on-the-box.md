@@ -273,6 +273,8 @@ You open a PowerShell terminal on your management workstation to de-obfuscate th
 ### Drill 2: Sysinternals Autoruns & Registry Run Key Inspection
 
 #### The Scenario
+> **Practice case.** This drill is invented for practice and is not an event from the chapter.
+
 Maya in Accounting opened ticket `HD-4419` complaining of browser pop-ups and sluggish performance following an unauthorized software download. You remote into `MAYA-W11` with her permission. In Task Manager, you see an unfamiliar process named `optram.exe` using 15% CPU. If you simply right-click and choose "End Task", the process disappears, but returns immediately upon reboot.
 
 To inspect the persistence mechanism, you examine the pre-recorded Autoruns log in [`artifacts/autoruns_dump.txt`](../artifacts/autoruns_dump.txt) and the System Event Log in [`artifacts/event_7045_dump.txt`](../artifacts/event_7045_dump.txt):

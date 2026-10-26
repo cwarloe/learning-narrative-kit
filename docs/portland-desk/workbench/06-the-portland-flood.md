@@ -362,7 +362,7 @@ Get-DhcpServerv4Scope -ScopeId 10.20.10.0 | Format-Table ScopeId, Name, StartRan
 Get-DhcpServerv4ScopeStatistics -ScopeId 10.20.10.0 | Format-List Free, InUse, PercentageInUse
 
 # Step 3: Export Existing Leases for Audit Trail
-Get-DhcpServerv4Lease -ScopeId 10.20.10.0 | Export-Csv -Path "C:\IT_Backups\Lease_Dump_20261215.csv" -NoTypeInformation
+Get-DhcpServerv4Lease -ScopeId 10.20.10.0 | Export-Csv -Path "C:\IT_Backups\Lease_Dump_20250519.csv" -NoTypeInformation
 
 # Step 4: Reconcile Scope & Purge Inactive / Stale Leases
 Get-DhcpServerv4Lease -ScopeId 10.20.10.0 -AllLeases | Where-Object {$_.AddressState -eq "Inactive" -or $_.AddressState -eq "Expired"} | Remove-DhcpServerv4Lease
@@ -522,49 +522,51 @@ In high-pressure disaster recovery scenarios, novices guess and execute random c
 ================================================================================
 HARROWMERE PORTLAND IT OPERATIONS — POST-INCIDENT RECOVERY REPORT (SEV-1)
 ================================================================================
-INCIDENT ID:      INC-2026-1215-SEV1
-DATE / TIME:      2025-05-19 04:00:00 PST through 2025-05-19 08:00:00 PST
+INCIDENT ID:      INC-2025-0519-SEV1
+DATE / TIME:      2025-05-19 04:00:00 PDT through 2025-05-19 08:00:00 PDT
 FACILITY / SITE:  Building C (Rivergate Parts & Service Center), Sub-Basement Vault
-LEAD TECH:        Ethan Mercer (Lead Tier 1 Specialist)
+LEAD TECH:        Ethan Mercer (Tier 1 Specialist, on call)
 SUPERVISING LEAD: Jules Brooks (Help Desk Lead)
 NETWORK ENGINEER: Jared Lindqvist (Senior Network Operations Engineer)
 IMPACTED SUBNETS: VLAN 10 (Order Desk), VLAN 20 (Telemetry), VLAN 30 (VoIP)
-OVERALL STATUS:   RESOLVED & RESTORED (Pre-Opening Operational Sign-Off)
+OVERALL STATUS:   MOSTLY RESTORED (shipping label printers down until 10:05)
 ================================================================================
 
 1. EXECUTIVE SUMMARY & BUSINESS IMPACT:
-   At 03:15 PST during a severe atmospheric river storm (Willamette River cresting 
+   At 03:15 PDT during a severe atmospheric river storm (Willamette River cresting 
    at flood stage), the basement telecommunications vault of Building C took on 
    ankle-deep floodwater due to stormwater backflow. A concurrent electrical 
    transformer arc triggered a generator transfer surge that destroyed two lower-tier 
    24-port edge switches. Building C lost all network connectivity, cutting off 
    the Rivergate order desk, field-service dispatch, and plant SCADA telemetry loggers.
    
-   IT field crews mobilized at 04:00 PST. Over a 4-hour maintenance window, crews 
+   IT field crews mobilized at 04:00 PDT. Over a 4-hour maintenance window, crews 
    condemned damaged hardware, racked two replacement Cisco 2960-X 48-port switches 
    in the upper rack tier, sanitized damp patch panel connections, provisioned 
    802.1Q VLAN trunking and LACP link aggregation, and mitigated a 150-endpoint DHCP 
    scope exhaustion storm following commercial power restoration. Full operational 
-   restoration was achieved at 07:50 PST, allowing the normal 08:00 opening.
+   restoration of the order desk, dispatch, and telemetry was achieved at 07:50 PDT. The twelve 
+   shipping label printers stayed on the old VLAN behind an unmoved patch cord until 10:05 PDT.
 
 2. CHRONOLOGICAL INCIDENT TIMELINE:
-   - 03:15 PST: River storm floodwater breaches vault; utility power cut; generator starts.
-   - 03:18 PST: Electrical transient surge destroys edge switches SW-BLDGC-01 & 02.
-   - 03:30 PST: Tier 1 escalation dispatched; Jules Brooks initiates bridge call.
-   - 04:00 PST: Mercer, Brooks, and Lindqvist arrive on site with boots and emergency kit.
-   - 04:15 PST: Sump pump activated; electrical test meter confirms 0V stray potential.
-   - 04:30 PST: Bleed flea power on fried PSUs; internal transformer coil failure confirmed.
-   - 04:50 PST: Dead chassis unmounted; two 48-port switches mounted 4 RUs above water line.
-   - 05:20 PST: 110-block patch panel cleaned with solvent; Port 14 loose pair re-punched (T568B).
-   - 06:10 PST: Baseline switch configuration loaded (VLANs 10, 20, 30, 99 provisioned).
-   - 06:40 PST: Dual gigabit fiber links bundled into LACP Port-Channel 1; 802.1Q trunk active.
-   - 07:15 PST: Commercial grid power restored; generator cycles off; 150 endpoints boot.
-   - 07:18 PST: Network monitoring alerts yellow/red; billing workstations pull APIPA (169.254.x.x).
-   - 07:25 PST: DHCP scope exhaustion identified on 10.20.10.0/24 (Free = 0 / 8-day lease trap).
-   - 07:35 PST: DHCP scope reconciled; 84 stale leases cleared; lease reduced to 8 hours.
-   - 07:45 PST: Clients execute 'ipconfig /renew'; valid 10.20.10.x addresses bound.
-   - 07:50 PST: Layer 1-4 end-to-end verification completed; SCADA telemetry confirmed green.
-   - 08:00 PST: Parts counter opens; Rivergate staff report zero network downtime.
+   - 03:15 PDT: River storm floodwater breaches vault; utility power cut; generator starts.
+   - 03:18 PDT: Electrical transient surge destroys edge switches SW-BLDGC-01 & 02.
+   - 03:30 PDT: Tier 1 escalation dispatched; Jules Brooks initiates bridge call.
+   - 04:00 PDT: Mercer, Brooks, and Lindqvist arrive on site with boots and emergency kit.
+   - 04:15 PDT: Sump pump activated; electrical test meter confirms 0V stray potential.
+   - 04:30 PDT: Bleed flea power on fried PSUs; internal transformer coil failure confirmed.
+   - 04:50 PDT: Dead chassis unmounted; two 48-port switches mounted 4 RUs above water line.
+   - 05:20 PDT: 110-block patch panel cleaned with solvent; Port 14 loose pair re-punched (T568B).
+   - 06:10 PDT: Baseline switch configuration loaded (VLANs 10, 20, 30, 99 provisioned).
+   - 06:40 PDT: Dual gigabit fiber links bundled into LACP Port-Channel 1; 802.1Q trunk active.
+   - 07:15 PDT: Commercial grid power restored; generator cycles off; 150 endpoints boot.
+   - 07:18 PDT: Network monitoring alerts yellow/red; billing workstations pull APIPA (169.254.x.x).
+   - 07:25 PDT: DHCP scope exhaustion identified on 10.20.10.0/24 (Free = 0 / 8-day lease trap).
+   - 07:35 PDT: DHCP scope reconciled; 84 stale leases cleared; lease reduced to 8 hours.
+   - 07:45 PDT: Clients execute 'ipconfig /renew'; valid 10.20.10.x addresses bound.
+   - 07:50 PDT: Layer 1-4 end-to-end verification completed; SCADA telemetry confirmed green.
+   - 08:00 PDT: Parts counter opens. Shipping prints labels by hand from a spreadsheet.
+   - 10:05 PDT: Label printer patch cord moved to VLAN 10; shipping printers back online.
 
 3. ROOT CAUSE ANALYSIS (RCA):
    - Primary Physical Cause (Layer 1): Stormwater backflow through sub-basement floor drains 
@@ -642,7 +644,7 @@ PORTLAND HELP DESK (BOOK 0) — MIDPOINT CAPSTONE QUALIFICATION
 CANDIDATE:        Ethan Mercer, Support Specialist
 SUPERVISING LEAD: Jules Brooks, Help Desk Lead
 NETWORK ENGINEER: Jared Lindqvist, Senior Network Infrastructure Engineer
-DATE OF SIGN-OFF: 2025-05-19 08:15:00 PST
+DATE OF SIGN-OFF: 2025-05-19 08:15:00 PDT
 RESULT:           QUALIFIED — FULL CAPSTONE PASS (ADVANCED TO TIER 2 CANDIDACY)
 
 LEAD EVALUATOR COMMENTS:

@@ -52,7 +52,7 @@ This lab follows the chapter's queue. Nora in finance rotates seasonal passwords
 
 ### The Ground Truth Rules of the Desk
 1. **Two Nouns Do Not Equal Two Factors:** Multifactor authentication requires **two or more distinct categories** of credentials: *Something you know* (knowledge), *Something you have* (possession), *Something you are* (inherence/biometrics), or *Somewhere you are* (location/context). A password plus a PIN is simply two things you know ($1 + 1 = 1$). It is single-factor authentication with extra typing.
-2. **Length Beats Complexity (Entropy Wins):** Requiring users to rotate complex 8-character passwords every 90 days breeds predictable patterns (`Winter2026!`) and physical sticky notes. Modern enterprise defense (NIST SP 800-63B) prioritizes **length and entropy**: a 16-character four-word passphrase (`correct-horse-battery-staple`) resists brute-force and dictionary attacks far better than an 8-character symbol salad.
+2. **Length Beats Complexity (Entropy Wins):** Requiring users to rotate complex 8-character passwords every 90 days breeds predictable patterns (`Fall2025!`) and physical sticky notes. Modern enterprise defense (NIST SP 800-63B) prioritizes **length and entropy**: a 16-character four-word passphrase (`correct-horse-battery-staple`) resists brute-force and dictionary attacks far better than an 8-character symbol salad.
 3. **Possession Strength Follows a Hierarchy:** Not all possession factors are created equal. SMS OTP and voice codes are vulnerable to SIM swapping, SS7 cellular routing intercepts, and adversary-in-the-middle (AiTM) phishing reverse proxies. Authenticator apps (TOTP/HOTP) provide stronger possession, while FIDO2/WebAuthn hardware security keys provide cryptographic phishing resistance.
 4. **Never Clear a Lockout Without Identifying the Caller:** Clicking "Unlock Account" in Active Directory Users and Computers (ADUC) treats the symptom, not the cause. If a user's phone, forgotten tablet, or background batch script is still hammering the domain controller with cached stale credentials, the account will re-lock within minutes. You must inspect **Event ID 4740** in the Security Event Log, extract the **Caller Computer Name**, and terminate the offending session before unlocking.
 
@@ -102,7 +102,7 @@ flowchart LR
 | :--- | :--- | :--- | :--- |
 | **Minimum Length** | 8 characters | **15–16+ characters** (Minimum 8, Passphrases strongly encouraged) | Exponential increase in search space ($94^8 \approx 6 \times 10^{15}$ vs $26^{16} \approx 4.3 \times 10^{22}$). |
 | **Composition Rules** | Mandatory 3 of 4: Upper, Lower, Digit, Symbol | **Eliminated.** No arbitrary symbol mandates. | Eliminates predictable substitutions (`E` $\rightarrow$ `3`, `a` $\rightarrow$ `@`, ending in `!`). |
-| **Mandatory Rotation** | Forced 60–90 day expiration | **Removed.** Rotate only upon suspected breach or credential leak. | Stops the "Seasons and Years" pattern (`Spring2026!` $\rightarrow$ `Summer2026!`). |
+| **Mandatory Rotation** | Forced 60–90 day expiration | **Removed.** Rotate only upon suspected breach or credential leak. | Stops the "Seasons and Years" pattern (`Spring2024!` $\rightarrow$ `Summer2024!`). |
 | **Breach Filtering** | Basic dictionary check against `password` or username | **Mandatory check against breached password lists** (e.g., HaveIBeenPwned). | Prevents users from choosing passwords exposed in prior corporate breaches. |
 | **Hint Questions** | "Mother's maiden name", "First car" | **Prohibited.** | Knowledge-based authentication (KBA) answers are easily scraped from social media. |
 
@@ -162,7 +162,7 @@ flowchart TD
     A["User reports 'Account is Locked Out'"] --> B["Open Event Viewer on PDC Emulator / Domain Controller<br/>or run PowerShell Get-WinEvent"]
     B --> C["Filter Security Log for Event ID 4740<br/>(A user account was locked out)"]
     C --> D{"Examine Event 4740 Fields:<br/>- TargetUserName<br/>- CallerComputerName"}
-    D --> E["CallerComputerName identified?<br/>(e.g., 'IPAD-NORA-FIN' or 'PORT-WS-1042')"]
+    D --> E["CallerComputerName identified?<br/>(e.g., 'ENG-BUILD-07' or 'PORT-WS-1042')"]
     E -- Internal Workstation --> F["Log into Workstation.<br/>Check Windows Credential Manager,<br/>stale mapped network drives (net use),<br/>or hung scheduled tasks."]
     E -- Mobile / ActiveSync --> G["Identify mobile device.<br/>Update cached Exchange / Wi-Fi password<br/>or toggle Airplane Mode."]
     E -- Blank / Service Host --> H["Inspect Event ID 4625 for Logon Type:<br/>- Type 3: Network Share / IIS<br/>- Type 8: NetworkCleartext / Service<br/>- Type 10: RDP Remote Session"]
@@ -190,6 +190,8 @@ flowchart TD
 ### Drill 1: Multi-Factor Authentication (MFA) Factor Classification Matrix
 
 #### The Scenario
+> **Practice cases.** These six cases are invented for practice and are not events from the chapter.
+
 During morning ticket triage, you review six incoming requests and security policy queries. Several end users and departmental leads claim they already have MFA or want exceptions.
 
 Evaluate each scenario in the matrix below. Determine whether the configuration represents true multifactor authentication ($MFA \ge 2 \text{ distinct factor types}$) or a false single-factor claim.
@@ -223,9 +225,7 @@ Evaluate each scenario in the matrix below. Determine whether the configuration 
 ### Drill 2: Active Directory Event Viewer Lockout Analysis
 
 #### The Scenario
-Nora Higgins in Finance logged ticket **`INC-2026-1142`**. At 08:30 she updated her domain password in the self-service portal from `Summer2024!` to a newly compliant 16-character passphrase. At 08:34, her account locked out. 
-
-You unlocked her account in Active Directory Users and Computers (ADUC). At 08:39, she called back furious: her account locked out again while she was on the phone, and she had not even touched her keyboard.
+Dev from engineering came to the desk at 10:05 on Monday with his laptop open to a lockout. He had reset his own password that morning after the weekend expiry notice. You unlocked his account in Active Directory Users and Computers (ADUC) at 10:08. At 10:12 it locked again, while he was standing at your desk with his hands in his pockets.
 
 Instead of clicking "Unlock" a second time, you launch PowerShell on your management console and query the Security Event Log on the Primary Domain Controller (`dc01.harrowmere.local`) using [`artifacts/event_4740_dump.txt`](../artifacts/event_4740_dump.txt):
 
@@ -243,16 +243,16 @@ Message              : A user account was locked out.
 
                        Account That Was Locked Out:
                            Security ID:        S-1-5-21-3928174412-1082938471-2948192837-1402
-                           Account Name:       nhiggins
+                           Account Name:       dpatel
 
                        Additional Information:
-                           Caller Computer Name:   IPAD-NORA-FIN
+                           Caller Computer Name:   ENG-BUILD-07
 
 Id                   : 4740
-TimeCreated          : 10/21/2026 8:34:18 AM
+TimeCreated          : 10/20/2025 10:12:41 AM
 MachineName          : dc01.harrowmere.local
 TaskDisplayName      : User Account Management
-Properties           : {nhiggins, HARROWMERE, IPAD-NORA-FIN, S-1-5-21-3928174412-1082938471-2948192837-1402...}
+Properties           : {dpatel, HARROWMERE, ENG-BUILD-07, S-1-5-21-3928174412-1082938471-2948192837-1402...}
 ```
 
 Next, you inspect the preceding **Event ID 4625** records from [`artifacts/security_events.json`](../artifacts/security_events.json) generated just prior to the lockout:
@@ -260,12 +260,12 @@ Next, you inspect the preceding **Event ID 4625** records from [`artifacts/secur
 ```console
 caption: Windows Event Log 4625 Breakdown on DC01
 Event ID:     4625
-Time Created: 10/21/2026 8:34:18.109240Z
+Time Created: 10/20/2025 10:12:41.109240Z
 Computer:     dc01.harrowmere.local
 Description:  An account failed to log on.
 
 Account For Which Logon Failed:
-    Account Name:        nhiggins
+    Account Name:        dpatel
     Account Domain:      HARROWMERE
 
 Failure Information:
@@ -274,7 +274,7 @@ Failure Information:
     Sub Status:          0xC0000234
 
 Network Information:
-    Workstation Name:    IPAD-NORA-FIN
+    Workstation Name:    ENG-BUILD-07
     Source Network Address: 192.168.20.114
     Source Port:         49888
 
@@ -284,26 +284,25 @@ Detailed Authentication Information:
 ```
 
 #### Your Analysis Task
-1. What is the root cause of Nora's recurring account lockout?
+1. What is the root cause of Dev's recurring account lockout?
 2. What does `Sub Status: 0xC0000234` in Event 4625 indicate, and how does it differ from `Sub Status: 0xC000006A`?
 3. What does `Logon Type: 3` tell you about the mechanism the device was using to authenticate against the domain?
-4. What exact sequence of operational steps must you execute to permanently resolve Nora's issue before unlocking her account?
+4. What exact sequence of steps must you take to resolve Dev's issue before you unlock his account?
 
 <details>
 <summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
-1. **Root Cause:** Nora has a secondary mobile device—her corporate iPad (`IPAD-NORA-FIN` at IP `192.168.20.114`)—sitting in her briefcase or on her desk dock. When Nora changed her domain password at 08:30 on her desktop, the iPad continued attempting background mail/calendar synchronizations (ActiveSync / Exchange) every few minutes using her old cached password. After three failed attempts, the domain lockout threshold of 3 invalid attempts was triggered.
+1. **Root Cause:** `ENG-BUILD-07` is the build server where Dev's deployment script runs. The script still holds his old password in a config file and retries it every few seconds. Forty bad attempts later, the account locks again no matter how often you unlock it. This is the chapter's incident.
 2. **Sub Status Decodes:**
    - `0xC000006A`: *Bad Password*. The user account exists, but the caller provided an incorrect password.
    - `0xC0000234`: *Account Locked*. The attempt failed specifically because the account's lockout threshold had already been reached and the account is currently disabled by lockout policy.
-3. **Logon Type 3:** Indicates a **Network Logon** (connecting across the network to a shared resource, IIS service, or ActiveSync endpoint), as opposed to Logon Type 2 (interactive console keyboard login) or Logon Type 10 (Remote Desktop Protocol).
+3. **Logon Type 3:** Indicates a **Network Logon** (a process connecting across the network to a share or service, like Dev's script), as opposed to Logon Type 2 (interactive console keyboard login) or Logon Type 10 (Remote Desktop Protocol).
 4. **Permanent Remediation Sequence:**
-   1. Contact Nora and instruct her to take out `IPAD-NORA-FIN` and immediately toggle **Airplane Mode ON** (or disconnect it from Wi-Fi) to suppress automated background authentication attempts.
-   2. Navigate to `Settings` $\rightarrow$ `Mail` / `Accounts` on the iPad and update the stored corporate password with her new 16-character passphrase.
-   3. Check Windows Credential Manager on her primary desktop (`PORT-WS-FIN02`) to ensure no stale network drive mappings (`net use * /delete`) or old Outlook credential profiles exist.
-   4. Once all devices have updated credentials, navigate to Active Directory Users and Computers (ADUC), locate `nhiggins`, check the box for **"Unlock account"**, and click Apply.
-   5. Toggle Airplane Mode OFF on the iPad and verify successful ActiveSync synchronization.
+   1. Have Dev stop the script's scheduled task on `ENG-BUILD-07` so the retries stop.
+   2. Move the script's credential out of the config file and into the secrets vault, and point the script at the vault. The script stays stopped until this is done.
+   3. Check that no other machine is presenting the old password (run the Event 4740 query again after five minutes).
+   4. Unlock `dpatel` in ADUC and confirm the bad-password count stays at zero.
 </details>
 
 
@@ -327,32 +326,32 @@ objectives:
     label: "Extract CallerComputerName from Event 4740 XML"
     trigger: "(Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1).ToXml()"
   - id: "obj-unlock"
-    label: "Unlock Nora's domain account after isolating caller device"
-    trigger: "Unlock-ADAccount -Identity nora.finance"
+    label: "Unlock Dev's domain account after stopping the script"
+    trigger: "Unlock-ADAccount -Identity dev.engineering"
 ---
 Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1: |
   TimeCreated          Id RecordId ProcessId Message
   -----------          -- -------- --------- -------
-  10/18 03:17:42 AM  4740   149204       620 A user account was locked out.
-                                              Target Account Name: nora.finance
-                                              Caller Computer Name: WKS-NORA-PHONE
+  10/20 10:12:41 AM  4740   149204       620 A user account was locked out.
+                                              Target Account Name: dev.engineering
+                                              Caller Computer Name: ENG-BUILD-07
 
 (Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1).ToXml(): |
   <Event xmlns='http://schemas.microsoft.com/win/2004/08/events/event'>
     <EventData>
-      <Data Name='TargetUserName'>nora.finance</Data>
+      <Data Name='TargetUserName'>dev.engineering</Data>
       <Data Name='TargetDomainName'>HARROWMERE</Data>
-      <Data Name='CallerComputerName'>WKS-NORA-PHONE</Data>
+      <Data Name='CallerComputerName'>ENG-BUILD-07</Data>
     </EventData>
   </Event>
-  [OK] Caller computer identified: WKS-NORA-PHONE (Nora's corporate mobile phone caching expired credentials).
-  Action Taken: Nora toggled Airplane Mode ON to halt automated background ActiveSync attempts.
+  [OK] Caller computer identified: ENG-BUILD-07 (the build server running Dev's deployment script with his old password).
+  Action Taken: Dev stopped the script's scheduled task and moved its secret into the vault.
 
-Unlock-ADAccount -Identity nora.finance: |
-  Unlocking Active Directory account 'nora.finance' on Domain Controller DC01...
+Unlock-ADAccount -Identity dev.engineering: |
+  Unlocking Active Directory account 'dev.engineering' on Domain Controller DC01...
   Account unlocked successfully.
   [OK] Account status: ACTIVE (badPwdCount reset to 0).
-  [PASS] Stale credentials isolated before account unlock. Lockout loop defused.
+  [PASS] Stale script credential removed before account unlock. Lockout loop defused.
 
 ```
 
@@ -397,7 +396,7 @@ Unlock-ADAccount -Identity nora.finance: |
 ---
 
 #### Ticket 2: Nora Higgins (Finance Clerk) — `INC-2026-1142`
-*Request:* "Password reset portal says my new password `Winter2026!` violates complexity and history policy. I've used Seasons and Years for ten years. Give me an exemption or lower the required length to 8 characters so I don't have to write it down."
+*Request:* "Password reset portal says my new password `Fall2025!` violates complexity and history policy. I've used Seasons and Years for ten years. Give me an exemption or lower the required length to 8 characters so I don't have to write it down."
 
 * **Your Action:** [ Approve Exemption / Deny / Coach on Passphrase ]
 * **Target Authentication Control & Policy:**
@@ -488,7 +487,7 @@ Unlock-ADAccount -Identity nora.finance: |
 
 In enterprise identity operations, your ticket notes are legal and security audit records. Below are the two mandatory templates you must master:
 
-#### Part A: Standard Account Lockout & Credential Triage Note (Example: Nora Higgins / INC-2026-1142)
+#### Part A: Password Expiration Triage Note (Example: Nora Higgins / INC-2026-1142)
 
 ```text
 ================================================================================
@@ -498,37 +497,36 @@ Ticket ID:        INC-2026-1142
 Requester:        Nora Higgins (Finance Department)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
-Date/Time:        2025-10-20 08:52:14 PST
-Category:         Identity & Access Management / Account Lockout
-Status:           RESOLVED
+Date/Time:        2025-10-20 08:52:14 PDT
+Category:         Identity & Access Management / Password Expiration
+Status:           OPEN (manager enrollment pending)
 
 1. ISSUE SUMMARY:
-   User reported repeated Active Directory domain account lockouts immediately 
-   following ninety-day password expiration. Unlocking via ADUC resulted in secondary 
-   lockout within five minutes without active user input.
+   User could not sign in or use self-service reset on Monday morning. She had 
+   tried her previous seasonal password three times. The reset portal refused 
+   her and asked for a 16-character password.
 
-2. ROOT CAUSE ANALYSIS & EVENT LOG TRIAGE:
-   - Queried Primary Domain Controller (dc01.harrowmere.local) Security Log.
-   - Identified Event ID 4740 (Account Lockout) for target user 'nhiggins'.
-   - Extracted Caller Computer Name: 'IPAD-NORA-FIN' (IP: 192.168.20.114).
-   - Correlated with Event ID 4625 (Logon Failure, SubStatus 0xC000006A - Bad Password, 
-     Logon Type 3 - Network).
-   - Root Cause: Corporate iPad running ActiveSync background mail synchronization 
-     held stale cached credentials following desktop password reset.
+2. ROOT CAUSE ANALYSIS:
+   - Queried account 'dpatel' in ADUC: pwdLastSet 91 days ago.
+   - Domain policy: maximum password age 90 days. The password had expired over 
+     the weekend, along with roughly two dozen other accounts on the same cycle.
+   - Self-service reset requires a compliant new password before it will issue 
+     a reset path. The user's habitual pattern (Spring2024!, Summer2024!) failed 
+     the length requirement and the banned-pattern list.
+   - No lockout source on the network: Event ID 4740 shows only the user's own 
+     three attempts from PORT-WS-FIN02.
 
 3. REMEDIATION PERFORMED:
-   - Contacted user; engaged Airplane Mode on IPAD-NORA-FIN to halt authentication storm.
-   - Updated cached corporate Exchange password in iPad Account Settings to current passphrase.
-   - Audited user desktop (PORT-WS-FIN02) Credential Manager; purged orphaned network drive tokens.
-   - Coached user on NIST SP 800-63B passphrase policy (16+ characters, 4-word semantic passphrase); 
-     discouraged seasonal rotation patterns ('Spring2026!').
-   - Cleared lockout flag in Active Directory Users and Computers (ADUC).
-   - Reconnected iPad to Wi-Fi; verified successful mail flow and zero Event 4625 failures.
+   - Verified identity by callback to the directory number.
+   - Walked the user through a four-word passphrase she will remember (16+ 
+     characters, not a quote she has posted publicly). Password changed.
+   - Explained why seasonal rotation patterns count as password reuse.
+   - Recommended the company password manager. User declined to install it 
+     during the call ("I have a close").
 
-4. SECURITY AUDIT & USER GUIDANCE:
-   Advised user that account lockouts are automated defenses against credential-guessing 
-   attacks. Reminded user to enroll pending enterprise password manager vault to eliminate 
-   manual credential synchronizations. Ticket closed.
+4. FOLLOW-UP:
+   Ticket left OPEN: password manager enrollment still pending. Recheck at 
+   next expiry notice.
 ================================================================================
 ```
 
@@ -542,7 +540,7 @@ Ticket ID:        INC-2026-1141
 Requester:        Todd Miller (Sales Representative)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
-Date/Time:        2025-10-20 10:15:30 PST
+Date/Time:        2025-10-20 10:15:30 PDT
 Category:         Multi-Factor Authentication / Device Provisioning
 Status:           RESOLVED
 

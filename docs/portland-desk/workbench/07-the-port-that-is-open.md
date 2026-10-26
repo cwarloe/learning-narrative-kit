@@ -104,7 +104,7 @@ flowchart TD
 ### Drill 1: The Cleartext Telnet Trap (Packet Capture Analysis)
 
 #### The Scenario
-Jared Lindqvist from Network Operations filed ticket **`INC-2026-1041`**. His legacy configuration script failed against switch `10.0.4.15` in Building C because port 23 was refused. He claims: *"I've used this script for ten years. Telnet is fine—it's inside our building on the wired management VLAN. Just open 23 for ten minutes so I can fix the trunk VLAN."*
+Jared from Network Operations filed ticket **`INC-2026-1041`**. A switch in a Building C closet (`10.0.4.15`) has a VLAN set wrong, and his old configuration script expects Telnet. He says: *"I Telnet in, type the enable password, fix the VLAN, hang up. Ten minutes."*
 
 Before replying, you pull an actual packet capture ([`artifacts/jared-telnet-capture.pcap`](../artifacts/jared-telnet-capture.pcap)) taken from a span port on that management segment during Jared's previous run. The table below shows frames 101 to 137 of it, filtered to port 23. You can read the table here, or open the file in Wireshark:
 
@@ -248,43 +248,42 @@ TcpTestSucceeded : True
 Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
 
 ```lnk-terminal
-title: "CONSOLE: PERIMETER PORT SCAN & BANNER INSPECTION"
+title: "CONSOLE: BUILDING C CLOSET SWITCH (10.0.4.15)"
 shell: "cmd"
 prompt: "C:\Security> "
 replay: true
 objectives:
   - id: "obj-nmap"
-    label: "Scan open service ports on warehouse server"
-    trigger: "nmap -sS -p 21,22,23,80,443 192.168.10.50"
+    label: "Scan management ports on Jared's Building C switch"
+    trigger: "nmap -sS -p 22,23,80,443 10.0.4.15"
   - id: "obj-banner"
-    label: "Test cleartext Telnet banner response"
-    trigger: "telnet 192.168.10.50 23"
+    label: "See what a Telnet session to the switch exposes"
+    trigger: "telnet 10.0.4.15 23"
   - id: "obj-ssh"
-    label: "Verify encrypted SSH connectivity on Port 22"
-    trigger: "ssh admin@192.168.10.50"
+    label: "Verify encrypted SSH management on port 22"
+    trigger: "ssh jared@10.0.4.15"
 ---
-nmap -sS -p 21,22,23,80,443 192.168.10.50: |
-  Starting Nmap scan on 192.168.10.50...
+nmap -sS -p 22,23,80,443 10.0.4.15: |
+  Starting Nmap scan on 10.0.4.15...
   PORT     STATE SERVICE
-  21/tcp   OPEN  ftp (CLEAR TEXT)
-  22/tcp   OPEN  ssh (OpenSSH 8.9p1)
-  23/tcp   OPEN  telnet (CRITICAL: CLEARTEXT AUTH)
-  80/tcp   OPEN  http
-  443/tcp  OPEN  https
-  Warning: Port 23 is transmitting passwords in unencrypted ASCII frames.
+  22/tcp   OPEN    ssh (Cisco SSH 2.0)
+  23/tcp   OPEN    telnet (CLEARTEXT AUTH)
+  80/tcp   OPEN    http
+  443/tcp  OPEN    https
+  Warning: Port 23 sends passwords in plain ASCII frames.
 
-telnet 192.168.10.50 23: |
-  Connecting to 192.168.10.50...
-  Connected to Toledo Scale Controller.
-  Escape character is '^]'.
-  WARNING: Cleartext session active. Passwords visible to any packet capture on switch.
-  Action: Migrate to SSH (Port 22) immediately.
+telnet 10.0.4.15 23: |
+  Connecting to 10.0.4.15...
+  User Access Verification
+  Password:
+  WARNING: Cleartext session. Every keystroke is readable on the management span.
+  Action: Use SSH on port 22. This switch supports it.
 
-ssh admin@192.168.10.50: |
-  admin@192.168.10.50's password: 
-  Linux scale-controller-04 5.15.0-generic #42-Ubuntu SMP
-  Encrypted session established with AES-256-GCM cipher.
-  [OK] Port 23 disabled. Secure management active.
+ssh jared@10.0.4.15: |
+  (jared@10.0.4.15) Password:
+  Switch-Closet-C#
+  Encrypted session established with AES-256-GCM.
+  [OK] Jared can fix the VLAN over SSH. Port 23 can be closed.
 
 ```
 
@@ -430,7 +429,7 @@ Ticket ID:        INC-2026-1042
 Requester:        Maya Lin (Accounting)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
-Date/Time:        2025-08-12 09:35:10 PST
+Date/Time:        2025-08-12 09:35:10 PDT
 Category:         Email & Collaboration / Client Configuration
 Status:           RESOLVED
 
@@ -470,7 +469,7 @@ Requester:        Leah Moreno (Portland Plant Operations Lead)
 Technician:       Ethan Mercer (Tier 1 Support)
 Escalated To:     Tier 2 Network Security & SOC Incident Desk
 Priority:         P2 - High / Operational Facility Impact
-Date/Time:        2025-08-12 15:25:12 PST
+Date/Time:        2025-08-12 15:25:12 PDT
 Classification:   OT/SCADA Perimeter Traversal Exception Request
 
 1. SITUATION DESCRIPTION:

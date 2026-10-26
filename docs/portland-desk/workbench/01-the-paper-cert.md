@@ -40,7 +40,7 @@ This lab starts with the same incident Ethan worked in the chapter, with the ans
 ### The Situation
 It is 02:30 on an overcast Thursday morning inside the high-bay cross-dock terminal in Gresham, Oregon. Heavy metal-halide lamps buzz forty feet overhead, battery chargers for electric forklifts hum against the corrugated metal wall, and the cold ambient air smells of diesel fumes and damp cardboard. 
 
-At 02:24, Sorting Line 4 halted without warning. The in-line Toledo weigh deck stopped communicating weight measurements to the automated sorting computer, triggering an immediate line shutdown. Over two hundred cartons are now stacking up on the gravity intake rollers every ten minutes. Five cross-dock tractor-trailers bound for Seattle and Boise must depart loading bays 7 through 9 by 05:00 AM sharp to meet regional distribution contracts. Shift Supervisor Ken calculates downtime penalties at thousands of dollars per hour.
+At 02:24, Sorting Line 4 halted without warning. The in-line Toledo weigh deck stopped communicating weight measurements to the automated sorting computer, triggering an immediate line shutdown. Over two hundred cartons are now stacking up on the gravity intake rollers every ten minutes. The Seattle and Boise trailers must leave bays 7 and 9 at 05:00 sharp to meet regional distribution contracts. Shift Supervisor Ken calculates downtime penalties at thousands of dollars per hour.
 
 You are equipped with a digital multimeter, basic hand tools, vendor technical manuals, and an eight-position DIP switch reference chart. You do not have the luxury of swapping random components; every diagnostic action must isolate a specific physical variable.
 
@@ -164,7 +164,7 @@ $$\text{Allowable Range} = V_{\text{nominal}} \pm (V_{\text{nominal}} \times 0.0
 
 ## 3. Quick Checks & Skill Reps
 
-### Drill 1: Power Supply Voltage Rails & Multimeter Load Diagnostics
+### Drill 1 (practice case): Power Supply Voltage Rails & Multimeter Load Diagnostics
 
 #### The Operational Scenario
 At 02:45, an auxiliary dispatch terminal on loading dock 2 refuses to boot. The technician suspects the power supply is dead. You arrive with a digital multimeter (DMM) to evaluate whether the power supply requires immediate replacement before ordering a replacement motherboard.
@@ -437,7 +437,7 @@ test-telemetry: |
 ### Tier 1 Physical Incident Triage Report & Equipment Passdown Note
 
 #### Scenario Assignment
-You are Ethan Mercer, Tier 1 Field Technician on the graveyard shift at the Harrowmere Gresham Distribution Warehouse. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
+You are writing up the night as Ethan would have, if a dock worker were allowed to file one. Rosa Ibarra, the night maintenance tech, signs it with him. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
 
 
 ---
@@ -449,17 +449,18 @@ You are Ethan Mercer, Tier 1 Field Technician on the graveyard shift at the Harr
 GRESHAM REGIONAL LOGISTICS TERMINAL · TIER 1 PHYSICAL INCIDENT TRIAGE REPORT
 ========================================================================================
 INCIDENT TICKET ID : INC-2026-0714-L4
-INCIDENT TIMESTAMP : 2024-02-15 02:24 PDT
-RESOLUTION TIME    : 2024-02-15 04:47 PDT (Total Downtime: 2 hrs 23 mins)
+INCIDENT TIMESTAMP : 2024-02-15 02:24 PST
+RESOLUTION TIME    : 2024-02-15 04:47 PST (Total Downtime: 2 hrs 23 mins)
 AFFECTED SUBSYSTEM : Sorting Line 4 · In-Line Toledo Weighing & Sorting Station
-PRIMARY TECHNICIAN : Ethan Mercer (Employee ID: 94021)
+REPORTED BY        : Ethan Mercer (Dock, Graveyard Shift, Employee ID: 94021)
+MAINTENANCE TECH   : Rosa Ibarra (Night Maintenance)
 SHIFT SUPERVISOR   : Ken Vance (Gresham Logistics Dispatch)
 ========================================================================================
 
 1. INITIAL INCIDENT SYMPTOMS & OPERATIONAL IMPACT:
-   - Conveyor Line 4 halted automatically at 02:24 PDT due to automated scale timeout.
+   - Conveyor Line 4 halted automatically at 02:24 PST due to automated scale timeout.
    - Overhead amber fault strobe engaged; parcel intake stopped; 200 cartons/10 min backing up.
-   - Dispatch deadline: Seattle (Bay 7) and Boise (Bay 9) cross-dock trucks scheduled for 05:00 PDT.
+   - Dispatch deadline: Seattle (Bay 7) and Boise (Bay 9) cross-dock trucks scheduled for 05:00 PST.
    - Terminal NEMA enclosure inspection: Amber CRT monitor blank; no BIOS audio beep codes.
    - Onboard two-digit diagnostic LED halted in alternating hex loop: [ C1 ] <-> [ E0 ].
 
@@ -497,16 +498,17 @@ SHIFT SUPERVISOR   : Ken Vance (Gresham Logistics Dispatch)
    - Verified clean telemetry: "SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL".
 
 5. OPERATIONAL RECOVERY & DISPATCH DISPOSITION:
-   - Conveyor Line 4 restarted under load at 04:47 PDT.
+   - Conveyor Line 4 restarted under load at 04:47 PST.
    - Backlogged parcels cleared through dimensioning station without dropped packets.
-   - Bay 9 (Boise) departed 05:04 PDT on schedule. Bay 7 (Seattle) departed 05:51 PDT, 51 minutes late, after 40 lost carton weights were re-weighed by hand.
-   - Staging loss: 1x 10-ft Cat5e patch cable sacrificed for temporary test jumper leads ($50).
+   - Bay 9 (Boise) departed 05:04 PST on schedule. Bay 7 (Seattle) departed 05:51 PST, 51 minutes late, after 40 lost carton weights were re-weighed by hand.
+   - Hardware loss: one sheared memory retention latch on the terminal board (to be reported to facilities).
 
 6. ROOT CAUSE & PREVENTATIVE MAINTENANCE RECOMMENDATIONS:
    - Primary Root Cause: Mechanical vibration induced physical insulation wear against unbushed
      sheet-metal partition, creating an intermittent ground fault on the internal system bus.
-   - Secondary Root Cause: Improper cable insertion technique bent DB-9 Pin 2; terminal replacement
-     board installed during prior shift had incorrect DIP switch baud rate configuration.
+   - Secondary Root Cause: Improper cable insertion bent DB-9 Pin 2. The hard power cut at 02:25
+     (master breaker cycled without isolating the circuit) reset the serial controller to its
+     9600 baud factory default and dumped 40 in-flight carton records.
    - Preventative Action Item: Install rubber grommet edging on all internal chassis partition
      cutouts across Sorting Lines 1 through 6 during scheduled Sunday maintenance window.
 ========================================================================================
@@ -519,14 +521,14 @@ SHIFT SUPERVISOR   : Ken Vance (Gresham Logistics Dispatch)
 
 ```
 ----------------------------------------------------------------------------------------
-SHIFT PASSDOWN LOG · GRESHAM LOGISTICS IT/FACILITIES · DATE: 2024-02-15 05:15 PDT
+SHIFT PASSDOWN LOG · GRESHAM LOGISTICS IT/FACILITIES · DATE: 2024-02-15 05:15 PST
 ----------------------------------------------------------------------------------------
 TO   : Day Shift Maintenance Lead / Regional IT Operations
-FROM : Ethan Mercer, Graveyard Shift Technician
+FROM : Ethan Mercer (Dock) and Rosa Ibarra (Night Maintenance)
 ATTN : Line 4 Toledo Weigh Station Recovery
 
 SUMMARY:
-Line 4 scale terminal crashed at 02:24 PDT, halted in POST code [E0] due to a dead short
+Line 4 scale terminal crashed at 02:24 PST, halted in POST code [E0] due to a dead short
 on the 40-pin internal ribbon cable where vibration wore through insulation against the
 steel chassis edge. Cable repaired and reinsulated with Kapton tape; routed and anchored
 with zip ties.

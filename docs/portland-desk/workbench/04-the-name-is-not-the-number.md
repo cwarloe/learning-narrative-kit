@@ -198,7 +198,7 @@ sequenceDiagram
 
 ## 3. Quick Checks & Skill Reps
 
-### Drill 1: `nslookup` Output Inspection & Internal vs. External IP Comparison
+### Drill 1 (practice case): `nslookup` Output Inspection & Internal vs. External IP Comparison
 
 #### Scenario
 A field supervisor working remotely on an iPad and Windows laptop claims that `https://wiki.harrowmere.local` is returning an HTTP 404 page, while in-office users see the active technical wiki. 
@@ -236,7 +236,7 @@ Address:  10.100.40.8
 ### Drill 2: Rogue Hosts File Override Hunting
 
 #### Scenario
-An accountant's laptop connects to the VPN and resolves `wiki.harrowmere.local` correctly to `10.100.40.8`. However, whenever the accountant attempts to open `payroll.harrowmere.local`, the browser attempts to connect to `192.168.1.50:443` and fails with `ERR_CONNECTION_REFUSED`.
+Greg's laptop (from the chapter) connects to the VPN and resolves `wiki.harrowmere.local` correctly to `10.100.40.8`. However, whenever the accountant attempts to open `payroll.harrowmere.local`, the browser attempts to connect to `192.168.1.50:443` and fails with `ERR_CONNECTION_REFUSED`.
 
 You run the following triage commands:
 
@@ -291,8 +291,8 @@ prompt: "C:\Support> "
 replay: true
 objectives:
   - id: "obj-nslookup"
-    label: "Query DNS for internal wiki portal"
-    trigger: "nslookup wiki.corp.local"
+    label: "Query DNS for the payroll portal from Greg's laptop"
+    trigger: "nslookup payroll.harrowmere.local"
   - id: "obj-hosts"
     label: "Inspect local static hosts file overrides"
     trigger: "type C:\Windows\System32\drivers\etc\hosts"
@@ -300,28 +300,29 @@ objectives:
     label: "Flush local resolver cache"
     trigger: "ipconfig /flushdns"
 ---
-nslookup wiki.corp.local: |
+nslookup payroll.harrowmere.local: |
   Server:  UnKnown
   Address:  192.168.1.1 (Home Wi-Fi Router)
   
-  *** UnKnown can't find wiki.corp.local: Non-existent domain
-  Warning: Client is querying local home router DNS instead of internal VPN DC (10.0.0.2).
+  *** UnKnown can't find payroll.harrowmere.local: Non-existent domain
+  Warning: Client is querying Greg's home Wi-Fi router instead of the domain controller (10.100.10.2).
 
 type C:\Windows\System32\drivers\etc\hosts: |
   # Copyright (c) 1993-2009 Microsoft Corp.
   # Local static host overrides:
   127.0.0.1       localhost
   ::1             localhost
-  198.51.100.42   wiki.corp.local    # Stale contractor override from 2021!
+  192.168.1.50    payroll.harrowmere.local    # contractor staging trailer
 
 ipconfig /flushdns: |
   Windows IP Configuration
   
   Successfully flushed the DNS Resolver Cache.
-  Re-querying over active VPN tunnel...
-  Name:    wiki.corp.local
-  Address: 10.0.0.85 (Internal Wiki DC)
-  [OK] Internal portal accessible.
+  (The stale hosts lines were deleted before this flush. The flush clears the cache; it does not edit the hosts file.)
+  Re-querying after the VPN profile update (tunnel metric 10, harrowmere.local suffix)...
+  Name:    payroll.harrowmere.local
+  Address: 10.100.20.14
+  [OK] Payroll portal reachable.
 
 ```
 

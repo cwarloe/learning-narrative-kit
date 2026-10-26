@@ -274,7 +274,9 @@ Maya's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML event r
 
 ---
 
-### Drill 2: Startup Service Isolation & Clean Boot Binary Search Matrix
+### Drill 2 (practice case): Startup Service Isolation & Clean Boot Binary Search Matrix
+
+> **How this connects to the chapter.** Maya's machine had eighteen third-party services, and Ethan never needed to search them, because the event log named the driver first. This drill shows the search on a different, sixteen-service machine, for the day the log is silent.
 
 When an operating system loads sixteen non-Microsoft vendor services at boot and suffers an intermittent hang, testing each service individually requires 16 reboots. Applying **binary search** ($O(\log_2 N)$) isolates the offending service in exactly 4 reboots.
 
@@ -504,10 +506,10 @@ Requester:        Maya Lin (Supervisor, Accounting Operations)
 Affected Asset:   PORT-WS-0142 (Dell OptiPlex 7090 Micro / Service Tag: 8F2J9X3)
 Technician:       Ethan Mercer (Tier 1 Support Trial)
 Supervising Lead: Jules Brooks (Desk Lead)
-Incident Date:    2024-08-22 08:15:00 PST
-Resolution Date:  2024-08-22 09:12:35 PST
+Incident Date:    2024-08-22 08:15:00 PDT
+Resolution Date:  2024-08-22 09:12:35 PDT
 Impact Category:  Workstation Hardware / OS Display Subsystem Hang
-Priority:         P1 - Critical / Payroll Processing Deadline at 12:00 PST
+Priority:         P1 - Critical / Payroll Processing Deadline at 12:00 PDT
 Status:           RESOLVED & VERIFIED
 
 1. INITIAL SYMPTOM & USER REPORT:

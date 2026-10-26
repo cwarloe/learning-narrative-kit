@@ -211,41 +211,39 @@ Get-Process -Id 4112
 Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
 
 ```lnk-terminal
-title: "POWERSHELL: TCP SOCKET & LISTENING PORT DIAGNOSTICS"
+title: "POWERSHELL: GRESHAM TERMINAL 4 AND PDX-ARCHIVE01 (PORT 8443)"
 shell: "powershell"
 prompt: "PS C:\Support> "
 replay: true
 objectives:
-  - id: "obj-netstat"
-    label: "Inspect active listening TCP ports and PIDs"
-    trigger: "netstat -ano | findstr 8080"
   - id: "obj-testport"
-    label: "Test TCP handshake reachability on port 8080"
-    trigger: "Test-NetConnection -Port 8080"
-  - id: "obj-process"
-    label: "Identify daemon process bound to socket"
-    trigger: "Get-Process -Id 3412"
+    label: "From Terminal 4, test the TCP handshake to PDX-ARCHIVE01 on 8443"
+    trigger: "Test-NetConnection -ComputerName 10.100.4.20 -Port 8443"
+  - id: "obj-netstat"
+    label: "On PDX-ARCHIVE01, check whether anything is listening on 8443"
+    trigger: "netstat -ano | findstr 8443"
+  - id: "obj-start"
+    label: "Restart the backup agent and confirm the listener"
+    trigger: "Start-Service PDX-BackupAgent"
 ---
-netstat -ano | findstr 8080: |
-    Proto  Local Address          Foreign Address        State           PID
-    TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       3412
-    TCP    192.168.10.45:8080     192.168.10.112:51244   TIME_WAIT       0
-  [OK] Port 8080 is actively LISTENING on PID 3412.
+Test-NetConnection -ComputerName 10.100.4.20 -Port 8443: |
+  WARNING: TCP connect to (10.100.4.20 : 8443) failed
+  ComputerName           : 10.100.4.20
+  RemoteAddress          : 10.100.4.20
+  RemotePort             : 8443
+  PingSucceeded          : True
+  PingReplyDetails (RTT) : 1 ms
+  TcpTestSucceeded       : False
+  [NOTE] Ping works and the refusal came back instantly: the server answered with a reset.
 
-Test-NetConnection -Port 8080: |
-  ComputerName     : localhost
-  RemoteAddress    : 127.0.0.1
-  RemotePort       : 8080
-  InterfaceAlias   : Loopback Pseudo-Interface 1
-  SourceAddress    : 127.0.0.1
-  TcpTestSucceeded : True
-  [OK] TCP 3-way handshake (SYN -> SYN-ACK -> ACK) verified.
+netstat -ano | findstr 8443: |
+  (no output)
+  [NOTE] Nothing on PDX-ARCHIVE01 is listening on 8443. The firewall is not the problem.
 
-Get-Process -Id 3412: |
-  Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id ProcessName
-  -------  ------    -----      -----     ------     -- -----------
-      412      18    42100      51200       2.14   3412 InventorySyncDaemon
-  Status: Process active. Port open and receiving frames.
+Start-Service PDX-BackupAgent: |
+  PS C:\Users\administrator> netstat -ano | findstr 8443
+    TCP    0.0.0.0:8443           0.0.0.0:0              LISTENING       4112
+  [OK] Backup agent PID 4112 is listening on 8443. Terminal 4 connects.
 
 ```
 

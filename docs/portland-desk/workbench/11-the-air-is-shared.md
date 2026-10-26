@@ -477,7 +477,7 @@ Ticket ID:        INC-2026-1101
 Requester:        Rita (Marketing, Conference Room 3B)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks (Service Desk Lead)
-Date/Time:        2026-04-17 09:15:44 PST
+Date/Time:        2026-04-17 09:15:44 PDT
 Category:         Wireless & Network Infrastructure / Rogue Device Containment
 Severity:         P2 - High (Warehouse Barcode Scanning Operations Halted)
 Status:           RESOLVED / REMEDIATED
@@ -509,7 +509,7 @@ Status:           RESOLVED / REMEDIATED
      renew DHCP leases across all 6 affected forklift scanners. Verified scanners 
      re-acquired valid 10.10.20.0/24 leases (Default Gateway 10.10.20.1).
    - Validation: Confirmed bidirectional ICMP ping and successful barcode pallet 
-     scans against WMS-APP-01 (10.10.20.5). Operations restored 09:10 PST.
+     scans against WMS-APP-01 (10.10.20.5). Operations restored 09:10 PDT.
 
 4. USER GUIDANCE & PREVENTATIVE MEASURES:
    - Coached warehouse lead on Acceptable Use Policy: unmanaged consumer network 
@@ -519,7 +519,7 @@ Status:           RESOLVED / REMEDIATED
 ================================================================================
 ```
 
-#### Part B: Security Incident Escalation & SOC Handoff Note (Example: Lobby Evil Twin / INC-2026-1102)
+#### Part B: Security Incident Escalation & SOC Handoff Note (Example: Lobby Evil Twin / INC-2026-1103)
 
 ```text
 ================================================================================
@@ -564,7 +564,7 @@ MITRE ATT&CK:      T1498.001 (Network DoS: Direct Deauth), T1557.001 (Adversary-
 
 4. REQUIRED ACTION ITEMS FOR SOC & NETWORK ENGINEERING:
    1. Physical Security: Review exterior parking lot CCTV footage between 08:00 
-      and 09:00 PST focusing on vehicles parked adjacent to the East Courtyard glass.
+      and 09:00 PDT focusing on vehicles parked adjacent to the East Courtyard glass.
    2. Threat Intel / Registrar Takedown: Submit immediate domain takedown and DNS 
       RPZ sinkhole for typosquatted domain 'harrowrnere.com'.
    3. Architectural Hardening: Accelerate deployment of 802.11w (Protected Management 

@@ -238,16 +238,18 @@ mindmap
 ### Drill 1: Raw MIME Header Trace
 
 #### The Incident Artifact
-Marisol in Accounts Payable forwarded the suspicious email headers from ticket **`INC-2026-1051`** ([`artifacts/eml_samples/sample_spoofed_ceo_payroll.eml`](../artifacts/eml_samples/sample_spoofed_ceo_payroll.eml)):
+> **Practice case.** This drill is invented for practice. It uses the chapter's ideas on a different message (a payroll lure, not the chapter's vendor wire) and is not an event from the chapter.
+
+Marisol in Accounts Payable forwarded these suspicious email headers, from a different message than the wire request, under ticket **`INC-2026-1051`** ([`artifacts/eml_samples/sample_spoofed_ceo_payroll.eml`](../artifacts/eml_samples/sample_spoofed_ceo_payroll.eml)):
 
 ```email
 Delivered-To: nora.vasquez@harrowmere.com
 Received: from mail-gateway02.harrowmere.com (mail-gateway02.harrowmere.com [198.51.100.25])
 	by imap-internal.harrowmere.com (Postfix) with ESMTPS id 4Y7kL901zZz982b
-	for <nora.vasquez@harrowmere.com>; Wed, 21 Oct 2026 08:12:14 -0700
+	for <nora.vasquez@harrowmere.com>; Wed, 10 Dec 2025 08:12:14 -0800
 Received: from out-relay04.fake-bulletin-mailer.net (out-relay04.fake-bulletin-mailer.net [185.220.101.42])
 	by mail-gateway02.harrowmere.com (CipherMail) with ESMTP id 8F21A3011C
-	for <nora.vasquez@harrowmere.com>; Wed, 21 Oct 2026 08:12:12 -0700
+	for <nora.vasquez@harrowmere.com>; Wed, 10 Dec 2025 08:12:12 -0800
 Authentication-Results: mail-gateway02.harrowmere.com;
 	dkim=fail reason="signature missing or invalid" header.i=@harrowrnere.com;
 	spf=softfail (mail-gateway02.harrowmere.com: domain of transition-exec@harrowrnere.com does not designate 185.220.101.42 as permitted sender) smtp.mailfrom=transition-exec@harrowrnere.com;
@@ -257,8 +259,8 @@ From: "Avery Chen (CFO)" <achen@harrowrnere.com>
 Reply-To: "Maya Lin (Personal Mobile)" <maya.lin.executive78@gmail.com>
 To: nora.vasquez@harrowmere.com
 Subject: URGENT: Off-cycle payroll direct deposit account update - Confidential
-Date: Wed, 21 Oct 2026 08:11:45 -0700
-Message-ID: <20261021081145.42918.transition-exec@harrowrnere.com>
+Date: Wed, 10 Dec 2025 08:11:45 -0800
+Message-ID: <20251210081145.42918.transition-exec@harrowrnere.com>
 X-Mailer: WebMail / PHP-Mailer v6.8.0
 Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 ```
@@ -351,7 +353,7 @@ findstr /i "Received: from" invoice.eml: |
   Received: from mail-relay.suspicious-host.net (198.51.100.77)
   Received: from client-smtp-relay (192.0.2.14)
   Originating IP: 198.51.100.77 (Bucharest, Romania)
-  Target: nora.finance@harrowmere.com
+  Target: marisol.ap@harrowmere.com
   Subject: URGENT: Wire Transfer Routing Change
 
 quarantine-sender --domain harrowrnere.com: |
