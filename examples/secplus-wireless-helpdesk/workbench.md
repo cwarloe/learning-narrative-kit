@@ -204,7 +204,7 @@ No.  Time      Source         Destination    Proto    Info
 4. If this were WPA2-Personal (PSK) instead of WPA2-Enterprise, which frames (05 through 10) would be absent, and what handshake would take their place?
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Reveal Solution & Jules' Review</summary>
 
 **Jules' Analysis:**
 1. **Security Mode & Cipher:** Frame 03 contains the RSN IE (Robust Security Network Information Element) specifying **WPA2-Enterprise** with **802.1X Authentication Key Management (AKM)** and **AES-CCMP** encryption.
@@ -260,7 +260,7 @@ Total Mac Addresses for this criterion: 3
 4. What is the immediate, mandatory Tier 1 physical and administrative action you must take?
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Reveal Solution & Jules' Review</summary>
 
 **Jules' Analysis:**
 1. **RSSI Proximity:** At $-82\text{ dBm}$, the signal is near the noise floor (30+ meters away through warehouse racking). At $-44\text{ dBm}$, the transmitter is within a few yards. At $-31\text{ dBm}$, the receiver is practically touching the transmitter antennas (under 1–2 feet). The inverse square law and free-space path loss confirm the source is physically situated under the supervisor desk at Shelf B-12.
@@ -295,7 +295,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **ISOLATE ROGUE DHCP SERVER & SHUT DOWN UPSTREAM SWITCH PORT**.
 * **Threat Classification:** **Rogue Access Point / Rogue DHCP Server Contamination**.
@@ -311,7 +311,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **STRICTLY FORBID CONNECTION; INSPECT FOR EVIL TWIN / ROGUE RADIUS PROXY**.
 * **Threat Classification:** **Evil Twin / Rogue RADIUS Impersonation / Credential Harvesting**.
@@ -331,7 +331,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **ESCALATE ACTIVE EVIL TWIN & DEAUTH ATTACK TO TIER 2 SOC / WIRELESS OPS; DOCK ENDPOINT**.
 * **Threat Classification:** **802.11 Deauthentication Denial-of-Service / Evil Twin Baiting**.
@@ -347,7 +347,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DENY REQUEST; EXPLAIN SECURITY BY OBSCURITY; IMPLEMENT SEGMENTED 802.1X / WPA3-ENTERPRISE**.
 * **Threat Classification:** **Security through Obscurity Flaw / Ineffective Controls (SSID Suppression & MAC Spoofing)**.
@@ -366,7 +366,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 * **Technical Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DECLINE PAIRING; DISABLE BLUETOOTH DISCOVERABLE MODE; ENFORCE PAIRING HYGIENE**.
 * **Threat Classification:** **Bluejacking (Spam / Harassment) with attempted Bluesnarfing / Rogue Peripheral Hijack**.

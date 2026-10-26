@@ -256,7 +256,7 @@ Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 5. What is the security risk of the attached file `MayaLin_VoidedCheck_RoutingUpdate.pdf.exe`?
 
 <details>
-<summary>🔍 Drill 1 Forensic Findings & Jules' Debrief</summary>
+<summary>Drill 1 Forensic Findings & Jules' Debrief</summary>
 
 * **Hop Analysis (Read Bottom to Top):**
   1. **Hop 1 (Origin):** Server `out-relay04.fake-bulletin-mailer.net` at IP `185.220.101.42` connected to Portland's perimeter mail gateway (`mail-gateway02.portland-ops.gov`) at 08:12:12. This is the untrusted external entry point.
@@ -294,7 +294,7 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 4. `https://adp.workday.portland-ops.gov/payroll/`
 
 <details>
-<summary>🔍 Solution & Jules' Technique Breakdown</summary>
+<summary>Solution & Jules' Technique Breakdown</summary>
 
 1. **Legitimate:** Official Microsoft 365 OAuth 2.0 authorization endpoint under apex domain `microsoftonline.com`.
 2. **Malicious (Credential Harvesting Phish):** Typosquatting (numeral `0` for letter `o`), brand impersonation, and untrusted foreign country-code top-level domain (`.ru`).
@@ -316,7 +316,7 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DROP & ESCALATE IMMEDIATELY** to Tier 2 Security / SOC.
 * **Authentication Status:** SPF SoftFail, DKIM Fail (unaligned), DMARC Fail (`p=quarantine`).
@@ -333,7 +333,7 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **QUARANTINE & DETONATE IN SECURE SANDBOX**.
 * **Authentication Status:** SPF Pass, DKIM Pass, DMARC Pass.
@@ -349,7 +349,7 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **FILE SMISHING INCIDENT TICKET & BLOCK DESTINATION URL**.
 * **Threat Classification:** **Smishing (SMS Phishing)** with URL shortening and artificial urgency / scarcity.
@@ -366,7 +366,7 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **HOLD PAYMENT & ENFORCE OUT-OF-BAND (OOB) VERIFICATION**.
 * **Authentication Status:** SPF Pass, DKIM Pass, DMARC Pass, BUT glaring `Reply-To` discrepancy.
@@ -382,7 +382,7 @@ Evaluate the following four URLs received in user tickets. Identify which are ma
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **IMMEDIATELY REVOKE ALL ACTIVE SESSIONS & FORCE PASSWORD ROTATION**.
 * **Threat Classification:** **MFA Fatigue Attack (Prompt Bombing)** resulting from compromised primary credentials.

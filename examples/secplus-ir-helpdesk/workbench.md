@@ -18,7 +18,7 @@
 | **Primary Domain** | **Domain 4.0 Operations and Incident Response**<br>• *4.1 Given a scenario, apply common security techniques to computing resources / incident response activities (Incident response lifecycle, chain of custody, evidence preservation, order of volatility, containment vs. eradication, formal CSIRT/SOC handoff)* |
 | **Prerequisites** | Completion of Modules 00–11 (Windows/Linux OS internals, IPv4/IPv6 subnetting, TCP socket states, authentication protocols, phishing header analysis, host malware & EDR persistence). |
 | **Estimated Completion** | 45–60 minutes |
-| **Core Deliverables** | 1. Multi-Stage Incident Correlation & Triage Matrix<br>2. Quick Check 1: Order of Volatility Memory & Storage Sorting<br>3. Quick Check 2: Cryptographic Evidence Integrity & SHA-256 Chain of Custody<br>4. Quick Check 3: 🎯 Call Your Shot — 5-Case Incident Escalation Gate<br>5. Performance Deliverable: Formal CSIRT Incident Escalation Dossier & Handoff Package<br>6. Lead Tech Sign-Off Checklist & Evaluation Rubric |
+| **Core Deliverables** | 1. Multi-Stage Incident Correlation & Triage Matrix<br>2. Quick Check 1: Order of Volatility Memory & Storage Sorting<br>3. Quick Check 2: Cryptographic Evidence Integrity & SHA-256 Chain of Custody<br>4. Quick Check 3: Call Your Shot — 5-Case Incident Escalation Gate<br>5. Performance Deliverable: Formal CSIRT Incident Escalation Dossier & Handoff Package<br>6. Lead Tech Sign-Off Checklist & Evaluation Rubric |
 
 ---
 
@@ -251,7 +251,7 @@ Your Ranking Order:
 2. Why is Item F (TCP network sockets and ARP cache) ranked higher in volatility than Item G (swap / pagefile)?
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 **Correct Volatility Sequence:**
 
@@ -320,7 +320,7 @@ CUSTODY LOG:
 ```
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 **Jules' Analysis:**
 
@@ -342,7 +342,7 @@ CUSTODY LOG:
 
 ---
 
-### Quick Check 3: 🎯 Call Your Shot — Predict Before You Look
+### Quick Check 3: Call Your Shot — Predict Before You Look
 
 > **The Rule of the Desk:** Do not touch the console until you have committed your decision in your mind. Name the threat, select the containment action, and articulate your technical justification.
 
@@ -357,7 +357,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **B. Isolate Host via EDR, Revoke Cloud Refresh Tokens, Purge Malicious Rule, and Issue Clean Hardened Loaner.**
 * **Threat Classification & IR Phase:** **Account Hijacking / C2 Beaconing / Credential Dumping**; Lifecycle Phase: **Containment & Identification**.
@@ -379,7 +379,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **C. Isolate Host Immediately, Confiscate Physical USB Drive for Chain of Custody, and Audit Target Network Shares.**
 * **Threat Classification & IR Phase:** **Trojan Dropper / Worm-like Lateral Movement / Persistence**; Lifecycle Phase: **Containment & Identification**.
@@ -399,7 +399,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **B. Emergency Isolation of Staging Jump Box, Block Outbound Port 8443 at OT Firewall Boundary, and Engage Industrial CSIRT.**
 * **Threat Classification & IR Phase:** **Pivoting / Unauthorized Network Egress / Critical Infrastructure Threat**; Lifecycle Phase: **Containment & Escalation**.
@@ -419,7 +419,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **B. Treat Maya as an Event (Verify Adware Quarantine) & Escalate Nora as a Severe Security Incident.**
 * **Threat Classification & IR Phase:** **Event vs. Incident Triage / Prioritization**; Lifecycle Phase: **Identification & Triage**.
@@ -440,7 +440,7 @@ CUSTODY LOG:
 * **Technical Justification:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **C. Freeze Virtual Machine / Capture Live Memory via Hypervisor, Disconnect Network, and Prepare for Bare-Metal Rebuild.**
 * **Threat Classification & IR Phase:** **Rootkit / Kernel-Level Hooking**; Lifecycle Phase: **Containment & Eradication**.

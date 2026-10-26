@@ -57,25 +57,25 @@ To ground the learner in authentic operational tradecraft, **every single learni
 ├───────────────────┬───────────────────────────┬────────────────────────────────────────┤
 │ Tool / Artifact   │ Narrative Provenance      │ Physical Spec & Production Method      │
 ├───────────────────┼───────────────────────────┼────────────────────────────────────────┤
-│ 🔴 The Red Band   │ Salvaged from Gresham     │ 3x5 unruled white index cards ($1.49 / │
+│ The Red Band   │ Salvaged from Gresham     │ 3x5 unruled white index cards ($1.49 / │
 │ "Passport Deck"   │ cross-dock clipboard      │ 100pk at Walgreens on SE 82nd Ave).    │
 │                   │ scraps & lunch-break cram.│ Handwritten with fine-point black Bic. │
 │                   │ Metacognitive quarantine. │ Held by thick red produce rubber band. │
 ├───────────────────┼───────────────────────────┼────────────────────────────────────────┤
-│ 📋 The 4x6 Job    │ Derived from father's     │ 65lb heavy cardstock printed at FedEx  │
+│ The 4x6 Job    │ Derived from father's     │ 65lb heavy cardstock printed at FedEx  │
 │ Aids ("The        │ machine shop setup sheets │ Office counter on SE 82nd ($0.23/page);│
 │ Slates")          │ and Hank's clipboards.    │ edge-laminated with 2" Scotch packing  │
 │                   │                           │ tape; trimmed with Olfa 9mm snap knife.│
 ├───────────────────┼───────────────────────────┼────────────────────────────────────────┤
-│ 💻 Secondhand     │ Bought for $65 cash in    │ Lenovo ThinkPad T430 (2012), scuffed   │
+│  Secondhand     │ Bought for $65 cash in    │ Lenovo ThinkPad T430 (2012), scuffed   │
 │ Practice Laptop   │ Fred Meyer parking lot    │ magnesium lid, missing battery latch,  │
 │                   │ off 82nd & Foster.        │ dual-boot Windows 10 refurb / Linux.   │
 ├───────────────────┼───────────────────────────┼────────────────────────────────────────┤
-│ 🔌 E-Waste Test   │ Salvaged from scrap bin   │ OEM LGA 1150 green microATX PCB; blown │
+│  E-Waste Test   │ Salvaged from scrap bin   │ OEM LGA 1150 green microATX PCB; blown │
 │ Motherboard       │ behind Harrowmere freight │ 6.3V 1500µF capacitors; snapped white  │
 │                   │ warehouse off Division.   │ plastic RAM retention latch from dark. │
 ├───────────────────┼───────────────────────────┼────────────────────────────────────────┤
-│ ⚡ Cheap Digital   │ Bought for $14.99 at      │ Cen-Tech 7-function digital DMM, stiff │
+│ Cheap Digital   │ Bought for $14.99 at      │ Cen-Tech 7-function digital DMM, stiff │
 │ Multimeter        │ Harbor Freight on SE 82nd │ PVC test leads, battery hatch taped    │
 │                   │ and Powell Blvd.          │ with blue painter's tape; measures 5V. │
 └───────────────────┴───────────────────────────┴────────────────────────────────────────┘

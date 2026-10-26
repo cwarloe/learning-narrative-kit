@@ -22,12 +22,12 @@ This document formalizes:
 flowchart TD
     subgraph S1["Kitchen Table Epiphany (Module 00)"]
         Fail["Failed Attempt 1: 592 / 675<br/>(400 Brute-Force Flashcards)"] --> Table["Kitchen Table Talk with Frank Mercer<br/>(Machinist Tradecraft Perspective)"]
-        Table --> Sort["Four Rubber Bands Mug<br/>(🔴 Red | 🟢 Green | 🟡 Yellow | 🔵 Blue)"]
+        Table --> Sort["Four Rubber Bands Mug<br/>(Red | Green | Yellow | Blue)"]
     end
 
     subgraph S2["Physical Manufacturing"]
-        Sort -->|Flashcard Cut| RedDeck["🔴 Red Band (~40 Cards)<br/>Walgreens 3x5 Blank Ruled Cards<br/>Blue Bic Pen + Red Highlighter Top Stripe"]
-        Sort -->|Job Aid Pivot| Slates["🟢 Green, 🟡 Yellow, 🔵 Blue (13 Slates)<br/>FedEx Office on 82nd Ave ($0.23/page)<br/>Matte 4x6 Cardstock + 2\" Scotch Heavy-Duty Tape Lamination<br/>Single Hand-Punched Corner Lanyard Eyelet"]
+        Sort -->|Flashcard Cut| RedDeck["Red Band (~40 Cards)<br/>Walgreens 3x5 Blank Ruled Cards<br/>Blue Bic Pen + Red Highlighter Top Stripe"]
+        Sort -->|Job Aid Pivot| Slates["Green, Yellow, Blue (13 Slates)<br/>FedEx Office on 82nd Ave ($0.23/page)<br/>Matte 4x6 Cardstock + 2\" Scotch Heavy-Duty Tape Lamination<br/>Single Hand-Punched Corner Lanyard Eyelet"]
     end
 
     subgraph S3["Workplace Deployment"]
@@ -96,10 +96,10 @@ We establish a **Dual-Layer Architecture**: contextual in-page tools for immedia
 * **Route:** Accessible from the top header navigation or sidebar drawer under `Reference Tools > Field Slates`.
 * **Deck Catalog:** Houses all 13 double-sided Field Slates (Slates 00 through 12).
 * **Filter by Band:**
-  * 🟢 **Green Band (Hardware Anatomy):** Slates 00, 01, 02.
-  * 🔵 **Blue Band (The Wire & Boundary):** Slates 03, 04, 05, 06.
-  * 🟡 **Yellow Band (Identity & Threat Triage):** Slates 07, 08, 09, 10, 11, 12.
-* **Print Engine:** Includes a `[ 🖨️ Print Complete Field Slate Set ]` button with dedicated `@media print` CSS:
+  * **Green Band (Hardware Anatomy):** Slates 00, 01, 02.
+  * **Blue Band (The Wire & Boundary):** Slates 03, 04, 05, 06.
+  * **Yellow Band (Identity & Threat Triage):** Slates 07, 08, 09, 10, 11, 12.
+* **Print Engine:** Includes a `[ Print Complete Field Slate Set ]` button with dedicated `@media print` CSS:
   * Formats slates 2-up per standard 8.5" x 11" page with dashed corner crop marks.
   * Side A and Side B arranged for standard duplex (double-sided) edge-to-edge printing.
 
@@ -118,19 +118,19 @@ We establish a **Dual-Layer Architecture**: contextual in-page tools for immedia
 
 | Episode | 4x6 Field Slate (Section 2) | Band | Side A / Side B Focus | Red Band Warmup Cards (Section 3) |
 |---|---|---|---|---|
-| **00** | Slate 00: Core Machine Compass | 🟢 / 🔵 | Motherboard Topography & PSU Rails / Triage Flow | Loopback IP, RAM beep codes, swollen capacitor sign |
-| **01** | Slate 01: The Industrial Serial Bench | 🟢 Green | 24-Pin ATX Voltages / RS-232 Pinout & Baud Settings | ATX +12V/+5V rail colors, Null Modem vs Straight, baud 9600 |
-| **02** | Slate 02: Fleet Endpoint Triage | 🔵 Blue | BitLocker Recovery Architecture / Event Viewer IDs | BitLocker 48-digit key format, Event ID 41, BSOD STOP code |
-| **03** | Slate 03: The Subnet & Gateway Matrix | 🔵 Blue | IPv4 CIDR Subnetting Table / ARP vs MAC Resolution | APIPA 169.254 range, RFC 1918 private ranges, default route 0.0.0.0/0 |
-| **04** | Slate 04: The DNS Resolution Chain | 🟡 Yellow | Root Hints to Authoritative / dig & nslookup Flags | Port 53 UDP vs TCP, DNS record types (A, AAAA, CNAME, MX, PTR) |
-| **05** | Slate 05: Layer 1 Copper & Optical | 🟢 Green | T568A vs T568B Pinout / Multimode vs Singlemode Specs | 100m Ethernet max length, wire pairs for PoE, 850nm vs 1310nm |
-| **06** | Slate 06: Disaster Recovery & Switching | 🔵 Blue | VLAN Trunking 802.1Q / DHCP Scope Exhaustion Matrix | 802.1Q tag size (4 bytes), DHCP DORA ports (67/68), trunk native VLAN |
-| **07** | Slate 07: Security Boundaries & Transport | 🟡 Yellow | Common Ports & Services / Cleartext vs Cipher Risk | Port 22 SSH vs Port 23 Telnet, Port 443 HTTPS, 3389 RDP |
-| **08** | Slate 08: Identity & Authentication | 🟡 Yellow | Kerberos TGT vs Service Tickets / LDAP vs LDAPS | Port 88 Kerberos, Port 389 vs 636 LDAP, AAA triad definitions |
-| **09** | Slate 09: Social Engineering & Email Auth | 🟡 Yellow | SPF / DKIM / DMARC Record Syntax & Header Analysis | SPF txt syntax, DKIM cryptographic signature header, quarantine vs reject |
-| **10** | Slate 10: Endpoint Malware Remediation | 🔵 Blue | CompTIA 7-Step Malware Procedure / Persistence Keys | Safe Mode boot trigger, Run/RunOnce registry hives, isolation step |
-| **11** | Slate 11: Wireless 802.11 & 802.1X | 🟡 Yellow | WPA3 SAE vs 802.1X EAP-TLS / Rogue AP vs Evil Twin | 2.4GHz non-overlapping channels (1, 6, 11), RADIUS ports (1812/1813) |
-| **12** | Slate 12: Incident Handoff & Chain of Custody | 🔵 Blue | Order of Volatility / Evidence Hash Verification | Order of volatility (RAM before Disk), SHA-256 integrity, chain of custody |
+| **00** | Slate 00: Core Machine Compass | / | Motherboard Topography & PSU Rails / Triage Flow | Loopback IP, RAM beep codes, swollen capacitor sign |
+| **01** | Slate 01: The Industrial Serial Bench | Green | 24-Pin ATX Voltages / RS-232 Pinout & Baud Settings | ATX +12V/+5V rail colors, Null Modem vs Straight, baud 9600 |
+| **02** | Slate 02: Fleet Endpoint Triage | Blue | BitLocker Recovery Architecture / Event Viewer IDs | BitLocker 48-digit key format, Event ID 41, BSOD STOP code |
+| **03** | Slate 03: The Subnet & Gateway Matrix | Blue | IPv4 CIDR Subnetting Table / ARP vs MAC Resolution | APIPA 169.254 range, RFC 1918 private ranges, default route 0.0.0.0/0 |
+| **04** | Slate 04: The DNS Resolution Chain | Yellow | Root Hints to Authoritative / dig & nslookup Flags | Port 53 UDP vs TCP, DNS record types (A, AAAA, CNAME, MX, PTR) |
+| **05** | Slate 05: Layer 1 Copper & Optical | Green | T568A vs T568B Pinout / Multimode vs Singlemode Specs | 100m Ethernet max length, wire pairs for PoE, 850nm vs 1310nm |
+| **06** | Slate 06: Disaster Recovery & Switching | Blue | VLAN Trunking 802.1Q / DHCP Scope Exhaustion Matrix | 802.1Q tag size (4 bytes), DHCP DORA ports (67/68), trunk native VLAN |
+| **07** | Slate 07: Security Boundaries & Transport | Yellow | Common Ports & Services / Cleartext vs Cipher Risk | Port 22 SSH vs Port 23 Telnet, Port 443 HTTPS, 3389 RDP |
+| **08** | Slate 08: Identity & Authentication | Yellow | Kerberos TGT vs Service Tickets / LDAP vs LDAPS | Port 88 Kerberos, Port 389 vs 636 LDAP, AAA triad definitions |
+| **09** | Slate 09: Social Engineering & Email Auth | Yellow | SPF / DKIM / DMARC Record Syntax & Header Analysis | SPF txt syntax, DKIM cryptographic signature header, quarantine vs reject |
+| **10** | Slate 10: Endpoint Malware Remediation | Blue | CompTIA 7-Step Malware Procedure / Persistence Keys | Safe Mode boot trigger, Run/RunOnce registry hives, isolation step |
+| **11** | Slate 11: Wireless 802.11 & 802.1X | Yellow | WPA3 SAE vs 802.1X EAP-TLS / Rogue AP vs Evil Twin | 2.4GHz non-overlapping channels (1, 6, 11), RADIUS ports (1812/1813) |
+| **12** | Slate 12: Incident Handoff & Chain of Custody | Blue | Order of Volatility / Evidence Hash Verification | Order of volatility (RAM before Disk), SHA-256 integrity, chain of custody |
 
 ---
 

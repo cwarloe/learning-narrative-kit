@@ -43,7 +43,7 @@ Finally, the dialogue constantly betrays the "Wire Is Hot" rule. When production
 
 ### Episode 00: The Four Rubber Bands
 1. **Banned AI Atmosphere Openers:**
-   Line 5 opens with: *"The overhead fluorescent fixture above the kitchen sink hummed with a flat, sixty-cycle buzz that seemed to vibrate inside my teeth."* This is an exact entry on the AI Crutch-Word Kill List in `TECHNICAL_NARRATIVE_AUTHORING_PRINCIPLES.md` §4 (🚫 *"hum of fluorescent ballasts" / "sixty-cycle buzz"*). Line 77 doubles down with *"a steady Pacific Northwest drizzle"*—combining two kill-list words in one sentence.
+   Line 5 opens with: *"The overhead fluorescent fixture above the kitchen sink hummed with a flat, sixty-cycle buzz that seemed to vibrate inside my teeth."* This is an exact entry on the AI Crutch-Word Kill List in `TECHNICAL_NARRATIVE_AUTHORING_PRINCIPLES.md` §4 ([BLOCKED] *"hum of fluorescent ballasts" / "sixty-cycle buzz"*). Line 77 doubles down with *"a steady Pacific Northwest drizzle"*—combining two kill-list words in one sentence.
 2. **Inauthentic Father Dialogue (The Scholar in Overalls):**
    Ethan's father is established as a 61-year-old retired manual tool-and-die maker. His toolmaker metaphors in lines 32 and 48 (*"What moves, and what holds tension?"*, McMaster-Carr catalog) are brilliant, authentic, and grounded. But in line 44, the author suddenly commandeers the father's mouth to recite an electronics engineering lecture:
    > *"Those capacitors regulate clean DC voltage to the memory bus. When they vent, the voltage ripples like dirty water, the processor loses state, and the board dies. You've been spending hours memorizing memory bus timings, but the power supply can't even deliver clean current."*
@@ -226,7 +226,7 @@ Three different jobs in three different departments within four episodes, comple
 
 ---
 
-## 🛑 "Real People Don't Talk Like This" Callouts
+## [DISCREPANCY] "Real People Don't Talk Like This" Callouts
 
 > [!CAUTION]
 > Below are verbatim lines from the chapters illustrating where natural human speech was murdered in favor of textbook definitions and lecture monologues.
@@ -303,7 +303,7 @@ Why is Ethan telling an accountant about 802.1X and RADIUS servers?
 
 ---
 
-## 😴 Snooze & Melodrama Alarms
+## [PACING] Snooze & Melodrama Alarms
 
 ### Alarm 1: The Hollywood Warehouse Overdrive (Episode 01)
 > *"A cold sweat broke out across my ribs... with trembling fingers... panic constricting my throat... Holding my breath against the thumping of my heart... My heart was hammering against my ribs."*
@@ -330,7 +330,7 @@ Why is Ethan telling an accountant about 802.1X and RADIUS servers?
 
 ---
 
-## 🔁 Word Echo & Crutch Word Census
+## [ECHO] Word Echo & Crutch Word Census
 
 Below is the frequency census across all 13 chapters (`00` to `12`):
 
@@ -348,7 +348,7 @@ Below is the frequency census across all 13 chapters (`00` to `12`):
 
 ---
 
-## ✍️ Punchy Line Edit Suggestions
+## [EDIT] Punchy Line Edit Suggestions
 
 ### 1. Episode 00: Cutting the Father's Lecture
 ```diff

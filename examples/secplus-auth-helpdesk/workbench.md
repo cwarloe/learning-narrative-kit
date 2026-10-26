@@ -192,7 +192,7 @@ Evaluate each scenario in the matrix below. Determine whether the configuration 
 3. What makes Case 5 (FIDO2) cryptographically superior to Case 4 (SMS OTP) when defending against adversary-in-the-middle (AiTM) phishing proxies like Evilginx?
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Reveal Solution & Jules' Review</summary>
 
 **Jules' Analysis:**
 1. **The Password + PIN Trap:** Users and uncertified managers mistakenly confuse the quantity of credential prompts with the number of authentication factors. Because a PIN feels like an ATM card code, users believe it represents hardware possession. In reality, unless the PIN unlocks a physical TPM or smart card chip, typing two alphanumeric secrets into software is purely knowledge-based.
@@ -272,7 +272,7 @@ Detailed Authentication Information:
 4. What exact sequence of operational steps must you execute to permanently resolve Nora's issue before unlocking her account?
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Reveal Solution & Jules' Review</summary>
 
 **Jules' Analysis:**
 1. **Root Cause:** Nora has a secondary mobile device—her corporate iPad (`IPAD-NORA-FIN` at IP `192.168.20.114`)—sitting in her briefcase or on her desk dock. When Nora changed her domain password at 08:30 on her desktop, the iPad continued attempting background mail/calendar synchronizations (ActiveSync / Exchange) every few minutes using her old cached password. After three failed attempts, the domain lockout threshold of 3 invalid attempts was triggered.
@@ -302,7 +302,7 @@ Detailed Authentication Information:
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DENY** MFA bypass and SMS preference; **REDIRECT** to standard enterprise Authenticator App enrollment with Push + Number Matching.
 * **Target Control & Policy:** Mandatory Multi-Factor Authentication Policy (Standard SEC-IAM-02).
@@ -319,7 +319,7 @@ Detailed Authentication Information:
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DENY** policy exemption; **COACH** user to adopt a 4-word memorized passphrase.
 * **Target Control & Policy:** Password Policy & Entropy Standard (NIST SP 800-63B).
@@ -336,7 +336,7 @@ Detailed Authentication Information:
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **HOLD UNLOCK**; require Dev to kill the executing script process and update the credential source first.
 * **Target Control & Policy:** Privileged Identity Management & Account Lockout Threshold.
@@ -353,7 +353,7 @@ Detailed Authentication Information:
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DENY** MFA disabling; **ISSUE** a pre-configured physical FIDO2 hardware security key (or loaner TOTP hard token) and generate emergency offline backup codes.
 * **Target Control & Policy:** Remote Travel & Possession-Based Authentication Standard.
@@ -370,7 +370,7 @@ Detailed Authentication Information:
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DENY** leaving shared secret unrotated; **ESCALATE** for immediate password rotation, vaulting, and account separation.
 * **Target Control & Policy:** Account Deprovisioning & Non-Repudiation (Accounting / AAA Standard).

@@ -139,7 +139,7 @@ No.   Time        Source          Destination     Proto  Info
 4. What is the immediate remediation for the script and the switch?
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Reveal Solution & Jules' Review</summary>
 
 **Jules' Analysis:**
 1. **Login Password:** `C1sco_Sw!tch_2026`
@@ -191,7 +191,7 @@ TcpTestSucceeded : True
 3. Specify the exact modern, encrypted server settings you will configure in Maya's Outlook profile.
 
 <details>
-<summary>🔍 Reveal Solution & Jules' Review</summary>
+<summary>Reveal Solution & Jules' Review</summary>
 
 **Jules' Analysis:**
 1. **Port 25 Failure:** Standard residential ISPs and mobile carriers block outbound TCP Port 25 by default to prevent compromised endpoints from acting as spam zombie relays. Port 25 is meant exclusively for MTA-to-MTA routing.
@@ -222,7 +222,7 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DENY** direct FTP request; **REDIRECT** to FTPS / SFTP via Jump Host.
 * **Target Protocol & Port:** **FTPS** (TCP 990 control / 989 data) or **SFTP** (TCP 22).
@@ -239,7 +239,7 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DENY** public firewall exception.
 * **Target Protocol & Port:** **VPN Concentrator** (SSL/TLS 443 or IPsec IKE/ESP) $\rightarrow$ Internal RDP (TCP 3389) to **Jump Host**.
@@ -256,7 +256,7 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** Reconfigure client to **LDAPS (TCP 636)**; resynchronize clock via **NTP (UDP 123)**.
 * **Target Protocol & Port:** LDAPS (TCP 636) + NTP (UDP 123).
@@ -273,7 +273,7 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DENY** use of `public` string; upgrade to **SNMPv3**.
 * **Target Protocol & Port:** **SNMPv3** on UDP 161 (polling) / UDP 162 (traps).
@@ -290,7 +290,7 @@ TcpTestSucceeded : True
 * **Security Rationale:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** **DENY** unencrypted Modbus/DNP3 over WAN; **ESCALATE** to NetOps for **IPsec ESP Tunnel** termination.
 * **Target Protocol & Port:** Encapsulate Modbus (502) and DNP3 (20000) inside an **IPsec VPN Tunnel (UDP 500 / 4500, IP Protocol 50 ESP)**.

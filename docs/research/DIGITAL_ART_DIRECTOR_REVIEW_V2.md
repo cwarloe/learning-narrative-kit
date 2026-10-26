@@ -420,7 +420,7 @@ The visual and interaction design must reinforce our core aesthetic: **Silicon N
 1. **Pill-Based Objective Tracking:**  
    Objectives at the base of `lnk-terminal` instances must display real-time completion state:
    - Incomplete: Empty radio icon `○` with muted label text.
-   - Completed: Bright emerald checkmark `✓` with glowing outline and struck-through or highlighted text.
+   - Completed: Bright emerald checkmark `[OK]` with glowing outline and struck-through or highlighted text.
 2. **Replay Triage Accessibility:**  
    The "Replay Triage" button automatically steps through the diagnostic sequence at 800ms intervals, allowing instructors or revision students to observe the operational flow hands-free.
 3. **Single-Click Command Insertion:**  
@@ -429,7 +429,7 @@ The visual and interaction design must reinforce our core aesthetic: **Silicon N
 ### 5.3 Dual-Track Navigation & Sticky Quick-Pivot
 In `lnk-shell.js`, enhance the mode switcher and page layout:
 - Add a sticky floating quick-pivot pill in the bottom-right corner of every page:
-  - When in Narrative Story: `[ Open Hands-On Lab 02 ➔ ]`
+  - When in Narrative Story: `[ Open Hands-On Lab 02 -> ]`
   - When in Workbench Lab: `[ ⬅ Return to Maya Lin's Ticket ]`
 - Ensure the state persists seamlessly in `localStorage.getItem('lnk_track_mode')`.
 

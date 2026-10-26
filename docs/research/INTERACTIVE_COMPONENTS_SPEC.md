@@ -58,7 +58,7 @@ set-baud 9600: |
   * `serial`: Amber/green VT100 serial console (`SCALE_04# `).
 * **Command Matching:** Case-insensitive dictionary lookup. Unrecognized commands output an authentic error and suggest typing `help`. Special commands: `clear` / `cls`, `help`.
 * **Animated Keystroke Replay:** Clicking `[Replay Triage]` automatically types the objective commands sequentially at human typing speed (45ms per keystroke) with pauses before Enter.
-* **Objective Pills:** Interactive badges at the bottom of the terminal window tick green with a `✓` checkmark as each target command is executed.
+* **Objective Pills:** Interactive badges at the bottom of the terminal window tick green with a `[OK]` checkmark as each target command is executed.
 
 ---
 

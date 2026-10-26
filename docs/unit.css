@@ -47,7 +47,7 @@
 .gui-icon::before { content: "!"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #111; font-size: 1.4rem; }
 .kind-cert-warning .gui-icon, .kind-danger .gui-icon, .kind-ransomware .gui-icon { background: #ef4444; }
 .kind-cert-warning .gui-icon::before, .kind-danger .gui-icon::before { content: "!"; color: #fff; }
-.kind-ransomware .gui-icon::before { content: "🔒"; font-size: 1.1rem; }
+.kind-ransomware .gui-icon::before { content: ""; font-size: 1.1rem; }
 .gui-copy h3 { color: #fff; font-size: 1.05rem; margin: 0 0 0.4rem; border: 0; padding: 0; }
 .gui-copy p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.6rem; }
 .gui-row { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.8rem; padding: 0.2rem 0; border-top: 1px solid rgba(51,65,85,0.5); }

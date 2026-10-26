@@ -69,10 +69,10 @@ Real engineers communicate in clipped operational shorthand, observable symptoms
 - **Weather Quarantine:** Maximum of one weather opening every four episodes. Rain or temperature should only take focus if they directly cause the failure (e.g., basement storm flooding or summer HVAC failure).
 - **Banish Puppet-String Entrances:** Do not open consecutive episodes with Jules wheeling her bicycle into the office, hanging her helmet on her monitor arm, and staring at her *Which decision?* sticky note. Enter scenes *in media res*—characters already troubleshooting, arguing, or reviewing the queue.
 - **The AI Crutch-Word Kill List:**
-  - 🚫 *"steady"* (maximum once per episode)
-  - 🚫 *"meticulously"* / *"quietly"* / *"calm deliberation"*
-  - 🚫 *"hum of fluorescent ballasts"* / *"sixty-cycle buzz"*
-  - 🚫 *"chipped ceramic mug"* / *"lukewarm tea"*
+  - [BLOCKED] *"steady"* (maximum once per episode)
+  - [BLOCKED] *"meticulously"* / *"quietly"* / *"calm deliberation"*
+  - [BLOCKED] *"hum of fluorescent ballasts"* / *"sixty-cycle buzz"*
+  - [BLOCKED] *"chipped ceramic mug"* / *"lukewarm tea"*
 - **Sensory Diversity:** Tap the real tactile details of IT work: the sharp scrape of a sheared zip-tie; the deafening roar of a server room return plenum; the stubborn residue of old label tape; the metallic snap of a cage nut; the glare of an uncalibrated second monitor.
 - **No Participial Stacking:** Avoid opening three consecutive sentences with `-ing` clauses (*"Pulling the cable...", "Looking at the screen...", "Reaching for my tool..."*).
 

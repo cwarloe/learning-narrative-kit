@@ -233,7 +233,7 @@ Maya Lin's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML eve
 3. Why does Event ID 41 show `BugcheckCode 0`, and what does its timestamp (08:22:10) reveal relative to Event ID 1000 (08:15:22)?
 
 <details>
-<summary>🔍 Solution & Technical Analysis</summary>
+<summary>Solution & Technical Analysis</summary>
 
 1. **Root Cause Component:** The crash was triggered by `amdkmdag.sys`, the AMD kernel-mode graphics device driver. While `PDXPayClient.exe` was the host process, the fault occurred inside the driver's execution space (`FaultModuleName: amdkmdag.sys`) during hardware acceleration rendering.
 2. **Exception Code `0xc0000005`:** This is the standard Windows **Access Violation** status code. It indicates that a thread attempted to read or write to a memory virtual address for which it did not have appropriate architectural permissions (e.g., dereferencing a null pointer or accessing unmapped kernel space).
@@ -287,7 +287,7 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** Boot into **Safe Mode**, then roll back or uninstall the conflicting storage controller driver update.
 * **Diagnostic Tool:** Windows Recovery Environment (WinRE) $\rightarrow$ Startup Settings $\rightarrow$ **Safe Mode** $\rightarrow$ **Device Manager** (Storage Controllers).
@@ -304,7 +304,7 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** Execute out-of-band identity verification, retrieve the 48-digit **BitLocker Recovery Key** from Active Directory, and input the key to unlock the drive.
 * **Diagnostic Tool:** Active Directory Users & Computers (BitLocker Recovery Tab) or Microsoft Intune Admin Center.
@@ -321,7 +321,7 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** Stop `spoolsv.exe`, purge the corrupted print queue files in `C:\Windows\System32\spool\PRINTERS\`, and restart the service.
 * **Diagnostic Tool:** PowerShell / Command Prompt (Admin) and Windows Services Console (`services.msc`).
@@ -344,7 +344,7 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** Inspect physical hardware thermals, blow out clogged chassis/heatsink dust, and check CPU heatsink mounting.
 * **Diagnostic Tool:** Task Manager (Performance tab) + Hardware Monitor / BIOS Thermal Telemetry.
@@ -361,7 +361,7 @@ Step 4: Enable [S03], Disable [S04]. Reboot.
 * **Remediation Plan:**
 
 <details>
-<summary>🔍 Solution & Jules' Critique</summary>
+<summary>Solution & Jules' Critique</summary>
 
 * **Action:** Execute **DISM RestoreHealth** pointing to an external Windows ISO/WIM source, then re-execute `sfc /scannow`.
 * **Diagnostic Tool:** Elevated Command Prompt (`cmd.exe`).

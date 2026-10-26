@@ -80,7 +80,7 @@ If published without remediation, these errors will undermine the curriculum's c
   > *"Rule 4: Two Devices Cannot Share a Cubicle. Duplicate IPs cause continuous ARP poisoning and MAC flapping"* (Workbench 03, L48)  
   > Section 5 Rubric awards Exemplary to students who explain *"MAC address flapping; isolates duplicate IP address conflicts; explains gratuitous ARP and switch CAM table poisoning."* (Workbench 03, L567)
 
-* 👓 **"Well, Actually..." (The Technical Flaw):**  
+*  **"Well, Actually..." (The Technical Flaw):**  
   An unmanaged or Layer 2 Ethernet switch **has zero awareness of IPv4 addresses**. A switch's forwarding database—known as the Content-Addressable Memory (CAM) table or MAC address table—maps **Source Layer 2 MAC addresses to physical ingress switch ports**.
   
   In the scenario presented:
@@ -96,11 +96,11 @@ If published without remediation, these errors will undermine the curriculum's c
   
   **"MAC address flapping"** occurs *only* when the **exact same MAC address** is seen on multiple switch ports (e.g., during a Layer 2 loop, or an active MAC spoofing/cloning attack). Calling an IP conflict a "switch MAC table poisoning" and "MAC flapping war" is a grave layer conflation that directly undermines CompTIA Network+ Domain 1.4 and 5.2 objectives.
 
-* 🔬 **RFC & Architectural Reality:**  
+*  **RFC & Architectural Reality:**  
   - **RFC 826 (Address Resolution Protocol):** ARP is an encapsulation translation protocol mapping Layer 3 protocol addresses to Layer 2 hardware addresses on a local broadcast domain. ARP cache tables exist exclusively on Layer 3 host network stacks and router routing engines.
   - **IEEE 802.1D / 802.1Q (Bridging Architecture):** Layer 2 bridges filter and forward frames strictly by destination MAC address using the filtering database (FDB / CAM). Bridges do not parse payload bytes beyond the 802.3/Ethernet II header.
 
-* 🛠️ **The SME Fix:**  
+* ️ **The SME Fix:**  
   1. In Narrative 03, line 159, replace:
      ```markdown
      "Every time one of them talks, its gratuitous ARP announcement poisons the switch MAC table and the ARP cache on neighboring PCs. Traffic flips back and forth depending on who spoke last."
@@ -132,7 +132,7 @@ If published without remediation, these errors will undermine the curriculum's c
     ```
   - Ticket Resolution Note (L522): `Faulting Application: PDXPayClient.exe | Faulting Module: amdkmdag.sys`
 
-* 👓 **"Well, Actually..." (The Technical Flaw):**  
+*  **"Well, Actually..." (The Technical Flaw):**  
   This is a blatant copy-paste defect that shatters pedagogical agency. A student reading about Maya Lin's mission-critical payroll application (`PDX-Pay` / `PDXPayClient.exe`) freezing under an AMD Radeon kernel driver deadlock (`amdkmdag.sys`) steps up to the interactive terminal and is asked to run:
   `Get-EventLog -LogName Application -InstanceId 1000`
   Which suddenly outputs a crash for **QuickBooks.exe** crashing on **NahimicOSD.dll** (an MSI audio on-screen display overlay helper)! The terminal objective then requires them to run `Stop-Service -Name NahimicService`.
@@ -143,10 +143,10 @@ If published without remediation, these errors will undermine the curriculum's c
   3. `OEM-GpuAssist.exe` (Clean Boot Table)
   4. `QuickBooks.exe` on `NahimicOSD.dll` (Interactive Terminal)
 
-* 🔬 **Architectural Reality:**  
+*  **Architectural Reality:**  
   Enterprise accounting clients invoking Direct3D hardware acceleration frequently conflict with buggy OEM kernel display drivers (`amdkmdag.sys`), tripping Windows Display Driver Timeout Detection and Recovery (TDR Event ID 4101). The entire lab was designed around this scenario. The QuickBooks/Nahimic block is an unedited snippet copied from a consumer gaming PC troubleshooting forum.
 
-* 🛠️ **The SME Fix:**  
+* ️ **The SME Fix:**  
   1. Update Figure 2.1 caption in Workbench 02 (line 28) and Narrative 02:
      ```markdown
      caption: "Macro console view: Windows Event Viewer Application log. Event ID 1000: Faulting application name PDXPayClient.exe, faulting module name amdkmdag.sys (AMD Radeon Kernel Mode Driver), exception code 0xc0000005."
@@ -200,21 +200,21 @@ If published without remediation, these errors will undermine the curriculum's c
     > *"When the Toledo scale transmits at 9600 baud ($T_{\text{bit}} = 104.17\,\mu\text{s}$) but the terminal UART is configured for 19200 baud ($T_{\text{bit}} = 52.08\,\mu\text{s}$)..."* (L218)  
     > `Baud Rate: 19200... Diagnostics: Switch 3 is ON, locking the UART receiver to 19200 baud. Scale transmitter hardware is calibrated for 9600 baud. Action Required: Set Switch 3 OFF, Switch 4 ON.` (L260–277)
 
-* 👓 **"Well, Actually..." (The Technical Flaw):**  
+*  **"Well, Actually..." (The Technical Flaw):**  
   1. **Physical Impossibility of DIP Switch Power Reset:** A Dual In-line Package (DIP) switch is a set of manual, mechanical slide or rocker switches soldered directly to a PCB. It contains mechanical copper wiper contacts. **Cutting power to a motherboard cannot physically toggle a mechanical DIP switch!** If the UART clock prescaler is hardwired to DIP switch bank `SW1`, toggling the AC power breaker will leave the DIP switches in the exact physical position they were in before the power cut.
   2. **Mathematical Inversion between Narrative and Lab:**  
      - In Narrative 01: The terminal reset to **9,600 baud**, while the scale is sending at **19,200 baud** ("scale was streaming twice as fast as the receiver clock could sample it").
      - In Workbench 01: The terminal is locked at **19,200 baud**, while the scale transmits at **9,600 baud** ("receiver clock samples at $26\,\mu\text{s}$ and $78\,\mu\text{s}$ while scale is still in Start bit").
      These two documents present the exact opposite mathematical scenarios!
 
-* 🔬 **Hardware & Serial Timing Reality:**  
+*  **Hardware & Serial Timing Reality:**  
   Standard PC 16550 UARTs derive their baud rates from a master crystal oscillator (typically $1.8432\text{ MHz}$). The clock divider is:
   $$\text{Divisor} = \frac{1,843,200}{16 \times \text{Baud Rate}}$$
   - For $9,600\text{ Baud}$: $\text{Divisor} = 12$ ($0x000C$). Bit duration $T_{\text{bit}} = \frac{1}{9600} \approx 104.17\,\mu\text{s}$.
   - For $19,200\text{ Baud}$: $\text{Divisor} = 6$ ($0x0006$). Bit duration $T_{\text{bit}} = \frac{1}{19200} \approx 52.08\,\mu\text{s}$.
   Workbench 01's mathematical explanation of a 9,600 baud transmission sampled by a 19,200 baud receiver (sampling twice per bit and framing out by Bit 4) is brilliant and accurate. Narrative 01 must be corrected to match Workbench 01.
 
-* 🛠️ **The SME Fix:**  
+* ️ **The SME Fix:**  
   Rewrite Narrative 01 lines 130–136:
   ```markdown
   Then the mistake hit me like cold water: the serial baud rate.
@@ -243,14 +243,14 @@ If published without remediation, these errors will undermine the curriculum's c
   - Workbench 10 Terminal:
     > `C:\Users\Ken\AppData\Local\Temp\svch0st.exe` (L373)
 
-* 👓 **"Well, Actually..." (The Technical Flaw):**  
+*  **"Well, Actually..." (The Technical Flaw):**  
   Under the `PORTLAND_AUTHOR_BIBLE.md` (lines 88, 144, 431):
   - **Ken Vance** is a 50-year-old shipping veteran, supervisor of the Gresham freight staging distribution warehouse. He moves freight pallets, wears a canvas jacket, hates when forklifts lose barcode connectivity, and helped Ethan land his help desk rotation.
   - **Todd Miller** is the young Inside Sales representative on the 4th floor (`TODD-SALES-14`), who works in an office cubicle, travels to hotels with a corporate laptop, and manages customer CRM accounts.
   
   The author introduced Todd in sales at the beginning of each of these scenes, but then suffered a catastrophic character alias bug, referring to him as "Ken" throughout the remainder of each episode! This creates absurdities: Ken Vance is suddenly traveling to hotels for sales demos, Ken is locked out of Salesforce CRM, Ken's laptop username is `C:\Users\Ken` while hostname is `TODD-SALES-14`, and Ken is pulling the cable on Todd's laptop.
 
-* 🛠️ **The SME Fix:**  
+* ️ **The SME Fix:**  
   Systematically replace "Ken" with "Todd" across Episodes 08, 09, 10, and 11, and in Workbenches 08, 10, and 11, wherever the Inside Sales representative is being depicted. Preserve Ken Vance strictly for the Gresham loading dock and warehouse logistics contexts.
 
 ---
@@ -260,7 +260,7 @@ If published without remediation, these errors will undermine the curriculum's c
 * **The Claim in Text:**  
   > *"my console refreshed to display the twelve groups of four digits. I read the 48 digits clearly over the phone. Once Maya keyed in the final number, the machine unlocked..."* (Narrative 02, L92–93)
 
-* 👓 **"Well, Actually..." (The Technical Flaw):**  
+*  **"Well, Actually..." (The Technical Flaw):**  
   Microsoft BitLocker full-disk encryption utilizes a 48-digit numerical recovery password. However, Windows Boot Manager, Active Directory Users & Computers (ADUC), Microsoft Entra ID (Azure AD), and the BitLocker Recovery Console format this 48-digit number as **eight groups of six digits**, separated by hyphens:
   $$\boxed{\text{XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX}}$$
   
@@ -268,11 +268,11 @@ If published without remediation, these errors will undermine the curriculum's c
   
   "Twelve groups of four digits" is a hallucination that conflates 16-character credit card numbers or software license product keys. No BitLocker system in Microsoft's history has ever formatted a recovery key in 12 groups of 4 digits.
 
-* 🔬 **Architectural Citation:**  
+*  **Architectural Citation:**  
   Microsoft Learn: *BitLocker Recovery Guide* & *BitLocker Key Protector Architecture*:  
   > *"The BitLocker recovery password is a 48-digit numerical password divided into eight 6-digit segments. The boot environment validates each 6-digit segment using an arithmetic checksum before processing the full AES volume master key (VMK)."*
 
-* 🛠️ **The SME Fix:**  
+* ️ **The SME Fix:**  
   In Narrative 02, line 92, replace:
   ```markdown
   Jules reviewed the log, approved the request with her smartcard badge, and my console refreshed to display the twelve groups of four digits. I read the 48 digits clearly over the phone.
@@ -291,7 +291,7 @@ If published without remediation, these errors will undermine the curriculum's c
   - Workbench 01 contains Sections 1, 2, 3, 4, and 6, but completely skips Section 5.
 * **Governing Standard Violation:**  
   `TECHNICAL_NARRATIVE_AUTHORING_PRINCIPLES.md` mandates that every single workbench module must conclude with an objective, four-tier Performance Deliverable Rubric ("What Good Looks Like / Shift Quality Checklist") grading learners on Diagnostic Methodology, Technical Analysis, Operating System / Security Execution, and Documentation Quality. Omitting Section 5 deprives students and instructors of passing criteria for their first two labs.
-* 🛠️ **The SME Fix:**  
+* ️ **The SME Fix:**  
   Draft and insert standard Section 5 rubric tables into `workbench/00-the-four-rubber-bands.md` and `workbench/01-the-paper-cert.md` (see Section 6 of this review for exact markdown).
 
 ---
@@ -311,13 +311,13 @@ If published without remediation, these errors will undermine the curriculum's c
       label: "Identify caller computer causing stale password lockouts"
       trigger: "Get-ADUser -Identity nora.finance -Properties *"
   ```
-* 👓 **"Well, Actually..." (The Technical Flaw):**  
+*  **"Well, Actually..." (The Technical Flaw):**  
   1. **Ground Truth Violation:** Workbench 08 Ground Truth Rule 4 explicitly warns:
      > *"Never Clear a Lockout Without Identifying the Caller: Clicking 'Unlock Account' treats the symptom, not the cause. If a user's phone is still hammering the domain controller, the account will re-lock within minutes. You must inspect Event ID 4740 in the Security Event Log, extract the Caller Computer Name, and terminate the offending session before unlocking."*  
      Yet the terminal widget requires the student to run `Unlock-ADAccount` in Objective 2 *before* identifying the caller computer in Objective 3!
   2. **Invalid Cmdlet Capability:** Objective 3 uses `Get-ADUser -Identity nora.finance -Properties *` to "Identify caller computer causing stale password lockouts."  
      **`Get-ADUser` does not return the Caller Computer Name!** Active Directory user objects have attributes like `BadLogonCount`, `badPasswordTime`, `lastLogonTimestamp`, and `LockedOut`. The name of the client machine that transmitted the bad password exists **strictly inside the Security Event Log under Event ID 4740 XML event data (`CallerComputerName`)**!
-* 🛠️ **The SME Fix:**  
+* ️ **The SME Fix:**  
   Restructure the objectives:
   1. Objective 1: Query Event ID 4740 to locate lockout event.
   2. Objective 2: Parse Event ID 4740 XML message to extract `CallerComputerName` (`WKS-NORA-PHONE`).
@@ -333,10 +333,10 @@ If published without remediation, these errors will undermine the curriculum's c
     label: "Terminate malicious process and remove persistence key"
     trigger: "Stop-Process -Id 4812 -Force"
   ```
-* 👓 **"Well, Actually..." (The Technical Flaw):**  
+*  **"Well, Actually..." (The Technical Flaw):**  
   `Stop-Process -Id 4812 -Force` executes the `TerminateProcess()` Windows Win32 API. It forcibly terminates threads executing inside the RAM address space of process 4812. **It touches zero registry keys, deletes zero scheduled tasks, and removes zero services!**  
   Labelling this command as "Terminate malicious process and remove persistence key" directly reinforces the lethal junior technician mistake that Ground Truth Rule 3 explicitly condemns: *"Killing the Process Does Not Kill the Persistence."*
-* 🛠️ **The SME Fix:**  
+* ️ **The SME Fix:**  
   Split into two distinct commands:
   ```yaml
   - id: "obj-kill"
@@ -349,7 +349,7 @@ If published without remediation, these errors will undermine the curriculum's c
 
 ---
 
-## 👓 "Well, Actually..." Callouts & Engineering Reality
+##  "Well, Actually..." Callouts & Engineering Reality
 
 1. **"The capacitors regulate clean DC voltage to the memory bus."**  
    *Narrative 00, Line 44*  
@@ -381,7 +381,7 @@ If published without remediation, these errors will undermine the curriculum's c
 
 ---
 
-## 🔬 RFC & Architectural Citations
+##  RFC & Architectural Citations
 
 - **RFC 826:** *An Ethernet Address Resolution Protocol*. Delineates the boundary between Layer 2 MAC delivery and Layer 3 IP mapping. ARP caches live in host/router IP stacks, not Layer 2 bridge CAM tables.
 - **RFC 2131 & 2132:** *Dynamic Host Configuration Protocol*. Specifies UDP ports 67/68, the DORA state machine, and DHCP Relay Agent `giaddr` behavior.
@@ -395,7 +395,7 @@ If published without remediation, these errors will undermine the curriculum's c
 
 ---
 
-## 🛠️ Complete SME Fixes & Content Rewrites
+## ️ Complete SME Fixes & Content Rewrites
 
 ### Fix 1: Section 5 Rubrics for Workbenches 00 and 01
 
