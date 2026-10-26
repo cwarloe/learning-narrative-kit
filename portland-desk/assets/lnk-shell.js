@@ -92,7 +92,7 @@
       aside.innerHTML = `
         <div class="glossary-header-bar">
           <div class="glossary-title-wrap">
-            <span class="glossary-icon">📚</span>
+            <span class="glossary-badge" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 4px; padding: 2px 8px;">INDEX</span>
             <div>
               <h3>Active Domain Glossary & Technical Concept Index</h3>
               <div class="sidebar-meta" id="term-count">Loading terms…</div>

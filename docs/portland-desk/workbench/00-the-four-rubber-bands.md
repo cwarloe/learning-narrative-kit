@@ -146,7 +146,7 @@ The certification voucher buys an HR passport. But once you walk through the cor
   </div>
   <div class="aid-footer">
     <span class="aid-scale-badge">STANDARDIZED 4x6 PACKING-TAPE LAMINATED SLATE</span>
-    <button type="button" class="aid-print-btn" onclick="window.print()">🖨️ Print Laminate</button>
+    <button type="button" class="aid-print-btn" onclick="window.print()">Print Laminate</button>
   </div>
 </aside>
 
@@ -639,7 +639,7 @@ ipconfig: |
         <div class="passport-prompt-text">Power cuts abruptly during an office outage. Does data in RAM survive the drop? (Yes/No and Why)</div>
         <div class="passport-footer-prompt">
           <span>Card 1 of 3</span>
-          <span class="flip-hint">[ ⟳ Click or Spacebar to Flip ]</span>
+          <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
         </div>
       </div>
       <div class="passport-face face-back">
@@ -650,7 +650,7 @@ ipconfig: |
         </div>
         <div class="passport-footer-prompt">
           <span>Target Recall: &lt; 10s</span>
-          <span class="flip-hint">[ ⟳ Click to Flip ]</span>
+          <span class="flip-hint">[ Click to Flip ]</span>
         </div>
       </div>
     </div>
@@ -662,7 +662,7 @@ ipconfig: |
         <div class="passport-prompt-text">You run <code>ping 127.0.0.1</code> and get 4 successful replies. Does this prove your physical network cable is working? (Yes/No and Why)</div>
         <div class="passport-footer-prompt">
           <span>Card 2 of 3</span>
-          <span class="flip-hint">[ ⟳ Click or Spacebar to Flip ]</span>
+          <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
         </div>
       </div>
       <div class="passport-face face-back">
@@ -673,7 +673,7 @@ ipconfig: |
         </div>
         <div class="passport-footer-prompt">
           <span>Target Recall: &lt; 10s</span>
-          <span class="flip-hint">[ ⟳ Click to Flip ]</span>
+          <span class="flip-hint">[ Click to Flip ]</span>
         </div>
       </div>
     </div>
@@ -685,7 +685,7 @@ ipconfig: |
         <div class="passport-prompt-text">A moved workstation turns on, fans spin loudly, but monitor shows "No Signal" and BIOS emits 1 long beep + 2 short beeps. What failed?</div>
         <div class="passport-footer-prompt">
           <span>Card 3 of 3</span>
-          <span class="flip-hint">[ ⟳ Click or Spacebar to Flip ]</span>
+          <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
         </div>
       </div>
       <div class="passport-face face-back">
@@ -696,7 +696,7 @@ ipconfig: |
         </div>
         <div class="passport-footer-prompt">
           <span>Target Recall: &lt; 10s</span>
-          <span class="flip-hint">[ ⟳ Click to Flip ]</span>
+          <span class="flip-hint">[ Click to Flip ]</span>
         </div>
       </div>
     </div>
@@ -704,9 +704,9 @@ ipconfig: |
   
   <div class="passport-deck-nav">
     <button type="button" class="passport-btn prev-btn">← Previous</button>
-    <button type="button" class="passport-btn flip-btn">⟳ Flip Card (Space)</button>
+    <button type="button" class="passport-btn flip-btn">Flip Card (Spacebar)</button>
     <button type="button" class="passport-btn next-btn">Next →</button>
-    <button type="button" class="passport-btn shuffle-btn">🔀 Shuffle</button>
+    <button type="button" class="passport-btn shuffle-btn">Shuffle Deck</button>
   </div>
   <div class="passport-progress-dots"></div>
 </div>

@@ -48,7 +48,7 @@
             if (pill && !pill.classList.contains('completed')) {
               pill.classList.add('completed');
               const check = pill.querySelector('.lnk-term-obj-check');
-              if (check) check.textContent = '✓';
+              if (check) check.textContent = '[OK]';
             }
           }
         });
