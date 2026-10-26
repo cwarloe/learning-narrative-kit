@@ -314,5 +314,5 @@ account, with what went wrong and how it was found, is in
 
 ## Ship steps (agents / LLMs)
 
-Mechanical pipeline, landing-card reminder, and copy-paste prompt: see [`AGENTS.md`](../AGENTS.md) at the repo root. Portland Desk track canon: [`examples/PORTLAND_DESK.md`](../examples/PORTLAND_DESK.md).
+Mechanical pipeline, landing-card reminder, and copy-paste prompt: see [`AGENTS.md`](../AGENTS.md) at the repo root. Portland Desk canon: [`docs/research/PORTLAND_TIMELINE.md`](../docs/research/PORTLAND_TIMELINE.md) and [`docs/research/PORTLAND_AUTHOR_BIBLE.md`](../docs/research/PORTLAND_AUTHOR_BIBLE.md).
 

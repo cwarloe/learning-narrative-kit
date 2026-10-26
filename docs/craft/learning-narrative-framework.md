@@ -7,7 +7,7 @@ It sits on top of the rules that already exist. It does not replace them.
 - `schema/README.md` is still the authoring contract, and it still wins on conflict. That contract includes beat structure (goal, complication, pivot), the cover test, and term placement.
 - `schema/VOICE.md` already names the core failure as **"resolution the situation hasn't paid for."** This framework is the long version of that one paragraph, with tools for preventing it before the draft exists.
 - `schema/BRIEF.md` already has `endings: cost`, and the plan gate in `AGENTS.md` already demands `cost` and `carries_forward` for each chapter. This document explains what a good answer in those fields looks like.
-- Track bibles (for example `examples/PORTLAND_DESK.md` and `docs/research/PORTLAND_AUTHOR_BIBLE.md`) still own canon: who the characters are, where they work, and what happens in each episode. Where this framework and a bible disagree, the disagreement is listed in [Known conflicts](#known-conflicts-with-existing-rules) for the author to decide. It is not settled here.
+- Track bibles (for example `docs/research/PORTLAND_AUTHOR_BIBLE.md` and `docs/research/PORTLAND_TIMELINE.md`) still own canon: who the characters are, where they work, and what happens in each episode. Where this framework and a bible disagree, the disagreement is listed in [Known conflicts](#known-conflicts-with-existing-rules) for the author to decide. It is not settled here.
 
 ## The problem in one paragraph
 
@@ -53,7 +53,7 @@ The reader learns most at the moment the obvious move fails. This is already how
 
 Partial fixes beat clean ones. The first fix should solve part of the problem, reveal a second one, or make things worse (the pin gets straightened and the garbage on the screen gets faster). The protagonist should get it right on the second attempt rather than the first, and the reader should be able to see why the second attempt was different.
 
-The track rule still applies: **the narrator may feel lost, but the reader must not** (`examples/PORTLAND_DESK.md`). A wrong turn has to be legible. The reader should see why it was tempting and why it was wrong, even if the protagonist only sees it later.
+The track rule still applies: **the narrator may feel lost, but the reader must not** (carried over from the archived Security+ shorts; see below). A wrong turn has to be legible. The reader should see why it was tempting and why it was wrong, even if the protagonist only sees it later.
 
 *Test it like this:* Name the wrong turn, who saw it, and what it cost. Then name the partial fix and what it exposed.
 
@@ -127,6 +127,18 @@ These are short illustrations of each principle drawn from the review. The full 
 - **A rule broken for free.** Jules says to walk her through the plan before touching settings. Ethan touches settings right away, and nothing happens. A better version has her mark it down, and he carries the mark into Chapter 3.
 - **What already works.** Ken blocking the cabinet with his clipboard ("Don't guess, Ethan"), the fix that makes the screen worse, the dead phone signal, and Jules hitting the mute button. All four are people or physics getting in the way, and that is the material to build on.
 
+## Carried over from the archived Security+ shorts (2026-10-26)
+
+The short Security+ "Portland Desk" units (`archive/examples/secplus-*`) and their track rules (`archive/examples/PORTLAND_DESK.md`) were archived on 2026-10-26. These are the lessons from them that held up. They now apply to every track.
+
+- **The narrator may feel lost; the reader must not.** Ethan can misread a term on first contact. A mentor corrects or deepens it in dialogue. The misunderstanding is the complication and the correction is the pivot (`schema/README.md`, beat structure).
+- **Expert content arrives through mentor dialogue, not through the narrator.** A novice narrator cannot plausibly explain like an expert. This is how *The Phoenix Project* handles it.
+- **First person, past tense, as craft calls, not findings.** `research/perplexity-2026-09/08-pov-and-tense.md` found no direct evidence for POV or tense in instructional fiction. First person was chosen for engagement and identification with a junior reader. Past tense was chosen because IT readers already read postmortems in past tense. Do not cite either as research-backed.
+- **Absorbing is not the same as teaching.** Transportation into a story is strongly linked to attitude change and only weakly linked to recall or transfer. An absorbing chapter still needs the workbench.
+- **Never hit a word count by cutting grammar.** The old 1,800 to 2,000 word ceiling produced telegraphic, machine-sounding prose ("Closet switch in Building C"). If a chapter runs long, cut a whole beat and rehouse its terms. Cutting a beat is the author's call.
+- **Do not mark flavor.** Weather, transit, coffee, and other atmosphere stay unmarked. Mark only exam terms and the jargon a non-IT reader needs.
+- **Sticky decision check.** Before shipping, name the three to five decisions the chapter teaches (for example, "not every scary ticket is an incident"). If you cannot name them, the chapter is still a vocabulary parade.
+
 ## Known conflicts with existing rules
 
 The following existing rules pull against this framework. None of them has been changed. Each needs an author decision.
@@ -136,11 +148,11 @@ The following existing rules pull against this framework. None of them has been 
 3. **`docs/research/PORTLAND_AUTHOR_BIBLE.md`, Episode 00 card, "Resolution & Cost."** It says "Ethan... clicks submit with sweating palms, and scores a 742/900." The PR #29 review recommends a narrower pass or a failed exam. The bible's listed cost ("His bank account is still drained") is a condition that already existed, not a cost of the decision. The canon score stays at 742 until the author decides otherwise.
 4. **`docs/research/PORTLAND_AUTHOR_BIBLE.md`, Episode 01 card.** It says "The trucks depart on time." The PR #29 review suggests that one trailer should miss. Note that the bible *does* charge costs that the current chapter text drops: "ruins a fifty-dollar staging cable, severely bruises his knuckles." Restoring those costs needs no rule change. Making a truck miss does.
 5. **`docs/research/PORTLAND_AUTHOR_BIBLE.md`, Episode 01 pivot.** Ethan "repairs the physical insulation, straightens a bent pin with a mechanical pencil, and matches the serial baud rate using DIP switches." He does all of it alone, and no knowledgeable second person appears. That pulls against principle 3. It does not forbid adding a helper, but it does not ask for one either.
-6. **Canon scope: the Willamette River plant.** `docs/research/PORTLAND_AUTHOR_BIBLE.md` sets Episode 04 at the "Harrowmere Willamette River Plant" and makes Leah Moreno a plant employee. The approved canon given for this work names Harrowmere, the Gresham warehouse, and the Portland ROC help desk under Jules. A site visit is not a relocation, so this is probably compatible, but the author should confirm that the plant is in canon as a place Ethan visits and not a place he works.
-7. **Canon scope: the Episode 12 ending.** The bible says Ethan "can no longer remain in the comfortable, familiar routine of the Portland desk." Read loosely, that implies leaving Portland, which would conflict with "Ethan never relocates." The author should confirm that it means a role change rather than a move.
+6. **(Resolved 2026-10-26.)** **Canon scope: the Willamette River plant.** `docs/research/PORTLAND_AUTHOR_BIBLE.md` sets Episode 04 at the "Harrowmere Willamette River Plant" and makes Leah Moreno a plant employee. The approved canon given for this work names Harrowmere, the Gresham warehouse, and the Portland ROC help desk under Jules. A site visit is not a relocation, so this is probably compatible, Resolved: the plant is in Portland. Ethan visits it; he works at the ROC desk.
+7. **(Resolved 2026-10-26.)** **Canon scope: the Episode 12 ending.** The bible says Ethan "can no longer remain in the comfortable, familiar routine of the Portland desk." Read loosely, that implies leaving Portland, which would conflict with "Ethan never relocates." Resolved: Ep 12 is a role change into Harrowmere security operations in Portland. Ethan never relocates.
 
 These are not conflicts, but they are worth noting:
 
 - The bible's Episode 01 card ("has earned his CompTIA A+ and is grinding... digital flashcards for Network+") resolves the "exams, plural" question raised in PR #29. The chapter text should make that explicit.
-- The bible says "50-pound bags of concrete mix," while the Chapter 00 text says "eighty-pound bags of mortar." That is chapter drift from the bible, not a rule conflict.
+- (Resolved 2026-10-26.) Ep 00 now uses 80-pound bags of Quikrete Concrete Mix everywhere. See `docs/research/PORTLAND_TIMELINE.md`.
 - `docs/research/PLAIN_ENGLISH_STYLE_GUIDE.md` bans words like "pedagogy," "heuristic," and "rubric" from learner-facing material. This document is for writers, not learners, but it avoids those words anyway.

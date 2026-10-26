@@ -770,55 +770,6 @@ HTML_CONTENT = r'''<!DOCTYPE html>
 
       </div>
 
-      <!-- Supplementary Security Units -->
-      <div class="act-header" style="margin-top: 2rem;">
-        <div class="act-title-wrap">
-          <span class="act-badge act-misc">Deep Dives</span>
-          <h3 class="act-title" style="font-size: 1.1rem;">Supplementary Security Modules</h3>
-          <span class="act-sub">Stand-alone focused deep dives</span>
-        </div>
-      </div>
-
-      <div class="card-grid">
-        <article class="incident-card" data-search="physical security badge lock eyes mantrap tailgating secplus-physical-helpdesk">
-          <div>
-            <div class="card-top">
-              <span class="cert-tag">Security+ Physical</span>
-            </div>
-            <h4 class="card-title">Badge, Lock, Eyes</h4>
-            <p class="card-premise">Physical access control, mantrap tailgating, CCTV verification, and server room badge access telemetry.</p>
-          </div>
-          <div class="card-single-action">
-            <a class="btn-single" href="secplus-physical-helpdesk/">Open Standalone Unit →</a>
-          </div>
-        </article>
-
-        <article class="incident-card" data-search="cryptography pki certificates trust on paper ca x509 secplus-crypto-helpdesk">
-          <div>
-            <div class="card-top">
-              <span class="cert-tag">Security+ PKI</span>
-            </div>
-            <h4 class="card-title">Trust on Paper</h4>
-            <p class="card-premise">Public key infrastructure, certificate authority trust chains, X.509 validity dates, and private key security.</p>
-          </div>
-          <div class="card-single-action">
-            <a class="btn-single" href="secplus-crypto-helpdesk/">Open Standalone Unit →</a>
-          </div>
-        </article>
-
-        <article class="incident-card" data-search="incident response lifecycle order you do it in preparation containment secplus-ir-lifecycle">
-          <div>
-            <div class="card-top">
-              <span class="cert-tag">Security+ IR</span>
-            </div>
-            <h4 class="card-title">The Order You Do It In</h4>
-            <p class="card-premise">Step-by-step walkthrough of the NIST/SANS 6-phase incident response lifecycle from preparation to post-mortem.</p>
-          </div>
-          <div class="card-single-action">
-            <a class="btn-single" href="secplus-ir-lifecycle/">Open Standalone Unit →</a>
-          </div>
-        </article>
-      </div>
 
     </div>
 

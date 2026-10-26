@@ -201,7 +201,7 @@ Full text: `schema/README.md`. Non-negotiables:
 
 ## Track-specific canon
 
-- **Portland Desk (Sec+):** `examples/PORTLAND_DESK.md`
+- **Portland Desk (Book 0):** `docs/research/PORTLAND_TIMELINE.md` (facts) and `docs/research/PORTLAND_AUTHOR_BIBLE.md` (cast and beats)
 - **ITM:** see `examples/itm310-vanguard-edge/` as specimen
 - **Tamarack (MIS + Excel/BI, MindTap):** `examples/TAMARACK.md`
 
@@ -215,7 +215,7 @@ You are authoring a learning-narrative unit for this kit.
 Read and follow:
 - AGENTS.md (this playbook)
 - schema/README.md (authoring contract)
-- For Portland Desk Sec+: examples/PORTLAND_DESK.md
+- docs/craft/learning-narrative-framework.md (craft standard)
 - Clone file shapes from the nearest examples/<sibling>/
 
 Task: create examples/<UNIT_ID>/ with unit.yaml, glossary.yaml, narrative.md, review.yaml

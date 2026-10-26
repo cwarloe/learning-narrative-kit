@@ -4,8 +4,7 @@
 Source of truth remains markdown + YAML. Generated HTML is a Pages artifact.
 
 Usage:
-  python tools/render_unit.py examples/secplus-ports-helpdesk
-  python tools/render_unit.py examples/secplus-auth-helpdesk
+  python tools/render_unit.py examples/itm310-vanguard-edge
   python tools/render_unit.py workshop/<job>/candidates/<unit_id> --out workshop/<job>/preview
 
 --out renders a candidate somewhere other than docs/ (a preview Pages never serves): it

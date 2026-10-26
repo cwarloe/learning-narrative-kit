@@ -47,7 +47,7 @@ Markdown/YAML remain source of truth; never hand-edit generated HTML under `docs
 cd workshop/<job>/preview && python3 -m http.server 8000   # then open /<unit_id>/
 ```
 
-Local wrapper: `examples/secplus-ports-helpdesk/build_preview.py` calls this and also writes a gitignored scratch HTML next to the unit.
+The old local wrapper `build_preview.py` was archived with the Security+ shorts (`archive/examples/secplus-ports-helpdesk/`).
 
 ## `render_track.py`
 

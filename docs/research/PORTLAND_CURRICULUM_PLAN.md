@@ -437,7 +437,7 @@ flowchart TD
 #### 1. Context & Operational Domain Mapping
 - **Role:** Tier 1 Security & Network Support Specialist.
 - **Certification Objectives:** CompTIA Security+ (SY0-701): Objectives 1.2, 1.4, 2.1, 2.5 (Ports, Protocols, Cleartext vs Encrypted, In-transit encryption, Jump Hosts).
-- **Track Companion Alignment:** Corresponds to `examples/secplus-ports-helpdesk/` (*The Port That Is Open*).
+- **Track Companion Alignment:** Formerly paired with `archive/examples/secplus-ports-helpdesk/` (archived 2026-10-26; not a source) (*The Port That Is Open*).
 - **Setting:** Month 4. Ethan sits with 14 incoming tickets. Network engineers want Telnet opened to legacy switches; field crews want plain HTTP forms; external contractors request direct RDP access across the WAN.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
@@ -483,7 +483,7 @@ flowchart TD
 #### 1. Context & Operational Domain Mapping
 - **Role:** Tier 1 Identity & Access Specialist.
 - **Certification Objectives:** CompTIA Security+ (SY0-701): Objectives 1.3, 3.2, 4.3 (Identity providers, MFA, AAA, Directory services, Kerberos, Event Viewer triage: Event IDs 4624, 4625, 4740).
-- **Track Companion Alignment:** Corresponds to `examples/secplus-auth-helpdesk/` (*Prove Who You Are*).
+- **Track Companion Alignment:** Formerly paired with `archive/examples/secplus-auth-helpdesk/` (archived 2026-10-26; not a source) (*Prove Who You Are*).
 - **Setting:** Month 5. Ethan manages Monday morning account lockouts. A wave of locked accounts hits the Housing Authority, while automated service accounts fail across backend SQL servers.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
@@ -600,7 +600,7 @@ flowchart TD
 #### 1. Context & Operational Domain Mapping
 - **Role:** Tier 1 Wireless & Edge Support Specialist.
 - **Certification Objectives:** CompTIA Security+ (SY0-701): Objectives 2.1, 2.5, 3.3 (Wireless security, WPA3, 802.1X, EAP-TLS, PEAP, Rogue AP, Evil Twin, Captive portal).
-- **Track Companion Alignment:** Corresponds to `examples/secplus-wireless-helpdesk/` (*The Air Is Shared*).
+- **Track Companion Alignment:** Formerly paired with `archive/examples/secplus-wireless-helpdesk/` (archived 2026-10-26; not a source) (*The Air Is Shared*).
 - **Setting:** Month 7. Portland City Hall. Elected officials, press corps, public citizens, and administrative staff share the same physical airspace. Complaints arise about rogue SSIDs and corporate devices connecting to unsecured networks.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
@@ -656,7 +656,7 @@ sequenceDiagram
 #### 1. Context & Operational Domain Mapping
 - **Role:** Tier 1 Endpoint Security Specialist.
 - **Certification Objectives:** CompTIA Security+ (SY0-701): Objectives 2.2, 2.4, 4.1 (Malware types, Symptoms of compromise, LOLBins, Persistence mechanisms, Isolation vs. Eradication).
-- **Track Companion Alignment:** Corresponds to `examples/secplus-malware-helpdesk/` (*Something on the Box*).
+- **Track Companion Alignment:** Formerly paired with `archive/examples/secplus-malware-helpdesk/` (archived 2026-10-26; not a source) (*Something on the Box*).
 - **Setting:** Month 9. A spike in weaponized PDF invoices and suspicious PowerShell commands across departmental workstations. Ethan faces the ultimate Tier 1 dilemma: the urge to immediately wipe the machine vs. the discipline to isolate and preserve evidence.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
@@ -710,7 +710,7 @@ flowchart TD
 #### 1. Context & Operational Domain Mapping
 - **Role:** Tier 1 Email Security Analyst.
 - **Certification Objectives:** CompTIA Security+ (SY0-701): Objectives 2.1, 2.3, 4.3 (Phishing, Spear phishing, Whaling, BEC, Email authentication: SPF, DKIM, DMARC, Header analysis).
-- **Track Companion Alignment:** Corresponds to `examples/secplus-phishing-helpdesk/` (*Don't Click That*).
+- **Track Companion Alignment:** Formerly paired with `archive/examples/secplus-phishing-helpdesk/` (archived 2026-10-26; not a source) (*Don't Click That*).
 - **Setting:** Month 11. An urgent email hits the City Treasurer’s inbox appearing to come from the City Attorney, demanding an immediate bank wire transfer for an eminent domain land purchase. Ethan is assigned the triage ticket.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
@@ -771,7 +771,7 @@ flowchart TD
 #### 1. Context & Operational Domain Mapping
 - **Role:** Tier 1 Facilities & IT Operations Specialist.
 - **Certification Objectives:** CompTIA Security+ (SY0-701): Objectives 1.2, 2.1, 2.2 (Physical security controls, Tailgating, Shoulder surfing, USB drops, Social engineering: vishing/pretexting, Media sanitization: NIST SP 800-88).
-- **Track Companion Alignment:** Corresponds to `examples/secplus-physical-helpdesk/` (*Badge, Lock, Eyes*).
+- **Track Companion Alignment:** Formerly paired with `archive/examples/secplus-physical-helpdesk/` (archived 2026-10-26; not a source) (*Badge, Lock, Eyes*).
 - **Setting:** Month 14. An external compliance audit sweeps through the Portland municipal building. Ethan discovers that high-tech firewalls mean nothing if someone holds the front door open for a contractor holding a ladder.
 
 #### 2. 4C/ID Whole-Task Learning Scenarios
@@ -818,7 +818,7 @@ flowchart TD
 #### 1. Context & Operational Domain Mapping
 - **Role:** Lead Tier 1 Security Escalation Technician (Apprentice SOC Triage).
 - **Certification Objectives:** CompTIA Security+ (SY0-701): Objectives 4.2, 4.4, 4.5 (Incident response lifecycle, Incident classification, Evidence preservation, Chain of custody, Communication plans).
-- **Track Companion Alignment:** Corresponds to `examples/secplus-ir-helpdesk/` (*When the Ticket Escalates*).
+- **Track Companion Alignment:** Formerly paired with `archive/examples/secplus-ir-helpdesk/` (archived 2026-10-26; not a source) (*When the Ticket Escalates*).
 - **Downstream Bridge:** The handoff to the **Central SOC (incident response under Incident Commander Nia Alvarez)**.
 - **Setting:** Month 18. Ethan is now Lead Tier 1. A coordinated ransomware deployment disguised as a routine printer driver update spreads across municipal subnets. Ethan must manage the help desk response, prevent reckless actions, and assemble a formal security escalation package for the Central SOC.
 

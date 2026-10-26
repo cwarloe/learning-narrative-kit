@@ -11,7 +11,7 @@ Generates authentic Level 1 support datasets:
 Usage:
   python tools/generate_helpdesk_artifacts.py --generate
   python tools/generate_helpdesk_artifacts.py --verify
-  python tools/generate_helpdesk_artifacts.py --generate --verify --out-dir examples/secplus-ports-helpdesk/artifacts
+  python tools/generate_helpdesk_artifacts.py --generate --verify --out-dir archive/examples/secplus-ports-helpdesk/artifacts
 """
 
 from __future__ import annotations
@@ -28,7 +28,7 @@ import sys
 from typing import Any, Dict, List, Tuple
 
 
-DEFAULT_OUT_DIR = Path("examples/secplus-ports-helpdesk/artifacts")
+DEFAULT_OUT_DIR = Path("archive/examples/secplus-ports-helpdesk/artifacts")
 
 
 # ==============================================================================

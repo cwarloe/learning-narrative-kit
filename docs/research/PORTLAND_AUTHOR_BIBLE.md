@@ -734,13 +734,13 @@ Before committing any new unit to the repository, contributors must execute the 
 
 ```bash
 # 1. Run the voice checker to verify cadence and flag synthetic tells
-python tools/voice_check.py docs/secplus-<unit-id>/narrative.md
+python tools/voice_check.py docs/portland-desk/narrative/<NN-episode>.md
 
 # 2. Run the unit validator to ensure schema and glossary integrity
-python tools/validate_unit.py docs/secplus-<unit-id>/unit.yaml
+python tools/validate_unit.py examples/<unit_id>
 
 # 3. Render the output and verify browser presentation
-python tools/render_unit.py docs/secplus-<unit-id>/unit.yaml
+python tools/render_unit.py examples/<unit_id>
 ```
 
 A passing test with warnings is not a pass. Resolve all dropped articles, rhythm flags, and terminology mismatches before pushing to main. Keep the story grounded, keep the technical facts accurate, and honor the work of the people who keep the systems running.

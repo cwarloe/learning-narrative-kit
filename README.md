@@ -23,7 +23,7 @@ Authoring contract (density, tiers, tooltips, QA): [`schema/README.md`](schema/R
 
 Craft standard for every story (earned competence, costed wins, carry-forward endings, pre-draft and pre-merge checklist): [`docs/craft/learning-narrative-framework.md`](docs/craft/learning-narrative-framework.md).
 
-Portland Desk (Security+) voice and sizing: [`examples/PORTLAND_DESK.md`](examples/PORTLAND_DESK.md).
+Craft standard for every track: [`docs/craft/learning-narrative-framework.md`](docs/craft/learning-narrative-framework.md).
 
 ## Source of truth
 
@@ -75,20 +75,9 @@ Re-render + push updates the same unit URLs.
 |--------|--------|
 | `examples/itm310-vanguard-edge/` | The Goal of Vanguard Edge |
 
-### Portland Desk track (Security+ precursor)
+### Portland Desk (Book 0: Ep 00 to 12)
 
-| Folder | Title |
-|--------|--------|
-| `examples/secplus-ports-helpdesk/` | The Port That Is Open |
-| `examples/secplus-auth-helpdesk/` | Prove Who You Are |
-| `examples/secplus-phishing-helpdesk/` | Don't Click That |
-| `examples/secplus-malware-helpdesk/` | Something on the Box |
-| `examples/secplus-wireless-helpdesk/` | The Air Is Shared |
-| `examples/secplus-physical-helpdesk/` | Badge, Lock, Eyes |
-| `examples/secplus-crypto-helpdesk/` | Trust on Paper |
-| `examples/secplus-ir-helpdesk/` | When the Ticket Escalates |
-
-Track rules: [`examples/PORTLAND_DESK.md`](examples/PORTLAND_DESK.md).
+Source: `docs/portland-desk/` (served at `/portland-desk/`). Canon: `docs/research/PORTLAND_TIMELINE.md` and `docs/research/PORTLAND_AUTHOR_BIBLE.md`. The earlier short Security+ units are archived in `archive/examples/` and are not a source.
 
 ## Research
 
