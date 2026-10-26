@@ -36,44 +36,19 @@ When a character chooses between opening port 23 versus port 22, the learning ob
 
 ---
 
-## 2. The Story Snowflake: The 3-Act Arc
+## 2. The Story Arc: Three Acts
 
-> **Note (2026-10-26).** Acts are defined in `PORTLAND_TIMELINE.md` section 0: Act I is Ep 00 to 02, Act II is Ep 03 to 06, Act III is Ep 07 to 12. The act headings and arc placements below follow that. The per-episode cards in this bible come from an earlier plan, and several titles and plots differ from the shipped episodes in `docs/portland-desk/`. Until Charles decides how to reconcile them, the shipped episodes and the timeline win.
+Acts are story structure, defined in `PORTLAND_TIMELINE.md` section 0. Phases (the story-to-lab handoff models) are in `PEDAGOGICAL_AGENCY_ARCHITECTURE.md`.
 
-```mermaid
-flowchart TD
-    subgraph ActI["Act I: The Wilderness & The Cert Trap (Episodes 00–02)"]
-        E1["Ep 1: The Paper Cert<br/><i>Warehouse staging, rote flashcards, hardware failure</i>"] --> E2["Ep 2: The Live Board<br/><i>The Portland interview, binary search triage</i>"]
-        E2 --> E3["Ep 3: The Cleartext Habit<br/><i>The ticket firehose, legacy habits vs. security</i>"]
-    end
+### Act I: Getting In (Ep 00 to 02, A+)
+Ethan goes from a graveyard dock job and a failed exam to a seat on the help desk. He learns that paper certs open doors but do not fix machines, and that guessing has costs other people pay.
 
-    subgraph ActII["Act II: Year 1 on the Desk, Architecture of Work (Episodes 03–06)"]
-        E3 --> E4["Ep 4: The Plant Floor Collision<br/><i>OT/IT boundary, Leah Moreno, Modbus/VPN</i>"]
-        E4 --> E5["Ep 5: The Roaming Rogue<br/><i>Shadow Wi-Fi, 802.1X, DHCP exhaustion</i>"]
-        E5 --> E6["Ep 6: The Phantom Ransomware<br/><i>Adware scare, AV logs, chain of custody</i>"]
-        E6 --> E7["Ep 7: The Identity Drift<br/><i>Kerberos skew, Active Directory RBAC bloat</i>"]
-        E7 --> E8["Ep 8: The Supply Chain Firmware<br/><i>TFTP staging, vendor trust, peripheral risks</i>"]
-    end
+### Act II: The Wire (Ep 03 to 06, Network+)
+On the desk, Ethan learns addressing, name resolution, transport, and switching under real deadlines. The act ends with the flood, where he earns Jules's trust for night work.
 
-    subgraph ActIII["Act III: The Security Boundary (Episodes 07–12)"]
-        E8 --> E9["Ep 9: The Quiet Mailbox<br/><i>BEC exfiltration, session hijacking, triage</i>"]
-        E9 --> E10["Ep 10: The Certificate Winter<br/><i>Wildcard PKI expiry, legacy IoT breakage</i>"]
-        E10 --> E11["Ep 11: The Living Off the Land Scare<br/><i>Admin PowerShell vs. adversary tradecraft</i>"]
-        E11 --> E12["Ep 12: The Rivergate Handshake<br/><i>Targeted intrusion, Chicago escalation, Nia Alvarez</i>"]
-    end
-```
+### Act III: Identity, Threats, and Escalation (Ep 07 to 12, Security+)
+Ethan moves from fixing things to protecting them. He is promoted to Tier 2 after Ep 08. The act ends with an incident he contains at a real cost, and a role change into Harrowmere security operations in Portland. He never relocates.
 
-### Act I: The Wilderness & The Cert Trap (Episodes 00–02)
-- **Thematic Core:** The transition from artificial, multiple-choice theoretical knowledge to empirical, real-world troubleshooting.
-- **Narrative Movement:** Ethan graduates high school, drifts through up to two years of restaurant work, and then takes a non-technical graveyard-shift logistics staging job at Harrowmere's distribution warehouse out in Gresham. He spends his days memorizing hundreds of digital flashcards for CompTIA A+, Network+, and Security+, convinced that passing the exams will make him an engineer. The reality check comes swiftly: a dead motherboard on a barcode-sorting line does not present four multiple-choice options. When Ken's internal referral and a six-month IT rotation land him on Jules Brooks's Portland help desk, he expects clean network diagrams. Instead, he is thrown into an overwhelming ticket firehose where legacy habits thrive because "it worked yesterday," and where the first lesson of IT support is learning that troubleshooting is not guessing—it is binary search across physical and logical layers.
-
-### Act II: Year 1 on the Desk — The Architecture of Work (Episodes 03–06)
-- **Thematic Core:** Socio-technical systems, organizational friction, and the boundary between operational availability and enterprise security.
-- **Narrative Movement:** Ethan finds his footing as a Tier 1 technician, but quickly discovers that the hardest problems do not occur inside operating systems; they occur at the boundaries between human departments. When Leah Moreno demands an open firewall rule to silence plant overflow alarms, Ethan learns that operational technology (OT) prioritizes physical safety and uptime over data confidentiality. When warehouse workers deploy consumer Wi-Fi routers to meet shipping quotas, Ethan learns that shadow IT is always an unfulfilled business requirement. Over the course of his first year, guided by Jules Brooks’s pragmatic mentorship, Ethan learns how to handle false-positive ransomware panics, untangle Active Directory privilege drift, and enforce secure staging protocols without alienating the business.
-
-### Act III: Year 2 & The Security Boundary — The Chicago Threshold (Episodes 07–12)
-- **Thematic Core:** Professional maturity, distinguishing noise from adversary tradecraft, and crossing from regional support to enterprise defense.
-- **Narrative Movement:** Promoted to Tier 2 Lead, Ethan is no longer merely reacting to broken hardware or forgotten passwords; he is tracking subtle behavioral anomalies across the network. When a quiet forwarding rule in accounting signals a sophisticated Business Email Compromise (BEC), Ethan learns the discipline of silent containment and chain of custody. A catastrophic corporate PKI renewal breaks critical operational equipment, proving that cryptographic maintenance requires operational planning. When a targeted adversary attempts to pivot from an administrative endpoint into Leah Moreno’s plant control network, Ethan synthesizes every lesson from his two years on the desk to build a comprehensive incident response dossier. His escalation catches the eye of Nia Alvarez at Chicago Central IT, which leads to a role change into Harrowmere security operations. He stays in Portland.
 
 ---
 
@@ -128,7 +103,7 @@ graph LR
 - **Age:** 36.
 - **Visuals & Habits:** Carries a scratched aluminum clipboard stuffed with piping and instrumentation diagrams (P&IDs). Wears a high-visibility ANSI Class 2 vest, steel-toed boots, and safety glasses with side shields. Carries an armored Panasonic Toughbook running specialized PLC ladder logic software.
 - **Why Leah matters:** Leah brings the plant-floor side of the story into the help desk. She represents the critical, unforgiving reality of Operational Technology (OT) and Industrial Control Systems (ICS). Her plant processes hundreds of thousands of gallons of liquid daily; an unexpected valve trip or network latency spike does not result in a 404 error—it results in physical effluent overflow, environmental fines, or blown pump seals.
-- **Relationship with Ethan:** Initially hostile toward "carpet-land IT" technicians who push Windows security patches that reboot telemetry servers mid-cycle. She tests Ethan mercilessly in Episode 4. When Ethan demonstrates that he respects her physical operational constraints and devises an encrypted site-to-site VPN solution that protects her sensors without touching the pumps, Leah becomes his staunchest operational ally. She teaches Ethan how to read physical industrial failure modes.
+- **Relationship with Ethan:** Initially hostile toward "carpet-land IT" technicians who push Windows security patches that reboot telemetry servers mid-cycle. She first tests Ethan in Episode 07. When Ethan demonstrates that he respects her physical operational constraints and devises an encrypted site-to-site VPN solution that protects her sensors without touching the pumps, Leah becomes his staunchest operational ally. She teaches Ethan how to read physical industrial failure modes.
 
 #### Jared Vance — Network Operations Engineer
 - **Role:** Senior Network Infrastructure Engineer (Portland Operations).
@@ -143,6 +118,7 @@ graph LR
 - **Dynamic:** Maya tests the boundaries of security policies in almost every act. In Act I, she insists on legacy POP3 mail profiles because that is how she learned to archive receipts in college. In Act II, she panics over adware popups when an audit review is thirty minutes away. In Act III, her mailbox becomes the primary battleground for a Business Email Compromise attack. Through Maya, Ethan learns that user empathy is a critical technical skill.
 
 ### 3.2 Supporting Cast
+- **Rosa Ibarra (Night Maintenance Tech, Gresham):** Forty-four, headlamp over a beanie. Covers Hank's routes in Ep 01. Knows motors, fuses, and meters, and says plainly what she does not know about computers. A recurring knowledgeable peer (framework principle 3a), not a mentor.
 - **Ken (Warehouse Logistics Supervisor):** Fifty-year-old shipping veteran. Manages the high-bay distribution annex. If his forklift operators cannot scan pallets because steel racking blocks Wi-Fi signals, Ken buys an off-the-shelf consumer router from an electronics store and plugs it into the nearest wall jack. He views IT as an obstacle to shipping pallets on time.
 - **Owen (Facilities Field Technician):** Practical, always on the move with a heavy tool belt. Manages building management systems (BMS), badge readers, HVAC controllers, and network printers. Pragmatic to a fault; frequently attempts to push unauthenticated firmware updates across user subnets to beat his transit schedule.
 - **Dee (Network Monitoring Specialist):** Sits in the network bullpen. Obsessed with clean Grafana dashboards and switch interface telemetry. Prefers default SNMP templates because they "just graph without a fight," serving as Jared’s junior co-conspirator.
@@ -155,24 +131,23 @@ graph LR
 
 ---
 
-## 4. The Causal Beat Matrix (Episodes 1–12)
+## 4. The Causal Beat Matrix (Ep 00 to 12)
 
-To prevent the narrative from devolving into episodic "vocabulary parades" where random concepts are checked off a syllabus, every episode’s resolution directly generates the friction, technical debt, or discovery that triggers the subsequent episode.
-
-| Ep # | Title | Prior State & Trigger (Why Ep N Happens) | Core Friction / Workplace Collision | Charged Pivot & Operational Cost | Successor Hook (Direct Link to Ep N+1) |
-|:---:|:---|:---|:---|:---|:---|
-| **1** | **The Paper Cert** | Ethan passes CompTIA exams via flashcards; works warehouse graveyard shift. | Warehouse sorting line motherboard dies; textbook memorization fails against physical Layer 1 rust, bent pins, and baud rate mismatches. | Ethan abandons theoretical perfection; learns dirty hands-on hardware triage, earning Jules' interview. | Ethan brings his empirical mindset to the Portland Desk interview. |
-| **2** | **The Live Board** | Ethan arrives for the Portland Help Desk interview expecting a technical quiz. | Jules bypasses trivia; hands him a live phone ticket and a hung machine, testing binary search methodology. | Ethan passes the interview by demonstrating disciplined troubleshooting, but realizes his speed is dangerously slow. | Ethan is hired and thrown immediately into the high-volume Tier 1 morning queue. |
-| **3** | **The Cleartext Habit** | Ethan starts at Portland Desk; inherits hundreds of backlog tickets and legacy practices. | Jared uses Telnet scripts; Maya uses cleartext POP3; unencrypted protocols dominate corporate traffic. | Ethan enforces SSH and encrypted mail, but forcing password rotations and script rewrites costs engineering goodwill. | Shutting down unencrypted management ports breaks legacy industrial telemetry in Leah Moreno's treatment plant. |
-| **4** | **The Plant Floor Collision** | Hardening corporate ports broke telemetry streams from the Willamette wastewater plant. | Leah Moreno demands emergency firewall punch for Modbus/DNP3; OT availability collides with IT confidentiality. | Ethan builds an encrypted site-to-site IPsec VPN tunnel; plant telemetry is restored, but the tunnel creates field latency. | Field technicians complain of Wi-Fi dead zones when trying to monitor pump sensors via the new VPN gateway. |
-| **5** | **The Roaming Rogue** | Warehouse workers experience dead zones after the plant gateway realignment. | Ken installs an unmanaged Best Buy wireless router; rogue DHCP server exhausts the corporate subnet pool. | Ethan hunts down the rogue AP using signal triangulation; evicts the device, leaving warehouse workers frustrated by slow manual logging. | To appease warehouse staff, IT deploys aggressive monitoring agents across all mobile endpoints. |
-| **6** | **The Phantom Ransomware** | Endpoint monitoring agents flood the desk with high-severity telemetry alerts. | Maya's laptop displays alarming adware popups thirty minutes before an executive board review; Maya demands a wipe. | Ethan resists the panic; performs AV log analysis, identifies a benign adware hash, preserves evidence, and avoids a costly re-image. | The adware post-mortem reveals that the adware bypassed controls due to excessive local administrative privileges. |
-| **7** | **The Identity Drift** | Investigating local administrative sprawl leads to an audit of Active Directory permissions. | Mass onboarding Monday causes severe Kerberos ticket rejections due to NTP clock skew; AD group nesting reveals massive privilege creep. | Ethan synchronizes internal NTP and strips nested domain admin privileges, breaking five legacy department automations. | Stripping admin privileges forces facilities technicians to find alternative, unauthenticated ways to update hardware. |
-| **8** | **The Supply Chain Firmware** | Facilities technician Owen lacks administrative rights to install specialized vendor firmware tools. | Owen attempts to flash building controllers and network printers using cleartext TFTP across the user VLAN before catching a train. | Ethan isolates the update to an offline staging switch; Owen makes his train, but Ethan must spend his evening manually auditing vendor hashes. | Ethan’s rigorous staging audit uncovers anomalous outbound traffic originating from executive mailboxes. |
-| **9** | **The Quiet Mailbox** | Routine log reviews from the hardened staging network reveal suspicious external SMTP forwards. | Maya’s mailbox contains an unauthorized forwarding rule created via a stolen session token; stealthy BEC in progress. | Ethan executes silent containment, revokes tokens, and preserves chain of custody without alerting the adversary or terrifying accounting. | Hardening corporate identity controls requires an emergency enterprise-wide TLS certificate renewal. |
-| **10** | **The Certificate Winter** | Chicago Central IT issues a mandatory wildcard TLS certificate renewal to fix token exchange flaws. | The new SHA-256 certificate breaks thirty legacy warehouse barcode scanners and HVAC monitoring units that cannot validate modern roots. | Ethan and Jared build an isolated legacy proxy VLAN; critical services recover, but technical debt is permanently codified. | Managing the proxy VLAN requires Jared to run massive network-wide endpoint discovery scripts. |
-| **11** | **The Living Off the Land Scare** | Jared runs an unannounced 2:00 AM PowerShell script across 300 workstations to audit network adapters. | The automated script mimics adversary lateral movement (LOLBins), triggering a massive regional SOC alert. | Ethan investigates the alert; distinguishes benign administrative misuse from an active threat, establishing behavioral baselines. | The refined behavioral baseline immediately flags a genuine, targeted intrusion attempt hiding in plain sight. |
-| **12** | **The Rivergate Handshake** | The refined baseline detects an external spearphishing payload attempting to pivot into the plant network. | An adversary attempts to compromise Leah’s SCADA jump host; Ethan coordinates local containment with Leah and Chicago SOC. | Ethan isolates the attack path, documents the forensic timeline, and hands off his escalation dossier to Nia Alvarez. It holds, but not cleanly (cost: TODO). | Nia offers him a role change into Harrowmere security operations, based in Portland. He stays in Portland. |
+| Ep | Title | Goal | Cost | Carries forward |
+|---|---|---|---|---|
+| 00 | The Four Rubber Bands | Pass the A+ Core 1 retake tomorrow morning after failing the first attempt six weeks earlier with a 592. | He passes the retake with a 690, fifteen points over the line. The first attempt cost him $246 and six weeks of extra graveyard shifts. The paper does not get him off the dock. | The cert is the first line Ken will point to in the referral. The four bands stay in his pocket for years. |
+| 01 | The Paper Cert | Line 4's scale terminal dies. Seattle and Boise trailers roll at 5:00 AM. Fixing it is not Ethan's job; he stages freight. | Seattle leaves 51 minutes late and the late report carries Ken's name. Ken remembers it. Bloody knuckles and a broken latch. | Ken writes the internal referral anyway: the first line says Ethan cost him a trailer, the second says he is worth training. Rosa becomes a recurring peer. |
+| 02 | The Live Board | Pass Jules's supervised practical and join the desk. | Maya's trust is dented by the re-image suggestion. The fix lands in the lab, not in the story. | He joins the desk the next Monday at about $24 an hour. |
+| 03 | The Default Gateway Doesn't Care | Restore a freight system that keeps dropping off the network. | Plan: Ken has to hold the dock while Ethan traces the port. Set the exact cost when the chapter is revised. | Static addressing sprawl becomes a standing problem on the warehouse network. |
+| 04 | The Name Is Not the Number | Get Maya's VPN session reaching internal payroll before the payroll deadline. | Plan: the infrastructure escalation has to go to Jared, who is not happy to get it. | The DNS design debt goes on Jared's list. |
+| 05 | The Wire Has Two Ends | Find why a management station's connections keep failing. | Plan: an archive sweep fails before the fix lands. | Connection pooling becomes a change request with Jared's name on it. |
+| 06 | The Portland Flood | Restore the network for 150 endpoints before the doors unlock. | Plan: hours in an ankle-deep flood, and some endpoints are still down when the doors open. | Midpoint capstone. Ethan has earned Jules's trust for night work. |
+| 07 | The Port That Is Open | Handle a pile of requests that all want ports opened. | Plan: saying no to Jared costs Ethan goodwill he will need later. | Leah enters as the plant voice. Jared's scripts remain a risk. |
+| 08 | Prove Who You Are | Clear a lockout queue before standup. | Plan: one of his fixes annoys a manager who wanted an exception. | Ethan is promoted to Tier 2 after this episode. |
+| 09 | Don't Click That | Stop a spoofed CFO wire-change request before the afternoon batch. | Plan: AP's batch is delayed and finance is unhappy. | The phishing campaign is a scout for what comes in Ep 12. |
+| 10 | Something on the Box | Contain a bundled installer before it spreads. | Plan: Ken's laptop is wiped and he loses local files. | Ken's loop from Ep 01 closes: he calls Ethan directly. |
+| 11 | The Air Is Shared | Keep the barcode scanners on the right network. | Plan: shipping slows while scanners are re-enrolled. | The baseline from this work helps flag the Ep 12 intrusion. |
+| 12 | When the Ticket Escalates | Turn four quiet tickets into one correct incident escalation. | The plant loses a shift to manual override while the gateway is isolated. In the after-action review, one of Ethan's containment calls is second-guessed: he isolated a host before a second memory capture was done. | Nia offers him a role change into Harrowmere security operations, based in Portland. Ethan stays in Portland. |
 
 ---
 
@@ -218,493 +193,157 @@ Every episode must reflect the principles of industrial throughput and organizat
 
 ---
 
-## 6. Detailed Episode Architecture Cards (Episodes 0–12)
-
----
-
-### Episode Architecture Card 00 (Prologue)
-**Title:** The Four Rubber Bands  
-**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 00 of 00 to 12, the prologue  
-**Timeline:** About 7 months on the dock (Late July, Summer)  
-**Setting:** A cramped duplex kitchen in East Portland, Oregon; fluorescent tube humming overhead, box fan rattling in the window, greasy pizza box, cold instant coffee, linoleum table covered in 300 blank index cards and open 800-page CompTIA study guide.  
-**Point of View:** Ethan Mercer (Age 20).  
-
-#### Core Dilemma & Goldratt Friction
-Ethan is working 32 hours a week hauling 80-pound bags of Quikrete concrete mix (42 to a pallet) and loading lumber on the loading dock at Harrowmere's distribution warehouse in Gresham. His checking account shows $41.16 left after paying $246 for a CompTIA A+ exam voucher. If he fails, he cannot make rent. He is drowning in 800 pages of pedantic syllabus trivia—laser printer transfer rollers, DVI connector pinouts, SATA revisions, and RAM clock timings. When he fails an online practice exam with a 58%, he breaks down in exhaustion and cynical rage, throwing his index cards across the linoleum. He faces the beginner's ultimate gatekeeping trap: believing that because he cannot memorize a manufacturer parts catalog, he is too stupid to work in technology.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan wants to pass the CompTIA A+ exam on Thursday to escape blue-collar manual labor and qualify for an IT job instead of a dock job.
-2. **Complication:** The sheer volume of arbitrary trivia creates total cognitive overload. Every time he tries to remember DDR pin counts, he forgets the difference between a default gateway and a subnet mask. He feels like the exam is an expensive racket designed to test memorization rather than competence.
-3. **Pivot:** His father, a retired machinist who spent 35 years reading blueprints and running CNC milling machines, wanders into the kitchen in his socks looking for a glass of water. Looking at Ethan's flashcards, his dad cuts through the academic noise: *"Ethan, this is just a parts catalog. When an apprentice starts in the shop, he thinks he has to memorize every bolt in McMaster-Carr. Does it spin, does it leak, or is it jammed? What holds tension, and what moves?"* Ethan stops treating the exam like a spelling bee. He groups his cards into **Four Colored Rubber Bands**:
-   - **Red Band (The Exam Passport):** The disposable syllabus trivia (printer drums, pin counts, cable specs) that he will cram for 48 hours, spit back at the computer, and immediately forget.
-   - **Green Band (The Physical Building Blocks):** The lasting machine anatomy (CPU compute, RAM volatile memory, Disk non-volatile storage, Motherboard bus, NIC communication).
-   - **Yellow Band (The Identity Triad):** How systems know who they are (MAC hardware badge, IP temporary lease, Port the listening door).
-   - **Blue Band (The Diagnostic Reflex):** The systematic method of troubleshooting (*Symptom $\rightarrow$ Theory $\rightarrow$ Test $\rightarrow$ Verify*).
-4. **Resolution & Cost:** Ethan sits in a sterile strip-mall testing center in Beaverton between anxious strangers, clicks submit with sweating palms, and scores a 742/900. He walks out with a stamped paper score report in hand. His bank account is still drained and his hands are still rough from warehouse shifts, but he holds the passport that gets him past the automated HR resume filters.
-
-#### Mentorship / Heuristic Core
-- **Working Rule:** *The certification buys your ticket through the HR door; understanding the physical building blocks keeps you from getting fired on your first shift.*
-- **Dialogue Realism:** Ethan's dad, looking at a memory timing card: *"If the engine won't crank, nobody asks what year the alternator was patented. Check if the battery has juice and the belt is tight."*
-
-#### CompTIA / Knowledge Load
-- **CompTIA A+ Core 1 & Core 2 Foundations:** Volatile vs. Non-volatile storage, CPU/RAM/Motherboard architecture, MAC vs. IP addressing, First terminal commands (`whoami`, `hostname`, `ipconfig`).
-
-#### Vocabulary Hovers & Target Marks
-- `ram_memory`: Volatile system memory that holds active program instructions and temporary data, cleared immediately when power is lost.
-- `non_volatile_storage`: Persistent magnetic or solid-state data storage that retains information across power cycles.
-- `mac_address`: Unique 48-bit physical hardware identifier burned into a network interface card at the factory (Layer 2).
-- `ip_address`: Logical network address assigned to an interface to allow routing across internetworks (Layer 3).
-- `network_interface_card`: Physical hardware expansion card or onboard controller that translates system data into electrical, optical, or radio network signals.
-- `post_routine`: Initial firmware diagnostic sequence executed by the motherboard upon receiving power to verify core hardware readiness.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 00:** *The Beginner's Mental Model & Anatomy of a Computer.* Deconstructing a workstation into its 4 core components, executing first CLI commands, and establishing the Metacognitive Study Filter.
-
----
-
-### Episode Architecture Card 01
-**Title:** The Paper Cert  
-**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 01 of 00 to 12  
-**Timeline:** About 14 months on the dock (February, Late Winter)  
-**Setting:** Graveyard shift at Harrowmere's Gresham distribution warehouse, Oregon; high-bay industrial racking, hum of forklift chargers, dust motes under metal-halide lamps.  
-**Point of View:** Ethan Mercer (Age 21).  
-
-#### Core Dilemma & Goldratt Friction
-Ethan has earned his CompTIA A+ and is grinding hundreds of digital flashcards for Network+. He believes that IT is an exact, rule-bound science. When the primary industrial barcode sorting line halts at 2:30 AM because an automated scale terminal fails to communicate with the warehouse management system, Ethan is tasked with fixing it. His multiple-choice heuristics completely fail: the terminal's motherboard displays an undocumented hex POST error, a proprietary serial cable has bent pins, and the vendor documentation assumes a 9600-baud rate while the terminal is strapped for 19200. Ethan must choose between blindly replacing parts until the budget runs out or learning empirical, physical Layer 1/2 troubleshooting.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan wants to clear the sorting line jam before the 5:00 AM cross-dock trucks arrive, proving that his new CompTIA certifications qualify him for more than moving pallets.
-2. **Complication:** The sorting terminal will not boot. Ethan searches his memory for textbook diagnostic flowcharts, but the terminal uses an obscure embedded industrial SBC (single-board computer). He attempts software reboots, but the machine will not reach a BIOS prompt. The warehouse shift supervisor, Ken, breathes down his neck, calculating lost throughput in hundreds of dollars per minute.
-3. **Pivot:** Ethan stops guessing. He pulls the chassis apart, inspecting the physical layer. He discovers that vibration from the sorting belt caused a ribbon cable to chafe against the steel frame, grounding a data line. He repairs the physical insulation, straightens a bent pin with a mechanical pencil, and matches the serial baud rate using DIP switches.
-4. **Resolution & Cost:** The sorting line resumes at 4:45 AM. The trucks depart on time, but Ethan’s hands are cut, his uniform is coated in industrial grease, and he realizes that passing multiple-choice exams taught him the vocabulary of technology, but not the tradecraft of repair. He updates his resume to apply for a real help desk position.
-
-#### Mentorship / Heuristic Core
-- **Working Rule:** *Theory names the components; physical inspection reveals what happened to them.*
-- **Dialogue Realism:** Ken does not care about the OSI model: *"I don't need a lecture on packets, kid. I need those boxes moving before five o'clock or dispatch cancels the route."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA A+ (Core 1 & 2):** Hardware diagnostic procedures, POST codes, Motherboard form factors, Serial interfaces (RS-232, DB-9), Ribbon cable pinouts, Power Supply Unit (PSU) testing with a multimeter, Baud rate configuration.
-- **CompTIA Network+:** OSI Layer 1 (Physical) vs. Layer 2 (Data Link) failure isolation.
-
-#### Vocabulary Hovers & Target Marks
-- `post_code`: Power-On Self-Test hex code emitted by the motherboard firmware during hardware initialization to pinpoint subsystem failures.
-- `rs232_serial`: Legacy serial communication standard utilizing DB-9 connectors for industrial terminal telemetry.
-- `baud_rate`: The rate at which information is transferred in a communication channel, requiring matching transmitter and receiver clocking.
-- `continuity_test`: An electrical test checking whether an unbroken circuit exists between two points along a conductor.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 01:** *Hardware Fault Isolation & Serial Terminal Emulation.* The learner is presented with simulated motherboard diagnostic logs, pinout schematics, and serial connection parameters, requiring them to calculate parity, baud rate, and diagnose a Layer 1 grounding fault.
-
-#### Operational Cost & Charged Pivot
-Ethan saves the morning freight run, but ruins a fifty-dollar staging cable, severely bruises his knuckles, and experiences the humbling realization that his certifications represent the beginning of learning, not competence.
-
----
-
-### Episode Architecture Card 02
-**Title:** The Live Board  
-**Arc Placement:** Act I (The Wilderness & The Cert Trap) — Episode 02 of 00 to 12  
-**Timeline:** Late August, at the end of a six-month day-shift IT rotation  
-**Setting:** Harrowmere Portland Regional Operations Center, Central Help Desk bullpen; fourth-floor interior office overlooking rain-slicked industrial roofs, rows of dual-monitor cubicles, hum of HVAC and muted phone ringers.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-Six months after Ken's internal referral moved him off the dock into a day-shift IT rotation (imaging bench, deployments, desk-side support, one overnight week, at a slight pay cut), Ethan arrives for the practical that decides whether he gets a desk seat with Help Desk Lead Jules Brooks, expecting a standard grilling on networking trivia, port numbers, and acronyms. Instead, Jules seats him in an empty cubicle, hands him a live telephone headset connected to an escalating user ticket, and points to a locked-up Windows desktop workstation. Ethan must diagnose a critical system hang while under observation, balancing the urge to guess wildly against the disciplined necessity of binary search triage.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan wants to pass the practical and move from the IT rotation to a permanent Tier 1 Help Desk seat.
-2. **Complication:** Jules does not ask him to define DNS. She takes a live call from Maya Lin in Accounting, whose machine freezes every time she launches the payroll database. Ethan freezes, tempted to suggest a complete operating system re-installation. Jules watches quietly, sipping coffee.
-3. **Pivot:** Ethan recalls the physical discipline from the warehouse. Instead of guessing, he divides the problem space in half: is it software or hardware? Is it network-dependent or local? He boots into Safe Mode with Networking. The freeze disappears. He systematically isolates third-party startup services, discovering a corrupted graphics driver update conflicting with the finance software's hardware acceleration.
-4. **Resolution & Cost:** Ethan disables hardware acceleration, updates the driver, and restores Maya’s access. Jules moves him from the IT rotation onto the desk at about $24 an hour, but blunt feedback accompanies the offer: his methodical isolation was sound, but his hesitation cost twenty minutes on a priority queue.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *Troubleshooting is not intuition; it is binary search. Every test must eliminate half the remaining possibilities.*
-- **Dialogue Realism:** Jules, reviewing his ticket notes: *"You got the right answer, Ethan, but you wandered through the registry before you checked the event viewer. In this chair, wandering costs four calls waiting on hold."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA A+ (Core 2):** Windows Boot Process, Safe Mode with Networking, Windows Event Viewer (System vs. Application logs), Device Manager, Driver rollbacks, Hardware acceleration settings.
-- **Methodology:** CompTIA 6-step troubleshooting methodology (Identify problem, Establish theory of probable cause, Test theory, Establish plan of action, Verify full system functionality, Document findings).
-
-#### Vocabulary Hovers & Target Marks
-- `troubleshooting_methodology`: The systematic six-step framework for diagnosing and resolving technical failures.
-- `safe_mode`: A diagnostic boot configuration that loads Windows with a minimal set of drivers and services.
-- `event_viewer`: A Windows management console utility that logs system, application, and security audit events.
-- `clean_boot`: A troubleshooting state initiated by disabling non-Microsoft startup programs and background services.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 02:** *The 6-Step Triage Matrix & Event Log Decomposition.* Learners analyze raw Windows Event Viewer XML outputs (Event IDs 41, 1000, 7001) to isolate application crashes from OS-level driver conflicts.
-
-#### Operational Cost & Charged Pivot
-Ethan secures the entry-level role, but his pride is punctured. He realizes that passing an exam does not equate to operational speed, and that the ticket backlog will not tolerate aimless exploration.
-
----
-
-### Episode Architecture Card 03
-**Title:** The Cleartext Habit  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 03 of 00 to 12  
-**Timeline:** Month 4 (October, Autumn rain begins)  
-**Setting:** Portland Operations Help Desk bullpen; overcast morning, sound of steady Pacific Northwest rain against the glass, monitors glowing with the Tier 1 ticket queue.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-Ethan is three weeks into the job, drowning in the daily ticket firehose. He discovers that the organization’s senior staff members rely on dangerous legacy shortcuts. Jared Vance in Network Ops manages switches using automated cleartext Telnet scripts, while Maya Lin in Accounting routes sensitive payroll emails over unencrypted POP3. When Ethan tries to enforce modern cryptographic protocols, he faces immense pushback from staff who argue that security updates break their daily workflow.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan wants to close forty routine tickets before the 4:00 PM shift change without triggering complaints from senior staff.
-2. **Complication:** A core switch in Building C drops a VLAN configuration. Jared sends a ticket asking Ethan to open firewall port 23 so he can run his twenty-year-old Telnet script. Simultaneously, Maya demands that Ethan fix her email client, which fails outside the office because her profile uses unencrypted POP3 on port 110.
-3. **Pivot:** Ethan refuses to simply punch holes in the firewall. Mentored by Jules, he engages Jared not by reciting security policies, but by reminding him of a past management network packet capture where passwords sat in cleartext. Ethan offers to modernize Jared’s script to use SSH keys on port 22, and reconfigures Maya’s client for authenticated IMAPS on port 993 with TLS.
-4. **Resolution & Cost:** Both systems are secured, but Jared spends two hours debugging his revised script, grumbling loudly in the breakroom, and Maya complains that her mailbox took forty-five minutes to re-index, delaying vendor invoice payments.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *Users do not cling to bad habits because they hate security; they cling to them because the habit worked yesterday. If you take their tool away, you must hand them a better one.*
-- **Dialogue Realism:** Jules, leaning over the cube wall: *"Ask Jared what we burned on last year when the auditor ran a span port on the management subnet. He knows the answer. Remind him of the work, not the rule."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (SY0-701 Domain 1.4 & 2.5):** Cleartext vs. Encrypted protocols: Telnet (23) vs. SSH (22), POP3 (110) / IMAP (143) vs. POP3S (995) / IMAPS (993), SMTP (25) vs. Secure Submission (587 / 465), Public vs. Private keys for administrative authentication.
-
-#### Vocabulary Hovers & Target Marks
-- `cleartext`: Unencrypted transmission of data across a network, vulnerable to packet sniffing and interception.
-- `ssh_protocol`: Secure Shell cryptographic network protocol operating on port 22 for secure remote command-line login.
-- `imaps`: Internet Message Access Protocol over TLS on port 993, providing encrypted email retrieval and mailbox synchronization.
-- `key_authentication`: Authentication method utilizing asymmetric cryptographic keypairs rather than static passwords.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 03:** *Wireshark Packet Analysis: Telnet Cleartext vs. SSH Encrypted Payloads.* Learners inspect PCAP traces to reconstruct a cleartext credentials leak and execute an SSH key-pair deployment to remediate the vulnerability.
-
-#### Operational Cost & Charged Pivot
-Ethan achieves protocol hardening, but burns through political capital with Jared, while Maya files a ticket complaint about IT disruption, teaching Ethan that security changes always impose an operational tax on the business.
-
----
-
-### Episode Architecture Card 04
-**Title:** The Plant Floor Collision  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 04 of 00 to 12  
-**Timeline:** Month 6 (December, Winter freeze)  
-**Setting:** Harrowmere Willamette River Plant (machining, coatings, and process-water treatment); vast concrete echoing spaces, smell of ozone, chlorine, and damp river silt, vibration of 500-horsepower electric centrifugal pumps.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-A severe cold snap threatens municipal pipe freezing, causing an industrial telemetry gateway at the processing plant to lose connection to the central monitoring board. Leah Moreno, Senior Controls Tech, calls the help desk demanding that Ethan immediately open raw Modbus (TCP 502) and DNP3 (TCP 20000) ports across the corporate WAN to allow a field contractor remote access to silence screaming overflow alarms. Ethan is caught between the corporate security policy forbidding cleartext industrial protocols on the WAN and the immediate physical danger of plant tank overflows.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan must resolve the telemetry disconnect to allow plant operators to monitor tank levels without violating perimeter security policies.
-2. **Complication:** Leah Moreno is furious. She does not care about corporate cyber guidelines; an unmonitored surge tank could spill thousands of gallons of processing effluent into the Willamette River. She demands an immediate, unrestricted firewall bypass.
-3. **Pivot:** Ethan visits the plant floor in person. Seeing the physical machinery, he realizes that the CIA triad is inverted in Operational Technology: Availability and Safety supersede Confidentiality. Instead of opening raw Modbus ports to the open internet, Ethan works with Jared to spin up an encrypted, dedicated IPsec VPN tunnel between the plant gateway and the central receiver, isolating the traffic within a dedicated operational VLAN.
-4. **Resolution & Cost:** The telemetry reconnects and the overflow alarms stabilize. However, configuring the VPN tunnel under emergency conditions forces Ethan to stay on-site until midnight in freezing temperatures, and Leah warns him that the added cryptographic latency on the gateway must be closely monitored.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *In enterprise IT, confidentiality rules. On the plant floor, safety and availability rule. If your security control stops a pump, your security control is the failure.*
-- **Dialogue Realism:** Leah, holding her steel clipboard against a vibrating valve housing: *"If that tank overflows, the state environmental inspector doesn't fine your firewall, Ethan. He fines me, and the city pulls our discharge permit."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (Domain 2.1 & 2.2):** IT vs. OT/ICS security, SCADA architectures, Industrial Protocols (Modbus, DNP3), CIA Triad inversions in industrial environments, Site-to-site IPsec VPNs, Network segmentation (Purdue Model Level 1/2/3).
-
-#### Vocabulary Hovers & Target Marks
-- `modbus_protocol`: An industrial serial/TCP communication protocol lacking native encryption or authentication, operating on port 502.
-- `ot_security`: Operational Technology security focusing on the protection of physical industrial automation and control systems.
-- `ipsec_tunnel`: A secure protocol suite providing encrypted, authenticated communication across an untrusted network at the IP layer.
-- `purdue_model`: A structural framework segmenting industrial automation networks from enterprise business networks.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 04:** *OT/IT Perimeter Hardening & Modbus Packet Isolation.* Learners configure an industrial firewall rule-set, establishing an IPsec tunnel while rejecting cleartext industrial traffic attempting to traverse the external interface.
-
-#### Operational Cost & Charged Pivot
-Ethan earns Leah Moreno’s grudging respect, but freezes his boots on the concrete floor, sacrifices his personal evening, and commits IT to supporting an emergency VPN configuration that introduces slight telemetry delay.
-
----
-
-### Episode Architecture Card 05
-**Title:** The Roaming Rogue  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 05 of 00 to 12  
-**Timeline:** Month 8 (February, Mid-winter rain)  
-**Setting:** Portland Distribution Logistics Warehouse; three-story high-bay metal racking, diesel exhaust from yard hostlers, concrete flooring, radio static.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-Following the plant network realignment, wireless dead zones plague the warehouse annex. Forklift drivers cannot sync their handheld barcode scanners, delaying shipping manifests. Warehouse supervisor Ken takes matters into his own hands: he buys a consumer-grade wireless router from an electronics store, plugs it into a live corporate network drop in the shipping office, and names it "Warehouse_Fast_Guest." The rogue router’s internal DHCP server begins handing out non-routable IP addresses to corporate laptops and shipping terminals, causing network collapse across the facility.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan must locate and eliminate the rogue DHCP server causing intermittent network blackouts across the warehouse floor.
-2. **Complication:** Over sixty warehouse shipping terminals have dropped off the network. Staff are screaming because trucks cannot be dispatched without printed bills of lading. Ken aggressively defends his unauthorized access point, insisting it is the only thing keeping his scanners online.
-3. **Pivot:** Ethan uses a Wi-Fi signal analyzer on a mobile tablet to walk the warehouse aisles, tracking the rogue BSSID via signal strength (RSSI) triangulation. He traces the cable back to Ken's desk. Instead of merely ripping the power cord out and provoking an open revolt, Ethan explains the DHCP exhaustion issue, disables the rogue device, and coordinates an emergency 802.1X enterprise wireless survey to properly extend corporate coverage.
-4. **Resolution & Cost:** The rogue router is confiscated. The shipping terminals regain connectivity once their DHCP leases are renewed, but warehouse logistics falls three hours behind schedule, forcing the warehouse crew into expensive overtime.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *Shadow IT is never malicious; it is an unfulfilled business need in disguise. If you take away their rogue access point without fixing their coverage, you are treating the symptom and begging for a worse workaround.*
-- **Dialogue Realism:** Ken, stepping in front of his filing cabinet: *"I've got twenty pallets of perishable cream sitting on dock four. Your fancy corporate Wi-Fi drops every time a forklift drives past row ten. My forty-dollar router worked."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (Domain 2.3 & 3.2):** Rogue Access Points, Rogue DHCP servers, DHCP starvation, 802.1X / EAP enterprise wireless authentication, WPA3-Enterprise, Wireless site surveys, RSSI signal triangulation.
-
-#### Vocabulary Hovers & Target Marks
-- `rogue_ap`: An unauthorized wireless access point connected to an enterprise network without administrative approval.
-- `dhcp_exhaustion`: A network failure state where unauthorized DHCP servers assign incorrect IP parameters or deplete available IP pools.
-- `enterprise_wpa`: High-security wireless authentication standard leveraging centralized RADIUS servers and 802.1X rather than pre-shared keys.
-- `rssi_triangulation`: Method of determining the physical location of an RF transmitter by measuring received signal strength indicators from multiple vantage points.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 05:** *Rogue Device Detection & DHCP Snoop Hardening.* Learners configure DHCP Snooping on a simulated Cisco access switch, designating trusted versus untrusted ports to automatically drop unauthorized DHCP offer packets.
-
-#### Operational Cost & Charged Pivot
-Ethan resolves the network outage, but Ken files a grievance over lost throughput, forcing IT to allocate $4,500 from its quarterly budget to purchase ruggedized industrial access points for the high-bay racking.
-
----
-
-### Episode Architecture Card 06
-**Title:** The Phantom Ransomware  
-**Arc Placement:** Act II (Year 1 on the Desk — Architecture of Work) — Episode 06 of 00 to 12  
-**Timeline:** Month 10 (April, Spring showers)  
-**Setting:** Portland Operations Desk bullpen and Executive Conference Room; humid morning, flashing high-priority ticket banners on the monitoring screen.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-Thirty minutes before an executive financial review with Chicago leadership, Maya Lin arrives at the help desk in a state of sheer panic. Her laptop display is overrun with aggressive flashing warning banners, fake system alerts, and audio chimes demanding payment. Convinced that the corporate network is suffering a catastrophic ransomware attack, Maya demands that Ethan immediately wipe and re-image the machine. Ethan is caught between the pressure to take drastic action and the disciplined requirement to follow the incident response lifecycle.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan must determine whether Maya's machine is infected with active ransomware and restore her ability to present at the executive meeting.
-2. **Complication:** Maya is hysterical, insisting that her files are being locked. Ethan’s adrenaline spikes; he grabs an imaging USB drive and prepares to wipe the drive clean to contain the infection, an action that would completely destroy her unsaved presentation files and eliminate all digital forensic evidence.
-3. **Pivot:** Jules physically steps in, placing her hand over the USB drive. She forces Ethan to slow down and follow the criteria: what did the machine actually do? Ethan isolates the laptop from the network, plugs in a read-only write-blocker, and opens the local antivirus and browser process logs. He discovers that the terrifying alerts are merely malicious JavaScript web push notifications generated by a low-level adware hash that was already successfully quarantined by Windows Defender.
-4. **Resolution & Cost:** Ethan terminates the browser process, purges the malicious web notification permissions, and verifies file system integrity. Maya presents on time, but Jules keeps the imaging USB drive on her side of the partition for two weeks, reminding Ethan that acting on panic destroys evidence and creates unnecessary downtime.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *Criteria before adrenaline. What did the machine actually do, versus what did it make you feel? If you wipe a machine out of fear, you destroy the only copy of the truth.*
-- **Dialogue Realism:** Jules, setting her coffee down: *"You were about to kill the only copy of a nothingburger, Ethan. And if it had been a real incident, you were about to destroy the evidence Chicago needs to determine patient zero."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (Domain 4.1 & 4.2):** Incident Response Lifecycle (Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned), Evidence preservation, Chain of custody, Distinguishing low-level adware/scareware from cryptographic ransomware, Browser notification abuse.
-
-#### Vocabulary Hovers & Target Marks
-- `incident_identification`: The phase in the incident response lifecycle where anomalous events are verified and classified based on objective criteria.
-- `chain_of_custody`: The chronological documentation tracking the receipt, custody, transfer, analysis, and disposition of digital evidence.
-- `scareware`: Deceptive software or browser popups designed to manipulate users into believing their systems are severely compromised.
-- `host_isolation`: Disconnecting an infected endpoint from network segments to prevent lateral movement while preserving volatile memory.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 06:** *First-Touch Forensic Triage & Browser Artifact Extraction.* Learners parse Windows Defender history logs, Sysinternals Process Explorer dumps, and browser cache databases to differentiate benign adware hooks from genuine ransomware encryption routines.
-
-#### Operational Cost & Charged Pivot
-Maya saves her meeting, but Ethan suffers public embarrassment in front of the desk lead, loses his imaging privileges temporarily, and spends three hours writing a formal incident false-positive report.
-
----
-
-### Episode Architecture Card 07
-**Title:** The Identity Drift  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 07 of 00 to 12  
-**Timeline:** Month 12 (June, Early Summer)  
-**Setting:** Portland Operations Center, Server Closet 2B and Open Bullpen; dry air conditioning, hum of rack fans, bright morning sun reflecting off the Willamette.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-A massive Monday morning onboarding of twenty summer interns collides with an inexplicable corporate authentication failure. Newly imaged laptops and remote staff cannot authenticate against the Active Directory domain controller; Kerberos ticket requests are flatly rejected, locking Legal and Accounting out of critical network shares. At the same time, an identity audit reveals massive Role-Based Access Control (RBAC) privilege bloat, with multiple junior staff members holding nested Domain Admin privileges.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan must resolve the domain authentication failures to allow onboarding to proceed and stabilize the morning ticket queue.
-2. **Complication:** Lena Cho in Legal is stuck in the lobby unable to log in, while senior managers complain that their shares are inaccessible. Ethan’s initial theory is that the primary domain controller has suffered a database corruption, prompting calls to restart the domain infrastructure.
-3. **Pivot:** Ethan systematically checks domain services. He observes that Kerberos tickets fail with time skew errors (`KRB_AP_ERR_SKEW`). He checks the internal Network Time Protocol (NTP) hierarchy and discovers that an unmanaged switch reboot caused the local NTP daemon to lose synchronization with the external stratum clock, leaving client clocks sixteen minutes adrift. Ethan corrects the NTP configuration, restoring authentication. He then tackles the underlying privilege creep, methodically pruning nested Active Directory groups.
-4. **Resolution & Cost:** Authentication stabilizes immediately once clocks resynchronize on port 123/UDP. However, stripping unapproved administrative group memberships breaks five legacy PowerShell batch jobs that employees used to automate spreadsheet transfers, sparking immediate departmental friction.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *Kerberos does not forgive you about the clock. When authentication dies everywhere at once, check the quiet plumbing before you blame the directory.*
-- **Dialogue Realism:** Jules, passing with a snack: *"I spent an entire weekend once convinced I’d corrupted a domain controller database in my home lab. It was eight minutes of clock drift. Time is an absolute security parameter."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (Domain 1.2 & 3.3):** Kerberos authentication protocol, Key Distribution Center (KDC), Ticket-Granting Tickets (TGT), Time synchronization requirements (5-minute maximum tolerance), NTP (Port 123 UDP), Role-Based Access Control (RBAC), Privilege creep, Principle of least privilege.
-
-#### Vocabulary Hovers & Target Marks
-- `kerberos_auth`: Enterprise ticket-based authentication protocol utilizing symmetric cryptography and strict time stamping to authenticate identities.
-- `time_skew`: The time differential between a client clock and authentication server; deviations over five minutes trigger Kerberos authentication rejections.
-- `ntp_synchronization`: Network Time Protocol service operating on UDP port 123 to synchronize system clocks across network endpoints.
-- `privilege_creep`: The gradual accumulation of access rights and permissions beyond what is required for an employee’s current operational role.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 07:** *Active Directory Group Policy & NTP Hierarchy Remediation.* Learners diagnose Kerberos failure codes in Windows security event logs, configure an authoritative PDC emulator time source, and refactor a bloated nested AD group structure.
-
-#### Operational Cost & Charged Pivot
-Ethan restores enterprise login services, but incurs complaints from administrative staff whose unapproved background scripts were broken by the privilege revocation, forcing him to spend his afternoon building formal service accounts.
-
----
-
-### Episode Architecture Card 08
-**Title:** The Supply Chain Firmware  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 08 of 00 to 12  
-**Timeline:** Month 14 (August, Late Summer heat)  
-**Setting:** Third-floor staging closet and facilities service corridors; hot, cramped room smelling of warm circuit boards, cardboard boxes, and uncoiled Cat6 copper cables.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-A third-party facilities technician named Owen is on-site to upgrade the firmware on thirty building environmental controllers and enterprise network printers before catching his commuter train. Because the privilege remediation from Episode 7 stripped his administrative desktop rights, Owen connects his personal field laptop directly into a user desk VLAN drop and attempts to push raw, unauthenticated firmware binaries across the subnet using TFTP (UDP 69). Ethan must stop this dangerous supply-chain risk without stranding Owen or failing the facilities compliance deadline.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan must ensure that all building management controllers receive mandatory security patches without exposing the corporate production VLAN to unauthenticated firmware broadcasting.
-2. **Complication:** Owen is rushing to catch the 4:45 PM MAX train. He has a USB thumb drive provided by a third-party vendor containing binary firmware files. If the firmware is not applied by 5:00 PM, the facility fails a quarterly building safety audit. Owen argues that running TFTP on the user VLAN takes only five minutes and has never caused a problem before.
-3. **Pivot:** Ethan refuses to allow raw TFTP across the corporate desk VLAN. He recognizes that TFTP lacks authentication, integrity verification, and encryption. Ethan sets up an isolated, offline staging switch in the server closet. He manually verifies the SHA-256 cryptographic hashes of the vendor firmware binaries against the manufacturer's published cryptographic bulletin, connects Owen's equipment to the isolated staging VLAN, and supervises the transfer.
-4. **Resolution & Cost:** The firmware flashes successfully, and Owen makes his train with five minutes to spare. However, Ethan’s evening is consumed by manually validating thirty individual controller checksums in a sweltering ninety-degree closet. His discipline impresses Jules, who recommends him for promotion to Tier 2 Lead.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *Convenience for a vendor is a vulnerability for your building. If software enters your perimeter without a signature check, you don't own your network—the vendor does.*
-- **Dialogue Realism:** Owen, glancing at his phone: *"The train leaves in twenty minutes, Ethan. I do this on customer sites every week. It's just TFTP on sixty-nine. What do you think is going to happen in five minutes?"*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (Domain 2.4 & 3.4):** TFTP vulnerabilities (lack of authentication, UDP 69), Cryptographic hashing (MD5, SHA-256), Software integrity verification, Supply chain risk management, Staging networks, Firmware verification, Secure deployment baselines.
-
-#### Vocabulary Hovers & Target Marks
-- `tftp_protocol`: Trivial File Transfer Protocol, an unauthenticated, cleartext UDP protocol operating on port 69, unsafe for production networks.
-- `hash_verification`: Calculating a cryptographic digest (such as SHA-256) of a file to verify it has not been altered or corrupted in transit.
-- `supply_chain_risk`: Vulnerabilities introduced into an organization through third-party vendors, suppliers, hardware devices, or external software binaries.
-- `staging_network`: An isolated, non-production network segment used to test, validate, and flash systems before deploying them to production.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 08:** *Cryptographic Hash Auditing & TFTP Staging Isolation.* Learners calculate and match SHA-256 checksums against signed vendor manifests, identify an unauthorized backdoor binary, and build an isolated staging environment.
-
-#### Operational Cost & Charged Pivot
-Ethan earns his promotion to Tier 2 Lead, but sacrifices his physical comfort in the stifling closet and incurs the displeasure of facilities management, who now must account for rigid staging procedures on future maintenance visits.
-
----
-
-### Episode Architecture Card 09
-**Title:** The Quiet Mailbox  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 09 of 00 to 12  
-**Timeline:** Month 16 (October, Second Autumn)  
-**Setting:** Tier 2 Lead desk, Portland Operations Center; quiet late-afternoon shift, rain streaking the glass, soft tapping of mechanical keyboards.  
-**Point of View:** Ethan Mercer (Promoted to Tier 2 Lead).  
-
-#### Core Dilemma & Goldratt Friction
-While conducting routine mail-routing audits as Tier 2 Lead, Ethan detects a subtle administrative anomaly: Maya Lin’s executive accounting mailbox has an active forwarding rule routing external copies of all invoices to an external domain that mirrors the corporate domain name (`@harrowmere-corp.com` vs `@harrowmere-c0rp.com`). There are no flashy popups, no system freezes, and no user complaints. Ethan must handle an active Business Email Compromise (BEC) attack, learning that real cyber threats are quiet, patient, and catastrophic if handled with clumsy panic.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan must investigate the suspicious mailbox forwarding rule, contain the exfiltration of sensitive financial invoices, and determine how the account was compromised.
-2. **Complication:** Maya is completely unaware of the compromise and is actively working on a multi-million-dollar vendor wire transfer. If Ethan alerts Maya or the accounting channel directly, human panic could tip off the adversary, causing them to execute destructive ransomware or immediately cash out fraudulent invoices before forensics can track the attacker’s infrastructure.
-3. **Pivot:** Ethan enforces strict need-to-know protocols. Working silently, he inspects the Azure AD sign-in logs. He discovers an adversary session originating from a foreign IP address that bypassed standard MFA using a stolen session cookie obtained through an adversary-in-the-middle (AiTM) phishing proxy. Ethan revokes all active session tokens, disables the exfiltration forwarding rule, preserves the audit logs, and secures the mailbox without alerting the attacker.
-4. **Resolution & Cost:** The wire fraud is prevented, saving the organization hundreds of thousands of dollars. However, the operational cost is steep: Maya’s accounts are locked during a critical payroll close, forcing her to manually re-authenticate all accounts and verify each invoice line by line under Ethan’s supervision, resulting in acute accounting frustration.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *The loud scares are usually nothing. The real ones dress up as routine business and make zero noise. Contain the crime in progress without performing a parade for the criminal.*
-- **Dialogue Realism:** Jules, speaking quietly behind Ethan’s chair: *"Do not post in the accounting Slack. Do not call Maya. Need-to-know is how we keep the person holding her session from knowing that we see them."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (Domain 1.1, 4.2 & 4.3):** Business Email Compromise (BEC), Session hijacking, Adversary-in-the-Middle (AiTM) phishing, Cookie theft, OAuth permission grants, Mailbox forwarding rules, Token revocation, Need-to-know information handling.
-
-#### Vocabulary Hovers & Target Marks
-- `bec_attack`: Business Email Compromise, a targeted form of cybercrime where adversaries manipulate corporate email accounts to execute financial fraud.
-- `session_hijacking`: An attack where an adversary captures and uses an active, authenticated session token to bypass multi-factor authentication.
-- `need_to_know`: A security principle restricting access to information solely to individuals whose immediate operational duties require it.
-- `token_revocation`: An administrative security action that invalidates all active cryptographic authentication tokens, terminating unauthorized active sessions.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 09:** *Cloud Identity Forensics & Session Token Remediation.* Learners parse unified audit logs (UAL), identify unauthorized mailbox rules created via PowerShell, trace source IP indicators of compromise, and execute tenant-wide session invalidations.
-
-#### Operational Cost & Charged Pivot
-Ethan saves the company from catastrophic financial loss, but endures intense hostility from accounting leadership over delayed vendor payments and triggers a mandatory, intrusive identity audit across all executive accounts.
-
----
-
-### Episode Architecture Card 10
-**Title:** The Certificate Winter  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 10 of 00 to 12  
-**Timeline:** Month 18 (December, Deep Winter)  
-**Setting:** Portland Operations Bullpen, Distribution Loading Docks, and Plant Telemetry Kiosks; freezing wind, snow flurries against the bay doors, yellow warning lights flashing.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-In response to the session hijacking incident, Chicago Central IT executes an emergency, uncoordinated enterprise-wide Public Key Infrastructure (PKI) overhaul, deploying a new SHA-256 wildcard TLS certificate across all subdomains. The new certificate instantly breaks thirty legacy warehouse barcode scanners, ancient plant HVAC controllers, and internal API bridges that do not have the new root Certificate Authority (CA) in their hardcoded trust stores. Operations freeze across the Portland campus during sub-zero temperatures.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan must restore communication between legacy field devices and the application servers before freezing pipes cause physical infrastructure failures.
-2. **Complication:** Chicago Central IT refuses to roll back the modern certificate, arguing that the old SHA-1 root was cryptographically compromised. The warehouse scanners cannot load shipping orders, and Leah Moreno's facility HVAC loggers cannot regulate building temperatures, causing frozen supply pipes in the loading bay.
-3. **Pivot:** Ethan dives deep into the PKI chain of trust. He realizes that the legacy embedded systems cannot negotiate modern TLS 1.3 or validate elliptic-curve intermediate certificates. Collaborating with Jared Vance, Ethan designs an interim reverse-proxy termination architecture inside an isolated, non-routable management network segment. The reverse proxy terminates modern TLS on the outside while communicating across dedicated, firewalled links to the legacy devices.
-4. **Resolution & Cost:** The barcode scanners and HVAC monitors recover, preventing catastrophic pipe bursts. However, Ethan and Jared must spend two continuous twelve-hour shifts manually deploying proxy endpoints and certificates, permanently codifying technical debt that Ethan must now maintain.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *Security without operational architecture is just a denial-of-service attack you launched against yourself. A certificate is only as good as the trust store validating it.*
-- **Dialogue Realism:** Jared, slamming his coffee mug onto the desk: *"Chicago pushes an update from their ivory tower, goes home at five, and leaves us out here holding frozen pipes and unbootable scanners. We're engineering their cleanup."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (Domain 2.8 & 3.1):** Public Key Infrastructure (PKI), Certificate Authorities (CAs), Root and Intermediate certificates, Certificate chains, Wildcard certificates, Trust stores, Deprecated ciphers (SHA-1 vs. SHA-256), Reverse proxies for TLS termination.
-
-#### Vocabulary Hovers & Target Marks
-- `pki_hierarchy`: The system of digital certificates, Certificate Authorities, and cryptographic trust relationships verifying identity across networks.
-- `certificate_chain`: An unbroken path of cryptographic certificates linking an end-entity certificate through intermediate CAs to a trusted root CA.
-- `trust_store`: A designated repository within an operating system or firmware holding trusted public key certificates and root authorities.
-- `reverse_proxy`: A server application positioned in front of web servers or embedded devices to intercept, decrypt, and manage client requests.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 10:** *PKI Chain Debugging & Reverse-Proxy TLS Offloading.* Learners inspect broken SSL/TLS handshakes using OpenSSL diagnostic commands, diagnose a missing intermediate CA certificate, and configure an Nginx reverse proxy to bridge legacy devices.
-
-#### Operational Cost & Charged Pivot
-Ethan saves the facility from freezing damage, but takes on the long-term operational burden of maintaining custom proxy configurations and absorbs the brunt of Jared’s cynicism regarding corporate headquarters.
-
----
-
-### Episode Architecture Card 11
-**Title:** The Living Off the Land Scare  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 11 of 00 to 12  
-**Timeline:** Month 21 (March, Early Spring)  
-**Setting:** Portland Desk bullpen and remote Chicago SOC phone bridge; pitch-black 3:00 AM emergency triage, glow of multi-monitor security consoles, rain drumming against the roof.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-At 2:30 AM, Ethan is awakened by an automated priority alert from Chicago Central SOC. Endpoint Detection and Response (EDR) sensors across three hundred Portland workstations are reporting aggressive, suspicious lateral movement: encoded PowerShell commands, execution of `certutil` to download payloads, and rapid `WMI` queries across the administrative subnet. The SOC demands an immediate campus-wide network isolation. Ethan must determine whether Portland is suffering a catastrophic ransomware outbreak or an unannounced internal operational blunder.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan must investigate the EDR alert and verify whether an active threat actor is executing living-off-the-land (LotL) techniques across the Portland network.
-2. **Complication:** Chicago SOC analysts are hovering over the escalation bridge, ready to sever Portland’s external WAN links, an action that would completely shut down regional shipping distribution and halt plant production. Ethan has fifteen minutes to confirm or deny active adversary presence.
-3. **Pivot:** Ethan analyzes the raw EDR telemetry rather than reacting to the high-severity alert labels. He decodes the Base64-encoded PowerShell strings and correlates the process tree parentage. He traces the execution back to Jared Vance’s workstation. Jared, attempting to audit legacy network adapters for the proxy project without entering tickets, had run an unvetted batch maintenance script written in 2012 that relied on built-in administrative binaries (`certutil`, `wmic`, `powershell.exe`). Ethan confirms administrative misuse, averts the network shutdown, and educates Jared on modern administrative hygiene.
-4. **Resolution & Cost:** The network remains online and operations proceed without disruption. However, Jared receives a formal corporate reprimand from Chicago, straining his relationship with Ethan, while Ethan is tasked with establishing formal baseline rules and detection exemptions for all internal administrative tooling.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *Adversaries and sloppy administrators use the exact same tools. Your job is not to panic at the command name; your job is to read the intent inside the syntax.*
-- **Dialogue Realism:** Jules, on the conference call bridge at 3:15 AM: *"Chicago wants to pull the plug on the region. Read the command arguments out loud, Ethan. Does that script want to steal a database, or is it just Jared being lazy?"*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (Domain 1.3 & 4.3):** Living-off-the-land (LotL) attacks, Living-off-the-land Binaries (LOLBins - `certutil`, `powershell`, `wmic`), Base64 obfuscation, Behavioral analysis, EDR alerting, Distinguishing administrative automation from lateral movement, Baselining.
-
-#### Vocabulary Hovers & Target Marks
-- `lotl_attacks`: Living-off-the-land cyber attacks utilizing legitimate, pre-installed operating system binaries to execute malicious activities without dropping files.
-- `edr_telemetry`: Granular behavioral data collected by Endpoint Detection and Response agents monitoring process execution, file modifications, and network connections.
-- `powershell_obfuscation`: Encoding malicious command-line payloads in Base64 or string concatenation to evade signature-based security inspection.
-- `behavioral_baseline`: The documented normal operational activity of a network against which anomalous deviations can be accurately measured.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 11:** *De-obfuscating PowerShell & LOLBin Threat Hunting.* Learners extract Base64 encoded commands from Sysmon logs, analyze parent-child process hierarchies, and build Sigma detection rules to separate admin scripts from malicious execution.
-
-#### Operational Cost & Charged Pivot
-Ethan saves the facility from an unwarranted corporate network disconnect, but endures intense hostility from Jared over the reprimand and takes on the exhausting task of auditing all regional automation scripts.
-
----
-
-### Episode Architecture Card 12
-**Title:** The Rivergate Handshake  
-**Arc Placement:** Act III (Year 2 & The Security Boundary) — Episode 12 of 00 to 12  
-**Timeline:** Late June, Year 4 (about 22 months on the desk; about three years since Episode 00)  
-**Setting:** Portland Operations Desk Lead station, Leah Moreno’s Plant SCADA Control Room, and high-priority Chicago SOC bridge; humid Pacific Northwest summer afternoon, drone of cooling fans, smell of river water and hot silicon.  
-**Point of View:** Ethan Mercer.  
-
-#### Core Dilemma & Goldratt Friction
-A highly targeted spearphishing attack compromises a logistics shipping clerk’s workstation. Unlike previous automated threats, the adversary immediately initiates living-off-the-land reconnaissance, harvesting credentials from memory and attempting to pivot directly across the internal VPN into Leah Moreno’s plant control network. Ethan, now operating as Tier 2 Lead, must orchestrate rapid on-the-ground containment between plant operations and corporate IT, compiling a forensic incident packet that bridges the regional desk and Chicago Central IT.
-
-#### Narrative Synopsis
-1. **Goal:** Ethan must detect the lateral pivot, isolate the compromised administrative host, protect Leah’s treatment plant control network from unauthorized tampering, and escalate the incident to Chicago.
-2. **Complication:** The adversary has gained legitimate domain credentials and is attempting to access the SCADA gateway jump host. A clumsy network disconnect would disrupt Leah’s active pump sequences, while hesitation will allow the attacker to manipulate critical valve controls. Ethan must execute surgical, targeted containment under extreme pressure.
-3. **Pivot:** Utilizing the baseline models built in Episode 11, Ethan identifies the anomalous jump host login within ninety seconds of execution. He immediately contacts Leah via radio, having her switch the plant control loops to manual physical override at the local PLC cabinets. Ethan then isolates the infected logistics host, dumps volatile memory for forensic analysis, and extracts the adversary’s command-and-control indicators. Instead of filing an emotional, messy ticket, Ethan compiles a chronological incident dossier complete with IOC hashes, network flow timestamps, and MITRE ATT&CK mapping.
-4. **Resolution & Cost:** The pivot into the plant is contained, but not cleanly or for free. **TODO (Charles, later): name the specific cost Ethan pays in Ep 12.** Ethan uploads the incident dossier to the corporate portal. Thirty minutes later, his direct desk line rings: it is Nia Alvarez, Senior Incident Response Lead at Chicago Central IT. Nia tells him there is an analyst opening on Harrowmere's security operations team, and that it sits in Portland. The book concludes with Ethan looking at Jules’ sticky note (*Which decision?*). The next step is a role change, not a move: Ethan stays in Portland.
-
-#### Mentorship / Heuristic Core
-- **Jules' Heuristic:** *You don't earn a seat at the defense table by having the certs. You earn it by delivering facts that hold up when everything else is on fire.*
-- **Dialogue Realism:** Nia Alvarez, on the Chicago line: *"Mercer, I’ve read twenty escalation tickets this week that were pure panic and zero data. Your timeline had process IDs, flow hashes, and zero guesswork. Who taught you to write an incident report like this?"* / Ethan, looking across at Jules: *"My desk lead."*
-
-#### CompTIA / Security+ Knowledge Load
-- **CompTIA Security+ (Domain 4.2, 4.4 & 4.5):** Advanced incident response, Containment strategies (Isolation vs. Segmentation), Forensic memory dumping, Indicators of Compromise (IoCs), MITRE ATT&CK framework mapping, Technical report writing, Lateral movement defense.
-
-#### Vocabulary Hovers & Target Marks
-- `mitre_attack`: A globally-accessible knowledge base of adversary tactics, techniques, and procedures (TTPs) based on real-world observations.
-- `lateral_movement`: Techniques used by cyber adversaries to progressively extend access through systems and subnets across an enterprise network.
-- `memory_dump`: Capturing the volatile contents of physical RAM to extract active encryption keys, running processes, and injected malicious code.
-- `escalation_dossier`: A structured, evidence-based technical document detailing incident scope, timeline, indicators of compromise, and containment actions for senior leadership.
-
-#### Companion Workbench Bridge
-- **Workbench Lab 12:** *Enterprise Incident Triage & MITRE ATT&CK Mapping.* Learners reconstruct the complete attack narrative from multi-source logs (Firewall, EDR, Sysmon, Active Directory), map adversary actions to MITRE ATT&CK techniques, and author an executive technical escalation brief.
-
-#### Operational Cost & Charged Pivot
-Ethan contains the intrusion, but it costs him (see TODO above). He realizes he has outgrown the routine of the help desk. Growth means a role change into Harrowmere security operations in Portland, not a move away. **TODO (Charles, later): name the specific cost Ethan pays in Ep 12.**
+## 6. Episode Cards (Ep 00 to 12, rewritten 2026-10-26 to match the shipped episodes)
+
+These cards describe the episodes as shipped in `docs/portland-desk/narrative/`. The shipped episodes are canon. Lines marked "Plan" are not on the page yet; they are notes for the next revision. Ages and months come from `PORTLAND_TIMELINE.md`.
+
+### Card 00: The Four Rubber Bands
+
+- **Placement:** Act I, Phase 1. Year 1, late July. About 7 months on the graveyard dock. Ethan is 20.
+- **Setting and cast:** East Portland duplex kitchen on his night off; Beaverton testing center the next morning. Ethan, his father (Frank), Hank in memory.
+- **Goal:** Pass the A+ Core 1 retake tomorrow morning after failing the first attempt six weeks earlier with a 592.
+- **Complication:** Three hundred flashcards treated as equal; he fails another practice drill and $41.16 is all he has left.
+- **Pivot:** His father reframes the cards as a parts catalog. Ethan sorts them into four bands (red trivia, green building blocks, yellow identity, blue triage method).
+- **Cost:** He passes the retake with a 690, fifteen points over the line. The first attempt cost him $246 and six weeks of extra graveyard shifts. The paper does not get him off the dock.
+- **Carries forward:** The cert is the first line Ken will point to in the referral. The four bands stay in his pocket for years.
+- **Knowledge load:** A+ Core 1 foundations: volatile versus non-volatile storage, CPU, RAM, motherboard, POST, MAC versus IP, troubleshooting order.
+
+### Card 01: The Paper Cert
+
+- **Placement:** Act I, Phase 1. Year 2, February. About 14 months on the graveyard dock. Ethan is 21.
+- **Setting and cast:** Harrowmere Gresham cross-dock, 2:24 AM, Sorting Line 4. Ken Vance (dock supervisor), Rosa Ibarra (night maintenance tech covering for Hank).
+- **Goal:** Line 4's scale terminal dies. Seattle and Boise trailers roll at 5:00 AM. Fixing it is not Ethan's job; he stages freight.
+- **Complication:** He power-cycles the cabinet during a batch write and dumps forty carton weights. He guesses RAM and snaps a memory latch.
+- **Pivot:** Rosa corrects his meter setting and reads the sagging 5 V rail like a motor fault. Ethan finds the chafed ribbon cable, then the bent serial pin. The baud-rate mismatch he caused is his to solve in the lab.
+- **Cost:** Seattle leaves 51 minutes late and the late report carries Ken's name. Ken remembers it. Bloody knuckles and a broken latch.
+- **Carries forward:** Ken writes the internal referral anyway: the first line says Ethan cost him a trailer, the second says he is worth training. Rosa becomes a recurring peer.
+- **Knowledge load:** A+ Core 1 hardware: POST codes, multimeter, continuity test, RS-232, baud rate, DIP switches.
+
+### Card 02: The Live Board
+
+- **Placement:** Act I, Phase 1. Year 2, late August. End of the six-month IT rotation. Ethan is 21.
+- **Setting and cast:** Portland ROC, fourth floor. Jules Brooks (desk lead), Maya Lin (accounts payable).
+- **Goal:** Pass Jules's supervised practical and join the desk.
+- **Complication:** Maya's payroll app freezes before a deadline. Ethan blurts out a re-image, which would wipe three weeks of unsynced spreadsheets.
+- **Pivot:** He apologizes, isolates what changed, and works a clean boot and Event Viewer toward the faulting module.
+- **Cost:** Maya's trust is dented by the re-image suggestion. The fix lands in the lab, not in the story.
+- **Carries forward:** He joins the desk the next Monday at about $24 an hour.
+- **Knowledge load:** A+ Core 2: troubleshooting methodology, Safe Mode, clean boot, Event Viewer, device drivers, BitLocker recovery key.
+
+### Card 03: The Default Gateway Doesn't Care
+
+- **Placement:** Act II, Phase 2. Year 2, October. 2 months on the desk. Ethan is 22.
+- **Setting and cast:** Portland ROC during a storm outage. Jules, Jared Vance (network), Ken calling from Gresham, Owen (facilities).
+- **Goal:** Restore a freight system that keeps dropping off the network.
+- **Complication:** Two machines claim the same static address; one halts freight, the other sits on an unknown warehouse port.
+- **Pivot:** Ethan reads subnet masks, gateways, and ARP to find the rogue host and lock down the DHCP pool.
+- **Cost:** Plan: Ken has to hold the dock while Ethan traces the port. Set the exact cost when the chapter is revised.
+- **Carries forward:** Static addressing sprawl becomes a standing problem on the warehouse network.
+- **Knowledge load:** Network+: APIPA, DHCP DORA, broadcast domains, subnet masks, default gateway, ARP cache.
+
+### Card 04: The Name Is Not the Number
+
+- **Placement:** Act II, Phase 2. Year 3, March. 7 months on the desk. Ethan is 22.
+- **Setting and cast:** Portland ROC. Jules, Jared, Maya.
+- **Goal:** Get Maya's VPN session reaching internal payroll before the payroll deadline.
+- **Complication:** Stale hosts-file entries and a split-horizon DNS setup send her lookups the wrong way; the tunnel is up but packets fly blind.
+- **Pivot:** Ethan flushes the cache, removes obsolete entries, and traces the DNS leak to adapter metrics.
+- **Cost:** Plan: the infrastructure escalation has to go to Jared, who is not happy to get it.
+- **Carries forward:** The DNS design debt goes on Jared's list.
+- **Knowledge load:** Network+: split-horizon DNS, DNS leak, hosts file, recursive resolver, TTL, CNAME.
+
+### Card 05: The Wire Has Two Ends
+
+- **Placement:** Act II, Phase 2. Year 3, April. 8 months on the desk. Ethan is 22.
+- **Setting and cast:** Portland ROC. Jules, Jared, Ken, Owen.
+- **Goal:** Find why a management station's connections keep failing.
+- **Complication:** Nothing listens on the expected port, and the station is drowning in TIME_WAIT sockets.
+- **Pivot:** Ethan reads socket states and finds ephemeral port exhaustion on their own management station.
+- **Cost:** Plan: an archive sweep fails before the fix lands.
+- **Carries forward:** Connection pooling becomes a change request with Jared's name on it.
+- **Knowledge load:** Network+: TCP handshake, socket states, listening ports, RST, ephemeral ports and exhaustion.
+
+### Card 06: The Portland Flood
+
+- **Placement:** Act II, Phase 2. Year 3, late May. 9 months on the desk. Ethan is 22.
+- **Setting and cast:** Flooded sub-basement at 3:00 AM. Jules, Jared.
+- **Goal:** Restore the network for 150 endpoints before the doors unlock.
+- **Complication:** Flooded closets, a broadcast loop, and DHCP scope exhaustion.
+- **Pivot:** Trunking across fiber, spanning tree, and DHCP reconciliation under a deadline.
+- **Cost:** Plan: hours in an ankle-deep flood, and some endpoints are still down when the doors open.
+- **Carries forward:** Midpoint capstone. Ethan has earned Jules's trust for night work.
+- **Knowledge load:** Network+: 802.1Q trunking, DHCP scope exhaustion, patch panels, flea power, STP, LACP.
+
+### Card 07: The Port That Is Open
+
+- **Placement:** Act III, Phase 3. Year 3, August. 1 year on the desk. Ethan is 22.
+- **Setting and cast:** Portland ROC and a call from the plant. Jules, Jared, Dana, Leah Moreno, Maya, Sam.
+- **Goal:** Handle a pile of requests that all want ports opened.
+- **Complication:** Jared wants Telnet for an old script; others want cleartext mail and FTP.
+- **Pivot:** Ethan proves the cleartext risk from a capture and steers each request to a secure protocol.
+- **Cost:** Plan: saying no to Jared costs Ethan goodwill he will need later.
+- **Carries forward:** Leah enters as the plant voice. Jared's scripts remain a risk.
+- **Knowledge load:** Security+: secure versus insecure protocols and ports (Telnet, SSH, FTP, SFTP, FTPS, SMTP, IMAP, POP3, TLS, STARTTLS).
+
+### Card 08: Prove Who You Are
+
+- **Placement:** Act III, Phase 3. Year 3, October. 14 months on the desk. Ethan is 23.
+- **Setting and cast:** Portland ROC on a lockout morning. Jules, Todd, Nora, Dev.
+- **Goal:** Clear a lockout queue before standup.
+- **Complication:** A runaway script locks Dev out, Todd insists password plus PIN is MFA, and Nora keeps choosing seasonal passwords.
+- **Pivot:** Ethan triages each by factor type and lockout cause.
+- **Cost:** Plan: one of his fixes annoys a manager who wanted an exception.
+- **Carries forward:** Ethan is promoted to Tier 2 after this episode.
+- **Knowledge load:** Security+: authentication factors, MFA, TOTP, MFA fatigue, lockout, biometrics, identity providers.
+- **Plan note:** Fold in physical security: the lockout morning includes a tailgating report at the badge door, so Ethan sees that physical access is also an authentication factor. Plan note only; no new chapter.
+
+### Card 09: Don't Click That
+
+- **Placement:** Act III, Phase 3. Year 3, December. 16 months on the desk. First episode as Tier 2. Ethan is 23.
+- **Setting and cast:** Portland ROC. Jules, Dana, Maya, Nora, Sam, Todd, Avery in AP.
+- **Goal:** Stop a spoofed CFO wire-change request before the afternoon batch.
+- **Complication:** A $48,000 wire request, an archive attachment, and MFA fatigue pushes on Dev's phone, all at once.
+- **Pivot:** Ethan pulls headers, checks SPF, DKIM, and DMARC, and gets a quarantine hash to the mail gateway; Dana verifies by phone.
+- **Cost:** Plan: AP's batch is delayed and finance is unhappy.
+- **Carries forward:** The phishing campaign is a scout for what comes in Ep 12.
+- **Knowledge load:** Security+: phishing types, BEC, typosquatting, credential harvesting, MFA fatigue.
+- **Plan note:** Fold in PKI: DKIM signatures lead to one short scene where Ethan checks a certificate chain on the spoofed site and learns why a padlock icon is not trust. Plan note only.
+
+### Card 10: Something on the Box
+
+- **Placement:** Act III, Phase 3. Year 4, February. 18 months on the desk. Ethan is 23.
+- **Setting and cast:** Portland ROC and a Gresham laptop. Jules, Maya, Ken by phone.
+- **Goal:** Contain a bundled installer before it spreads.
+- **Complication:** A PDF tool came with adware and a dropper; Ken's logistics laptop shows the same signs.
+- **Pivot:** Ethan isolates, quarantines, and separates signature hits from heuristics.
+- **Cost:** Plan: Ken's laptop is wiped and he loses local files.
+- **Carries forward:** Ken's loop from Ep 01 closes: he calls Ethan directly.
+- **Knowledge load:** Security+: malware types, droppers, payloads, AV versus EDR, signatures versus heuristics, IoCs.
+- **Plan note:** Fold in PKI: a code-signing certificate on the dropper turns out to be valid but stolen, so Ethan learns that a valid signature is not the same as a trusted publisher. Plan note only.
+
+### Card 11: The Air Is Shared
+
+- **Placement:** Act III, Phase 4. Year 4, April. 20 months on the desk. Ethan is 23.
+- **Setting and cast:** Portland ROC, conference room 3B, lobby, warehouse. Jules, Maya, Todd.
+- **Goal:** Keep the barcode scanners on the right network.
+- **Complication:** A rogue travel router on the data VLAN, an evil twin in the lobby, and deauth floods.
+- **Pivot:** Ethan uses a Wi-Fi analyzer and 802.1X to separate rogue from real.
+- **Cost:** Plan: shipping slows while scanners are re-enrolled.
+- **Carries forward:** The baseline from this work helps flag the Ep 12 intrusion.
+- **Knowledge load:** Security+: rogue AP, evil twin, deauthentication, 802.1X, RADIUS, WPA-Enterprise, PSK, captive portal.
+- **Plan note:** Fold in physical security: the evil twin hardware is found in the lobby, which leads to a short walk-through of badge areas, locks, and cameras with Owen. Plan note only.
+
+### Card 12: When the Ticket Escalates
+
+- **Placement:** Act III, Phase 4. Year 4, late June. 22 months on the desk. Ethan is 23.
+- **Setting and cast:** Portland ROC and the Willamette River plant. Jules, Jared, Maya, Nora, Sam, Todd, Leah, Nia Alvarez (Chicago CSIRT, by bridge).
+- **Goal:** Turn four quiet tickets into one correct incident escalation.
+- **Complication:** A C2 beacon, lateral share enumeration, and plant gateway egress line up. Pulling plugs destroys evidence; leaving hosts up drains plant telemetry.
+- **Pivot:** Ethan isolates hosts, captures memory in order of volatility, hashes evidence, keeps chain of custody, and briefs Nia.
+- **Cost:** The plant loses a shift to manual override while the gateway is isolated. In the after-action review, one of Ethan's containment calls is second-guessed: he isolated a host before a second memory capture was done.
+- **Carries forward:** Nia offers him a role change into Harrowmere security operations, based in Portland. Ethan stays in Portland.
+- **Knowledge load:** Security+: incident versus event, order of volatility, chain of custody, isolation, IoCs, CSIRT.
+- **Plan note:** Fold in the IR lifecycle: the after-action review walks the six phases (preparation, identification, containment, eradication, recovery, lessons learned), and the second-guessed call is discussed as a containment-phase tradeoff. Plan note only.
 
 ---
 
