@@ -1,7 +1,7 @@
 # Portland Desk Lab: TCP Sockets, Port States, & Handshake Diagnostics
 
 > **The Situation:** Portland Operations Center Bullpen • Cold April rain, evening shift  
-> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Lindqvist)  
 > **The Objective:** Diagnose network connection refusals (RST) versus silent timeouts (firewall drops) using TCP three-way handshake mechanics and netstat socket inspections.  
 > **Estimated Time:** 45–50 minutes • Layer 4 Transport & Sockets  
 
@@ -279,7 +279,7 @@ $$\text{[URG | ACK | PSH | RST | SYN | FIN]}$$
 
 ---
 
-### Micro-Drill 2: `netstat -ano` Socket Inspection & PID Mapping
+### Micro-Drill 2 (practice case): `netstat -ano` Socket Inspection & PID Mapping
 
 **Scenario:** You log into production application server `PDX-APP01` following user complaints that the internal web application is unreachable. You run `netstat -ano` and capture the following raw output:
 
@@ -309,6 +309,8 @@ Active Connections
 ---
 
 ### Micro-Drill 3: "Call Your Shot: Predict Before You Look" (5-Case Prediction Gate)
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 Before running any network command, enforce the CBYT protocol:
 1. **Layer & Subsystem:** What exact protocol, flag, or socket state governs this failure?
@@ -460,7 +462,7 @@ Ticket ID:        INC-2026-1024
 Requester:        Ken Vance (Freight Supervisor, Gresham Logistics Annex)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
-Date / Time:      2026-10-24 09:30:15 PDT
+Date / Time:      2025-04-15 09:30:15 PDT
 Category:         Network / Transport Layer / Socket Error & Service Failure
 Affected Host:    WS-GRESH-04 / WS-GRESH-07 / PDX-ARCHIVE01 (Port 8443)
 Status:           RESOLVED
@@ -513,8 +515,8 @@ NETWORK INFRASTRUCTURE PASSDOWN & HANDOVER NOTE
 Escalation ID:    ESC-2026-0418
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
-Escalated To:     Jared Vance (Network Operations Engineer)
-Date / Time:      2026-10-24 11:45:00 PDT
+Escalated To:     Jared Lindqvist (Network Operations Engineer)
+Date / Time:      2025-04-15 11:45:00 PDT
 Priority:         P2 - High (Client Transport Architecture & Script Refactor)
 Subject:          Client-Side Ephemeral Port Exhaustion on Automated Backup Runs
 

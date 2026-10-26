@@ -85,9 +85,9 @@ $$\text{Laborer / Student} \longrightarrow \text{IT Rotation} \longrightarrow \t
 │         │                      │             │ guns.                                   │
 ├─────────┼──────────────────────┼─────────────┼─────────────────────────────────────────┤
 │ Ep 12   │ When the Ticket      │ Year 4:     │ 22 months on the desk. Capstone         │
-│         │ Escalates (Sec+ IR)  │ Late June   │ incident; CSIRT handoff. Ends with a    │
-│         │                      │ (23)        │ role change into Harrowmere security    │
-│         │                      │             │ operations in Portland.                 │
+│         │ Escalates (Sec+ IR)  │ Late June   │ incident; CSIRT handoff. Ends with      │
+│         │                      │ (23)        │ Ethan applying for the security ops     │
+│         │                      │             │ analyst role. Offer opens Book 1.       │
 └─────────┴──────────────────────┴─────────────┴─────────────────────────────────────────┘
 ```
 
@@ -150,7 +150,8 @@ Most of this is off the page. It exists so every episode and NADF agree on how E
 | ~6 months | 21 | IT rotation on day shift (imaging bench, deployments, desk-side, one overnight week). Quasi-apprenticeship, not a formal internship | Net+ study begins | ~$20–21/hr: a slight cut, traded for day shift | Covered at the start of Ep 02 |
 | Late August | 21 | Passes Jules's practical; joins the desk | — | ~$24/hr | Ep 02 |
 | ~22 months on the desk | 21–23 | Help desk (Tier 1, Ep 02 to 09), then Tier 2 from January of Year 4 (Ep 10 to 12). Overnight is a rotation | Net+ (~13 months into IT); Security+ (~29 months into IT, just after Ep 12) | ~$24 → ~$28/hr in steps | Ep 02–12 (Book 0 ends ~22 months into the desk) |
-| After Book 0 | 23, turning 24 | Internal move to an analyst role on Harrowmere security operations, still in Portland | — | — | NADF Book 1 |
+| End of Ep 12 (late June, Year 4) | 23 | Applies for the analyst opening on Harrowmere security operations | — | — | Ep 12 |
+| August, Year 4 | 23, turning 24 | Offer and move upstairs to the analyst role, still in Portland. This is the opening of Book 1. | — | — | NADF Book 1 |
 
 Pay benchmarks: BLS OEWS, Portland-Vancouver-Hillsboro, May 2025. The rotation pay, night differential, and raise sizes are estimates, not sourced figures.
 

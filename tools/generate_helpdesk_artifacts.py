@@ -39,7 +39,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
     return [
         {
             "ticket_id": "INC-2026-1041",
-            "requester_name": "Jared Vance",
+            "requester_name": "Jared Lindqvist",
             "requester_email": "jvance@portland-ops.local",
             "department": "Network Operations",
             "priority": "P3 - Medium",

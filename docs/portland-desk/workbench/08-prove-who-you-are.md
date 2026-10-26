@@ -360,6 +360,8 @@ Unlock-ADAccount -Identity nora.finance: |
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 > **The Rule of the Desk:** Before clicking "Approve", resetting a credential, or editing a directory object, you must commit your decision, identify the exact factor or policy, and justify the security rationale. Commit your answer in your mind before clicking to expand.
 <div class="scratchpad-container">
   <div class="scratchpad-header">
@@ -448,7 +450,7 @@ Unlock-ADAccount -Identity nora.finance: |
 
 ---
 
-#### Ticket 5: Jordan Chen (IT Operations) — `INC-2026-1145`
+#### Ticket 5: Jordan Reed (IT Operations) — `INC-2026-1145`
 *Request:* "Offboarding contractor Sam Kelly. Badge collected, laptop returned. Contractor was member of shared administrator account `admin_billing`. We don't want to change the password because three other contractors use it."
 
 * **Your Action:** [ Close Ticket / Escalate & Rotate Shared Secret / Migrate to RBAC ]
@@ -496,7 +498,7 @@ Ticket ID:        INC-2026-1142
 Requester:        Nora Higgins (Finance Department)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
-Date/Time:        2026-10-21 08:52:14 PST
+Date/Time:        2025-10-20 08:52:14 PST
 Category:         Identity & Access Management / Account Lockout
 Status:           RESOLVED
 
@@ -540,7 +542,7 @@ Ticket ID:        INC-2026-1141
 Requester:        Todd Miller (Sales Representative)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
-Date/Time:        2026-10-21 10:15:30 PST
+Date/Time:        2025-10-20 10:15:30 PST
 Category:         Multi-Factor Authentication / Device Provisioning
 Status:           RESOLVED
 

@@ -31,7 +31,7 @@ prompt: "Clean technical graphic novel illustration of a Windows workstation dia
 
 I clicked the green answer button on the softphone console. I took a breath to steady my voice and began reciting my memorized morning greeting: "Good morning, IT support, this is Ethan Mercer—"
 
-Maya Lin cut me off before I could finish the sentence. Her voice carried the sharp, brittle tension of a manager facing a hard financial deadline with executive leadership breathing down her neck.
+Maya cut me off before I could finish the sentence. Her voice carried the sharp, brittle tension of a manager facing a hard financial deadline with executive leadership breathing down her neck.
 
 "I don't have time for the trainee script," Maya said, her voice echoing over the office line. "Where is Jared? Put Jules on the phone. The whole accounting system is locked solid. Every time I double-click the PDX-Pay payroll client, the blue pointer spins for three seconds. Then the mouse freezes in place, and both screens turn pitch black. The only way out is crawling under the desk to jerk the power cable from the wall."
 

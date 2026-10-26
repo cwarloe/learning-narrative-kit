@@ -52,7 +52,7 @@ This lab follows the chapter. Pull the headers, trace the Received chain, check 
 
 ### The Ground Truth Rules of the Desk
 
-1. **Display Names Lie; The Envelope and DNS Tell the Truth:** An email client's friendly `From:` display name (e.g., `"Avery Chen (CFO)"`) can be forged in any SMTP client with zero technical effort. Never make a security, access, or financial decision based on the visual header shown in an email client. Always inspect the RFC 5321 envelope sender (`Return-Path` / `MAIL FROM`), the `Received:` hops, and the cryptographic authentication headers (`Authentication-Results:`).
+1. **Display Names Lie; The Envelope and DNS Tell the Truth:** An email client's friendly `From:` display name (e.g., `"Avery (CFO)"`) can be forged in any SMTP client with zero technical effort. Never make a security, access, or financial decision based on the visual header shown in an email client. Always inspect the RFC 5321 envelope sender (`Return-Path` / `MAIL FROM`), the `Received:` hops, and the cryptographic authentication headers (`Authentication-Results:`).
 2. **Urgency and Secrecy Are Attack Signatures, Not Executive Priorities:** Phishing attacks succeed by weaponizing cognitive biases—specifically **urgency** ("before the 10:00 AM banking cutoff"), **authority** ("Maya Lin, CEO"), and **secrecy** ("keep this strictly confidential until tomorrow"). Whenever an email demands that normal verification procedures be bypassed because the sender "cannot take calls," treat the message as hostile until proven otherwise.
 3. **Visual Fidelity Has Zero Cryptographic Value:** High-resolution corporate logos, legal confidentiality footers, and crisp executive headshots can be copied from public websites in seconds. Visual polish is trivial to fabricate; only public-key cryptographic signatures (**DKIM**) and domain alignment (**DMARC**) prove that a message genuinely originated from the declared organization.
 4. **Out-of-Band (OOB) Verification is Mandatory for Financial Directives:** Never confirm wire instructions, vendor banking changes, or payroll updates using the communication channel that delivered the request. If an email requests a funds transfer or account modification, verify the directive using a pre-established, trusted telephone number from the corporate directory or through an in-person meeting—never via phone numbers, reply email addresses, or links contained within the suspect email.
@@ -365,6 +365,8 @@ quarantine-sender --domain harrowrnere.com: |
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 > **The Rule of the Desk:** Before clicking any button, moving a ticket, or responding to a department lead, write down your decision, the cryptographic indicator, and your operational rationale. Commit your answer before expanding the analysis.
 <div class="scratchpad-container">
   <div class="scratchpad-header">
@@ -382,8 +384,8 @@ quarantine-sender --domain harrowrnere.com: |
 
 
 #### Case 1: Marisol (Accounts Payable) — `INC-2026-1051`
-* **Incoming Message:** "Urgent Vendor banking update for CFO Avery Chen before the 2:00 PM wire run."
-* **Header Metadata:** `From: "Maya Lin" <achen@harrowrnere.com>`, `Return-Path: <transition-exec@harrowrnere.com>`, `Reply-To: <maya.lin.executive78@gmail.com>`. Attachment: `MayaLin_VoidedCheck_RoutingUpdate.pdf.exe`.
+* **Incoming Message:** "Urgent Vendor banking update for CFO Avery before the 2:00 PM wire run."
+* **Header Metadata:** `From: "Maya" <achen@harrowrnere.com>`, `Return-Path: <transition-exec@harrowrnere.com>`, `Reply-To: <maya.lin.executive78@gmail.com>`. Attachment: `MayaLin_VoidedCheck_RoutingUpdate.pdf.exe`.
 * **Your Triage Action:** [ Allow / Quarantine / Drop / Escalate ]
 * **Authentication Status:** SPF, DKIM, DMARC?
 * **Security Rationale:**
@@ -496,7 +498,7 @@ In an enterprise service desk, your incident notes serve as legal documentation 
 TIER 1 INCIDENT RESOLUTION NOTE - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC-2026-1051
-Date / Time:      2026-10-21 08:35:22 PST
+Date / Time:      2025-12-10 08:35:22 PST
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks (Service Desk Lead)
 Requester:        Marisol (Accounts Payable - Ext. 4412)

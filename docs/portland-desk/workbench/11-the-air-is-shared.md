@@ -337,6 +337,8 @@ Total Mac Addresses for this criterion: 3
 
 ### Drill 3: "Call Your Shot" (CBYT) 5-Case Wireless Incident Prediction Gate
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 Do not look at the answers first. Read each incident, commit to your decision and technical rationale, and verify your prediction against Jules' review.
 
 
@@ -368,7 +370,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 ---
 
 #### Case 2: Maya Lin's Certificate Prompt Bypass — `INC-2026-1102`
-* **Incoming Ticket:** Maya Lin reports: *"I am trying to connect to CORP-EMPLOYEE from the courtyard patio. A window popped up saying 'radius-auth.harrowrnere.com - The server certificate was issued by an untrusted entity.' It gives me a button that says 'Connect Anyway'. Should I click it so I can get into my board meeting?"*
+* **Incoming Ticket:** Maya reports: *"I am trying to connect to CORP-EMPLOYEE from the courtyard patio. A window popped up saying 'radius-auth.harrowrnere.com - The server certificate was issued by an untrusted entity.' It gives me a button that says 'Connect Anyway'. Should I click it so I can get into my board meeting?"*
 * **Your Triage Action:** [ Tell user to click Connect Anyway / Force WPA2-PSK / DENY connection, verify Root CA, and inspect for Evil Twin ]
 * **Threat Classification:**
 * **Technical Rationale:**
@@ -475,7 +477,7 @@ Ticket ID:        INC-2026-1101
 Requester:        Rita (Marketing, Conference Room 3B)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks (Service Desk Lead)
-Date/Time:        2026-10-23 09:15:44 PST
+Date/Time:        2026-04-17 09:15:44 PST
 Category:         Wireless & Network Infrastructure / Rogue Device Containment
 Severity:         P2 - High (Warehouse Barcode Scanning Operations Halted)
 Status:           RESOLVED / REMEDIATED

@@ -1,7 +1,7 @@
 # Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
 
 > **The Situation:** East Portland Pump Station & Annex • Operations Service Desk  
-> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Vance)  
+> **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Lindqvist)  
 > **The Objective:** Triage local IP addressing, APIPA 169.254.x.x link-local traps, subnet boundaries, and ARP resolution failures following a storm switch reboot.  
 > **Estimated Time:** 45–55 minutes • Local Network Addressing  
 
@@ -307,6 +307,8 @@ Pinging from Server B to Server A fails with request timeouts. Pinging from Serv
 
 ### Micro-Drill 3: "Commit Before You Touch" (CBYT) 5-Case Prediction Gate
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 Before executing any diagnostic command or changing a system setting, enforce the CBYT protocol:
 1. **Layer & Subsystem:** What exact layer (L1, L2, L3, L4, L7) and protocol is involved?
 2. **Predicted Output:** What concrete output, error code, or status do you anticipate seeing?
@@ -474,7 +476,7 @@ Ticket ID:        INC-2026-0922
 Requester:        Frank Kowalski (Lead Shipping Dispatcher, Building B)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
-Date / Time:      2026-09-22 10:45:18 PDT
+Date / Time:      2024-10-15 10:45:18 PDT
 Category:         Network / IPv4 Addressing / Duplicate IP & DHCP Failure
 Affected Host:    WS-BLDGB-04 (IP: 10.100.4.55 / MAC: 00-14-22-8A-41-EF)
 Status:           RESOLVED
@@ -528,8 +530,8 @@ NETWORK INFRASTRUCTURE PASSDOWN & HANDOVER NOTE
 Escalation ID:    ESC-2026-0341
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
-Escalated To:     Jared Vance (Network Operations Engineer)
-Date / Time:      2026-09-22 11:30:00 PDT
+Escalated To:     Jared Lindqvist (Network Operations Engineer)
+Date / Time:      2024-10-15 11:30:00 PDT
 Priority:         P2 - High (Infrastructure Configuration Drift)
 Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygiene
 

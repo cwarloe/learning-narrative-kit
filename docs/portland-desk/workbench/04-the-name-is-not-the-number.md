@@ -47,7 +47,7 @@ prompt: "Clean technical cutaway diagram of a computer desktop screen displaying
 
 
 ### The Situation
-It is 08:30 on a gray Tuesday in March. Ethan has been on the desk for seven months. Remote employees on the VPN can reach file shares by IP address, but internal names such as `payroll.harrowmere.local` fail. Nine high-priority tickets become eighteen by mid-morning. Jared blames Comcast. Lena Chen, the Tier 2 systems administrator who owns the VPN gateway, points out that eighty-two tunnels are up and healthy.
+It is 08:30 on a gray Tuesday in March. Ethan has been on the desk for seven months. Remote employees on the VPN can reach file shares by IP address, but internal names such as `payroll.harrowmere.local` fail. Nine high-priority tickets become eighteen by mid-morning. Jared blames Comcast. Lena, the Tier 2 systems administrator who owns the VPN gateway, points out that eighty-two tunnels are up and healthy.
 
 The first ticket is from Greg, an accounts payable clerk working from home in Hillsboro. His hosts file holds three stale lines left by a contract developer, which explains his laptop but not the other seventeen tickets. The real cause is that his DNS queries go to his home Wi-Fi gateway at `192.168.1.1` instead of the domain controller at `10.100.10.2`, because the tunnel adapter has a worse interface metric and the client has no internal search suffix.
 
@@ -329,6 +329,8 @@ ipconfig /flushdns: |
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 Before running any diagnostic command or altering endpoint configuration, state your prediction:
 - **Layer & Failure Point:** What subsystem is failing?
 - **Expected CLI Output:** What exact error code or response do you anticipate?
@@ -492,7 +494,7 @@ Ticket ID:        INC-2026-1104
 Requester:        Greg Adams (Accounts Payable Specialist)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
-Date / Time:      2026-10-18 09:15:22 PDT
+Date / Time:      2025-03-11 09:15:22 PDT
 Category:         Network / Remote Access / Name Resolution
 Affected FQDN:    payroll.harrowmere.local
 Status:           RESOLVED
@@ -540,9 +542,9 @@ SYSTEMS & NETWORK SECURITY ESCALATION NOTE
 Escalation ID:    ESC-2026-0488
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
-Escalated To:     Lena Chen (Tier 2 Sysadmin) / Jared Vance (Network Ops)
+Escalated To:     Lena Chen (Tier 2 Sysadmin) / Jared Lindqvist (Network Ops)
 Priority:         P2 - High (Systemic Remote Access Degradation)
-Date / Time:      2026-10-18 09:40:15 PDT
+Date / Time:      2025-03-11 09:40:15 PDT
 Subject:          VPN Split-Tunnel Profile Configuration Defect (DNS Leak / NXDOMAIN)
 
 1. DEFECT DESCRIPTION:

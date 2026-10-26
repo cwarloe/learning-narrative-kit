@@ -19,11 +19,11 @@ caption: "Schematic cutaway: The local DNS resolution path. When the resolver qu
 prompt: "Clean technical cutaway diagram of a computer desktop screen displaying DNS resolution paths under bright, even lighting. Flowchart lines connect local hosts file to DNS resolver cache and recursive domain controllers. Clean instructional style, crisp fine lines, no text, no words. 16:9 ratio."
 ```
 
-Jared Vance from network operations walked over from the bullpen holding a paper cup of lukewarm coffee. He had worked around regional fiber plants long enough to remember when frame relay was cutting edge. His first instinct during any distributed outage was to blame the carrier.
+Jared Lindqvist from network operations walked over from the bullpen holding a paper cup of lukewarm coffee. He had worked around regional fiber plants long enough to remember when frame relay was cutting edge. His first instinct during any distributed outage was to blame the carrier.
 
 "Comcast probably pushed another broken routing update, or a backhoe clipped a conduit in Beaverton," Jared said, gesturing toward the rain with his paper cup. "Remote workers are on domestic broadband lines that flake out whenever the weather turns sour. Have them reboot their cable modems and flush their network stacks."
 
-Lena Chen turned slightly in her swivel chair and lowered her headset microphone. "Rebooting sixty consumer cable modems across three residential providers is not an operational triage plan, Jared. The VPN concentrator shows eighty-two active client tunnels with healthy keepalive handshakes. We have zero packet drops on the transport interface. The encrypted tunnel is staying wide open, but the application payload is landing in the wrong place."
+Lena turned slightly in her swivel chair and lowered her headset microphone. "Rebooting sixty consumer cable modems across three residential providers is not an operational triage plan, Jared. The VPN concentrator shows eighty-two active client tunnels with healthy keepalive handshakes. We have zero packet drops on the transport interface. The encrypted tunnel is staying wide open, but the application payload is landing in the wrong place."
 
 I opened the first ticket from the queue. It was submitted by an accounts payable clerk named Greg who was working remotely from Hillsboro. Greg could not access `payroll.harrowmere.local` to verify morning direct deposits. His browser displayed a generic error stating that the server address could not be found.
 
@@ -115,7 +115,7 @@ Jules stood to stretch her back, her eyes scanning the board where eighteen tick
 
 ## Asking the Right Stranger
 
-The tunnel adapter had a worse interface metric than the hotel Wi-Fi, and the client had no `harrowmere.local` suffix to try, so internal names went out to public DNS and came back as a parked domain. I took the evidence to Lena Chen, our Tier 2 systems administrator, because the VPN gateway was hers and not mine to change. She pushed a client profile revision with an interface metric of 10 on the tunnel adapter, the internal suffix on the search list, and smart multi-homed resolution turned off.
+The tunnel adapter had a worse interface metric than the hotel Wi-Fi, and the client had no `harrowmere.local` suffix to try, so internal names went out to public DNS and came back as a parked domain. I took the evidence to Lena, our Tier 2 systems administrator, because the VPN gateway was hers and not mine to change. She pushed a client profile revision with an interface metric of 10 on the tunnel adapter, the internal suffix on the search list, and smart multi-homed resolution turned off.
 
 I sent the affected users three steps: disconnect, reconnect to pull the new profile, and run `ipconfig /flushdns` to clear the cached failures. Within twelve minutes, all seventy locked-out users had the fix. Greg in Hillsboro watched the parked page turn into our payroll login and submitted his timesheets.
 

@@ -318,6 +318,8 @@ test-telemetry: |
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 *Strict Protocol:* Do not expand the verification box until you have written down your predicted layer of failure, expected diagnostic measurement, and immediate corrective action.
 <div class="scratchpad-container">
   <div class="scratchpad-header">
@@ -447,8 +449,8 @@ You are Ethan Mercer, Tier 1 Field Technician on the graveyard shift at the Harr
 GRESHAM REGIONAL LOGISTICS TERMINAL · TIER 1 PHYSICAL INCIDENT TRIAGE REPORT
 ========================================================================================
 INCIDENT TICKET ID : INC-2026-0714-L4
-INCIDENT TIMESTAMP : 2026-02-12 02:24 PDT
-RESOLUTION TIME    : 2026-02-12 04:47 PDT (Total Downtime: 2 hrs 23 mins)
+INCIDENT TIMESTAMP : 2024-02-15 02:24 PDT
+RESOLUTION TIME    : 2024-02-15 04:47 PDT (Total Downtime: 2 hrs 23 mins)
 AFFECTED SUBSYSTEM : Sorting Line 4 · In-Line Toledo Weighing & Sorting Station
 PRIMARY TECHNICIAN : Ethan Mercer (Employee ID: 94021)
 SHIFT SUPERVISOR   : Ken Vance (Gresham Logistics Dispatch)
@@ -517,7 +519,7 @@ SHIFT SUPERVISOR   : Ken Vance (Gresham Logistics Dispatch)
 
 ```
 ----------------------------------------------------------------------------------------
-SHIFT PASSDOWN LOG · GRESHAM LOGISTICS IT/FACILITIES · DATE: 2026-02-12 05:15 PDT
+SHIFT PASSDOWN LOG · GRESHAM LOGISTICS IT/FACILITIES · DATE: 2024-02-15 05:15 PDT
 ----------------------------------------------------------------------------------------
 TO   : Day Shift Maintenance Lead / Regional IT Operations
 FROM : Ethan Mercer, Graveyard Shift Technician

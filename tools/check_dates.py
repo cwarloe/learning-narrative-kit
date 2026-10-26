@@ -102,6 +102,27 @@ def check_weekdays_and_tenure():
                         print(f"Ep {ep}: '{phrase}' but the timeline says {ten[ep]} months"); bad += 1
     return bad
 
+YEAR_OF_EP = {"00": 1, "01": 2, "02": 2, "03": 2, "04": 3, "05": 3, "06": 3, "07": 3, "08": 3, "09": 3, "10": 4, "11": 4, "12": 4}
+YEAR_ZERO = 2022  # Year 4 of Book 0 is 2026 (Ep 12 evidence pouch EVD-2026-0624)
+
+def check_iso_dates():
+    """Every YYYY-MM-DD date in an episode's chapter or lab must fall in that episode's year and month."""
+    bad = 0
+    exp = episode_months()
+    for p in sorted(glob.glob(str(ROOT / "docs/portland-desk/*/[01][0-9]-*.md"))):
+        ep = Path(p).name[:2]
+        if ep not in exp:
+            continue
+        want = (YEAR_ZERO + YEAR_OF_EP[ep], exp[ep] + 1)
+        for ln, line in enumerate(Path(p).read_text().splitlines(), 1):
+            if "date-ok" in line:
+                continue
+            for m in re.finditer(r"\b(20\d\d)-(\d\d)-(\d\d)\b", line):
+                if (int(m.group(1)), int(m.group(2))) != want:
+                    print(f"{p[len(str(ROOT))+1:]}:{ln}: {m.group(0)} but Ep {ep} is {want[0]}-{want[1]:02d}")
+                    bad += 1
+    return bad
+
 def main():
     exp = episode_months()
     bad = 0
@@ -125,6 +146,7 @@ def main():
                         print(f"{p[len(str(ROOT))+1:]}:{ln}: '{s}' but Ep {ep} is {MONTHS[m0]}")
                         bad += 1
     bad += check_weekdays_and_tenure()
+    bad += check_iso_dates()
     print(f"{bad} date finding(s)")
     return 1 if bad else 0
 

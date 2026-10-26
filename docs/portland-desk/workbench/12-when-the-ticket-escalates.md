@@ -188,7 +188,7 @@ Get-FileHash -Path "C:\Forensics\Evidence\TODD-SALES-14-disk.raw" -Algorithm SHA
 
 #### Mandatory Chain of Custody Ledger Fields
 Every entry in a formal chain of custody log must contain:
-* **Item Tracking Number:** Unique alphanumeric identifier (e.g., `EVD-2026-1022-01`).
+* **Item Tracking Number:** Unique alphanumeric identifier (e.g., `EVD-2026-0624-01`).
 * **Item Description:** Exact make, model, capacity, serial number, and physical condition.
 * **Source / Seizure Location:** Workstation hostname, physical desk location, port, or user profile.
 * **Date & Time of Seizure:** Precise timestamp including local timezone (PST/PDT) and UTC offset.
@@ -280,7 +280,7 @@ Your Ranking Order:
 > **The Rule of the Desk:** A forensic image without a matching hash is just a copy of a story you can't prove in court. Verify the math before you touch the drive.
 
 #### Scenario Walkthrough
-Ethan connects Todd Miller's confiscated 32GB USB flash drive (`CLIENT DECK`) to the dedicated forensic workstation (`PORT-IR-WK01`). The forensic station is equipped with a hardware write blocker (Tableau T8u USB 3.0 Forensic Bridge) that physically prevents write requests (`SCSI WRITE`, `USB Bulk-Only Write`) from reaching the storage controller.
+Ethan connects Todd's confiscated 32GB USB flash drive (`CLIENT DECK`) to the dedicated forensic workstation (`PORT-IR-WK01`). The forensic station is equipped with a hardware write blocker (Tableau T8u USB 3.0 Forensic Bridge) that physically prevents write requests (`SCSI WRITE`, `USB Bulk-Only Write`) from reaching the storage controller.
 
 Ethan executes a bit-stream raw disk acquisition to create an exact forensic disk image:
 
@@ -294,8 +294,8 @@ Algorithm       Hash                                                            
 SHA256          A4F2C9901B34E57D890AA71B994E10F823CD456188902A3CDEF1192837462B10   \\.\PhysicalDrive2
 
 # Step 2: Acquire bit-stream raw image to forensic storage
-PS C:\Forensics> dc3dd.exe if=\\.\PhysicalDrive2 of=D:\Images\EVD-2026-1022-USB.raw hash=sha256 log=D:\Images\acquisition.log
-dc3dd 7.2.646 started at 2026-10-22 15:10:04 -0700
+PS C:\Forensics> dc3dd.exe if=\\.\PhysicalDrive2 of=D:\Images\EVD-2026-0624-USB.raw hash=sha256 log=D:\Images\acquisition.log
+dc3dd 7.2.646 started at 2026-06-24 15:10:04 -0700
 31268536320 bytes (31 GB) copied (100%), 124.2 s, 240 MB/s
 input hash (sha256): a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10
 output hash (sha256): a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10
@@ -314,13 +314,13 @@ SHA256          9F2C8D1E3A4B5C6D7E8F0A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9BC41A
 3. Review the following snippet from a chain of custody ledger. Identify the fatal procedural error that would compromise evidence admissibility:
 
 ```text
-ITEM: EVD-2026-1022-USB
-SEIZED: 2026-10-22 14:40 PST by Ethan Mercer (Tier 1 Support)
+ITEM: EVD-2026-0624-USB
+SEIZED: 2026-06-24 14:40 PDT by Ethan Mercer (Tier 1 Support)
 CUSTODY LOG:
-- 14:40 PST: Seized from Todd Miller's desk (TODD-SALES-14) by Ethan Mercer. Placed in backpack.
-- 15:05 PST: Ethan Mercer arrived at Operations Center; placed USB on desk beside coffee.
-- 15:10 PST: Connected to PORT-IR-WK01 for bit-stream acquisition.
-- 15:30 PST: Transferred to Jules Brooks (CSIRT Lead). Signature: J. Brooks.
+- 14:40 PDT: Seized from Todd Miller's desk (TODD-SALES-14) by Ethan Mercer. Placed in backpack.
+- 15:05 PDT: Ethan Mercer arrived at Operations Center; placed USB on desk beside coffee.
+- 15:10 PDT: Connected to PORT-IR-WK01 for bit-stream acquisition.
+- 15:30 PDT: Transferred to Jules Brooks (CSIRT Lead). Signature: J. Brooks.
 ```
 
 <details>
@@ -329,7 +329,7 @@ CUSTODY LOG:
 **Jules' Analysis:**
 
 1. **Proof of Integrity:**  
-   The bit-for-bit equality of the input hash (`\\.\PhysicalDrive2`) and output hash (`EVD-2026-1022-USB.raw`) mathematically proves that the forensic disk image is an exact, uncorrupted, 100% identical replica of the original physical media. Every sector, file slack, unallocated cluster, and partition table bit was duplicated without alteration. Forensic analysis can now proceed exclusively on clones of this image while the original media remains sealed in evidence storage.
+   The bit-for-bit equality of the input hash (`\\.\PhysicalDrive2`) and output hash (`EVD-2026-0624-USB.raw`) mathematically proves that the forensic disk image is an exact, uncorrupted, 100% identical replica of the original physical media. Every sector, file slack, unallocated cluster, and partition table bit was duplicated without alteration. Forensic analysis can now proceed exclusively on clones of this image while the original media remains sealed in evidence storage.
 
 2. **The Impact of Plugging Without a Write Blocker:**  
    **No, the hash would not match.** The moment a modern operating system (Windows, macOS, or Linux) mounts a mass storage device without a hardware or kernel write blocker, the OS automatically performs write operations:
@@ -341,7 +341,7 @@ CUSTODY LOG:
 3. **Fatal Chain of Custody Errors Identified:**
    - *"Placed in backpack"*: Evidence was placed in an unsecured personal bag rather than a certified anti-static, tamper-evident evidence pouch sealed with tamper-indicating tape and signed across the seam.
    - *"Placed USB on desk beside coffee"*: Evidence was left unattended in an open, unmonitored area. This represents a complete break in physical custody. Anyone on the desk floor had physical access to the device.
-   - *Missing Releasing Signature*: Ethan Mercer failed to sign the transfer block at 15:30 PST; a valid chain of custody requires dual signatures (releasing party and receiving party) at every handoff.
+   - *Missing Releasing Signature*: Ethan Mercer failed to sign the transfer block at 15:30 PDT; a valid chain of custody requires dual signatures (releasing party and receiving party) at every handoff.
 </details>
 
 
@@ -383,6 +383,8 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 > **The Rule of the Desk:** Do not touch the console until you have committed your decision in your mind. Name the threat, select the containment action, and articulate your technical justification.
 
@@ -527,7 +529,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
   </div>
 </div>
 
-Below is the definitive, audit-grade Incident Escalation Dossier assembled by Ethan Mercer and reviewed by Desk Lead Jules Brooks for formal handoff to the Portland Operations Center CSIRT and Incident Commander.
+Below is the definitive, audit-grade Incident Escalation Dossier assembled by Ethan and reviewed by Desk Lead Jules Brooks for formal handoff to the Portland Operations Center CSIRT and Incident Commander.
 
 ```text
 ================================================================================
@@ -536,7 +538,7 @@ PORTLAND OPERATIONS CENTER — FORMAL CSIRT INCIDENT ESCALATION DOSSIER
 INCIDENT TRACKING ID:  INC-2026-1022-CRUCIBLE
 INCIDENT SEVERITY:     P1 — CRITICAL (ACTIVE MULTI-STAGE INTRUSION & OT EXPOSURE)
 INITIAL CLASSIFICATION: Malicious Phishing / C2 Beaconing / Lateral Pivot / SCADA Exposure
-DATE & TIME INITIATED: 2026-10-22 14:15:00 PST (21:15:00 UTC)
+DATE & TIME INITIATED: 2026-06-24 14:15:00 PDT (21:15:00 UTC)
 FIRST RESPONDER:       Ethan Mercer (Tier 1 Support Specialist, Portland Desk)
 INCIDENT LEAD / QA:    Jules Brooks (Service Desk Lead & First Response Coordinator)
 TARGET ESCALATION:     Enterprise CSIRT / SOC Tier 2 Operations / Industrial IR Bridge
@@ -544,13 +546,13 @@ TARGET ESCALATION:     Enterprise CSIRT / SOC Tier 2 Operations / Industrial IR 
 
 1. EXECUTIVE SUMMARY & ATTACK PATH CORRELATION
 --------------------------------------------------------------------------------
-Between 08:30 and 14:15 PST on 2026-10-22, Tier 1 triage correlated four 
+Between 08:30 and 14:15 PDT on 2026-06-24, Tier 1 triage correlated four 
 superficially disparate help-desk events into an ongoing, coordinated, multi-stage
 enterprise intrusion campaign:
 
 Attack Path Chronology:
 [Initial Access]        Workstation FIN-NORA-02 compromised via credential phishing.
-                        MFA reset executed from 198.51.100.77 (Frankfurt, Germany) at 02:13 PST.
+                        MFA reset executed from 198.51.100.77 (Frankfurt, Germany) at 02:13 PDT.
                         Malicious Exchange rule 'InvoiceProcess' exfiltrates financial data.
                                 |
 [Host C2 & Dumping]     Workstation FIN-NORA-02 establishes 300-second HTTPS beaconing 
@@ -602,7 +604,7 @@ Compromised Identities:
   - Port 8080 TCP: Secondary payload staging port identified in PowerShell cradle
 • IP Address: 198.51.100.77 (Frankfurt, Germany — Anonymizing Proxy)
   - Source IP for unauthorized Azure AD interactive logons and MFA manipulation
-• Domain: pay-secure-audit.com (Lookalike Domain / Created 2026-10-18)
+• Domain: pay-secure-audit.com (Lookalike Domain / Created 2026-06-19)
   - Recipient for unauthorized Exchange inbox forwarding rule
 
 [Host Persistence & Behavioral Indicators]
@@ -628,7 +630,7 @@ Timestamp (PST) | Action Executed & Technical Details
 14:25:10        | Physical Network Isolation of TODD-SALES-14: Disconnected RJ-45 
                 | Ethernet cable. Disengaged physical Wi-Fi hardware toggle.
 14:28:45        | Physical Media Seizure: Seized 32GB USB flash drive from Todd Miller.
-                | Packaged in Anti-Static Evidence Pouch #EVD-2026-1022-01 with 
+                | Packaged in Anti-Static Evidence Pouch #EVD-2026-0624-01 with 
                 | tamper-evident seal #SEAL-90412.
 14:32:00        | Industrial OT Boundary Containment: Network Operations disabled 
                 | switch ports Gi1/0/22 & Gi1/0/23 on SW-CORE-02, severing staging 
@@ -636,30 +638,30 @@ Timestamp (PST) | Action Executed & Technical Details
 14:40:00        | Live volatile RAM acquisition initiated on FIN-NORA-02 via WinPmem
                 | over secure EDR collection tunnel. Image: FIN-NORA-02-RAM.raw.
 15:15:00        | Bit-stream forensic acquisition of USB completed via Tableau write
-                | blocker on PORT-IR-WK01. Image: EVD-2026-1022-USB.raw. Hash verified.
+                | blocker on PORT-IR-WK01. Image: EVD-2026-0624-USB.raw. Hash verified.
 
 5. EVIDENCE LOG & CHAIN OF CUSTODY MASTER RECORD
 --------------------------------------------------------------------------------
-Item Number:      EVD-2026-1022-01
+Item Number:      EVD-2026-0624-01
 Item Description: SanDisk Ultra 32GB USB 3.0 Flash Drive (Black casing, blue sharpie)
 Serial Number:    4C530001220914112102
 Seized From:      Todd Miller desk (Inside Sales, TODD-SALES-14)
-Seized Date/Time: 2026-10-22 14:28:45 PST
+Seized Date/Time: 2026-06-24 14:28:45 PDT
 Seizing Tech:     Ethan Mercer (Badge #IT-8842)
 SHA-256 Digest:   a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10
 Storage Location: Central Operations Evidence Safe #2 (Locker B, Combination Held by J. Brooks)
 
 Chain of Custody Transfer History:
-- 14:28 PST: Seized by Ethan Mercer; sealed in Bag #EVD-2026-1022-01.
-- 15:05 PST: Transferred to PORT-IR-WK01 by Ethan Mercer for write-blocked imaging.
-- 15:35 PST: Transferred to Jules Brooks (CSIRT Lead). 
+- 14:28 PDT: Seized by Ethan Mercer; sealed in Bag #EVD-2026-0624-01.
+- 15:05 PDT: Transferred to PORT-IR-WK01 by Ethan Mercer for write-blocked imaging.
+- 15:35 PDT: Transferred to Jules Brooks (CSIRT Lead). 
   Releasing Signature: Ethan Mercer, Tier 1 Support
   Receiving Signature: Jules Brooks, Desk Lead & CSIRT Coordinator
 
-Item Number:      EVD-2026-1022-02
+Item Number:      EVD-2026-0624-02
 Item Description: Volatile Memory Dump (FIN-NORA-02-RAM.raw) — 16GB Physical DDR4
 Source Hostname:  FIN-NORA-02 (Finance Specialist Workstation)
-Acquired Date:    2026-10-22 14:48:10 PST via WinPmem (Remote EDR Live Capture)
+Acquired Date:    2026-06-24 14:48:10 PDT via WinPmem (Remote EDR Live Capture)
 SHA-256 Digest:   5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
 Storage Location: Secure IR SAN Share: \\IR-SECURE-VAULT\Case-2026-1022\Memory\
 
@@ -682,7 +684,7 @@ Storage Location: Secure IR SAN Share: \\IR-SECURE-VAULT\Case-2026-1022\Memory\
    - Maintain physical network isolation between corporate IT and plant OT until full
      code audit of staging server SRV-STAGE-01 is complete.
 ================================================================================
-DOSSIER STATUS: SIGNED & TRANSFERRED TO CSIRT INCIDENT COMMANDER (2026-10-22 15:45 PST)
+DOSSIER STATUS: SIGNED & TRANSFERRED TO CSIRT INCIDENT COMMANDER (2026-06-24 15:45 PDT)
 ================================================================================
 ```
 
@@ -692,14 +694,14 @@ DOSSIER STATUS: SIGNED & TRANSFERRED TO CSIRT INCIDENT COMMANDER (2026-10-22 15:
 ## 5. What Good Looks Like (Shift Quality Checklist)
 
 ### Lead Tech Sign-Off Checklist
-Before Ethan closes the red folder and hands the physical binder to Jules Brooks, he verifies every item against the Portland Desk Shift Quality Standard:
+Before Ethan closes the red folder and hands the physical binder to Jules, he verifies every item against the Portland Desk Shift Quality Standard:
 
 * [x] **Event vs. Incident Delineated:** Maya's noisy adware was properly tagged as an isolated *Event* (resolved without disruption), while Nora's quiet mailbox anomaly was identified as an active *Security Incident*.
 * [x] **Order of Volatility Honored:** Volatile memory (RAM) and network socket states were captured live before any system reboots, shutdowns, or disk imaging occurred.
 * [x] **Strict Containment Before Analysis:** Infected endpoints (`FIN-NORA-02`, `TODD-SALES-14`) were isolated from the network via EDR and physical cable disengagement before forensic triage commenced.
 * [x] **Operational Silence Maintained:** Need-to-know principles were strictly enforced; no notifications were posted to public Slack channels or email distribution lists that could alert the adversary.
 * [x] **Cryptographic Hash Verification:** Every physical and virtual artifact possesses an immutable pre-acquisition and post-acquisition SHA-256 checksum proving 100% mathematical integrity.
-* [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Todd's USB drive was picked up to the dual-signature transfer to Jules Brooks.
+* [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Todd's USB drive was picked up to the dual-signature transfer to Jules.
 * [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, testable IoCs (hashes, IP addresses, ports, task names) allowing Tier 2 analysts to hunt across enterprise telemetry immediately.
 
 

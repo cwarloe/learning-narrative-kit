@@ -73,7 +73,7 @@ Internet  10.100.4.55             0   0014.228a.41ef  ARPA   Vlan4
 
 "Duplicate IP conflict," Jules said, leaning back. "Every time one of them talks, its ARP announcement overwrites the switch's MAC address table and poisons the ARP cache on neighboring PCs. Traffic flips back and forth depending on who spoke last."
 
-Jared Vance checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it'll bounce the whole dock off the network before the noon freight trucks get here.\""""
+Jared Lindqvist checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it'll bounce the whole dock off the network before the noon freight trucks get here.\""""
 
         cam_new = """```console
 SW-BLDGB-DIST01# show ip arp 10.100.4.55
@@ -95,7 +95,7 @@ Vlan    Mac Address       Type        Ports
 
 "Duplicate IP conflict," Jules said, leaning back. "Every time one of them talks, its gratuitous ARP announcement poisons the switch MAC table and the ARP cache on neighboring PCs. Traffic flips back and forth depending on who spoke last."
 
-Jared Vance checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here.\""""
+Jared Lindqvist checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here.\""""
 
         assert cam_old in text, "CAM old block not found in Ep 03"
         text = text.replace(cam_old, cam_new)

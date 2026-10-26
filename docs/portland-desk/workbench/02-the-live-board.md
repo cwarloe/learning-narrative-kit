@@ -52,7 +52,7 @@ Two rows over, workstation fourteen displays a high-priority ticket flagged in g
 
 $$\boxed{\textbf{INC-2026-0814: Maya Lin (Accounting) — Workstation Hard Freeze on Payroll Launch}}$$
 
-Maya Lin has twenty-eight site supervisors waiting on biweekly payroll approval by noon. Every time she launches `PDX-Pay`, the mouse freezes, both monitors turn pitch black, and she is forced to crawl under her desk to yank the AC power cable. 
+Maya has twenty-eight site supervisors waiting on biweekly payroll approval by noon. Every time she launches `PDX-Pay`, the mouse freezes, both monitors turn pitch black, and she is forced to crawl under her desk to yank the AC power cable. 
 
 The temptation for every junior technician is the "nuclear option": reach for a bootable USB drive, re-image the drive, and hope the clean slate solves the issue. But as Jules makes clear before you touch the keyboard:
 
@@ -213,7 +213,7 @@ manage-bde -protectors -enable C:
 ### Drill 1: Windows Event Log Decomposition
 
 #### Scenario
-Maya Lin's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML event records from the Windows Application and System logs:
+Maya's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML event records from the Windows Application and System logs:
 
 ```xml
 <!-- Log Record A: Application Event Log -->
@@ -350,6 +350,8 @@ Set-Content -Path 'C:\Program Files\PDX-Pay\config.ini' -Value 'HardwareAccelera
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 > **The Rule of the Desk:** Before typing a command, changing an MSConfig checkbox, or giving advice to an end user, state your **Hypothesis**, **Primary Diagnostic Tool**, and **Planned Remediation**. Commit your answers mentally before expanding the solution.
 
@@ -502,8 +504,8 @@ Requester:        Maya Lin (Supervisor, Accounting Operations)
 Affected Asset:   PORT-WS-0142 (Dell OptiPlex 7090 Micro / Service Tag: 8F2J9X3)
 Technician:       Ethan Mercer (Tier 1 Support Trial)
 Supervising Lead: Jules Brooks (Desk Lead)
-Incident Date:    2026-08-14 08:15:00 PST
-Resolution Date:  2026-08-14 09:12:35 PST
+Incident Date:    2024-08-22 08:15:00 PST
+Resolution Date:  2024-08-22 09:12:35 PST
 Impact Category:  Workstation Hardware / OS Display Subsystem Hang
 Priority:         P1 - Critical / Payroll Processing Deadline at 12:00 PST
 Status:           RESOLVED & VERIFIED

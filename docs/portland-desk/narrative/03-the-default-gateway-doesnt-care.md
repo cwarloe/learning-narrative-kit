@@ -2,7 +2,7 @@
 
 *A CompTIA Network+ IP addressing and local delivery precursor • Hover over highlighted terms for technical definitions and triage mechanics.*
 
-By eight in the morning, the bullpen on the fourth floor of the Portland Regional Operations Center was already awake with the sound of ringing dispatch lines. Early squalls along the Willamette River corridor had knocked out utility power across the industrial district south of downtown. At the edge of our row, Jared Vance had both monitors filled with router syslog windows, tracking battery transfer cycles across the river facilities while nursing a cup of tea.
+By eight in the morning, the bullpen on the fourth floor of the Portland Regional Operations Center was already awake with the sound of ringing dispatch lines. Early squalls along the Willamette River corridor had knocked out utility power across the industrial district south of downtown. At the edge of our row, Jared Lindqvist had both monitors filled with router syslog windows, tracking battery transfer cycles across the river facilities while nursing a cup of tea.
 
 Jules Brooks had already hung her wet rain shell behind her desk and was working through her first mug of black coffee. Across from my station, the wall-mounted queue monitor blinked and shifted from dark green to bright amber. Fourteen priority incident tickets landed within three minutes, all tagged with the same origin: Building B at the logistics annex and water pump station two miles south.
 
@@ -44,7 +44,7 @@ The numbers made me pause. "Look at the address on this adapter," I said, pointi
 
 "The client broadcast DHCP Discover frames during boot," I realized. "No server returned an Offer before the timer expired, so the DORA exchange failed and Windows fell back to an [[apipa_address|APIPA]] link-local address."
 
-Jared Vance swung his boots down from the packing box and strolled into our row. "The storm caused a transfer switch cycle in Building B during the generator test. The switch in closet B rebooted onto battery power. The startup configuration lost its saved state."
+Jared swung his boots down from the packing box and strolled into our row. "The storm caused a transfer switch cycle in Building B during the generator test. The switch in closet B rebooted onto battery power. The startup configuration lost its saved state."
 
 "The trunk link dropped its tagging configuration," Jules said, looking at Jared. "Without trunking, client Discover broadcasts remained trapped inside an isolated [[broadcast_domain|broadcast domain]]. The central DHCP server at our datacenter never saw the requests. Routers do not forward raw broadcasts without an IP helper address."
 
@@ -160,7 +160,7 @@ Vlan    Mac Address       Type        Ports
 
 "Duplicate IP conflict," Jules said, leaning back. "Every time one of them talks, its gratuitous ARP announcement poisons the ARP cache on the default gateway and neighboring PCs. Traffic flips back and forth between two different MAC addresses depending on who spoke last."
 
-Jared Vance checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here."
+Jared checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here."
 
 ## Port Twenty-Eight
 

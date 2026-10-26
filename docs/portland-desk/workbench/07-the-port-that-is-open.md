@@ -52,7 +52,7 @@ This lab follows those requests. For each one, name the port, name what crosses 
 ### The Ground Truth Rules of the Desk
 1. **Ports are Doors, Protocols are Languages:** Opening a port allows traffic to reach a listening daemon. If that protocol speaks cleartext, any intermediary on the path (an attacker on guest Wi-Fi, a compromised switch span port, an ISP tap) can harvest passwords, session tokens, and business data without triggering alarms.
 2. **Never Open Management Ports to the Public Internet:** Raw management ports—RDP (3389), Telnet (23), SMB (445), SSH (22)—must never be reachable from the external WAN. Remote administrative access requires an encrypted tunnel (**VPN**) terminating at an internal concentrator, followed by access restricted to a hardened **Jump Host**.
-3. **Availability Never Excuses Cleartext in Transit:** When an appliance or remote facility (such as Leah Moreno's telemetry loggers in Portland plant operations) cannot establish a secure session natively, we do not downgrade the enterprise perimeter to cleartext. We encapsulate, proxy, or isolate on a dedicated staging network.
+3. **Availability Never Excuses Cleartext in Transit:** When an appliance or remote facility (such as Leah's telemetry loggers in Portland plant operations) cannot establish a secure session natively, we do not downgrade the enterprise perimeter to cleartext. We encapsulate, proxy, or isolate on a dedicated staging network.
 4. **Client Submission $\neq$ Server Relay:** Mail clients must never send mail on port 25. Port 25 is unauthenticated server-to-server relay. End-user mail submission must use **Submission (Port 587 with STARTTLS)** or **SMTPS (Port 465 with implicit TLS)**.
 
 
@@ -104,7 +104,7 @@ flowchart TD
 ### Drill 1: The Cleartext Telnet Trap (Packet Capture Analysis)
 
 #### The Scenario
-Jared Vance from Network Operations filed ticket **`INC-2026-1041`**. His legacy configuration script failed against switch `10.0.4.15` in Building C because port 23 was refused. He claims: *"I've used this script for ten years. Telnet is fine—it's inside our building on the wired management VLAN. Just open 23 for ten minutes so I can fix the trunk VLAN."*
+Jared Lindqvist from Network Operations filed ticket **`INC-2026-1041`**. His legacy configuration script failed against switch `10.0.4.15` in Building C because port 23 was refused. He claims: *"I've used this script for ten years. Telnet is fine—it's inside our building on the wired management VLAN. Just open 23 for ten minutes so I can fix the trunk VLAN."*
 
 Before replying, you pull an actual packet capture ([`artifacts/jared-telnet-capture.pcap`](../artifacts/jared-telnet-capture.pcap)) taken from a span port on that management segment during Jared's previous run. The table below shows frames 101 to 137 of it, filtered to port 23. You can read the table here, or open the file in Wireshark:
 
@@ -292,6 +292,8 @@ ssh admin@192.168.10.50: |
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 > **The Rule of the Desk:** Before clicking "Approve" on a firewall ticket or giving advice to a department lead, you must write down your decision, the required ports, and the architectural defense. Commit your answer in your mind before clicking to expand.
 <div class="scratchpad-container">
   <div class="scratchpad-header">
@@ -392,7 +394,7 @@ ssh admin@192.168.10.50: |
 
 * **Action:** **DENY** unencrypted Modbus/DNP3 over WAN; **ESCALATE** to NetOps for **IPsec ESP Tunnel** termination.
 * **Target Protocol & Port:** Encapsulate Modbus (502) and DNP3 (20000) inside an **IPsec VPN Tunnel (UDP 500 / 4500, IP Protocol 50 ESP)**.
-* **Rationale:** Leah Moreno is managing physical plant infrastructure. Industrial protocols (Modbus, DNP3) have no built-in encryption or authentication; sending raw port 502 across an untrusted WAN allows malicious actors to issue unauthorized valve open/close commands or falsify sensor telemetry. The traffic must be strictly isolated on an industrial OT VLAN and encrypted across the link via IPsec tunnel.
+* **Rationale:** Leah is managing physical plant infrastructure. Industrial protocols (Modbus, DNP3) have no built-in encryption or authentication; sending raw port 502 across an untrusted WAN allows malicious actors to issue unauthorized valve open/close commands or falsify sensor telemetry. The traffic must be strictly isolated on an industrial OT VLAN and encrypted across the link via IPsec tunnel.
 </details>
 
 
@@ -428,7 +430,7 @@ Ticket ID:        INC-2026-1042
 Requester:        Maya Lin (Accounting)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
-Date/Time:        2026-10-20 09:35:10 PST
+Date/Time:        2025-08-12 09:35:10 PST
 Category:         Email & Collaboration / Client Configuration
 Status:           RESOLVED
 
@@ -468,7 +470,7 @@ Requester:        Leah Moreno (Portland Plant Operations Lead)
 Technician:       Ethan Mercer (Tier 1 Support)
 Escalated To:     Tier 2 Network Security & SOC Incident Desk
 Priority:         P2 - High / Operational Facility Impact
-Date/Time:        2026-10-20 15:25:12 PST
+Date/Time:        2025-08-12 15:25:12 PST
 Classification:   OT/SCADA Perimeter Traversal Exception Request
 
 1. SITUATION DESCRIPTION:

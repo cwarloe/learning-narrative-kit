@@ -36,6 +36,7 @@ Canon that is settled: the employer is Harrowmere Equipment Group, the setting i
   7. No recurring character enters or exits with the same action, phrase, or device twice in an act. Each return opens on what changed since the last appearance.
   8. Run `python3 tools/check_dates.py` before merge.
   9. A cost counts only if it is in the narrative file.
+  10. Use a surname only on introduction or when it matters (formal report, email signature, a stern manager); otherwise first names.
 
 ## What this kit is
 

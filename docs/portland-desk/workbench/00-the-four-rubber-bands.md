@@ -309,8 +309,8 @@ Ethernet adapter Local Area Connection:
    DHCP Enabled. . . . . . . . . . . : Yes
    IPv4 Address. . . . . . . . . . . : 192.168.10.45       <-- Layer 3 IP Address
    Subnet Mask . . . . . . . . . . . : 255.255.255.0       <-- Defines Local Subnet
-   Lease Obtained. . . . . . . . . . : Thursday, July 16, 2026 07:15:22 AM
-   Lease Expires . . . . . . . . . . : Friday, July 17, 2026 07:15:22 AM
+   Lease Obtained. . . . . . . . . . : Thursday, July 27, 2023 07:15:22 AM
+   Lease Expires . . . . . . . . . . : Friday, July 28, 2023 07:15:22 AM
    Default Gateway . . . . . . . . . : 192.168.10.1        <-- Route out of Subnet
    DHCP Server . . . . . . . . . . . : 192.168.10.254
    DNS Servers . . . . . . . . . . . : 192.168.10.2
@@ -369,7 +369,7 @@ Ethernet adapter Local Area Connection:
 
 ## 3. Quick Checks & Skill Reps
 
-### Drill 1: Symmetrical Challenge (Incident 00.2 / Ticket B) — The Panic Power Cut
+### Drill 1 (practice case): The Panic Power Cut
 
 > **Ticket Drop:** `T1-INIT-2026-002` • Priority: P2-High • Subsystem: Component 2 (Memory) vs Component 3 (Storage)
 **Scenario:** A user reports that their computer opened an unauthorized browser popup at 09:15 AM claiming their files were encrypted. The desktop background changed to a red warning screen. The user panicked, pulled the physical power cord from the wall outlet, and walked the tower down to the help desk.
@@ -524,6 +524,8 @@ ipconfig: |
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 *Strict Protocol:* Do not expand the verification box until you have written down your predicted failure layer, expected command output, and root cause hypothesis.
 <div class="scratchpad-container">
@@ -765,7 +767,7 @@ Use this standardized intake checklist when logging and triaging your first live
 ========================================================================================
 FIRST-CONTACT DIAGNOSTIC INTAKE WORKSHEET · TIER 1 SUPPORT
 ========================================================================================
-TICKET REF   : T1-INIT-2026-001             DATE/TIME : 2026-07-16 09:30 PDT
+TICKET REF   : T1-INIT-2026-001             DATE/TIME : 2023-07-27 09:30 PDT
 TECHNICIAN   : Ethan Mercer                 STATUS    : UNDER INVESTIGATION
 USER NAME    : ____________________________ ASSET TAG : _______________________________
 
@@ -813,7 +815,7 @@ ENTERPRISE INCIDENT RESOLUTION RECORD · SERVICE DESK TIER 1
 ========================================================================================
 INCIDENT ID   : INC0048192 / T1-INIT-2026-002
 ASSET TAG     : ACCT-WS-09 (Dell OptiPlex 7090)
-CALLER        : Maya Lin (Accounting Supervisor)
+CALLER        : Practice caller (Accounting Supervisor)
 CATEGORY      : Endpoint Security > Malware Containment & Volatility Triage
 PRIORITY      : P2 - High (Financial workstation suspected compromise)
 STATUS        : RESOLVED / PENDING SOC REVIEW
@@ -842,13 +844,13 @@ BLOCK 2: CUSTOMER / SHIFT PASSDOWN SUMMARY
   phishing popup. No file encryption occurred across shared department drives.
 - Action Taken: Technician isolated the workstation from the network, verified disk
   integrity, and referred the malicious download artifact to Information Security.
-- Next Steps: Loaner laptop LAP-T1-04 provisioned for Maya Lin to complete morning payroll.
+- Next Steps: Loaner laptop LAP-T1-04 provisioned for the caller to complete morning payroll.
   Primary workstation undergoing secondary EDR sweep before return to service.
 
 ----------------------------------------------------------------------------------------
 BLOCK 3: LEAD TECHNICIAN SIGN-OFF
 ----------------------------------------------------------------------------------------
-LEAD SIGN-OFF : Jules Mercer (Tier 2 Lead)          DATE: 2026-07-16 11:15 PDT
+LEAD SIGN-OFF : Desk Lead (practice sign-off)          DATE: 2023-07-27 11:15 PDT
 DISPOSITION   : APPROVED · Clean isolation; no premature network reconnection.
 ========================================================================================
 ```

@@ -399,6 +399,8 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
 
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
+
 > **The Rule of the Desk:** Before typing a command, terminating a process, or replying to a ticket, commit your decision in your mind: name the threat category, state your containment action, and provide your technical justification.
 <div class="scratchpad-container">
   <div class="scratchpad-header">
@@ -526,7 +528,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 In enterprise security operations, Tier 1 service desk notes serve as the initial chain-of-custody and incident triage record for Tier 2/3 SOC analysts, compliance teams, and management.
 
 #### Part A: Tier 1 Standard Host Infection Isolation & Containment Note
-*(Reference Case: Todd Miller / Workstation `TODD-SALES-14` / Incident `INC-2026-1181`)*
+*(Reference Case: Todd / Workstation `TODD-SALES-14` / Incident `INC-2026-1181`)*
 
 ```text
 ================================================================================
@@ -537,7 +539,7 @@ Affected Host:    TODD-SALES-14 (IP: 192.168.10.45)
 User / Dept:      Todd Miller (Sales & Warehouse Operations)
 Technician:       Ethan Mercer (Tier 1 Support)
 Lead Reviewer:    Jules Brooks (Service Desk Lead)
-Timestamp:        2026-10-22 10:35:12 PST
+Timestamp:        2026-02-12 10:35:12 PST
 Category:         Malware / Worm & Dropper Outbreak
 Severity:         HIGH (P2) - Lateral Propagation Attempt
 Status:           CONTAINED / ESCALATED TO SOC
@@ -589,7 +591,7 @@ Status:           CONTAINED / ESCALATED TO SOC
 ---
 
 #### Part B: High-Severity Ransomware Incident Escalation Note
-*(Reference Case: Rina Rostova / Workstation `RINA-FAC-01` / Incident `INC-2026-1182`)*
+*(Reference Case: Rina / Workstation `RINA-FAC-01` / Incident `INC-2026-1182`)*
 
 ```text
 ================================================================================
@@ -600,7 +602,7 @@ Affected Host:    RINA-FAC-01 (IP: 192.168.30.12)
 User / Dept:      Rina Rostova (Facilities Operations)
 Technician:       Ethan Mercer (Tier 1 Support)
 Lead Reviewer:    Jules Brooks (Service Desk Lead)
-Timestamp:        2026-10-22 12:44:00 PST
+Timestamp:        2026-02-12 12:44:00 PST
 Category:         Malware / Ransomware & Extortion
 Severity:         CRITICAL (P1) - Active Host Cryptographic Lockdown
 Status:           ISOLATED / EMERGENCY SOC BRIDGE ENGAGED
@@ -627,7 +629,7 @@ Status:           ISOLATED / EMERGENCY SOC BRIDGE ENGAGED
    - Network shares mapped to user profile (\\FAC-SHARE-01\WorkOrders) audited:
      Zero write activity detected due to rapid network disconnect.
    - Backup Integrity: Verified overnight immutable snapshots on storage array
-     (ZFS immutable snapshot pool taken 2026-10-22 02:00 PST). Data restore ready.
+     (ZFS immutable snapshot pool taken 2026-02-12 02:00 PST). Data restore ready.
 
 4. HANDOFF & EVIDENCE CHAIN:
    - Incident Commander notified via emergency IR bridge.

@@ -141,6 +141,7 @@ This replaces any earlier rule about holding the answer back for the lab. Each c
 7. **No repeated entrances.** No recurring character enters or exits with the same action, phrase, or device twice in an act. Each return opens on what changed since the last appearance.
 8. **Dates are checked.** Check every date and season against `docs/research/PORTLAND_TIMELINE.md` before merge. Run `python3 tools/check_dates.py`, which checks exact months, seasons, weekdays between chapter and lab, and months on the desk.
 9. **Narrative file only.** A cost counts only if it is in the narrative file.
+10. **Names the way people use them.** Use a surname only on introduction or when it matters (a formal report, an email signature, a stern manager). Otherwise use first names.
 
 ## Worked example: Portland Desk Chapters 00–2
 

@@ -4,7 +4,7 @@
 
 A blustery April downpour lashed the high windows of the Portland Operations Center, turning the riverfront bridges into gray silhouettes. I was eight months into my tenure on the service desk, my workstation flanked by a crate of spare patch cords and two Dell OptiPlex towers staged for imaging.
 
-Across the aisle, Jared Vance was already in mid-crisis. His elbows were dug into his desk blotter, his mechanical keyboard clattering furiously under a stack of router terminal windows. His automated configuration backup script had aborted at quarter past three in the morning, leaving three hundred switches unarchived and filling his console with red stack traces.
+Across the aisle, Jared Lindqvist was already in mid-crisis. His elbows were dug into his desk blotter, his mechanical keyboard clattering furiously under a stack of router terminal windows. His automated configuration backup script had aborted at quarter past three in the morning, leaving three hundred switches unarchived and filling his console with red stack traces.
 
 "Central IT pushed an unannounced firewall update across the distribution layer again," Jared snapped, spinning around with a grimace. "Chicago always tweaks access lists without logging a change ticket. Port 8443 is blocked between our subnet and the central archive cluster, and it blew up my whole morning."
 

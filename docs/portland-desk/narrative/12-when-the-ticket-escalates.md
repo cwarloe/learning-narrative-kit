@@ -71,7 +71,7 @@ Every three hundred seconds—five minutes like clockwork—the beacon sent an o
 
 ## The lateral pivot and the warehouse USB
 
-Before Jules could answer, Jared Vance burst into our aisle from the server room, his face pale beneath the fluorescent tubes. He wasn't carrying coffee.
+Before Jules could answer, Jared Lindqvist burst into our aisle from the server room, his face pale beneath the fluorescent tubes. He wasn't carrying coffee.
 
 "Todd Miller in Inside Sales just called from the dock," Jared said, his breath short. "He found an unbranded USB stick on the floor of the shipping office labeled *Client Deck Final*. He plugged it into `TODD-SALES-14` to see whose presentation it was."
 
@@ -97,7 +97,7 @@ She reached into the bottom drawer of her filing cabinet and pulled out two heav
 
 She set the red binder in front of my keyboard.
 
-"Maya Lin's machine this morning was an event, Ethan," Jules said, her voice quiet, steady, and unyielding. "This is the incident. Senior CSIRT Lead Nia Alvarez and the incident command team from Chicago are bridging onto our operations floor in twenty minutes. When Nia joins this bridge, she doesn't want guesses, she doesn't want apologies, and she doesn't want wiped hard drives."
+"Maya's machine this morning was an event, Ethan," Jules said, her voice quiet, steady, and unyielding. "This is the incident. Senior CSIRT Lead Nia Alvarez and the incident command team from Chicago are bridging onto our operations floor in twenty minutes. When Nia joins this bridge, she doesn't want guesses, she doesn't want apologies, and she doesn't want wiped hard drives."
 
 She pointed to the anti-static evidence pouches on my desk.
 
@@ -125,14 +125,13 @@ Then she got to containment, and my name came up. I had isolated Todd's workstat
 
 "It was a defensible call," Nia said. "It was also a call that cost us evidence. Write down why you made it, and what you would need to see next time to wait sixty more seconds." I wrote it down. It went into the lessons-learned section with my name on it, next to the missing plant playbook.
 
-## August <!-- date-ok -->
+## The Posting
 
-The analyst opening on Harrowmere's security operations team posted in July. I applied. Nia asked about the containment note in my second interview, and I told her what I had written. The offer came in August, with a ninety-day review and a night rotation of its own. <!-- date-ok -->
+The analyst opening on Harrowmere's security operations team posted the Monday after the review. It sat one floor up, in the same building.
 
-The team sat on the fifth floor. Same building, same river outside the window, same bike rack by the door.
+I opened the application that night at the kitchen table and stared at the box that asked for a recent incident. I could have written about the indicators I had saved, or the binder, or the bridge with Chicago. I wrote about the second memory capture instead: what I had seen, why I had pulled the cable, and what I would need to see next time to wait sixty more seconds.
 
-"You're not leaving," Jules said when she handed me the navy lanyard. "You're moving upstairs. You'll still get calls from Ken." He called the next morning to ask who was taking my desk line.
-
+Then I read it again, cut the sentence where I explained that it had been a defensible call, and clicked submit.
 
 ## Vocabulary & Concepts
 
