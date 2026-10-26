@@ -892,6 +892,6 @@ My father stood by the sink, rinsing his water glass. He dried his hands on a di
 
 My dad set the stack back down in line with the others. A faint, knowing smile touched the corner of his mouth.
 
-"That's a machine," he said. "The rest is just part numbers in a catalog. Get some sleep, Ethan. The warehouse doesn't care how late you studied when the six o'clock bell rings."
+"That's a machine," he said. "The rest is just part numbers in a catalog. Get some sleep, Ethan. The testing center doesn't care how late you studied."
 
-Three weeks later, on a gray Thursday morning in Beaverton, I sat in front of the testing center monitor with my palms flat on the laminate desk. When the scoring engine finalized the results, the screen didn't show perfection—it showed a 685. A passing score by ten points. Scraped by on the retake, but the paper certificate was real, and it bought my ticket onto the graveyard maintenance rotation at the Gresham cross-dock.
+The next morning, a gray Thursday in Beaverton, I sat in front of the testing center monitor with my palms flat on the laminate desk. The screen did not show perfection. It showed a 690, a pass by fifteen points on my second attempt. It did not get me off the dock. I was back on the graveyard shift that weekend, but the paper was real, and it was the first thing Ken would point to when he wrote my referral.

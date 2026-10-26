@@ -4,13 +4,13 @@
 
 The overhead fluorescent fixture above the kitchen sink hummed with a flat, sixty-cycle buzz that seemed to vibrate inside my teeth. Outside the kitchen window, the July night had cooled to sixty degrees, but inside our cramped East Portland duplex, the heat stayed trapped beneath the low ceiling. A cheap plastic box fan stood propped on a cardboard box in the doorway, rattling its warped blades against the housing every few seconds. On the scarred laminate table, an eight-hundred-page certification guide sat propped open against a ceramic mug half-filled with cold instant coffee.
 
-My shift had ended four hours earlier at Harrowmere's freight distribution warehouse out on Division Street in Gresham. I was twenty years old with an aching lower back. For nine straight hours, I had unloaded eighty-pound bags of Quikrete concrete mix and stacked drywall sheets across wooden bunks. A faint grey haze of gypsum dust remained caked into the seams of my work boots and beneath my fingernails. 
+It was my night off. The night before, I had worked the graveyard shift at Harrowmere's freight distribution warehouse out on Division Street in Gresham, and I had slept through most of the day. I was twenty years old with an aching lower back. For nine straight hours that night, I had unloaded eighty-pound bags of Quikrete concrete mix and stacked drywall sheets across wooden bunks. A faint grey haze of gypsum dust remained caked into the seams of my work boots and beneath my fingernails. 
 
 My checking account held exactly forty-one dollars and sixteen cents. 
 
 Six weeks earlier, that account had held nearly three hundred dollars. I had spent two hundred and forty-six of it on a discounted CompTIA exam voucher, convinced that two months of reading textbook chapters on my lunch breaks had made me a technician. I drove out to an anonymous testing center in Beaverton, sat in a sterile cubicle under security cameras, and failed Core 1 with a score of 592. Passing was 675. The testing engine had spat me out into the rain with a stamped failure notice and thirty-eight dollars left to buy groceries for the rest of the month. 
 
-I spent the next six weeks picking up every graveyard shift Ken Vance offered on the Gresham cross-dock, hauling freight until my palms blistered, saving dollar by dollar to buy voucher number two. The second appointment was scheduled for tomorrow morning at eight.
+I spent the next six weeks picking up every extra graveyard shift Ken Vance offered on the Gresham cross-dock, hauling freight until my palms blistered, saving dollar by dollar to buy voucher number two. The second appointment was scheduled for tomorrow morning at eight.
 
 Across the laminate tabletop, three hundred handmade three-by-five index cards were arranged in four crooked rows. I had spent those six weeks copying definitions during every fifteen-minute break, handwriting every obscure specification onto index stock: the pin counts of memory modules, the maximum lengths of single-mode fiber runs, the operating voltages of legacy serial ports, and the mechanical stages of a laser printing engine. 
 
@@ -598,9 +598,9 @@ With twelve minutes left on the clock, I hit the review screen with four flagged
 
 The mandatory fifteen-question demographic survey locked the screen. My heart hammered against my ribs while I clicked through questions about my employment history. After the final response, the screen hesitated for three agonizing seconds.
 
-The score banner flashed on the monitor: **685 out of 900**. The minimum passing score was 675.
+The score banner flashed on the monitor: **690 out of 900**. The minimum passing score was 675.
 
-I passed by ten points. Two questions.
+I passed by fifteen points. Two or three questions.
 
 I sat back against the fabric chair and let out a long breath that fogged the plastic bezel of the display. At the reception counter, the proctor stamped an embossed seal onto my paper score report and slid the document across the laminate. 
 

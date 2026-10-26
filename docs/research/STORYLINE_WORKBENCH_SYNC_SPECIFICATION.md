@@ -266,7 +266,7 @@ Module 00 (*"The Four Rubber Bands"*) serves as the design benchmark for the ent
 │ OPERATIONAL DELIVERABLES: Sections 4 & 5                                               │
 │ • Section 4: First-Contact Diagnostic Worksheet (T1-INIT-2026-001)                     │
 │ • Section 5: Lead Sign-Off Checklist & 100-Point Shift Grading Rubric                  │
-│ • Section 6: Shift Resolution Epilogue (02:15 AM kitchen table; passing score 685)     │
+│ • Section 6: Shift Resolution Epilogue (02:15 AM kitchen table; passing score 690 on the second attempt)     │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -287,7 +287,7 @@ Module 00 (*"The Four Rubber Bands"*) serves as the design benchmark for the ent
 - **The Exam Crucible (Worked Example):** In Beaverton, PBQ 1 presents an unseated GPU causing POST beeps; PBQ 2 presents a workstation with an APIPA (`169.254.x.x`) address after a power drop. Applying the Green and Yellow bands, Ethan recognizes:
   - *PBQ 1:* Firmware POST halts before video initialization; memory/bus seated physically.
   - *PBQ 2:* Workstation has physical L1/L2 link, but DHCP bootstrap timed out; traffic cannot leave local wire.
-  - *Outcome:* Passes with 685/900. Earns his license to step through the door.
+  - *Outcome:* Passes his second attempt with 690/900 after failing the first with 592. Earns his license to step through the door.
 
 ### 5.3 Beat 3: Dissecting Incident 00.1 (Workbench Section 2)
 - **Hardware & Protocol Physics:**

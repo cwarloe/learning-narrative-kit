@@ -432,11 +432,11 @@ You are Ethan Mercer, Tier 1 Field Technician on the graveyard shift at the Harr
 GRESHAM REGIONAL LOGISTICS TERMINAL · TIER 1 PHYSICAL INCIDENT TRIAGE REPORT
 ========================================================================================
 INCIDENT TICKET ID : INC-2026-0714-L4
-INCIDENT TIMESTAMP : 2026-07-14 02:24 PDT
-RESOLUTION TIME    : 2026-07-14 04:47 PDT (Total Downtime: 2 hrs 23 mins)
+INCIDENT TIMESTAMP : 2026-02-12 02:24 PDT
+RESOLUTION TIME    : 2026-02-12 04:47 PDT (Total Downtime: 2 hrs 23 mins)
 AFFECTED SUBSYSTEM : Sorting Line 4 · In-Line Toledo Weighing & Sorting Station
 PRIMARY TECHNICIAN : Ethan Mercer (Employee ID: 94021)
-SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
+SHIFT SUPERVISOR   : Ken Vance (Gresham Logistics Dispatch)
 ========================================================================================
 
 1. INITIAL INCIDENT SYMPTOMS & OPERATIONAL IMPACT:
@@ -482,7 +482,7 @@ SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
 5. OPERATIONAL RECOVERY & DISPATCH DISPOSITION:
    - Conveyor Line 4 restarted under load at 04:47 PDT.
    - Backlogged parcels cleared through dimensioning station without dropped packets.
-   - Cross-dock trailers Bay 7 (Seattle) and Bay 9 (Boise) departed at 05:04 PDT on schedule.
+   - Bay 9 (Boise) departed 05:04 PDT on schedule. Bay 7 (Seattle) departed 05:51 PDT, 51 minutes late, after 40 lost carton weights were re-weighed by hand.
    - Staging loss: 1x 10-ft Cat5e patch cable sacrificed for temporary test jumper leads ($50).
 
 6. ROOT CAUSE & PREVENTATIVE MAINTENANCE RECOMMENDATIONS:
@@ -502,7 +502,7 @@ SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
 
 ```
 ----------------------------------------------------------------------------------------
-SHIFT PASSDOWN LOG · GRESHAM LOGISTICS IT/FACILITIES · DATE: 2026-07-14 05:15 PDT
+SHIFT PASSDOWN LOG · GRESHAM LOGISTICS IT/FACILITIES · DATE: 2026-02-12 05:15 PDT
 ----------------------------------------------------------------------------------------
 TO   : Day Shift Maintenance Lead / Regional IT Operations
 FROM : Ethan Mercer, Graveyard Shift Technician
@@ -520,7 +520,7 @@ connector and a baud rate mismatch (terminal board SW1 was strapped for 19200 ba
 scale transmits at 9600 8-N-1). Pin straightened and SW1 DIP switches set to 9600.
 
 CURRENT STATUS:
-Line 4 is FULLY OPERATIONAL. All cross-dock trailers departed on time.
+Line 4 is FULLY OPERATIONAL. Boise departed on time. Seattle departed 51 minutes late (see dispatch report).
 
 ACTION REQUIRED FOR DAY SHIFT:
 1. Do not touch DIP switch SW1 on Line 4 (leave switches 3-OFF, 4-ON).
@@ -588,11 +588,11 @@ Ken did not waste time with compliments. He reached past my shoulder, jammed his
 
 "Line four is live!" Ken shouted into his two-way radio. "Get the yard tractors moving! Load Seattle on bay seven and Boise on bay nine!"
 
-The heavy three-phase electric motors spooled up with an industrial groan. The rubber sorting belts accelerated to full operational speed, and the pneumatic diverter arms began their rhythmic clapping as parcel after parcel was weighed, scanned, and routed into the outgoing freight cages. The clock on the warehouse wall read 4:47 AM. When the final cross-dock trailer pulled away from loading bay nine, the time was 5:04 AM. The morning route was saved, and the warehouse avoided thousands of dollars in cancelled delivery fees.
+The heavy three-phase electric motors spooled up with an industrial groan. The rubber sorting belts accelerated to full operational speed, and the pneumatic diverter arms began their rhythmic clapping as parcel after parcel was weighed, scanned, and routed into the outgoing freight cages. The clock on the warehouse wall read 4:47 AM. Boise pulled away from bay nine at 5:04 AM. Seattle did not. Forty cartons had to be re-weighed by hand because of the records I had dumped with the power switch, and the Seattle trailer left at 5:51 AM, fifty-one minutes late. Ken had to write the late-departure report with his name on the header.
 
 Ken walked back to the cabinet, wiping grease off his forehead with the back of his glove. He looked at the Kapton-taped ribbon cable, then down at the sheared plastic memory latch resting on the bottom of the enclosure.
 
-"You cost us twenty minutes with that power switch, Mercer," Ken said, his voice blunt and tired over the conveyor clatter. "And you snapped a memory clip I'll have to explain to facilities on Monday. But when the wheels came off, you didn't run away, and you listened to the meter. Grab a hand scanner and help clear the chute at bay four—we have sixteen minutes to pack the tail."
+"That wasn't your job, Mercer," Ken said, his voice blunt and tired over the conveyor clatter. "You stage freight. You flipped a breaker you didn't understand, you dumped forty records, and Seattle left late. That's on my report now, and I'm going to remember it. So is the memory clip I'll have to explain to facilities on Monday." He looked at the Kapton tape, then at Rosa, who shrugged and said Ethan had found the short himself. "But when it went wrong, you stopped guessing, you asked for help, and you listened to the meter. Most people on this dock would have walked away. Grab a hand scanner and help clear the chute at bay four."
 
 I spent the next forty-five minutes sweating in my steel-toed boots, hand-stacking fifty-pound cartons until my back burned. 
 
@@ -600,4 +600,4 @@ At 6:15 AM, when the shift finally ended, I sat down on an upturned wooden palle
 
 I pulled my smartphone from my jacket pocket and looked at the browser screen. My flashcard application was still running in the background, displaying a multiple-choice question about the maximum theoretical throughput of a PCI Express bus. The digital flashcards had felt authoritative and complete when I was sitting in my bedroom, but they had taught me nothing about the reality of industrial machinery. Those flashcards had not warned me that copper wires chafe against stamped steel. They had said nothing about serial pins bending when hurried workers yank on cables, or unmatched clock rates turning real operational data into noise.
 
-I had earned my certifications on paper, but out on the cold concrete floor of the warehouse, I had finally begun to learn the tradecraft of repair. Two months later, when Ken signed off on an internal apprentice training voucher, I updated my resume with real physical layer diagnostics and applied for the Tier 1 opening at the Portland Regional Operations Center.
+I had earned my certifications on paper, but out on the cold concrete floor of the warehouse, I had finally begun to learn the tradecraft of repair. Ken never mentioned the Seattle trailer to me again, but I saw the late report pinned to his board for a month. A week later, he wrote the internal referral that moved me into the IT rotation. The first line said I had cost him a trailer. The second line said I was worth training.
