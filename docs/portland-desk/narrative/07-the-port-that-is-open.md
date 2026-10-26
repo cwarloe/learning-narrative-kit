@@ -6,7 +6,7 @@ I was a year into my tenure at the Portland Operations Center—long past the ro
 
 I had just come off my second overnight week on the rotation and was back on days. The flood had left a list of small debts: two closet switches still running on borrowed power supplies, and Jared's pooling change still waiting for a window.
 
-Jules Brooks glanced over from her workstation, mug in hand. On the bezel of her primary monitor, her faded yellow sticky note asked *Which decision?* under the ceiling lights.
+Jules glanced over from her workstation, mug in hand. On the bezel of her primary monitor, her faded yellow sticky note asked *Which decision?* under the ceiling lights.
 
 "You already know the numbers, Ethan," she said, catching me glancing toward the drawer. "The port numbers aren't what's slowing you down. It's knowing which habits to challenge."
 

@@ -50,7 +50,7 @@ It is 08:15 on a rain-swept August morning on the fourth floor of the Portland R
 
 Two rows over, workstation fourteen displays a high-priority ticket flagged in glowing amber text:
 
-$$\boxed{\textbf{INC-2026-0814: Maya Lin (Accounting) — Workstation Hard Freeze on Payroll Launch}}$$
+$$\boxed{\textbf{INC0053417: Maya Lin (Accounting) — Workstation Hard Freeze on Payroll Launch}}$$
 
 Maya has twenty-eight site supervisors waiting on biweekly payroll approval by noon. Every time she launches `PDX-Pay`, the mouse freezes, both monitors turn pitch black, and she is forced to crawl under her desk to yank the AC power cable. 
 
@@ -501,7 +501,7 @@ Below is the mandatory service desk documentation template required for all Tier
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND REGIONAL SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-0814
+Ticket ID:        INC0053417
 Requester:        Maya Lin (Supervisor, Accounting Operations)
 Affected Asset:   PORT-WS-0142 (Dell OptiPlex 7090 Micro / Service Tag: 8F2J9X3)
 Technician:       Ethan Mercer (Tier 1 Support Trial)

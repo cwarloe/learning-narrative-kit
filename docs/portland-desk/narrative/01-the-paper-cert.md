@@ -14,7 +14,7 @@ Fixing the line equipment was not my job. I staged freight. That illusion, and t
 
 ## The Red Beacon on Line Four
 
-Ken Vance arrived at the scale terminal before the conveyor rollers had finished spinning down. He was fifty-one years old, carried a scarred aluminum clipboard under his left arm, and walked with the frantic stride of a logistics supervisor whose career was measured in outbound trailer tonnage.
+Ken arrived at the scale terminal before the conveyor rollers had finished spinning down. He was fifty-one years old, carried a scarred aluminum clipboard under his left arm, and walked with the frantic stride of a logistics supervisor whose career was measured in outbound trailer tonnage.
 
 "Scale deck dropped offline," Ken barked, his voice cutting through the rumble of distant forklifts. "Scanner's kicking every box because the terminal stopped logging weights. Seattle and Boise trailers roll at five sharp. Right now, two hundred cartons are backing up toward the intake rollers."
 

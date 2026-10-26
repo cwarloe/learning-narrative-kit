@@ -27,16 +27,20 @@ Canon that is settled: the employer is Harrowmere Equipment Group, the setting i
 - The chapter may give away the answer. Write it as a complete story, cliffhanger or not.
 - The lab opens with a worked example of the same incident, solution known, and ends with one transfer problem (same principle, different surface). No "what would you do" handoffs before training, no lab epilogues, and no story Easter eggs. Labs may refer to the story.
 - Cost and canon rules (numbering matches `docs/craft/learning-narrative-framework.md`):
-  1. No promotion, raise, or forgiveness offsets any cost charged to Ethan in the same or the previous chapter.
+  1. No promotion, raise, or forgiveness offsets any cost charged to Ethan in the same or the previous chapter. A relationship that moves through an action, with nothing said, is not a refund; a speech, promotion, or restored status is.
   2. Each act has one incident that belongs to someone else (Ethan hears about it secondhand) and one thing Ethan saves that does not matter.
   3. No narrator foreshadowing.
   4. A carry-forward must change action. A grudge may not be restated in more than two chapters without moving.
   5. Every chapter charges Ethan a personal cost that nobody refunds.
   6. Ethan's standing struggles, named in the bible, drive his wrong turns.
   7. No recurring character enters or exits with the same action, phrase, or device twice in an act. Each return opens on what changed since the last appearance.
-  8. Run `python3 tools/check_dates.py` before merge.
+  8. Run `python3 tools/check_dates.py` before merge. Every `date-ok` marker gives a reason (`<!-- date-ok: why -->`).
   9. A cost counts only if it is in the narrative file.
   10. Use a surname only on introduction or when it matters (formal report, email signature, a stern manager); otherwise first names.
+  11. No two characters in the same act enter with the same staging device (an object carried "like" something, a burst into the aisle, a phone ringing as the scene opens).
+  12. When two of these rules conflict, the lower number wins unless the framework names an exception.
+  13. Identifiers (tickets, escalations, evidence tags, email addresses) agree with the timeline and cast. Ticket, escalation, and evidence IDs carry no year and use one increasing counter per prefix (`INC0048192`), unique and in episode order.
+  14. Every named character has one row in the bible's cast registry (section 3.4), and labs, artifacts, and scripts use only that surname.
 
 ## What this kit is
 

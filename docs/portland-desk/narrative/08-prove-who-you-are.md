@@ -8,7 +8,7 @@ The smell of wet wool and radiator steam filled the fourth floor long before the
 
 On the dispatch display, the first incident ticket was already flashing red.
 
-Jared had called my desk line on Tuesday about an unrelated switch, which he had never done before. He did not mention the Saturday, and neither did I. His tickets came back the same day after that. <!-- date-ok -->
+Jared had called my desk line on Tuesday about an unrelated switch, which he had never done before. He did not mention the Saturday, and neither did I. His tickets came back the same day after that. <!-- date-ok: weekdays of earlier calls, not the chapter's day -->
 
 ## Nora and the policy that keeps changing the locks
 
@@ -115,7 +115,7 @@ Not everyone liked the fixes. Todd's manager had wanted an exception so the sale
 
 Jules answered her and copied me. The answer was polite and did not move an inch. Then she walked over to my desk. "You were right and you were curt. Next time, be right and give her a date."
 
-The Tier 2 posting closed two weeks later. I did not get it. Jules told me the panel had read the complaint, and that it was not the only reason, but it was one of them. The posting would reopen in December, and promotions from that round would not land until January. <!-- date-ok -->
+The Tier 2 posting closed two weeks later. I did not get it. Jules told me the panel had read the complaint, and that it was not the only reason, but it was one of them. The posting would reopen in December, and promotions from that round would not land until January. <!-- date-ok: January is when promotions land, a forward reference -->
 
 Owen never did get a clean answer from the camera that day. The footage showed the back of a gray jacket, and he said he would keep pulling badge logs when he had time.
 

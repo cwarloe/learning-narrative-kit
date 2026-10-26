@@ -188,7 +188,7 @@ Get-FileHash -Path "C:\Forensics\Evidence\TODD-SALES-14-disk.raw" -Algorithm SHA
 
 #### Mandatory Chain of Custody Ledger Fields
 Every entry in a formal chain of custody log must contain:
-* **Item Tracking Number:** Unique alphanumeric identifier (e.g., `EVD-2026-0624-01`).
+* **Item Tracking Number:** Unique alphanumeric identifier (e.g., `EVD0007701-01`).
 * **Item Description:** Exact make, model, capacity, serial number, and physical condition.
 * **Source / Seizure Location:** Workstation hostname, physical desk location, port, or user profile.
 * **Date & Time of Seizure:** Precise timestamp including local timezone (PDT/PDT) and UTC offset.
@@ -294,7 +294,7 @@ Algorithm       Hash                                                            
 SHA256          A4F2C9901B34E57D890AA71B994E10F823CD456188902A3CDEF1192837462B10   \\.\PhysicalDrive2
 
 # Step 2: Acquire bit-stream raw image to forensic storage
-PS C:\Forensics> dc3dd.exe if=\\.\PhysicalDrive2 of=D:\Images\EVD-2026-0624-USB.raw hash=sha256 log=D:\Images\acquisition.log
+PS C:\Forensics> dc3dd.exe if=\\.\PhysicalDrive2 of=D:\Images\EVD0007701-USB.raw hash=sha256 log=D:\Images\acquisition.log
 dc3dd 7.2.646 started at 2026-06-24 15:10:04 -0700
 31268536320 bytes (31 GB) copied (100%), 124.2 s, 240 MB/s
 input hash (sha256): a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10
@@ -314,7 +314,7 @@ SHA256          9F2C8D1E3A4B5C6D7E8F0A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9BC41A
 3. Review the following snippet from a chain of custody ledger. Identify the fatal procedural error that would compromise evidence admissibility:
 
 ```text
-ITEM: EVD-2026-0624-USB
+ITEM: EVD0007701-USB
 SEIZED: 2026-06-24 14:40 PDT by Ethan Mercer (Tier 1 Support)
 CUSTODY LOG:
 - 14:40 PDT: Seized from Todd Miller's desk (TODD-SALES-14) by Ethan Mercer. Placed in backpack.
@@ -329,7 +329,7 @@ CUSTODY LOG:
 **Jules' Analysis:**
 
 1. **Proof of Integrity:**  
-   The bit-for-bit equality of the input hash (`\\.\PhysicalDrive2`) and output hash (`EVD-2026-0624-USB.raw`) mathematically proves that the forensic disk image is an exact, uncorrupted, 100% identical replica of the original physical media. Every sector, file slack, unallocated cluster, and partition table bit was duplicated without alteration. Forensic analysis can now proceed exclusively on clones of this image while the original media remains sealed in evidence storage.
+   The bit-for-bit equality of the input hash (`\\.\PhysicalDrive2`) and output hash (`EVD0007701-USB.raw`) mathematically proves that the forensic disk image is an exact, uncorrupted, 100% identical replica of the original physical media. Every sector, file slack, unallocated cluster, and partition table bit was duplicated without alteration. Forensic analysis can now proceed exclusively on clones of this image while the original media remains sealed in evidence storage.
 
 2. **The Impact of Plugging Without a Write Blocker:**  
    **No, the hash would not match.** The moment a modern operating system (Windows, macOS, or Linux) mounts a mass storage device without a hardware or kernel write blocker, the OS automatically performs write operations:
@@ -405,7 +405,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 </div>
 
 
-#### Case 1: Nora Higgins (Finance Specialist) — `INC-2026-1201`
+#### Case 1: Nora Higgins (Finance Specialist) — `INC0075920`
 *Telemetry & Symptoms:* Nora's account underwent an MFA reset at 02:13 a.m. from an external German hosting provider IP (`198.51.100.77`). An Exchange inbox rule (`InvoiceProcess`) is silently forwarding all finance emails to an external drop address. Meanwhile, host telemetry on `FIN-NORA-02` indicates an injected PowerShell process establishing recurring HTTPS connections to `185.22.112.14:443` every 300 seconds and attempting to access `lsass.exe`. Nora says she has payroll to disburse in 45 minutes and asks if she can just change her password and keep working on her laptop.
 
 * **Your Action:**  
@@ -428,7 +428,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 
 ---
 
-#### Case 2: Todd Miller (Sales & Warehouse) — `INC-2026-1202`
+#### Case 2: Todd Miller (Sales & Warehouse) — `INC0075921`
 *Telemetry & Symptoms:* Todd plugged in an unbranded USB drive. Antivirus quarantined `SOW_final.pdf.exe` on drive `E:\`. Todd unplugged the stick and wants his ticket closed. However, EDR process history indicates that before quarantine, the dropper spawned `powershell.exe -w hidden`, which executed `net view /all`, probed writable shares on `\\WH-PACK-02\share$`, and created a persistent scheduled task named `CacheCleanup` configured to execute at system startup.
 
 * **Your Action:**  
@@ -449,7 +449,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 
 ---
 
-#### Case 3: Leah Moreno (Willamette Plant) — `INC-2026-1203`
+#### Case 3: Leah Moreno (Willamette Plant) — `INC0075922`
 *Telemetry & Symptoms:* Leah reports that plant telemetry gateway `GW-PLANT-04` is attempting outbound TLS sessions to external IP `185.22.112.14:8443`. Traffic originates from an internal staging jump box (`SRV-STAGE-01`) located in the cross-connected operations subnet. The Willamette plant's programmable logic controllers (PLCs) are operating normally, but Leah is concerned the gateway could be used to bridge into the SCADA network.
 
 * **Your Action:**  
@@ -470,7 +470,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 
 ---
 
-#### Case 4: Maya's "Possessed" Laptop vs. Nora's Stolen Mailbox — `INC-2026-1204`
+#### Case 4: Maya's "Possessed" Laptop vs. Nora's Stolen Mailbox — `INC0075923`
 *Telemetry & Symptoms:* Maya from Marketing sprints to the desk shouting that her laptop is "possessed by demons"—her browser is flashing coupon ads, the fan is whining, and she demands an immediate hard drive wipe before her executive meeting. Meanwhile, Nora's ticket sits in the queue marked "Low Priority: Sent folder empty."
 
 * **Your Action:**  
@@ -492,7 +492,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 
 ---
 
-#### Case 5: Staging Server Kernel Driver Anomaly — `INC-2026-1205`
+#### Case 5: Staging Server Kernel Driver Anomaly — `INC0075924`
 *Telemetry & Symptoms:* On staging host `SRV-STAGE-01`, host EDR alerts on an unsigned kernel driver hooking disk input/output routines. The system administrator attempts to run `dir` and `tasklist` via PowerShell, which report that all files and services are clean and normal. The admin asks if they can run a third-party rootkit cleaner downloaded from a tech blog.
 
 * **Your Action:**  
@@ -535,7 +535,7 @@ Below is the definitive, audit-grade Incident Escalation Dossier assembled by Et
 ================================================================================
 PORTLAND OPERATIONS CENTER — FORMAL CSIRT INCIDENT ESCALATION DOSSIER
 ================================================================================
-INCIDENT TRACKING ID:  INC-2026-1022-CRUCIBLE
+INCIDENT TRACKING ID:  INC0075950
 INCIDENT SEVERITY:     P1 — CRITICAL (ACTIVE MULTI-STAGE INTRUSION & OT EXPOSURE)
 INITIAL CLASSIFICATION: Malicious Phishing / C2 Beaconing / Lateral Pivot / SCADA Exposure
 DATE & TIME INITIATED: 2026-06-24 14:15:00 PDT (21:15:00 UTC)
@@ -630,7 +630,7 @@ Timestamp (PDT) | Action Executed & Technical Details
 14:25:10        | Physical Network Isolation of TODD-SALES-14: Disconnected RJ-45 
                 | Ethernet cable. Disengaged physical Wi-Fi hardware toggle.
 14:28:45        | Physical Media Seizure: Seized 32GB USB flash drive from Todd Miller.
-                | Packaged in Anti-Static Evidence Pouch #EVD-2026-0624-01 with 
+                | Packaged in Anti-Static Evidence Pouch #EVD0007701-01 with 
                 | tamper-evident seal #SEAL-90412.
 14:32:00        | Industrial OT Boundary Containment: Network Operations disabled 
                 | switch ports Gi1/0/22 & Gi1/0/23 on SW-CORE-02, severing staging 
@@ -638,11 +638,11 @@ Timestamp (PDT) | Action Executed & Technical Details
 14:40:00        | Live volatile RAM acquisition initiated on FIN-NORA-02 via WinPmem
                 | over secure EDR collection tunnel. Image: FIN-NORA-02-RAM.raw.
 15:15:00        | Bit-stream forensic acquisition of USB completed via Tableau write
-                | blocker on PORT-IR-WK01. Image: EVD-2026-0624-USB.raw. Hash verified.
+                | blocker on PORT-IR-WK01. Image: EVD0007701-USB.raw. Hash verified.
 
 5. EVIDENCE LOG & CHAIN OF CUSTODY MASTER RECORD
 --------------------------------------------------------------------------------
-Item Number:      EVD-2026-0624-01
+Item Number:      EVD0007701-01
 Item Description: SanDisk Ultra 32GB USB 3.0 Flash Drive (Black casing, blue sharpie)
 Serial Number:    4C530001220914112102
 Seized From:      Todd Miller desk (Inside Sales, TODD-SALES-14)
@@ -652,13 +652,13 @@ SHA-256 Digest:   a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b
 Storage Location: Central Operations Evidence Safe #2 (Locker B, Combination Held by J. Brooks)
 
 Chain of Custody Transfer History:
-- 14:28 PDT: Seized by Ethan Mercer; sealed in Bag #EVD-2026-0624-01.
+- 14:28 PDT: Seized by Ethan Mercer; sealed in Bag #EVD0007701-01.
 - 15:05 PDT: Transferred to PORT-IR-WK01 by Ethan Mercer for write-blocked imaging.
 - 15:35 PDT: Transferred to Jules Brooks (CSIRT Lead). 
   Releasing Signature: Ethan Mercer, Tier 1 Support
   Receiving Signature: Jules Brooks, Desk Lead & CSIRT Coordinator
 
-Item Number:      EVD-2026-0624-02
+Item Number:      EVD0007701-02
 Item Description: Volatile Memory Dump (FIN-NORA-02-RAM.raw) — 16GB Physical DDR4
 Source Hostname:  FIN-NORA-02 (Finance Specialist Workstation)
 Acquired Date:    2026-06-24 14:48:10 PDT via WinPmem (Remote EDR Live Capture)

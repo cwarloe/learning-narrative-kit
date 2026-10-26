@@ -456,7 +456,7 @@ Before running any network command, enforce the CBYT protocol:
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1024
+Ticket ID:        INC0059713
 Requester:        Ken Vance (Freight Supervisor, Gresham Logistics Annex)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
@@ -510,7 +510,7 @@ Status:           RESOLVED
 ================================================================================
 NETWORK INFRASTRUCTURE PASSDOWN & HANDOVER NOTE
 ================================================================================
-Escalation ID:    ESC-2026-0418
+Escalation ID:    ESC0004978
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
 Escalated To:     Jared Lindqvist (Network Operations Engineer)

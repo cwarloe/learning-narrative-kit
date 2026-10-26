@@ -7,6 +7,9 @@ Checks, per episode:
 - Seasons: season words must fit the episode month.
 - Weekdays: the lab may only name weekdays the chapter names; if the chapter names
   none, the lab may name at most one.
+- IDs (rule 13): INC/ESC/EVD IDs carry no year, are unique to one episode, and increase by episode.
+- date-ok markers must give a reason; the cast registry (bible 3.4) fixes surnames;
+  'burst into' and repeated carried-'like a' entrances are flagged (rules 11 and 14).
 - Desk tenure: "N months on the desk" (or "N months into my tenure") must match the
   timeline row for that episode.
 Exit code 1 when a finding is printed.
@@ -103,7 +106,7 @@ def check_weekdays_and_tenure():
     return bad
 
 YEAR_OF_EP = {"00": 1, "01": 2, "02": 2, "03": 2, "04": 3, "05": 3, "06": 3, "07": 3, "08": 3, "09": 3, "10": 4, "11": 4, "12": 4}
-YEAR_ZERO = 2022  # Year 4 of Book 0 is 2026 (Ep 12 evidence pouch EVD-2026-0624)
+YEAR_ZERO = 2022  # Year 4 of Book 0 is 2026 (Ep 12 is June 2026)
 
 def check_iso_dates():
     """Every YYYY-MM-DD date in an episode's chapter or lab must fall in that episode's year and month."""
@@ -121,6 +124,104 @@ def check_iso_dates():
                 if (int(m.group(1)), int(m.group(2))) != want:
                     print(f"{p[len(str(ROOT))+1:]}:{ln}: {m.group(0)} but Ep {ep} is {want[0]}-{want[1]:02d}")
                     bad += 1
+    return bad
+
+ID_EP_OF_ARTIFACT = {"tickets.csv": "07", "tickets.json": "07", "sample_spoofed_cfo_payroll.eml": "09"}
+
+def id_sources():
+    """(episode, path) pairs for every file whose identifiers belong to one episode."""
+    out = []
+    for p in sorted(glob.glob(str(ROOT / "docs/portland-desk/*/[01][0-9]-*.md"))):
+        out.append((Path(p).name[:2], p))
+    for p in glob.glob(str(ROOT / "docs/portland-desk/artifacts/**/*"), recursive=True):
+        if Path(p).name in ID_EP_OF_ARTIFACT:
+            out.append((ID_EP_OF_ARTIFACT[Path(p).name], p))
+    return out
+
+def check_ids():
+    """Ticket, escalation, and evidence IDs: no year, unique to one episode, increasing by episode."""
+    bad = 0
+    seen = {}  # id -> episode
+    for ep, p in id_sources():
+        text = Path(p).read_text()
+        rel = p[len(str(ROOT))+1:]
+        for m in re.finditer(r"\b(?:INC|ESC|EVD|HD|SEC)-?(?:[A-Z]+-)?20\d\d-\d+\b|\bHD-\d+\b", text):
+            print(f"{rel}: {m.group(0)} carries a year or old format; use one counter like INC0048192"); bad += 1
+        for m in re.finditer(r"\b(INC|ESC|EVD)(\d{7})\b", text):
+            seen.setdefault(m.group(0), set()).add(ep)
+    for i, eps in seen.items():
+        if len(eps) > 1:
+            print(f"{i} is used in more than one episode: {sorted(eps)}"); bad += 1
+    for prefix in ("INC", "ESC", "EVD"):
+        rng = {}
+        for i, eps in seen.items():
+            if i.startswith(prefix):
+                for ep in eps:
+                    lo, hi = rng.get(ep, (10**9, -1))
+                    rng[ep] = (min(lo, int(i[3:])), max(hi, int(i[3:])))
+        prev = None
+        for ep in sorted(rng):
+            if prev and rng[ep][0] <= rng[prev][1]:
+                print(f"{prefix} IDs in Ep {ep} start at {rng[ep][0]} but Ep {prev} reaches {rng[prev][1]}"); bad += 1
+            prev = ep
+    return bad
+
+def check_date_ok_reasons():
+    bad = 0
+    for p in sorted(glob.glob(str(ROOT / "docs/portland-desk/*/[01][0-9]-*.md"))):
+        for ln, line in enumerate(Path(p).read_text().splitlines(), 1):
+            for m in re.finditer(r"<!--\s*date-ok(.*?)-->", line):
+                if not re.match(r"\s*:\s*\S", m.group(1)):
+                    print(f"{p[len(str(ROOT))+1:]}:{ln}: date-ok marker needs a reason (<!-- date-ok: why -->)"); bad += 1
+    return bad
+
+def cast_registry():
+    bible = (ROOT / "docs/research/PORTLAND_AUTHOR_BIBLE.md").read_text()
+    sec = bible.split("### 3.4 Cast Registry", 1)[1].split("\n---", 1)[0]
+    reg = {}
+    for m in re.finditer(r"^\| ([A-Z][a-z]+) \| ([A-Za-z]+) \|", sec, re.M):
+        if m.group(1) != "First":
+            reg.setdefault(m.group(1), set()).add(m.group(2))
+    return reg
+
+def check_cast():
+    """Rule 14: a registered first name may only be paired with its registered surname."""
+    bad = 0
+    reg = cast_registry()
+    surnames = {s for v in reg.values() for s in v if s != "none"}
+    files = [p for _, p in id_sources()] + glob.glob(str(ROOT / "docs/portland-desk/artifacts/**/*.*"), recursive=True)
+    files += [str(ROOT / "tools/generate_helpdesk_artifacts.py")]
+    for p in sorted(set(files)):
+        try:
+            text = Path(p).read_text()
+        except (UnicodeDecodeError, IsADirectoryError):
+            continue
+        rel = p[len(str(ROOT))+1:]
+        for m in re.finditer(r"\b([A-Z][a-z]+) ([A-Z][a-z]+)\b", text):
+            first, last = m.groups()
+            if first in reg and last in surnames and last not in reg[first]:
+                print(f"{rel}: '{m.group(0)}' but the cast registry says {first} {'/'.join(sorted(reg[first]))}"); bad += 1
+        for m in re.finditer(r"\b([a-z]+)\.([a-z]+)@harrowmere\.", text):
+            first, last = m.group(1).title(), m.group(2).title()
+            if first in reg and last in surnames and last not in reg[first]:
+                print(f"{rel}: {m.group(0)} but the cast registry says {first} {'/'.join(sorted(reg[first]))}"); bad += 1
+    return bad
+
+def check_staging():
+    """Rule 11: no 'burst into' entrances, and no carried-'like a' entrance twice in one act."""
+    bad = 0
+    acts = {"I": "000102", "II": "03040506", "III": "070809101112"}
+    for act, eps in acts.items():
+        hits = []
+        for ep in [eps[i:i+2] for i in range(0, len(eps), 2)]:
+            for p in glob.glob(str(ROOT / f"docs/portland-desk/narrative/{ep}-*.md")):
+                for ln, line in enumerate(Path(p).read_text().splitlines(), 1):
+                    if re.search(r"\bburst(s)? into\b", line):
+                        print(f"{p[len(str(ROOT))+1:]}:{ln}: 'burst into' entrance (rule 11)"); bad += 1
+                    if re.search(r"\b(holding|carrying|clutching|cradling) (his|her|their|a|the) \w+ like a\b", line):
+                        hits.append(f"{p[len(str(ROOT))+1:]}:{ln}")
+        if len(hits) > 1:
+            print(f"Act {act}: carried-'like a' entrance used {len(hits)} times: {hits} (rule 11)"); bad += 1
     return bad
 
 def main():
@@ -147,6 +248,10 @@ def main():
                         bad += 1
     bad += check_weekdays_and_tenure()
     bad += check_iso_dates()
+    bad += check_ids()
+    bad += check_date_ok_reasons()
+    bad += check_cast()
+    bad += check_staging()
     print(f"{bad} date finding(s)")
     return 1 if bad else 0
 

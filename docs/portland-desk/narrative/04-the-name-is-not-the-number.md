@@ -4,9 +4,9 @@
 
 A gray March downpour beat against the high double-paned windows of the fourth floor. Seven months on the Portland Operations Center desk had taught me the rhythms of the building: which closet switches ran warm, which departments panicked before payroll cutoff, and how fast a wet morning turned into a ticket surge.
 
-The Gresham static list was still taped to the side of my monitor. Five of the eleven devices were down to proper reservations. The other six belonged to people who had not returned my emails, and one of them was a staging laptop that a contract developer had set up in a trailer the previous September. <!-- date-ok -->
+The Gresham static list was still taped to the side of my monitor. Five of the eleven devices were down to proper reservations. The other six belonged to people who had not returned my emails, and one of them was a staging laptop that a contract developer had set up in a trailer the previous September. <!-- date-ok: back-reference to the trailer the previous September -->
 
-Across the center aisle, Tier 2 systems administrator Lena Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules Brooks sat to my left, finishing her first coffee while auditing overnight firewall changes.
+Across the center aisle, Tier 2 systems administrator Lena Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules sat to my left, finishing her first coffee while auditing overnight firewall changes.
 
 By eight thirty, the incoming ticket board on our wall monitor began flashing amber with nine high-priority incidents. Remote employees working across Multnomah and Washington counties were calling in with identical complaints. They had connected their laptops to our corporate virtual private network without any errors. Yet whenever they tried to open the internal payroll portal or the plant telemetry wiki, their browsers spun endlessly. Some requests timed out completely, while others redirected users to an unfamiliar public domain parking page. Meanwhile, accountants and dispatchers working inside the building were browsing those exact same internal websites without any trouble.
 
@@ -19,7 +19,7 @@ caption: "Schematic cutaway: The local DNS resolution path. When the resolver qu
 prompt: "Clean technical cutaway diagram of a computer desktop screen displaying DNS resolution paths under bright, even lighting. Flowchart lines connect local hosts file to DNS resolver cache and recursive domain controllers. Clean instructional style, crisp fine lines, no text, no words. 16:9 ratio."
 ```
 
-Jared Lindqvist from network operations walked over from the bullpen holding a paper cup of lukewarm coffee. He had worked around regional fiber plants long enough to remember when frame relay was cutting edge. His first instinct during any distributed outage was to blame the carrier.
+Jared from network operations walked over from the bullpen holding a paper cup of lukewarm coffee. He had worked around regional fiber plants long enough to remember when frame relay was cutting edge. His first instinct during any distributed outage was to blame the carrier.
 
 "Comcast probably pushed another broken routing update, or a backhoe clipped a conduit in Beaverton," Jared said, gesturing toward the rain with his paper cup. "Remote workers are on domestic broadband lines that flake out whenever the weather turns sour. Have them reboot their cable modems and flush their network stacks."
 
@@ -41,7 +41,7 @@ I leaned forward and examined the terminal window on Greg's remote screen. Inste
 
 "A `192.168.1.50` address is private non-routable space that belongs on a domestic local network," Maya pointed out. She wheeled her chair into our row. "Check the local static configuration files before you do anything else."
 
-I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the local [[hosts_file|hosts file]] in an elevated text editor. Right beneath the default commented loopback entries, someone had manually appended three hardcoded lines during the previous autumn: <!-- date-ok -->
+I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the local [[hosts_file|hosts file]] in an elevated text editor. Right beneath the default commented loopback entries, someone had manually appended three hardcoded lines during the previous autumn: <!-- date-ok: back-reference to the previous autumn -->
 
 ```text
 # Temporary development override - DO NOT REMOVE
@@ -49,7 +49,7 @@ I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the loc
 192.168.1.51    wiki.harrowmere.local
 ```
 
-"A contract software developer had this machine out in a staging trailer last September," I said. "They must have hardcoded those static mappings to point to a portable test server on their switch. Nobody ever cleaned the file before reissuing the laptop to accounting." <!-- date-ok -->
+"A contract software developer had this machine out in a staging trailer last September," I said. "They must have hardcoded those static mappings to point to a portable test server on their switch. Nobody ever cleaned the file before reissuing the laptop to accounting." <!-- date-ok: back-reference to last September -->
 
 "The operating system checks the local cache and the static file before it ever asks an external server," Jules remarked. She crossed her arms. "Remove those obsolete entries and flush the resolver cache. Let us see what happens when the computer actually asks for directions."
 

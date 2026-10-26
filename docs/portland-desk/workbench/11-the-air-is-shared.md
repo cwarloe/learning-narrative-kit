@@ -344,7 +344,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 ---
 
-#### Case 1: Forklift Scanner IP Lease Triage — `INC-2026-1101`
+#### Case 1: Forklift Scanner IP Lease Triage — `INC0073305`
 * **Incoming Ticket:** Forklift scanner `SCAN-WH-12` in the warehouse cannot scan pallets. Terminal network status shows:
   ```text
   IPv4 Address: 192.168.1.104
@@ -369,7 +369,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 ---
 
-#### Case 2: Maya Lin's Certificate Prompt Bypass — `INC-2026-1102`
+#### Case 2: Maya Lin's Certificate Prompt Bypass — `INC0073306`
 * **Incoming Ticket:** Maya reports: *"I am trying to connect to CORP-EMPLOYEE from the courtyard patio. A window popped up saying 'radius-auth.harrowrnere.com - The server certificate was issued by an untrusted entity.' It gives me a button that says 'Connect Anyway'. Should I click it so I can get into my board meeting?"*
 * **Your Triage Action:** [ Tell user to click Connect Anyway / Force WPA2-PSK / DENY connection, verify Root CA, and inspect for Evil Twin ]
 * **Threat Classification:**
@@ -386,7 +386,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 ---
 
-#### Case 3: Deauthentication Storm in the Lobby — `INC-2026-1103`
+#### Case 3: Deauthentication Storm in the Lobby — `INC0073307`
 * **Incoming Ticket:** Dev in Engineering reports his laptop drops Wi-Fi every 45 seconds while working in the lobby cafeteria. WLC syslog shows:
   ```text
   %DOT11-4-DEAUTH_FLOOD: 450 Deauth frames/sec received targeting client 00:28:f8:11:22:33 from spoofed BSSID 70:69:79:01:aa:01. Reason: Class 3 frame received from nonassociated STA (Code 7).
@@ -407,8 +407,8 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 ---
 
-#### Case 4: Marketing's Hidden SSID & MAC Filtering Request — `INC-2026-1104`
-* **Incoming Ticket:** Marketing submitted ticket `INC-2026-1104`: *"We are setting up a private VIP lounge for a product launch next week. To guarantee absolute security against hackers, we want IT to create a Hidden SSID (suppress beacon frames) and configure a MAC Address Whitelist with the 12 laptops of our executives."*
+#### Case 4: Marketing's Hidden SSID & MAC Filtering Request — `INC0073308`
+* **Incoming Ticket:** Marketing submitted ticket `INC0073308`: *"We are setting up a private VIP lounge for a product launch next week. To guarantee absolute security against hackers, we want IT to create a Hidden SSID (suppress beacon frames) and configure a MAC Address Whitelist with the 12 laptops of our executives."*
 * **Your Triage Action:** [ Approve request as secure / Deny request and educate requester on 802.1X Enterprise & WPA3 ]
 * **Threat Classification:**
 * **Technical Rationale:**
@@ -427,7 +427,7 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 ---
 
-#### Case 5: Bluetooth Peripheral Spam & Pairing Request — `INC-2026-1105`
+#### Case 5: Bluetooth Peripheral Spam & Pairing Request — `INC0073309`
 * **Incoming Ticket:** Jordan in dispatch reports: *"My laptop screen just popped up an unsolicited Bluetooth pairing request asking to pair with 'Magic_Keyboard_Pro' with PIN 884129. Two minutes earlier, my phone received an unprompted file transfer notification containing an image named 'free_coffee.jpg'. Am I hacked?"*
 * **Your Triage Action:** [ Approve pairing / Reinstall Windows / Decline pairing, turn Bluetooth discovery off, classify Bluejacking ]
 * **Threat Classification:**
@@ -467,13 +467,13 @@ Do not look at the answers first. Read each incident, commit to your decision an
 
 In enterprise support environments, your ticket documentation is a legal and operational record. Below are the two mandatory templates you must master:
 
-#### Part A: Standard Tier 1 Resolution Note (Example: Rita's Travel Router / INC-2026-1101)
+#### Part A: Standard Tier 1 Resolution Note (Example: Rita's Travel Router / INC0073305)
 
 ```text
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1101
+Ticket ID:        INC0073305
 Requester:        Rita (Marketing, Conference Room 3B)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks (Service Desk Lead)
@@ -519,14 +519,14 @@ Status:           RESOLVED / REMEDIATED
 ================================================================================
 ```
 
-#### Part B: Security Incident Escalation & SOC Handoff Note (Example: Lobby Evil Twin / INC-2026-1103)
+#### Part B: Security Incident Escalation & SOC Handoff Note (Example: Lobby Evil Twin / INC0073307)
 
 ```text
 ================================================================================
 SECURITY ESCALATION & THREAT INTEL ADVISORY - TIER 2 SOC / WIRELESS OPS
 ================================================================================
-Incident Tracking: SEC-WLAN-2026-1023
-Related Tickets:   INC-2026-1102, INC-2026-1103
+Incident Tracking: ESC0007312
+Related Tickets:   INC0073306, INC0073307
 Reporter:          Ethan Mercer (Tier 1 Support)
 Supervising Lead:  Jules Brooks (Desk Lead)
 Target Facility:   Portland Operations Center - East Lobby & Executive Courtyard

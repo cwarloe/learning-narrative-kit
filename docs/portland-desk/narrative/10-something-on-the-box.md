@@ -11,7 +11,7 @@ It was my third week as Tier 2, a month later than I had wanted it. Finance stil
 I clicked into the high-priority queue.
 
 ```ticket
-id: HD-4419
+id: INC0070431
 priority: High
 status: Open
 queue: Help Desk
@@ -178,7 +178,7 @@ Ken's laptop was not fine either. We reimaged it, and the spreadsheets he kept o
 
 Jules had me write the incident note to Ken's manager myself, with my two minutes in it, and Ken was copied.
 
-"That's twice, Mercer," he said on the phone. "Once you cost me a trailer. Now you cost me my notes." He hung up before I could answer. The first time had been his own door he held, not mine, and we both knew it. He did not call back that week.
+"That's twice, Mercer," he said on the phone. "Once you cost me a trailer. Now you cost me my notes." Then he turned away from the phone to tell someone about door four, and the line stayed open with forklift alarms in it until I set the handset down. The first time had been his own door he held, not mine, and we both knew it. He did not call back that week.
 
 ## Practice It in the Lab
 

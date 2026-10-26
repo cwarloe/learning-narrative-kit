@@ -2,11 +2,11 @@
 
 *A Security+ incident response precursor • Hover over highlighted terms after they have earned their keep.*
 
-A gusting Wednesday rain swept across the Willamette as I stepped onto the fourth floor. Twenty-two months on the service desk had taught me that the quietest tickets are often the ones carrying the sharpest edges. On the bezel of her monitor, Jules's sticky note still asked *Which decision?* under the fluorescent lights.
+A gusting Wednesday rain swept across the Willamette as I stepped onto the fourth floor. Twenty-two months on the service desk had taught me that the quietest tickets are often the ones carrying the sharpest edges. Jules's monitor bezel was bare now. The sticky note had gone into her drawer months ago, and since then she had written the question on my tickets instead.
 
 The dispatch board read forty-two open items at eight in the morning: forgotten passwords, jammed label printers, and a conference room projector that refused to handshake over HDMI. But by two in the afternoon, the board had gone dead silent. That silence is the first thing you learn to fear on an operations floor. When the phones stop ringing, it usually means the fire has moved into the walls.
 
-Jules had made me keep the wireless baseline from April, and she checked it every Friday. Against it, the morning's quiet tickets looked wrong. <!-- date-ok -->
+Jules had made me keep the wireless baseline from April, and she checked it every Friday. Against it, the morning's quiet tickets looked wrong. <!-- date-ok: back-reference to the April wireless baseline and Friday checks -->
 
 ## Maya and the laptop that must die
 
@@ -19,7 +19,7 @@ prompt: "Clean technical cutaway illustration of a computer forensic examination
 
 The day's first alarm was loud, messy, and harmless. 
 
-At 08:30, Maya Lin from Accounting marched past the glass partition holding her Dell Latitude by the corner of the lid like a wet umbrella. Her eyes had the frantic intensity of someone who believed her machine had contracted a personal grudge.
+At 08:30, Maya from Accounting marched past the glass partition holding her Dell Latitude by the corner of the lid like a wet umbrella. Her eyes had the frantic intensity of someone who believed her machine had contracted a personal grudge.
 
 "It is possessed, Ethan," Maya said, dropping the machine onto my staging mat with a plastic clatter. "Pop-ups. Every time I open Chrome, five tabs try to sell me Caribbean cruises. The fan is screaming. My standup with the VP is in twelve minutes. Wipe it clean and image it from the thumb drive."
 
@@ -45,7 +45,7 @@ Jules tapped the top of the imaging drawer with her pen. "You can open that draw
 
 ## The quiet mailbox
 
-At 11:15, the second ticket arrived. It came without shouting or all-caps subject lines. It arrived as a polite two-line inquiry from Nora Higgins in Finance: *Can't find morning wire confirmations in my Sent folder. Also noticed an Outlook rule I don't remember creating. Low priority.*
+At 11:15, the second ticket arrived. It came without shouting or all-caps subject lines. It arrived as a polite two-line inquiry from Nora in Finance: *Can't find morning wire confirmations in my Sent folder. Also noticed an Outlook rule I don't remember creating. Low priority.*
 
 I didn't reach for the USB drawer. I remoted into the Exchange administrative center from my console, remembering Jules's rule: *start on your side of the glass.*
 
@@ -71,9 +71,9 @@ Every three hundred seconds—five minutes like clockwork—the beacon sent an o
 
 ## The lateral pivot and the warehouse USB
 
-Before Jules could answer, Jared Lindqvist burst into our aisle from the server room, his face pale beneath the fluorescent tubes. He wasn't carrying coffee.
+Before Jules could answer, I saw Jared coming down the aisle from the server room, walking faster than I had ever seen him walk. He wasn't carrying coffee.
 
-"Todd Miller in Inside Sales just called from the dock," Jared said, his breath short. "He found an unbranded USB stick on the floor of the shipping office labeled *Client Deck Final*. He plugged it into `TODD-SALES-14` to see whose presentation it was."
+"Todd in Inside Sales just called from the dock," Jared said. "He found an unbranded USB stick on the floor of the shipping office labeled *Client Deck Final*. He plugged it into `TODD-SALES-14` to see whose presentation it was."
 
 "Tell me he didn't run the file," Jules said, her voice dropping an octave.
 
@@ -85,7 +85,7 @@ Jared found the link first, in the switch logs. Todd's workstation had opened a 
 
 My screen refreshed. `SRV-STAGE-01` was the dual-homed staging jump host Jared had hardened the summer before. It bridged the corporate management subnet with the isolated industrial operations network. Thirty seconds ago, Nora's compromised credentials had successfully authenticated against the jump host via SSH from `FIN-NORA-02`.
 
-And thirty seconds after that, the network edge firewall logged an outbound connection attempt on port 8443 originating from `GW-PLANT-04`—the SCADA edge gateway at the Willamette River Water Treatment Facility—reaching out to the exact same external command-and-control IP: `185.22.112.14`.
+And thirty seconds after that, the network edge firewall logged an outbound connection attempt on port 8443 originating from `GW-PLANT-04`—the SCADA edge gateway at the Willamette River plant—reaching out to the exact same external command-and-control IP: `185.22.112.14`.
 
 The pieces snapped together with terrifying clarity. This was not four random help desk tickets. This was a synchronized, multi-vector enterprise intrusion: credential phishing, memory-resident C2 beaconing, physical removable media lateral movement, and a direct pivot toward the Willamette River plant's control network.
 
@@ -105,13 +105,13 @@ I started the memory capture on Todd's workstation while Jared pulled the port l
 
 ## What It Cost
 
-By 4:30 the rain had eased to a mist over the Willamette. Jules signed the receiving line on Evidence Pouch `#EVD-2026-0624-01` and slid the red binder into the CSIRT handoff rack.
+By 4:30 the rain had eased to a mist over the Willamette. Jules signed the receiving line on Evidence Pouch `#EVD0007701-01` and slid the red binder into the CSIRT handoff rack.
 
 The intrusion was contained, but not cleanly. To cut the attacker's path into the plant, we had isolated the Willamette River gateway, and Leah's crew ran the treatment line on manual override for the rest of the shift. She called at six to say they had held it, and that three operators were working a double because of it. She did not sound angry. She sounded tired, and she wanted to know when the gateway was coming back. It came back nine days later, after Jared rebuilt it.
 
 ## The After-Action Review
 
-The review was the following Tuesday, with Nia on the bridge from Chicago and Jules, Jared, Leah, and me in the fourth-floor conference room. On the table were the timeline printout, the evidence log, Jared's rebuild ticket for the gateway, and a list of the indicators I had saved since December. <!-- date-ok -->
+The review was the following Tuesday, with Nia on the bridge from Chicago and Jules, Jared, Leah, and me in the fourth-floor conference room. On the table were the timeline printout, the evidence log, Jared's rebuild ticket for the gateway, and a list of the indicators I had saved since December. <!-- date-ok: review day and back-reference to December indicators -->
 
 Leah started before Nia did. "I found out my gateway was going dark from a phone call, not from a plan."
 
@@ -119,7 +119,7 @@ Leah started before Nia did. "I found out my gateway was going dark from a phone
 
 "Then whose is it?" Leah asked. Nobody answered quickly enough. Nia wrote *plant isolation playbook, owner TBD* at the top of the preparation list, and under it Owen's lobby camera, which was still on order.
 
-Nia ran down the indicator list next. None of my saved hashes or domains from December or February had matched anything in this intrusion. "Keep saving them," she said. "Just don't expect them to be the thing that catches the next one." <!-- date-ok -->
+Nia ran down the indicator list next. None of my saved hashes or domains from December or February had matched anything in this intrusion. "Keep saving them," she said. "Just don't expect them to be the thing that catches the next one." <!-- date-ok: back-reference to December and February incidents -->
 
 Then she got to containment, and my name came up. I had isolated Todd's workstation before the second memory capture finished, because I saw it start enumerating shares and wanted it off the wire. The first capture was good. The second would have shown whether the attacker had moved a tool into memory after the first. We would never know.
 

@@ -104,7 +104,7 @@ flowchart TD
 ### Drill 1: The Cleartext Telnet Trap (Packet Capture Analysis)
 
 #### The Scenario
-Jared from Network Operations filed ticket **`INC-2026-1041`**. A switch in a Building C closet (`10.0.4.15`) has a VLAN set wrong, and his old configuration script expects Telnet. He says: *"I Telnet in, type the enable password, fix the VLAN, hang up. Ten minutes."*
+Jared from Network Operations filed ticket **`INC0063140`**. A switch in a Building C closet (`10.0.4.15`) has a VLAN set wrong, and his old configuration script expects Telnet. He says: *"I Telnet in, type the enable password, fix the VLAN, hang up. Ten minutes."*
 
 Before replying, you pull an actual packet capture ([`artifacts/jared-telnet-capture.pcap`](../artifacts/jared-telnet-capture.pcap)) taken from a span port on that management segment during Jared's previous run. The table below shows frames 101 to 137 of it, filtered to port 23. You can read the table here, or open the file in Wireshark:
 
@@ -187,7 +187,7 @@ No.   Time        Source          Destination     Proto  Info
 ### Drill 2: Mail Client Configuration Triage (Maya Lin)
 
 #### The Scenario
-Maya Lin from Accounting logged ticket **`INC-2026-1042`**. When she works from her desk dock, email syncs. When she works from home or tethered to her phone, Outlook errors out with:
+Maya Lin from Accounting logged ticket **`INC0063141`**. When she works from her desk dock, email syncs. When she works from home or tethered to her phone, Outlook errors out with:
 `Receiving reported error (0x8004210A): The operation timed out waiting for a response from the receiving (POP) server.`
 Her Outbox has 4 unsent vendor payment approvals.
 
@@ -309,7 +309,7 @@ ssh jared@10.0.4.15: |
 </div>
 
 
-#### Ticket 1: Dale Okafor (Facilities HVAC Vendor) — `INC-2026-1043`
+#### Ticket 1: Dale Okafor (Facilities HVAC Vendor) — `INC0063142`
 *Request:* "Open FTP (Port 21) inbound through the perimeter firewall to internal server `192.168.10.85` so our diagnostic laptop can push building HVAC controller firmware."
 
 * **Your Action:** [ Allow / Deny / Redirect ]
@@ -327,7 +327,7 @@ ssh jared@10.0.4.15: |
 
 ---
 
-#### Ticket 2: Sam Kelly (External Finance Contractor) — `INC-2026-1044`
+#### Ticket 2: Sam Kelly (External Finance Contractor) — `INC0063143`
 *Request:* "Traveling in Seattle. Open RDP (TCP 3389) on our external gateway IP directly to `192.168.10.14` for 72 hours so I can complete quarterly audit spreadsheets from my hotel room."
 
 * **Your Action:** [ Allow / Deny / Redirect ]
@@ -345,7 +345,7 @@ ssh jared@10.0.4.15: |
 
 ---
 
-#### Ticket 3: Lena Cho (Legal Dept Onboarding) — `INC-2026-1045`
+#### Ticket 3: Lena Cho (Legal Dept Onboarding) — `INC0063144`
 *Request:* "Connecting from Guest Wi-Fi in the lobby. Password reset portal reports `LDAP error 81 (Cannot contact directory server)`. Connecting to dock gives `Kerberos clock skew error`."
 
 * **Your Action:** [ Diagnostic & Configuration Changes ]
@@ -363,7 +363,7 @@ ssh jared@10.0.4.15: |
 
 ---
 
-#### Ticket 4: Dee Washington (Network Operations) — `INC-2026-1046`
+#### Ticket 4: Dee Washington (Network Operations) — `INC0063145`
 *Request:* "Access switches in Building B were provisioned with SNMP community string `public` on UDP 161. Monitoring needs graphs by tomorrow."
 
 * **Your Action:** [ Configuration Hardening ]
@@ -381,7 +381,7 @@ ssh jared@10.0.4.15: |
 
 ---
 
-#### Ticket 5: Leah Moreno (Portland Plant Operations) — `INC-2026-1049`
+#### Ticket 5: Leah Moreno (Portland Plant Operations) — `INC0063148`
 *Request:* "East Treatment Line telemetry gateway in Building 4 failed to stream pump and valve sensor metrics to central plant console. Field technician wants to route Modbus/TCP (port 502) and DNP3 (port 20000) directly over the inter-site WAN."
 
 * **Your Action:** [ Operational Technology Architecture Decision ]
@@ -419,13 +419,13 @@ ssh jared@10.0.4.15: |
 
 In enterprise support environments, your ticket documentation is a legal and security record. Below are the two mandatory templates you must master:
 
-#### Part A: Standard Ticket Resolution Note (Example: Maya Lin / INC-2026-1042)
+#### Part A: Standard Ticket Resolution Note (Example: Maya Lin / INC0063141)
 
 ```text
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1042
+Ticket ID:        INC0063141
 Requester:        Maya Lin (Accounting)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
@@ -458,13 +458,13 @@ Status:           RESOLVED
 ================================================================================
 ```
 
-#### Part B: Security Incident Escalation Note (Example: Leah Moreno / INC-2026-1049)
+#### Part B: Security Incident Escalation Note (Example: Leah Moreno / INC0063148)
 
 ```text
 ================================================================================
 SECURITY ESCALATION & ARCHITECTURAL REVIEW NOTE
 ================================================================================
-Ticket ID:        INC-2026-1049
+Ticket ID:        INC0063148
 Requester:        Leah Moreno (Portland Plant Operations Lead)
 Technician:       Ethan Mercer (Tier 1 Support)
 Escalated To:     Tier 2 Network Security & SOC Incident Desk

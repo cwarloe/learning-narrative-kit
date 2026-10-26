@@ -275,7 +275,7 @@ You open a PowerShell terminal on your management workstation to de-obfuscate th
 #### The Scenario
 > **Practice case.** This drill is invented for practice and is not an event from the chapter.
 
-Maya in Accounting opened ticket `HD-4419` complaining of browser pop-ups and sluggish performance following an unauthorized software download. You remote into `MAYA-W11` with her permission. In Task Manager, you see an unfamiliar process named `optram.exe` using 15% CPU. If you simply right-click and choose "End Task", the process disappears, but returns immediately upon reboot.
+Maya in Accounting opened ticket `INC0070431` complaining of browser pop-ups and sluggish performance following an unauthorized software download. You remote into `MAYA-W11` with her permission. In Task Manager, you see an unfamiliar process named `optram.exe` using 15% CPU. If you simply right-click and choose "End Task", the process disappears, but returns immediately upon reboot.
 
 To inspect the persistence mechanism, you examine the pre-recorded Autoruns log in [`artifacts/autoruns_dump.txt`](../artifacts/autoruns_dump.txt) and the System Event Log in [`artifacts/event_7045_dump.txt`](../artifacts/event_7045_dump.txt):
 
@@ -419,7 +419,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 </div>
 
 
-#### Ticket 1 (practice case, not from the chapter): Warehouse Clerk (Shipping Bay) — `INC-2026-1181`
+#### Ticket 1 (practice case, not from the chapter): Warehouse Clerk (Shipping Bay) — `INC0070418`
 *Request:* "Found an unlabeled USB stick in the shipping bay. Plugged it in to see who owns it, and my laptop fans immediately spun up to 100%. Antivirus quarantined `SOW_final.pdf.exe`. Can I just unplug the USB, empty my recycle bin, and keep working on my sales forecast?"
 
 * **Your Action:** [ Clear Alert & Resume / Isolate Host & Audit Network Shares / Scan USB on Laptop ]
@@ -437,7 +437,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 2: Rina Rostova (Facilities Lead) — `INC-2026-1182`
+#### Ticket 2: Rina Rostova (Facilities Lead) — `INC0070419`
 *Request:* "All work orders and vendor contracts on my desktop have the extension `.locked`. A Notepad opened titled `README_RESTORE.txt` demanding \$2,000 in Bitcoin within 72 hours. It says if I join their online customer chat they will decrypt one file for free as proof. Can I test the chat to get our building HVAC blueprints back?"
 
 * **Your Action:** [ Test Decrypt Chat / Negotiate / Isolate Host & Engage Backups ]
@@ -455,7 +455,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 3 (practice case, not from the chapter): Nora Higgins (Finance Specialist) — `INC-2026-1183`
+#### Ticket 3 (practice case, not from the chapter): Nora Higgins (Finance Specialist) — `INC0070420`
 *Request:* "A black terminal window flashed on my screen for half a second while I was reviewing budget spreadsheets. My local antivirus widget says 'System Protected - 0 Threats Found'. I have payroll due in two hours—can I ignore it?"
 
 * **Your Action:** [ Dismiss Ticket / Query Network Telemetry & Isolate Host ]
@@ -473,7 +473,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 4 (practice case, not from the chapter): Jordan Reed (Operations Specialist) — `INC-2026-1184`
+#### Ticket 4 (practice case, not from the chapter): Jordan Reed (Operations Specialist) — `INC0070421`
 *Request:* "Was reviewing scheduled tasks on our staging host `SRV-STAGE-01` and found a task named `StagingMaintenance`. The action is `powershell.exe -File C:\stage\cleanup.ps1`, and the trigger condition checks if a departed contractor's Active Directory account is disabled. Should I run the script manually to see what it cleans?"
 
 * **Your Action:** [ Run Script / Delete Task / Disable Task, Preserve Evidence, & Escalate ]
@@ -491,7 +491,7 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 
 ---
 
-#### Ticket 5 (practice case, not from the chapter): Dev Patel (Software Engineer) — `INC-2026-1185`
+#### Ticket 5 (practice case, not from the chapter): Dev Patel (Software Engineer) — `INC0070422`
 *Request:* "My terminal command `dir C:\Windows\System32\drivers` looks completely normal, but EDR generated an alert claiming an unsigned driver is hooking file system I/O. I downloaded a free rootkit remover tool from an internet forum; can I run it with admin rights?"
 
 * **Your Action:** [ Run Free Cleaner / Reimage Host from Known-Good Media ]
@@ -530,13 +530,13 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' 
 In enterprise security operations, Tier 1 service desk notes serve as the initial chain-of-custody and incident triage record for Tier 2/3 SOC analysts, compliance teams, and management.
 
 #### Part A: Tier 1 Standard Host Infection Isolation & Containment Note
-*(Reference Case: Todd / Workstation `TODD-SALES-14` / Incident `INC-2026-1181`)*
+*(Reference Case: Todd / Workstation `TODD-SALES-14` / Incident `INC0070418`)*
 
 ```text
 ================================================================================
 TIER 1 INCIDENT CONTAINMENT NOTE - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1181
+Ticket ID:        INC0070418
 Affected Host:    TODD-SALES-14 (IP: 192.168.10.45)
 User / Dept:      Todd Miller (Sales & Warehouse Operations)
 Technician:       Ethan Mercer (Tier 1 Support)
@@ -593,13 +593,13 @@ Status:           CONTAINED / ESCALATED TO SOC
 ---
 
 #### Part B: High-Severity Ransomware Incident Escalation Note
-*(Reference Case: Rina / Workstation `RINA-FAC-01` / Incident `INC-2026-1182`)*
+*(Reference Case: Rina / Workstation `RINA-FAC-01` / Incident `INC0070419`)*
 
 ```text
 ================================================================================
 CRITICAL SECURITY ESCALATION - ACTIVE RANSOMWARE OUTBREAK
 ================================================================================
-Ticket ID:        INC-2026-1182
+Ticket ID:        INC0070419
 Affected Host:    RINA-FAC-01 (IP: 192.168.30.12)
 User / Dept:      Rina Rostova (Facilities Operations)
 Technician:       Ethan Mercer (Tier 1 Support)

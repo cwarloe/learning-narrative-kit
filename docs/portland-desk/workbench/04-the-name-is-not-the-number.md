@@ -491,7 +491,7 @@ Every service desk technician must produce documentation that meets strict opera
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1104
+Ticket ID:        INC0058306
 Requester:        Greg Adams (Accounts Payable Specialist)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
@@ -540,7 +540,7 @@ Status:           RESOLVED
 ================================================================================
 SYSTEMS & NETWORK SECURITY ESCALATION NOTE
 ================================================================================
-Escalation ID:    ESC-2026-0488
+Escalation ID:    ESC0004888
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
 Escalated To:     Lena Chen (Tier 2 Sysadmin) / Jared Lindqvist (Network Ops)

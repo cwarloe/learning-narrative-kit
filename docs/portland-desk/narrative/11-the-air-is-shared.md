@@ -2,7 +2,7 @@
 
 *A Security+ wireless precursor • Hover over highlighted terms for exam definitions and supporting desk jargon.*
 
-Friday morning opened with the whine of the vacuum cleaner in the hallway and a ticket from Maya Lin that had been sent from the lobby.
+Friday morning opened with the whine of the vacuum cleaner in the hallway and a ticket from Maya that had been sent from the lobby.
 
 Jules came out of the server closet with a handheld spectrum analyzer and set it on my desk without a word. The display was already busier than it should have been.
 
@@ -61,7 +61,7 @@ While we were there, the analyzer showed our real APs alongside faint guest beac
 
 ## Disassociation, jamming, and the reconnect reflex
 
-Dev showed up at the help desk window holding his laptop like a tray, because it kept dropping Wi-Fi every few minutes, then auto-joined whatever answered first. He was in the cafe seating near the lobby glass.
+Dev called the help desk from the cafe seating near the lobby glass. His laptop kept dropping Wi-Fi every few minutes, then auto-joined whatever answered first.
 
 "I did not change anything," he said. "It just flaps. Then it asks for passwords it already knew."
 

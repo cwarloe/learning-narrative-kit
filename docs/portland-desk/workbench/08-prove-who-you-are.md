@@ -377,7 +377,7 @@ Unlock-ADAccount -Identity dev.engineering: |
 </div>
 
 
-#### Ticket 1: Todd Miller (Sales Representative) — `INC-2026-1141`
+#### Ticket 1: Todd Miller (Sales Representative) — `INC0066915`
 *Request:* "Got a new phone over the weekend. I don't want to install the company authenticator app again because it takes up storage. Just set my account to SMS verification, or turn off MFA and let me use my laptop PIN plus password."
 
 * **Your Action:** [ Approve / Deny / Redirect ]
@@ -395,7 +395,7 @@ Unlock-ADAccount -Identity dev.engineering: |
 
 ---
 
-#### Ticket 2: Nora Higgins (Finance Clerk) — `INC-2026-1142`
+#### Ticket 2: Nora Higgins (Finance Clerk) — `INC0066916`
 *Request:* "Password reset portal says my new password `Fall2025!` violates complexity and history policy. I've used Seasons and Years for ten years. Give me an exemption or lower the required length to 8 characters so I don't have to write it down."
 
 * **Your Action:** [ Approve Exemption / Deny / Coach on Passphrase ]
@@ -413,7 +413,7 @@ Unlock-ADAccount -Identity dev.engineering: |
 
 ---
 
-#### Ticket 3: Dev Patel (Software Engineering) — `INC-2026-1143`
+#### Ticket 3: Dev Patel (Software Engineering) — `INC0066917`
 *Request:* "My account `dpatel` is locked out again. I was testing a legacy database backup script that had an expired password hardcoded in the connection string. Unlock my account right now so I can commit my pull request."
 
 * **Your Action:** [ Unlock Immediately / Hold Unlock Until Remediated ]
@@ -431,7 +431,7 @@ Unlock-ADAccount -Identity dev.engineering: |
 
 ---
 
-#### Ticket 4: Rita Alvarez (Marketing Lead) — `INC-2026-1144`
+#### Ticket 4: Rita Sorensen (Marketing Lead) — `INC0066918`
 *Request:* "Traveling to international conference in Geneva for ten days. I am afraid of losing my smartphone or having no international roaming cellular signal. Can I disable MFA while abroad, or what is the approved option?"
 
 * **Your Action:** [ Disable MFA / Provide Roaming Bypass / Issue Hardware Token ]
@@ -449,7 +449,7 @@ Unlock-ADAccount -Identity dev.engineering: |
 
 ---
 
-#### Ticket 5: Jordan Reed (IT Operations) — `INC-2026-1145`
+#### Ticket 5: Jordan Reed (IT Operations) — `INC0066919`
 *Request:* "Offboarding contractor Sam Kelly. Badge collected, laptop returned. Contractor was member of shared administrator account `admin_billing`. We don't want to change the password because three other contractors use it."
 
 * **Your Action:** [ Close Ticket / Escalate & Rotate Shared Secret / Migrate to RBAC ]
@@ -487,13 +487,13 @@ Unlock-ADAccount -Identity dev.engineering: |
 
 In enterprise identity operations, your ticket notes are legal and security audit records. Below are the two mandatory templates you must master:
 
-#### Part A: Password Expiration Triage Note (Example: Nora Higgins / INC-2026-1142)
+#### Part A: Password Expiration Triage Note (Example: Nora Higgins / INC0066916)
 
 ```text
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1142
+Ticket ID:        INC0066916
 Requester:        Nora Higgins (Finance Department)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
@@ -530,13 +530,13 @@ Status:           OPEN (manager enrollment pending)
 ================================================================================
 ```
 
-#### Part B: Phishing-Resistant MFA Enrollment & Security Escalation Note (Example: Todd Miller / INC-2026-1141)
+#### Part B: Phishing-Resistant MFA Enrollment & Security Escalation Note (Example: Todd Miller / INC0066915)
 
 ```text
 ================================================================================
 SECURITY ENROLLMENT & HARDENING NOTE - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1141
+Ticket ID:        INC0066915
 Requester:        Todd Miller (Sales Representative)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks

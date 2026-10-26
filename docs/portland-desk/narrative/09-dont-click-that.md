@@ -6,7 +6,7 @@ Wednesday morning smelled of wet pavement and burnt French roast. I was hanging 
 
 "Finance says the CFO is traveling all week," Jules said, reading from her phone. "Expect someone to know that."
 
-I was still Tier 1. The posting I had missed in October would reopen that week, and the line in my file about tone was still there. <!-- date-ok -->
+I was still Tier 1. The posting I had missed in October would reopen that week, and the line in my file about tone was still there. <!-- date-ok: back-reference to the October posting -->
 
 The wallboard chimed: a high-priority ticket flagged *URGENT — mailbox locked, verify now.*
 

@@ -136,6 +136,43 @@ graph LR
 - **Nia Alvarez (Senior Incident Response Lead, Chicago HQ):** Highly respected, rigorous security investigator at corporate headquarters. Nia deals with hundreds of careless, poorly documented escalation tickets from regional sites every week. She has zero patience for hand-waving, speculation, or missing timestamps. When Ethan submits a pristine, mathematically rigorous incident packet in Episode 12, Nia recognizes a rare analytical talent operating at the regional level.
 - **Chicago Central IT / SOC:** The faceless corporate entity that dictates enterprise group policies, mandatory software agents, and quarterly compliance mandates. Chicago represents the systemic tension between centralized governance and local regional survival.
 
+
+### 3.4 Cast Registry (one surname per character)
+`tools/check_dates.py` reads this table. Labs, artifacts, and scripts may use only the surname listed here. A character with no surname has "none".
+
+| First name | Surname | Role |
+|---|---|---|
+| Ethan | Mercer | Protagonist, dock then Tier 1 desk |
+| Jules | Brooks | Help desk lead |
+| Jared | Lindqvist | Network operations engineer |
+| Ken | Vance | Gresham dock supervisor |
+| Maya | Lin | Regional accounting supervisor |
+| Nora | Higgins | Finance specialist |
+| Todd | Miller | Inside sales |
+| Dev | Patel | Software engineering |
+| Rita | Sorensen | Marketing lead |
+| Sam | Kelly | Finance contractor |
+| Leah | Moreno | Willamette River plant operations lead |
+| Lena | Chen | Tier 2 systems administrator |
+| Lena | Cho | Legal and compliance associate |
+| Marisol | none | Accounts payable |
+| Avery | Chen | Chief financial officer |
+| Dale | Okafor | Facilities vendor engineer |
+| Rina | Rostova | Facilities lead |
+| Owen | Castillo | Facilities field technician |
+| Dee | Washington | Network monitoring specialist |
+| Marco | Reyes | Cabling and closet technician |
+| Nia | Alvarez | Chicago incident response lead |
+| Rosa | Ibarra | Gresham night maintenance tech |
+| Jordan | Reed | IT operations |
+| Greg | Adams | Accounts payable specialist |
+| Frank | Mercer | Ethan's father |
+| Carlos | Gomez | Warehouse shipping (ticket artifact) |
+| Rachel | Adams | Executive office (ticket artifact) |
+| David | Kim | Marketing (ticket artifact) |
+| Sarah | Jenkins | Lobby reception (ticket artifact) |
+| Tom | Bradley | Procurement (ticket artifact) |
+
 ---
 
 ## 4. The Causal Beat Matrix (Ep 00 to 12)
@@ -307,7 +344,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 ### Card 09: Don't Click That
 
 - **Placement:** Act III, Phase 3. Year 3, December. 16 months on the desk. Still Tier 1; the Tier 2 posting reopens this month. Ethan is 23.
-- **Setting and cast:** Portland ROC. Jules, Marisol, Maya, Nora, Sam, Todd, Avery in AP.
+- **Setting and cast:** Portland ROC. Jules, Marisol (AP), Maya, Nora, Sam, Todd, and Avery Chen (CFO, impersonated).
 - **Goal:** Stop a spoofed CFO wire-change request before the afternoon batch.
 - **Complication:** A $48,000 wire request, an archive attachment, and MFA fatigue pushes on Dev's phone, all at once.
 - **Pivot:** Ethan pulls headers, checks SPF, DKIM, and DMARC, and gets a quarantine hash to the mail gateway, and Marisol verifies by phone.

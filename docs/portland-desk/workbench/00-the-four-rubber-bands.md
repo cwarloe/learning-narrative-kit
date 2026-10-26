@@ -51,7 +51,7 @@ The certification consists of two separate examinations:
 - **CompTIA A+ Core 1 (220-1101):** Hardware, mobile devices, networking technology, and virtualization ($246 retail voucher fee).
 - **CompTIA A+ Core 2 (220-1102):** Operating systems, security principles, software troubleshooting, and operational procedures ($246 retail voucher fee).
 
-Together, the two vouchers total **$492**. When your bank account holds less than one hundred dollars after paying rent, failing an exam does not mean scheduling a casual retake next Tuesday. It means forfeiting two weeks of food money, gas, or rent.  <!-- date-ok -->
+Together, the two vouchers total **$492**. When your bank account holds less than one hundred dollars after paying rent, failing an exam does not mean scheduling a casual retake next Tuesday. It means forfeiting two weeks of food money, gas, or rent.  <!-- date-ok: 'weeks' of money, not a date -->
 
 This financial terror produces a distinct cognitive pathology: **rote flashcard panic**. Stressed candidates purchase eight-hundred-page textbooks and try to memorize every noun, acronym, pin count, and cable specification as if preparing for a spelling bee. They drown in trivia—laser printer corona wires, DDR4 pinouts, and DVI connector variants—while failing to develop the mental models required to troubleshoot a machine in the real world.
 
@@ -373,7 +373,7 @@ Ethernet adapter Local Area Connection:
 
 ### Drill 1 (practice case): The Panic Power Cut
 
-> **Ticket Drop:** `T1-INIT-2026-002` • Priority: P2-High • Subsystem: Component 2 (Memory) vs Component 3 (Storage)
+> **Ticket Drop:** `INC0048192` • Priority: P2-High • Subsystem: Component 2 (Memory) vs Component 3 (Storage)
 **Scenario:** A user reports that their computer opened an unauthorized browser popup at 09:15 AM claiming their files were encrypted. The desktop background changed to a red warning screen. The user panicked, pulled the physical power cord from the wall outlet, and walked the tower down to the help desk.
 
 ```
@@ -583,7 +583,7 @@ ipconfig: |
 
 #### Case 3: Edge-Case Trap (Incident 00.3 / Ticket C) — Local Network Functional, Internet Down
 
-> **Ticket Drop:** `T1-INIT-2026-003` • Priority: P3-Normal • Subsystem: Component 4 (Communication / Layer 3 Routing)
+> **Ticket Drop:** `INC0048193` • Priority: P3-Normal • Subsystem: Component 4 (Communication / Layer 3 Routing)
 - **Symptom:** A user can print to the shared office network printer at `192.168.1.200` and can ping their desk neighbor at `192.168.1.55`. However, attempting to navigate to `google.com` or pinging `8.8.8.8` returns "Destination host unreachable."
 - **Your Task:** Isolate the exact network configuration parameter responsible using the Identity Triad.
 
@@ -769,7 +769,7 @@ Use this standardized intake checklist when logging and triaging your first live
 ========================================================================================
 FIRST-CONTACT DIAGNOSTIC INTAKE WORKSHEET · TIER 1 SUPPORT
 ========================================================================================
-TICKET REF   : T1-INIT-2026-001             DATE/TIME : 2023-07-27 09:30 PDT
+TICKET REF   : INC0048191                   DATE/TIME : 2023-07-27 09:30 PDT
 TECHNICIAN   : ____________________________ STATUS    : UNDER INVESTIGATION
 USER NAME    : ____________________________ ASSET TAG : _______________________________
 
@@ -809,13 +809,13 @@ USER NAME    : ____________________________ ASSET TAG : ________________________
 
 ### Part C (practice case): Standard 3-Block Ticket Resolution Note
 
-Before closing Incident `T1-INIT-2026-002`, draft the formal 3-Block passdown note separating internal technician telemetry from user-facing guidance:
+Before closing Incident `INC0048192`, draft the formal 3-Block passdown note separating internal technician telemetry from user-facing guidance:
 
 ```
 ========================================================================================
 ENTERPRISE INCIDENT RESOLUTION RECORD · SERVICE DESK TIER 1
 ========================================================================================
-INCIDENT ID   : INC0048192 / T1-INIT-2026-002
+INCIDENT ID   : INC0048192
 ASSET TAG     : ACCT-WS-09 (Dell OptiPlex 7090)
 CALLER        : Practice caller (Accounting Supervisor)
 CATEGORY      : Endpoint Security > Malware Containment & Volatility Triage

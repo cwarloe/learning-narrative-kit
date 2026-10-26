@@ -4,7 +4,7 @@
 
 The fourth-floor bullpen of the Portland Regional Operations Center smelled of commercial carpet shampoo, damp raincoats, and stale dark roast coffee. Outside the narrow casement windows, an overcast August drizzle fell across the industrial rooftops along the Willamette River. 
 
-Six months earlier, Ken Vance's internal referral had moved me off the Gresham loading dock and into Harrowmere's regional IT rotation. I had spent those six months on day shift: imaging laptops at the bench, rolling out desktop towers, carrying 27-inch monitors up freight elevators, and covering one long week of graveyard tickets. It paid a dollar and change less an hour than the night freight dock, and I took the cut gladly for the daylight. 
+Six months earlier, Ken's internal referral had moved me off the Gresham loading dock and into Harrowmere's regional IT rotation. I had spent those six months on day shift: imaging laptops at the bench, rolling out desktop towers, carrying 27-inch monitors up freight elevators, and covering one long week of graveyard tickets. It paid a dollar and change less an hour than the night freight dock, and I took the cut gladly for the daylight. 
 
 Now I sat in a hard swivel chair across from Jules Brooks in the fourth-floor interview alcove, clutching a vinyl portfolio with my rotation sign-off sheet. Ken's referral letter from the Gresham warehouse sat on top, certifying that I had diagnosed and restored the main sorting line under live dispatch pressure. Beside it was my CompTIA A+ certificate. My knuckles still carried scars from fourteen months on the concrete cross-dock, and I wanted a permanent seat on the help desk.
 

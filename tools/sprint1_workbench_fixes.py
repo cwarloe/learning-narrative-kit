@@ -126,7 +126,7 @@ wb08_replacements = [
     ("| **Case 2** | Ken enters his domain password,", "| **Case 2** | Todd enters his domain password,"),
     ("* **Rationale:** Ken’s proposal of Password + PIN represents two knowledge factors", "* **Rationale:** Todd’s proposal of Password + PIN represents two knowledge factors"),
     ("Ken must install the approved authenticator app", "Todd must install the approved authenticator app"),
-    ("#### Part B: Phishing-Resistant MFA Enrollment & Security Escalation Note (Example: Ken Vance / INC-2026-1141)", "#### Part B: Phishing-Resistant MFA Enrollment & Security Escalation Note (Example: Todd Miller / INC-2026-1141)"),
+    ("#### Part B: Phishing-Resistant MFA Enrollment & Security Escalation Note (Example: Ken Vance / INC0066915)", "#### Part B: Phishing-Resistant MFA Enrollment & Security Escalation Note (Example: Todd Miller / INC0066915)"),
     ('Across the aisle, Ken was back at his desk, staring at his phone. "Sign in with company worked," he called over.', 'Across the aisle, Todd was back at his desk, staring at his phone. "Sign in with company worked," he called over.')
 ]
 
@@ -138,7 +138,7 @@ wb10_replacements = [
     ("At 10:17 AM, Ken Vance from Sales called the help desk in a panic:", "At 10:17 AM, Todd Miller from Sales called the help desk in a panic:"),
     (r"C:\Users\Ken\AppData\Local\Temp\svch0st.exe", r"C:\Users\todd.miller\AppData\Local\Temp\svch0st.exe"),
     ("Even though the local AV quarantined the initial dropper file (`SOW_final.pdf.exe`), Ken's roaring fans indicate secondary payload execution.", "Even though the local AV quarantined the initial dropper file (`SOW_final.pdf.exe`), Todd's roaring fans indicate secondary payload execution."),
-    ("*(Reference Case: Ken Vance / Workstation `TODD-SALES-14` / Incident `INC-2026-1181`)*", "*(Reference Case: Todd Miller / Workstation `TODD-SALES-14` / Incident `INC-2026-1181`)*"),
+    ("*(Reference Case: Ken Vance / Workstation `TODD-SALES-14` / Incident `INC0070418`)*", "*(Reference Case: Todd Miller / Workstation `TODD-SALES-14` / Incident `INC0070418`)*"),
     ("Ken had unplugged a worm commute and was still owed a file copy.", "Todd had unplugged a worm commute and was still owed a file copy.")
 ]
 

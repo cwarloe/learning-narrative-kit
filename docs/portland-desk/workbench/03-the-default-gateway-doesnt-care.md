@@ -472,8 +472,8 @@ Before executing any diagnostic command or changing a system setting, enforce th
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND OPERATIONS SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-0922
-Requester:        Frank Kowalski (Lead Shipping Dispatcher, Building B)
+Ticket ID:        INC0055120
+Requester:        Ken Vance (Dock Supervisor, Building B)
 Technician:       Ethan Mercer (Tier 1 Support Specialist)
 Supervising Lead: Jules Brooks (Help Desk Lead)
 Date / Time:      2024-10-15 10:45:18 PDT
@@ -485,7 +485,7 @@ Status:           RESOLVED
    Following an early morning power fluctuation and auxiliary generator test 
    at 05:00, fourteen endpoints in Building B (logistics annex) lost network 
    connectivity. Endpoints autoconfigured link-local APIPA addresses (169.254.x.x). 
-   After switch trunk restoration, Dispatcher Frank Kowalski reported persistent, 
+   After switch trunk restoration, Ken reported persistent, 
    intermittent connection drops occurring every 30 to 45 seconds on WS-BLDGB-04.
 
 2. ROOT CAUSE ANALYSIS:
@@ -527,7 +527,7 @@ Status:           RESOLVED
 ================================================================================
 NETWORK INFRASTRUCTURE PASSDOWN & HANDOVER NOTE
 ================================================================================
-Escalation ID:    ESC-2026-0341
+Escalation ID:    ESC0003411
 Originating Desk: Portland Regional Operations Help Desk
 Technician:       Ethan Mercer (Tier 1 Specialist)
 Escalated To:     Jared Lindqvist (Network Operations Engineer)
