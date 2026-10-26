@@ -352,7 +352,7 @@ n12_replacements = [
     )
 ]
 
-for prefix in ["portland-desk/", "docs/portland-desk/"]:
+for prefix in ["docs/portland-desk/", "docs/portland-desk/"]:
     update_file(prefix + "workbench/02-the-live-board.md", [(wb02_old_terminal, wb02_new_terminal)])
     update_file(prefix + "workbench/08-prove-who-you-are.md", [(wb08_old_terminal, wb08_new_terminal)])
     update_file(prefix + "workbench/10-something-on-the-box.md", [(wb10_old_terminal, wb10_new_terminal)])

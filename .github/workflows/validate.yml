@@ -10,7 +10,7 @@ on:
       - "tools/build_hub_index.py"
       - "tools/check_hub_links.py"
       - "tools/check_ep07_capture.py"
-      - "portland-desk/**"
+      - "docs/portland-desk/**"
       - "docs/**"
       - "requirements.txt"
       - ".github/workflows/validate.yml"

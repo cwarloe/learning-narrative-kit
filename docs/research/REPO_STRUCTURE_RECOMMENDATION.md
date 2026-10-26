@@ -63,7 +63,7 @@ Names were unified on 2026-10-21, but the bible's §1.3 still lists six open con
 
 No published page moves, so **no redirects are needed** and both Pages URLs keep working. The only new URLs are additive: the NADF series page and NADF `narrative/series-bible/`. The links to the old bible stay valid because the file stays, trimmed.
 
-Unrelated cleanup to schedule: `portland-desk/` and `docs/portland-desk/` are full duplicate copies. Keep one as the source and generate the other in the build step so they can't drift.
+Unrelated cleanup to schedule: `docs/portland-desk/` and `docs/portland-desk/` are full duplicate copies. Keep one as the source and generate the other in the build step so they can't drift.
 
 ## Migration plan (each step is its own PR; none merges without Charles's OK)
 
@@ -78,7 +78,7 @@ Unrelated cleanup to schedule: `portland-desk/` and `docs/portland-desk/` are fu
 3. **LNK PR:** trim `PORTLAND_AUTHOR_BIBLE.md` and `PORTLAND_TIMELINE.md` to Book 0, add the pointer, and add `tools/check_series_canon.py` to `validate.yml`. Retire the Harrowmere/Priya rule. Apply the Book 0 rewrites from step 1, such as the Dana renames.
 4. **NADF PR:** add the "Read the series in order" page plus sidebar entry. Add the prologue back-link.
 5. **LNK PR:** add the hub card link, the Ep 12 forward link and the research cross-index. Rebuild `docs/` and make sure `check_hub_links.py` passes.
-6. **Later, optional:** generate `docs/portland-desk/` from `portland-desk/` and remove the duplicate.
+6. **Later, optional:** generate `docs/portland-desk/` from `docs/portland-desk/` and remove the duplicate.
 
 ## Why this and not a merge
 

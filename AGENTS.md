@@ -156,11 +156,10 @@ Run all of these. Each one caught something real on the Tamarack track.
 6. After the PR is up, read the review bot's comments, reply on each thread before
    pushing the fix, and re-audit the whole unit if the fix moves structure.
 7. If you change Episode 7, Drill 1 (its capture table or its passwords), regenerate
-   `portland-desk/artifacts/jared-telnet-capture.pcap` with
-   `tools/generate_ep07_telnet_capture.py` (needs `pip install scapy`), copy it and the
-   workbench into `docs/portland-desk/`, and run `python3 tools/check_ep07_capture.py`.
-   CI runs the same check and fails if the table, the answer key, the capture, or the
-   mirror disagree.
+   `docs/portland-desk/artifacts/jared-telnet-capture.pcap` with
+   `tools/generate_ep07_telnet_capture.py` (needs `pip install scapy`) and run
+   `python3 tools/check_ep07_capture.py`. CI runs the same check and fails if the table,
+   the answer key, or the capture disagree.
 
 ## Environment notes
 

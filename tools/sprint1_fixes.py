@@ -117,7 +117,7 @@ ep11_narrative_replacements = [
 ]
 
 # Run narrative updates on both portland-desk and docs/portland-desk
-for prefix in ["portland-desk/narrative/", "docs/portland-desk/narrative/"]:
+for prefix in ["docs/portland-desk/narrative/", "docs/portland-desk/narrative/"]:
     update_file(prefix + "08-prove-who-you-are.md", ep08_narrative_replacements)
     update_file(prefix + "09-dont-click-that.md", ep09_narrative_replacements)
     update_file(prefix + "10-something-on-the-box.md", ep10_narrative_replacements)

@@ -1,7 +1,7 @@
 import glob, re
 from pathlib import Path
 
-for f in sorted(glob.glob('portland-desk/**/*.md', recursive=True)):
+for f in sorted(glob.glob('docs/portland-desk/**/*.md', recursive=True)):
     with open(f, 'r', encoding='utf-8') as fp:
         lines = fp.readlines()
     

@@ -157,7 +157,7 @@ art_replacements = [
     ('"Computer": "KEN-SALES-14.harrowmere.local"', '"Computer": "TODD-SALES-14.harrowmere.local"')
 ]
 
-for prefix in ["portland-desk/", "docs/portland-desk/"]:
+for prefix in ["docs/portland-desk/", "docs/portland-desk/"]:
     update_file(prefix + "workbench/00-the-four-rubber-bands.md", [(wb00_old, wb00_new)])
     update_file(prefix + "workbench/01-the-paper-cert.md", wb01_replacements)
     update_file(prefix + "workbench/08-prove-who-you-are.md", wb08_replacements)

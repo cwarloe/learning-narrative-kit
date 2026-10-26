@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Refactor Episodes 08-12 for the Interleaved Cliffhanger & Handoff Model.
 Ensures 100% preservation of all original narrative prose.
-Ensures exact mirroring between portland-desk/ and docs/portland-desk/.
+Ensures exact mirroring between docs/portland-desk/ and docs/portland-desk/.
 """
 
 from pathlib import Path

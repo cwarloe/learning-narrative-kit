@@ -6,7 +6,7 @@
 
 This file exists so the playbook still loads in contexts where `AGENTS.md` isn't read directly — in particular, a Claude Code project that clones several repositories, where each clone is attached as an additional directory and only `CLAUDE.md` loads from it. Keep Claude-only instructions below this line.
 
-- **Dual-Mirroring Rule for Unified Courseware:** The unified courseware lives in `portland-desk/` and is published to GitHub Pages via `docs/portland-desk/`. Always maintain exact parity between both directories.
+- **Dual-Mirroring Rule for Unified Courseware:** The unified courseware lives in `docs/portland-desk/` and is published to GitHub Pages via `docs/portland-desk/`. Always maintain exact parity between both directories.
 - **Validate before render, render before commit:** `validate_unit.py` and `template/tools/check-links.py` must PASS; a warn is not a pass-with-notes to argue past, it's a thing to fix or explain.
 - **Plain-English Standard (MANDATORY):** Adhere strictly to `docs/research/PLAIN_ENGLISH_STYLE_GUIDE.md`. Banned terms include "invariant/invariants", "falsifiable hypothesis", "rubric", "pedagogy", "heuristic" (in general prose), and "scaffolding". All courseware must read in natural spoken English accessible to a U.S. high school graduate.
 - **Learner Agency & Cliffhanger Handoffs:** Follow `docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`. Do not let the protagonist solve the entire incident before the lab starts. Break at the Cliffhanger Handoff Gate so the learner solves the problem, and place the resolution in the epilogue.
