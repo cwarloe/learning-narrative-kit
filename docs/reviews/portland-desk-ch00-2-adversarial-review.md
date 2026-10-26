@@ -73,12 +73,10 @@ Jules sets one rule: "walk me through your diagnostic tree before anyone touches
 These are not canon drift in the chapter bodies, but they will bother careful readers.
 
 - Chapter 00 says he is twenty in July. Chapter 1, in late winter, says he is twenty-one. That works only if his birthday falls in between. The course README says twenty. Write the birthday into the bible once.
-- Chapter 00 says he unloads "eighty-pound bags of mortar." The course README says "50-pound bags of concrete mix." Pick one.
-- Chapter 00 has him studying with three hundred handmade index cards. Chapter 1 says he spent his breaks "drilling digital flashcards" for "the CompTIA exams," plural, as if he had not already passed. Either Chapter 1 is about him studying for Core 2 after passing one exam, which would be a useful complication, or the line is a leftover. Decide which.
-- Chapter 00 treats the certification as a single exam on a single Thursday. Chapter 2 has him holding "my CompTIA A+ certificate." If two exams are involved, the gap between them is free story, and the book is currently throwing it away.
+- Chapter 00 says he unloads "eighty-pound bags of mortar." The Portland author bible (`docs/research/PORTLAND_AUTHOR_BIBLE.md`, Episode 00 card) says "50-pound bags of concrete mix," and the course README agrees. This is the chapter drifting from the bible, so the fix belongs in the Chapter 00 text.
 - Chapter 1 calls the display both "amber monochrome monitor" and "the amber CRT monitor."
 - Chapter 2 says "fourteen months on the concrete docks." Chapter 00 implies he has been there at least two months by July. Count it once and write it down.
-- The course README lists a "Willamette River plant" as a Harrowmere site. Nothing in Chapters 00–2 uses it, but if a later chapter places Ethan there as a workplace, that is drift away from the approved Gresham-then-ROC path. Flag it before someone takes it literally.
+- The Willamette River plant is in the Portland author bible as a Harrowmere site (Episode 04 and Leah Moreno), so it is not drift. Nothing in Chapters 00–2 uses it. Pending Charles's confirmation, treat it as a site Ethan visits, not a place he works.
 
 ### 10. Jules talks like the exam guide, and so does the narrator in Chapter 00.
 
