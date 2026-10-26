@@ -21,6 +21,8 @@ Starting from material instead of a finished chapter (a term list, a whole cours
 
 Authoring contract (density, tiers, tooltips, QA): [`schema/README.md`](schema/README.md).
 
+Craft standard for every story (earned competence, costed wins, carry-forward endings, pre-draft and pre-merge checklist): [`docs/craft/learning-narrative-framework.md`](docs/craft/learning-narrative-framework.md).
+
 Portland Desk (Security+) voice and sizing: [`examples/PORTLAND_DESK.md`](examples/PORTLAND_DESK.md).
 
 ## Source of truth
