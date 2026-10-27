@@ -25,4 +25,4 @@ source_notes:
 constraints:
   - "Every term in the source glossaries has exactly one home band; build_cards.py fails otherwise"
   - "Definitions follow the course materials; do not invent rival definitions"
-deck_font: komika-text
+deck_font: anime-ace  # card lettering: komika-text or anime-ace (fonts in docs/assets/fonts)

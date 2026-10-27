@@ -621,10 +621,18 @@ def md_to_html(md: str, terms: dict):
 
 
 
-KOMIKA_DECK_CSS = """
+# unit.yaml `deck_font` picks the lettering on flashcard prompts and answers. Fonts live in
+# docs/assets/fonts; each entry is scoped to the cards and only added to pages with a deck.
+DECK_FONTS = {
+    "komika-text": """
 @font-face { font-family: 'Komika Text'; src: url('../assets/fonts/komika-text.ttf') format('truetype'); font-weight: normal; font-style: normal; }
 .lnk-deck__q, .lnk-deck__a { font-family: 'Komika Text', sans-serif; font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
-"""
+""",
+    "anime-ace": """
+@font-face { font-family: 'Anime Ace'; src: url('../assets/fonts/anime-ace.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+.lnk-deck__q, .lnk-deck__a { font-family: 'Anime Ace', 'Comic Sans MS', sans-serif; font-weight: normal; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.45; }
+""",
+}
 
 
 def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path | None = None,
@@ -679,9 +687,11 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
         extra_css = NAV_CSS
 
     has_deck = 'class="lnk-deck"' in body_html
-    if has_deck and unit.get("deck_font") == "komika-text":
-        # Same @font-face and stack as docs/handcrafted_cards_mockup.html; scoped to the cards.
-        extra_css += KOMIKA_DECK_CSS
+    deck_font = unit.get("deck_font")
+    if deck_font and deck_font not in DECK_FONTS:
+        raise SystemExit(f"unit.yaml deck_font '{deck_font}' is not one of: {', '.join(DECK_FONTS)}")
+    if has_deck and deck_font:
+        extra_css += DECK_FONTS[deck_font]
     html_out = render_html(
         page_title, subtitle, body_html, gloss_json, nav_top, nav_bottom, extra_css,
         has_deck=has_deck,
