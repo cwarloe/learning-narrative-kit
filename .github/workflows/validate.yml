@@ -10,6 +10,8 @@ on:
       - "tools/build_hub_index.py"
       - "tools/check_hub_links.py"
       - "tools/check_ep07_capture.py"
+      - "tools/check_tools_index.py"
+      - "tools/README.md"
       - "docs/portland-desk/**"
       - "docs/**"
       - "requirements.txt"
@@ -75,3 +77,6 @@ jobs:
 
       - name: Landing page matches builder; hub links resolve
         run: python tools/check_hub_links.py
+
+      - name: Every tools/ script is in the tools/README.md index (warning only)
+        run: python tools/check_tools_index.py --warn
