@@ -2,15 +2,15 @@
 """Build the comprehensive Master Technical Glossary for Portland Desk.
 
 Reads docs/portland-desk/assets/glossary.json and generates docs/portland-desk/glossary.md
-and docs/portland-desk/glossary.md with searchable, categorized, anchorable entries.
+with searchable, categorized, anchorable entries. docs/portland-desk/ is the only copy
+(the root portland-desk/ duplicate is archived), so nothing is written outside it.
 """
 
 import json
 from pathlib import Path
 
 KIT_ROOT = Path(__file__).resolve().parent.parent
-GLOSSARY_JSON = KIT_ROOT / "portland-desk" / "assets" / "glossary.json"
-TARGET_PORTLAND = KIT_ROOT / "portland-desk" / "glossary.md"
+GLOSSARY_JSON = KIT_ROOT / "docs" / "portland-desk" / "assets" / "glossary.json"
 TARGET_DOCS = KIT_ROOT / "docs" / "portland-desk" / "glossary.md"
 
 def build_glossary():
@@ -72,13 +72,9 @@ def build_glossary():
 
     content = "".join(md)
 
-    TARGET_PORTLAND.parent.mkdir(parents=True, exist_ok=True)
-    TARGET_PORTLAND.write_text(content, encoding="utf-8")
-    print(f"Wrote {len(sorted_terms)} terms to {TARGET_PORTLAND}")
-
     TARGET_DOCS.parent.mkdir(parents=True, exist_ok=True)
     TARGET_DOCS.write_text(content, encoding="utf-8")
-    print(f"Mirrored to {TARGET_DOCS}")
+    print(f"Wrote {len(sorted_terms)} terms to {TARGET_DOCS}")
 
 if __name__ == "__main__":
     build_glossary()
