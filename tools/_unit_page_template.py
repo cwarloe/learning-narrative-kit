@@ -12,6 +12,7 @@ def render_html(
     nav_top: str = "",
     nav_bottom: str = "",
     extra_css: str = "",
+    has_deck: bool = False,
 ) -> str:
     byline_note = (
         "Story first; hover highlighted terms for short definitions. "
@@ -22,13 +23,16 @@ def render_html(
     # body_html is written separately to narrative.html; index is a thin shell.
     _ = body_html  # kept in signature for call-site compatibility
     _ = gloss_json
+    # Flashcard decks load their own files, only on pages that have one.
+    deck_css = '\n  <link rel="stylesheet" href="../lnk-deck.css">' if has_deck else ""
+    deck_js = '<script src="../lnk-deck.js"></script>\n' if has_deck else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{html.escape(page_title)}</title>
-  <link rel="stylesheet" href="../unit.css">{f"<style>{extra_css}</style>" if extra_css else ""}
+  <link rel="stylesheet" href="../unit.css">{deck_css}{f"<style>{extra_css}</style>" if extra_css else ""}
 </head>
 <body class="filter-exam-only">
 
@@ -66,7 +70,7 @@ def render_html(
 
 <script src="glossary.js"></script>
 <script src="../unit.js"></script>
-<script>
+{deck_js}<script>
 fetch('narrative.manifest.json')
   .then(function (r) {{ return r.json(); }})
   .then(function (manifest) {{

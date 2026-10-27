@@ -90,9 +90,21 @@ image: "assets/panels/ep01-serial-pin.webp"
 ## 4. Component Specification: `lnk-deck` (flashcard decks)
 
 A deck of flip cards: click, Space or Enter flips; Previous / Next, the arrow keys,
-and the dots move between cards; Shuffle reorders the deck. Built by `initLnkDecks()`
-in `assets/lnk-shell.js` from a fence parsed in `index.html`. Write every new deck this
-way. Do not hand-write deck HTML in markdown (see "Why a fence" below).
+and the dots move between cards; Shuffle reorders the deck. Write every new deck as a
+fence. Do not hand-write deck HTML in markdown (see "Why a fence" below).
+
+The deck is one shared component that works on every page in the kit:
+
+| Piece | File | Job |
+|---|---|---|
+| Behavior | `docs/lnk-deck.js` | Builds and runs every deck on the page. A MutationObserver finds decks added after load (Docsify route changes, unit pages that fetch their narrative), so pages don't call anything |
+| Look | `docs/lnk-deck.css` | Self-contained card styles, all scoped under `.lnk-deck`; no page stylesheet needed |
+| Portland Desk | `docs/portland-desk/index.html` | The Docsify hook parses the fence; the page loads `../lnk-deck.css` and `../lnk-deck.js` |
+| Unit pages (Tamarack, ITM) | `tools/render_unit.py`, `tools/_deck.py` | `narrative.md` uses the same fence; the renderer emits the placeholder and adds the two files only to pages that have a deck |
+
+Both parsers turn the fence into `<div class="lnk-deck" data-deck="…">`, where `data-deck`
+is the deck as URL-encoded JSON. Keep the JavaScript parser in `index.html` and the Python
+one in `tools/_deck.py` in step.
 
 ### Markdown Authoring Syntax
 
@@ -139,8 +151,8 @@ line; the next card's indented markup was then treated as an indented code block
 2 and 3 appeared as raw HTML text and the deck held one card. Separately, `index.html` and
 `lnk-shell.js` each bound a click handler that toggled `flipped`, so every click flipped the
 card and flipped it straight back. The fence turns the whole deck into one line of HTML that
-carries the cards as data, so markdown never parses card markup, and `lnk-shell.js` is the
-only code that binds deck events.
+carries the cards as data, so markdown never parses card markup, and one script (now
+`docs/lnk-deck.js`) is the only code that binds deck events.
 
 ### Behavior and layout notes
 
@@ -150,5 +162,8 @@ only code that binds deck events.
   percentage of the card's width (60% for 3x5, 66.67% for 4x6). The card keeps index-card
   proportions when the text is short and grows taller when it isn't (on phones). Don't use
   `aspect-ratio` here: it fixed the height and long answers spilled over the buttons.
-- Check: `python3 tools/check_decks.py` (also runs in CI).
+- Check: `python3 tools/check_decks.py` (also runs in CI). With no arguments it checks the
+  Portland Desk pages and every `examples/*/narrative.md`.
+- Worked example: `examples/itm310-exam2-cards/`, 137 cards in 11 decks, generated from
+  `cards.yaml` by `build_cards.py`.
 

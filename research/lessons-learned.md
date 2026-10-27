@@ -181,3 +181,16 @@ script in charge of its events.
   but their cards are hard-coded in `lnk-shell.js`. They could move to `lnk-deck` fences.
 - CLAUDE.md still asks for parity between `portland-desk/` and `docs/portland-desk/`, but
   the root copy was archived (commit 611e5e4); `docs/portland-desk` is the only source.
+
+**Follow-up: one deck for every page (October 27, 2026).** The fix above lived inside
+Portland Desk (`lnk-shell.js` and Portland's stylesheet), so the Tamarack and ITM unit
+pages couldn't use it. The deck is now one shared component: `docs/lnk-deck.js` and
+`docs/lnk-deck.css`, with their own class names and no dependence on either site's styles.
+`render_unit.py` reads the same fence (parser in `tools/_deck.py`) and adds the two files
+only to pages that have a deck, so no other unit's output changed. The script finds decks
+with a MutationObserver, because neither kind of page has its content at load: unit pages
+fetch the narrative afterward, and Docsify swaps pages on every route change. The first real
+user is `examples/itm310-exam2-cards/`: 185 Exam 2 terms, 137 cards in 11 decks, every card
+checked on both faces at phone, sideways-phone and desktop widths.
+The lesson: a component isn't shared until a second kind of page uses it. Test it there
+before calling it reusable.

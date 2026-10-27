@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="assets/lnk-terminal.css">
   <link rel="stylesheet" href="assets/lnk-panel.css">
   <link rel="stylesheet" href="assets/lnk-job-aid.css">
+  <link rel="stylesheet" href="../lnk-deck.css">
 </head>
 <body>
   <div id="app">Loading Learning Narrative Kit...</div>
@@ -132,7 +133,8 @@
             // The whole deck becomes ONE line of HTML carrying the cards as data, so Docsify's
             // markdown parser never sees card markup. (Hand-written deck HTML broke here: a blank
             // line ends a markdown HTML block, and the indented card markup after it rendered as
-            // a code block, leaving a one-card deck.) lnk-shell.js builds the deck from the data.
+            // a code block, leaving a one-card deck.) ../lnk-deck.js, shared with the Tamarack unit
+            // pages, builds the deck from the data; tools/_deck.py is the same parser in Python.
             content = content.replace(/```lnk-deck[ \t]*\n([\s\S]*?)```/g, function(match, block) {
               const sections = block.split(/^---[ \t]*$/m);
               function fields(text) {
@@ -331,8 +333,8 @@
               });
             });
 
-            // Job aid tabs and flashcard decks are bound once, in lnk-shell.js (initJobAidTabs,
-            // initPassportDecks, initLnkDecks). Do not bind them here too: a second click handler on
+            // Job aid tabs and passport decks are bound once, in lnk-shell.js (initJobAidTabs,
+            // initPassportDecks); ```lnk-deck decks in ../lnk-deck.js. Do not bind them here too: a second click handler on
             // a card toggles 'flipped' twice, so the card flips and immediately flips back.
 
             // Initialize interactive micro-terminals
@@ -386,6 +388,9 @@
 
   <!-- LNK Interactive Micro-Terminal Engine -->
   <script src="assets/lnk-terminal.js"></script>
+
+  <!-- Flashcard decks (```lnk-deck), shared with the unit pages -->
+  <script src="../lnk-deck.js"></script>
 
   <!-- LNK Custom Shell (Dual-Track Mode Switcher & Docked Aside) -->
   <script src="assets/lnk-shell.js"></script>
