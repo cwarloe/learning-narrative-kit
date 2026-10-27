@@ -26,6 +26,7 @@ Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_to
 | `check_dates.py` | Portland Desk months, seasons, weekdays, incident IDs and desk tenure match `PORTLAND_TIMELINE.md`; CI and before merge | `AGENTS.md` |
 | `check_cleanliness.py` | Strict lint: fails on any emoji or listed AI-slop marker in learner-facing files. Not in CI | — |
 | `_track.py`, `_unit_page_template.py`, `_deck.py` | Modules imported by the renderers (`_deck.py` parses `lnk-deck` fences for `render_unit.py`); not run directly | — |
+| `_workbench.py` | Browser assertions for terminal commands, answer reveals, and saved notes; imported by `check_decks_browser.py`, not run directly | Browser flashcard checks |
 
 ### Generators (safe to rerun; they rebuild output from a source)
 
@@ -204,3 +205,10 @@ and 390px: flip, navigation, keyboard controls, and shuffle, plus every card's
 face dimensions. Fonts use system fallbacks; this does not verify external fonts.
 Failure screenshots go to `/tmp/lnk-browser-failures` by default or
 `BROWSER_ARTIFACTS` when set. No generated site files are changed.
+
+The same browser command also visits all 13 Portland Desk workbenches at both
+widths. It checks every terminal command and objective against the Markdown
+source, command history, help, clear, error output, animated replay, keyboard
+answer reveals, and scratchpad persistence after reload. Episode 03 has no
+terminal fence, so its disclosures and notes are checked without requiring one.
+Tests use an isolated browser context; they never touch a learner's saved notes.

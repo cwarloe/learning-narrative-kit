@@ -18,6 +18,7 @@ import urllib.request
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
+from _workbench import check_workbench
 
 ROOT = Path(__file__).resolve().parent.parent
 failures = 0
@@ -209,6 +210,25 @@ with sync_playwright() as pw:
                 artifacts.mkdir(parents=True, exist_ok=True)
                 p.screenshot(path=str(artifacts / f'{width}-{path.split("/")[1]}.png'))
             p.close()
+        for source in sorted((ROOT / "docs/portland-desk/workbench").glob("*.md")):
+            p = ctx.new_page()
+            errors = []
+            p.on("pageerror", lambda e, sink=errors: sink.append(str(e)))
+            try:
+                result = check_workbench(p, source, base)
+                assert not errors, f"JavaScript errors: {errors}"
+                print(json.dumps(dict(result, width=width, result="PASS")), flush=True)
+            except Exception as e:
+                failures += 1
+                traceback.print_exc()
+                print(f"FAIL {source.name} at {width}px: {e}", flush=True)
+                artifacts = Path(
+                    os.environ.get("BROWSER_ARTIFACTS", "/tmp/lnk-browser-failures")
+                )
+                artifacts.mkdir(parents=True, exist_ok=True)
+                p.screenshot(path=str(artifacts / f"{width}-{source.stem}.png"))
+            finally:
+                p.close()
         ctx.close()
     b.close()
 s.shutdown()

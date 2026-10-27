@@ -159,9 +159,21 @@
               const header = parts[0] || '';
               const body = parts[1] || '';
 
+              function unquote(value) {
+                value = value.trim();
+                const quote = value[0];
+                return (quote === '"' || quote === "'") && value.endsWith(quote)
+                  ? value.slice(1, -1) : value;
+              }
+
+              function escapeHtml(value) {
+                return value.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                  .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+              }
+
               function getVal(key) {
                 const m = header.match(new RegExp('^' + key + ':\\s*(.+)$', 'm'));
-                return m ? m[1].trim().replace(/^["']|["']$/g, '') : '';
+                return m ? unquote(m[1]) : '';
               }
 
               const title = getVal('title') || 'INTERACTIVE DIAGNOSTIC TERMINAL';
@@ -171,22 +183,18 @@
 
               // Parse objectives
               const objectives = [];
-              const objMatches = header.matchAll(/-\s*id:\s*([^\n]+)\s*\n\s*label:\s*["']?([^"'\n]+)["']?\s*\n\s*trigger:\s*["']?([^"'\n]+)["']?/g);
+              const objMatches = header.matchAll(/-\s*id:[ \t]*([^\n]+)\n[ \t]*label:[ \t]*([^\n]+)\n[ \t]*trigger:[ \t]*([^\n]+)/g);
               for (const m of objMatches) {
-                objectives.push({ id: m[1].trim(), label: m[2].trim(), trigger: m[3].trim() });
+                objectives.push({ id: unquote(m[1]), label: unquote(m[2]), trigger: unquote(m[3]) });
               }
 
-              // Parse commands from body
+              // Command names can contain paths, pipes, quotes and PowerShell expressions.
+              // Only an unindented "command: |" line starts a new response.
               const commands = {};
-              const cmdBlocks = body.split(/\n(?=[a-zA-Z0-9_\-./ ]+:\s*\|)/);
-              cmdBlocks.forEach(function(b) {
-                const m = b.match(/^([a-zA-Z0-9_\-./ ]+):\s*\|\s*\n([\s\S]*)$/);
-                if (m) {
-                  const cmdKey = m[1].trim();
-                  const cmdOut = m[2].replace(/^[ ]{2}/gm, '').trimEnd();
-                  commands[cmdKey] = cmdOut;
-                }
-              });
+              const cmdMatches = body.matchAll(/^([^\n]+):[ \t]*\|[ \t]*\n([\s\S]*?)(?=^[^ \t\n][^\n]*:[ \t]*\|[ \t]*$|(?![\s\S]))/gm);
+              for (const m of cmdMatches) {
+                commands[unquote(m[1])] = m[2].replace(/^[ ]{2}/gm, '').trimEnd();
+              }
 
               const configStr = encodeURIComponent(JSON.stringify({ title, prompt, shell, objectives }));
               const cmdStr = encodeURIComponent(JSON.stringify(commands));
@@ -194,7 +202,7 @@
               let objPills = '';
               if (objectives.length > 0) {
                 objPills = '<div class="lnk-term-objectives">' + objectives.map(function(o) {
-                  return `<div class="lnk-term-obj-pill" data-obj="${o.id}"><span class="lnk-term-obj-check">&#9675;</span> <span>${o.label}</span></div>`;
+                  return `<div class="lnk-term-obj-pill" data-obj="${escapeHtml(o.id)}"><span class="lnk-term-obj-check">&#9675;</span> <span>${escapeHtml(o.label)}</span></div>`;
                 }).join('') + '</div>';
               }
 

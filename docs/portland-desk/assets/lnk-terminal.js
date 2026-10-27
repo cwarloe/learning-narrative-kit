@@ -43,8 +43,8 @@
       function checkObjectives(cmd) {
         const cleanCmd = cmd.trim().toLowerCase();
         objectives.forEach(function (obj) {
-          if (cleanCmd === (obj.trigger || '').toLowerCase() || cleanCmd.startsWith((obj.trigger || '').toLowerCase())) {
-            const pill = el.querySelector('.lnk-term-obj-pill[data-obj="' + obj.id + '"]');
+          if (cleanCmd === (obj.trigger || '').trim().toLowerCase()) {
+            const pill = Array.from(el.querySelectorAll('.lnk-term-obj-pill')).find(function (p) { return p.dataset.obj === obj.id; });
             if (pill && !pill.classList.contains('completed')) {
               pill.classList.add('completed');
               const check = pill.querySelector('.lnk-term-obj-check');
@@ -58,7 +58,7 @@
         const cmd = rawCmd.trim();
         if (!cmd) return;
 
-        appendLine('<span class="lnk-term-prompt">' + promptText + '</span> <span class="lnk-term-cmd">' + escapeHtml(cmd) + '</span>', false);
+        appendLine('<span class="lnk-term-prompt">' + escapeHtml(promptText) + '</span> <span class="lnk-term-cmd">' + escapeHtml(cmd) + '</span>', false);
         history.push(cmd);
         historyIdx = history.length;
 
@@ -74,13 +74,13 @@
         });
 
         if (foundKey) {
-          appendLine('<pre class="lnk-term-output">' + commands[foundKey] + '</pre>', true);
+          appendLine('<pre class="lnk-term-output">' + escapeHtml(commands[foundKey]) + '</pre>', true);
           checkObjectives(cmd);
         } else if (cmd.startsWith('ping')) {
           appendLine('<pre class="lnk-term-output">Pinging target [Host unreachable or clock desynchronized]. Check interface parameters.</pre>', true);
         } else if (cmd === 'help') {
           const avail = Object.keys(commands).concat(['clear', 'help']).join('  |  ');
-          appendLine('<pre class="lnk-term-output">Available diagnostics:\n' + avail + '</pre>', true);
+          appendLine('<pre class="lnk-term-output">Available diagnostics:\n' + escapeHtml(avail) + '</pre>', true);
         } else {
           appendLine('<pre class="lnk-term-output error">Command or framing not recognized: \'' + escapeHtml(cmd) + '\'\nType \'help\' to view active diagnostic routines.</pre>', true);
         }
@@ -123,23 +123,39 @@
       if (replayBtn) {
         replayBtn.addEventListener('click', function () {
           const triggers = objectives.map(function (o) { return o.trigger; }).filter(Boolean);
-          if (triggers.length === 0) return;
+          if (triggers.length === 0 || replayBtn.disabled) return;
+          replayBtn.disabled = true;
+          input.disabled = true;
           let currentTrigger = 0;
 
+          function finishReplay() {
+            replayBtn.disabled = false;
+            input.disabled = false;
+          }
+
           function typeNext() {
-            if (currentTrigger >= triggers.length) return;
+            if (!el.isConnected || currentTrigger >= triggers.length) {
+              finishReplay();
+              return;
+            }
             const text = triggers[currentTrigger];
             let charIdx = 0;
             input.value = '';
 
             const interval = setInterval(function () {
+              if (!el.isConnected) {
+                clearInterval(interval);
+                finishReplay();
+                return;
+              }
               if (charIdx < text.length) {
                 input.value += text[charIdx];
                 charIdx++;
               } else {
                 clearInterval(interval);
                 setTimeout(function () {
-                  executeCommand(input.value);
+                  if (!el.isConnected) { finishReplay(); return; }
+                  executeCommand(text);
                   currentTrigger++;
                   setTimeout(typeNext, 850);
                 }, 400);

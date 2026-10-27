@@ -91,7 +91,7 @@ jobs:
         run: |
           pip install -r requirements-browser.txt
           python -m playwright install --with-deps chromium
-      - name: Exercise desktop and phone flashcards
+      - name: Exercise flashcards and workbenches at desktop and phone widths
         env:
           BROWSER_ARTIFACTS: ${{ runner.temp }}/lnk-browser-failures
         run: python tools/check_decks_browser.py
