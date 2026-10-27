@@ -128,6 +128,29 @@
               return `<div class="panel-container">\n  <div class="panel-header">\n    <span class="panel-title">${title}</span>\n    <span class="panel-badge">${badge}</span>\n  </div>\n  ${visualHtml}\n  ${caption ? `<div class="panel-footer">${caption}</div>` : ''}\n</div>`;
             });
 
+            // Parse ```lnk-deck blocks into flashcard decks.
+            // The whole deck becomes ONE line of HTML carrying the cards as data, so Docsify's
+            // markdown parser never sees card markup. (Hand-written deck HTML broke here: a blank
+            // line ends a markdown HTML block, and the indented card markup after it rendered as
+            // a code block, leaving a one-card deck.) lnk-shell.js builds the deck from the data.
+            content = content.replace(/```lnk-deck[ \t]*\n([\s\S]*?)```/g, function(match, block) {
+              const sections = block.split(/^---[ \t]*$/m);
+              function fields(text) {
+                const out = {};
+                let last = null;
+                text.split('\n').forEach(function(line) {
+                  const m = line.match(/^([A-Za-z_]+):\s?(.*)$/);
+                  if (m) { last = m[1].toLowerCase(); out[last] = m[2].trim(); }
+                  else if (last && line.trim()) { out[last] += ' ' + line.trim(); }
+                });
+                return out;
+              }
+              const head = fields(sections.shift() || '');
+              const cards = sections.map(fields).filter(function(c) { return c.q || c.a; });
+              const deck = { title: head.title || 'Flashcards', meta: head.meta || '', size: head.size || '3x5', band: head.band || 'red', cards: cards };
+              return '<div class="lnk-deck" data-deck="' + encodeURIComponent(JSON.stringify(deck)) + '"></div>';
+            });
+
             // Parse ```lnk-terminal blocks into interactive micro-terminals
             content = content.replace(/```lnk-terminal\s*([\s\S]*?)```/g, function(match, block) {
               const parts = block.split(/\n---\s*\n/);
@@ -308,37 +331,9 @@
               });
             });
 
-            // Bind Job Aid tab buttons
-            document.querySelectorAll('.lnk-job-aid-card').forEach(function(card) {
-              const tabBtns = card.querySelectorAll('.aid-tab-btn');
-              const faceA = card.querySelector('.aid-face.side-a');
-              const faceB = card.querySelector('.aid-face.side-b');
-              
-              tabBtns.forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                  e.preventDefault();
-                  const target = btn.getAttribute('data-target');
-                  tabBtns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
-                  btn.classList.add('active');
-                  btn.setAttribute('aria-pressed', 'true');
-                  
-                  if (target === 'side-a') {
-                    if (faceA) faceA.classList.add('active');
-                    if (faceB) faceB.classList.remove('active');
-                  } else {
-                    if (faceB) faceB.classList.add('active');
-                    if (faceA) faceA.classList.remove('active');
-                  }
-                });
-              });
-            });
-
-            // Bind Passport Flashcard Flip handler
-            document.querySelectorAll('.passport-card').forEach(function(card) {
-              card.addEventListener('click', function() {
-                card.classList.toggle('flipped');
-              });
-            });
+            // Job aid tabs and flashcard decks are bound once, in lnk-shell.js (initJobAidTabs,
+            // initPassportDecks, initLnkDecks). Do not bind them here too: a second click handler on
+            // a card toggles 'flipped' twice, so the card flips and immediately flips back.
 
             // Initialize interactive micro-terminals
             if (window.initLnkTerminals) {
