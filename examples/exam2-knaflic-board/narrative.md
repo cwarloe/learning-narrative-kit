@@ -41,3 +41,59 @@ Eli read it to him off the formula bar. The [[calculated_measure|measure]] was n
 On Thursday, Walt read the Big Idea aloud from the packet, said Davenport would be fine regardless—he said it twice—and approved the lower budget anyway. Then he asked Eli to put August's pace back into the forecast as an upside case. Eli did it that afternoon. It took four minutes.
 
 Ruth caught him in the hall afterward. She asked why he hadn't shown the drill-down, since it was the best thing in the report. Eli said it wouldn't have fit, and went to check on the dock.
+
+
+## Study cards: Knaflic Ch. 1
+
+These are the Knaflic chapter 1 cards from the Exam 2 study deck. Click a card to flip it.
+
+```lnk-deck
+title: Red · Knaflic Ch. 1 · recall
+meta: 2 cards · definition on the front, term on the back
+size: 3x5
+band: red
+---
+tag: KNAFLIC CH. 1
+Q: A single complete sentence that states your point of view and what is at stake.
+A: Big Idea
+hint: Name the term
+---
+tag: KNAFLIC CH. 1
+Q: Sketching the outline of a presentation, one note per slide, and rearranging it before building anything.
+A: Storyboarding
+hint: Name the term
+```
+
+```lnk-deck
+title: Knaflic Ch. 1 · concepts
+meta: 5 cards · answer before you flip
+size: 4x6
+band: green
+---
+tag: KNAFLIC CH. 1
+Q: Presentation context: what three questions does Knaflic say to answer before building anything?
+A: Who is the audience? What do you need them to know or do? How can the data help make your point?
+band: green
+---
+tag: KNAFLIC CH. 1
+Q: Exploratory vs explanatory analysis?
+A: Exploratory: looking through data to find what might be worth telling (opening many oysters). Explanatory: communicating one finding to a specific audience (the pearl).
+band: yellow
+---
+tag: KNAFLIC CH. 1
+Q: Present to the widest possible audience, or a specific one?
+A: A specific one. A report built for everyone gives nobody what they need.
+why: Review deck slide 42.
+band: yellow
+---
+tag: KNAFLIC CH. 1
+Q: Live presentation vs a document read alone: which one has to stand on its own?
+A: The document. In a live talk the speaker carries part of the message, so the slides can hold less.
+band: yellow
+---
+tag: KNAFLIC CH. 1
+Q: Planning a data talk: put these in order. Storyboard · answer the three context questions · write the Big Idea · build the visuals.
+A: Context questions → Big Idea → storyboard → visuals.
+why: Knaflic: settle who, what, and how before touching the data tool.
+band: blue
+```

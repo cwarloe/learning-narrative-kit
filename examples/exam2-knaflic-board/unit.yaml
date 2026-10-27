@@ -26,3 +26,4 @@ source_notes:
   - "Review deck notes pasted on slides 8-17 and 36-39 are mismatched answer keys (for example S11's note says 'What-If Analysis'); not used."
 heading_rule: scene
 timeline_note: "First Thursday of October 2027 (Oct 7), after the September 2027 Power BI report (bi-power-bi). Davenport opened May 4, 2027."
+deck_font: komika-text  # flashcards use Komika Text (docs/assets/fonts), as in handcrafted_cards_mockup.html
