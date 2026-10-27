@@ -1,0 +1,2 @@
+# Optional browser QA; kept separate from authoring dependencies.
+playwright==1.64.1

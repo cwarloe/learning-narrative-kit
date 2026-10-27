@@ -6,13 +6,8 @@ on:
     branches: [main]
     paths:
       - "examples/**"
-      - "tools/validate_unit.py"
-      - "tools/build_hub_index.py"
-      - "tools/check_hub_links.py"
-      - "tools/check_ep07_capture.py"
-      - "tools/check_tools_index.py"
-      - "tools/README.md"
-      - "docs/portland-desk/**"
+      - "tools/**"
+      - "requirements-browser.txt"
       - "docs/**"
       - "requirements.txt"
       - ".github/workflows/validate.yml"
@@ -53,6 +48,9 @@ jobs:
           fi
           echo "All example units passed."
 
+      - name: Portland dates and canon identifiers
+        run: python tools/check_dates.py
+
       - name: Episode 7 capture matches its drill
         run: python tools/check_ep07_capture.py
 
@@ -80,3 +78,27 @@ jobs:
 
       - name: Every tools/ script is in the tools/README.md index (warning only)
         run: python tools/check_tools_index.py --warn
+
+  browser-decks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install browser checks
+        run: |
+          pip install -r requirements-browser.txt
+          python -m playwright install --with-deps chromium
+      - name: Exercise desktop and phone flashcards
+        env:
+          BROWSER_ARTIFACTS: ${{ runner.temp }}/lnk-browser-failures
+        run: python tools/check_decks_browser.py
+      - name: Save failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flashcard-browser-failures
+          path: ${{ runner.temp }}/lnk-browser-failures
+          if-no-files-found: ignore

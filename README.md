@@ -23,7 +23,6 @@ Authoring contract (density, tiers, tooltips, QA): [`schema/README.md`](schema/R
 
 Craft standard for every story (earned competence, costed wins, carry-forward endings, pre-draft and pre-merge checklist): [`docs/craft/learning-narrative-framework.md`](docs/craft/learning-narrative-framework.md).
 
-Craft standard for every track: [`docs/craft/learning-narrative-framework.md`](docs/craft/learning-narrative-framework.md).
 
 ## Source of truth
 

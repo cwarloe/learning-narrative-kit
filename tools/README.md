@@ -22,7 +22,8 @@ Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_to
 | `author.py` | Authoring bookkeeping: brief → plan → review → status | below |
 | `voice_check.py` | Machine-prose tells; a reading aid, not a gate | below |
 | `check_decks.py` | Flashcard decks: no indented HTML that Docsify shows as a code block, and every ```` ```lnk-deck ```` fence well formed (CI) | `AGENTS.md` |
-| `check_dates.py` | Portland Desk months, seasons, weekdays, incident IDs and desk tenure match `PORTLAND_TIMELINE.md`; run before merge | `AGENTS.md` |
+| `check_decks_browser.py` | Chromium interactions and responsive layout across unit and Docsify decks (CI); setup below | below |
+| `check_dates.py` | Portland Desk months, seasons, weekdays, incident IDs and desk tenure match `PORTLAND_TIMELINE.md`; CI and before merge | `AGENTS.md` |
 | `check_cleanliness.py` | Strict lint: fails on any emoji or listed AI-slop marker in learner-facing files. Not in CI | — |
 | `_track.py`, `_unit_page_template.py`, `_deck.py` | Modules imported by the renderers (`_deck.py` parses `lnk-deck` fences for `render_unit.py`); not run directly | — |
 
@@ -183,3 +184,23 @@ The authoring workflow's bookkeeping: brief → plan → review → status. It n
 | Definition echo | Low counts everywhere; useful for pointing at specific sentences. |
 
 The dependency map is a suggestion, not an analysis: it matches term titles inside definitions, so "data" and "information" dominate, and a dependency the definition doesn't spell out is missed.
+
+## Browser flashcard checks
+
+From the repo root:
+
+```bash
+.venv/bin/python -m pip install -r requirements-browser.txt
+.venv/bin/python -m playwright install chromium
+.venv/bin/python tools/check_decks_browser.py
+```
+
+To use an installed browser, set `CHROMIUM_EXECUTABLE=/path/to/chromium` for the
+last command. CI installs Chromium with its system dependencies. The check serves
+`docs/` on an ephemeral loopback port, closes the browser and server on completion,
+and returns nonzero on interaction, layout, JavaScript, or required CDN failures.
+It covers Portland Desk, What Eli Left Out, and the Exam 2 study cards at 1280px
+and 390px: flip, navigation, keyboard controls, and shuffle, plus every card's
+face dimensions. Fonts use system fallbacks; this does not verify external fonts.
+Failure screenshots go to `/tmp/lnk-browser-failures` by default or
+`BROWSER_ARTIFACTS` when set. No generated site files are changed.

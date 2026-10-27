@@ -4,7 +4,7 @@ Use this file when an LLM (or human) authors a new unit **without** a specialize
 
 ## Archived material (read this first)
 
-`archive/` holds superseded documents. Do not read it, cite it, or follow its rules unless the author names a specific file and asks you to. If an active document links into `archive/`, treat the link as history, not as a source. See `archive/README.md` for what moved and what replaced it. `docs/AUDIT-2026-10.md` lists documents whose status is still undecided.
+`archive/` holds superseded documents. Do not read it, cite it, or follow its rules unless the author names a specific file and asks you to. If an active document links into `archive/`, treat the link as history, not as a source. See `archive/README.md` for what moved and what replaced it. `docs/AUDIT-2026-10.md` records the documentation audit resolved on 2026-10-26.
 
 ## Which document wins (precedence)
 
@@ -291,8 +291,8 @@ When authoring narrative stories, hands-on workbenches, terminal simulations, or
    - Mandates Image-to-Image (Img2Img) workflow with real reference photos for hardware precision.
    - Contains the master aspect ratio directory (`16:9`, `21:9`, `4:3`, `1:1`, `3:4`) and full episode prompt catalogue.
 3. **Pedagogical Agency Architecture (`docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`):**
-   - Resolves the "Already Solved" dilemma (Dramatic vs. Pedagogical Fallacy).
-   - Enforces the **Dynamic Fading Apprenticeship** across the 13 episodes (Symmetrical Tickets $\rightarrow$ Interleaved Cliffhanger Handoffs $\rightarrow$ Co-Pilot Dispatcher $\rightarrow$ Incident Commander).
+   - Chapters may show the answer. Labs open with the same incident as a worked example and end with one transfer problem.
+   - The four phases vary the amount of lab support; they do not withhold story answers. No lab epilogues or story Easter eggs.
 4. **Interactive Components Specification (`docs/research/INTERACTIVE_COMPONENTS_SPEC.md`):**
    - Syntax and client-side behavior for ````lnk-terminal` (zero-backend in-browser CLI simulation) and ````callout-panel` (responsive graphic novel schematics).
 5. **Track Canon & Author Bibles:**

@@ -4,16 +4,15 @@
 
 ---
 
-## 1. The Core Tension: Dramatic Fallacy vs. Passive Playback
+## 1. Why the model changed
 
-In narrative-driven technical courseware, there is a fundamental clash between **Classical Fiction Storytelling** and **Constructivist Learning**:
-
-1. **The Dramatic Fallacy:** In traditional fiction, the reader derives emotional satisfaction from seeing the hero (Ethan) face an impossible obstacle, synthesize clues, apply cleverness, and triumph through his own agency.
-2. **The Pedagogical Fallacy (Passive Playback):** If Ethan solves the entire incident in the story text (isolating the bad RAM, running the CLI fix, and getting praised by his boss) *before* the learner opens the lab, **the cognitive mystery is dead**. The learner's dopamine of discovery has already been spent vicariously on Ethan. The lab becomes a compliance chore—what video game designers call *"quick-time event typing"*.
-3. **The Cognitive Overload Trap:** Conversely, dropping a raw career-switcher directly into an open-ended terminal failure without prior modeling triggers panic and paralysis.
+Earlier guidance treated a solved story as a problem for the lab and used gated
+handoffs to preserve discovery. The author's decision below replaces that model:
+the story may reveal the answer, and the lab teaches through a worked example
+before asking the learner to solve a different problem. Keep the older rationale
+as history, not as an instruction to withhold solutions.
 
 ---
-
 
 ## 2. The Story-to-Lab Model (decision of Charles, 2026-10-26)
 
