@@ -1,0 +1,28 @@
+unit_id: exam2-knaflic-board
+title: "Tamarack — What Eli Left Out"
+audience: "ITM 310 student reviewing for Exam 2 (Knaflic Ch. 1 and the Power BI formula bar)"
+purpose: "Weave Knaflic's Chapter 1 vocabulary (exploratory vs explanatory analysis, audience, context, Big Idea, storyboarding, communication method) and the Power BI measure anatomy into one board-prep decision, so each term is tied to something Eli cut."
+estimated_minutes: 6
+sources:
+  - "ITM 310 Exam 2 Study Guide (Fall 2026): Knaflic Ch. 1 topic list, Power BI section"
+  - "ITM 310 Exam 2 Review deck (Fall 2026), slides 41-47"
+  - "Tamarack Feed & Supply Co. track canon: examples/TAMARACK.md; examples/bi-power-bi (August Ritzville week)"
+glossary: glossary.yaml
+narrative: narrative.md
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms the Exam 2 Study Guide and Review deck name or define"
+  support: "Interface words the review deck uses without defining"
+constraints:
+  - "Every glossary term appears at least once in a decision or complication"
+  - "Definitions follow the course materials; do not invent rival definitions"
+  - "Story must pass the cover test (readable with marks hidden)"
+  - "Third-person past tense; same company and cast as the rest of the Tamarack track"
+  - "Chapter ends with a cost; nothing closes clean"
+source_notes:
+  - "The seven Knaflic Ch. 1 definitions are status: proposed. The study guide and review deck only NAME these concepts; the wording is a working gloss from Knaflic's book and must be checked against the assigned chapter before this unit ships."
+  - "Review deck slide 45 gives the formula-bar anatomy (measure name, equals sign, DAX function, parentheses and arguments, Table[Field]). Dax_function and argument wording follows it."
+  - "Slides 46 and 47 disagree on view names (Table view / Data view / Model view / Relationships view). The story avoids naming a view."
+  - "Review deck notes pasted on slides 8-17 and 36-39 are mismatched answer keys (for example S11's note says 'What-If Analysis'); not used."
+heading_rule: scene
+timeline_note: "First Thursday of October 2027 (Oct 7), after the September 2027 Power BI report (bi-power-bi). Davenport opened May 4, 2027."

@@ -1,0 +1,77 @@
+bank_id: exam2-knaflic-board
+title: What Eli Left Out — glossary
+source: ITM 310 Exam 2 Study Guide and Exam 2 Review deck (Fall 2026); Knaflic Ch. 1 as listed there
+terms:
+- id: exploratory_analysis
+  title: "Exploratory analysis"
+  definition: "Looking through data without a fixed question, to understand it and find out what might be worth telling someone. Knaflic's picture: opening many oysters to find a few pearls."
+  status: proposed
+  tags: [knaflic-ch1]
+  tier: exam
+  refs: ["Exam 2 Study Guide: Knaflic Ch. 1", "Exam 2 Review deck, slide 42"]
+- id: explanatory_analysis
+  title: "Explanatory analysis"
+  definition: "Communicating one specific finding you already have to a specific audience; the pearl, not the oysters."
+  status: proposed
+  tags: [knaflic-ch1]
+  tier: exam
+  refs: ["Exam 2 Study Guide: Knaflic Ch. 1", "Exam 2 Review deck, slide 42"]
+- id: audience
+  title: "Audience"
+  definition: "The people you are communicating to. Narrow it as far as you can; the review deck asks whether to present to the widest possible audience or a specific one, and the specific one is the answer."
+  status: proposed
+  tags: [knaflic-ch1]
+  tier: exam
+  refs: ["Exam 2 Review deck, slide 42"]
+- id: presentation_context
+  title: "Presentation context"
+  definition: "What you must settle before building anything: who the audience is, what you need them to know or do, and how the data can help you make the point."
+  status: proposed
+  tags: [knaflic-ch1]
+  tier: exam
+  refs: ["Exam 2 Study Guide: Knaflic Ch. 1", "Exam 2 Review deck, slide 41"]
+- id: big_idea
+  title: "Big Idea"
+  definition: "A single complete sentence that states your point of view and what is at stake."
+  status: proposed
+  tags: [knaflic-ch1]
+  tier: exam
+  refs: ["Exam 2 Study Guide: Knaflic Ch. 1", "Exam 2 Review deck, slide 41"]
+- id: storyboarding
+  title: "Storyboarding"
+  definition: "Sketching the outline of a presentation, one note per slide, and rearranging it before building anything."
+  status: proposed
+  tags: [knaflic-ch1]
+  tier: exam
+  refs: ["Exam 2 Study Guide: Knaflic Ch. 1", "Exam 2 Review deck, slide 41"]
+- id: communication_method
+  title: "Communication method"
+  definition: "How the message is delivered, such as a live presentation or a document read alone. A live talk can carry less on the slide because the speaker adds the rest; a document must stand on its own."
+  status: proposed
+  tags: [knaflic-ch1]
+  tier: exam
+  refs: ["Exam 2 Study Guide: Knaflic Ch. 1", "Exam 2 Review deck, slide 41"]
+- id: get_data
+  title: "Get data"
+  definition: "The Power BI command that connects to a data source and starts an import."
+  tags: [power-bi]
+  tier: support
+  refs: ["Exam 2 Review deck, slides 44, 46 (D)", "itm310-wk07-power-bi glossary"]
+- id: calculated_measure
+  title: "Calculated measure"
+  definition: "A calculation that belongs to the entire data set, not to a table. Use it for all aggregate functions. Computed on the fly in a visual, it adapts to whatever filters are applied, and it can be used in other calculations."
+  tags: [power-bi, dax]
+  tier: exam
+  refs: ["Exam 2 Review deck, slide 45", "itm310-wk07-power-bi glossary"]
+- id: dax_function
+  title: "DAX function"
+  definition: "A function in a Power BI formula. In Total Sales = SUM(Sales[SalesAmount]), SUM is the DAX function and adds up all of the numbers in the Sales[SalesAmount] column."
+  tags: [power-bi, dax]
+  tier: exam
+  refs: ["Exam 2 Review deck, slide 45"]
+- id: argument
+  title: "Argument"
+  definition: "A value or expression placed inside a function's parentheses. A function requires an argument to pass it a value; SUM(Sales[SalesAmount]) has one."
+  tags: [power-bi, dax]
+  tier: exam
+  refs: ["Exam 2 Review deck, slides 44-45"]
