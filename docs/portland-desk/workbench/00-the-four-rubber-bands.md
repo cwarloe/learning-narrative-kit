@@ -638,96 +638,30 @@ ipconfig: |
 
 > **The Red Rubber Band Standard:** Test only one abstract concept per card. If saying the answer aloud takes more than 10 seconds, the card is overloaded. Click any card to flip between Question and Answer.
 
-<div class="passport-deck-container" id="passport-deck-00">
-  <div class="passport-deck-header">
-    <div style="display: flex; align-items: center; gap: 0.75rem;">
-      <span class="passport-deck-badge">RED BAND // ATOMIC RECALL DECK</span>
-      <span class="passport-deck-meta">Spaced Retrieval Warmup • CompTIA A+ Core 1</span>
-    </div>
-    <div class="passport-deck-counter">
-      CARD <span class="deck-curr-idx">1</span> / <span class="deck-total-count">3</span>
-    </div>
-  </div>
-  
-  <div class="passport-card-stage">
-    <!-- Card 1 -->
-    <div class="passport-card active" data-index="0" role="button" tabindex="0" aria-label="Flashcard 1: Memory Volatility">
-      <div class="passport-face face-front">
-        <span class="passport-highlight-bar">BOUNDARY // VOLATILITY</span>
-        <div class="passport-prompt-text">Power cuts abruptly during an office outage. Does data in RAM survive the drop? (Yes/No and Why)</div>
-        <div class="passport-footer-prompt">
-          <span>Card 1 of 3</span>
-          <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
-        </div>
-      </div>
-      <div class="passport-face face-back">
-        <span class="passport-highlight-bar">GROUND TRUTH // THE LAW</span>
-        <div class="passport-answer-text">
-          <div class="passport-answer-rule">NO. Dynamic RAM is 100% volatile.</div>
-          <div class="passport-why-text">DRAM stores bits as electrical charges inside capacitor cells that require refresh cycles every 64ms. The instant power drops, charge dissipates immediately, purging all processes, kernel tables, and in-memory malware.</div>
-        </div>
-        <div class="passport-footer-prompt">
-          <span>Target Recall: &lt; 10s</span>
-          <span class="flip-hint">[ Click to Flip ]</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="passport-card" data-index="1" role="button" tabindex="0" aria-label="Flashcard 2: Loopback Invariant">
-      <div class="passport-face face-front">
-        <span class="passport-highlight-bar">BOUNDARY // LOGICAL LOOPBACK</span>
-        <div class="passport-prompt-text">You run <code>ping 127.0.0.1</code> and get 4 successful replies. Does this prove your physical network cable is working? (Yes/No and Why)</div>
-        <div class="passport-footer-prompt">
-          <span>Card 2 of 3</span>
-          <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
-        </div>
-      </div>
-      <div class="passport-face face-back">
-        <span class="passport-highlight-bar">GROUND TRUTH // THE LAW</span>
-        <div class="passport-answer-text">
-          <div class="passport-answer-rule">NO. Loopback tests only internal TCP/IP software.</div>
-          <div class="passport-why-text">The loopback address (127.0.0.1) never sends electrical pulses to the network card PHY or physical Ethernet cable. It routes internally inside Windows kernel memory (tcpip.sys) to confirm the driver stack is initialized.</div>
-        </div>
-        <div class="passport-footer-prompt">
-          <span>Target Recall: &lt; 10s</span>
-          <span class="flip-hint">[ Click to Flip ]</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="passport-card" data-index="2" role="button" tabindex="0" aria-label="Flashcard 3: Hardware Tell">
-      <div class="passport-face face-front">
-        <span class="passport-highlight-bar">DIAGNOSTIC // HARDWARE TELL</span>
-        <div class="passport-prompt-text">A moved workstation turns on, fans spin loudly, but monitor shows "No Signal" and BIOS emits 1 long beep + 2 short beeps. What failed?</div>
-        <div class="passport-footer-prompt">
-          <span>Card 3 of 3</span>
-          <span class="flip-hint">[ Click or Spacebar to Flip ]</span>
-        </div>
-      </div>
-      <div class="passport-face face-back">
-        <span class="passport-highlight-bar">GROUND TRUTH // THE LAW</span>
-        <div class="passport-answer-text">
-          <div class="passport-answer-rule">Display Adapter (GPU) or Memory initialization failure.</div>
-          <div class="passport-why-text">POST beep codes indicate hardware failure before the video subsystem can initialize. Physical desk shock causes unlatched PCIe cards or RAM sticks to unseat. Immediate fix: drain flea power and firmly reseat components.</div>
-        </div>
-        <div class="passport-footer-prompt">
-          <span>Target Recall: &lt; 10s</span>
-          <span class="flip-hint">[ Click to Flip ]</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="passport-deck-nav">
-    <button type="button" class="passport-btn prev-btn">← Previous</button>
-    <button type="button" class="passport-btn flip-btn">Flip Card (Spacebar)</button>
-    <button type="button" class="passport-btn next-btn">Next →</button>
-    <button type="button" class="passport-btn shuffle-btn">Shuffle Deck</button>
-  </div>
-  <div class="passport-progress-dots"></div>
-</div>
+```lnk-deck
+title: RED BAND // ATOMIC RECALL DECK
+meta: Spaced Retrieval Warmup • CompTIA A+ Core 1
+size: 3x5
+band: red
+---
+tag: BOUNDARY // VOLATILITY
+Q: Power cuts abruptly during an office outage. Does data in RAM survive the drop? (Yes/No and Why)
+back_tag: GROUND TRUTH // THE LAW
+A: NO. Dynamic RAM is 100% volatile.
+why: DRAM stores bits as electrical charges inside capacitor cells that require refresh cycles every 64ms. The instant power drops, charge dissipates immediately, purging all processes, kernel tables, and in-memory malware.
+---
+tag: BOUNDARY // LOGICAL LOOPBACK
+Q: You run `ping 127.0.0.1` and get 4 successful replies. Does this prove your physical network cable is working? (Yes/No and Why)
+back_tag: GROUND TRUTH // THE LAW
+A: NO. Loopback tests only internal TCP/IP software.
+why: The loopback address (127.0.0.1) never sends electrical pulses to the network card PHY or physical Ethernet cable. It routes internally inside Windows kernel memory (tcpip.sys) to confirm the driver stack is initialized.
+---
+tag: DIAGNOSTIC // HARDWARE TELL
+Q: A moved workstation turns on, fans spin loudly, but monitor shows "No Signal" and BIOS emits 1 long beep + 2 short beeps. What failed?
+back_tag: GROUND TRUTH // THE LAW
+A: Display Adapter (GPU) or Memory initialization failure.
+why: POST beep codes indicate hardware failure before the video subsystem can initialize. Physical desk shock causes unlatched PCIe cards or RAM sticks to unseat. Immediate fix: drain flea power and firmly reseat components.
+```
 
 
 ---

@@ -205,6 +205,14 @@ Run all of these. Each one caught something real on the Tamarack track.
   the process ID first and kill that.
 - Some sandboxes can't reach `*.github.io`. Confirm a Pages deploy from the
   "pages build and deployment" workflow run instead.
+- In Docsify markdown (`docs/portland-desk/`), a blank line ends a raw HTML block, and an
+  indented `<tag>` after it renders as a code block. Don't hand-write multi-part widgets as
+  HTML in markdown: use a fence (`lnk-deck`, `lnk-terminal`, `callout-panel`) that
+  `index.html` turns into one line of HTML. `tools/check_decks.py` catches the trap.
+- To test Docsify pages headlessly here, serve `docs/portland-desk` locally and answer
+  `cdn.jsdelivr.net` requests from `curl` over HTTPS (Playwright `page.route`): the pages
+  load Docsify with `//cdn...` URLs, which become `http://` on a local server, and the
+  sandbox proxy only serves HTTPS.
 
 ## Validate rules (mechanical)
 

@@ -84,3 +84,71 @@ image: "assets/panels/ep01-serial-pin.webp"
 * `caption`: Explanatory text rendered in the panel footer.
 * `prompt`: The concept art generation prompt. Rendered in the placeholder box when `image` is omitted.
 * `image`: Relative path to the rendered artwork (e.g. `assets/panels/ep01-serial-pin.webp`).
+
+---
+
+## 4. Component Specification: `lnk-deck` (flashcard decks)
+
+A deck of flip cards: click, Space or Enter flips; Previous / Next, the arrow keys,
+and the dots move between cards; Shuffle reorders the deck. Built by `initLnkDecks()`
+in `assets/lnk-shell.js` from a fence parsed in `index.html`. Write every new deck this
+way. Do not hand-write deck HTML in markdown (see "Why a fence" below).
+
+### Markdown Authoring Syntax
+
+````markdown
+```lnk-deck
+title: RED BAND // ATOMIC RECALL DECK
+meta: Spaced Retrieval Warmup • CompTIA A+ Core 1
+size: 3x5
+band: red
+---
+tag: BOUNDARY // VOLATILITY
+Q: Power cuts abruptly during an office outage. Does data in RAM survive the drop?
+back_tag: GROUND TRUTH // THE LAW
+A: NO. Dynamic RAM is 100% volatile.
+why: DRAM stores bits as charges that need constant refresh; when power drops, they're gone.
+---
+band: green
+Q: You run `ping 127.0.0.1` and get replies. Does that prove the cable works?
+A: No. Loopback never leaves the machine.
+```
+````
+
+| Field | Where | Meaning |
+|---|---|---|
+| `title`, `meta` | header | Deck badge text and the small line beside it |
+| `size` | header | `3x5` (trivia, 5:3) or `4x6` (concepts, 3:2). Default `3x5` |
+| `band` | header or card | `red`, `green`, `yellow`, `blue` (the Four Rubber Bands). A card's `band` overrides the deck's |
+| `Q`, `A` | card | Front prompt and back answer. Both required |
+| `why` | card | One or two sentences under the answer |
+| `tag`, `back_tag` | card | Highlight-bar labels on the front and back (back defaults to "Answer") |
+| `hint` | card | Replaces the front footer's flip hint |
+
+- Cards are separated by a line containing only `---`. Blank lines anywhere are fine.
+- A long value can continue on the next line; it joins the field above. Don't start a
+  continuation line with `Word:`, or it will be read as a new field
+  (`tools/check_decks.py` catches this).
+- Card text is plain text. `Backticks` become inline code; HTML is shown as typed.
+
+### Why a fence (the bug this replaced)
+
+The first deck was hand-written HTML inside the workbench markdown, and it rendered as
+one card instead of three. Docsify's markdown parser ends an HTML block at the first blank
+line; the next card's indented markup was then treated as an indented code block, so cards
+2 and 3 appeared as raw HTML text and the deck held one card. Separately, `index.html` and
+`lnk-shell.js` each bound a click handler that toggled `flipped`, so every click flipped the
+card and flipped it straight back. The fence turns the whole deck into one line of HTML that
+carries the cards as data, so markdown never parses card markup, and `lnk-shell.js` is the
+only code that binds deck events.
+
+### Behavior and layout notes
+
+- One listener per deck on the deck element handles clicks and keys. Nothing is bound on
+  `document`, so revisiting a page doesn't stack handlers.
+- The two faces share one CSS grid cell with an invisible spacer whose padding is a
+  percentage of the card's width (60% for 3x5, 66.67% for 4x6). The card keeps index-card
+  proportions when the text is short and grows taller when it isn't (on phones). Don't use
+  `aspect-ratio` here: it fixed the height and long answers spilled over the buttons.
+- Check: `python3 tools/check_decks.py` (also runs in CI).
+
