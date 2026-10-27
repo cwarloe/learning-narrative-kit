@@ -621,6 +621,12 @@ def md_to_html(md: str, terms: dict):
 
 
 
+KOMIKA_DECK_CSS = """
+@font-face { font-family: 'Komika Text'; src: url('../assets/fonts/komika-text.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+.lnk-deck__q, .lnk-deck__a { font-family: 'Komika Text', sans-serif; font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
+"""
+
+
 def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path | None = None,
                 out_root: Path | None = None) -> Path:
     """Render unit_dir → docs/<unit_id>/index.html (or <out_root>/<unit_id>/). Returns output path."""
@@ -673,6 +679,9 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
         extra_css = NAV_CSS
 
     has_deck = 'class="lnk-deck"' in body_html
+    if has_deck and unit.get("deck_font") == "komika-text":
+        # Same @font-face and stack as docs/handcrafted_cards_mockup.html; scoped to the cards.
+        extra_css += KOMIKA_DECK_CSS
     html_out = render_html(
         page_title, subtitle, body_html, gloss_json, nav_top, nav_bottom, extra_css,
         has_deck=has_deck,
