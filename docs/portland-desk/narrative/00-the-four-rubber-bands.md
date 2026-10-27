@@ -4,13 +4,13 @@
 
 The overhead fluorescent fixture above the kitchen sink hummed with a flat, sixty-cycle buzz that seemed to vibrate inside my teeth. Outside the kitchen window, the July night had cooled to sixty degrees, but inside our cramped East Portland duplex, the heat stayed trapped beneath the low ceiling. A cheap plastic box fan stood propped on a cardboard box in the doorway, rattling its warped blades against the housing every few seconds. On the scarred laminate table, an eight-hundred-page certification guide sat propped open against a ceramic mug half-filled with cold instant coffee.
 
-My shift had ended four hours earlier at Harrowmere's freight distribution warehouse out on Division Street in Gresham. I was twenty years old with an aching lower back. For nine straight hours, I had unloaded eighty-pound bags of mortar and stacked drywall sheets across wooden bunks. A faint grey haze of gypsum dust remained caked into the seams of my work boots and beneath my fingernails. 
+It was my night off. The night before, I had worked the graveyard shift at Harrowmere's freight distribution warehouse out on Division Street in Gresham, and I had slept through most of the day. I was twenty years old with an aching lower back. For nine straight hours that night, I had unloaded eighty-pound bags of Quikrete concrete mix and stacked drywall sheets across wooden bunks. A faint grey haze of gypsum dust remained caked into the seams of my work boots and beneath my fingernails. 
 
 My checking account held exactly forty-one dollars and sixteen cents. 
 
 Six weeks earlier, that account had held nearly three hundred dollars. I had spent two hundred and forty-six of it on a discounted CompTIA exam voucher, convinced that two months of reading textbook chapters on my lunch breaks had made me a technician. I drove out to an anonymous testing center in Beaverton, sat in a sterile cubicle under security cameras, and failed Core 1 with a score of 592. Passing was 675. The testing engine had spat me out into the rain with a stamped failure notice and thirty-eight dollars left to buy groceries for the rest of the month. 
 
-I spent the next six weeks picking up every graveyard shift Ken Vance offered on the Gresham cross-dock, hauling freight until my palms blistered, saving dollar by dollar to buy voucher number two. The second appointment was scheduled for tomorrow morning at eight.
+I spent the next six weeks picking up every extra graveyard shift Ken Vance offered on the Gresham cross-dock, hauling freight until my palms blistered, saving dollar by dollar to buy voucher number two. The second appointment was scheduled for tomorrow morning at eight.
 
 Across the laminate tabletop, three hundred handmade three-by-five index cards were arranged in four crooked rows. I had spent those six weeks copying definitions during every fifteen-minute break, handwriting every obscure specification onto index stock: the pin counts of memory modules, the maximum lengths of single-mode fiber runs, the operating voltages of legacy serial ports, and the mechanical stages of a laser printing engine. 
 
@@ -53,24 +53,104 @@ He turned and padded back down the hallway in his wool socks, leaving the glass 
 
 His words stayed with me while the crickets chirped outside the window screen. What moves, and what stays still. 
 
-I pushed my chair back, got down on the linoleum, and began gathering the scattered index cards from beneath the kitchen table. As I picked them up, I pulled four thick rubber bands from the ceramic mug on the counter: one red, one green, one yellow, and one blue. I brought the tall stack back to the table, opened a fresh wire-bound notebook, and began sorting the material according to a ruthless, survivalist triage.
+I pushed my chair back, got down on the yellow linoleum, and began gathering the scattered index cards from beneath the kitchen table. As I picked them up, I pulled four thick rubber bands from the ceramic mug on the counter: dirty, oily bands salvaged from junk mail and bundles of supermarket celery. I brought the tall stack back to the table, opened a fresh wire-bound notebook, and began sorting the material according to a ruthless, survivalist triage.
 
-The red rubber band served as my quarantine bucket for raw exam passport trivia. Into this pile went the laser printer pickup rollers, the six stages of the electrophotographic cycle, the pin counts of legacy parallel ports, and the transmission limits of copper network cables. These were arbitrary facts invented by vendors and preserved by certification committees. I did not need to incorporate these details into my identity as a technician. I only needed to hold them in short-term recall for ninety minutes tomorrow morning, write them onto the scratch plastic board, and discard them in the parking lot.
+That was when the first real realization hit me.
 
-The green rubber band held the permanent anatomy of computing. Stripped of vendor branding, every digital machine relies on four unchanging physical building blocks:
-* **The Central Processing Unit (CPU)** executes serialized instructions.
-* High-speed volatile [[ram_memory|RAM]] acts as the machine's live workspace, holding operating system kernel tables, active program buffers, and working variables while electrical current flows through the chassis. The moment power drops, dynamic memory collapses into total silence.
-* Permanent [[non_volatile_storage|storage]], whether spinning magnetic platters or solid-state NAND flash cells, preserves the operating system files and data records across reboots without requiring power.
-* Connecting these parts is the system bus, governed by firmware that runs an initial hardware [[post_routine|POST]] to verify that core hardware is electrically functional before handing control to the boot loader.
+My failure six weeks earlier wasn't because I hadn't studied enough hours. It was because I had tried to treat four hundred completely different concepts as uniform flashcards. I had written full paragraphs of troubleshooting theory, multi-step boot sequences, and complex network diagrams onto three-by-five cards, and then stared at them trying to recite the sentences word-for-word. When the exam presented an actual broken machine, I couldn't remember the paragraphs because my brain had memorized the cadence of the sentences rather than the mechanism of the machine.
 
-The yellow rubber band contained the identity triad that governs communication. A machine alone on a workbench is just a calculator, but once a [[network_interface_card|NIC]] connects it to a wire or a radio frequency, the computer must establish its identity:
-* At Layer 2 of the local segment, the machine identifies itself with a hardware [[mac_address|MAC address]] that directs frames across the immediate physical wire.
-* At Layer 3, the host receives a logical, temporary [[ip_address|IP address]] that indicates where the machine currently sits within a routed network topology.
-* At Layer 4, software port numbers open application doorways to deliver segments to the correct socket buffer instead of dropping in memory.
+Only one stack belonged in a flashcard deck: **The Red Rubber Band**.
 
-The blue rubber band held the troubleshooting reflex. This was the CompTIA diagnostic framework, translated out of administrative jargon and into the language of the machine shop: *Observe the symptom $\rightarrow$ Establish a theory of probable cause $\rightarrow$ Test the theory using the simplest non-destructive measurement available $\rightarrow$ Establish an action plan $\rightarrow$ Verify full system functionality $\rightarrow$ Document the resolution.* It was Hank's rule on the conveyor, and my father's rule on the milling bench: never change three settings at once out of nervous panic.
+Into the Red Band went the raw, arbitrary exam passport trivia—the disposable facts that CompTIA tests to verify syllabus compliance: laser printer pickup rollers, the six stages of the electrophotographic cycle, the pin counts of legacy parallel cables, and maximum cable run lengths. These were facts with zero moving parts. You either recalled them in under ten seconds or you didn't. I wrapped the thick red rubber band around the forty true trivia cards. This was my **Passport Deck**—the cram stack I would drill for speed, spit out onto the exam scratch plastic in Beaverton, and discard in the parking lot.
 
-I snapped the fourth rubber band around the blue cards, stacked the four neat bricks beside my keyboard, and finally turned off the buzzing fluorescent fixture.
+
+### Ethan's 3x5 Trivia Cards (The Red Rubber Band)
+
+<div class="card-stage style-white" id="storyTriviaCardStage" style="margin: 2rem auto;">
+<div class="card-flipper" id="storyTriviaFlipper">
+<div class="card-face card-front">
+<div class="marker-slash" style="background: rgba(239, 68, 68, 0.45); color: #991b1b;">TRIVIA</div>
+<div class="card-num-scrawl" id="storyCardNumFront">#01</div>
+<div class="front-layout" style="grid-template-columns: 1fr; margin-top: 2.2rem;">
+<div class="front-text-col">
+<div class="front-big-question" id="storyCardQ">Loading question...</div>
+<div class="front-hint-scrawl" id="storyCardHint">Loading hint...</div>
+</div>
+</div>
+<div class="tap-to-flip-guide" id="storyCardCounter">[ CLICK OR SPACEBAR TO FLIP ]</div>
+</div>
+<div class="card-face card-back">
+<div class="marker-slash" style="background: rgba(239, 68, 68, 0.45); color: #991b1b;">TRIVIA</div>
+<div class="card-num-scrawl" id="storyCardNumBack">#01</div>
+<div class="back-layout" style="margin-top: 2.2rem;">
+<div class="back-huge-answer" id="storyCardA">Loading answer...</div>
+<div class="back-bullet-point" id="storyCardR1">Loading rule 1...</div>
+<div class="back-bullet-point" id="storyCardR2">Loading rule 2...</div>
+<div class="back-trap-box" id="storyCardTrap">Loading trap...</div>
+</div>
+<div class="tap-to-flip-guide">[ CLICK TO FLIP BACK ]</div>
+</div>
+</div>
+</div>
+<div class="controls-zone" style="margin-bottom: 2.5rem;">
+<button type="button" class="ctrl-btn" id="storyCardPrevBtn">&larr; Previous Card</button>
+<button type="button" class="ctrl-btn primary" id="storyCardFlipBtn">Flip Card (Spacebar)</button>
+<button type="button" class="ctrl-btn" id="storyCardNextBtn">Next Card &rarr;</button>
+<button type="button" class="ctrl-btn" id="storyCardShuffleBtn">Shuffle / Interleave</button>
+</div>
+
+
+The other three stacks weren't flashcards at all. They were **instruments**. Trying to memorize them as flashcards was like trying to memorize the blueprint of a lathe instead of standing in front of the chuck. They needed to be tools I could look at, lay flat on a workbench, and consult while my hands were inside a chassis.
+
+I had no idea how to design a professional technical cheat sheet from scratch. But two nights earlier, while searching through an old IT support forum on my battered ThinkPad, I had bookmarked a thread posted by a veteran telecom field tech titled *Field Slates: Stop Memorizing Flashcards*. The tech had shared a set of downloadable plain-text templates laid out in two-column ASCII tables and bracketed check lines, pre-measured to fit four-by-six cardstock. Hearing my father talk about machine setup sheets, and remembering Hank on the conveyor dock, the pieces finally clicked. I opened those plain-text templates in WordPad and spent the next hour filling in the sections with the core exam topics and Hank's shop-floor rules:
+
+* **The Green Band (The Anatomy Slate):** The permanent physical building blocks of computing. Stripped of vendor marketing, every machine relies on four unchanging subsystems:
+  * **The Central Processing Unit (CPU)** executes serialized instructions.
+  * High-speed volatile [[ram_memory|RAM]] acts as the machine's live workspace, holding operating system kernel tables, active program buffers, and working variables while electrical current flows through the chassis. The moment power drops, dynamic memory collapses into total silence.
+  * Permanent [[non_volatile_storage|storage]], whether spinning magnetic platters or solid-state NAND flash cells, preserves the operating system files and data records across reboots without requiring power.
+  * Connecting these parts is the system bus, governed by firmware that runs an initial hardware [[post_routine|POST]] to verify that core hardware is electrically functional before handing control to the boot loader.
+* **The Yellow Band (The Identity Slate):** The identity triad that governs communication. Once a [[network_interface_card|NIC]] connects a machine to a wire or a radio frequency, the computer must establish its identity:
+  * At Layer 2 of the local segment, the machine identifies itself with a hardware [[mac_address|MAC address]] that directs frames across the immediate physical wire.
+  * At Layer 3, the host receives a logical, temporary [[ip_address|IP address]] that indicates where the machine currently sits within a routed network topology.
+  * At Layer 4, software port numbers open application doorways to deliver segments to the correct socket buffer instead of dropping in memory.
+* **The Blue Band (The Triage Compass):** The troubleshooting order of operations, translated out of corporate training jargon and into the language of the machine shop: *Observe the symptom $\rightarrow$ Establish a theory of probable cause $\rightarrow$ Test the theory using the simplest non-destructive measurement available $\rightarrow$ Establish an action plan $\rightarrow$ Verify full system functionality $\rightarrow$ Document the resolution.* It was Hank's rule on the conveyor, and my father's rule on the milling bench: never touch three adjustments at once out of nervous panic.
+
+I saved the three layouts to a scuffed USB thumb drive. Tomorrow morning at six-thirty, on my way to Beaverton, I would stop at the twenty-four-hour FedEx Office on Southeast 82nd Avenue. I had four dollars and twenty cents in change in my glove compartment—enough to print the sheets on heavy sixty-five-pound cardstock. Back at the car, I would seal them front and back with overlapping strips of two-inch Scotch packaging tape, burnish out the bubbles with a library card, and trim the clear borders with my dad's Olfa knife.
+
+They wouldn't be pretty. They wouldn't look like professional laminated pocket guides. But they would be durable, waterproof field slates that I could slide into my Carhartt back pocket, mark up with an ultra-fine dry-erase pen, and wipe clean with an oily shop rag.
+
+I snapped the red rubber band around the forty trivia cards, banded the draft sheets into three distinct stacks, and finally clicked off the buzzing fluorescent fixture.
+
+
+### Ethan's 4x6 Taped Field Slates
+
+<div class="card-stage style-manila" id="storySlateCardStage" style="max-width: 840px; height: 520px; margin: 2rem auto;">
+<div class="card-flipper" id="storySlateFlipper">
+<div class="card-face card-front" style="background-color: #fdfbf7; border: 3.5px solid #0f172a; box-shadow: 7px 9px 0px #090d16; padding: 1.25rem 1.6rem;">
+<div class="marker-slash" id="slateMarkerFront" style="background: rgba(34, 197, 94, 0.45); color: #14532d; font-size: 1.45rem;">THE ANATOMY SLATE (GREEN BAND)</div>
+<div class="card-num-scrawl" id="slateNumFront" style="font-size: 1.4rem;">SIDE A</div>
+<div class="front-layout" style="grid-template-columns: 1fr; margin-top: 2.2rem;">
+<div class="front-text-col" id="slateFrontContent">
+Loading Slate Front...
+</div>
+</div>
+<div class="tap-to-flip-guide" id="slateCounter">[ CARD 1 OF 3 &bull; CLICK OR SPACEBAR TO FLIP TO SIDE B ]</div>
+</div>
+<div class="card-face card-back" style="background-color: #f8fafc; border: 3.5px solid #0f172a; box-shadow: 7px 9px 0px #090d16; padding: 1.25rem 1.6rem;">
+<div class="marker-slash" id="slateMarkerBack" style="background: rgba(34, 197, 94, 0.45); color: #14532d; font-size: 1.45rem;">THE ANATOMY SLATE (GREEN BAND)</div>
+<div class="card-num-scrawl" id="slateNumBack" style="font-size: 1.4rem;">SIDE B</div>
+<div class="back-layout" style="margin-top: 2.2rem;" id="slateBackContent">
+Loading Slate Back...
+</div>
+<div class="tap-to-flip-guide">[ CLICK OR SPACEBAR TO FLIP BACK TO SIDE A ]</div>
+</div>
+</div>
+</div>
+<div class="controls-zone" style="margin-bottom: 2.5rem;">
+<button type="button" class="ctrl-btn" id="slatePrevBtn">&larr; Previous Slate</button>
+<button type="button" class="ctrl-btn primary" id="slateFlipBtn">Flip Slate (Side A / Side B)</button>
+<button type="button" class="ctrl-btn" id="slateNextBtn">Next Slate &rarr;</button>
+</div>
 
 ## The Strip Mall in Beaverton
 
@@ -92,13 +172,13 @@ With twelve minutes left on the clock, I hit the review screen with four flagged
 
 The mandatory fifteen-question demographic survey locked the screen. My heart hammered against my ribs while I clicked through questions about my employment history. After the final response, the screen hesitated for three agonizing seconds.
 
-The score banner flashed on the monitor: **685 out of 900**. The minimum passing score was 675.
+The score banner flashed on the monitor: **690 out of 900**. The minimum passing score was 675.
 
-I passed by ten points. Two questions.
+I passed by fifteen points. Two or three questions.
 
 I sat back against the fabric chair and let out a long breath that fogged the plastic bezel of the display. At the reception counter, the proctor stamped an embossed seal onto my paper score report and slid the document across the laminate. 
 
-The paper did not make me a senior engineer. It did not erase the mortar dust on my boots or put money back into my bank account. But as I walked out into the cool Beaverton rain, holding the physical proof that I had earned my license to step through the door, my hands finally stopped shaking.
+The paper did not make me a senior engineer. It did not erase the concrete dust on my boots or put money back into my bank account. But as I walked out into the cool Beaverton rain, holding the physical proof that I had earned my license to step through the door, my hands finally stopped shaking.
 
 I set the score report on the passenger seat of my Civic, twisted the ignition key, and pulled out into the midday traffic on Highway 217.
 
@@ -121,5 +201,5 @@ target: workbench/00-the-four-rubber-bands.md
 domain: CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations
 badge: Hands-On Lab
 ---
-Deconstruct the computer from scratch with Ethan's four rubber bands: volatile memory isolation, Layer 2 vs. Layer 3 address triage, live command-line diagnostics (`whoami`, `hostname`, `ipconfig`), and the First-Contact Diagnostic Checklist.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

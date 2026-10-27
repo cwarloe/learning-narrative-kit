@@ -93,3 +93,6 @@ parts:
       - id: itm310-wk07-power-bi
         module: "ITM 310 · Week 7 · Intro to Power BI"
         blurb: "Three feed dealers have to prove one number to the mill, and CRISP-DM is how they get there."
+      - id: exam2-knaflic-board
+        module: "ITM 310 · Exam 2 review · Knaflic Ch. 1"
+        blurb: "Eli has nine pages of findings and twenty minutes with the board. Most of it has to stay out."

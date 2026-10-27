@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build portland-desk/artifacts/jared-telnet-capture.pcap for Episode 7, Drill 1.
+"""Build docs/portland-desk/artifacts/jared-telnet-capture.pcap for Episode 7, Drill 1.
 
 The drill prints frames 101-137 of a capture taken from a span port on the
 management VLAN. This script writes that capture as a real .pcap so learners can
@@ -17,7 +17,7 @@ import sys
 
 from scapy.all import ARP, DNS, DNSQR, DNSRR, ICMP, IP, NTP, TCP, UDP, Ether, Raw, wrpcap
 
-OUT = sys.argv[1] if len(sys.argv) > 1 else "portland-desk/artifacts/jared-telnet-capture.pcap"
+OUT = sys.argv[1] if len(sys.argv) > 1 else "docs/portland-desk/artifacts/jared-telnet-capture.pcap"
 
 CLIENT, SWITCH = "192.168.10.45", "10.0.4.15"          # from the drill
 RESOLVER, NTPSRV, LOGHOST, PINGER, GATEWAY = ("192.168.10.2", "192.168.10.3",

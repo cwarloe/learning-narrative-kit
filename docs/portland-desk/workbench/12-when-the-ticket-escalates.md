@@ -20,6 +20,22 @@
 
 ---
 
+## Worked Example: The quiet mailbox intrusion
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Quiet mailbox rules, a USB in the warehouse, and lateral movement toward the plant gateway.
+
+1. Recognize the pattern as an incident and declare it, which moves you from tickets into the IR lifecycle.
+2. Capture volatile evidence in order: memory first, then network state, then disk.
+3. Contain: isolate the compromised workstation and the plant gateway.
+4. Keep chain of custody on every artifact.
+5. Eradicate and recover with the owners of each system.
+6. Run the after-action review and write down what you would do differently.
+7. Result: contained, with a lost second memory capture, a plant on manual override, and a missing plant playbook.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,36 +47,9 @@ prompt: "Clean technical cutaway illustration of a computer forensic examination
 
 
 ### The Situation
-It is 14:15 on a wind-whipped Thursday in late October. Outside the fourth-floor windows of the Portland Operations Center, sheets of gray rain sweep across the Willamette River, obscuring the Hawthorne Bridge and the steel industrial warehouses of the Central Eastside. Inside, the dispatch floor smells of wet wool jackets, ozone from the server room exhaust blowers, and Jules Brooks’s dark French roast coffee.
+It is a Wednesday in late June. Ethan has been on the desk for twenty-two months. At 08:30, Maya brings in a laptop that turns out to be quarantined adware. At 11:15, Nora Higgins in finance sends a quiet ticket: her wire confirmations are missing from Sent Items, and there is an Outlook rule she does not remember creating. In the early afternoon, Jared relays a call from Todd Miller in Inside Sales, who found an unbranded USB stick labeled *Client Deck Final* on the shipping office floor and plugged it into `TODD-SALES-14`. Then Nora's credentials authenticate to the staging jump host `SRV-STAGE-01`, which bridges into the Willamette River plant network.
 
-On the corkboard above the primary dispatch console, Jules’s morning sticky note (*"which decision?"*) has been covered with a fresh neon-orange square:
-
-$$\boxed{\textbf{Preserve before you touch. Who else needs to know?}}$$
-
-Ethan’s queue on Wednesday morning had been full of loud, theatrical panic—users demanding instant laptop wipes for pop-up toolbars that antivirus had already disarmed. But this afternoon, the queue is eerily quiet. The tickets trickling in do not scream in all caps; they murmur. And when multiple quiet tickets arrive from different departments within a three-hour window, Jules does not look at the queue as four separate tickets. She looks at it as a single unfolding story.
-
-Over the span of three hours, four distinct tickets land across Ethan's dispatch screen:
-
-1. **Ticket 1: Nora Higgins in Finance (`FIN-NORA-02`):**  
-   Nora submitted a low-priority ticket yesterday morning asking why her email "Sent Items" folder was intermittently empty. Her local antivirus reported 100% clean. However, an audit of the Microsoft 365 tenant portal revealed an unauthorized inbox forwarding rule created at 02:13 a.m. named `InvoiceProcess`. The rule silently redirects every incoming email containing the words *"wire"*, *"invoice"*, *"payroll"*, or *"confidential"* to an external drop address (`exfil@pay-secure-audit.com`), marks the message as read, and moves it directly to the hidden `RSS Feeds` folder. Azure Active Directory logs confirm an MFA reset and interactive logon originating from IP `198.51.100.77` (a hosting provider in Frankfurt, Germany).
-
-2. **Ticket 2: Todd Miller in Sales/Warehouse (`TODD-SALES-14`):**  
-   Ken walked into the help desk bullpen holding an unbranded 32GB USB flash drive with the words *"CLIENT DECK"* scrawled in faded blue marker. Todd plugged the drive into his corporate laptop to inspect an invoice. His cooling fans surged to 100% before he pulled the stick. Local antivirus quarantined a file named `SOW_final.pdf.exe` (`Trojan:Win32/Dropper.B`). While Ken believed the incident was resolved because the drive was removed, EDR telemetry revealed a hidden background process (`powershell.exe`) executing internal SMB share enumeration (`net view /all`), probing the warehouse storage server (`\\WH-PACK-02\share$`), and registering a scheduled persistence task named `CacheCleanup` configured to run under `NT AUTHORITY\SYSTEM` at system boot.
-
-3. **Ticket 3: Leah Moreno at the Willamette River Plant (`GW-PLANT-04`):**  
-   Leah Moreno, Senior SCADA and Industrial Systems Technician, called Ethan via the secure plant landline. Network monitoring on the operational technology (OT) edge detected anomalous outbound TLS egress traffic originating from telemetry gateway `GW-PLANT-04` destined for an external IP address (`185.22.112.14:8443`). Telemetry showed the connection was initiated not by the plant controller firmware, but from an internal staging jump box (`SRV-STAGE-01`) that bridges the corporate IT network and the plant SCADA supervisory zone.
-
-4. **Ticket 4: Central Network & EDR Telemetry (Host C2 Beaconing):**  
-   Cross-referencing perimeter firewall flow logs with host-level EDR data, Ethan spots a chilling synchronization: workstation `FIN-NORA-02` (Nora Higgins) has been establishing regular outbound HTTPS connections to `185.22.112.14:443` every 300 seconds ($\pm 5\%$ randomized jitter). Memory analysis alerts indicate unauthorized process injection: an unsigned thread within `powershell.exe` has initiated handle access against `lsass.exe` (Local Security Authority Subsystem Service), attempting to dump cached domain credentials from memory.
-
-Jules Brooks stands behind Ethan’s chair, sets her ceramic mug down without making a sound, and pulls a heavy red binder from the fireproof cabinet.
-
-> *"Ethan, listen to me carefully. A novice tech sees four tickets: a mailbox glitch, a dirty USB, a weird plant router alert, and a slow laptop. They run a scanner, wipe Nora's drive, tell Ken not to do it again, and go home at five.  
-> If you do that today, you destroy the only evidence of a coordinated intrusion campaign. Nora's stolen credentials opened the door; Todd's USB dropped the staging script; the script hopped to the staging jump box; and now an adversary is probing our plant process telemetry.  
-> You are the first responder on this desk. That means your first job is not heroics and it is not freelance forensics. Your job is preservation, containment, and chain of custody. You are going to assemble the formal CSIRT Escalation Dossier under my eye. If it isn't documented with a timestamp and a SHA-256 hash, it didn't happen."*
-
-
----
+This lab follows the chapter from the moment Jules declares an incident: order of volatility, memory capture, hashes, containment, chain of custody, and the handoff to Nia Alvarez.
 
 ### The Ground Truth Rules of the Desk
 
@@ -199,10 +188,10 @@ Get-FileHash -Path "C:\Forensics\Evidence\TODD-SALES-14-disk.raw" -Algorithm SHA
 
 #### Mandatory Chain of Custody Ledger Fields
 Every entry in a formal chain of custody log must contain:
-* **Item Tracking Number:** Unique alphanumeric identifier (e.g., `EVD-2026-1022-01`).
+* **Item Tracking Number:** Unique alphanumeric identifier (e.g., `EVD0007701-01`).
 * **Item Description:** Exact make, model, capacity, serial number, and physical condition.
 * **Source / Seizure Location:** Workstation hostname, physical desk location, port, or user profile.
-* **Date & Time of Seizure:** Precise timestamp including local timezone (PST/PDT) and UTC offset.
+* **Date & Time of Seizure:** Precise timestamp including local timezone (PDT/PDT) and UTC offset.
 * **Seizing Official:** Full name, title, and badge/employee number of first responder.
 * **Custody Transfers:** Date, time, releasing party signature, receiving party signature, and specific purpose of transfer.
 * **Storage Location:** Secure evidence locker ID, safe combination holder, or chain-of-custody room rack.
@@ -217,7 +206,7 @@ First responders must make split-second containment decisions. The wrong choice 
 
 | Scenario / Threat Pattern | Containment Action | Technical Mechanism | Why This Choice? (Exam & Desk Justification) |
 | :--- | :--- | :--- | :--- |
-| **Active C2 Beaconing or Worm Spread** (e.g., Nora's endpoint, Ken's share scanning) | **EDR Network Isolation or Physical Cable Disconnect** | Issue EDR network quarantine command; physically disconnect RJ-45 Ethernet; disable 802.11 Wi-Fi. Keep PC powered ON. | **Preserves RAM and process tree.** EDR retains a secure out-of-band management tunnel to collect live memory and process dumps while blocking all internal and external communication. |
+| **Active C2 Beaconing or Worm Spread** (e.g., Nora's endpoint, Todd's share scanning) | **EDR Network Isolation or Physical Cable Disconnect** | Issue EDR network quarantine command; physically disconnect RJ-45 Ethernet; disable 802.11 Wi-Fi. Keep PC powered ON. | **Preserves RAM and process tree.** EDR retains a secure out-of-band management tunnel to collect live memory and process dumps while blocking all internal and external communication. |
 | **Active Ransomware Encryption in Progress** (e.g., mass `.locked` file renames) | **Immediate Physical Power Sever (Pull the Plug)** | Yank AC power cable directly from desktop power supply; immediately strip laptop battery. | **Data preservation emergency.** Ransomware encrypts at gigabytes per second. Live memory capture takes 10–15 minutes, during which critical databases and network shares are permanently lost. Stopping encryption takes absolute precedence over memory forensics. |
 | **Suspected Rootkit or Kernel Evasion** (e.g., unsigned kernel driver hooking disk I/O) | **Hypervisor Snapshot / Live Memory Dump under Isolation** | Suspend VM or take live hypervisor snapshot; for bare-metal, isolate network and run hardware-based/live memory capture tool. | **Userland tools cannot be trusted.** If the kernel is compromised, userland executables (`tasklist`, `netstat`) return falsified data. Hypervisor-level or raw memory capture bypasses kernel hooks. |
 | **Unauthorized Cloud Mailbox Rule / Stolen Session Token** | **Revoke Active Tokens & Purge Mailbox Forwarding** | Execute `Revoke-AzureADUserAllRefreshToken`; delete malicious inbox rule via Exchange PowerShell; force password reset. | **Host isolation does not fix cloud exfiltration.** If the attacker possesses an OAuth token or session cookie, pulling the user's laptop cable accomplishes nothing. Remediation must occur at the identity provider (IdP) layer. |
@@ -291,7 +280,7 @@ Your Ranking Order:
 > **The Rule of the Desk:** A forensic image without a matching hash is just a copy of a story you can't prove in court. Verify the math before you touch the drive.
 
 #### Scenario Walkthrough
-Ethan connects Ken Vance’s confiscated 32GB USB flash drive (`CLIENT DECK`) to the dedicated forensic workstation (`PORT-IR-WK01`). The forensic station is equipped with a hardware write blocker (Tableau T8u USB 3.0 Forensic Bridge) that physically prevents write requests (`SCSI WRITE`, `USB Bulk-Only Write`) from reaching the storage controller.
+Ethan connects Todd's confiscated 32GB USB flash drive (`CLIENT DECK`) to the dedicated forensic workstation (`PORT-IR-WK01`). The forensic station is equipped with a hardware write blocker (Tableau T8u USB 3.0 Forensic Bridge) that physically prevents write requests (`SCSI WRITE`, `USB Bulk-Only Write`) from reaching the storage controller.
 
 Ethan executes a bit-stream raw disk acquisition to create an exact forensic disk image:
 
@@ -305,8 +294,8 @@ Algorithm       Hash                                                            
 SHA256          A4F2C9901B34E57D890AA71B994E10F823CD456188902A3CDEF1192837462B10   \\.\PhysicalDrive2
 
 # Step 2: Acquire bit-stream raw image to forensic storage
-PS C:\Forensics> dc3dd.exe if=\\.\PhysicalDrive2 of=D:\Images\EVD-2026-1022-USB.raw hash=sha256 log=D:\Images\acquisition.log
-dc3dd 7.2.646 started at 2026-10-22 15:10:04 -0700
+PS C:\Forensics> dc3dd.exe if=\\.\PhysicalDrive2 of=D:\Images\EVD0007701-USB.raw hash=sha256 log=D:\Images\acquisition.log
+dc3dd 7.2.646 started at 2026-06-24 15:10:04 -0700
 31268536320 bytes (31 GB) copied (100%), 124.2 s, 240 MB/s
 input hash (sha256): a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10
 output hash (sha256): a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10
@@ -321,17 +310,17 @@ SHA256          9F2C8D1E3A4B5C6D7E8F0A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9BC41A
 
 #### Diagnostic Evaluation Questions
 1. Compare the `input hash` and `output hash` in Step 2. What does this mathematical comparison prove regarding evidence integrity?
-2. Suppose a junior technician took Ken’s USB drive, plugged it directly into a standard Windows 11 laptop *without* a write blocker, and browsed the drive using Windows File Explorer before running the hash. Would the SHA-256 hash still match `A4F2C99...`? Why or why not?
+2. Suppose a junior technician took Todd's USB drive, plugged it directly into a standard Windows 11 laptop *without* a write blocker, and browsed the drive using Windows File Explorer before running the hash. Would the SHA-256 hash still match `A4F2C99...`? Why or why not?
 3. Review the following snippet from a chain of custody ledger. Identify the fatal procedural error that would compromise evidence admissibility:
 
 ```text
-ITEM: EVD-2026-1022-USB
-SEIZED: 2026-10-22 14:40 PST by Ethan Mercer (Tier 1 Support)
+ITEM: EVD0007701-USB
+SEIZED: 2026-06-24 14:40 PDT by Ethan Mercer (Tier 1 Support)
 CUSTODY LOG:
-- 14:40 PST: Seized from Ken Vance desk by Ethan Mercer. Placed in backpack.
-- 15:05 PST: Ethan Mercer arrived at Operations Center; placed USB on desk beside coffee.
-- 15:10 PST: Connected to PORT-IR-WK01 for bit-stream acquisition.
-- 15:30 PST: Transferred to Jules Brooks (CSIRT Lead). Signature: J. Brooks.
+- 14:40 PDT: Seized from Todd Miller's desk (TODD-SALES-14) by Ethan Mercer. Placed in backpack.
+- 15:05 PDT: Ethan Mercer arrived at Operations Center; placed USB on desk beside coffee.
+- 15:10 PDT: Connected to PORT-IR-WK01 for bit-stream acquisition.
+- 15:30 PDT: Transferred to Jules Brooks (CSIRT Lead). Signature: J. Brooks.
 ```
 
 <details>
@@ -340,7 +329,7 @@ CUSTODY LOG:
 **Jules' Analysis:**
 
 1. **Proof of Integrity:**  
-   The bit-for-bit equality of the input hash (`\\.\PhysicalDrive2`) and output hash (`EVD-2026-1022-USB.raw`) mathematically proves that the forensic disk image is an exact, uncorrupted, 100% identical replica of the original physical media. Every sector, file slack, unallocated cluster, and partition table bit was duplicated without alteration. Forensic analysis can now proceed exclusively on clones of this image while the original media remains sealed in evidence storage.
+   The bit-for-bit equality of the input hash (`\\.\PhysicalDrive2`) and output hash (`EVD0007701-USB.raw`) mathematically proves that the forensic disk image is an exact, uncorrupted, 100% identical replica of the original physical media. Every sector, file slack, unallocated cluster, and partition table bit was duplicated without alteration. Forensic analysis can now proceed exclusively on clones of this image while the original media remains sealed in evidence storage.
 
 2. **The Impact of Plugging Without a Write Blocker:**  
    **No, the hash would not match.** The moment a modern operating system (Windows, macOS, or Linux) mounts a mass storage device without a hardware or kernel write blocker, the OS automatically performs write operations:
@@ -352,7 +341,7 @@ CUSTODY LOG:
 3. **Fatal Chain of Custody Errors Identified:**
    - *"Placed in backpack"*: Evidence was placed in an unsecured personal bag rather than a certified anti-static, tamper-evident evidence pouch sealed with tamper-indicating tape and signed across the seam.
    - *"Placed USB on desk beside coffee"*: Evidence was left unattended in an open, unmonitored area. This represents a complete break in physical custody. Anyone on the desk floor had physical access to the device.
-   - *Missing Releasing Signature*: Ethan Mercer failed to sign the transfer block at 15:30 PST; a valid chain of custody requires dual signatures (releasing party and receiving party) at every handoff.
+   - *Missing Releasing Signature*: Ethan Mercer failed to sign the transfer block at 15:30 PDT; a valid chain of custody requires dual signatures (releasing party and receiving party) at every handoff.
 </details>
 
 
@@ -374,7 +363,7 @@ objectives:
     trigger: "Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd"
   - id: "obj-verify"
     label: "Verify forensic image hash matches chain of custody"
-    trigger: "Compare-Object -ReferenceObject $orig -DifferenceObject $new"
+    trigger: "(Get-FileHash .\evidence_disk0.dd).Hash -eq $custodyHash"
 ---
 Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
   Algorithm       Hash                                                             Path
@@ -382,10 +371,11 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
   SHA256          A3F8B4C92E1045D87E6B9C1045F2A83C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A .\evidence_disk0.dd
   [OK] Bit-for-bit forensic image acquired through hardware write-blocker.
 
-Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
-  Hash comparison: MATCH (0 differences).
+(Get-FileHash .\evidence_disk0.dd).Hash -eq $custodyHash: |
+  True
+  [VERIFIED] Cryptographic hash matches original intake record exactly (0 differences).
   Chain of Custody verified: Evidence integrity intact.
-  Formal handoff dossier packaged for Senior CSIRT Lead Jules Brooks.
+  Formal handoff dossier packaged for Senior CSIRT Lead Nia Alvarez and Jules Brooks.
   [OK] Incident handoff complete.
 
 ```
@@ -393,6 +383,8 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 > **The Rule of the Desk:** Do not touch the console until you have committed your decision in your mind. Name the threat, select the containment action, and articulate your technical justification.
 
@@ -413,7 +405,7 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
 </div>
 
 
-#### Case 1: Nora Higgins (Finance Specialist) — `INC-2026-1201`
+#### Case 1: Nora Higgins (Finance Specialist) — `INC0075920`
 *Telemetry & Symptoms:* Nora's account underwent an MFA reset at 02:13 a.m. from an external German hosting provider IP (`198.51.100.77`). An Exchange inbox rule (`InvoiceProcess`) is silently forwarding all finance emails to an external drop address. Meanwhile, host telemetry on `FIN-NORA-02` indicates an injected PowerShell process establishing recurring HTTPS connections to `185.22.112.14:443` every 300 seconds and attempting to access `lsass.exe`. Nora says she has payroll to disburse in 45 minutes and asks if she can just change her password and keep working on her laptop.
 
 * **Your Action:**  
@@ -436,8 +428,8 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
 
 ---
 
-#### Case 2: Todd Miller (Sales & Warehouse) — `INC-2026-1202`
-*Telemetry & Symptoms:* Todd plugged in an unbranded USB drive. Antivirus quarantined `SOW_final.pdf.exe` on drive `E:\`. Ken unplugged the stick and wants his ticket closed. However, EDR process history indicates that before quarantine, the dropper spawned `powershell.exe -w hidden`, which executed `net view /all`, probed writable shares on `\\WH-PACK-02\share$`, and created a persistent scheduled task named `CacheCleanup` configured to execute at system startup.
+#### Case 2: Todd Miller (Sales & Warehouse) — `INC0075921`
+*Telemetry & Symptoms:* Todd plugged in an unbranded USB drive. Antivirus quarantined `SOW_final.pdf.exe` on drive `E:\`. Todd unplugged the stick and wants his ticket closed. However, EDR process history indicates that before quarantine, the dropper spawned `powershell.exe -w hidden`, which executed `net view /all`, probed writable shares on `\\WH-PACK-02\share$`, and created a persistent scheduled task named `CacheCleanup` configured to execute at system startup.
 
 * **Your Action:**  
   [ A. Close Ticket with Warning / B. Delete Scheduled Task & Reconnect / C. Isolate Host Immediately, Confiscate USB Drive, Audit Target Network Shares ]
@@ -450,14 +442,14 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
 * **Action:** **C. Isolate Host Immediately, Confiscate Physical USB Drive for Chain of Custody, and Audit Target Network Shares.**
 * **Threat Classification & IR Phase:** **Trojan Dropper / Worm-like Lateral Movement / Persistence**; Lifecycle Phase: **Containment & Identification**.
 * **Jules' Critique:**  
-  "Ken thinks because the USB is sitting on his mousepad and AV popped a green box, the problem is gone. The green box is a lie. The dropper had four seconds of life before AV intervened, and in those four seconds it spawned a detached PowerShell worker, established machine persistence via `CacheCleanup`, and reached across the warehouse subnet.  
-  Sever Ken's network connection immediately. Place the USB in a tamper-evident evidence pouch. Then immediately notify Storage Engineering to inspect `\\WH-PACK-02\share$` for newly dropped payload files. Never let a user convince you an infection is dead just because they pulled the plastic."
+  "Todd thinks because the USB is sitting on his mousepad and AV popped a green box, the problem is gone. The green box is a lie. The dropper had four seconds of life before AV intervened, and in those four seconds it spawned a detached PowerShell worker, established machine persistence via `CacheCleanup`, and reached across the warehouse subnet.  
+  Sever Todd's network connection immediately. Place the USB in a tamper-evident evidence pouch. Then immediately notify Storage Engineering to inspect `\\WH-PACK-02\share$` for newly dropped payload files. Never let a user convince you an infection is dead just because they pulled the plastic."
 </details>
 
 
 ---
 
-#### Case 3: Leah Moreno (Willamette Plant) — `INC-2026-1203`
+#### Case 3: Leah Moreno (Willamette Plant) — `INC0075922`
 *Telemetry & Symptoms:* Leah reports that plant telemetry gateway `GW-PLANT-04` is attempting outbound TLS sessions to external IP `185.22.112.14:8443`. Traffic originates from an internal staging jump box (`SRV-STAGE-01`) located in the cross-connected operations subnet. The Willamette plant's programmable logic controllers (PLCs) are operating normally, but Leah is concerned the gateway could be used to bridge into the SCADA network.
 
 * **Your Action:**  
@@ -478,7 +470,7 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
 
 ---
 
-#### Case 4: Maya's "Possessed" Laptop vs. Nora's Stolen Mailbox — `INC-2026-1204`
+#### Case 4: Maya's "Possessed" Laptop vs. Nora's Stolen Mailbox — `INC0075923`
 *Telemetry & Symptoms:* Maya from Marketing sprints to the desk shouting that her laptop is "possessed by demons"—her browser is flashing coupon ads, the fan is whining, and she demands an immediate hard drive wipe before her executive meeting. Meanwhile, Nora's ticket sits in the queue marked "Low Priority: Sent folder empty."
 
 * **Your Action:**  
@@ -500,7 +492,7 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
 
 ---
 
-#### Case 5: Staging Server Kernel Driver Anomaly — `INC-2026-1205`
+#### Case 5: Staging Server Kernel Driver Anomaly — `INC0075924`
 *Telemetry & Symptoms:* On staging host `SRV-STAGE-01`, host EDR alerts on an unsigned kernel driver hooking disk input/output routines. The system administrator attempts to run `dir` and `tasklist` via PowerShell, which report that all files and services are clean and normal. The admin asks if they can run a third-party rootkit cleaner downloaded from a tech blog.
 
 * **Your Action:**  
@@ -537,16 +529,16 @@ Compare-Object -ReferenceObject $orig -DifferenceObject $new: |
   </div>
 </div>
 
-Below is the definitive, audit-grade Incident Escalation Dossier assembled by Ethan Mercer and reviewed by Desk Lead Jules Brooks for formal handoff to the Portland Operations Center CSIRT and Incident Commander.
+Below is the definitive, audit-grade Incident Escalation Dossier assembled by Ethan and reviewed by Desk Lead Jules Brooks for formal handoff to the Portland Operations Center CSIRT and Incident Commander.
 
 ```text
 ================================================================================
 PORTLAND OPERATIONS CENTER — FORMAL CSIRT INCIDENT ESCALATION DOSSIER
 ================================================================================
-INCIDENT TRACKING ID:  INC-2026-1022-CRUCIBLE
+INCIDENT TRACKING ID:  INC0075950
 INCIDENT SEVERITY:     P1 — CRITICAL (ACTIVE MULTI-STAGE INTRUSION & OT EXPOSURE)
 INITIAL CLASSIFICATION: Malicious Phishing / C2 Beaconing / Lateral Pivot / SCADA Exposure
-DATE & TIME INITIATED: 2026-10-22 14:15:00 PST (21:15:00 UTC)
+DATE & TIME INITIATED: 2026-06-24 14:15:00 PDT (21:15:00 UTC)
 FIRST RESPONDER:       Ethan Mercer (Tier 1 Support Specialist, Portland Desk)
 INCIDENT LEAD / QA:    Jules Brooks (Service Desk Lead & First Response Coordinator)
 TARGET ESCALATION:     Enterprise CSIRT / SOC Tier 2 Operations / Industrial IR Bridge
@@ -554,13 +546,13 @@ TARGET ESCALATION:     Enterprise CSIRT / SOC Tier 2 Operations / Industrial IR 
 
 1. EXECUTIVE SUMMARY & ATTACK PATH CORRELATION
 --------------------------------------------------------------------------------
-Between 08:30 and 14:15 PST on 2026-10-22, Tier 1 triage correlated four 
+Between 08:30 and 14:15 PDT on 2026-06-24, Tier 1 triage correlated four 
 superficially disparate help-desk events into an ongoing, coordinated, multi-stage
 enterprise intrusion campaign:
 
 Attack Path Chronology:
 [Initial Access]        Workstation FIN-NORA-02 compromised via credential phishing.
-                        MFA reset executed from 198.51.100.77 (Frankfurt, Germany) at 02:13 PST.
+                        MFA reset executed from 198.51.100.77 (Frankfurt, Germany) at 02:13 PDT.
                         Malicious Exchange rule 'InvoiceProcess' exfiltrates financial data.
                                 |
 [Host C2 & Dumping]     Workstation FIN-NORA-02 establishes 300-second HTTPS beaconing 
@@ -612,7 +604,7 @@ Compromised Identities:
   - Port 8080 TCP: Secondary payload staging port identified in PowerShell cradle
 • IP Address: 198.51.100.77 (Frankfurt, Germany — Anonymizing Proxy)
   - Source IP for unauthorized Azure AD interactive logons and MFA manipulation
-• Domain: pay-secure-audit.com (Lookalike Domain / Created 2026-10-18)
+• Domain: pay-secure-audit.com (Lookalike Domain / Created 2026-06-19)
   - Recipient for unauthorized Exchange inbox forwarding rule
 
 [Host Persistence & Behavioral Indicators]
@@ -627,7 +619,7 @@ Compromised Identities:
 
 4. CONTAINMENT & EVIDENCE PRESERVATION ACTIONS EXECUTED
 --------------------------------------------------------------------------------
-Timestamp (PST) | Action Executed & Technical Details
+Timestamp (PDT) | Action Executed & Technical Details
 ----------------|---------------------------------------------------------------
 14:18:12        | EDR Host Isolation engaged on FIN-NORA-02. Machine retained powered 
                 | ON in locked state. Out-of-band management channel preserved.
@@ -637,8 +629,8 @@ Timestamp (PST) | Action Executed & Technical Details
                 | Online PowerShell (Remove-InboxRule -Mailbox nhiggins -Identity ...).
 14:25:10        | Physical Network Isolation of TODD-SALES-14: Disconnected RJ-45 
                 | Ethernet cable. Disengaged physical Wi-Fi hardware toggle.
-14:28:45        | Physical Media Seizure: Seized 32GB USB flash drive from Ken Vance.
-                | Packaged in Anti-Static Evidence Pouch #EVD-2026-1022-01 with 
+14:28:45        | Physical Media Seizure: Seized 32GB USB flash drive from Todd Miller.
+                | Packaged in Anti-Static Evidence Pouch #EVD0007701-01 with 
                 | tamper-evident seal #SEAL-90412.
 14:32:00        | Industrial OT Boundary Containment: Network Operations disabled 
                 | switch ports Gi1/0/22 & Gi1/0/23 on SW-CORE-02, severing staging 
@@ -646,30 +638,30 @@ Timestamp (PST) | Action Executed & Technical Details
 14:40:00        | Live volatile RAM acquisition initiated on FIN-NORA-02 via WinPmem
                 | over secure EDR collection tunnel. Image: FIN-NORA-02-RAM.raw.
 15:15:00        | Bit-stream forensic acquisition of USB completed via Tableau write
-                | blocker on PORT-IR-WK01. Image: EVD-2026-1022-USB.raw. Hash verified.
+                | blocker on PORT-IR-WK01. Image: EVD0007701-USB.raw. Hash verified.
 
 5. EVIDENCE LOG & CHAIN OF CUSTODY MASTER RECORD
 --------------------------------------------------------------------------------
-Item Number:      EVD-2026-1022-01
+Item Number:      EVD0007701-01
 Item Description: SanDisk Ultra 32GB USB 3.0 Flash Drive (Black casing, blue sharpie)
 Serial Number:    4C530001220914112102
-Seized From:      Ken Vance desk (Warehouse Operations, Cubicle W-12)
-Seized Date/Time: 2026-10-22 14:28:45 PST
+Seized From:      Todd Miller desk (Inside Sales, TODD-SALES-14)
+Seized Date/Time: 2026-06-24 14:28:45 PDT
 Seizing Tech:     Ethan Mercer (Badge #IT-8842)
 SHA-256 Digest:   a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10
 Storage Location: Central Operations Evidence Safe #2 (Locker B, Combination Held by J. Brooks)
 
 Chain of Custody Transfer History:
-- 14:28 PST: Seized by Ethan Mercer; sealed in Bag #EVD-2026-1022-01.
-- 15:05 PST: Transferred to PORT-IR-WK01 by Ethan Mercer for write-blocked imaging.
-- 15:35 PST: Transferred to Jules Brooks (CSIRT Lead). 
+- 14:28 PDT: Seized by Ethan Mercer; sealed in Bag #EVD0007701-01.
+- 15:05 PDT: Transferred to PORT-IR-WK01 by Ethan Mercer for write-blocked imaging.
+- 15:35 PDT: Transferred to Jules Brooks (CSIRT Lead). 
   Releasing Signature: Ethan Mercer, Tier 1 Support
   Receiving Signature: Jules Brooks, Desk Lead & CSIRT Coordinator
 
-Item Number:      EVD-2026-1022-02
+Item Number:      EVD0007701-02
 Item Description: Volatile Memory Dump (FIN-NORA-02-RAM.raw) — 16GB Physical DDR4
 Source Hostname:  FIN-NORA-02 (Finance Specialist Workstation)
-Acquired Date:    2026-10-22 14:48:10 PST via WinPmem (Remote EDR Live Capture)
+Acquired Date:    2026-06-24 14:48:10 PDT via WinPmem (Remote EDR Live Capture)
 SHA-256 Digest:   5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
 Storage Location: Secure IR SAN Share: \\IR-SECURE-VAULT\Case-2026-1022\Memory\
 
@@ -692,7 +684,7 @@ Storage Location: Secure IR SAN Share: \\IR-SECURE-VAULT\Case-2026-1022\Memory\
    - Maintain physical network isolation between corporate IT and plant OT until full
      code audit of staging server SRV-STAGE-01 is complete.
 ================================================================================
-DOSSIER STATUS: SIGNED & TRANSFERRED TO CSIRT INCIDENT COMMANDER (2026-10-22 15:45 PST)
+DOSSIER STATUS: SIGNED & TRANSFERRED TO CSIRT INCIDENT COMMANDER (2026-06-24 15:45 PDT)
 ================================================================================
 ```
 
@@ -702,14 +694,14 @@ DOSSIER STATUS: SIGNED & TRANSFERRED TO CSIRT INCIDENT COMMANDER (2026-10-22 15:
 ## 5. What Good Looks Like (Shift Quality Checklist)
 
 ### Lead Tech Sign-Off Checklist
-Before Ethan closes the red folder and hands the physical binder to Jules Brooks, he verifies every item against the Portland Desk Shift Quality Standard:
+Before Ethan closes the red folder and hands the physical binder to Jules, he verifies every item against the Portland Desk Shift Quality Standard:
 
 * [x] **Event vs. Incident Delineated:** Maya's noisy adware was properly tagged as an isolated *Event* (resolved without disruption), while Nora's quiet mailbox anomaly was identified as an active *Security Incident*.
 * [x] **Order of Volatility Honored:** Volatile memory (RAM) and network socket states were captured live before any system reboots, shutdowns, or disk imaging occurred.
 * [x] **Strict Containment Before Analysis:** Infected endpoints (`FIN-NORA-02`, `TODD-SALES-14`) were isolated from the network via EDR and physical cable disengagement before forensic triage commenced.
 * [x] **Operational Silence Maintained:** Need-to-know principles were strictly enforced; no notifications were posted to public Slack channels or email distribution lists that could alert the adversary.
 * [x] **Cryptographic Hash Verification:** Every physical and virtual artifact possesses an immutable pre-acquisition and post-acquisition SHA-256 checksum proving 100% mathematical integrity.
-* [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Todd's USB drive was picked up to the dual-signature transfer to Jules Brooks.
+* [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Todd's USB drive was picked up to the dual-signature transfer to Jules.
 * [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, testable IoCs (hashes, IP addresses, ports, task names) allowing Tier 2 analysts to hunt across enterprise telemetry immediately.
 
 
@@ -730,39 +722,10 @@ Before Ethan closes the red folder and hands the physical binder to Jules Brooks
 
 ---
 
-## 6. Shift Resolution Epilogue
-
-```callout-panel
-title: "FIGURE 12.2: CSIRT INCIDENT HANDOFF & THE BRIDGE TO BOOK 1"
-badge: "Shift Epilogue"
-caption: "Operations bullpen: At 05:45 PM, the autumn rain eases over the Willamette River. Jules Brooks hands Ethan a dark navy blue security badge opening the fifth-floor Security Operations Center bridge."
-prompt: "Clean graphic novel cutaway panel of an IT support operations floor at twilight. Warm indoor desk light contrasts with blue twilight outside the floor-to-ceiling windows showing city bridges and river. A senior technician hands a new security access keycard lanyard to a junior technician across an open incident binder. Clean ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
-```
-
-## After the rain
-
-At 5:45 the queue was quieter. Jules clipped her bike lights on.
-
-"Tell Wednesday," she said, "without listing a lifecycle."
-
-I told her: I had nearly wiped a loud nothing. I had stopped a quiet something without turning it into a parade. I am [[first_responder|first touch]], not freelance forensics.
-
-She nodded once, then remembered the USB on her wall. "Keep asking what it did before you decide what it is."
-
-The queue showed one more URGENT. I opened it anyway — criteria first, adrenaline second. The subject was louder than the evidence. I left it in the queue with a note, and I left the imaging USB where she had put it.
-
-## The Step Beyond the Desk
-
-At 16:30, the autumn rain finally eases to a mist over the Willamette. The river reflects the amber streetlights turning on along the Eastbank Esplanade. In the quiet of the fourth-floor dispatch bullpen, Jules Brooks signs her name on the receiving line of Evidence Pouch `#EVD-2026-1022-01`, slides the red binder into the CSIRT handoff rack, and turns her desk chair toward Ethan.
-
-"You didn't wipe Maya's machine," she says, her voice steady and quiet. "And you didn't let Ken plug his stick back in. But more importantly: when Nora's Sent folder looked empty, you didn't see a software bug. You saw the wire."
-
-She reaches into her desk drawer and pulls out a new lanyard—dark navy blue with a magnetic keycard that opens the fifth-floor glass doors where the Portland Security Operations Center (SOC) monitors traffic across seven regional districts.
-
-"Book 0 is over, Ethan. You're done pulling cables and resetting passwords on the help desk. On Monday morning, you sit on the Tier 1 SOC bridge. You're going to learn how to hunt what you just contained."
-
-
 ---
 
-*This concludes **Book 0: Zero-to-One (Portland Desk)**. Ethan's work continues in the [Network Analyst Development Framework](https://github.com/cwarloe/network-analyst-development-framework), which starts with packet captures and analyst judgment.*
+## 6. Transfer Problem
 
+This problem looks different from the quiet mailbox intrusion, but it works the same way. Use the worked example and your notes.
+
+A manager's account sends an unusual forwarding rule to an outside address, and an hour later the same account signs in from two countries. Walk the incident lifecycle for this case, name what you capture first, and name one containment call that could cost you evidence.

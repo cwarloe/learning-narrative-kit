@@ -1,8 +1,8 @@
 [
   {
-    "ticket_id": "INC-2026-1041",
-    "requester_name": "Jared Vance",
-    "requester_email": "jvance@harrowmere.local",
+    "ticket_id": "INC0063140",
+    "requester_name": "Jared Lindqvist",
+    "requester_email": "jlindqvist@harrowmere.local",
     "department": "Network Operations",
     "priority": "P3 - Medium",
     "urgency": "Medium",
@@ -21,7 +21,7 @@
     "resolution_notes": "Advised requester that corporate security standard strictly prohibits cleartext Telnet (TCP 23) across management segments due to credential sniffing vulnerability (enable password exposure). Assisted requester in modifying the script to establish an encrypted SSH session on TCP 22 with Ed25519 public key authentication. Verified successful connection and VLAN remediation without opening port 23."
   },
   {
-    "ticket_id": "INC-2026-1042",
+    "ticket_id": "INC0063141",
     "requester_name": "Maya Lin",
     "requester_email": "mlin@harrowmere.local",
     "department": "Accounting",
@@ -42,9 +42,9 @@
     "resolution_notes": "Remote session into user workstation. Audited account settings: inbound was configured for cleartext legacy POP3 (port 110, unencrypted) and outbound was set to SMTP (port 25). Residential and public ISPs routinely drop outbound port 25 to mitigate spam bots, and port 110 transmits credentials in cleartext. Reconfigured account to modern encrypted standards: Inbound IMAPS on TCP 993 (SSL/TLS implicit), and Outbound authenticated Submission on TCP 587 (STARTTLS). Sent test message; confirmed bidirectional mail flow."
   },
   {
-    "ticket_id": "INC-2026-1043",
-    "requester_name": "Dana Okafor",
-    "requester_email": "dana.okafor@premier-facilities.vendor",
+    "ticket_id": "INC0063142",
+    "requester_name": "Dale Okafor",
+    "requester_email": "dale.okafor@premier-facilities.vendor",
     "department": "Facilities Vendor",
     "priority": "P3 - Medium",
     "urgency": "Medium",
@@ -63,7 +63,7 @@
     "resolution_notes": "Declined request to permit unencrypted FTP (TCP 21 / 20) through perimeter firewall, as FTP transmits passwords and configuration files in cleartext. Clarified technical difference between SFTP (SSH File Transfer Protocol, port 22) and FTPS (FTP over TLS, implicit port 990/989). Vendor appliance supports FTPS. Configured TLS listener on jump host and validated secure encrypted file upload."
   },
   {
-    "ticket_id": "INC-2026-1044",
+    "ticket_id": "INC0063143",
     "requester_name": "Sam Kelly",
     "requester_email": "skelly.contractor@harrowmere.local",
     "department": "Finance (Contractor)",
@@ -84,9 +84,9 @@
     "resolution_notes": "Explained security policy prohibiting raw RDP (TCP 3389) exposure to the public internet due to constant brute-force automated scanning and ransomware threat actor targeting. Provisioned contractor onto corporate VPN client pool with MFA verification. Provided destination address of dedicated jump host accessible only within VPN tunnel. Verified secure session establishment."
   },
   {
-    "ticket_id": "INC-2026-1045",
-    "requester_name": "Lena Chen",
-    "requester_email": "lchen@harrowmere.local",
+    "ticket_id": "INC0063144",
+    "requester_name": "Bettina Szabo",
+    "requester_email": "bszabo@harrowmere.local",
     "department": "Legal",
     "priority": "P2 - High",
     "urgency": "High",
@@ -105,7 +105,7 @@
     "resolution_notes": "Diagnosed two underlying issues: 1) Password reset tool was attempting cleartext LDAP (TCP 389) across untrusted guest wireless. Reconfigured client endpoint to use secure LDAPS on TCP 636 with corporate root CA. 2) Client system clock had drifted 14 minutes behind domain controllers, violating Kerberos 5-minute maximum skew tolerance. Triggered resync via NTP (UDP 123) against internal time server (w32tm /resync). Kerberos ticket granting succeeded immediately."
   },
   {
-    "ticket_id": "INC-2026-1046",
+    "ticket_id": "INC0063145",
     "requester_name": "Dee Washington",
     "requester_email": "dwashington@harrowmere.local",
     "department": "Network Operations",
@@ -126,7 +126,7 @@
     "resolution_notes": "SNMP v1 and v2c send community strings across the wire in cleartext plaintext. Migrated network polling configuration to SNMPv3 utilizing SHA-256 for authentication (auth) and AES-128 for payload privacy/encryption (priv). Disabled legacy community string 'public' across all managed interfaces."
   },
   {
-    "ticket_id": "INC-2026-1047",
+    "ticket_id": "INC0063146",
     "requester_name": "Marco Reyes",
     "requester_email": "mreyes@harrowmere.local",
     "department": "Field Engineering",
@@ -147,9 +147,9 @@
     "resolution_notes": "Denied request to route cleartext UDP 514 across guest boundary. Directed technician to forward log events via Syslog-over-TLS (TCP 6514) with mutual certificate verification, ensuring tamper-proof confidentiality for diagnostic output."
   },
   {
-    "ticket_id": "INC-2026-1048",
-    "requester_name": "Owen Miller",
-    "requester_email": "omiller@harrowmere.local",
+    "ticket_id": "INC0063147",
+    "requester_name": "Owen Castillo",
+    "requester_email": "ocastillo@harrowmere.local",
     "department": "Facilities Maintenance",
     "priority": "P3 - Medium",
     "urgency": "High",
@@ -168,7 +168,7 @@
     "resolution_notes": "TFTP lacks any authentication or encryption mechanisms and is vulnerable to directory traversal and packet spoofing. Refused to broadcast TFTP across corporate workstation VLAN. Moved technician laptop and printer to isolated staging switch on air-gapped maintenance VLAN. Completed firmware upload on UDP 69; closed port immediately."
   },
   {
-    "ticket_id": "INC-2026-1049",
+    "ticket_id": "INC0063148",
     "requester_name": "Leah Moreno",
     "requester_email": "lmoreno@harrowmere.local",
     "department": "Portland Plant Operations",
@@ -189,7 +189,7 @@
     "resolution_notes": "Triage with Leah Moreno (Portland plant operations lead): Industrial control protocols (Modbus 502, DNP3 20000) have zero native encryption or authentication. Permitting raw cleartext telemetry over WAN exposes critical plant actuators to unauthorized command injection. Coordinating with Tier 2 Network Security to encapsulate telemetry into an IPsec ESP tunnel terminated at the plant SCADA boundary firewall. Work in progress."
   },
   {
-    "ticket_id": "INC-2026-1050",
+    "ticket_id": "INC0063149",
     "requester_name": "Carlos Gomez",
     "requester_email": "cgomez@harrowmere.local",
     "department": "Warehouse / Shipping",
@@ -210,7 +210,7 @@
     "resolution_notes": "Remoted into print server (PORT-PRN-01). Identified corrupt print job in C:\\Windows\\System32\\spool\\PRINTERS causing spoolsv.exe crash upon RPC (TCP 135) binding. Stopped Print Spooler, purged corrupted .SHD and .SPL files, restarted service, and verified TCP 445 (SMB) and 135 (RPC) listeners active. Successfully released shipping queue."
   },
   {
-    "ticket_id": "INC-2026-1051",
+    "ticket_id": "INC0063150",
     "requester_name": "Rachel Adams",
     "requester_email": "radams@harrowmere.local",
     "department": "Executive Office",
@@ -231,7 +231,7 @@
     "resolution_notes": "Conducted mandatory out-of-band identity verification via voice callback to department manager. Accessed Microsoft Entra / Active Directory administrative portal. Located computer object PORT-NB-0482. Retrieved 48-digit BitLocker recovery key matching Key ID 7B4F-29E1. Read key to user; drive unlocked successfully. Instructed user to suspend BitLocker prior to executing subsequent UEFI/TPM firmware updates."
   },
   {
-    "ticket_id": "INC-2026-1052",
+    "ticket_id": "INC0063151",
     "requester_name": "David Kim",
     "requester_email": "dkim@harrowmere.local",
     "department": "Marketing",
@@ -252,7 +252,7 @@
     "resolution_notes": "Inspected Domain Controller Security log for Event ID 4740 (Account Lockout). Filtered by user 'dkim'. Event 4740 identified Caller Computer Name as 'IPAD-DKIM-04'. Contacted user; discovered personal iPad connected to guest Wi-Fi was still attempting Exchange ActiveSync authentication with expired password, rapidly hitting the 5-attempt bad password threshold. Updated password in iPad Settings; lockout cleared."
   },
   {
-    "ticket_id": "INC-2026-1053",
+    "ticket_id": "INC0063152",
     "requester_name": "Sarah Jenkins",
     "requester_email": "sjenkins@harrowmere.local",
     "department": "Lobby Reception",
@@ -273,7 +273,7 @@
     "resolution_notes": "Confirmed active rogue access point bridging external wireless devices directly into corporate internal VLAN 10. Immediately unplugged hardware device and confiscated for analysis. Disabled switch port (Fa0/18) on Closet 1A switch. Escalated incident to SOC and physical security for vendor/contractor audit."
   },
   {
-    "ticket_id": "INC-2026-1054",
+    "ticket_id": "INC0063153",
     "requester_name": "Tom Bradley",
     "requester_email": "tbradley@harrowmere.local",
     "department": "Procurement",

@@ -1,6 +1,46 @@
 # Agent / LLM handoff — Learning Narrative Kit
 
-Use this file when an LLM (or human) authors a new unit **without** a specialized bot. Schema wins if anything conflicts: `schema/README.md`.
+Use this file when an LLM (or human) authors a new unit **without** a specialized bot. If anything conflicts, follow "Which document wins" below.
+
+## Archived material (read this first)
+
+`archive/` holds superseded documents. Do not read it, cite it, or follow its rules unless the author names a specific file and asks you to. If an active document links into `archive/`, treat the link as history, not as a source. See `archive/README.md` for what moved and what replaced it. `docs/AUDIT-2026-10.md` lists documents whose status is still undecided.
+
+## Which document wins (precedence)
+
+When two documents disagree, the higher one wins. Fix the lower one in the same change, or flag it.
+
+1. `schema/` (the authoring contract: `README.md`, `BRIEF.md`, `VOICE.md`).
+2. `docs/research/PORTLAND_TIMELINE.md` for Portland Desk facts: ages, dates, jobs, pay, places.
+3. `docs/research/PORTLAND_AUTHOR_BIBLE.md` for Portland Desk cast, acts, and episode beats.
+4. `docs/craft/learning-narrative-framework.md` for craft rules in every track.
+5. Other active standards in `docs/research/` (style, pedagogy, visuals, flashcards).
+6. `research/` background notes, and dated reviews in `docs/research/` or `docs/reviews/`. These inform; they do not rule.
+7. `archive/` is never a source.
+
+No document is "canonical" by its own say-so. Its place in this list decides.
+
+Canon that is settled: the employer is Harrowmere Equipment Group, the setting is Portland, and Ethan never relocates.
+
+## Story and lab model (Charles, 2026-10-26)
+
+- The chapter may give away the answer. Write it as a complete story, cliffhanger or not.
+- The lab opens with a worked example of the same incident, solution known, and ends with one transfer problem (same principle, different surface). No "what would you do" handoffs before training, no lab epilogues, and no story Easter eggs. Labs may refer to the story.
+- Cost and canon rules (numbering matches `docs/craft/learning-narrative-framework.md`):
+  1. No promotion, raise, or forgiveness offsets any cost charged to Ethan in the same or the previous chapter. A relationship that moves through an action, with nothing said, is not a refund; a speech, promotion, or restored status is.
+  2. Each act has one incident that belongs to someone else (Ethan hears about it secondhand) and one thing Ethan saves that does not matter.
+  3. No narrator foreshadowing.
+  4. A carry-forward must change action. A grudge may not be restated in more than two chapters without moving.
+  5. Every chapter charges Ethan a personal cost that nobody refunds.
+  6. Ethan's standing struggles, named in the bible, drive his wrong turns.
+  7. No recurring character enters or exits with the same action, phrase, or device twice in an act. Each return opens on what changed since the last appearance.
+  8. Run `python3 tools/check_dates.py` before merge. Every `date-ok` marker gives a reason (`<!-- date-ok: why -->`).
+  9. A cost counts only if it is in the narrative file.
+  10. Use a surname only on introduction or when it matters (formal report, email signature, a stern manager); otherwise first names.
+  11. No two characters in the same act enter with the same staging device (an object carried "like" something, a burst into the aisle, a phone ringing as the scene opens).
+  12. When two of these rules conflict, the lower number wins unless the framework names an exception.
+  13. Identifiers (tickets, escalations, evidence tags, email addresses) agree with the timeline and cast. Ticket, escalation, and evidence IDs carry no year and use one increasing counter per prefix (`INC0048192`), unique and in episode order.
+  14. Every named character has one row in the bible's cast registry (section 3.4), and labs, artifacts, and scripts use only that surname.
 
 ## What this kit is
 
@@ -24,7 +64,8 @@ tools/                  # validate_unit.py, render_unit.py, render_track.py  (al
 tracks/<track>.yaml     # reading order for a track → contents page + prev/next links
 briefs/<brief_id>.brief.yaml   # the author's instructions for one job (schema/BRIEF.md)
 workshop/<brief_id>/    # plan, status, reviews, CANDIDATE chapters; never published
-research/               # background notes (schema wins on conflict)
+research/               # background notes (lowest active rank; see precedence)
+archive/                # SUPERSEDED. Do not use as a source (see archive/README.md)
 ```
 
 Marks in prose: `[[term_id|surface text]]`
@@ -128,7 +169,7 @@ a baseline) through r3.
     ```
     This writes the contents page `docs/<track_id>/index.html`. Re-render the unit and its old and new neighbours so their Previous / Next links update.
     If the track has `glossary: true`, also run `tools/render_glossary.py tracks/<track>.yaml` so the A-Z glossary picks up the new terms.
-11. **Commit** `examples/<unit_id>/`, `docs/<unit_id>/`, `docs/index.html`, and any track files. Push `main`. Pages serves `/docs`.
+11. **Commit** `examples/<unit_id>/`, `docs/<unit_id>/`, `docs/index.html`, and any track files. Pushing to `main` is allowed unless the change needs a decision from Charles (canon, scope, money, or anything public beyond the site); in that case open a PR and wait. Rollback is fine. Pages serves `/docs`.
 
 Expected URL: `https://cwarloe.github.io/learning-narrative-kit/<unit_id>/`
 
@@ -151,11 +192,10 @@ Run all of these. Each one caught something real on the Tamarack track.
 6. After the PR is up, read the review bot's comments, reply on each thread before
    pushing the fix, and re-audit the whole unit if the fix moves structure.
 7. If you change Episode 7, Drill 1 (its capture table or its passwords), regenerate
-   `portland-desk/artifacts/jared-telnet-capture.pcap` with
-   `tools/generate_ep07_telnet_capture.py` (needs `pip install scapy`), copy it and the
-   workbench into `docs/portland-desk/`, and run `python3 tools/check_ep07_capture.py`.
-   CI runs the same check and fails if the table, the answer key, the capture, or the
-   mirror disagree.
+   `docs/portland-desk/artifacts/jared-telnet-capture.pcap` with
+   `tools/generate_ep07_telnet_capture.py` (needs `pip install scapy`) and run
+   `python3 tools/check_ep07_capture.py`. CI runs the same check and fails if the table,
+   the answer key, or the capture disagree.
 
 ## Environment notes
 
@@ -165,6 +205,14 @@ Run all of these. Each one caught something real on the Tamarack track.
   the process ID first and kill that.
 - Some sandboxes can't reach `*.github.io`. Confirm a Pages deploy from the
   "pages build and deployment" workflow run instead.
+- In Docsify markdown (`docs/portland-desk/`), a blank line ends a raw HTML block, and an
+  indented `<tag>` after it renders as a code block. Don't hand-write multi-part widgets as
+  HTML in markdown: use a fence (`lnk-deck`, `lnk-terminal`, `callout-panel`) that
+  `index.html` turns into one line of HTML. `tools/check_decks.py` catches the trap.
+- To test Docsify pages headlessly here, serve `docs/portland-desk` locally and answer
+  `cdn.jsdelivr.net` requests from `curl` over HTTPS (Playwright `page.route`): the pages
+  load Docsify with `//cdn...` URLs, which become `http://` on a local server, and the
+  sandbox proxy only serves HTTPS.
 
 ## Validate rules (mechanical)
 
@@ -196,7 +244,7 @@ Full text: `schema/README.md`. Non-negotiables:
 
 ## Track-specific canon
 
-- **Portland Desk (Sec+):** `examples/PORTLAND_DESK.md`
+- **Portland Desk (Book 0):** `docs/research/PORTLAND_TIMELINE.md` (facts) and `docs/research/PORTLAND_AUTHOR_BIBLE.md` (cast and beats)
 - **ITM:** see `examples/itm310-vanguard-edge/` as specimen
 - **Tamarack (MIS + Excel/BI, MindTap):** `examples/TAMARACK.md`
 
@@ -210,7 +258,7 @@ You are authoring a learning-narrative unit for this kit.
 Read and follow:
 - AGENTS.md (this playbook)
 - schema/README.md (authoring contract)
-- For Portland Desk Sec+: examples/PORTLAND_DESK.md
+- docs/craft/learning-narrative-framework.md (craft standard)
 - Clone file shapes from the nearest examples/<sibling>/
 
 Task: create examples/<UNIT_ID>/ with unit.yaml, glossary.yaml, narrative.md, review.yaml
@@ -248,8 +296,8 @@ When authoring narrative stories, hands-on workbenches, terminal simulations, or
 4. **Interactive Components Specification (`docs/research/INTERACTIVE_COMPONENTS_SPEC.md`):**
    - Syntax and client-side behavior for ````lnk-terminal` (zero-backend in-browser CLI simulation) and ````callout-panel` (responsive graphic novel schematics).
 5. **Track Canon & Author Bibles:**
-   - `docs/research/PORTLAND_AUTHOR_BIBLE.md`: Character arcs, 3-act story snowflake, episode causal beat matrix.
-   - `docs/research/PORTLAND_CURRICULUM_PLAN.md`: Whole-task 4C/ID competency progression across CompTIA A+, Network+, and Security+.
+   - `docs/research/PORTLAND_TIMELINE.md`: Ages, dates, jobs, acts, and phases. Top-ranked for Portland Desk facts.
+   - `docs/research/PORTLAND_AUTHOR_BIBLE.md`: Cast, three-act arc, beat matrix, and episode cards that match the shipped episodes.
 6. **The Four Rubber Bands Framework (`docs/research/FOUR_RUBBER_BANDS_FRAMEWORK.md`):**
    - Governs cognitive triage of exam concepts into four distinct operational bands: 🔴 Red (Disposable Passport Trivia / Rapid Flashcard Drill), 🟢 Green (System Anatomy / Assembly Mat), 🟡 Yellow (Identity & Boundaries / Packet Sandwich), and 🔵 Blue (Diagnostic Reflex / Fault-Tree Walk).
    - Solves declarative atomization and the single-deck flashcard trap by assigning discrete study rituals and open-source card schemas to each band.

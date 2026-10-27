@@ -2,9 +2,11 @@
 
 *A CompTIA Network+ name resolution precursor • Hover over highlighted terms for technical definitions and triage mechanics.*
 
-A gray March downpour beat against the high double-paned windows of the fourth floor. Five months on the Portland Operations Center desk had taught me the rhythms of the building: which closet switches ran warm, which departments panicked before payroll cutoff, and how fast a wet morning turned into a ticket surge.
+A gray March downpour beat against the high double-paned windows of the fourth floor. Seven months on the Portland Operations Center desk had taught me the rhythms of the building: which closet switches ran warm, which departments panicked before payroll cutoff, and how fast a wet morning turned into a ticket surge.
 
-Across the center aisle, Tier 2 systems administrator Lena Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules Brooks sat to my left, finishing her first coffee while auditing overnight firewall changes.
+The Gresham static list was still taped to the side of my monitor. Five of the eleven devices were down to proper reservations. The other six belonged to people who had not returned my emails, and one of them was a staging laptop that a contract developer had set up in a trailer the previous September. <!-- date-ok: back-reference to the trailer the previous September -->
+
+Across the center aisle, Tier 2 systems administrator Lena Chen was already forty minutes into her shift, reviewing remote access logs across our virtual machine clusters. Her headset light glowed steady amber, and her terminal windows were scrolling fast. Jules sat to my left, finishing her first coffee while auditing overnight firewall changes.
 
 By eight thirty, the incoming ticket board on our wall monitor began flashing amber with nine high-priority incidents. Remote employees working across Multnomah and Washington counties were calling in with identical complaints. They had connected their laptops to our corporate virtual private network without any errors. Yet whenever they tried to open the internal payroll portal or the plant telemetry wiki, their browsers spun endlessly. Some requests timed out completely, while others redirected users to an unfamiliar public domain parking page. Meanwhile, accountants and dispatchers working inside the building were browsing those exact same internal websites without any trouble.
 
@@ -17,11 +19,11 @@ caption: "Schematic cutaway: The local DNS resolution path. When the resolver qu
 prompt: "Clean technical cutaway diagram of a computer desktop screen displaying DNS resolution paths under bright, even lighting. Flowchart lines connect local hosts file to DNS resolver cache and recursive domain controllers. Clean instructional style, crisp fine lines, no text, no words. 16:9 ratio."
 ```
 
-Jared Vance from network operations walked over from the bullpen holding a paper cup of lukewarm coffee. He had worked around regional fiber plants long enough to remember when frame relay was cutting edge. His first instinct during any distributed outage was to blame the carrier.
+Jared from network operations walked over from the bullpen holding a paper cup of lukewarm coffee. He had worked around regional fiber plants long enough to remember when frame relay was cutting edge. His first instinct during any distributed outage was to blame the carrier.
 
 "Comcast probably pushed another broken routing update, or a backhoe clipped a conduit in Beaverton," Jared said, gesturing toward the rain with his paper cup. "Remote workers are on domestic broadband lines that flake out whenever the weather turns sour. Have them reboot their cable modems and flush their network stacks."
 
-Lena Chen turned slightly in her swivel chair and lowered her headset microphone. "Rebooting sixty consumer cable modems across three residential providers is not an operational triage plan, Jared. The VPN concentrator shows eighty-two active client tunnels with healthy keepalive handshakes. We have zero packet drops on the transport interface. The encrypted tunnel is staying wide open, but the application payload is landing in the wrong place."
+Lena turned slightly in her swivel chair and lowered her headset microphone. "Rebooting sixty consumer cable modems across three residential providers is not an operational triage plan, Jared. The VPN concentrator shows eighty-two active client tunnels with healthy keepalive handshakes. We have zero packet drops on the transport interface. The encrypted tunnel is staying wide open, but the application payload is landing in the wrong place."
 
 I opened the first ticket from the queue. It was submitted by an accounts payable clerk named Greg who was working remotely from Hillsboro. Greg could not access `payroll.harrowmere.local` to verify morning direct deposits. His browser displayed a generic error stating that the server address could not be found.
 
@@ -29,7 +31,7 @@ Jules took a sip from her ceramic mug and leaned over my cubicle partition. She 
 
 "Jared thinks the residential internet providers are dropping our internal routes," I replied. I brought up a command prompt on Greg's desktop. "I was going to ping the web server name to see where the packets die along the path."
 
-Jules set her coffee mug down with a soft ceramic clink. "If you try to ping a domain name that cannot be resolved, ping will not tell you anything about routing health. It will simply tell you that your operating system has no idea what destination address to put into the packet header. When a user tells you a website is down, remember that the name is not the number. Trace who answers the question before you assume the wire is broken."
+Jules did not look away from her own screen. "If you try to ping a domain name that cannot be resolved, ping will not tell you anything about routing health. It will simply tell you that your operating system has no idea what destination address to put into the packet header. When a user tells you a website is down, remember that the name is not the number. Trace who answers the question before you assume the wire is broken."
 
 ## The contractor's forgotten shortcut
 
@@ -39,7 +41,7 @@ I leaned forward and examined the terminal window on Greg's remote screen. Inste
 
 "A `192.168.1.50` address is private non-routable space that belongs on a domestic local network," Maya pointed out. She wheeled her chair into our row. "Check the local static configuration files before you do anything else."
 
-I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the local [[hosts_file|hosts file]] in an elevated text editor. Right beneath the default commented loopback entries, someone had manually appended three hardcoded lines during the previous autumn:
+I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the local [[hosts_file|hosts file]] in an elevated text editor. Right beneath the default commented loopback entries, someone had manually appended three hardcoded lines during the previous autumn: <!-- date-ok: back-reference to the previous autumn -->
 
 ```text
 # Temporary development override - DO NOT REMOVE
@@ -47,7 +49,7 @@ I navigated immediately to `C:\Windows\System32\drivers\etc\` and opened the loc
 192.168.1.51    wiki.harrowmere.local
 ```
 
-"A contract software developer had this machine out in a staging trailer last September," I said. "They must have hardcoded those static mappings to point to a portable test server on their switch. Nobody ever cleaned the file before reissuing the laptop to accounting."
+"A contract software developer had this machine out in a staging trailer last September," I said. "They must have hardcoded those static mappings to point to a portable test server on their switch. Nobody ever cleaned the file before reissuing the laptop to accounting." <!-- date-ok: back-reference to last September -->
 
 "The operating system checks the local cache and the static file before it ever asks an external server," Jules remarked. She crossed her arms. "Remove those obsolete entries and flush the resolver cache. Let us see what happens when the computer actually asks for directions."
 
@@ -77,7 +79,7 @@ I stared at the first two lines of the terminal response. "Look at the resolving
 
 "And what does his home router do when a client asks it to resolve an unfamiliar internal host?" Lena asked.
 
-"His home router forwards the query to its upstream [[recursive_resolver|recursive resolver]] at Comcast," I said. "RFC 6762 reserves `.local` for Multicast DNS on the local link. Comcast's public recursive resolvers don't know our private corporate namespace, so they drop an immediate NXDOMAIN non-existent domain code right back to his machine."
+"His home router forwards the query to its upstream [[recursive_resolver|recursive resolver]] at Comcast," I said. "The `.local` domain is reserved for local link device discovery. Comcast's public recursive resolvers don't know our private corporate namespace, so they drop an immediate NXDOMAIN non-existent domain code right back to his machine."
 
 "Now look at what happens when Greg tries to browse the public corporate domain name," Lena said.
 
@@ -107,15 +109,27 @@ DNSServer                    : 10.100.10.2, 10.100.10.3
 
 "A textbook [[dns_leak|DNS leak]]," Jules observed. She took another sip of coffee. "Modern Windows operating systems query all available network adapters simultaneously under Smart Multi-Homed Name Resolution. The physical Wi-Fi adapter's local router responds in four milliseconds with an NXDOMAIN code, while the encrypted tunnel takes twenty. Because the virtual adapter's metric is set higher than the physical interface, the resolver prioritizes the local negative response, and the client never establishes the connection through the VPN."
 
-"To make matters worse, look at the negative response caching," Lena added, pulling up the resolver cache. "Under RFC 2308, Windows caches that NXDOMAIN using the negative TTL defined in the upstream SOA record. So even if the employee restarts their browser or reconnects the tunnel, the operating system keeps serving the failure until the negative cache expires or you flush it."
+"To make matters worse, look at the negative response caching," Lena added, pulling up the resolver cache. "Windows aggressively caches that NXDOMAIN using the negative TTL defined in the upstream SOA record. So even if the employee restarts their browser or reconnects the tunnel, the operating system keeps serving the failure until the negative cache expires or you flush it."
 
-Jules set her mug down and leaned over the cubicle partition, her eyes scanning the board where eighteen tickets continued to flash amber.
+Jules stood to stretch her back, her eyes scanning the board where eighteen tickets continued to flash amber.
 
-Jules picked up her phone to intercept another incoming call from finance. "We have eighty-two tunnels open and seventy remote workers locked out of payroll while Jared is ready to yell at Comcast. The XML profile fix has to push cleanly, the adapter metrics need to prioritize the tunnel, and that negative cache trap has to clear without rebooting eighty laptops in the middle of their shift."
+## Asking the Right Stranger
 
-She looked back over her monitor. "You have fifteen minutes before accounting calls the Director, Ethan. Fix the plumbing."
+The tunnel adapter had a worse interface metric than the hotel Wi-Fi, and the client had no `harrowmere.local` suffix to try, so internal names went out to public DNS and came back as a parked domain. I took the evidence to Lena, our Tier 2 systems administrator, because the VPN gateway was hers and not mine to change. She pushed a client profile revision with an interface metric of 10 on the tunnel adapter, the internal suffix on the search list, and smart multi-homed resolution turned off.
 
-I looked at the terminal output and the dual adapter configuration. The tunnel was wide open, but the packets were flying blind. I needed to isolate the DNS leak, calculate the corrected adapter metrics, and draft the infrastructure escalation before the morning payroll deadline expired.
+I sent the affected users three steps: disconnect, reconnect to pull the new profile, and run `ipconfig /flushdns` to clear the cached failures. Within twelve minutes, all seventy locked-out users had the fix. Greg in Hillsboro watched the parked page turn into our payroll login and submitted his timesheets.
+
+The fix for the users held, but the real problem was not mine to fix. I wrote the escalation for the split-horizon records and sent it to Jared before lunch. He read it at his desk with his jaw set.
+
+"You're telling me my internal zone has been leaking for a year," he said.
+
+"I'm telling you what the lookups did," I said. "I don't know why the zone is set up that way."
+
+"It's set up that way because nobody gave me a maintenance window in a year." He moved the ticket into his queue without replying. For the next two weeks he answered my questions one word at a time.
+
+"You spent two hours on someone else's configuration," Jules said at the end of the day, while she wound her bike lock around her wrist, "but you didn't spend it guessing. Most of the time the application is fine and the client is asking the wrong stranger for directions."
+
+That same afternoon, the Hillsboro DHCP failover broke. Lena fixed it while I was on the VPN calls, and I only read about it in her closure note the next morning. My own queue sat untouched the whole time, and four tickets went past their response target. Jules wrote them up on my weekly review without comment.
 
 ## Vocabulary & Concepts
 
@@ -128,7 +142,7 @@ I looked at the terminal output and the dual adapter configuration. The tunnel w
 | **[[dns_ttl|DNS TTL]]** | A 32-bit integer in a DNS resource record determining the duration in seconds that intermediate resolvers and client caches may retain the record before re-querying. | The expiration timer that tells your laptop how long to remember a good or bad answer; if set too high, it traps users on stale or broken addresses after an outage. |
 | **[[cname_record|CNAME Record]]** | A DNS Canonical Name resource record that establishes an alias from one domain name to another fully qualified domain name rather than to an IP address. | An alias pointer that routes a friendly hostname (like `wiki.harrowmere.com`) to an external cloud or vendor URL where the real web application lives. |
 
-## The Handoff Gate
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: DNS Plumbing, Name Resolution Triage, & Split-Horizon Analysis
@@ -136,5 +150,5 @@ target: workbench/04-the-name-is-not-the-number.md
 domain: CompTIA Network+ N10-008 • Domain 1.0 & 4.0
 badge: Hands-On Lab
 ---
-Take over Ethan's workstation. Triage the multi-homed VPN DNS leak in interactive terminal drills, correct the interface metrics and domain suffix bindings, wipe the stale negative cache, and draft the Tier 2 Infrastructure Escalation Note.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

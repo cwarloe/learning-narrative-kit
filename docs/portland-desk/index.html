@@ -12,9 +12,12 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   
   <!-- LNK Custom Theme & Components -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Rock+Salt&display=swap">
   <link rel="stylesheet" href="assets/lnk-theme.css">
   <link rel="stylesheet" href="assets/lnk-terminal.css">
   <link rel="stylesheet" href="assets/lnk-panel.css">
+  <link rel="stylesheet" href="assets/lnk-job-aid.css">
+  <link rel="stylesheet" href="../lnk-deck.css">
 </head>
 <body>
   <div id="app">Loading Learning Narrative Kit...</div>
@@ -124,6 +127,30 @@
               }
 
               return `<div class="panel-container">\n  <div class="panel-header">\n    <span class="panel-title">${title}</span>\n    <span class="panel-badge">${badge}</span>\n  </div>\n  ${visualHtml}\n  ${caption ? `<div class="panel-footer">${caption}</div>` : ''}\n</div>`;
+            });
+
+            // Parse ```lnk-deck blocks into flashcard decks.
+            // The whole deck becomes ONE line of HTML carrying the cards as data, so Docsify's
+            // markdown parser never sees card markup. (Hand-written deck HTML broke here: a blank
+            // line ends a markdown HTML block, and the indented card markup after it rendered as
+            // a code block, leaving a one-card deck.) ../lnk-deck.js, shared with the Tamarack unit
+            // pages, builds the deck from the data; tools/_deck.py is the same parser in Python.
+            content = content.replace(/```lnk-deck[ \t]*\n([\s\S]*?)```/g, function(match, block) {
+              const sections = block.split(/^---[ \t]*$/m);
+              function fields(text) {
+                const out = {};
+                let last = null;
+                text.split('\n').forEach(function(line) {
+                  const m = line.match(/^([A-Za-z_]+):\s?(.*)$/);
+                  if (m) { last = m[1].toLowerCase(); out[last] = m[2].trim(); }
+                  else if (last && line.trim()) { out[last] += ' ' + line.trim(); }
+                });
+                return out;
+              }
+              const head = fields(sections.shift() || '');
+              const cards = sections.map(fields).filter(function(c) { return c.q || c.a; });
+              const deck = { title: head.title || 'Flashcards', meta: head.meta || '', size: head.size || '3x5', band: head.band || 'red', cards: cards };
+              return '<div class="lnk-deck" data-deck="' + encodeURIComponent(JSON.stringify(deck)) + '"></div>';
             });
 
             // Parse ```lnk-terminal blocks into interactive micro-terminals
@@ -306,6 +333,10 @@
               });
             });
 
+            // Job aid tabs and passport decks are bound once, in lnk-shell.js (initJobAidTabs,
+            // initPassportDecks); ```lnk-deck decks in ../lnk-deck.js. Do not bind them here too: a second click handler on
+            // a card toggles 'flipped' twice, so the card flips and immediately flips back.
+
             // Initialize interactive micro-terminals
             if (window.initLnkTerminals) {
               window.initLnkTerminals();
@@ -357,6 +388,9 @@
 
   <!-- LNK Interactive Micro-Terminal Engine -->
   <script src="assets/lnk-terminal.js"></script>
+
+  <!-- Flashcard decks (```lnk-deck), shared with the unit pages -->
+  <script src="../lnk-deck.js"></script>
 
   <!-- LNK Custom Shell (Dual-Track Mode Switcher & Docked Aside) -->
   <script src="assets/lnk-shell.js"></script>

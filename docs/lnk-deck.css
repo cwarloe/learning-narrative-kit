@@ -1,0 +1,152 @@
+/* lnk-deck: flip-card decks. Shared by every page that shows a deck (Tamarack and other
+   unit pages, Portland Desk). Behavior lives in lnk-deck.js; spec in
+   docs/research/INTERACTIVE_COMPONENTS_SPEC.md, section 4.
+
+   Self-contained on purpose: nothing here depends on a page's own stylesheet, and every
+   rule is scoped under .lnk-deck so the page's styles and these don't fight.
+
+   Layout notes (research/lessons-learned.md, "The flashcard deck that held one card"):
+   - Both faces share one grid cell with an invisible spacer. The spacer's padding is a
+     percentage of the card's WIDTH (3/5 = 60%, 4/6 = 66.67%), so the card is at least
+     index-card shaped and grows when a face needs more room. Don't use aspect-ratio:
+     on a phone it fixed the height and long answers spilled over the buttons.
+   - The band color (red/green/yellow/blue, the Four Rubber Bands) marks each card's
+     left edge and the deck badge. */
+
+.lnk-deck {
+  --band: #dc2626;
+  --band-glow: #ef4444;
+  display: block;
+  margin: 2rem 0;
+  padding: 1.25rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+  color: #e2e8f0;
+}
+.lnk-deck:focus-visible { box-shadow: 0 0 0 3px #38bdf8; }
+.lnk-deck[data-band="green"]  { --band: #16a34a; --band-glow: #22c55e; }
+.lnk-deck[data-band="yellow"] { --band: #ca8a04; --band-glow: #eab308; }
+.lnk-deck[data-band="blue"]   { --band: #2563eb; --band-glow: #3b82f6; }
+
+.lnk-deck .lnk-deck__header {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem;
+}
+.lnk-deck .lnk-deck__titles { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem 0.75rem; }
+.lnk-deck .lnk-deck__badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--band-glow);
+}
+.lnk-deck .lnk-deck__badge::before {
+  content: ""; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--band-glow); box-shadow: 0 0 8px var(--band-glow);
+}
+.lnk-deck .lnk-deck__meta { font-size: 0.8rem; color: #94a3b8; }
+.lnk-deck .lnk-deck__counter {
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 0.8rem; font-weight: 700; color: var(--band-glow);
+  border: 1px solid var(--band-glow); border-radius: 4px; padding: 0.15rem 0.6rem;
+}
+
+.lnk-deck .lnk-deck__stage { width: 100%; max-width: 560px; margin: 0 auto; perspective: 1200px; }
+.lnk-deck--4x6 .lnk-deck__stage { max-width: 680px; }
+
+.lnk-deck .lnk-deck__card {
+  --card-band: var(--band);
+  display: grid;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.lnk-deck .lnk-deck__card.is-flipped { transform: rotateY(180deg); }
+.lnk-deck .lnk-deck__card::before { content: ""; grid-area: 1 / 1; padding-top: 60%; }
+.lnk-deck--4x6 .lnk-deck__card::before { padding-top: 66.67%; }
+.lnk-deck .lnk-deck__card[data-band="red"]    { --card-band: #dc2626; }
+.lnk-deck .lnk-deck__card[data-band="green"]  { --card-band: #16a34a; }
+.lnk-deck .lnk-deck__card[data-band="yellow"] { --card-band: #ca8a04; }
+.lnk-deck .lnk-deck__card[data-band="blue"]   { --card-band: #2563eb; }
+
+.lnk-deck .lnk-deck__face {
+  grid-area: 1 / 1;
+  position: relative;
+  display: flex; flex-direction: column; gap: 0.6rem;
+  min-height: 100%;
+  padding: 1rem 1.25rem 0.75rem 1.4rem;
+  border: 3px solid #0f172a;
+  border-left: 10px solid var(--card-band);
+  border-radius: 10px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.85);
+  background-color: #fdfbf7;
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, #e2e8f0 28px);
+  background-position: 0 45px;
+  color: #0f172a;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  text-align: left;
+}
+.lnk-deck .lnk-deck__face--back { transform: rotateY(180deg); background-color: #f8fafc; }
+
+.lnk-deck .lnk-deck__tag {
+  align-self: flex-start;
+  background: var(--card-band); color: #fff;
+  padding: 3px 10px;
+  font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+  box-shadow: 2px 2px 0 #000;
+}
+/* Auto margins center the prompt or answer in the space the card has left;
+   the why line and footer sit below it. */
+.lnk-deck .lnk-deck__q,
+.lnk-deck .lnk-deck__a {
+  margin: auto 0;
+  font-size: 1.25rem; font-weight: 700; line-height: 1.35; color: #0f172a;
+}
+.lnk-deck .lnk-deck__a { font-size: 1.15rem; }
+.lnk-deck .lnk-deck__why {
+  font-size: 0.92rem; color: #475569; line-height: 1.45;
+  border-left: 3px solid var(--card-band); padding-left: 0.6rem;
+}
+.lnk-deck .lnk-deck__face code {
+  font-family: Consolas, Monaco, "Courier New", monospace; font-size: 0.9em;
+  background: #e2e8f0; color: #0f172a; border: 1px solid #cbd5e1; border-radius: 4px; padding: 0 4px;
+}
+.lnk-deck .lnk-deck__foot {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.25rem 0.75rem;
+  padding-top: 0.4rem; border-top: 2px dashed #cbd5e1;
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #64748b;
+}
+.lnk-deck .lnk-deck__foot span { white-space: nowrap; }
+
+.lnk-deck .lnk-deck__nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+.lnk-deck .lnk-deck__btn {
+  font: inherit; font-size: 0.85rem; font-weight: 700;
+  background: #1e293b; color: #f8fafc;
+  border: 1px solid #475569; border-radius: 6px; padding: 6px 14px;
+  cursor: pointer; margin: 0;
+}
+.lnk-deck .lnk-deck__btn:hover { background: #334155; border-color: #38bdf8; color: #38bdf8; }
+.lnk-deck .lnk-deck__btn:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+
+.lnk-deck .lnk-deck__dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.9rem; }
+.lnk-deck .lnk-deck__dot {
+  width: 8px; height: 8px; padding: 0; margin: 0; border: none; border-radius: 50%;
+  background: #334155; cursor: pointer; transition: all 0.25s ease;
+}
+.lnk-deck .lnk-deck__dot.is-active { width: 22px; border-radius: 4px; background: var(--band-glow); }
+
+@media (max-width: 480px) {
+  .lnk-deck { padding: 0.85rem; }
+  .lnk-deck .lnk-deck__q { font-size: 1.08rem; }
+  .lnk-deck .lnk-deck__a { font-size: 1.02rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lnk-deck .lnk-deck__card, .lnk-deck .lnk-deck__dot { transition: none; }
+}
+@media print {
+  .lnk-deck .lnk-deck__nav, .lnk-deck .lnk-deck__dots { display: none; }
+}

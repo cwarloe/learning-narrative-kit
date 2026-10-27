@@ -36,18 +36,18 @@ While the narrative metaphor of the four colored rubber bands pulled from a mug 
 ├────────────────────┬──────────────────────┬────────────────────────────────────────────┤
 │ Band & Focus       │ Cognitive Discipline │ Foundational Research Reference            │
 ├────────────────────┼──────────────────────┼────────────────────────────────────────────┤
-│ 🔴 RED             │ Part-Task Automation │ • Leitner Box System (Sebastian Leitner)   │
+│ RED             │ Part-Task Automation │ • Leitner Box System (Sebastian Leitner)   │
 │ Passport Trivia    │ Active Recall        │ • Testing Effect (Roediger & Karpicke)     │
 │                    │ Cognitive Filtering  │ • Cognitive Load Theory (John Sweller)     │
 ├────────────────────┼──────────────────────┼────────────────────────────────────────────┤
-│ 🟢 GREEN           │ Mental Models        │ • Mental Models Theory (Philip Johnson-Laird│
+│ GREEN           │ Mental Models        │ • Mental Models Theory (Philip Johnson-Laird│
 │ System Anatomy     │ Structural Schemas   │ • Dual Coding Theory (Allan Paivio)        │
 │                    │ Invariants           │ • 4C/ID Supportive Info (van Merriënboer)  │
 ├────────────────────┼──────────────────────┼────────────────────────────────────────────┤
-│ 🟡 YELLOW          │ Relational Mapping   │ • Boundary Objects (Star & Griesemer)      │
+│ YELLOW          │ Relational Mapping   │ • Boundary Objects (Star & Griesemer)      │
 │ Identity & Boundary│ Encapsulation Logic  │ • Relational Reasoning (Gentner & Holyoak) │
 ├────────────────────┼──────────────────────┼────────────────────────────────────────────┤
-│ 🔵 BLUE            │ Causal Diagnosis     │ • Problem Solving Theory (David Jonassen)  │
+│ BLUE            │ Causal Diagnosis     │ • Problem Solving Theory (David Jonassen)  │
 │ Diagnostic Reflex  │ Procedural Rules     │ • Cognitive Apprenticeship (Collins et al.)│
 └────────────────────┴──────────────────────┴────────────────────────────────────────────┘
 ```
@@ -77,7 +77,7 @@ Jonassen proved that master troubleshooters do not guess. They use structural kn
 
 ```
          ┌─────────────────────────┐
-         │ 🔴 RED BAND: TRIVIA     │
+         │ RED BAND: TRIVIA     │
          │ Rapid Flashcard Drill   │
          │ (Quarantine & Dump)     │
          └────────────┬────────────┘
@@ -85,7 +85,7 @@ Jonassen proved that master troubleshooters do not guess. They use structural kn
    ┌──────────────────┴──────────────────┐
    ▼                                     ▼
 ┌─────────────────────────┐   ┌─────────────────────────┐
-│ 🟢 GREEN BAND: ANATOMY  │   │ 🟡 YELLOW BAND: IDENTITY│
+│ GREEN BAND: ANATOMY  │   │ YELLOW BAND: IDENTITY│
 │ Tabletop Assembly Mat   │   │ Protocol Packet Stack   │
 │ (Physical Invariants)   │   │ (Encapsulation/Crossing)│
 └────────────┬────────────┘   └──────────┬──────────────┘
@@ -93,7 +93,7 @@ Jonassen proved that master troubleshooters do not guess. They use structural kn
              └─────────────┬─────────────┘
                            ▼
               ┌─────────────────────────┐
-              │ 🔵 BLUE BAND: REFLEX    │
+              │ BLUE BAND: REFLEX    │
               │ Fault-Isolation Tree    │
               │ (Stepwise Diagnosis)    │
               └─────────────────────────┘
@@ -101,7 +101,7 @@ Jonassen proved that master troubleshooters do not guess. They use structural kn
 
 ---
 
-### 🔴 The Red Rubber Band: Passport Trivia (Quarantine Bucket)
+### The Red Rubber Band: Passport Trivia (Quarantine Bucket)
 
 * **Definition:** Arbitrary, vendor-specific, or standards-committee facts that have no underlying physical logic.
 * **Cognitive Mindset:** *"Hold this in short-term memory for ninety minutes during the exam, score the points, and discard it in the parking lot."*
@@ -117,7 +117,7 @@ Jonassen proved that master troubleshooters do not guess. They use structural kn
 
 ---
 
-### 🟢 The Green Rubber Band: System Anatomy (Permanent Invariants)
+### The Green Rubber Band: System Anatomy (Permanent Invariants)
 
 * **Definition:** The unchanging physical and structural building blocks of computing that persist regardless of brand, operating system, or era.
 * **Cognitive Mindset:** *"What moves, what stays still, and what vanishes when power drops?"*
@@ -136,7 +136,7 @@ Jonassen proved that master troubleshooters do not guess. They use structural kn
 
 ---
 
-### 🟡 The Yellow Rubber Band: Identity & Boundaries (The Communication Triad)
+### The Yellow Rubber Band: Identity & Boundaries (The Communication Triad)
 
 * **Definition:** The addressing, multiplexing, and encapsulation rules that allow a standalone machine to identify itself and cross boundaries to communicate with other machines.
 * **Cognitive Mindset:** *"Who am I on this wire, where am I in the global topology, and which doorway inside my memory is open?"*
@@ -155,7 +155,7 @@ Jonassen proved that master troubleshooters do not guess. They use structural kn
 
 ---
 
-### 🔵 The Blue Rubber Band: Diagnostic Reflex (Troubleshooting Method)
+### The Blue Rubber Band: Diagnostic Reflex (Troubleshooting Method)
 
 * **Definition:** The disciplined diagnostic framework that prevents panic and guides root-cause isolation in an active crisis.
 * **Cognitive Mindset:** *"Never change three things at once out of nervous panic. Form a prediction, test it with the least destructive check, and verify before closing."*
@@ -182,7 +182,7 @@ Jonassen proved that master troubleshooters do not guess. They use structural kn
 
 The Four Rubber Bands system applies seamlessly across the full CompTIA / IT infrastructure progression:
 
-| Certification | 🔴 RED (Trivia) | 🟢 GREEN (Anatomy) | 🟡 YELLOW (Boundaries) | 🔵 BLUE (Reflex) |
+| Certification | RED (Trivia) | GREEN (Anatomy) | YELLOW (Boundaries) | BLUE (Reflex) |
 | :--- | :--- | :--- | :--- | :--- |
 | **CompTIA A+** | • Printer roller order<br>• Cat6 cable limits<br>• USB transfer speeds<br>• DVI/HDMI pin counts | • CPU vs RAM vs Storage<br>• Motherboard buses<br>• UEFI/POST boot order<br>• Power supply rails | • MAC address (L2)<br>• IP address (L3)<br>• Common ports (L4)<br>• Default gateway | • 6-Step diagnostic process<br>• Stepwise component isolation<br>• Beep code diagnosis |
 | **CompTIA Network+** | • Fiber connectors (LC/SC/ST)<br>• T568A vs T568B pinouts<br>• 802.11ax vs ac specs<br>• MTU size defaults | • Switch MAC tables<br>• Router routing tables<br>• ARP cache structure<br>• Collision/broadcast domains | • Subnetting / CIDR<br>• VLAN tagging (802.1Q)<br>• NAT / PAT translation<br>• Public vs private IP | • Stepwise link down triage<br>• `ping` $\rightarrow$ `traceroute` $\rightarrow$ `arp`<br>• Cable certifier testing |
@@ -259,14 +259,14 @@ To implement this framework as a community-driven, non-proprietary index card sy
 
 ## 6. Implementation Roadmap: Completing the Unbuilt Bands
 
-In *Portland Desk*, Episode 00 grounded the **🟢 Green Band** (hardware anatomy, RAM volatility, POST, and system bus). The remaining three bands represent an exciting, concrete production roadmap for this repository:
+In *Portland Desk*, Episode 00 grounded the **Green Band** (hardware anatomy, RAM volatility, POST, and system bus). The remaining three bands represent an exciting, concrete production roadmap for this repository:
 
-1. **🔴 Red Engine (The Quarantine Drill):**
+1. **Red Engine (The Quarantine Drill):**
    * Author the open-source CompTIA A+ / Net+ / Sec+ trivia card sets.
    * Provide an in-browser rapid-fire 3-second flashcard runner and printable 3x5 PDF cutouts.
-2. **🟡 Yellow Engine (The Packet Sandwich):**
+2. **Yellow Engine (The Packet Sandwich):**
    * Build an interactive browser component where learners assemble 3-card packet stacks (MAC + IP + Port) and swap MACs as packets traverse simulated routers.
-3. **🔵 Blue Engine (The Fault-Tree Walker):**
+3. **Blue Engine (The Fault-Tree Walker):**
    * Turn the CompTIA 6-step framework into an interactive triage canvas where learners drag symptom cards against test cards and verification checkpoints.
 4. **Glossary Integration:**
    * Extend the existing `glossary.yaml` schema across all courses to include `band: red | green | yellow | blue`, providing a clear home for terms that exist in the certification objectives but are outside the immediate narrative plot.

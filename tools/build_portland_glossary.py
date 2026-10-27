@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the comprehensive Master Technical Glossary for Portland Desk.
 
-Reads portland-desk/assets/glossary.json and generates portland-desk/glossary.md
+Reads docs/portland-desk/assets/glossary.json and generates docs/portland-desk/glossary.md
 and docs/portland-desk/glossary.md with searchable, categorized, anchorable entries.
 """
 

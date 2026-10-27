@@ -15,7 +15,8 @@ ls -1 examples/ 2>/dev/null
 
 The full contract is `schema/README.md`, and it **wins over anything in this skill**. Track canon:
 
-- Portland Desk (Security+) — `examples/PORTLAND_DESK.md`
+- Portland Desk (Book 0): `docs/research/PORTLAND_TIMELINE.md` and `docs/research/PORTLAND_AUTHOR_BIBLE.md`
+- Craft for every track: `docs/craft/learning-narrative-framework.md`
 - ITM — `examples/itm310-vanguard-edge/` as the specimen
 
 Read the contract and the relevant track file before writing. Don't work from what a sibling unit happens to do; the sibling is for file *shapes*.

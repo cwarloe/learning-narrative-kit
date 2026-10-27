@@ -23,7 +23,7 @@ def main() -> int:
     scripts = sorted(p.name for p in TOOLS.glob("*.py"))
     missing = [name for name in scripts if f"`{name}`" not in readme]
     listed_but_gone = sorted(
-        name for name in _backticked_py(readme)
+        name for name in _backticked_py(_index_section(readme))
         if "/" not in name and not (TOOLS / name).exists()
     )
 
@@ -40,6 +40,15 @@ def main() -> int:
         return 0
     print(f"{problems} tool index problem(s).")
     return 0 if warn_only else 1
+
+
+def _index_section(readme: str) -> str:
+    """The "## Tool index" section only, so prose elsewhere can name a retired script."""
+    start = readme.find("## Tool index")
+    if start < 0:
+        return readme
+    end = readme.find("\n## ", start + 1)
+    return readme[start:] if end < 0 else readme[start:end]
 
 
 def _backticked_py(text: str):

@@ -20,12 +20,27 @@
 
 ---
 
+## Worked Example: Line 4 at the Gresham dock
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** The scale terminal printed garbage after Ethan hard-cut the power. The cut had reset the serial controller to 9,600 baud while the Toledo scale still sent at 19,200.
+
+1. Confirm Layer 1 first. Rosa's meter found the chafed ribbon cable and the bent Pin 2, and Kapton tape and a straight pin restored continuity.
+2. Notice the symptom changed from no data to wrong data. Wrong data on a sound wire points to framing or speed, not copper.
+3. Compute the bit times: 1 / 19,200 is about 52 microseconds, and 1 / 9,600 is about 104 microseconds. The receiver was sampling each bit twice as long as the sender sent it.
+4. Read the `SW1` silkscreen. Switch 3 ON sets the 2x divider for 19,200, and switch 4 OFF clears the 1x default.
+5. Restart the serial daemon and confirm clean `SCALE_04: READY` frames.
+6. Result: the line came back at 4:47 AM, and Seattle still left 51 minutes late because forty records were lost in the power cut.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ### The Situation
 It is 02:30 on an overcast Thursday morning inside the high-bay cross-dock terminal in Gresham, Oregon. Heavy metal-halide lamps buzz forty feet overhead, battery chargers for electric forklifts hum against the corrugated metal wall, and the cold ambient air smells of diesel fumes and damp cardboard. 
 
-At 02:24, Sorting Line 4 halted without warning. The in-line Toledo weigh deck stopped communicating weight measurements to the automated sorting computer, triggering an immediate line shutdown. Over two hundred cartons are now stacking up on the gravity intake rollers every ten minutes. Five cross-dock tractor-trailers bound for Seattle and Boise must depart loading bays 7 through 9 by 05:00 AM sharp to meet regional distribution contracts. Shift Supervisor Ken calculates downtime penalties at thousands of dollars per hour.
+At 02:24, Sorting Line 4 halted without warning. The in-line Toledo weigh deck stopped communicating weight measurements to the automated sorting computer, triggering an immediate line shutdown. Over two hundred cartons are now stacking up on the gravity intake rollers every ten minutes. The Seattle and Boise trailers must leave bays 7 and 9 at 05:00 sharp to meet regional distribution contracts. Shift Supervisor Ken calculates downtime penalties at thousands of dollars per hour.
 
 You are equipped with a digital multimeter, basic hand tools, vendor technical manuals, and an eight-position DIP switch reference chart. You do not have the luxury of swapping random components; every diagnostic action must isolate a specific physical variable.
 
@@ -149,7 +164,7 @@ $$\text{Allowable Range} = V_{\text{nominal}} \pm (V_{\text{nominal}} \times 0.0
 
 ## 3. Quick Checks & Skill Reps
 
-### Drill 1: Power Supply Voltage Rails & Multimeter Load Diagnostics
+### Drill 1 (practice case): Power Supply Voltage Rails & Multimeter Load Diagnostics
 
 #### The Operational Scenario
 At 02:45, an auxiliary dispatch terminal on loading dock 2 refuses to boot. The technician suspects the power supply is dead. You arrive with a digital multimeter (DMM) to evaluate whether the power supply requires immediate replacement before ordering a replacement motherboard.
@@ -215,20 +230,20 @@ For standard **8-N-1** transmission (1 start bit + 8 data bits + 0 parity bits +
 | **$115200$ Baud** | $\frac{1}{115200} \approx 8.68\,\mu\text{s}$ | $0.087\,\text{ms}$ | $11520\,\text{char/sec}$ |
 
 #### The Baud Rate Mismatch Pathology
-When the Toledo scale transmits at **9600 baud** ($T_{\text{bit}} = 104.17\,\mu\text{s}$) but the terminal UART is configured for **19200 baud** ($T_{\text{bit}} = 52.08\,\mu\text{s}$):
-1. The receiving terminal expects each bit to arrive twice as fast as it is actually sent.
-2. The terminal samples the line at $26\,\mu\text{s}$ (reading the Start Bit), then at $78\,\mu\text{s}$ (still sampling the Start Bit!), then at $130\,\mu\text{s}$ (sampling Bit 0).
-3. By the time the terminal reaches its expected Stop Bit at $520.8\,\mu\text{s}$, the transmitter is only halfway through transmitting Data Bit 4!
-4. If Data Bit 4 happens to be low (logical 0 / SPACE), the receiver fails to see the required Stop Bit mark condition.
-5. The UART immediately triggers a **Hardware Framing Error (`FE`)**, discards the corrupted character, and outputs random ASCII symbols (`?`, `~`, `\x00`, `\xFE`) onto the console.
+When Ethan hard-cut the power, the terminal UART fell back to its factory default of **9600 baud** ($T_{\text{bit}} = 104.17\,\mu\text{s}$), while the Toledo scale kept transmitting at its configured **19200 baud** ($T_{\text{bit}} = 52.08\,\mu\text{s}$):
+1. The receiving terminal expects each bit to last twice as long as it actually does.
+2. The terminal samples the middle of each expected bit cell at $52\,\mu\text{s}$, $156\,\mu\text{s}$, $260\,\mu\text{s}$, and so on, so it reads only every second transmitted bit.
+3. By the time the terminal looks for its Stop Bit at about $990\,\mu\text{s}$, the scale has already finished this character and is partway through the next one.
+4. If the line happens to be low (logical 0 / SPACE) at that moment, the receiver does not see the required Stop Bit mark condition.
+5. The UART triggers a **Hardware Framing Error (`FE`)**, discards the corrupted character, and outputs random ASCII symbols (`?`, `~`, `\x00`, `\xFE`) onto the console.
 
 ```
-Transmitter (9600 Baud):
-[ Start: 104µs ][ Bit 0: 104µs ][ Bit 1: 104µs ][ Bit 2: 104µs ][ Bit 3: 104µs ][ Bit 4: 104µs ]
-Receiver (19200 Baud):
-[S:52µs][B0:52µs][B1:52µs][B2:52µs][B3:52µs][B4:52µs][B5:52µs][B6:52µs][B7:52µs][STOP:52µs]
-                                                                                  ▲
-                                                                          FRAMING ERROR!
+Transmitter (19200 Baud):
+[S:52µs][B0:52µs][B1:52µs][B2:52µs][B3:52µs][B4:52µs][B5:52µs][B6:52µs][B7:52µs][STOP:52µs][next char...]
+Receiver (9600 Baud):
+[ Start: 104µs ][ Bit 0: 104µs ][ Bit 1: 104µs ][ Bit 2: 104µs ][ Bit 3: 104µs ][ ... ][ STOP ]
+                                                                                          ▲
+                                                                                  FRAMING ERROR!
 ```
 
 
@@ -251,36 +266,36 @@ objectives:
     label: "Inspect SW1 DIP switch hardware clock divider"
     trigger: "read-dips"
   - id: "obj-baud"
-    label: "Recalibrate baud rate clock divider to 9600"
-    trigger: "set-baud 9600"
+    label: "Recalibrate baud rate clock divider to 19200"
+    trigger: "set-baud 19200"
 ---
 status: |
   Interface: COM1 (RS-232 Asynchronous)
   Hardware Address: 0x03F8 (IRQ 4)
-  Baud Rate: 19200
+  Baud Rate: 9600
   Data Bits: 8 | Parity: None | Stop Bits: 1 (8-N-1)
   Interface Status: DSR=ON, CTS=ON, Carrier=DETECTED
   Packet Diagnostics:
     - Bytes Received: 14,892
     - Framing Errors (FE): 14,892 (100% CORRUPTION)
     - Buffer Contents: "\xFE\x00???\xFE\x12??~~\x00\xFF"
-  Warning: Framing rate desynchronized. Clock frequency exceeds sender symbol duration.
+  Warning: Framing rate desynchronized. Receiver clock is slower than the sender's symbol rate.
 
 read-dips: |
   Motherboard Sub-Plate: DIP Switch Bank SW1 Status
   [SW1-1: ON ] - Controller Bus Address: 0x01
   [SW1-2: ON ] - Termination Resistor: 120 Ohm ENABLED
-  [SW1-3: ON ] - Clock Divider Prescaler A: 2x (19200 Baud)
-  [SW1-4: OFF] - Clock Divider Prescaler B: 1x (9600 Baud)
-  Diagnostics: Switch 3 is ON, locking the UART receiver to 19200 baud.
-  Scale transmitter hardware is calibrated for 9600 baud.
-  Action Required: Set Switch 3 OFF, Switch 4 ON.
+  [SW1-3: OFF] - Clock Divider Prescaler A: 2x (19200 Baud)
+  [SW1-4: ON ] - Clock Divider Prescaler B: 1x (9600 Baud, factory default)
+  Diagnostics: The power loss reset the UART to its 9600 baud factory default.
+  Scale transmitter is configured for 19200 baud.
+  Action Required: Set Switch 3 ON, Switch 4 OFF.
 
-set-baud 9600: |
+set-baud 19200: |
   Executing clock divider adjustment:
-  Strapping SW1-3 -> OFF, SW1-4 -> ON...
-  UART Master Clock Divider set to: 12 (115200 / 12 = 9600 Baud)
-  Bit Duration recalibrated: 104.17 microseconds per bit cell.
+  Strapping SW1-3 -> ON, SW1-4 -> OFF...
+  UART Master Clock Divider set to: 6 (115200 / 6 = 19200 Baud)
+  Bit Duration recalibrated: 52.08 microseconds per bit cell.
   Restarting Toledo polling daemon...
   
   [OK] Carrier Lock Established.
@@ -302,6 +317,8 @@ test-telemetry: |
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 *Strict Protocol:* Do not expand the verification box until you have written down your predicted layer of failure, expected diagnostic measurement, and immediate corrective action.
 <div class="scratchpad-container">
@@ -360,7 +377,7 @@ test-telemetry: |
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failure Layer:** Layer 1 / 2 (Asynchronous Physical Framing & Clock Synchronization).
-- **Root Cause:** Baud Rate Mismatch. The peripheral sensor is transmitting at 9600 baud, while the receiving computer UART is clocked at 19200 baud (or vice versa). Because the receiver samples the voltage line at the wrong time intervals, it misses the required high Stop Bit, triggering continuous UART Framing Errors (`FE`) and rendering the ASCII bit stream into undecodable binary noise.
+- **Root Cause:** Baud Rate Mismatch. The peripheral sensor is transmitting at 19200 baud, while the receiving computer UART is clocked at 9600 baud (or vice versa). Because the receiver samples the voltage line at the wrong time intervals, it misses the required high Stop Bit, triggering continuous UART Framing Errors (`FE`) and rendering the ASCII bit stream into undecodable binary noise.
 - **Physical Action:** Consult the peripheral hardware manual. Inspect the computer motherboard or expansion card DIP switches. Toggle the hardware clock divider switches to align the baud rate to exactly 9600 8-N-1 on both ends of the serial cable.
 </details>
 
@@ -420,7 +437,7 @@ test-telemetry: |
 ### Tier 1 Physical Incident Triage Report & Equipment Passdown Note
 
 #### Scenario Assignment
-You are Ethan Mercer, Tier 1 Field Technician on the graveyard shift at the Harrowmere Gresham Distribution Warehouse. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
+You are writing up the night as Ethan would have, if a dock worker were allowed to file one. Rosa Ibarra, the night maintenance tech, signs it with him. Following the critical resolution of the Sorting Line 4 outage, you must complete the formal **Tier 1 Physical Incident Triage Report** and post an **Equipment Passdown Note** for the incoming Day Shift Lead and the Regional Dispatch Coordinator before logging off at 05:30 AM.
 
 
 ---
@@ -431,18 +448,19 @@ You are Ethan Mercer, Tier 1 Field Technician on the graveyard shift at the Harr
 ========================================================================================
 GRESHAM REGIONAL LOGISTICS TERMINAL · TIER 1 PHYSICAL INCIDENT TRIAGE REPORT
 ========================================================================================
-INCIDENT TICKET ID : INC-2026-0714-L4
-INCIDENT TIMESTAMP : 2026-07-14 02:24 PDT
-RESOLUTION TIME    : 2026-07-14 04:47 PDT (Total Downtime: 2 hrs 23 mins)
+INCIDENT TICKET ID : INC0051204-L4
+INCIDENT TIMESTAMP : 2024-02-15 02:24 PST
+RESOLUTION TIME    : 2024-02-15 04:47 PST (Total Downtime: 2 hrs 23 mins)
 AFFECTED SUBSYSTEM : Sorting Line 4 · In-Line Toledo Weighing & Sorting Station
-PRIMARY TECHNICIAN : Ethan Mercer (Employee ID: 94021)
-SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
+REPORTED BY        : Ethan Mercer (Dock, Graveyard Shift, Employee ID: 94021)
+MAINTENANCE TECH   : Rosa Ibarra (Night Maintenance)
+SHIFT SUPERVISOR   : Ken Vance (Gresham Logistics Dispatch)
 ========================================================================================
 
 1. INITIAL INCIDENT SYMPTOMS & OPERATIONAL IMPACT:
-   - Conveyor Line 4 halted automatically at 02:24 PDT due to automated scale timeout.
+   - Conveyor Line 4 halted automatically at 02:24 PST due to automated scale timeout.
    - Overhead amber fault strobe engaged; parcel intake stopped; 200 cartons/10 min backing up.
-   - Dispatch deadline: Seattle (Bay 7) and Boise (Bay 9) cross-dock trucks scheduled for 05:00 PDT.
+   - Dispatch deadline: Seattle (Bay 7) and Boise (Bay 9) cross-dock trucks scheduled for 05:00 PST.
    - Terminal NEMA enclosure inspection: Amber CRT monitor blank; no BIOS audio beep codes.
    - Onboard two-digit diagnostic LED halted in alternating hex loop: [ C1 ] <-> [ E0 ].
 
@@ -473,23 +491,24 @@ SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
      * Pin 2 (RxD - Receive Data) was bent flush against the connector housing, shorting against the metal chassis shell.
      * Straightened Pin 2 to true 90-degree alignment using 0.5mm brass drafting pencil sleeve.
    - Telemetry stream still corrupted (streaming garbled ASCII characters and null bytes):
-     * Cross-referenced Toledo scale manual: Transmitter factory-set for 9600 Baud, 8-N-1.
-     * Inspected motherboard SW1 DIP switch bank: Terminal configured for 19200 Baud.
-     * Reset SW1 Switch 3 to OFF, Switch 4 to ON (Setting hardware clock to 9600 Baud).
-   - Restarted serial telemetry daemon (`/opt/scale/bin/scaled --port=/dev/ttyS0 --baud=9600`).
+     * Cross-referenced Toledo scale configuration: Transmitter set for 19200 Baud, 8-N-1.
+     * Inspected motherboard SW1 DIP switch bank: Terminal reset to 9600 Baud factory default by the hard power cycle.
+     * Set SW1 Switch 3 to ON, Switch 4 to OFF (Setting hardware clock to 19200 Baud).
+   - Restarted serial telemetry daemon (`/opt/scale/bin/scaled --port=/dev/ttyS0 --baud=19200`).
    - Verified clean telemetry: "SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL".
 
 5. OPERATIONAL RECOVERY & DISPATCH DISPOSITION:
-   - Conveyor Line 4 restarted under load at 04:47 PDT.
+   - Conveyor Line 4 restarted under load at 04:47 PST.
    - Backlogged parcels cleared through dimensioning station without dropped packets.
-   - Cross-dock trailers Bay 7 (Seattle) and Bay 9 (Boise) departed at 05:04 PDT on schedule.
-   - Staging loss: 1x 10-ft Cat5e patch cable sacrificed for temporary test jumper leads ($50).
+   - Bay 9 (Boise) departed 05:04 PST on schedule. Bay 7 (Seattle) departed 05:51 PST, 51 minutes late, after 40 lost carton weights were re-weighed by hand.
+   - Hardware loss: one sheared memory retention latch on the terminal board (to be reported to facilities).
 
 6. ROOT CAUSE & PREVENTATIVE MAINTENANCE RECOMMENDATIONS:
    - Primary Root Cause: Mechanical vibration induced physical insulation wear against unbushed
      sheet-metal partition, creating an intermittent ground fault on the internal system bus.
-   - Secondary Root Cause: Improper cable insertion technique bent DB-9 Pin 2; terminal replacement
-     board installed during prior shift had incorrect DIP switch baud rate configuration.
+   - Secondary Root Cause: Improper cable insertion bent DB-9 Pin 2. The hard power cut at 02:25
+     (master breaker cycled without isolating the circuit) reset the serial controller to its
+     9600 baud factory default and dumped 40 in-flight carton records.
    - Preventative Action Item: Install rubber grommet edging on all internal chassis partition
      cutouts across Sorting Lines 1 through 6 during scheduled Sunday maintenance window.
 ========================================================================================
@@ -502,28 +521,28 @@ SHIFT SUPERVISOR   : Ken Henderson (Gresham Logistics Dispatch)
 
 ```
 ----------------------------------------------------------------------------------------
-SHIFT PASSDOWN LOG · GRESHAM LOGISTICS IT/FACILITIES · DATE: 2026-07-14 05:15 PDT
+SHIFT PASSDOWN LOG · GRESHAM LOGISTICS IT/FACILITIES · DATE: 2024-02-15 05:15 PST
 ----------------------------------------------------------------------------------------
 TO   : Day Shift Maintenance Lead / Regional IT Operations
-FROM : Ethan Mercer, Graveyard Shift Technician
+FROM : Ethan Mercer (Dock) and Rosa Ibarra (Night Maintenance)
 ATTN : Line 4 Toledo Weigh Station Recovery
 
 SUMMARY:
-Line 4 scale terminal crashed at 02:24 PDT, halted in POST code [E0] due to a dead short
+Line 4 scale terminal crashed at 02:24 PST, halted in POST code [E0] due to a dead short
 on the 40-pin internal ribbon cable where vibration wore through insulation against the
 steel chassis edge. Cable repaired and reinsulated with Kapton tape; routed and anchored
 with zip ties.
 
 SECONDARY ISSUE:
 Scale serial telemetry experienced framing errors due to a bent Rx pin (Pin 2) on the DB-9
-connector and a baud rate mismatch (terminal board SW1 was strapped for 19200 baud; Toledo
-scale transmits at 9600 8-N-1). Pin straightened and SW1 DIP switches set to 9600.
+connector and a baud rate mismatch (terminal board fell back to 9600 baud after a hard power cycle; Toledo
+scale transmits at 19200 8-N-1). Pin straightened and SW1 DIP switches set to 19200.
 
 CURRENT STATUS:
-Line 4 is FULLY OPERATIONAL. All cross-dock trailers departed on time.
+Line 4 is FULLY OPERATIONAL. Boise departed on time. Seattle departed 51 minutes late (see dispatch report).
 
 ACTION REQUIRED FOR DAY SHIFT:
-1. Do not touch DIP switch SW1 on Line 4 (leave switches 3-OFF, 4-ON).
+1. Do not touch DIP switch SW1 on Line 4 (leave switches 3-ON, 4-OFF).
 2. Permanent replacement 40-pin ribbon cable (Part #CBL-40P-IND) ordered from stockroom.
 
 3. Need facilities to install split-rubber grommets on sheet metal partition before Sunday.
@@ -533,7 +552,20 @@ ACTION REQUIRED FOR DAY SHIFT:
 
 ---
 
-### Part C: Scoring & Passing Standards
+## 5. What Good Looks Like (Shift Quality Checklist)
+
+Before handing the clipboard to Ken Vance and signing off on the Line 4 dispatch log, verify your diagnostic passdown against the Portland Desk Shift Quality Standard:
+
+### Shift Quality Checklist
+* [ ] **Flea Power Hygiene:** AC mains disconnected and residual capacitor charge drained for 20 seconds before touching internal bus components.
+* [ ] **Quantitative Power Telemetry:** Multimeter measurements recorded with exact DC voltages (+12V, +5V, +3.3V) and tolerance calculations.
+* [ ] **Physical Layer Continuity:** Ground fault isolated with audible continuity beeper; harness insulated with high-temp Kapton tape and strain-relief zip ties.
+* [ ] **Serial Timing & Baud Alignment:** DB-9 Pin 2 straightened without fracturing; motherboard SW1 DIP switch clock dividers matched to Toledo scale baud rate (19200 8-N-1).
+* [ ] **Operational Root Cause Reporting:** Formal passdown log drafted detailing failure mechanism, corrective action, and preventative maintenance action items for facilities.
+
+---
+
+### Shift Grading Rubric
 
 Use this objective scoring guide to assess technician performance across the five core competency areas:
 
@@ -542,49 +574,17 @@ Use this objective scoring guide to assess technician performance across the fiv
 | **1. Physical Safety & Flea Power Hygiene** | **15** | Technician safely disconnects AC mains, checks chassis ground continuity, and executes a 20-second flea power discharge before manipulating internal electronics. | Technician disconnects AC mains but fails to drain flea power, risking controller latch-up or capacitor shock. | Technician works inside live NEMA enclosure without checking grounding or disconnecting AC power. |
 | **2. Power Supply Voltage Verification** | **25** | Correctly measures DC rails under load (+12V, +5V, +3.3V) with DMM; accurately calculates percentage tolerance ($\pm 5\%$); validates `PWR_OK` logic signal before guessing component faults. | Measures voltage but fails to calculate percentage tolerance; misidentifies yellow vs red wire voltage roles. | Replaces motherboard or storage drive blindly without testing power supply rails with a multimeter. |
 | **3. Layer 1 Bus & Continuity Diagnostics** | **30** | Systematically isolates POST hex code `E0`; uses DMM continuity beeper to trace physical short to ground; locates chafed ribbon conductor against chassis edge; executes reliable repair. | Identifies cable issue visually but fails to verify electrical short with continuity test; uses improper tape. | Ignores physical cable inspection; attempts repeated software resets or assumes motherboard silicon is dead. |
-| **4. Asynchronous Serial & Clocking Triage** | **20** | Identifies bent DB-9 Pin 2 without breaking pin; diagnoses baud rate framing error (9600 vs 19200); correctly configures motherboard DIP switches to match scale timing parameters. | Straightens pin but cannot explain framing error cause; guesses baud rate without consulting scale manual. | Forces bent pin into socket causing permanent destruction; fails to match baud rate on terminal. |
+| **4. Asynchronous Serial & Clocking Triage** | **20** | Identifies bent DB-9 Pin 2 without breaking pin; diagnoses baud rate framing error (19200 scale vs 9600 terminal); correctly configures motherboard DIP switches to match scale timing parameters. | Straightens pin but cannot explain framing error cause; guesses baud rate without consulting scale manual. | Forces bent pin into socket causing permanent destruction; fails to match baud rate on terminal. |
 | **5. Operational Passdown & Root Cause Reporting** | **10** | Authors comprehensive incident report with quantitative voltage measurements, root-cause analysis, preventative actions, and clear day-shift passdown note. | Passdown note missing voltage data or preventative maintenance recommendations. | Submits vague passdown ("Line 4 fixed"); fails to document hardware changes or alert team to temporary patch. |
 | **TOTAL** | **100** | **Passing Score: 85 Points or higher** | | |
 
 
 ---
 
-## 6. The Shift Resolution & Epilogue: 05:04 AM
+---
 
-```callout-panel
-title: "FIGURE 1.2: LINE FOUR RESTORATION & 05:04 AM DISPATCH"
-badge: "Shift Epilogue"
-caption: "Cross-dock floor: At 05:04 AM, Line 4 runs at full speed under the high-bay lamps. Parcels route smoothly into outgoing cages while Ken Vance signals the yard tractors to roll."
-prompt: "Clean graphic novel cutaway panel of an industrial freight warehouse cross-dock at dawn. Overhead metal-halide lamps illuminate an automated conveyor line carrying cardboard boxes into freight trailers. In the foreground, a young technician in a high-vis orange vest leans against a steel cabinet holding a digital multimeter. A supervisor with an aluminum clipboard signals with a raised hand toward the loading bays. Pacific Northwest silicon noir style, crisp ink linework, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-*The following operational debrief records the physical resolution on the warehouse floor once the clock divider fix is verified:*
+This problem looks different from Line 4 at the Gresham dock, but it works the same way. Use the worked example and your notes.
 
-With the clock divider calculation verified on the console, I located DIP switch bank `SW1` in the lower corner of the motherboard. Using the fine flat tip of my father's jeweler's screwdriver, I reached into the chassis. I clicked switch 3 from ON down to OFF, and pushed switch 4 from OFF up to ON.
-
-The mechanical click of the miniature plastic toggles felt sharp and definitive in the quiet cabinet.
-
-I restarted the serial communication daemon from the terminal prompt. The torrent of garbled characters vanished instantly. It was replaced by a clean, rhythmic stream of formatted telemetry:
-
-```
-SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL
-SCALE_04: READY - 043.1 LBS - DIVERTER NORMAL
-```
-
-Ken did not waste time with compliments. He reached past my shoulder, jammed his thumb into the master green start button on the motor console, and let out a loud whistle down the main warehouse aisle.
-
-"Line four is live!" Ken shouted into his two-way radio. "Get the yard tractors moving! Load Seattle on bay seven and Boise on bay nine!"
-
-The heavy three-phase electric motors spooled up with an industrial groan. The rubber sorting belts accelerated to full operational speed, and the pneumatic diverter arms began their rhythmic clapping as parcel after parcel was weighed, scanned, and routed into the outgoing freight cages. The clock on the warehouse wall read 4:47 AM. When the final cross-dock trailer pulled away from loading bay nine, the time was 5:04 AM. The morning route was saved, and the warehouse avoided thousands of dollars in cancelled delivery fees.
-
-Ken walked back to the cabinet, wiping grease off his forehead with the back of his glove. He looked at the Kapton-taped ribbon cable, then down at the sheared plastic memory latch resting on the bottom of the enclosure.
-
-"You cost us twenty minutes with that power switch, Brooks," Ken said, his voice blunt and tired over the conveyor clatter. "And you snapped a memory clip I'll have to explain to facilities on Monday. But when the wheels came off, you didn't run away, and you listened to the meter. Grab a hand scanner and help clear the chute at bay four—we have sixteen minutes to pack the tail."
-
-I spent the next forty-five minutes sweating in my steel-toed boots, hand-stacking fifty-pound cartons until my back burned. 
-
-At 6:15 AM, when the shift finally ended, I sat down on an upturned wooden pallet behind the sorting enclosure. I rested my forearms against my knees and caught my breath. My hands were covered in black conveyor grease. My knuckles were bleeding where I had scraped them against the sharp chassis partition.
-
-I pulled my smartphone from my jacket pocket and looked at the browser screen. My flashcard application was still running in the background, displaying a multiple-choice question about the maximum theoretical throughput of a PCI Express bus. The digital flashcards had felt authoritative and complete when I was sitting in my bedroom, but they had taught me nothing about the reality of industrial machinery. Those flashcards had not warned me that copper wires chafe against stamped steel. They had said nothing about serial pins bending when hurried workers yank on cables, or unmatched clock rates turning real operational data into noise.
-
-I had earned my certifications on paper, but out on the cold concrete floor of the warehouse, I had finally begun to learn the tradecraft of repair. Two months later, when Ken signed off on an internal apprentice training voucher, I updated my resume with real physical layer diagnostics and applied for the Tier 1 opening at the Portland Regional Operations Center.
+A label printer on the packing line prints random symbols after a facilities worker swapped its power supply. The USB-to-serial adapter on the host is set to 115,200 baud. Continuity on the cable tests good. Work out the bit time at 115,200 and at 9,600, explain what the printer is doing wrong, and list the two places you would check its speed setting before changing anything.

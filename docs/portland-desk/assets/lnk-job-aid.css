@@ -1,0 +1,1044 @@
+/* ==========================================================================
+   LNK POCKET JOB AID & FIELD REFERENCE CARDS
+   High-density industrial skeuomorphism (Teenage Engineering meets NEMA specs)
+   ========================================================================== */
+
+:root {
+  --aid-bg: #0f172a;
+  --aid-card-surface: #1e293b;
+  --aid-border: #334155;
+  --aid-grid-line: rgba(255, 255, 255, 0.04);
+  --aid-text-primary: #f8fafc;
+  --aid-text-muted: #94a3b8;
+  
+  /* Band Accent Colors */
+  --aid-band-blue: #0284c7;    /* Network/OS Protocol (Triage Compass) */
+  --aid-band-green: #10b981;   /* Hardware / Physical Pinouts (Anatomy Slate) */
+  --aid-band-yellow: #f59e0b;  /* Identity Triad / Boundaries (Identity Slate) */
+  --aid-band-red: #ef4444;     /* Flashcards Only (The Passport Deck) */
+}
+
+/* Base Job Aid Card Shell */
+.lnk-job-aid-card {
+  position: relative;
+  background: var(--aid-card-surface);
+  border: 2px solid var(--aid-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  margin: 2rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  color: var(--aid-text-primary);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Band Accent Strip */
+.lnk-job-aid-card.band-green { border-top: 4px solid var(--aid-band-green); }
+.lnk-job-aid-card.band-blue  { border-top: 4px solid var(--aid-band-blue); }
+.lnk-job-aid-card.band-yellow{ border-top: 4px solid var(--aid-band-yellow); }
+.lnk-job-aid-card.band-red   { border-top: 4px solid var(--aid-band-red); }
+
+/* Industrial Lanyard Rivet & Header Strip */
+.aid-header {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 0.75rem 2.25rem;
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid var(--aid-border);
+  gap: 0.5rem;
+}
+
+.aid-rivet {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #94a3b8, #334155 70%);
+  border: 1px solid #1e293b;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8), 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.aid-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--aid-text-muted);
+}
+
+.band-green .aid-tag  { color: var(--aid-band-green); }
+.band-blue .aid-tag   { color: var(--aid-band-blue); }
+.band-yellow .aid-tag { color: var(--aid-band-yellow); }
+.band-red .aid-tag    { color: var(--aid-band-red); }
+
+.aid-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  flex-grow: 1;
+  margin: 0 0.5rem;
+}
+
+/* Tab Switch Controls (Instant toggle, zero 3D friction) */
+.aid-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.aid-tab-btn {
+  background: #0f172a;
+  border: 1px solid var(--aid-border);
+  color: var(--aid-text-muted);
+  font-size: 0.75rem;
+  font-family: inherit;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-weight: 600;
+}
+
+.aid-tab-btn:hover {
+  background: #334155;
+  color: #fff;
+}
+
+.aid-tab-btn.active {
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  border-color: #38bdf8;
+}
+
+/* Content Faces */
+.aid-body {
+  padding: 1.25rem;
+  background-image: 
+    linear-gradient(var(--aid-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--aid-grid-line) 1px, transparent 1px);
+  background-size: 16px 16px;
+  min-height: 220px;
+  line-height: 1.5;
+}
+
+.aid-face {
+  display: none;
+}
+
+.aid-face.active {
+  display: block;
+  animation: aidFadeIn 0.18s ease-out;
+}
+
+@keyframes aidFadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* High-density Markdown Table Formatting within Job Aids */
+.aid-face table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+
+.aid-face th {
+  background: rgba(15, 23, 42, 0.9);
+  color: #38bdf8;
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--aid-border);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.aid-face td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+.aid-face tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.aid-face h3, .aid-face h4 {
+  color: #38bdf8;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+  padding-bottom: 0.25rem;
+}
+
+.aid-face ol, .aid-face ul {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+  font-size: 0.82rem;
+}
+
+.aid-face li {
+  margin-bottom: 0.4rem;
+}
+
+.aid-face code {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8em;
+}
+
+.aid-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: rgba(15, 23, 42, 0.95);
+  border-top: 1px solid var(--aid-border);
+  font-size: 0.68rem;
+  color: var(--aid-text-muted);
+}
+
+.aid-scale-badge {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.aid-print-btn {
+  background: transparent;
+  border: 1px solid var(--aid-border);
+  color: var(--aid-text-muted);
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition: all 0.15s ease;
+}
+
+.aid-print-btn:hover {
+  background: #334155;
+  color: #fff;
+}
+
+/* ==========================================================================
+   THE RED BAND PASSPORT DECK (Active Retrieval Flashcards)
+   Full-Canvas 3:5 Ratio, Bangers Headline, Zero Wasted Whitespace
+   ========================================================================== */
+.passport-deck-container {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid #334155;
+  border-radius: 12px;
+}
+
+.passport-deck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.passport-deck-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #ef4444;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.passport-deck-badge::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+}
+
+.passport-deck-meta {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.passport-card-stage {
+  perspective: 1200px;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Authentic physical stack effect: shows paper edges peeking underneath */
+.passport-card-stage.stacked-deck::before,
+.passport-card-stage.stacked-deck::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: #fbf9f5;
+  border: 2.5px solid #0f172a;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+.passport-card-stage.stacked-deck::before {
+  transform: rotate(-1.5deg) translate(-4px, 4px);
+  z-index: 1;
+}
+
+.passport-card-stage.stacked-deck::after {
+  transform: rotate(1.2deg) translate(3px, 5px);
+  z-index: 2;
+}
+
+.passport-card-stage.stacked-deck .passport-card {
+  position: relative;
+  z-index: 3;
+}
+
+.passport-card {
+  display: none !important;
+  position: relative;
+  width: 100%;
+  min-height: 340px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.passport-card.active {
+  display: block !important;
+}
+
+.passport-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.passport-deck-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 4px;
+  padding: 0.2rem 0.65rem;
+}
+
+.passport-progress-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.passport-progress-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #334155;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.passport-progress-dots .dot.active {
+  background: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+  width: 22px;
+  border-radius: 4px;
+}
+
+.passport-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 10px;
+  background-color: #fdfbf7;
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, #e2e8f0 28px);
+  background-position: 0 45px;
+  color: #1e3a8a;
+  border: 3px solid #0f172a;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1.25rem 1.75rem;
+}
+
+.passport-face.face-back {
+  transform: rotateY(180deg);
+  background: #f8fafc;
+  border-color: #dc2626;
+}
+
+/* Chisel Highlighter Strike */
+.passport-highlight-bar {
+  display: inline-block;
+  background: #ef4444;
+  color: #fff;
+  padding: 4px 12px;
+  font-family: 'Bangers', 'Impact', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transform: rotate(-0.5deg);
+  margin-bottom: 0.75rem;
+  align-self: flex-start;
+  box-shadow: 2px 2px 0px #000;
+}
+
+.passport-prompt-text {
+  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #0f172a;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.passport-answer-text {
+  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #0f172a;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.passport-answer-rule {
+  font-size: 1.25rem;
+  color: #991b1b;
+  margin-bottom: 0.5rem;
+  border-left: 4px solid #ef4444;
+  padding-left: 0.75rem;
+}
+
+.passport-why-text {
+  font-size: 0.95rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.passport-footer-prompt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  border-top: 2px dashed #cbd5e1;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.passport-deck-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.passport-btn {
+  background: #1e293b;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.passport-btn:hover {
+  background: #334155;
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+/* Print Styles */
+@media print {
+  .lnk-job-aid-card {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+  }
+  .aid-controls, .aid-print-btn, .passport-deck-nav {
+    display: none !important;
+  }
+  .aid-face {
+    display: block !important;
+    margin-bottom: 1rem;
+  }
+}
+
+
+/* ==========================================================================
+   Kitchen Table In-Line Narrative Plate (The Study Artifacts)
+   ========================================================================== */
+
+.kitchen-table-plate {
+  position: relative;
+  background: #090e17;
+  border: 2px solid #1e293b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 3rem 0;
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.7);
+}
+
+.kitchen-plate-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.5rem;
+  gap: 0.75rem;
+}
+
+.kitchen-plate-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 4px;
+  padding: 3px 10px;
+  letter-spacing: 0.05em;
+}
+
+.kitchen-plate-subtext {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.kitchen-plate-section-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  margin: 1.5rem 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kitchen-plate-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.title-red::before { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.6); }
+.title-slate::before { background: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+
+/* ==========================================================================
+   The 4x6 Taped Field Slate (Green, Yellow, Blue Bands)
+   ========================================================================== */
+
+.taped-field-slate {
+  position: relative;
+  background: #fdfbf7;
+  color: #0f172a;
+  border: 3px solid #0f172a;
+  border-radius: 8px;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85);
+  margin: 1.5rem auto;
+  max-width: 740px;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Clear Scotch 2-inch tape overlays */
+.taped-field-slate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 38px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 85%, transparent 100%);
+  border-bottom: 1px dashed rgba(100, 116, 139, 0.3);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.taped-field-slate::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 38px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 85%, transparent 100%);
+  border-top: 1px dashed rgba(100, 116, 139, 0.3);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.slate-top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  background: #f1f5f9;
+  border-bottom: 2px solid #0f172a;
+  position: relative;
+  z-index: 6;
+  gap: 0.5rem;
+}
+
+.slate-eyelet {
+  position: absolute;
+  top: 50%;
+  left: 0.85rem;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #cbd5e1, #64748b 60%, #334155 100%);
+  border: 1.5px solid #0f172a;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.4);
+}
+
+.slate-selector-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.slate-tab-btn {
+  background: #e2e8f0;
+  border: 1.5px solid #0f172a;
+  color: #334155;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.slate-tab-btn.active {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.slate-side-toggle {
+  display: flex;
+  gap: 4px;
+}
+
+.slate-side-btn {
+  background: #ffffff;
+  border: 1.5px solid #0f172a;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.slate-side-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #1d4ed8;
+}
+
+.slate-content-body {
+  padding: 1.5rem;
+  min-height: 280px;
+  position: relative;
+  z-index: 4;
+}
+
+.slate-sheet {
+  display: none;
+}
+
+.slate-sheet.active {
+  display: block;
+}
+
+.slate-grid-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.slate-spec-card {
+  border: 1.5px solid #0f172a;
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 0.75rem 1rem;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+}
+
+.slate-spec-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slate-spec-desc {
+  font-size: 0.76rem;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.slate-spec-cmd {
+  font-size: 0.72rem;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-top: 0.4rem;
+  display: inline-block;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+       3x5 CARD STAGE: FULL CANVAS UTILIZATION (Zero Wasted Space)
+       ========================================================================== */
+    .card-stage {
+      width: 100%;
+      max-width: 840px;
+      height: 504px; /* True 3:5 proportion (840 x 504) */
+      perspective: 1600px;
+      user-select: none;
+      cursor: pointer;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-flipper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.34, 1.45, 0.64, 1);
+    }
+    .card-flipper.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      padding: 1.1rem 1.6rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Paper Styles */
+    .style-white {
+      transform: rotate(-1.3deg);
+      transition: transform 0.3s ease;
+    }
+    .style-white:hover { transform: rotate(-0.5deg) scale(1.008); }
+    .style-white .card-face {
+      background-color: #ffffff;
+      border: 3.5px solid #111827;
+      border-radius: 4px 16px 5px 14px / 14px 5px 16px 4px;
+      box-shadow: 
+        7px 9px 0px #090d16,
+        0 20px 35px rgba(0, 0, 0, 0.55);
+    }
+
+    .style-ruled {
+      transform: rotate(0.4deg);
+      transition: transform 0.3s ease;
+    }
+    .style-ruled:hover { transform: rotate(0deg) scale(1.008); }
+    .style-ruled .card-face {
+      background-color: #fdfbf7;
+      background-image: 
+        linear-gradient(180deg, transparent 58px, #fca5a5 59px, #fca5a5 60px, transparent 61px),
+        repeating-linear-gradient(180deg, transparent, transparent 33px, #cbd5e1 34px);
+      border: 2px solid #cbd5e1;
+      border-radius: 6px;
+      box-shadow: 4px 6px 0px rgba(15, 23, 42, 0.6), 0 18px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .style-quad {
+      transform: rotate(-0.8deg);
+      transition: transform 0.3s ease;
+    }
+    .style-quad:hover { transform: rotate(0deg) scale(1.008); }
+    .style-quad .card-face {
+      background-color: #f8fafc;
+      background-image: 
+        linear-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.22) 1px, transparent 1px);
+      background-size: 20px 20px;
+      border: 3px solid #1e293b;
+      border-radius: 3px 8px 3px 7px;
+      box-shadow: 6px 6px 0px #0f172a, 0 18px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .style-manila {
+      transform: rotate(1.2deg);
+      transition: transform 0.3s ease;
+    }
+    .style-manila:hover { transform: rotate(0deg) scale(1.008); }
+    .style-manila .card-face {
+      background-color: #f6eedb;
+      border: 4px solid #18181b;
+      border-radius: 8px 3px 10px 4px / 4px 10px 3px 8px;
+      box-shadow: 9px 11px 0px #09090b, 0 24px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ==========================================================================
+       WIDE HIGHLIGHTER SWIPE ACROSS THE TOP (88% Width - Massive Chisel Stroke)
+       ========================================================================== */
+    .marker-slash {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      right: 75px; /* Spans 88% across card width */
+      height: 40px;
+      padding: 4px 18px;
+      transform: rotate(-0.8deg);
+      border-radius: 4px;
+      font-family: 'Bangers', cursive;
+      font-size: 1.65rem;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-num-scrawl {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      font-family: 'Bangers', cursive;
+      font-size: 1.8rem;
+      color: #334155;
+      line-height: 1;
+    }
+
+    /* ==========================================================================
+       FRONT LAYOUT: 60/40 SPLIT WITH ZERO WASTED SPACE
+       ========================================================================== */
+    .front-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      align-items: center;
+      gap: 1.8rem;
+      flex-grow: 1;
+      margin-top: 2.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .drawing-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .drawing-note {
+      font-family: 'Rock Salt', cursive;
+      font-size: 1rem;
+      color: #64748b;
+      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .front-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .front-big-question {
+      font-weight: 700;
+      color: var(--pen-black);
+      letter-spacing: -0.01em;
+    }
+
+    .front-hint-scrawl {
+      font-family: 'Rock Salt', cursive;
+      font-size: 1.25rem;
+      color: var(--pen-red);
+      margin-top: 1rem;
+      line-height: 1.25;
+    }
+
+    /* ==========================================================================
+       BACK LAYOUT: HIGH IMPACT ANSWER & LEAN INVARIANTS
+       ========================================================================== */
+    .back-layout {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+      margin-top: 2.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .back-huge-answer {
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .back-bullet-point {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .back-trap-box {
+      margin-top: 0.75rem;
+      padding-top: 0.65rem;
+      border-top: 2.5px dashed #cbd5e1;
+      line-height: 1.25;
+      color: var(--pen-red);
+    }
+
+    .tap-to-flip-guide {
+      text-align: right;
+      font-family: 'Bangers', cursive;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+    }
+
+    
+/* Deck Controls Below Card */
+    .controls-zone {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .ctrl-btn:hover { background: #334155; color: #fff; }
+    .ctrl-btn.primary { background: #2563eb; border-color: #2563eb; }
+    .ctrl-btn.primary:hover { background: #1d4ed8; }
+
+    @media (max-width: 760px) {
+      .card-stage { height: 530px; }
+      .front-layout { grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
+      .marker-slash { font-size: 1.25rem; height: 32px; right: 55px; }
+      .card-num-scrawl { font-size: 1.4rem; }
+      .front-big-question { font-size: 1.9rem !important; }
+      .back-huge-answer { font-size: 2.6rem !important; }
+      .back-bullet-point { font-size: 1.3rem !important; }
+      .back-trap-box { font-size: 1.15rem !important; }
+    }
+  
+
+/* Default Font Sizes for Story Narrative Cards */
+.card-stage .front-big-question {
+  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-weight: 700;
+  font-size: 2.15rem;
+  line-height: 1.25;
+  color: #0f172a;
+}
+
+.card-stage .back-huge-answer {
+  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-weight: 700;
+  font-size: 2.95rem;
+  line-height: 1.05;
+  color: #15803d;
+}
+
+.card-stage .back-bullet-point {
+  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: #1e293b;
+}
+
+.card-stage .back-trap-box {
+  font-family: 'Rock Salt', cursive;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: #b91c1c;
+}
+
+/* lnk-deck decks (```lnk-deck fences) are styled by the shared ../../lnk-deck.css. */

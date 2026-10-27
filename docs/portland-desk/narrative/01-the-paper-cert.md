@@ -8,13 +8,13 @@ It was 2:24 on a Thursday morning. Battery chargers along the east perimeter wal
 
 I was twenty-one years old. My steel-toed boots pinched my arches, and I wore a high-visibility orange vest over my canvas jacket. My father had spent thirty-four years as a precision machinist in an East Portland tool-and-die shop, raising me with a quiet reverence for calibrated micrometers, ground references, and the unyielding realities of steel. When I chose to skip college loans and took this freight-staging job, I convinced myself that modern industry lived entirely in software. 
 
-During every fifteen-minute break, I sat on an upturned wooden pallet with my phone, drilling digital flashcards for the CompTIA exams. After six weeks of brutal overtime and saving every spare dime, I had finally scraped through Core 1 in Beaverton by ten points. I had memorized bus widths, socket pin counts, and the theoretical seven layers of the OSI model. I believed that passing that test made me a real technician.
+During every fifteen-minute break, I sat on an upturned wooden pallet with my phone, drilling digital flashcards for the CompTIA exams. I had failed Core 1 the first time. After six weeks of brutal overtime and saving every spare dime, I had scraped through on my second attempt in Beaverton with a 690, fifteen points over the line. I had memorized bus widths, socket pin counts, and the theoretical seven layers of the OSI model. I believed that passing that test made me a real technician.
 
-That illusion shattered when the main conveyor belt on Sorting Line 4 shuddered to a sudden halt. The automated weighing and sorting deck fell dead silent. Above the intake scanner, the beacon tower flashed an angry, continuous amber fault light.
+Fixing the line equipment was not my job. I staged freight. That illusion, and that boundary, both broke when the main conveyor belt on Sorting Line 4 shuddered to a sudden halt. The automated weighing and sorting deck fell dead silent. Above the intake scanner, the beacon tower flashed an angry, continuous amber fault light.
 
 ## The Red Beacon on Line Four
 
-Ken Vance arrived at the scale terminal before the conveyor rollers had finished spinning down. He was fifty-one years old, carried a scarred aluminum clipboard under his left arm, and walked with the frantic stride of a logistics supervisor whose career was measured in outbound trailer tonnage.
+Ken arrived at the scale terminal before the conveyor rollers had finished spinning down. He was fifty-one years old, carried a scarred aluminum clipboard under his left arm, and walked with the frantic stride of a logistics supervisor whose career was measured in outbound trailer tonnage.
 
 "Scale deck dropped offline," Ken barked, his voice cutting through the rumble of distant forklifts. "Scanner's kicking every box because the terminal stopped logging weights. Seattle and Boise trailers roll at five sharp. Right now, two hundred cartons are backing up toward the intake rollers."
 
@@ -44,9 +44,11 @@ I stared at the blinking hex readout for two agonizing minutes. My instinct was 
 
 *Guessing is worse than doing nothing,* my father's voice echoed in my mind. *What moves, and what holds tension?*
 
-I turned away from the cabinet and ran down the cross-dock toward the maintenance cage. Hank, our graveyard mechanic, was out on medical leave, but his battered metal rolling cabinet stood padlocked with a combination I had watched him dial a dozen times. I pulled Hank's yellow digital [[multimeter|multimeter]] from the top drawer alongside a roll of high-temperature yellow Kapton insulating tape.
+I turned away from the cabinet and ran down the cross-dock toward the maintenance cage. Hank, our graveyard mechanic, was out on medical leave. Rosa Ibarra, the night maintenance tech who usually worked the cold-storage side, was covering his routes. She was forty-four, wore a headlamp over her beanie, and knew motors, fuses, and meters far better than she knew computers.
 
-When I ran back to Line 4, Ken was pacing behind the conveyor, checking his watch every thirty seconds.
+"Line 4?" she asked, already unlocking Hank's rolling cabinet. "I can't tell you anything about that board. I can tell you if it's getting power." She handed me Hank's yellow digital [[multimeter|multimeter]] and a roll of high-temperature yellow Kapton tape, then followed me back with a flashlight.
+
+When we got back to Line 4, Ken was pacing behind the conveyor, checking his watch every thirty seconds.
 
 If a machine will not complete its power-on self-test, the failure exists in physical hardware before any operating system can load. But my flashcard memory immediately seized on a shortcut: *Code C1 on Phoenix/Award BIOS meant Base 64K memory initialization failure.*
 
@@ -68,9 +70,11 @@ The RAM hadn't been unseated. Swapping or reseating the memory had solved nothin
 
 *Stop,* I forced myself to breathe. *Hank's rule. Look at the dirty wire. Power comes in, signal goes out.*
 
-I set the multimeter selector knob to DC volts and clipped the black reference probe to the unpainted steel ground lug of the enclosure. Then I probed the main power harness feeding the embedded board. 
+I had the meter set to AC. Rosa reached over and turned the dial two clicks. "DC volts. Black lead on bare metal, not paint," she said, tapping the unpainted steel ground lug of the enclosure. "Then go wire by wire, and say the numbers out loud so I can hear them too." I clipped the black reference probe to the lug and probed the main power harness feeding the embedded board. 
 
 The yellow lead held steady at 12.04 volts. The orange wire showed 3.31 volts. But when I touched the needle tip to the red +5V rail, the digital display fluctuated wildly between 1.8 and 2.2 volts.
+
+"That one's sagging," Rosa said. "On a motor I'd say something downstream is pulling it to ground. Same idea, probably. Kill the power and look for something rubbing."
 
 The five-volt power rail was sagging by more than fifty percent. The power supply wasn't dead, but something on the board was dead-shorting the rail to ground, starving the bus of current and preventing the processor from completing its electrical pulse check.
 
@@ -80,7 +84,7 @@ The sorting line vibrated continuously under the impact of hundred-pound freight
 
 The nylon routing saddle that was supposed to anchor the ribbon had snapped under years of mechanical shaking. The loose grey cable had dropped downward, resting against the stamped sheet-metal edge of the internal chassis partition. That razor-sharp steel lip had worn through the outer polyvinyl insulation, exposing the bare copper strands of the fourth data conductor.
 
-I switched the multimeter selector knob to run an audible [[continuity_test|continuity test]]. I touched one probe to the exposed copper strand of the ribbon cable, and I touched the other probe to the steel chassis wall. 
+Rosa held the flashlight while I switched the multimeter selector knob to run an audible [[continuity_test|continuity test]]. She had shown me the beeper setting on a forklift harness months earlier, and I had not thought about it since. I touched one probe to the exposed copper strand of the ribbon cable, and I touched the other probe to the steel chassis wall. 
 
 The meter emitted a sharp, continuous piercing tone. 
 
@@ -98,7 +102,7 @@ Ken let out a short breath behind me, but our relief lasted less than ten second
 
 As soon as the line controller attempted to poll the Toledo scale head for carton weights, the console screen filled with an unbroken torrent of scrolling gibberish. Lines of unreadable ASCII symbols, inverted question marks, and null bytes cascaded down the monitor. The driver logged persistent framing errors, and the red beacon began flashing again.
 
-The physical communication link between the scale platform and the computer relied on a shielded [[rs232_serial|RS-232 serial]] cable fitted with molded DB-9 connectors. When I had yanked the chassis tray forward to reach the ribbon cable earlier, the serial cable had caught on the door hinge with a violent tug.
+The physical communication link between the scale platform and the computer relied on a shielded [[rs232_serial|RS-232 serial]] cable fitted with molded DB-9 connectors. When I had yanked the chassis tray forward to reach the ribbon cable earlier, the serial cable had caught on the door hinge with a violent tug. Rosa had seen it happen and said nothing; she did not know what the cable did. Neither of us knew what came next on the serial side. That part was mine to figure out.
 
 I unscrewed the thumbscrews on the terminal port, pulled the connector body straight back, and held the male plug up toward the overhead light. 
 
@@ -135,15 +139,31 @@ On the lower edge of the motherboard sat a small blue block of eight miniature s
 
 I had to read the motherboard silkscreen, calculate the bit timings, and align the hardware clock dividers before the five o'clock whistle blew.
 
----
+## Line Four Comes Back
 
-> [!IMPORTANT]
-> ### The 04:20 AM Dispatch Crucible: Handoff Gate
-> The conveyor is halted, Ken is timing the shift on his watch, and the Toledo scale head is streaming corrupted byte frames. Pin 2 is straight, but the UART clock dividers are desynchronized.
-> 
-> **Your Turn at the Console:** Step up to Station 01 on the Workbench. Inspect the active serial telemetry stream, calculate the bit duration, align the hardware clock divider, and prove the fix before the 05:00 AM dispatch deadline.
-> 
-> [Take the Ticket & Open the Lab →](workbench/01-the-paper-cert.md)
+I needed the two speeds side by side before I touched anything. The Toledo scale head was set to 19,200 baud. When I had hard-cut the power at 2:25, the terminal's serial controller had dropped back to its factory default of 9,600, so it was sampling every bit for twice as long as the scale was sending it. I worked the bit times out on the back of a pallet tag, 52 microseconds against 104, and read the silkscreen next to `SW1` with Rosa's flashlight. Switch 3 set the 2x divider for 19,200, and switch 4 set the 1x default.
+
+Using the fine flat tip of my father's jeweler's screwdriver, I pushed switch 3 from OFF up to ON, and clicked switch 4 from ON down to OFF. I restarted the serial daemon from the terminal prompt. The garbage stopped, and a clean stream of telemetry scrolled up the amber screen:
+
+```
+SCALE_04: READY - 042.8 LBS - DIVERTER NORMAL
+SCALE_04: READY - 043.1 LBS - DIVERTER NORMAL
+```
+
+Ken did not waste time with compliments. He reached past my shoulder, jammed his thumb into the green start button on the motor console, and whistled down the main aisle. "Line four is live! Load Seattle on bay seven and Boise on bay nine!"
+
+The motors spooled up, and the diverter arms began their rhythmic clapping. The clock on the wall read 4:47 AM. Boise pulled away from bay nine at 5:04 AM. Seattle did not. Forty cartons had to be re-weighed by hand because of the records I had dumped with the power switch, and the Seattle trailer left at 5:51 AM, fifty-one minutes late. Ken had to write the late-departure report with his name on the header.
+
+He walked back to the cabinet and looked at the Kapton-taped ribbon cable, then at the sheared memory latch on the floor of the enclosure.
+
+"That wasn't your job, Mercer," Ken said, blunt and tired over the conveyor clatter. "You stage freight. You flipped a breaker you didn't understand, you dumped forty records, and Seattle left late. That's on my report now, and I'm going to remember it. So is the memory clip I'll have to explain to facilities on Monday." He looked at Rosa, who shrugged and said I had found the short myself. "But when it went wrong, you stopped guessing, you asked for help, and you listened to the meter. Most people on this dock would have walked away. Grab a hand scanner and help clear the chute at bay four."
+
+I spent the next forty-five minutes hand-stacking cartons until my back burned. At 6:15, when the shift ended, I sat on an upturned pallet behind the sorting enclosure with grease on my hands and blood on my knuckles. My flashcard app was still open on my phone, asking about the throughput of a PCI Express bus. It had not warned me that copper chafes against stamped steel, or that a power cut can quietly reset a clock.
+
+Ken never mentioned the Seattle trailer to me again, but the late report stayed pinned to his board for a month. A week later, he wrote the internal referral that moved me into the IT rotation. The first line said I had cost him a trailer. The second line said I was worth training.
+
+I kept the printout of the corrupted frames in my locker for weeks, as if it proved something. Nobody ever asked to see it.
+
 
 ## Vocabulary & Concepts
 
@@ -164,5 +184,5 @@ target: workbench/01-the-paper-cert.md
 domain: CompTIA A+ Core 1 (220-1101) • Domain 3.0 Hardware & Network Troubleshooting
 badge: Hands-On Lab
 ---
-Step onto Ethan's graveyard shift at the Harrowmere Gresham distribution warehouse with interactive POST code diagnostics, RS-232 serial telemetry debugging, multimeter power rail verification, and the Tier 1 Physical Incident Triage Report.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

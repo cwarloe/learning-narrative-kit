@@ -14,64 +14,28 @@ In narrative-driven technical courseware, there is a fundamental clash between *
 
 ---
 
-## 2. The Solution: The "Dynamic Fading Apprenticeship" (4-Phase Arc)
 
-Using any single narrative pattern across all 13 modules causes learner fatigue (13 cliffhangers feels like a soap opera; 13 parallel tickets feels like double homework).
+## 2. The Story-to-Lab Model (decision of Charles, 2026-10-26)
 
-Instead, we align the relationship between story and lab to the **Cognitive Apprenticeship progression**:
-$$\text{Modeling} \longrightarrow \text{Scaffolding} \longrightarrow \text{Coaching} \longrightarrow \text{Fading} \longrightarrow \text{Independent Mastery}$$
+This model replaces the four gated handoff models (Parallel Ticket, Cliffhanger Handoff, Co-Pilot, and Incident Commander) that used to sit in this section. Nothing in the story is held back to protect the lab.
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 13-EPISODE NARRATIVE & AGENCY PROGRESSION                      │
-├───────────────────┬──────────────────────┬──────────────────────────────────────────────┤
-│ Progression       │ Structural Model     │ Narrative & Learner Dynamic                  │
-├───────────────────┼──────────────────────┼──────────────────────────────────────────────┤
-│ Act I (Ep 00–02)  │ Symmetrical Ticket   │ MODELING: Ethan works Case A in full story.  │
-│ The Greenhorn     │ (Isomorphic Case)    │ Parallel Ticket B drops on queue for learner │
-│                   │                      │ with the same core failure mode but different clues. │
-├───────────────────┼──────────────────────┼──────────────────────────────────────────────┤
-│ Act II (Ep 03–06) │ Cliffhanger Handoff  │ SCAFFOLDING: Story breaks at the Crucible.   │
-│ In the Trenches   │ (The Interleaved Cut)│ Ethan is STUCK. Learner solves it in lab.    │
-│                   │                      │ Part 2 story resumes with fallout & debrief. │
-├───────────────────┼──────────────────────┼──────────────────────────────────────────────┤
-│ Act III (Ep 07–10)│ Co-Pilot / Dispatch  │ DISTRIBUTED COGNITION: Ethan is on the floor │
-│ The Outages       │ (Radio Dispatcher)   │ with cables; learner is at the NOC console   │
-│                   │                      │ running remote diagnostics & directing him.  │
-├───────────────────┼──────────────────────┼──────────────────────────────────────────────┤
-│ Act IV (Ep 11–12) │ Clinical CPC / Lead  │ FADING TO MASTERY: Full triage matrix, multi-│
-│ Capstone Mastery  │ Incident Commander   │ stage kill-chain, and formal CSIRT handoff.  │
-└───────────────────┴──────────────────────┴──────────────────────────────────────────────┘
-```
+1. **The chapter is a complete story.** Write each chapter as the best standalone story it can be. It may end on a cliffhanger or not, as the story needs. It may, and usually will, show Ethan finding and applying the answer, and it shows what the fix cost.
+2. **The lab opens with a worked example of the same incident.** The worked example is exactly the incident Ethan worked in the chapter, with the solution known, walked through step by step as training and demonstration. This is the Worked Example Effect (Sweller): the learner studies a solved problem before solving one.
+3. **The lab then practices the steps.** The reference material, drills, ticket notes, and checklist sections practice the steps of the worked example.
+4. **The lab ends with one transfer problem.** The transfer problem works on the same principle as the incident but looks different on the surface: a different device, user, symptom, or setting.
+5. **No "what would you do" handoffs before training.** Neither the chapter nor the lab asks the learner to solve the incident before the worked example has shown how.
+6. **No lab epilogues and no story Easter eggs.** Everything that matters to the story, including every cost, lives in the chapter. A lab may refer to the story ("as Ethan found on Line 4") to aid learning, but it holds no story content the chapter lacks.
+
+The phases (Phase 1 is Ep 00 to 02, Phase 2 is Ep 03 to 06, Phase 3 is Ep 07 to 10, and Phase 4 is Ep 11 to 12) now describe only how much support the drills and the transfer problem give. Phase 1 transfer problems come with more hints. Phase 4 transfer problems give the learner only the scenario.
+
+> **Terms.** "Phase" means a level of lab support. "Act" means story structure only, and the acts are defined in `PORTLAND_TIMELINE.md`.
 
 ---
 
-## 3. Detailed Anatomy of the Four Models
+## 3. Authoring Checklist for Content Creators
+1. **Write the chapter to the end of the incident.** Do not stop the prose to protect a lab answer.
+2. **Mentors may give rules of thumb or answers,** as a real lead would. Jules is still a working lead, not an oracle.
+3. **The worked example must match the story exactly.** Hostnames, IP addresses, error codes, and symptoms in the lab must match what Ethan saw.
+4. **The transfer problem must share the principle, not the surface.**
+5. **Costs and consequences belong in the chapter.** If a cost exists only in a lab, it does not count.
 
-### Model 1: The Symmetrical Parallel Ticket (Act I: Episodes 00–02)
-* **How It Works:** Ethan diagnoses Case A in the narrative prose. The learner observes his mental model, how he formulates a testable prediction, and how he avoids panic.
-* **The Handoff:** Just as Case A is resolved, a second ticket (Ticket B) lands on the Portland help desk queue. It shares the exact same core failure mode (e.g., an unseated expansion card or power rail drop) but with different surface symptoms.
-* **Why It Works for Novices:** Maximum safety and zero test anxiety. Leverages Sweller's **Worked Example Effect**.
-
-### Model 2: The Interleaved Cliffhanger Handoff (Act II: Episodes 03–06)
-* **Part 1 (The Inciting Incident & The Wall):** Ethan encounters an ambiguous ticket under heavy business pressure. Standard textbook steps fail. His supervisor drops a rule of thumb, not the answer. Ethan is paralyzed by conflicting telemetry.
-* **The Handoff Gate:** The prose halts at peak suspense:  
-  > *"The conveyor is cold, Ken is counting trailers, and the scale is streaming corrupted bytes. Step up to Station 01 on the Workbench. Match the clock divider and prove the fix before the 05:00 AM dispatch."*
-* **The Workbench Lab:** The learner enters the lab, uses the interactive terminal, runs the diagnostics, and finds the root cause.
-* **Part 2 (The Shift Resolution & Epilogue):** Placed at the end of the lab (Section 6), the learner unlocks the satisfying conclusion: Ethan executes the verified fix, the motors spool up, the route is saved, and Ethan reflects on what real tradecraft means.
-
-### Model 3: The Co-Pilot / Radio Dispatcher (Act III: Episodes 07–10)
-* **The Dynamic:** Distributed cognition. Ethan is physically on the floor (in the unventilated wiring closet, under a desk, or in the warehouse annex with cables and a flashlight). The learner sits at the central console.
-* **The Interaction Loop:** Ethan reports physical observations ("Link light is amber, fan is screaming at 100%"); the learner runs the remote CLI diagnostics (`netstat`, `nmap`, Event Viewer) and directs the physical remediation.
-
-### Model 4: The Incident Commander / Clinical CPC (Act IV: Episodes 11–12)
-* **The Dynamic:** Modeled after the New England Journal of Medicine clinicopathological conference.
-* **The Flow:** Ethan and the learner act as lead investigators assembling a multi-stage forensic dossier: preserving volatile order, calculating SHA-256 evidence hashes, and presenting a formal handoff to Senior CSIRT.
-
----
-
-## 4. Authoring Checklist for Content Creators
-1. **Never write past the turning point in Part 1** of a Cliffhanger episode. Leave the mystery open.
-2. **Mentors offer rules of thumb, never solutions.** Jules Brooks is a compass, not a cheat sheet.
-3. **The Lab must match the story state exactly.** Hostnames, IP addresses, error codes, and symptoms in the interactive terminal must match what Ethan observed in the prose.
-4. **Epilogues explore human consequences, not mechanics.** Focus on user gratitude or pushback, supervisor feedback, documentation hygiene, and the quiet satisfaction of a saved shift.

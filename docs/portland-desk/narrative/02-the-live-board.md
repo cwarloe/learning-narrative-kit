@@ -4,7 +4,7 @@
 
 The fourth-floor bullpen of the Portland Regional Operations Center smelled of commercial carpet shampoo, damp raincoats, and stale dark roast coffee. Outside the narrow casement windows, an overcast August drizzle fell across the industrial rooftops along the Willamette River. 
 
-Six months earlier, Ken Vance's internal referral had moved me off the Gresham loading dock and into Harrowmere's regional IT rotation. I had spent those six months on day shift: imaging laptops at the bench, rolling out desktop towers, carrying 27-inch monitors up freight elevators, and covering one long week of graveyard tickets. It paid a dollar and change less an hour than the night freight dock, and I took the cut gladly for the daylight. 
+Six months earlier, Ken's internal referral had moved me off the Gresham loading dock and into Harrowmere's regional IT rotation. I had spent those six months on day shift: imaging laptops at the bench, rolling out desktop towers, carrying 27-inch monitors up freight elevators, and covering one long week of graveyard tickets. It paid a dollar and change less an hour than the night freight dock, and I took the cut gladly for the daylight. 
 
 Now I sat in a hard swivel chair across from Jules Brooks in the fourth-floor interview alcove, clutching a vinyl portfolio with my rotation sign-off sheet. Ken's referral letter from the Gresham warehouse sat on top, certifying that I had diagnosed and restored the main sorting line under live dispatch pressure. Beside it was my CompTIA A+ certificate. My knuckles still carried scars from fourteen months on the concrete cross-dock, and I wanted a permanent seat on the help desk.
 
@@ -31,7 +31,7 @@ prompt: "Clean technical graphic novel illustration of a Windows workstation dia
 
 I clicked the green answer button on the softphone console. I took a breath to steady my voice and began reciting my memorized morning greeting: "Good morning, IT support, this is Ethan Mercer—"
 
-Maya Lin cut me off before I could finish the sentence. Her voice carried the sharp, brittle tension of a manager facing a hard financial deadline with executive leadership breathing down her neck.
+Maya cut me off before I could finish the sentence. Her voice carried the sharp, brittle tension of a manager facing a hard financial deadline with executive leadership breathing down her neck.
 
 "I don't have time for the trainee script," Maya said, her voice echoing over the office line. "Where is Jared? Put Jules on the phone. The whole accounting system is locked solid. Every time I double-click the PDX-Pay payroll client, the blue pointer spins for three seconds. Then the mouse freezes in place, and both screens turn pitch black. The only way out is crawling under the desk to jerk the power cable from the wall."
 
@@ -88,9 +88,9 @@ Jules sat watching me, her eyebrow raised. "What is the policy for privileged ac
 
 Maya gave the numbers without hesitation: badge `88412`, cost center `FIN-402`, extension `4218`. 
 
-I turned to Jules's screen, submitted a Just-In-Time (JIT) elevation request with Maya's verification data, and waited. Jules reviewed the log, approved the request with her smartcard badge, and my console refreshed to display the twelve groups of four digits.
+I turned to Jules's screen, submitted a Just-In-Time (JIT) elevation request with Maya's verification data, and waited. Jules reviewed the log, approved the request with her smartcard badge, and my console refreshed to display the eight groups of six digits, hyphens cleanly dividing the 48-digit key.
 
-I read the 48 digits clearly over the phone. Once Maya keyed in the final number, the machine unlocked and loaded the low-resolution diagnostic desktop.
+I read each six-digit block slowly over the phone, letting the bootloader verify the modulo-11 checksums one group at a time. Once Maya keyed in the final number, the machine unlocked and loaded the low-resolution diagnostic desktop.
 
 "Now, please double-click the PDX-Pay shortcut while we are in Safe Mode," I said.
 
@@ -114,6 +114,22 @@ She stepped back and folded her arms, letting the silence sit between us in the 
 
 I looked at the eighteen checkboxes on Maya's screen, then at the clock blinking on the dispatch board. My memorized flashcards didn't have the answer. I had to pull the black box recorder of the operating system and find the exact faulting module before the morning deadline expired.
 
+## The Payroll Run
+
+By 9:05 the logs had told the story. Event Viewer showed Application Error 1000 on `PDXPayClient.exe` and Event 4101 display driver resets, and both pointed at the same module. The overnight maintenance update had installed a generic AMD Radeon driver package, `v31.0.12024.2005`, and it clashed with the payroll client's hardware-accelerated chart rendering.
+
+I opened the client configuration file and turned off hardware acceleration so the charts would render on the CPU. Then I rolled the display driver back in Device Manager to the enterprise build, `v30.0.15021.1101`. I did it in that order on purpose, so that if the rollback failed, Maya could still run payroll.
+
+"Maya, please launch the payroll database and run a test calculation on the batch summary," I said over the headset. The matrices populated in four seconds, and both of her screens stayed on.
+
+"It works," Maya said. Then, after a pause, "I'm copying Jules on the closure note." She did, and she kept doing it for weeks. I did not blame her. Ten minutes earlier I had offered to wipe three weeks of her work.
+
+Jules read my resolution note standing behind my chair: the symptom, the Safe Mode boundary test, the two event IDs, and the escalation asking the desktop team to block that driver update. "You divided the problem in half and let the log name the module," she said. "You also opened with a re-image. Maya will remember the second thing longer than the first."
+
+She signed my rotation sheet. "You start on the desk Monday at seven-thirty. Overnight comes around on the rotation like it does for everyone. Leave the flashcards in your backpack."
+
+I walked out into the August drizzle. Across the river, the Hawthorne Bridge came out of the fog. I had the job. I also had a user who would be checking my work for a month.
+
 ## Vocabulary & Concepts
 
 | Term | CompTIA A+ Core 2 Exam Definition | Help Desk Translation & Operational Context |
@@ -125,7 +141,7 @@ I looked at the eighteen checkboxes on Maya's screen, then at the clock blinking
 | **[[event_viewer|Event Viewer]]** | Centralized Microsoft Management Console snap-in logging administrative, operational, and security events generated by Windows and applications. | The black box recorder of the workstation; Event IDs 1000 and 41 pinpoint application crashes and kernel power cuts. |
 | **[[device_driver|Device Driver]]** | Specialized software running in kernel or user mode that allows the operating system to communicate with physical hardware components. | Deeply privileged system code; corrupted graphics drivers clashing with hardware acceleration can freeze the entire desktop. |
 
-## The Handoff Gate
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: OS Diagnostics, Event Log Triage, & Boot Recovery
@@ -133,5 +149,5 @@ target: workbench/02-the-live-board.md
 domain: CompTIA A+ Core 2 (220-1102) • Domain 1.0 & 3.0
 badge: Hands-On Lab
 ---
-Take over Ethan's workstation at the live trial. Use Windows Event Viewer to triage Event ID 1000 and 4101 crash logs, isolate the faulting graphics driver module, configure the clean boot sequence, and commit your remediation before Maya Lin's payroll cutoff.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

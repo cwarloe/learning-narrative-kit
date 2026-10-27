@@ -2,9 +2,11 @@
 
 *A Security+ incident response precursor • Hover over highlighted terms after they have earned their keep.*
 
-A gusting Wednesday rain swept across the Willamette as I stepped onto the fourth floor. Eleven months on the service desk had taught me that the quietest tickets are often the ones carrying the sharpest edges. On the bezel of her monitor, Jules's sticky note still asked *Which decision?* under the fluorescent lights.
+A gusting Wednesday rain swept across the Willamette as I stepped onto the fourth floor. Twenty-two months on the service desk had taught me that the quietest tickets are often the ones carrying the sharpest edges. Jules's monitor bezel was bare now. The sticky note had gone into her drawer months ago, and since then she had written the question on my tickets instead.
 
 The dispatch board read forty-two open items at eight in the morning: forgotten passwords, jammed label printers, and a conference room projector that refused to handshake over HDMI. But by two in the afternoon, the board had gone dead silent. That silence is the first thing you learn to fear on an operations floor. When the phones stop ringing, it usually means the fire has moved into the walls.
+
+Jules had made me keep the wireless baseline from April, and she checked it every Friday. Against it, the morning's quiet tickets looked wrong. <!-- date-ok: back-reference to the April wireless baseline and Friday checks -->
 
 ## Maya and the laptop that must die
 
@@ -17,11 +19,11 @@ prompt: "Clean technical cutaway illustration of a computer forensic examination
 
 The day's first alarm was loud, messy, and harmless. 
 
-At 08:30, Maya Lin from Accounting marched past the glass partition holding her Dell Latitude by the corner of the lid like a wet umbrella. Her eyes had the frantic intensity of someone who believed her machine had contracted a personal grudge.
+At 08:30, Maya from Accounting marched past the glass partition holding her Dell Latitude by the corner of the lid like a wet umbrella. Her eyes had the frantic intensity of someone who believed her machine had contracted a personal grudge.
 
 "It is possessed, Ethan," Maya said, dropping the machine onto my staging mat with a plastic clatter. "Pop-ups. Every time I open Chrome, five tabs try to sell me Caribbean cruises. The fan is screaming. My standup with the VP is in twelve minutes. Wipe it clean and image it from the thumb drive."
 
-Eleven months ago, I would have reached straight into the drawer for the bootable USB. Back then, "possessed" meant fire, and fire meant formatting the disk. I took the laptop, reached for the Ethernet jack to pull the copper, and had my hand on the imaging drive when Jules set her coffee mug on the divider wall with a dull *clack*.
+Twenty-two months ago, I would have reached straight into the drawer for the bootable USB. Back then, "possessed" meant fire, and fire meant formatting the disk. I took the laptop, reached for the Ethernet jack to pull the copper, and had my hand on the imaging drive when Jules said my name once, without turning around.
 
 "What did the box do, Ethan?" Jules asked, without looking up from her screen. "Besides scare Maya?"
 
@@ -43,7 +45,7 @@ Jules tapped the top of the imaging drawer with her pen. "You can open that draw
 
 ## The quiet mailbox
 
-At 11:15, the second ticket arrived. It came without shouting or all-caps subject lines. It arrived as a polite two-line inquiry from Nora Higgins in Finance: *Can't find morning wire confirmations in my Sent folder. Also noticed an Outlook rule I don't remember creating. Low priority.*
+At 11:15, the second ticket arrived. It came without shouting or all-caps subject lines. It arrived as a polite two-line inquiry from Nora in Finance: *Can't find morning wire confirmations in my Sent folder. Also noticed an Outlook rule I don't remember creating. Low priority.*
 
 I didn't reach for the USB drawer. I remoted into the Exchange administrative center from my console, remembering Jules's rule: *start on your side of the glass.*
 
@@ -69,23 +71,23 @@ Every three hundred seconds—five minutes like clockwork—the beacon sent an o
 
 ## The lateral pivot and the warehouse USB
 
-Before Jules could answer, Jared Vance burst into our aisle from the server room, his face pale beneath the fluorescent tubes. He wasn't carrying coffee.
+Before Jules could answer, I saw Jared coming down the aisle from the server room, walking faster than I had ever seen him walk. He wasn't carrying coffee.
 
-"Todd Miller in Inside Sales just called from the dock," Jared said, his breath short. "He found an unbranded USB stick on the floor of the shipping office labeled *Client Deck Final*. He plugged it into `TODD-SALES-14` to see whose presentation it was."
+"Todd in Inside Sales just called from the dock," Jared said. "He found an unbranded USB stick on the floor of the shipping office labeled *Client Deck Final*. He plugged it into `TODD-SALES-14` to see whose presentation it was."
 
 "Tell me he didn't run the file," Jules said, her voice dropping an octave.
 
 "He clicked `SOW_final.pdf.exe`," Jared answered. "The file spawned a hidden PowerShell loop. I just checked our distribution core switch. Todd's machine is running automated SMB share sweeps across `10.100.0.0/16`, spraying harvested credentials across every administrative share it can find."
 
-"The same hash as Sam's quarantine sample from two weeks ago," I said, pulling the SHA-256 ledger from my desk notebook: `9f2c8d1e...c41a`. "The threat actor had a physical USB drop coordinated with the cloud credential phishing."
+Jared found the link first, in the switch logs. Todd's workstation had opened a session to the staging jump host four minutes after the USB went in. "Same jump host Nora's account just hit," he said. "This is one intrusion, not two."
 
 "It's worse than that," Jared said, tapping my secondary screen. "Look at the authentication logs on `SRV-STAGE-01`."
 
-My screen refreshed. `SRV-STAGE-01` was the dual-homed staging jump host we had hardened in Episode 07. It bridged the corporate management subnet with the isolated industrial operations network. Thirty seconds ago, Nora's compromised credentials had successfully authenticated against the jump host via SSH from `FIN-NORA-02`.
+My screen refreshed. `SRV-STAGE-01` was the dual-homed staging jump host Jared had hardened the summer before. It bridged the corporate management subnet with the isolated industrial operations network. Thirty seconds ago, Nora's compromised credentials had successfully authenticated against the jump host via SSH from `FIN-NORA-02`.
 
-And thirty seconds after that, the network edge firewall logged an outbound connection attempt on port 8443 originating from `GW-PLANT-04`—the SCADA edge gateway at the Willamette River Water Treatment Facility—reaching out to the exact same external command-and-control IP: `185.22.112.14`.
+And thirty seconds after that, the network edge firewall logged an outbound connection attempt on port 8443 originating from `GW-PLANT-04`—the SCADA edge gateway at the Willamette River plant—reaching out to the exact same external command-and-control IP: `185.22.112.14`.
 
-The pieces snapped together with terrifying clarity. This was not four random help desk tickets. This was a synchronized, multi-vector enterprise intrusion: credential phishing, memory-resident C2 beaconing, physical removable media lateral movement, and a direct pivot into the critical municipal water utility grid.
+The pieces snapped together with terrifying clarity. This was not four random help desk tickets. This was a synchronized, multi-vector enterprise intrusion: credential phishing, memory-resident C2 beaconing, physical removable media lateral movement, and a direct pivot toward the Willamette River plant's control network.
 
 ## The red binder and the clock
 
@@ -95,27 +97,41 @@ She reached into the bottom drawer of her filing cabinet and pulled out two heav
 
 She set the red binder in front of my keyboard.
 
-"Maya Lin's machine this morning was an event, Ethan," Jules said, her voice quiet, steady, and unyielding. "This is the incident. The Enterprise CSIRT and the incident commander will be on this floor in twenty minutes. When they walk through those double doors, they don't want guesses, they don't want apologies, and they don't want wiped hard drives."
+"Maya's machine this morning was an event, Ethan," Jules said, her voice quiet, steady, and unyielding. "This is the incident. Senior CSIRT Lead Nia Alvarez and the incident command team from Chicago are bridging onto our operations floor in twenty minutes. When Nia joins this bridge, she doesn't want guesses, she doesn't want apologies, and she doesn't want wiped hard drives."
 
 She pointed to the anti-static evidence pouches on my desk.
 
-"You have two compromised endpoints on this floor, an active exfiltration pipeline, and a live connection into the plant SCADA network. If you pull the power plugs, the adversary's encryption keys and volatile process handles in [[ram_memory|RAM]] evaporate into zero bits forever. If you leave them on the network, the exfiltration script drains the water plant telemetry. 
+I started the memory capture on Todd's workstation while Jared pulled the port list for the jump host. Nia joined the bridge at 2:52 and asked for the hashes before she asked for anything else. I read them off the capture log while the second capture was still running.
 
-You are the first responder on this shift. Follow the [[order_of_volatility|Order of Volatility]]. Isolate the endpoints from the wire, execute a forensically sound live memory capture, compute the cryptographic SHA-256 hashes before you touch storage, establish the legal chain of custody, and build the formal CSIRT Escalation Dossier before the clock runs out."
+## What It Cost
 
-I looked down at the red binder. Eleven months ago, I was a twenty-year-old kid on the Gresham loading dock, clutching an eight-hundred-page textbook and terrified of failing a multiple-choice test in a Beaverton strip mall. 
+By 4:30 the rain had eased to a mist over the Willamette. Jules signed the receiving line on Evidence Pouch `#EVD0007701-01` and slid the red binder into the CSIRT handoff rack.
 
-Today, there were no multiple-choice questions. The municipal grid was on the line, and the desk had handed me the pen.
+The intrusion was contained, but not cleanly. To cut the attacker's path into the plant, we had isolated the Willamette River gateway, and Leah's crew ran the treatment line on manual override for the rest of the shift. She called at six to say they had held it, and that three operators were working a double because of it. She did not sound angry. She sounded tired, and she wanted to know when the gateway was coming back. It came back nine days later, after Jared rebuilt it.
 
----
+## The After-Action Review
 
-> [!IMPORTANT]
-> ### The Book 0 Crucible: The CSIRT Escalation Gate
-> Multi-vector indicators have aligned across finance, sales, and industrial plant telemetry. Nora's C2 beacon is live, Todd's host is enumerating lateral shares, and the Willamette River gateway is attempting external egress.
-> 
-> **Your Turn at the Console:** Step up to the Incident Console on the Workbench. Execute the live memory acquisition, preserve the Order of Volatility, compute the cryptographic SHA-256 verification hashes, and deliver the formal CSIRT Escalation Dossier to Jules Brooks before the incident command team takes the floor.
-> 
-> [Take the Ticket & Open the Lab →](workbench/12-when-the-ticket-escalates.md)
+The review was the following Tuesday, with Nia on the bridge from Chicago and Jules, Jared, Leah, and me in the fourth-floor conference room. On the table were the timeline printout, the evidence log, Jared's rebuild ticket for the gateway, and a list of the indicators I had saved since December. <!-- date-ok: review day and back-reference to December indicators -->
+
+Leah started before Nia did. "I found out my gateway was going dark from a phone call, not from a plan."
+
+"There was no plan," Jules said. "That's on us, not on Ethan."
+
+"Then whose is it?" Leah asked. Nobody answered quickly enough. Nia wrote *plant isolation playbook, owner TBD* at the top of the preparation list, and under it Owen's lobby camera, which was still on order.
+
+Nia ran down the indicator list next. None of my saved hashes or domains from December or February had matched anything in this intrusion. "Keep saving them," she said. "Just don't expect them to be the thing that catches the next one." <!-- date-ok: back-reference to December and February incidents -->
+
+Then she got to containment, and my name came up. I had isolated Todd's workstation before the second memory capture finished, because I saw it start enumerating shares and wanted it off the wire. The first capture was good. The second would have shown whether the attacker had moved a tool into memory after the first. We would never know.
+
+"It was a defensible call," Nia said. "It was also a call that cost us evidence. Write down why you made it, and what you would need to see next time to wait sixty more seconds." I wrote it down. It went into the lessons-learned section with my name on it, next to the missing plant playbook.
+
+## The Posting
+
+The analyst opening on Harrowmere's security operations team posted the Monday after the review. It sat one floor up, in the same building.
+
+I opened the application that night at the kitchen table and stared at the box that asked for a recent incident. I could have written about the indicators I had saved, or the binder, or the bridge with Chicago. I wrote about the second memory capture instead: what I had seen, why I had pulled the cable, and what I would need to see next time to wait sixty more seconds.
+
+Then I read it again, cut the sentence where I explained that it had been a defensible call, and clicked submit.
 
 ## Vocabulary & Concepts
 
@@ -137,5 +153,5 @@ domain: CompTIA Security+ SY0-701 • Domain 4.0 Incident Response & Operations
 badge: Final Capstone Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift for the Book 0 Final Capstone: navigate multi-stage incident triage, execute Order of Volatility and cryptographic evidence hashing, master the 5-case CBYT prediction gate, and deliver the formal CSIRT Incident Handoff Dossier to Jules Brooks.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

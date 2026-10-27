@@ -2,11 +2,13 @@
 
 *A Security+ wireless precursor • Hover over highlighted terms for exam definitions and supporting desk jargon.*
 
-The first ticket of Friday was *Can't join CorpWifi — worked yesterday — board meeting in 20.* Jules's sticky under *which decision?* said *which SSID am I actually on?*
+Friday morning opened with the whine of the vacuum cleaner in the hallway and a ticket from Maya that had been sent from the lobby.
 
-"Wired has a cable you can point at," she said when I reached for a blank card. "Wireless has manners and math. Verify the network. Prefer enterprise over café vibes. Escalate anything that looks like a twin."
+Jules came out of the server closet with a handheld spectrum analyzer and set it on my desk without a word. The display was already busier than it should have been.
 
-I opened the help desk queue.
+Ken had not called my desk line since the laptop. When he finally wrote, it was a two-line email asking whether the barcode scanners in the warehouse were safe on Wi-Fi. I wrote back that they were. By Thursday I was less sure.
+
+The board dinged with Maya's ticket: *Can't join CorpWifi — worked yesterday — executive meeting in 20.*
 
 ## Maya and the password that is everyone
 
@@ -41,11 +43,11 @@ I put him on speaker.
 
 "Open network means no encryption on the air," I said. "The [[captive_portal|captive portal]] is a gate for internet access, not a force field. Anyone on that same open SSID can try [[eavesdropping|wireless eavesdropping]] unless you wrap traffic in a VPN. Use the VPN before mail, before files, before just-quick Slack."
 
-"And WEP?" Ken asked.
+"And WEP?" Todd asked.
 
 "[[wep|WEP]] is a museum piece that still unlocks," Jules said. "Broken by [[iv_attack|IV attacks]] and boredom. If a scanner needs WEP, the scanner is the problem. Do not put your laptop there. Ask them for a wired drop or a modern SSID."
 
-Ken muttered something about customer politics and connected the VPN on the hotel portal network. He did not join the WEP scanner. He said the warehouse tour would have to live without his laptop.
+Todd muttered something about customer politics and connected the VPN on the hotel portal network. He did not join the WEP scanner. He said the customer tour would have to live without his laptop.
 
 ## Rogue AP in the conference room
 
@@ -59,7 +61,7 @@ While we were there, the analyzer showed our real APs alongside faint guest beac
 
 ## Disassociation, jamming, and the reconnect reflex
 
-Afternoon: Dev from engineering pinged that his laptop kept dropping Wi-Fi every few minutes, then auto-joined whatever answered first. He was in the cafe seating near the lobby glass.
+Dev called the help desk from the cafe seating near the lobby glass. His laptop kept dropping Wi-Fi every few minutes, then auto-joined whatever answered first.
 
 "I did not change anything," he said. "It just flaps. Then it asks for passwords it already knew."
 
@@ -69,9 +71,25 @@ Wireless ops had a note on the bridge: bursts of spoofed [[disassociation|deauth
 
 Dev docked. The flapping stopped because copper does not care about deauth theater.
 
-Jules leaned over from the wireless management console. "We have a rogue consumer router bridging unknown devices straight onto the corporate data VLAN in conference room 3B, an active Evil Twin spoofing our SSID in the lobby, and deauthentication flood attacks kicking laptops off the air. If those barcode scanners in the warehouse lose connection or authenticate to the rogue, shipping stops. Grab the Wi-Fi analyzer, decode the 802.11 association frames, triangulate the rogue BSSID signal, and trace the physical switch port to shut down the rogue AP before the morning standup."
+## Owen and the bench in the lobby
 
-## The Handoff Gate
+The evil twin was not in the air. It was in the lobby, a small battery-powered access point taped under a bench by the visitor sign-in tablet. I found Owen in the loading dock vestibule, where he was replacing a door closer, and he followed me back.
+
+Owen walked the lobby with me and pointed out what I had walked past for two years: the camera over the front desk did not cover the benches, the badge reader on the inner door was the only controlled boundary, and the cleaning crew propped the side door during evening rounds. He knew the cameras, locks, and doors, and he admitted right away that he did not know what the device under the bench was doing on the network.
+
+"Somebody sat here long enough to tape that up," he said. "Nobody stopped them because the lobby's public. That's on purpose. The question is where public stops." We wrote down the three places it stopped: the inner badge door, the server closet lock, and the camera blind spot that needed fixing.
+
+## The Bench and the Barcode Guns
+
+We found the travel router under the credenza in 3B and shut its switch port. The barcode scanners reassociated with our access points, and Dev's laptop came back over 802.1X.
+
+Owen took the lobby personally. He had the side door re-keyed that week and put in for a second camera. The camera did not come that month.
+
+It still slowed the dock, and it cost me a Saturday. Re-enrolling the scanners onto 802.1X took most of the next morning, and Ken's crew scanned by hand at two doors until noon. He drove up from Gresham that afternoon and stood at my desk to tell me exactly how many pallets that had cost. It was the first time he had spoken to me since the laptop.
+
+Jules had told me to keep the survey data. "Save what normal looks like," she said, "or you'll never know what weird is." I saved the wireless baseline to the shared drive with a note to her and added to it every week after that, mostly because she checked.
+
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: Wireless Security, 802.1X Enterprise, & Rogue AP Triage
@@ -80,5 +98,5 @@ domain: CompTIA Security+ SY0-701 • Domain 2.1 & 3.2
 badge: The Hands-On Lab
 cta: Take the Ticket & Open the Lab ->
 ---
-Step onto Ethan's shift. Decode 802.11 association frames and RADIUS Access-Request packets, triangulate rogue BSSID signal strength (RSSI), locate the unauthorized switch port, and submit the Tier 1 Rogue AP Containment & Wireless Remediation note.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```

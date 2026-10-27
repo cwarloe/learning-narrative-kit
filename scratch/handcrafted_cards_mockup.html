@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ethan's Authentic 3x5 Study Flashcards — Full Canvas Comic & Handcrafted</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Local Comic Fonts from CSS Author (@font-face) -->
+  <style>
+    @font-face {
+      font-family: 'Komika Text';
+      src: url('assets/fonts/komika-text.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Komika Axis';
+      src: url('assets/fonts/komika-axis.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Anime Ace';
+      src: url('assets/fonts/anime-ace.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Gagalin';
+      src: url('assets/fonts/gagalin.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <!-- Handwriting, Drafting, Marker & Comic Fonts from Google CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bangers&family=Caveat:wght@700&family=Comic+Neue:ital,wght@1,700&family=Gochi+Hand&family=Kalam:wght@700&family=Patrick+Hand&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@700;800&family=Rock+Salt&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-surface: #060911;
+      --pen-blue: #0f2b5c;
+      --pen-black: #090d16;
+      --pen-red: #b91c1c;
+      --pen-green: #15803d;
+      --highlighter-red: rgba(239, 68, 68, 0.38);
+      --highlighter-green: rgba(34, 197, 94, 0.38);
+      --highlighter-yellow: rgba(234, 179, 8, 0.40);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-surface);
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, #060911 0%, #020306 100%);
+      background-size: 24px 24px, 100% 100%;
+      min-height: 100vh;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 2rem 1rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-zone {
+      text-align: center;
+      max-width: 840px;
+      margin-bottom: 1.6rem;
+    }
+    .header-badge {
+      display: inline-block;
+      background: #dc2626;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+    }
+    .header-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 0.3rem;
+    }
+    .header-desc {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      line-height: 1.45;
+    }
+
+    /* Selectors Area */
+    .selector-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.8rem;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 900px;
+    }
+    .selector-label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      text-align: center;
+    }
+    .style-switcher {
+      display: flex;
+      gap: 0.45rem;
+      background: #111827;
+      padding: 0.35rem;
+      border-radius: 10px;
+      border: 1px solid #374151;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .style-tab-btn {
+      background: transparent;
+      border: none;
+      color: #9ca3af;
+      padding: 0.55rem 0.95rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .style-tab-btn:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .style-tab-btn.active {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
+    }
+
+    /* ==========================================================================
+       3x5 CARD STAGE: FULL CANVAS UTILIZATION (Zero Wasted Space)
+       ========================================================================== */
+    .card-stage {
+      width: 100%;
+      max-width: 840px;
+      height: 504px; /* True 3:5 proportion (840 x 504) */
+      perspective: 1600px;
+      user-select: none;
+      cursor: pointer;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-flipper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.34, 1.45, 0.64, 1);
+    }
+    .card-flipper.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      padding: 1.1rem 1.6rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Paper Styles */
+    .style-white {
+      transform: rotate(-1.3deg);
+      transition: transform 0.3s ease;
+    }
+    .style-white:hover { transform: rotate(-0.5deg) scale(1.008); }
+    .style-white .card-face {
+      background-color: #ffffff;
+      border: 3.5px solid #111827;
+      border-radius: 4px 16px 5px 14px / 14px 5px 16px 4px;
+      box-shadow: 
+        7px 9px 0px #090d16,
+        0 20px 35px rgba(0, 0, 0, 0.55);
+    }
+
+    .style-ruled {
+      transform: rotate(0.4deg);
+      transition: transform 0.3s ease;
+    }
+    .style-ruled:hover { transform: rotate(0deg) scale(1.008); }
+    .style-ruled .card-face {
+      background-color: #fdfbf7;
+      background-image: 
+        linear-gradient(180deg, transparent 58px, #fca5a5 59px, #fca5a5 60px, transparent 61px),
+        repeating-linear-gradient(180deg, transparent, transparent 33px, #cbd5e1 34px);
+      border: 2px solid #cbd5e1;
+      border-radius: 6px;
+      box-shadow: 4px 6px 0px rgba(15, 23, 42, 0.6), 0 18px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .style-quad {
+      transform: rotate(-0.8deg);
+      transition: transform 0.3s ease;
+    }
+    .style-quad:hover { transform: rotate(0deg) scale(1.008); }
+    .style-quad .card-face {
+      background-color: #f8fafc;
+      background-image: 
+        linear-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.22) 1px, transparent 1px);
+      background-size: 20px 20px;
+      border: 3px solid #1e293b;
+      border-radius: 3px 8px 3px 7px;
+      box-shadow: 6px 6px 0px #0f172a, 0 18px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .style-manila {
+      transform: rotate(1.2deg);
+      transition: transform 0.3s ease;
+    }
+    .style-manila:hover { transform: rotate(0deg) scale(1.008); }
+    .style-manila .card-face {
+      background-color: #f6eedb;
+      border: 4px solid #18181b;
+      border-radius: 8px 3px 10px 4px / 4px 10px 3px 8px;
+      box-shadow: 9px 11px 0px #09090b, 0 24px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ==========================================================================
+       WIDE HIGHLIGHTER SWIPE ACROSS THE TOP (88% Width - Massive Chisel Stroke)
+       ========================================================================== */
+    .marker-slash {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      right: 75px; /* Spans 88% across card width */
+      height: 40px;
+      padding: 4px 18px;
+      transform: rotate(-0.8deg);
+      border-radius: 4px;
+      font-family: 'Bangers', cursive;
+      font-size: 1.65rem;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-num-scrawl {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      font-family: 'Bangers', cursive;
+      font-size: 1.8rem;
+      color: #334155;
+      line-height: 1;
+    }
+
+    /* ==========================================================================
+       FRONT LAYOUT: 60/40 SPLIT WITH ZERO WASTED SPACE
+       ========================================================================== */
+    .front-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      align-items: center;
+      gap: 1.8rem;
+      flex-grow: 1;
+      margin-top: 2.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .drawing-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .drawing-note {
+      font-family: 'Rock Salt', cursive;
+      font-size: 1rem;
+      color: #64748b;
+      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .front-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .front-big-question {
+      font-weight: 700;
+      color: var(--pen-black);
+      letter-spacing: -0.01em;
+    }
+
+    .front-hint-scrawl {
+      font-family: 'Rock Salt', cursive;
+      font-size: 1.25rem;
+      color: var(--pen-red);
+      margin-top: 1rem;
+      line-height: 1.25;
+    }
+
+    /* ==========================================================================
+       BACK LAYOUT: HIGH IMPACT ANSWER & LEAN INVARIANTS
+       ========================================================================== */
+    .back-layout {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+      margin-top: 2.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .back-huge-answer {
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .back-bullet-point {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .back-trap-box {
+      margin-top: 0.75rem;
+      padding-top: 0.65rem;
+      border-top: 2.5px dashed #cbd5e1;
+      line-height: 1.25;
+      color: var(--pen-red);
+    }
+
+    .tap-to-flip-guide {
+      text-align: right;
+      font-family: 'Bangers', cursive;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+    }
+
+    /* ==========================================================================
+       FONT MODE SPECIFICATIONS (Toggled by user buttons)
+       ========================================================================== */
+    /* 1. Komika Text (DC Comics Narrative Box Standard) */
+    .font-komika-text .front-big-question { 
+      font-family: 'Komika Text', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.04em; 
+      font-size: 2.45rem; 
+      line-height: 1.15; 
+      color: #0f172a;
+    }
+    .font-komika-text .back-huge-answer { 
+      font-family: 'Komika Text', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.04em; 
+      font-size: 3.5rem; 
+      line-height: 1;
+      color: #15803d;
+    }
+    .font-komika-text .back-bullet-point { 
+      font-family: 'Komika Text', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      font-size: 1.55rem; 
+      line-height: 1.35;
+      color: #1e293b;
+    }
+    .font-komika-text .back-trap-box { 
+      font-family: 'Rock Salt', cursive; 
+      font-size: 1.25rem; 
+      line-height: 1.3; 
+      color: var(--pen-red);
+    }
+
+    /* 2. Gagalin (Heavy Distressed Vintage Comic) */
+    .font-gagalin .front-big-question { 
+      font-family: 'Gagalin', sans-serif; 
+      letter-spacing: 0.03em; 
+      font-size: 2.5rem; 
+      line-height: 1.15; 
+      color: #0f172a;
+    }
+    .font-gagalin .back-huge-answer { 
+      font-family: 'Gagalin', sans-serif; 
+      letter-spacing: 0.03em; 
+      font-size: 3.4rem; 
+      line-height: 1; 
+      color: #15803d;
+    }
+    .font-gagalin .back-bullet-point { 
+      font-family: 'Gagalin', sans-serif; 
+      letter-spacing: 0.02em; 
+      font-size: 1.55rem; 
+      line-height: 1.35; 
+      color: #1e293b;
+    }
+    .font-gagalin .back-trap-box { 
+      font-family: 'Gagalin', sans-serif; 
+      font-size: 1.35rem; 
+      line-height: 1.3; 
+      color: var(--pen-red);
+    }
+
+    /* 3. Rock Salt (Gritty Felt Marker Scrawl) */
+    .font-rocksalt .front-big-question { 
+      font-family: 'Rock Salt', cursive; 
+      font-size: 1.95rem; 
+      line-height: 1.32; 
+      color: #0f172a;
+    }
+    .font-rocksalt .back-huge-answer { 
+      font-family: 'Rock Salt', cursive; 
+      font-size: 2.7rem; 
+      line-height: 1.1; 
+      color: #15803d;
+    }
+    .font-rocksalt .back-bullet-point { 
+      font-family: 'Rock Salt', cursive; 
+      font-size: 1.35rem; 
+      line-height: 1.5; 
+      color: #1e293b;
+    }
+    .font-rocksalt .back-trap-box { 
+      font-family: 'Rock Salt', cursive; 
+      font-size: 1.25rem; 
+      line-height: 1.3; 
+      color: var(--pen-red);
+    }
+
+    /* 4. Permanent Marker (Sharpie Chisel) */
+    .font-perm-marker .front-big-question { 
+      font-family: 'Permanent Marker', cursive; 
+      font-size: 2.35rem; 
+      line-height: 1.18; 
+      color: #0f172a;
+    }
+    .font-perm-marker .back-huge-answer { 
+      font-family: 'Permanent Marker', cursive; 
+      font-size: 3.3rem; 
+      line-height: 1.05; 
+      color: #15803d;
+    }
+    .font-perm-marker .back-bullet-point { 
+      font-family: 'Permanent Marker', cursive; 
+      font-size: 1.5rem; 
+      line-height: 1.35; 
+      color: #1e293b;
+    }
+    .font-perm-marker .back-trap-box { 
+      font-family: 'Permanent Marker', cursive; 
+      font-size: 1.35rem; 
+      line-height: 1.25; 
+      color: var(--pen-red);
+    }
+
+    /* 5. Anime Ace (Blambot Dialogue) */
+    .font-anime-ace .front-big-question { 
+      font-family: 'Anime Ace', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      font-size: 2.15rem; 
+      line-height: 1.25; 
+      color: #0f172a;
+    }
+    .font-anime-ace .back-huge-answer { 
+      font-family: 'Anime Ace', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      font-size: 2.95rem; 
+      color: #15803d;
+    }
+    .font-anime-ace .back-bullet-point { 
+      font-family: 'Anime Ace', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      letter-spacing: 0.02em; 
+      font-size: 1.35rem; 
+      line-height: 1.4; 
+      color: #1e293b;
+    }
+    .font-anime-ace .back-trap-box { 
+      font-family: 'Anime Ace', sans-serif; 
+      font-style: italic; 
+      text-transform: uppercase; 
+      font-size: 1.25rem; 
+      color: var(--pen-red);
+    }
+
+    /* 6. Patrick Hand (Natural Marker Pen) */
+    .font-patrick .front-big-question { font-family: 'Patrick Hand', cursive; font-size: 2.8rem; line-height: 1.15; color: var(--pen-blue); }
+    .font-patrick .back-huge-answer { font-family: 'Patrick Hand', cursive; font-size: 3.8rem; line-height: 1; color: var(--pen-green); }
+    .font-patrick .back-bullet-point { font-family: 'Patrick Hand', cursive; font-size: 1.8rem; line-height: 1.35; color: var(--pen-black); }
+    .font-patrick .back-trap-box { font-family: 'Rock Salt', cursive; font-size: 1.25rem; color: var(--pen-red); }
+
+    /* Deck Controls Below Card */
+    .controls-zone {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .ctrl-btn:hover { background: #334155; color: #fff; }
+    .ctrl-btn.primary { background: #2563eb; border-color: #2563eb; }
+    .ctrl-btn.primary:hover { background: #1d4ed8; }
+
+    @media (max-width: 760px) {
+      .card-stage { height: 530px; }
+      .front-layout { grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
+      .marker-slash { font-size: 1.25rem; height: 32px; right: 55px; }
+      .card-num-scrawl { font-size: 1.4rem; }
+      .front-big-question { font-size: 1.9rem !important; }
+      .back-huge-answer { font-size: 2.6rem !important; }
+      .back-bullet-point { font-size: 1.3rem !important; }
+      .back-trap-box { font-size: 1.15rem !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-zone">
+    <div class="header-badge">Ethan's Kitchen Table Deck</div>
+    <div class="header-title">Full-Canvas 3x5 Active Retrieval Cards</div>
+    <div class="header-desc">
+      Maximum real estate utilization. Bangers on wide highlighter banner & diagram shoutouts.<br>
+      Explore <strong>Komika Text</strong>, <strong>Gagalin</strong>, <strong>Rock Salt</strong>, and <strong>Permanent Marker</strong> live below.
+    </div>
+  </div>
+
+  <!-- Selectors Area -->
+  <div class="selector-group">
+    <div class="selector-label">1. Card Background & Paper Style</div>
+    <div class="style-switcher">
+      <button class="style-tab-btn active" onclick="setCardStyle('style-white', this)">Minimalist White (Angled & Cartoon Edges)</button>
+      <button class="style-tab-btn" onclick="setCardStyle('style-ruled', this)">Walgreens Ruled (Gritty 3x5)</button>
+      <button class="style-tab-btn" onclick="setCardStyle('style-quad', this)">Graph / Quad Scratch Paper</button>
+      <button class="style-tab-btn" onclick="setCardStyle('style-manila', this)">Heavy Manila / Shop Floor</button>
+    </div>
+
+    <div class="selector-label">2. Typography & Lettering Style</div>
+    <div class="style-switcher">
+      <button class="style-tab-btn active" onclick="setFontMode('font-komika-text', this)">Komika Text (DC Comics Box)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-gagalin', this)">Gagalin (Distressed Vintage Comic)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-rocksalt', this)">Rock Salt (Gritty Felt Marker)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-perm-marker', this)">Permanent Marker (Sharpie Chisel)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-anime-ace', this)">Anime Ace (Blambot Dialogue)</button>
+      <button class="style-tab-btn" onclick="setFontMode('font-patrick', this)">Patrick Hand (Natural Pen)</button>
+    </div>
+  </div>
+
+  <!-- 3x5 Card Stage -->
+  <div class="card-stage style-white font-komika-text" id="cardStage" onclick="flipCard()">
+    <div class="card-flipper" id="flipper">
+
+      <!-- FRONT FACE -->
+      <div class="card-face" id="frontFace">
+        <!-- Wide Highlighter Banner (Bangers Font) -->
+        <div class="marker-slash" id="markerFront">EXAM TRIVIA // MEMORIZE</div>
+        <div class="card-num-scrawl" id="cardNumFront">#14</div>
+
+        <div class="front-layout">
+          <div class="drawing-container">
+            <div id="drawingFront"></div>
+            <div class="drawing-note" id="drawingNoteFront">(flat blade + 4 analog pins)</div>
+          </div>
+          <div class="front-text-col">
+            <div class="front-big-question" id="questionText">DVI: Which one carries both analog & digital video?</div>
+            <div class="front-hint-scrawl" id="hintText">Look at the pins flanking the horizontal blade...</div>
+          </div>
+        </div>
+
+        <div class="tap-to-flip-guide">CLICK CARD TO FLIP</div>
+      </div>
+
+      <!-- BACK FACE -->
+      <div class="card-face card-back" id="backFace">
+        <!-- Wide Highlighter Banner (Bangers Font) -->
+        <div class="marker-slash" id="markerBack">EXAM TRIVIA // MEMORIZE</div>
+        <div class="card-num-scrawl" id="cardNumBack">#14</div>
+
+        <div class="back-layout">
+          <div class="back-huge-answer" id="answerText">DVI-I (Integrated)</div>
+          <div class="back-bullet-point" id="rule1Text">- The 4 analog pins around the flat blade carry the VGA signal.</div>
+          <div class="back-bullet-point" id="rule2Text">- If it only has the flat blade and no 4 pins, it is DVI-D (digital only).</div>
+          <div class="back-trap-box" id="trapText">Exam trap: DVI-A is analog only. DVI-D is digital only. DVI-I integrates both.</div>
+        </div>
+
+        <div class="tap-to-flip-guide">CLICK CARD TO FLIP</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Deck Navigation Controls -->
+  <div style="font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: #38bdf8; margin-bottom: 0.75rem; text-align: center;">
+    ⚡ <strong>Research Rule:</strong> Speak or formulate your answer aloud before flipping! (Under 10-second rule)
+  </div>
+
+  <div class="controls-zone">
+    <button class="ctrl-btn" onclick="prevCard()">Previous Card</button>
+    <button class="ctrl-btn primary" onclick="flipCard()">Flip Card</button>
+    <button class="ctrl-btn" onclick="nextCard()">Next Card</button>
+    <button class="ctrl-btn" onclick="shuffleDeck()" title="Interleaving: Shuffle deck to test cross-topic retention">🔀 Shuffle / Interleave</button>
+  </div>
+
+  <script>
+    const deck = [
+      {
+        num: "#14",
+        tag: "COMPARE // BOUNDARY DECISION",
+        tagColor: "var(--highlighter-red)",
+        textColor: "#991b1b",
+        q: "A monitor has only a VGA plug. Which DVI port works with a passive adapter? (And how to spot it?)",
+        note: "(passive VGA adapter boundary)",
+        hint: "Notice the 4 pins flanking the horizontal blade...",
+        a: "DVI-I (Integrated)",
+        r1: "- Carries both digital AND analog signals on the 4 blade pins.",
+        r2: "- DVI-D carries only digital video; passive VGA adapters will NOT work.",
+        trap: "Exam trap: If the port lacks the 4 pins around the flat blade, passive VGA fails.",
+        svg: `<svg width="290" height="170" viewBox="0 0 250 145" fill="none">
+          <!-- Outer DVI D-shell cartoon ink -->
+          <path d="M 22 25 L 228 25 C 234 25 238 30 238 36 L 238 108 C 238 114 234 119 228 119 L 22 119 C 16 119 12 114 12 108 L 12 36 C 12 30 16 25 22 25 Z" 
+                stroke="#0f172a" stroke-width="4" fill="#f8fafc" stroke-linejoin="round"/>
+          <rect x="22" y="34" width="206" height="76" rx="4" stroke="#334155" stroke-width="2.5" fill="#e2e8f0"/>
+          
+          <!-- Flat Horizontal Blade (Ground) -->
+          <rect x="34" y="70" width="30" height="7" fill="#0f172a" rx="1"/>
+          
+          <!-- 4 ANALOG PINS (C1, C2, C3, C4) in RED -->
+          <circle cx="41" cy="54" r="4.2" fill="#dc2626" stroke="#0f172a" stroke-width="2"/>
+          <circle cx="57" cy="54" r="4.2" fill="#dc2626" stroke="#0f172a" stroke-width="2"/>
+          <circle cx="41" cy="92" r="4.2" fill="#dc2626" stroke="#0f172a" stroke-width="2"/>
+          <circle cx="57" cy="92" r="4.2" fill="#dc2626" stroke="#0f172a" stroke-width="2"/>
+          
+          <!-- Digital 24-Pin Grid (8x3) -->
+          <!-- Row 1 -->
+          <circle cx="88" cy="52" r="3.2" fill="#0f172a"/>
+          <circle cx="104" cy="52" r="3.2" fill="#0f172a"/>
+          <circle cx="120" cy="52" r="3.2" fill="#0f172a"/>
+          <circle cx="136" cy="52" r="3.2" fill="#0f172a"/>
+          <circle cx="152" cy="52" r="3.2" fill="#0f172a"/>
+          <circle cx="168" cy="52" r="3.2" fill="#0f172a"/>
+          <circle cx="184" cy="52" r="3.2" fill="#0f172a"/>
+          <circle cx="200" cy="52" r="3.2" fill="#0f172a"/>
+          
+          <!-- Row 2 -->
+          <circle cx="88" cy="73" r="3.2" fill="#0f172a"/>
+          <circle cx="104" cy="73" r="3.2" fill="#0f172a"/>
+          <circle cx="120" cy="73" r="3.2" fill="#0f172a"/>
+          <circle cx="136" cy="73" r="3.2" fill="#0f172a"/>
+          <circle cx="152" cy="73" r="3.2" fill="#0f172a"/>
+          <circle cx="168" cy="73" r="3.2" fill="#0f172a"/>
+          <circle cx="184" cy="73" r="3.2" fill="#0f172a"/>
+          <circle cx="200" cy="73" r="3.2" fill="#0f172a"/>
+          
+          <!-- Row 3 -->
+          <circle cx="88" cy="94" r="3.2" fill="#0f172a"/>
+          <circle cx="104" cy="94" r="3.2" fill="#0f172a"/>
+          <circle cx="120" cy="94" r="3.2" fill="#0f172a"/>
+          <circle cx="136" cy="94" r="3.2" fill="#0f172a"/>
+          <circle cx="152" cy="94" r="3.2" fill="#0f172a"/>
+          <circle cx="168" cy="94" r="3.2" fill="#0f172a"/>
+          <circle cx="184" cy="94" r="3.2" fill="#0f172a"/>
+          <circle cx="200" cy="94" r="3.2" fill="#0f172a"/>
+
+          <!-- Callout using BANGERS display font -->
+          <path d="M 68 130 C 60 118 55 110 52 101" stroke="#dc2626" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <polygon points="49,97 56,104 47,106" fill="#dc2626"/>
+          <text x="75" y="137" font-family="Bangers" font-size="19" letter-spacing="0.05em" fill="#dc2626">4 ANALOG PINS</text>
+        </svg>`
+      },
+      {
+        num: "#22",
+        tag: "DIAGNOSTIC // SYMPTOM TRIAGE",
+        tagColor: "var(--highlighter-red)",
+        textColor: "#991b1b",
+        q: "Toner smudges off a printout onto fingers like loose powder. Which part failed? (And why?)",
+        note: "(heat + pressure failure)",
+        hint: "Toner is plastic powder that must be melted into fibers...",
+        a: "The Fuser Assembly",
+        r1: "- Failed to reach ~200°C / 392°F to melt plastic toner resin into paper.",
+        r2: "- Pressure roller failed to bond melted resin into the paper grain.",
+        trap: "Exam trap: Faded print = toner/roller. Smearing loose powder = always cold fuser.",
+        svg: `<svg width="290" height="170" viewBox="0 0 240 145" fill="none">
+          <!-- Top Heat Roller -->
+          <circle cx="120" cy="46" r="34" stroke="#0f172a" stroke-width="4" fill="#fee2e2"/>
+          <circle cx="120" cy="46" r="15" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="5 3" fill="#fecaca"/>
+          <text x="104" y="53" font-family="Bangers" font-size="19" letter-spacing="0.05em" fill="#dc2626">HEAT</text>
+          
+          <!-- Paper Passing Through -->
+          <line x1="20" y1="80" x2="220" y2="80" stroke="#090d16" stroke-width="4" stroke-linecap="round"/>
+          
+          <!-- Bottom Pressure Roller -->
+          <circle cx="120" cy="114" r="28" stroke="#0f172a" stroke-width="4" fill="#e2e8f0"/>
+          <text x="88" y="121" font-family="Bangers" font-size="19" letter-spacing="0.05em" fill="#334155">PRESSURE</text>
+          
+          <!-- Melted Toner Particles -->
+          <circle cx="45" cy="76" r="4" fill="#090d16"/>
+          <circle cx="62" cy="76" r="4" fill="#090d16"/>
+          <circle cx="79" cy="76" r="4" fill="#090d16"/>
+          
+          <path d="M 155 80 L 210 80" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
+          <text x="156" y="99" font-family="Bangers" font-size="16" letter-spacing="0.05em" fill="#16a34a">MELTED IN</text>
+        </svg>`
+      },
+      {
+        num: "#03",
+        tag: "APPLICATION // BOUNDARY PROMPT",
+        tagColor: "var(--highlighter-green)",
+        textColor: "#14532d",
+        q: "Power cuts out instantly during an outage. Does RAM keep its stored data? (Yes/No and why)",
+        note: "(electrical refresh boundary)",
+        hint: "Capacitors need continuous electrical refresh...",
+        a: "No. Dynamic RAM is Volatile",
+        r1: "- RAM capacitors drain in milliseconds without constant electrical refresh cycles.",
+        r2: "- Storage (SSD, HDD, USB) is non-volatile; retains bits with zero power.",
+        trap: "Shop reality: Rebooting flushes RAM clean of crash states. It does not touch malware on disk.",
+        svg: `<svg width="290" height="170" viewBox="0 0 240 145" fill="none">
+          <!-- RAM PCB Stick -->
+          <rect x="20" y="44" width="195" height="52" rx="4" stroke="#0f172a" stroke-width="4" fill="#dcfce7"/>
+          
+          <!-- Memory Chips -->
+          <rect x="36" y="55" width="26" height="30" rx="2" fill="#15803d" stroke="#0f172a" stroke-width="2.5"/>
+          <rect x="74" y="55" width="26" height="30" rx="2" fill="#15803d" stroke="#0f172a" stroke-width="2.5"/>
+          <rect x="112" y="55" width="26" height="30" rx="2" fill="#15803d" stroke="#0f172a" stroke-width="2.5"/>
+          <rect x="150" y="55" width="26" height="30" rx="2" fill="#15803d" stroke="#0f172a" stroke-width="2.5"/>
+          
+          <!-- Gold Contacts at Bottom -->
+          <line x1="30" y1="96" x2="30" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="42" y1="96" x2="42" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="54" y1="96" x2="54" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="66" y1="96" x2="66" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="78" y1="96" x2="78" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="90" y1="96" x2="90" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="102" y1="96" x2="102" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="126" y1="96" x2="126" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="138" y1="96" x2="138" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="150" y1="96" x2="150" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="162" y1="96" x2="162" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="174" y1="96" x2="174" y2="108" stroke="#ca8a04" stroke-width="4"/>
+          <line x1="186" y1="96" x2="186" y2="108" stroke="#ca8a04" stroke-width="4"/>
+
+          <text x="70" y="34" font-family="Bangers" font-size="20" letter-spacing="0.06em" fill="#15803d">VOLATILE DRAM</text>
+        </svg>`
+      }
+    ];
+
+    let currentCardIdx = 0;
+    const stage = document.getElementById('cardStage');
+    const flipper = document.getElementById('flipper');
+
+    function flipCard() {
+      flipper.classList.toggle('is-flipped');
+    }
+
+    function renderCard() {
+      const c = deck[currentCardIdx];
+
+      // Front
+      document.getElementById('cardNumFront').textContent = c.num;
+      const mf = document.getElementById('markerFront');
+      mf.textContent = c.tag;
+      mf.style.background = c.tagColor;
+      mf.style.color = c.textColor;
+
+      document.getElementById('drawingFront').innerHTML = c.svg;
+      document.getElementById('drawingNoteFront').textContent = c.note;
+      document.getElementById('questionText').textContent = c.q;
+      document.getElementById('hintText').textContent = c.hint;
+
+      // Back
+      document.getElementById('cardNumBack').textContent = c.num;
+      const mb = document.getElementById('markerBack');
+      mb.textContent = c.tag;
+      mb.style.background = c.tagColor;
+      mb.style.color = c.textColor;
+
+      document.getElementById('answerText').textContent = c.a;
+      document.getElementById('rule1Text').textContent = c.r1;
+      document.getElementById('rule2Text').textContent = c.r2;
+      document.getElementById('trapText').textContent = c.trap;
+    }
+
+    function nextCard() {
+      flipper.classList.remove('is-flipped');
+      setTimeout(() => {
+        currentCardIdx = (currentCardIdx + 1) % deck.length;
+        renderCard();
+      }, 150);
+    }
+
+    function prevCard() {
+      flipper.classList.remove('is-flipped');
+      setTimeout(() => {
+        currentCardIdx = (currentCardIdx - 1 + deck.length) % deck.length;
+        renderCard();
+      }, 150);
+    }
+
+    function shuffleDeck() {
+      flipper.classList.remove('is-flipped');
+      setTimeout(() => {
+        // Fisher-Yates shuffle
+        for (let i = deck.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+        currentCardIdx = 0;
+        renderCard();
+      }, 150);
+    }
+
+    let currentCardStyle = 'style-white';
+    let currentFontStyle = 'font-komika-text';
+
+    function setCardStyle(styleClass, btn) {
+      btn.closest('.style-switcher').querySelectorAll('.style-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCardStyle = styleClass;
+      updateStageClasses();
+    }
+
+    function setFontMode(fontClass, btn) {
+      btn.closest('.style-switcher').querySelectorAll('.style-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFontStyle = fontClass;
+      updateStageClasses();
+    }
+
+    function updateStageClasses() {
+      stage.className = 'card-stage ' + currentCardStyle + ' ' + currentFontStyle;
+    }
+
+    // Initial render
+    renderCard();
+  </script>
+</body>
+</html>

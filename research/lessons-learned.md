@@ -130,3 +130,67 @@ The author's correction became two working rules (`schema/README.md` 8 and 9):
 The author also restated the kit's place: the story supports the course and doesn't carry
 it. Students still have the textbook and their own tools. A minor term can pass with a
 sentence of context; the cover test is about the chapter's central relationships.
+
+## The flashcard deck that held one card (Portland Desk, October 2026)
+
+**What broke.** The Episode 00 workbench deck was written for three cards. On the live
+page it showed one, Next had nowhere to go, and clicking the card did nothing. Anyone
+building a new deck by copying it would hit the same wall.
+
+**Three causes, stacked:**
+
+1. **Markdown ate the HTML.** The deck was hand-written HTML inside a markdown page.
+   Docsify's markdown parser ends an HTML block at the first blank line. The next card's
+   markup was indented, and an indented line after a blank line is a markdown code block,
+   so cards 2 and 3 appeared on the page as raw HTML text. Card 1 survived only because it
+   sat in the same unbroken block as the deck's opening tag.
+2. **Two scripts owned one click.** `index.html` and `lnk-shell.js` each bound a click
+   handler that toggled `flipped`. Every click flipped the card and flipped it straight
+   back. The Flip button worked only because it stopped the click from reaching the card.
+3. **Key listeners piled up.** The deck added a document-wide key listener every time a
+   page rendered, so they accumulated as a reader moved around the site.
+
+**How it was found.** By reproducing it in a headless browser before changing anything,
+and checking what was in the page, not what the source said: the source held three cards
+and the page held one, with the other two inside a `<pre>`. Two later checks mattered:
+- A test that only checks the `flipped` class passes even when the wrong face shows, so the
+  suite also checks which face is actually under the pointer.
+- The phone-width run caught a layout bug (text spilling over the buttons) that desktop
+  never showed.
+
+**The fix.**
+- A `lnk-deck` fence. Cards are written as plain `Q:` / `A:` / `why:` text; the page script
+  turns the whole deck into one line of HTML carrying the cards as data, and `lnk-shell.js`
+  builds it. Markdown never parses card markup.
+- One owner for deck events (`lnk-shell.js`), with one listener per deck and none on the
+  document.
+- 3x5 and 4x6 sizes for the Four Rubber Bands (trivia and concept cards), with band colors.
+  The card keeps index-card proportions but grows when the text needs room.
+- `tools/check_decks.py`, run in CI. It flags indented HTML after a blank line anywhere in
+  the Docsify pages, and malformed deck fences. Run against the original file, it points
+  at exactly the two lines where cards 2 and 3 were lost.
+
+**The rule to carry forward:** if a widget has repeating parts, don't hand-write it as
+HTML in markdown. Give it a fence, the way terminals and panels already work, and keep one
+script in charge of its events.
+
+**Still open:**
+- On a phone turned sideways, every Portland Desk page keeps the 300px sidebar open and
+  scrolls sideways. That's site layout, not the deck; the deck fits the screen height.
+- Ethan's story decks (the 3x5 trivia and 4x6 slates in the Episode 00 narrative) work,
+  but their cards are hard-coded in `lnk-shell.js`. They could move to `lnk-deck` fences.
+- CLAUDE.md still asks for parity between `portland-desk/` and `docs/portland-desk/`, but
+  the root copy was archived (commit 611e5e4); `docs/portland-desk` is the only source.
+
+**Follow-up: one deck for every page (October 27, 2026).** The fix above lived inside
+Portland Desk (`lnk-shell.js` and Portland's stylesheet), so the Tamarack and ITM unit
+pages couldn't use it. The deck is now one shared component: `docs/lnk-deck.js` and
+`docs/lnk-deck.css`, with their own class names and no dependence on either site's styles.
+`render_unit.py` reads the same fence (parser in `tools/_deck.py`) and adds the two files
+only to pages that have a deck, so no other unit's output changed. The script finds decks
+with a MutationObserver, because neither kind of page has its content at load: unit pages
+fetch the narrative afterward, and Docsify swaps pages on every route change. The first real
+user is `examples/itm310-exam2-cards/`: 185 Exam 2 terms, 137 cards in 11 decks, every card
+checked on both faces at phone, sideways-phone and desktop widths.
+The lesson: a component isn't shared until a second kind of page uses it. Test it there
+before calling it reusable.

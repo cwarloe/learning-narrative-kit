@@ -20,6 +20,21 @@
 
 ---
 
+## Worked Example: The lockout storm
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Accounts kept locking out, and sales wanted to keep PIN-plus-password logins.
+
+1. Read the lockout events and find the caller computer name.
+2. Find Dev's script on that machine still using an old password, and move its credentials to the vault.
+3. Explain that a PIN and a password are both something you know, so together they are not MFA.
+4. Move Todd's team to push MFA with number matching.
+5. Put the decision in writing, and include a date for when the exception ends or the change lands. Ethan wrote a plain no without a date, and that cost him.
+6. Result: the lockouts stopped. The tone of the written no cost Ethan the October promotion round.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,23 +46,13 @@ prompt: "Clean technical illustration of a smartphone on an office desk next to 
 
 
 ### The Situation
-It is 08:15 on a gusty Wednesday morning in East Portland. Low gray clouds drag across the Willamette, and the service desk floor smells of damp rain jackets and burnt roast coffee. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet clipped to her monitor arm, scanning the incoming identity dispatch queue.
+It is 08:00 on a Monday in October, and Ethan has been on the desk for fourteen months. Two dozen people locked themselves out between Friday night and Monday morning, after ninety-day password expiration notices went out over the weekend.
 
-On the whiteboard beside her desk, the sticky note from the networking rotation (*which decision?*) has been swapped for a fresh yellow square:
-
-$$\boxed{\textbf{Which factor?}}$$
-
-Ethan’s desk drawer still holds his port flashcards, but this morning's tickets are not about firewalls or packet headers. They are about humans, identity stores, and passwords:
-* **Nora in Finance** is locked out after her quarterly password rotation failed. She tried `Spring2024!`, `Summer2024!`, and `Fall2024!`. Active Directory rejected all of them, policy requires sixteen characters, and she is threatening to write her new password on a bright green Post-it note stuck to her bezel.
-* **Ken in Sales** wiped his phone over the weekend, lost access to his CRM, and insists he already has multifactor authentication because he types a **Password** and a **PIN** into his laptop. He calls it "two things" and wants a quick bypass.
-* **Dev in Engineering** ran a test script with hardcoded credentials that failed forty times in two minutes, triggering an enterprise account lockout storm that halted his deployment stand-up.
-
-Jules spins her mug and looks across the divider:
-> *"Memorizing that MFA stands for Multifactor Authentication will get you through a multiple-choice question on an exam. It will not save you when an executive screams that typing a password and a PIN is two things, or when a user's account re-locks every fifteen minutes while they swear they haven't touched their keyboard. On this desk, identity is not a buzzword—it is the cryptographic boundary of the entire enterprise."*
+This lab follows the chapter's queue. Nora in finance rotates seasonal passwords (`Spring2024!`, `Summer2024!`) and has hit the ninety-day expiry. Todd in sales insists that a password plus a PIN is multifactor. Dev's script is locking his account by retrying a stale secret forty times. Lila in HR asks whether Windows Hello counts as biometrics. Owen brings a badge log that shows one swipe and two people at the east stairwell door.
 
 ### The Ground Truth Rules of the Desk
 1. **Two Nouns Do Not Equal Two Factors:** Multifactor authentication requires **two or more distinct categories** of credentials: *Something you know* (knowledge), *Something you have* (possession), *Something you are* (inherence/biometrics), or *Somewhere you are* (location/context). A password plus a PIN is simply two things you know ($1 + 1 = 1$). It is single-factor authentication with extra typing.
-2. **Length Beats Complexity (Entropy Wins):** Requiring users to rotate complex 8-character passwords every 90 days breeds predictable patterns (`Winter2026!`) and physical sticky notes. Modern enterprise defense (NIST SP 800-63B) prioritizes **length and entropy**: a 16-character four-word passphrase (`correct-horse-battery-staple`) resists brute-force and dictionary attacks far better than an 8-character symbol salad.
+2. **Length Beats Complexity (Entropy Wins):** Requiring users to rotate complex 8-character passwords every 90 days breeds predictable patterns (`Fall2025!`) and physical sticky notes. Modern enterprise defense (NIST SP 800-63B) prioritizes **length and entropy**: a 16-character four-word passphrase (`correct-horse-battery-staple`) resists brute-force and dictionary attacks far better than an 8-character symbol salad.
 3. **Possession Strength Follows a Hierarchy:** Not all possession factors are created equal. SMS OTP and voice codes are vulnerable to SIM swapping, SS7 cellular routing intercepts, and adversary-in-the-middle (AiTM) phishing reverse proxies. Authenticator apps (TOTP/HOTP) provide stronger possession, while FIDO2/WebAuthn hardware security keys provide cryptographic phishing resistance.
 4. **Never Clear a Lockout Without Identifying the Caller:** Clicking "Unlock Account" in Active Directory Users and Computers (ADUC) treats the symptom, not the cause. If a user's phone, forgotten tablet, or background batch script is still hammering the domain controller with cached stale credentials, the account will re-lock within minutes. You must inspect **Event ID 4740** in the Security Event Log, extract the **Caller Computer Name**, and terminate the offending session before unlocking.
 
@@ -97,7 +102,7 @@ flowchart LR
 | :--- | :--- | :--- | :--- |
 | **Minimum Length** | 8 characters | **15–16+ characters** (Minimum 8, Passphrases strongly encouraged) | Exponential increase in search space ($94^8 \approx 6 \times 10^{15}$ vs $26^{16} \approx 4.3 \times 10^{22}$). |
 | **Composition Rules** | Mandatory 3 of 4: Upper, Lower, Digit, Symbol | **Eliminated.** No arbitrary symbol mandates. | Eliminates predictable substitutions (`E` $\rightarrow$ `3`, `a` $\rightarrow$ `@`, ending in `!`). |
-| **Mandatory Rotation** | Forced 60–90 day expiration | **Removed.** Rotate only upon suspected breach or credential leak. | Stops the "Seasons and Years" pattern (`Spring2026!` $\rightarrow$ `Summer2026!`). |
+| **Mandatory Rotation** | Forced 60–90 day expiration | **Removed.** Rotate only upon suspected breach or credential leak. | Stops the "Seasons and Years" pattern (`Spring2024!` $\rightarrow$ `Summer2024!`). |
 | **Breach Filtering** | Basic dictionary check against `password` or username | **Mandatory check against breached password lists** (e.g., HaveIBeenPwned). | Prevents users from choosing passwords exposed in prior corporate breaches. |
 | **Hint Questions** | "Mother's maiden name", "First car" | **Prohibited.** | Knowledge-based authentication (KBA) answers are easily scraped from social media. |
 
@@ -157,7 +162,7 @@ flowchart TD
     A["User reports 'Account is Locked Out'"] --> B["Open Event Viewer on PDC Emulator / Domain Controller<br/>or run PowerShell Get-WinEvent"]
     B --> C["Filter Security Log for Event ID 4740<br/>(A user account was locked out)"]
     C --> D{"Examine Event 4740 Fields:<br/>- TargetUserName<br/>- CallerComputerName"}
-    D --> E["CallerComputerName identified?<br/>(e.g., 'IPAD-NORA-FIN' or 'PORT-WS-1042')"]
+    D --> E["CallerComputerName identified?<br/>(e.g., 'ENG-BUILD-07' or 'PORT-WS-1042')"]
     E -- Internal Workstation --> F["Log into Workstation.<br/>Check Windows Credential Manager,<br/>stale mapped network drives (net use),<br/>or hung scheduled tasks."]
     E -- Mobile / ActiveSync --> G["Identify mobile device.<br/>Update cached Exchange / Wi-Fi password<br/>or toggle Airplane Mode."]
     E -- Blank / Service Host --> H["Inspect Event ID 4625 for Logon Type:<br/>- Type 3: Network Share / IIS<br/>- Type 8: NetworkCleartext / Service<br/>- Type 10: RDP Remote Session"]
@@ -185,6 +190,8 @@ flowchart TD
 ### Drill 1: Multi-Factor Authentication (MFA) Factor Classification Matrix
 
 #### The Scenario
+> **Practice cases.** These six cases are invented for practice and are not events from the chapter.
+
 During morning ticket triage, you review six incoming requests and security policy queries. Several end users and departmental leads claim they already have MFA or want exceptions.
 
 Evaluate each scenario in the matrix below. Determine whether the configuration represents true multifactor authentication ($MFA \ge 2 \text{ distinct factor types}$) or a false single-factor claim.
@@ -192,11 +199,11 @@ Evaluate each scenario in the matrix below. Determine whether the configuration 
 | Ticket / Scenario | Proposed Authentication Combination | Factor Categories Claimed | True MFA? (Yes / No) | Security & Exam Analysis |
 | :--- | :--- | :--- | :--- | :--- |
 | **Case 1** | Nora types her domain password, then enters a 6-digit PIN on her local Windows Hello screen. | Password + PIN | **No** *(Single-Factor)* | Both are **Something You Know** (Knowledge + Knowledge). Two instances of the same factor category do not satisfy MFA requirements. |
-| **Case 2** | Ken enters his domain password, then approves a push notification on his enrolled smartphone authenticator app with number matching. | Password + Authenticator Push | **Yes** *(Multifactor)* | Combines **Something You Know** (Password) with **Something You Have** (Cryptographic smartphone possession token). |
+| **Case 2** | Todd enters his domain password, then approves a push notification on his enrolled smartphone authenticator app with number matching. | Password + Authenticator Push | **Yes** *(Multifactor)* | Combines **Something You Know** (Password) with **Something You Have** (Cryptographic smartphone possession token). |
 | **Case 3** | Rita logs into the HR portal using her corporate laptop's built-in fingerprint scanner, followed by Windows Hello facial recognition. | Fingerprint + Facial Recognition | **No** *(Single-Factor)* | Both are **Something You Are** (Inherence + Inherence). Combining two biometric modalities is multi-modal biometrics, but still constitutes a single factor category. |
 | **Case 4** | Dev connects to the enterprise VPN using a password, then receives an SMS containing a 6-digit one-time code to his cellular phone. | Password + SMS OTP | **Yes** *(Multifactor - Weak)* | Technically satisfies **Something You Know** + **Something You Have**, but SMS OTP is deprecated/discouraged due to SIM swapping and SS7 interception. |
 | **Case 5** | Jordan logs into the cloud admin portal by inserting a FIDO2 YubiKey, entering the hardware PIN to unlock the token, and touching the capacitive sensor. | FIDO2 Security Key + Hardware PIN + Touch | **Yes** *(Multifactor)* | Combines **Something You Have** (Physical FIDO2 USB token) with **Something You Know** (Hardware token PIN unlocking the private key). Touch proves user presence (liveness). |
-| **Case 6** | Dana attempts to access the building facilities portal using a password, but access is restricted to workstations physically connected to the Portland Plant Operations internal subnet. | Password + IP Geofencing / Subnet Location | **Yes** *(Multifactor with Context)* | Combines **Something You Know** (Password) with **Somewhere You Are** (Location / Network boundary context). |
+| **Case 6** | Dale attempts to access the building facilities portal using a password, but access is restricted to workstations physically connected to the Portland Plant Operations internal subnet. | Password + IP Geofencing / Subnet Location | **Yes** *(Multifactor with Context)* | Combines **Something You Know** (Password) with **Somewhere You Are** (Location / Network boundary context). |
 
 #### Your Analysis Task
 1. Why is Case 1 (Password + PIN) the single most common false MFA claim encountered on enterprise service desks?
@@ -218,9 +225,7 @@ Evaluate each scenario in the matrix below. Determine whether the configuration 
 ### Drill 2: Active Directory Event Viewer Lockout Analysis
 
 #### The Scenario
-Nora Higgins in Finance logged ticket **`INC-2026-1142`**. At 08:30 she updated her domain password in the self-service portal from `Summer2024!` to a newly compliant 16-character passphrase. At 08:34, her account locked out. 
-
-You unlocked her account in Active Directory Users and Computers (ADUC). At 08:39, she called back furious: her account locked out again while she was on the phone, and she had not even touched her keyboard.
+Dev from engineering came to the desk at 10:05 on Monday with his laptop open to a lockout. He had reset his own password that morning after the weekend expiry notice. You unlocked his account in Active Directory Users and Computers (ADUC) at 10:08. At 10:12 it locked again, while he was standing at your desk with his hands in his pockets.
 
 Instead of clicking "Unlock" a second time, you launch PowerShell on your management console and query the Security Event Log on the Primary Domain Controller (`dc01.harrowmere.local`) using [`artifacts/event_4740_dump.txt`](../artifacts/event_4740_dump.txt):
 
@@ -238,16 +243,16 @@ Message              : A user account was locked out.
 
                        Account That Was Locked Out:
                            Security ID:        S-1-5-21-3928174412-1082938471-2948192837-1402
-                           Account Name:       nhiggins
+                           Account Name:       dpatel
 
                        Additional Information:
-                           Caller Computer Name:   IPAD-NORA-FIN
+                           Caller Computer Name:   ENG-BUILD-07
 
 Id                   : 4740
-TimeCreated          : 10/21/2026 8:34:18 AM
+TimeCreated          : 10/20/2025 10:12:41 AM
 MachineName          : dc01.harrowmere.local
 TaskDisplayName      : User Account Management
-Properties           : {nhiggins, HARROWMERE, IPAD-NORA-FIN, S-1-5-21-3928174412-1082938471-2948192837-1402...}
+Properties           : {dpatel, HARROWMERE, ENG-BUILD-07, S-1-5-21-3928174412-1082938471-2948192837-1402...}
 ```
 
 Next, you inspect the preceding **Event ID 4625** records from [`artifacts/security_events.json`](../artifacts/security_events.json) generated just prior to the lockout:
@@ -255,12 +260,12 @@ Next, you inspect the preceding **Event ID 4625** records from [`artifacts/secur
 ```console
 caption: Windows Event Log 4625 Breakdown on DC01
 Event ID:     4625
-Time Created: 10/21/2026 8:34:18.109240Z
+Time Created: 10/20/2025 10:12:41.109240Z
 Computer:     dc01.harrowmere.local
 Description:  An account failed to log on.
 
 Account For Which Logon Failed:
-    Account Name:        nhiggins
+    Account Name:        dpatel
     Account Domain:      HARROWMERE
 
 Failure Information:
@@ -269,7 +274,7 @@ Failure Information:
     Sub Status:          0xC0000234
 
 Network Information:
-    Workstation Name:    IPAD-NORA-FIN
+    Workstation Name:    ENG-BUILD-07
     Source Network Address: 192.168.20.114
     Source Port:         49888
 
@@ -279,26 +284,25 @@ Detailed Authentication Information:
 ```
 
 #### Your Analysis Task
-1. What is the root cause of Nora's recurring account lockout?
+1. What is the root cause of Dev's recurring account lockout?
 2. What does `Sub Status: 0xC0000234` in Event 4625 indicate, and how does it differ from `Sub Status: 0xC000006A`?
 3. What does `Logon Type: 3` tell you about the mechanism the device was using to authenticate against the domain?
-4. What exact sequence of operational steps must you execute to permanently resolve Nora's issue before unlocking her account?
+4. What exact sequence of steps must you take to resolve Dev's issue before you unlock his account?
 
 <details>
 <summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
-1. **Root Cause:** Nora has a secondary mobile device—her corporate iPad (`IPAD-NORA-FIN` at IP `192.168.20.114`)—sitting in her briefcase or on her desk dock. When Nora changed her domain password at 08:30 on her desktop, the iPad continued attempting background mail/calendar synchronizations (ActiveSync / Exchange) every few minutes using her old cached password. After three failed attempts, the domain lockout threshold of 3 invalid attempts was triggered.
+1. **Root Cause:** `ENG-BUILD-07` is the build server where Dev's deployment script runs. The script still holds his old password in a config file and retries it every few seconds. Forty bad attempts later, the account locks again no matter how often you unlock it. This is the chapter's incident.
 2. **Sub Status Decodes:**
    - `0xC000006A`: *Bad Password*. The user account exists, but the caller provided an incorrect password.
    - `0xC0000234`: *Account Locked*. The attempt failed specifically because the account's lockout threshold had already been reached and the account is currently disabled by lockout policy.
-3. **Logon Type 3:** Indicates a **Network Logon** (connecting across the network to a shared resource, IIS service, or ActiveSync endpoint), as opposed to Logon Type 2 (interactive console keyboard login) or Logon Type 10 (Remote Desktop Protocol).
+3. **Logon Type 3:** Indicates a **Network Logon** (a process connecting across the network to a share or service, like Dev's script), as opposed to Logon Type 2 (interactive console keyboard login) or Logon Type 10 (Remote Desktop Protocol).
 4. **Permanent Remediation Sequence:**
-   1. Contact Nora and instruct her to take out `IPAD-NORA-FIN` and immediately toggle **Airplane Mode ON** (or disconnect it from Wi-Fi) to suppress automated background authentication attempts.
-   2. Navigate to `Settings` $\rightarrow$ `Mail` / `Accounts` on the iPad and update the stored corporate password with her new 16-character passphrase.
-   3. Check Windows Credential Manager on her primary desktop (`PORT-WS-FIN02`) to ensure no stale network drive mappings (`net use * /delete`) or old Outlook credential profiles exist.
-   4. Once all devices have updated credentials, navigate to Active Directory Users and Computers (ADUC), locate `nhiggins`, check the box for **"Unlock account"**, and click Apply.
-   5. Toggle Airplane Mode OFF on the iPad and verify successful ActiveSync synchronization.
+   1. Have Dev stop the script's scheduled task on `ENG-BUILD-07` so the retries stop.
+   2. Move the script's credential out of the config file and into the secrets vault, and point the script at the vault. The script stays stopped until this is done.
+   3. Check that no other machine is presenting the old password (run the Event 4740 query again after five minutes).
+   4. Unlock `dpatel` in ADUC and confirm the bad-password count stays at zero.
 </details>
 
 
@@ -316,40 +320,46 @@ prompt: "PS C:\Support> "
 replay: true
 objectives:
   - id: "obj-lockout"
-    label: "Find account lockout events (Event ID 4740)"
-    trigger: "Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740}"
-  - id: "obj-unlock"
-    label: "Unlock Nora's domain account"
-    trigger: "Unlock-ADAccount -Identity nora.finance"
+    label: "Query Security log for lockout event 4740"
+    trigger: "Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1"
   - id: "obj-caller"
-    label: "Identify caller computer causing stale password lockouts"
-    trigger: "Get-ADUser -Identity nora.finance -Properties *"
+    label: "Extract CallerComputerName from Event 4740 XML"
+    trigger: "(Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1).ToXml()"
+  - id: "obj-unlock"
+    label: "Unlock Dev's domain account after stopping the script"
+    trigger: "Unlock-ADAccount -Identity dev.engineering"
 ---
-Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740}: |
+Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1: |
   TimeCreated          Id RecordId ProcessId Message
   -----------          -- -------- --------- -------
-  10/18 03:17:42 AM  4740   149204       620 A user account was locked out.
-                                              Target Account Name: nora.finance
-                                              Caller Computer Name: WKS-NORA-PHONE (Stale Exchange ActiveSync creds)
+  10/20 10:12:41 AM  4740   149204       620 A user account was locked out.
+                                              Target Account Name: dev.engineering
+                                              Caller Computer Name: ENG-BUILD-07
 
-Unlock-ADAccount -Identity nora.finance: |
-  Unlocking Active Directory account 'nora.finance' on Domain Controller DC01...
+(Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740} -MaxEvents 1).ToXml(): |
+  <Event xmlns='http://schemas.microsoft.com/win/2004/08/events/event'>
+    <EventData>
+      <Data Name='TargetUserName'>dev.engineering</Data>
+      <Data Name='TargetDomainName'>HARROWMERE</Data>
+      <Data Name='CallerComputerName'>ENG-BUILD-07</Data>
+    </EventData>
+  </Event>
+  [OK] Caller computer identified: ENG-BUILD-07 (the build server running Dev's deployment script with his old password).
+  Action Taken: Dev stopped the script's scheduled task and moved its secret into the vault.
+
+Unlock-ADAccount -Identity dev.engineering: |
+  Unlocking Active Directory account 'dev.engineering' on Domain Controller DC01...
   Account unlocked successfully.
-  [OK] Account status: ACTIVE (Password expired flag: FALSE).
-
-Get-ADUser -Identity nora.finance -Properties *: |
-  DistinguishedName : CN=Nora Vance,OU=Finance,DC=corp,DC=local
-  Enabled           : True
-  LockedOut         : False
-  badPwdCount       : 0
-  LastBadPasswordAttempt : 10/18 03:17:41 AM
-  Root Cause: Nora's company iPhone was sending old password over Wi-Fi after password change.
+  [OK] Account status: ACTIVE (badPwdCount reset to 0).
+  [PASS] Stale script credential removed before account unlock. Lockout loop defused.
 
 ```
 
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 > **The Rule of the Desk:** Before clicking "Approve", resetting a credential, or editing a directory object, you must commit your decision, identify the exact factor or policy, and justify the security rationale. Commit your answer in your mind before clicking to expand.
 <div class="scratchpad-container">
@@ -367,7 +377,7 @@ Get-ADUser -Identity nora.finance -Properties *: |
 </div>
 
 
-#### Ticket 1: Todd Miller (Sales Representative) — `INC-2026-1141`
+#### Ticket 1: Todd Miller (Sales Representative) — `INC0066915`
 *Request:* "Got a new phone over the weekend. I don't want to install the company authenticator app again because it takes up storage. Just set my account to SMS verification, or turn off MFA and let me use my laptop PIN plus password."
 
 * **Your Action:** [ Approve / Deny / Redirect ]
@@ -379,14 +389,14 @@ Get-ADUser -Identity nora.finance -Properties *: |
 
 * **Action:** **DENY** MFA bypass and SMS preference; **REDIRECT** to standard enterprise Authenticator App enrollment with Push + Number Matching.
 * **Target Control & Policy:** Mandatory Multi-Factor Authentication Policy (Standard SEC-IAM-02).
-* **Rationale:** Ken’s proposal of Password + PIN represents two knowledge factors (single-factor). SMS OTP is deprecated for primary corporate access due to severe vulnerabilities to SIM swapping attacks and SS7 cellular interception. Ken must install the approved authenticator app or be issued a temporary physical hardware token (FIDO2 / TOTP key) if personal phone storage is an issue.
+* **Rationale:** Todd’s proposal of Password + PIN represents two knowledge factors (single-factor). SMS OTP is deprecated for primary corporate access due to severe vulnerabilities to SIM swapping attacks and SS7 cellular interception. Todd must install the approved authenticator app or be issued a temporary physical hardware token (FIDO2 / TOTP key) if personal phone storage is an issue.
 </details>
 
 
 ---
 
-#### Ticket 2: Nora Higgins (Finance Clerk) — `INC-2026-1142`
-*Request:* "Password reset portal says my new password `Winter2026!` violates complexity and history policy. I've used Seasons and Years for ten years. Give me an exemption or lower the required length to 8 characters so I don't have to write it down."
+#### Ticket 2: Nora Higgins (Finance Clerk) — `INC0066916`
+*Request:* "Password reset portal says my new password `Fall2025!` violates complexity and history policy. I've used Seasons and Years for ten years. Give me an exemption or lower the required length to 8 characters so I don't have to write it down."
 
 * **Your Action:** [ Approve Exemption / Deny / Coach on Passphrase ]
 * **Target Authentication Control & Policy:**
@@ -403,7 +413,7 @@ Get-ADUser -Identity nora.finance -Properties *: |
 
 ---
 
-#### Ticket 3: Dev Patel (Software Engineering) — `INC-2026-1143`
+#### Ticket 3: Dev Patel (Software Engineering) — `INC0066917`
 *Request:* "My account `dpatel` is locked out again. I was testing a legacy database backup script that had an expired password hardcoded in the connection string. Unlock my account right now so I can commit my pull request."
 
 * **Your Action:** [ Unlock Immediately / Hold Unlock Until Remediated ]
@@ -421,7 +431,7 @@ Get-ADUser -Identity nora.finance -Properties *: |
 
 ---
 
-#### Ticket 4: Rita Alvarez (Marketing Lead) — `INC-2026-1144`
+#### Ticket 4: Rita Sorensen (Marketing Lead) — `INC0066918`
 *Request:* "Traveling to international conference in Geneva for ten days. I am afraid of losing my smartphone or having no international roaming cellular signal. Can I disable MFA while abroad, or what is the approved option?"
 
 * **Your Action:** [ Disable MFA / Provide Roaming Bypass / Issue Hardware Token ]
@@ -439,7 +449,7 @@ Get-ADUser -Identity nora.finance -Properties *: |
 
 ---
 
-#### Ticket 5: Jordan Chen (IT Operations) — `INC-2026-1145`
+#### Ticket 5: Jordan Reed (IT Operations) — `INC0066919`
 *Request:* "Offboarding contractor Sam Kelly. Badge collected, laptop returned. Contractor was member of shared administrator account `admin_billing`. We don't want to change the password because three other contractors use it."
 
 * **Your Action:** [ Close Ticket / Escalate & Rotate Shared Secret / Migrate to RBAC ]
@@ -477,61 +487,60 @@ Get-ADUser -Identity nora.finance -Properties *: |
 
 In enterprise identity operations, your ticket notes are legal and security audit records. Below are the two mandatory templates you must master:
 
-#### Part A: Standard Account Lockout & Credential Triage Note (Example: Nora Higgins / INC-2026-1142)
+#### Part A: Password Expiration Triage Note (Example: Nora Higgins / INC0066916)
 
 ```text
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1142
+Ticket ID:        INC0066916
 Requester:        Nora Higgins (Finance Department)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
-Date/Time:        2026-10-21 08:52:14 PST
-Category:         Identity & Access Management / Account Lockout
-Status:           RESOLVED
+Date/Time:        2025-10-20 08:52:14 PDT
+Category:         Identity & Access Management / Password Expiration
+Status:           OPEN (manager enrollment pending)
 
 1. ISSUE SUMMARY:
-   User reported repeated Active Directory domain account lockouts immediately 
-   following quarterly password rotation. Unlocking via ADUC resulted in secondary 
-   lockout within five minutes without active user input.
+   User could not sign in or use self-service reset on Monday morning. She had 
+   tried her previous seasonal password three times. The reset portal refused 
+   her and asked for a 16-character password.
 
-2. ROOT CAUSE ANALYSIS & EVENT LOG TRIAGE:
-   - Queried Primary Domain Controller (dc01.harrowmere.local) Security Log.
-   - Identified Event ID 4740 (Account Lockout) for target user 'nhiggins'.
-   - Extracted Caller Computer Name: 'IPAD-NORA-FIN' (IP: 192.168.20.114).
-   - Correlated with Event ID 4625 (Logon Failure, SubStatus 0xC000006A - Bad Password, 
-     Logon Type 3 - Network).
-   - Root Cause: Corporate iPad running ActiveSync background mail synchronization 
-     held stale cached credentials following desktop password reset.
+2. ROOT CAUSE ANALYSIS:
+   - Queried account 'dpatel' in ADUC: pwdLastSet 91 days ago.
+   - Domain policy: maximum password age 90 days. The password had expired over 
+     the weekend, along with roughly two dozen other accounts on the same cycle.
+   - Self-service reset requires a compliant new password before it will issue 
+     a reset path. The user's habitual pattern (Spring2024!, Summer2024!) failed 
+     the length requirement and the banned-pattern list.
+   - No lockout source on the network: Event ID 4740 shows only the user's own 
+     three attempts from PORT-WS-FIN02.
 
 3. REMEDIATION PERFORMED:
-   - Contacted user; engaged Airplane Mode on IPAD-NORA-FIN to halt authentication storm.
-   - Updated cached corporate Exchange password in iPad Account Settings to current passphrase.
-   - Audited user desktop (PORT-WS-FIN02) Credential Manager; purged orphaned network drive tokens.
-   - Coached user on NIST SP 800-63B passphrase policy (16+ characters, 4-word semantic passphrase); 
-     discouraged seasonal rotation patterns ('Spring2026!').
-   - Cleared lockout flag in Active Directory Users and Computers (ADUC).
-   - Reconnected iPad to Wi-Fi; verified successful mail flow and zero Event 4625 failures.
+   - Verified identity by callback to the directory number.
+   - Walked the user through a four-word passphrase she will remember (16+ 
+     characters, not a quote she has posted publicly). Password changed.
+   - Explained why seasonal rotation patterns count as password reuse.
+   - Recommended the company password manager. User declined to install it 
+     during the call ("I have a close").
 
-4. SECURITY AUDIT & USER GUIDANCE:
-   Advised user that account lockouts are automated defenses against credential-guessing 
-   attacks. Reminded user to enroll pending enterprise password manager vault to eliminate 
-   manual credential synchronizations. Ticket closed.
+4. FOLLOW-UP:
+   Ticket left OPEN: password manager enrollment still pending. Recheck at 
+   next expiry notice.
 ================================================================================
 ```
 
-#### Part B: Phishing-Resistant MFA Enrollment & Security Escalation Note (Example: Ken Vance / INC-2026-1141)
+#### Part B: Phishing-Resistant MFA Enrollment & Security Escalation Note (Example: Todd Miller / INC0066915)
 
 ```text
 ================================================================================
 SECURITY ENROLLMENT & HARDENING NOTE - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1141
+Ticket ID:        INC0066915
 Requester:        Todd Miller (Sales Representative)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
-Date/Time:        2026-10-21 10:15:30 PST
+Date/Time:        2025-10-20 10:15:30 PDT
 Category:         Multi-Factor Authentication / Device Provisioning
 Status:           RESOLVED
 
@@ -583,79 +592,10 @@ Status:           RESOLVED
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 8.2: IDENTITY BOUNDARIES & OFFBOARDING ENFORCEMENT"
-badge: "Shift Epilogue"
-caption: "Operations floor: At 05:35 PM, the identity queue clears. Todd's phone displays a verified authenticator token, Dev's script runs cleanly against the vault, and offboarding revokes the last orphaned credentials."
-prompt: "Clean graphic novel cutaway panel of an IT support technician desk at late afternoon. Warm desk lamp light mixes with rainy window reflection. On the desk, an authenticator app shows a glowing security key verification symbol next to an Active Directory management console showing green status ticks. Ligne Claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-With Dev's caller computer identified and silenced in Event Viewer, we cleared the lockout in Active Directory and watched the bad password counter stay at zero. Dev updated his test script to pull credentials directly from the secrets vault, and his stand-up deployment cleared cleanly.
+This problem looks different from the lockout storm, but it works the same way. Use the worked example and your notes.
 
-Across the aisle, Ken was back at his desk, staring at his phone. "Sign in with company worked," he called over. "It bounced me through the push prompt, matched the two digits, and let me straight into the CRM. No SMS codes, no password plus PIN."
-
-"Told you," I said. "Two distinct factor types. Identification is claiming who you are; authentication is proving it."
-
-## Offboarding leftovers and the admin sticky
-
-Afternoon started with HR pinging offboarding for a contractor who had left Friday. Badge returned. Laptop wiped. Access had not followed.
-
-Jordan from IT ops shared a screen. The contractor still had a license on the design tool, a shared mailbox membership, and — Jules made a noise — a line in a wiki with a shared admin account password last rotated "sometime before the rebrand."
-
-"That is not a password," Jules said. "That is a campfire story."
-
-We treated it as a deprovisioning failure. Disable the cloud login. Pull group memberships. Kill the API token someone had minted "temporarily" in March. For the shared admin: move the secret into vaulting, rotate it, and stop pretending six people can share one identity and still have accounting that means anything.
-
-"Provisioning was fine on day one," Jordan said. "We created the account, put them in the contractor role, shipped the laptop. Day last is where we get sloppy."
-
-I opened a follow-up ticket to map the contractor role in [[rbac|RBAC]] so the next person inherited a bundle we could revoke in one motion — not a scavenger hunt across five admin consoles. Jules, still in the thread: "[[least_privilege|Least privilege]] on the way in. Same muscle on the way out."
-
-## Privileged shortcuts and break-glass myths
-
-Network dropped into the same thread. Jared — still proud of last week's SSH rewrite — wanted a standing domain admin for "closet emergencies."
-
-"I have a Pi at home that is basically god mode," he said. "At work I still type a normal user password and wait. If the IdP hiccups, how do we get in?"
-
-"Checkout, not a lifestyle," Jules said. "I've got a vendor call in ten. Walk him through PAM and then get off the thread."
-
-We walked the desk-level [[pam|PAM]] story without turning it into a product pitch: vault the break-glass path, do not laminate it. Break-glass exists for when MFA and IdP paths are actually down — sealed, monitored, painful on purpose. Day to day, Jared requests just-in-time elevation for the change window, does the work, loses the rights when the window closes. Authorization for admin actions should not be a permanent personality trait on his account. Privileged access is a checkout.
-
-Jared sighed. "Fine. I will stop naming shared accounts after the street food cart." He did not get the standing admin. He opened a change ticket for the next window instead.
-
-## SSO ticket: the app that wants its own password
-
-Late afternoon. Vendor portal for facilities. Title: *need password for EnergyDash*. Description: *IT please create a login.*
-
-I called. Dana — same truck as the FTP week — was between buildings.
-
-"The portal has a Sign in with company button," Dana said. "Also a Register. Register asked me for a new password. I made one. Now Finance says that is wrong."
-
-"[[sso|SSO]]," I said. "We do not want a snowflake password in EnergyDash if we can help it. Our IdP already authenticated you this morning. The portal should trust a federation assertion, not a new local account."
-
-"They said SAML on the implementation call," Dana offered. "Or OAuth. They used both words like synonyms."
-
-Jules, still on her vendor call, muted long enough to say, "Desk translation, Ethan," and unmuted again.
-
-"Federation means their app trusts our IdP. [[saml|SAML]] is the enterprise assertion pattern you will see on the wiki checklist. [[oauth|OAuth]] shows up when an app wants a token to call an API without eating your password — related paperwork, different shape. For this ticket, click Sign in with company, refuse Register, and if Register is the only path, we escalate — local passwords in vendor tools become reuse magnets and offboarding blind spots."
-
-Dana tapped something. "Sign in with company worked. It bounced me through the usual MFA push. I denied the first one because I forgot I had started it. Then I approved the second."
-
-"Good," I said. "Keep the local register button unemployed."
-
-## Passwordless rumor and the end of the shift
-
-Last ping was not a fire. It was a rumor. Someone in Slack asked when we would go passwordless so they could throw their password manager into the river.
-
-Jules typed one line between vendor questions: *security keys and device-bound passkeys are on the roadmap; throwing secrets into the river is not a migration plan.*
-
-I added the desk version for the person who would still call: passwordless replaces the knowledge factor with possession and biometrics wired through the IdP — it does not mean no proof. Until then, unique passwords in the manager, MFA that is actually multifactor, and no PIN cosplay.
-
-At 5:35 the queue was down to noise. Nora's vault was still pending. Todd was enrolled. The contractor was deprovisioned. EnergyDash was on SSO. Jared did not have standing god mode.
-
-Jules clipped her bike lights on. "Tomorrow someone will call password-plus-PIN multifactor again."
-
-"I already have the line," I said.
-
-She almost smiled. I locked the drawer. The cards in it were still about ports. Today's tickets had been about proof — who you claim to be, how you show it, and what we revoke when the story ends. I went out into the rain to catch the MAX.
+A service account locks out every Monday at 6 AM. A manager asks to replace MFA for her team with a password plus a security question. Find the lockout source and explain, in a reply with a date in it, why her request is not MFA.

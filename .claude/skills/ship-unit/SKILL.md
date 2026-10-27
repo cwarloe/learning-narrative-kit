@@ -8,7 +8,7 @@ allowed-tools: Bash(python3 tools/*) Bash(.venv/bin/python tools/*) Bash(git add
 ## Python to use
 
 ```!
-if [ -x .venv/bin/python ]; then echo ".venv/bin/python"; elif [ -x examples/secplus-ports-helpdesk/.venv/bin/python ]; then echo "examples/secplus-ports-helpdesk/.venv/bin/python"; else python3 -c "import yaml" 2>/dev/null && echo "python3 (PyYAML present)" || echo "NONE — create one: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt"; fi
+if [ -x .venv/bin/python ]; then echo ".venv/bin/python"; else python3 -c "import yaml" 2>/dev/null && echo "python3 (PyYAML present)" || echo "NONE — create one: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt"; fi
 ```
 
 Use whichever the line above names. The commands below write `python3`; substitute it.

@@ -237,9 +237,9 @@ EPISODE_DATA = {
 }
 
 def upgrade_workbench(ep_id, data):
-    wb_file = f"portland-desk/workbench/{ep_id}-*.md"
+    wb_file = f"docs/portland-desk/workbench/{ep_id}-*.md"
     import glob
-    matches = glob.glob(f"portland-desk/workbench/{ep_id}-*.md")
+    matches = glob.glob(f"docs/portland-desk/workbench/{ep_id}-*.md")
     if not matches:
         return False
     path = matches[0]
@@ -306,7 +306,7 @@ prompt: "{data['panel_prompt']}"
 
 def upgrade_narrative(ep_id, data):
     import glob
-    matches = glob.glob(f"portland-desk/narrative/{ep_id}-*.md")
+    matches = glob.glob(f"docs/portland-desk/narrative/{ep_id}-*.md")
     if not matches:
         return False
     path = matches[0]

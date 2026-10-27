@@ -12,7 +12,7 @@ on:
       - "tools/check_ep07_capture.py"
       - "tools/check_tools_index.py"
       - "tools/README.md"
-      - "portland-desk/**"
+      - "docs/portland-desk/**"
       - "docs/**"
       - "requirements.txt"
       - ".github/workflows/validate.yml"
@@ -55,6 +55,14 @@ jobs:
 
       - name: Episode 7 capture matches its drill
         run: python tools/check_ep07_capture.py
+
+      - name: Flashcard decks render (no HTML-as-code trap, lnk-deck fences well formed)
+        run: python tools/check_decks.py
+
+      - name: Exam 2 study cards are up to date with cards.yaml
+        run: |
+          python examples/itm310-exam2-cards/build_cards.py
+          git diff --exit-code -- examples/itm310-exam2-cards
 
   landing-page:
     runs-on: ubuntu-latest

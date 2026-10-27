@@ -11,7 +11,7 @@ Generates authentic Level 1 support datasets:
 Usage:
   python tools/generate_helpdesk_artifacts.py --generate
   python tools/generate_helpdesk_artifacts.py --verify
-  python tools/generate_helpdesk_artifacts.py --generate --verify --out-dir examples/secplus-ports-helpdesk/artifacts
+  python tools/generate_helpdesk_artifacts.py --generate --verify --out-dir archive/examples/secplus-ports-helpdesk/artifacts
 """
 
 from __future__ import annotations
@@ -28,7 +28,7 @@ import sys
 from typing import Any, Dict, List, Tuple
 
 
-DEFAULT_OUT_DIR = Path("examples/secplus-ports-helpdesk/artifacts")
+DEFAULT_OUT_DIR = Path("archive/examples/secplus-ports-helpdesk/artifacts")
 
 
 # ==============================================================================
@@ -38,8 +38,8 @@ DEFAULT_OUT_DIR = Path("examples/secplus-ports-helpdesk/artifacts")
 def get_simulated_tickets() -> List[Dict[str, Any]]:
     return [
         {
-            "ticket_id": "INC-2026-1041",
-            "requester_name": "Jared Vance",
+            "ticket_id": "INC0063140",
+            "requester_name": "Jared Lindqvist",
             "requester_email": "jvance@portland-ops.local",
             "department": "Network Operations",
             "priority": "P3 - Medium",
@@ -69,7 +69,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1042",
+            "ticket_id": "INC0063141",
             "requester_name": "Maya Lin",
             "requester_email": "mlin@portland-ops.local",
             "department": "Accounting",
@@ -100,9 +100,9 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1043",
-            "requester_name": "Dana Okafor",
-            "requester_email": "dana.okafor@premier-facilities.vendor",
+            "ticket_id": "INC0063142",
+            "requester_name": "Dale Okafor",
+            "requester_email": "dale.okafor@premier-facilities.vendor",
             "department": "Facilities Vendor",
             "priority": "P3 - Medium",
             "urgency": "Medium",
@@ -130,7 +130,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1044",
+            "ticket_id": "INC0063143",
             "requester_name": "Sam Kelly",
             "requester_email": "skelly.contractor@portland-ops.local",
             "department": "Finance (Contractor)",
@@ -160,8 +160,8 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1045",
-            "requester_name": "Lena Chen",
+            "ticket_id": "INC0063144",
+            "requester_name": "Bettina Szabo",
             "requester_email": "lchen@portland-ops.local",
             "department": "Legal",
             "priority": "P2 - High",
@@ -192,7 +192,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1046",
+            "ticket_id": "INC0063145",
             "requester_name": "Dee Washington",
             "requester_email": "dwashington@portland-ops.local",
             "department": "Network Operations",
@@ -220,7 +220,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1047",
+            "ticket_id": "INC0063146",
             "requester_name": "Marco Reyes",
             "requester_email": "mreyes@portland-ops.local",
             "department": "Field Engineering",
@@ -248,9 +248,9 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1048",
-            "requester_name": "Owen Miller",
-            "requester_email": "omiller@portland-ops.local",
+            "ticket_id": "INC0063147",
+            "requester_name": "Owen Castillo",
+            "requester_email": "ocastillo@portland-ops.local",
             "department": "Facilities Maintenance",
             "priority": "P3 - Medium",
             "urgency": "High",
@@ -277,7 +277,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1049",
+            "ticket_id": "INC0063148",
             "requester_name": "Leah Moreno",
             "requester_email": "lmoreno@portland-ops.local",
             "department": "Portland Plant Operations",
@@ -308,7 +308,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1050",
+            "ticket_id": "INC0063149",
             "requester_name": "Carlos Gomez",
             "requester_email": "cgomez@portland-ops.local",
             "department": "Warehouse / Shipping",
@@ -337,7 +337,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1051",
+            "ticket_id": "INC0063150",
             "requester_name": "Rachel Adams",
             "requester_email": "radams@portland-ops.local",
             "department": "Executive Office",
@@ -366,7 +366,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1052",
+            "ticket_id": "INC0063151",
             "requester_name": "David Kim",
             "requester_email": "dkim@portland-ops.local",
             "department": "Marketing",
@@ -395,7 +395,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1053",
+            "ticket_id": "INC0063152",
             "requester_name": "Sarah Jenkins",
             "requester_email": "sjenkins@portland-ops.local",
             "department": "Lobby Reception",
@@ -424,7 +424,7 @@ def get_simulated_tickets() -> List[Dict[str, Any]]:
             ),
         },
         {
-            "ticket_id": "INC-2026-1054",
+            "ticket_id": "INC0063153",
             "requester_name": "Tom Bradley",
             "requester_email": "tbradley@portland-ops.local",
             "department": "Procurement",

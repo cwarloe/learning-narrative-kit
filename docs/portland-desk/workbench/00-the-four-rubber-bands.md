@@ -1,6 +1,6 @@
 # Portland Desk Lab: The Beginner's Mental Model of a Computer
 
-> **The Situation:** Ethan's kitchen table in East Portland • 11:30 PM with $83 in checking  
+> **The Situation:** Ethan's kitchen table in East Portland • 11:30 PM with $41.16 in checking  
 > **Your Role:** Aspiring Technician (Pre-Helpdesk, Gresham Warehouse Associate)  
 > **The Objective:** Build the four physical computer building blocks (CPU, RAM, Storage, Network) and study triage reflexes so you stop guessing and start diagnosing.  
 > **Estimated Time:** 45–60 minutes • Self-paced • Zero prerequisites  
@@ -20,6 +20,20 @@
 
 ---
 
+## Worked Example: The night Ethan sorted his study cards
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** Ethan sorted a pile of mixed flashcards by asking one question of each: is this a fact to recall, or a mechanism to understand?
+
+1. Pull every card off the table so nothing is pre-sorted.
+2. Ask of each card whether it has moving parts. Pin counts and cable lengths do not, so they go to the red Passport Deck for speed drills.
+3. Group the mechanism cards by layer: what the hardware does, what the operating system does, and what the network does.
+4. Check yourself with live commands (`whoami`, `hostname`, `ipconfig`) so the model is tied to a real machine.
+5. Result: one small deck to drill fast and three mechanism stacks to understand slowly. He failed the first exam with 592, kept the system, and passed the second with 690.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,13 +45,13 @@ prompt: "Clean technical cutaway illustration in Pacific Northwest instructional
 
 
 ### The $500 Voucher Anxiety
-To an eighteen- or nineteen-year-old working an hourly retail, staging, or warehouse job, the CompTIA A+ certification is not an abstract professional milestone; it is an immense financial gamble. 
+To a twenty-year-old working an hourly retail, staging, or warehouse job, the CompTIA A+ certification is not an abstract professional milestone; it is an immense financial gamble. 
 
 The certification consists of two separate examinations:
 - **CompTIA A+ Core 1 (220-1101):** Hardware, mobile devices, networking technology, and virtualization ($246 retail voucher fee).
 - **CompTIA A+ Core 2 (220-1102):** Operating systems, security principles, software troubleshooting, and operational procedures ($246 retail voucher fee).
 
-Together, the two vouchers total **$492**. When your bank account holds less than one hundred dollars after paying rent, failing an exam does not mean scheduling a casual retake next Tuesday. It means forfeiting two weeks of food money, gas, or rent. 
+Together, the two vouchers total **$492**. When your bank account holds less than one hundred dollars after paying rent, failing an exam does not mean scheduling a casual retake next Tuesday. It means forfeiting two weeks of food money, gas, or rent.  <!-- date-ok: 'weeks' of money, not a date -->
 
 This financial terror produces a distinct cognitive pathology: **rote flashcard panic**. Stressed candidates purchase eight-hundred-page textbooks and try to memorize every noun, acronym, pin count, and cable specification as if preparing for a spelling bee. They drown in trivia—laser printer corona wires, DDR4 pinouts, and DVI connector variants—while failing to develop the mental models required to troubleshoot a machine in the real world.
 
@@ -76,30 +90,117 @@ The certification voucher buys an HR passport. But once you walk through the cor
 
 ## 2. Technical Reference & Triage Matrix
 
+<aside class="lnk-job-aid-card band-yellow form-4x6" id="slate-0-identity" role="region" aria-label="Reference Slate: The Core Machine & Identity Compass">
+  <div class="aid-header">
+    <div class="aid-rivet" aria-hidden="true"></div>
+    <div class="aid-meta">
+      <span class="aid-tag">IDENTITY & TRIAGE</span>
+      <span class="aid-id">4x6 SLATE 0</span>
+    </div>
+    <div class="aid-title">Slate 0: The Core Machine & Identity Compass</div>
+    <div class="aid-controls">
+      <button type="button" class="aid-tab-btn active" data-target="side-a" aria-pressed="true">Side A: Decision Flow</button>
+      <button type="button" class="aid-tab-btn" data-target="side-b" aria-pressed="false">Side B: Invariants & Ping Ladder</button>
+    </div>
+  </div>
+  <div class="aid-body">
+    <div class="aid-face side-a active">
+      <div style="font-weight: 700; color: #f59e0b; margin-bottom: 0.75rem; font-size: 0.95rem;">THE 5-STEP CORE TRIAGE DECISION LADDER</div>
+      <div class="triage-ladder-board">
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 1</div>
+          <div class="triage-step-check"><strong>Physical & Power (Layer 1):</strong> Chassis LEDs lit? Fans spinning? Relays clicking?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: Test 12V/5V PSU Rails (Green Band)</span></div>
+        </div>
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 2</div>
+          <div class="triage-step-check"><strong>System Integrity (POST):</strong> BIOS beeps? Video signal output? Clean POST banner?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: Reseat RAM / GPU & Drain Flea Power</span></div>
+        </div>
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 3</div>
+          <div class="triage-step-check"><strong>Storage Persistence (OS Boot):</strong> Kernel loads from non-volatile NVMe/SATA disk?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: Check BCD / SMART Disk Errors</span></div>
+        </div>
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 4</div>
+          <div class="triage-step-check"><strong>Network Identity (Layer 2/3):</strong> Valid IP lease or 169.254.x.x APIPA timeout?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: DHCP Scope Exhaustion / Link Down</span></div>
+        </div>
+        <div class="triage-step-card">
+          <div class="triage-step-num">STEP 5</div>
+          <div class="triage-step-check"><strong>Layer 3 Routing (Gateway):</strong> Can ping local Default Gateway vs remote WAN IP?</div>
+          <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: Default Gateway Down / ARP Mismatch</span></div>
+        </div>
+      </div>
+      <div style="font-size: 0.82rem; color: #94a3b8; font-style: italic; margin-top: 0.5rem;">Rule of the Wire: Always test the midpoint (Default Gateway) before assuming internet or DNS failure.</div>
+    </div>
+    <div class="aid-face side-b">
+      <div style="font-weight: 700; color: #f59e0b; margin-bottom: 0.75rem; font-size: 0.95rem;">SUBSYSTEM VOLATILITY & COMMAND PRIMITIVES</div>
+      <table style="margin-bottom: 1rem;">
+        <thead>
+          <tr><th>Subsystem</th><th>Medium</th><th>Volatility</th><th>Failure Tell</th><th>Primary CLI Telemetry</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>1. Compute (CPU)</strong></td><td>Silicon ALU / Registers</td><td><strong style="color: #f87171;">Volatile</strong></td><td>Thermal halt, POST 00/FF</td><td><code>wmic cpu get status</code></td></tr>
+          <tr><td><strong>2. Memory (RAM)</strong></td><td>DRAM Cells</td><td><strong style="color: #f87171;">Volatile</strong></td><td>BSOD MEMORY_MGMT, beeps</td><td><code>wmic memorychip get speed</code></td></tr>
+          <tr><td><strong>3. Storage (Disk)</strong></td><td>NAND Flash / HDD</td><td><strong style="color: #34d399;">Non-Volatile</strong></td><td>OS Not Found, SMART errors</td><td><code>diskmgmt.msc / chkdsk</code></td></tr>
+          <tr><td><strong>4. Network (NIC)</strong></td><td>Ethernet PHY / MAC</td><td><strong style="color: #fbbf24;">Mixed</strong></td><td>APIPA 169.254.x.x, dark LEDs</td><td><code>ipconfig /all & getmac</code></td></tr>
+        </tbody>
+      </table>
+      <div style="background: #0b1120; border: 1px solid #1e293b; border-radius: 6px; padding: 0.75rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">
+        <span style="color: #38bdf8; font-weight: 700;">THE 5-STEP PING LADDER:</span><br/>
+        1. <code>ping 127.0.0.1</code> — Verifies local TCP/IP kernel stack (tcpip.sys)<br/>
+        2. <code>ping &lt;Host_IP&gt;</code> — Verifies local NIC driver binding<br/>
+        3. <code>ping &lt;Gateway_IP&gt;</code> — Verifies physical cable/switch link to local router<br/>
+        4. <code>ping 8.8.8.8</code> — Verifies WAN routing and internet transit<br/>
+        5. <code>ping google.com</code> — Verifies DNS name resolution
+      </div>
+    </div>
+  </div>
+  <div class="aid-footer">
+    <span class="aid-scale-badge">STANDARDIZED 4x6 PACKING-TAPE LAMINATED SLATE</span>
+    <button type="button" class="aid-print-btn" onclick="window.print()">Print Laminate</button>
+  </div>
+</aside>
+
+
 ### 2.1 The 4 Core Building Blocks of a Computer
 Across microcontrollers, smartphones, enterprise servers, and industrial sorting terminals, all von Neumann digital computers consist of four immutable subsystems:
 
-```mermaid
-flowchart TD
-    subgraph ComputerChassis["Computer Chassis (Motherboard Interconnect)"]
-        CPU["1. COMPUTE (CPU)<br/>Registers • ALU • Control Unit<br/>Executes Instructions"]
-        RAM["2. VOLATILE MEMORY (RAM)<br/>DDR4 / DDR5 DRAM<br/>Requires Continuous Power"]
-        DISK["3. NON-VOLATILE STORAGE<br/>NVMe SSD / SATA HDD / Flash<br/>Retains Data Power-Off"]
-        NIC["4. COMMUNICATION (NIC)<br/>Layer 1 PHY Transceiver • Layer 2 MAC<br/>Serializes Bits onto Media"]
-        
-        CPU <-->|"High-Speed Memory Bus"| RAM
-        CPU <-->|"PCIe / Direct Bus"| DISK
-        CPU <-->|"PCIe / USB System Bus"| NIC
-    end
-    
-    EXT["Network Cable / Wi-Fi Media"] <--> NIC
-    FIRM["Firmware ROM (BIOS / UEFI)<br/>Executes POST Pulse-Check"] -.->|"Initial Bootstrap"| CPU
+<div class="hardware-architecture-grid">
+  <div class="hardware-card card-cpu">
+    <span class="hardware-card-badge">COMPUTE // SUB-01</span>
+    <div class="hardware-card-title">1. CPU (Central Processing Unit)</div>
+    <div class="hardware-card-volatility vol-volatile">VOLATILE (Zeroed upon Power Loss)</div>
+    <div class="hardware-card-desc">ALU, registers, and execution units. Fetches opcodes from RAM and manipulates mathematical state. If CPU thermal limits trip (>95°C), firmware halts power abruptly.</div>
+    <div class="hardware-card-telemetry">CLI: <code>wmic cpu get status</code></div>
+  </div>
 
-    style CPU fill:#2b6cb0,stroke:#2d3748,color:#fff
-    style RAM fill:#c53030,stroke:#2d3748,color:#fff
-    style DISK fill:#2f855a,stroke:#2d3748,color:#fff
-    style NIC fill:#d69e2e,stroke:#2d3748,color:#fff
-```
+  <div class="hardware-card card-ram">
+    <span class="hardware-card-badge">MEMORY // SUB-02</span>
+    <div class="hardware-card-title">2. RAM (Volatile Memory)</div>
+    <div class="hardware-card-volatility vol-volatile">VOLATILE (Requires Continuous 64ms Refresh)</div>
+    <div class="hardware-card-desc">High-speed dynamic scratchpad for running code, OS kernel tables, and active network sockets. Cutting electrical power purges all in-memory processes immediately.</div>
+    <div class="hardware-card-telemetry">CLI: <code>wmic memorychip get speed</code></div>
+  </div>
+
+  <div class="hardware-card card-storage">
+    <span class="hardware-card-badge">PERSISTENCE // SUB-03</span>
+    <div class="hardware-card-title">3. Storage (Non-Volatile Disk)</div>
+    <div class="hardware-card-volatility vol-nonvolatile">NON-VOLATILE (Persists Permanently)</div>
+    <div class="hardware-card-desc">NVMe SSD / SATA HDD containing the bootloader, kernel binaries, file systems, and malware payloads. Survives across reboots and power outages intact.</div>
+    <div class="hardware-card-telemetry">CLI: <code>diskmgmt.msc / chkdsk</code></div>
+  </div>
+
+  <div class="hardware-card card-nic">
+    <span class="hardware-card-badge">COMMUNICATION // SUB-04</span>
+    <div class="hardware-card-title">4. NIC (Network Interface)</div>
+    <div class="hardware-card-volatility vol-mixed">MIXED (Firmware MAC Persists)</div>
+    <div class="hardware-card-desc">Layer 1 physical transceiver & Layer 2 MAC controller. Serializes digital bits onto physical media. Configured dynamically via DHCP or assigned static IP envelopes.</div>
+    <div class="hardware-card-telemetry">CLI: <code>ipconfig /all & getmac</code></div>
+  </div>
+</div>
 
 #### Detailed Subsystem Matrix
 
@@ -208,8 +309,8 @@ Ethernet adapter Local Area Connection:
    DHCP Enabled. . . . . . . . . . . : Yes
    IPv4 Address. . . . . . . . . . . : 192.168.10.45       <-- Layer 3 IP Address
    Subnet Mask . . . . . . . . . . . : 255.255.255.0       <-- Defines Local Subnet
-   Lease Obtained. . . . . . . . . . : Thursday, July 16, 2026 07:15:22 AM
-   Lease Expires . . . . . . . . . . : Friday, July 17, 2026 07:15:22 AM
+   Lease Obtained. . . . . . . . . . : Thursday, July 27, 2023 07:15:22 AM
+   Lease Expires . . . . . . . . . . : Friday, July 28, 2023 07:15:22 AM
    Default Gateway . . . . . . . . . : 192.168.10.1        <-- Route out of Subnet
    DHCP Server . . . . . . . . . . . : 192.168.10.254
    DNS Servers . . . . . . . . . . . : 192.168.10.2
@@ -268,7 +369,11 @@ Ethernet adapter Local Area Connection:
 
 ## 3. Quick Checks & Skill Reps
 
-### Drill 1: Volatile vs. Non-Volatile Artifact Isolation
+> **All practice cases.** Ethan's chapter is a study night at the kitchen table, not a ticket. Every case in this section is a practice case that uses the mental model he built that night.
+
+### Drill 1 (practice case): The Panic Power Cut
+
+> **Ticket Drop:** `INC0048192` • Priority: P2-High • Subsystem: Component 2 (Memory) vs Component 3 (Storage)
 **Scenario:** A user reports that their computer opened an unauthorized browser popup at 09:15 AM claiming their files were encrypted. The desktop background changed to a red warning screen. The user panicked, pulled the physical power cord from the wall outlet, and walked the tower down to the help desk.
 
 ```
@@ -296,7 +401,7 @@ Ethernet adapter Local Area Connection:
 2. What vital forensic artifacts were permanently destroyed by cutting power immediately?
 3. What will happen the moment you plug the power cable back in and power on the computer?
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Analysis 1 (Persistence vs Memory):** Pulling the plug **did not eradicate the infection**. It only cleared the volatile memory (RAM). The malware dropper almost certainly established non-volatile persistence on disk (e.g., in `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`, a Scheduled Task, or a Windows Service).
@@ -308,7 +413,7 @@ Ethernet adapter Local Area Connection:
 
 ---
 
-### Drill 2: Layer 2 vs. Layer 3 Identity (Local vs. Gateway Traffic)
+### Drill 2 (practice case): Layer 2 vs. Layer 3 Identity (Local vs. Gateway Traffic)
 **Scenario:** Examine the network configuration of Workstation A and determine how it transmits data to two different destination IP addresses:
 
 ```
@@ -346,7 +451,7 @@ For Workstation A ($192.168.10.45 \land 255.255.255.0$):
 - Does traffic cross the Default Gateway?
 - What destination MAC address appears in the Layer 2 Ethernet frame?
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Destination 1 (Local Host B):**
@@ -397,9 +502,13 @@ ping 127.0.0.1: |
   Pinging 127.0.0.1 with 32 bytes of data:
   Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
   Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
+  Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
+  Reply from 127.0.0.1: bytes=32 time<1ms TTL=128
   
   Ping statistics for 127.0.0.1:
-      Packets: Sent = 2, Received = 2, Lost = 0 (0% loss)
+      Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+  Approximate round trip times in milli-seconds:
+      Minimum = 0ms, Maximum = 0ms, Average = 0ms
   [OK] Internal TCP/IP loopback stack is healthy.
 
 ipconfig: |
@@ -417,6 +526,8 @@ ipconfig: |
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 *Strict Protocol:* Do not expand the verification box until you have written down your predicted failure layer, expected command output, and root cause hypothesis.
 <div class="scratchpad-container">
@@ -438,7 +549,7 @@ ipconfig: |
 - **Symptom:** A desktop workstation was unplugged and moved across an office floor. When connected to power and turned on, the chassis fans spin loudly, the power LED turns on, but the monitor displays "No Signal" and the motherboard emits **one long beep followed by two short beeps**.
 - **Your Task:** Identify which of the 4 core components has failed, determine the layer of failure, and specify the physical action required before replacing any components.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 2/3 (Memory or Video Expansion Bus / Layer 1 Physical).
@@ -458,7 +569,7 @@ ipconfig: |
   ```
 - **Your Task:** Explain why this specific IP address exists, identify which network service has failed, and formulate a testable diagnostic test.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 4 (Network Communication / Layer 3 Logical Addressing).
@@ -470,11 +581,13 @@ ipconfig: |
 
 ---
 
-#### Case 3: Local Network Functional, Internet Down
+#### Case 3: Edge-Case Trap (Incident 00.3 / Ticket C) — Local Network Functional, Internet Down
+
+> **Ticket Drop:** `INC0048193` • Priority: P3-Normal • Subsystem: Component 4 (Communication / Layer 3 Routing)
 - **Symptom:** A user can print to the shared office network printer at `192.168.1.200` and can ping their desk neighbor at `192.168.1.55`. However, attempting to navigate to `google.com` or pinging `8.8.8.8` returns "Destination host unreachable."
 - **Your Task:** Isolate the exact network configuration parameter responsible using the Identity Triad.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 4 (Communication / Layer 3 Routing).
@@ -490,7 +603,7 @@ ipconfig: |
 - **Symptom:** A computer boots cleanly into Windows, runs fine for roughly 12 to 15 minutes, and then abruptly powers off or freezes solid with no blue screen error. Touching the top of the chassis near the exhaust fan reveals intense heat.
 - **Your Task:** Distinguish between a software operating system crash and a physical hardware fault. State which component is failing.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 1 (Compute / CPU Physical Thermals).
@@ -506,7 +619,7 @@ ipconfig: |
 - **Symptom:** A developer installs an internal testing web server on a support workstation. The service fails to start, displaying the error: `System Error: Bind() failed on 0.0.0.0:80. Address already in use.`
 - **Your Task:** Explain what "0.0.0.0:80" means in terms of Layer 4 architecture, and name the exact command used to find the conflicting program.
 
-<details>
+<details class="cbyt-gate">
 <summary>Prediction & Verification (Click to Expand)</summary>
 
 - **Failed Component / Layer:** Component 4 / Layer 4 (Transport / Socket Port Binding).
@@ -517,6 +630,38 @@ ipconfig: |
   ```
   This command displays the listening socket and outputs the owning **Process Identifier (PID)** in the rightmost column. You can then cross-reference the PID in Task Manager or execute `tasklist /fi "PID eq <number>"` to identify and stop the conflicting service.
 </details>
+
+
+---
+
+### Quick Check 4: The Red Band Passport Deck (Atomic Active Retrieval)
+
+> **The Red Rubber Band Standard:** Test only one abstract concept per card. If saying the answer aloud takes more than 10 seconds, the card is overloaded. Click any card to flip between Question and Answer.
+
+```lnk-deck
+title: RED BAND // ATOMIC RECALL DECK
+meta: Spaced Retrieval Warmup • CompTIA A+ Core 1
+size: 3x5
+band: red
+---
+tag: BOUNDARY // VOLATILITY
+Q: Power cuts abruptly during an office outage. Does data in RAM survive the drop? (Yes/No and Why)
+back_tag: GROUND TRUTH // THE LAW
+A: NO. Dynamic RAM is 100% volatile.
+why: DRAM stores bits as electrical charges inside capacitor cells that require refresh cycles every 64ms. The instant power drops, charge dissipates immediately, purging all processes, kernel tables, and in-memory malware.
+---
+tag: BOUNDARY // LOGICAL LOOPBACK
+Q: You run `ping 127.0.0.1` and get 4 successful replies. Does this prove your physical network cable is working? (Yes/No and Why)
+back_tag: GROUND TRUTH // THE LAW
+A: NO. Loopback tests only internal TCP/IP software.
+why: The loopback address (127.0.0.1) never sends electrical pulses to the network card PHY or physical Ethernet cable. It routes internally inside Windows kernel memory (tcpip.sys) to confirm the driver stack is initialized.
+---
+tag: DIAGNOSTIC // HARDWARE TELL
+Q: A moved workstation turns on, fans spin loudly, but monitor shows "No Signal" and BIOS emits 1 long beep + 2 short beeps. What failed?
+back_tag: GROUND TRUTH // THE LAW
+A: Display Adapter (GPU) or Memory initialization failure.
+why: POST beep codes indicate hardware failure before the video subsystem can initialize. Physical desk shock causes unlatched PCIe cards or RAM sticks to unseat. Immediate fix: drain flea power and firmly reseat components.
+```
 
 
 ---
@@ -558,8 +703,8 @@ Use this standardized intake checklist when logging and triaging your first live
 ========================================================================================
 FIRST-CONTACT DIAGNOSTIC INTAKE WORKSHEET · TIER 1 SUPPORT
 ========================================================================================
-TICKET REF   : T1-INIT-2026-001             DATE/TIME : 2026-07-16 09:30 PDT
-TECHNICIAN   : Ethan Mercer                 STATUS    : UNDER INVESTIGATION
+TICKET REF   : INC0048191                   DATE/TIME : 2023-07-27 09:30 PDT
+TECHNICIAN   : ____________________________ STATUS    : UNDER INVESTIGATION
 USER NAME    : ____________________________ ASSET TAG : _______________________________
 
 1. SUBSYSTEM ISOLATION (Which core component is failing?):
@@ -596,7 +741,73 @@ USER NAME    : ____________________________ ASSET TAG : ________________________
 
 ---
 
-### Part C: Scoring & Passing Standards
+### Part C (practice case): Standard 3-Block Ticket Resolution Note
+
+Before closing Incident `INC0048192`, draft the formal 3-Block passdown note separating internal technician telemetry from user-facing guidance:
+
+```
+========================================================================================
+ENTERPRISE INCIDENT RESOLUTION RECORD · SERVICE DESK TIER 1
+========================================================================================
+INCIDENT ID   : INC0048192
+ASSET TAG     : ACCT-WS-09 (Dell OptiPlex 7090)
+CALLER        : Practice caller (Accounting Supervisor)
+CATEGORY      : Endpoint Security > Malware Containment & Volatility Triage
+PRIORITY      : P2 - High (Financial workstation suspected compromise)
+STATUS        : RESOLVED / PENDING SOC REVIEW
+
+----------------------------------------------------------------------------------------
+BLOCK 1: INTERNAL WORK NOTES (TECHNICAL TELEMETRY LEDGER)
+----------------------------------------------------------------------------------------
+- 09:20 PDT: User reported ransomware lock screen popup; user severed AC wall power cord.
+- Ground Truth Diagnosis (Slate 0 Volatility Rule):
+  * Volatile memory space (RAM): Purged upon power cut. Active process execution, unwritten
+    encryption keys, and C2 network sockets permanently lost.
+  * Non-volatile storage space (NVMe SSD): Intact. Dropped payload in %AppData% and
+    malicious Registry Run keys persist on disk.
+- Containment Action:
+  * Disconnected RJ-45 Ethernet cable prior to powering on system.
+  * Booted host into isolated offline WinPE environment to verify persistence entries.
+  * Located dropper artifact: C:\Users\mlin\AppData\Local\Temp\invoice_update.exe
+  * Exported SHA-256 hash to CSIRT triage channel: e3b0c44298fc1c149afbf4c8996fb92427...
+- Verification: Host rebooted cleanly in safe isolation; network link maintained down
+  pending SOC endpoint scan completion.
+
+----------------------------------------------------------------------------------------
+BLOCK 2: CUSTOMER / SHIFT PASSDOWN SUMMARY
+----------------------------------------------------------------------------------------
+- Operational Impact: Workstation ACCT-WS-09 was safely quarantined following a deceptive
+  phishing popup. No file encryption occurred across shared department drives.
+- Action Taken: Technician isolated the workstation from the network, verified disk
+  integrity, and referred the malicious download artifact to Information Security.
+- Next Steps: Loaner laptop LAP-T1-04 provisioned for the caller to complete morning payroll.
+  Primary workstation undergoing secondary EDR sweep before return to service.
+
+----------------------------------------------------------------------------------------
+BLOCK 3: LEAD TECHNICIAN SIGN-OFF
+----------------------------------------------------------------------------------------
+LEAD SIGN-OFF : Desk Lead (practice sign-off)          DATE: 2023-07-27 11:15 PDT
+DISPOSITION   : APPROVED · Clean isolation; no premature network reconnection.
+========================================================================================
+```
+
+
+---
+
+## 5. What Good Looks Like (Shift Quality Checklist)
+
+Before closing your intake checklist and logging your initial ticket notes, verify your performance against the Portland Desk Shift Quality Standard:
+
+### Shift Quality Checklist
+* [ ] **Physical Layer Verification:** Power rails, link carrier LEDs, and hardware integrity confirmed before software changes.
+* [ ] **Identity Triad Isolated:** MAC address, IP address, and port number cleanly distinguished in diagnostic notes.
+* [ ] **CBYT Hypothesis Formulated:** Testable failure theory committed to writing before issuing commands or touching hardware.
+* [ ] **Sequential Ping Ladder:** Diagnostic pings executed in strict hierarchy (Loopback $\rightarrow$ Local Host $\rightarrow$ Default Gateway $\rightarrow$ Remote IP $\rightarrow$ DNS Hostname).
+* [ ] **Actionable User Guidance:** Root cause communicated without jargon, and preventative advice documented in ticket closure notes.
+
+---
+
+### Shift Grading Rubric
 
 Use this objective scoring guide to evaluate entry-level diagnostic performance across four core competencies:
 
@@ -607,3 +818,13 @@ Use this objective scoring guide to evaluate entry-level diagnostic performance 
 | **3. Command Telemetry Literacy** | **25** | Correctly interprets outputs from `whoami`, `hostname`, `ipconfig /all`, and `netstat`; identifies an APIPA address (`169.254.x.x`) as a DHCP failure. | Runs command-line tools but requires assistance interpreting subnet masks or process identifier (PID) outputs. | Relies solely on GUI menus; cannot interpret command-line network configuration outputs. |
 | **4. Diagnostic Discipline (CBYT)** | **25** | Formulates a clear, testable prediction before altering any hardware or software setting; follows the structured 5-step ping ladder sequentially. | Troubleshoots methodically but occasionally reboots or alters configurations without stating a hypothesis. | Clicks random settings, reboots frantically, or replaces hardware components without testing. |
 | **TOTAL** | **100** | **Passing Score: 85 Points or higher** | | |
+
+---
+
+---
+
+## 6. Transfer Problem
+
+This problem looks different from the night Ethan sorted his study cards, but it works the same way. Use the worked example and your notes.
+
+A coworker sends you forty notes for the Network+ exam: port numbers, the OSI layers, how DHCP leases work, cable categories, and how a switch learns MAC addresses. Sort them the way Ethan did. Which cards are pure recall, and which describe a mechanism you should be able to explain? For two mechanism cards, write the one live command you would run to see the mechanism on a real machine.

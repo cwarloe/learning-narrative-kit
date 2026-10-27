@@ -21,16 +21,19 @@ Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_to
 | `check_tools_index.py` | This index lists every script in `tools/` (CI, warning only) | this section |
 | `author.py` | Authoring bookkeeping: brief → plan → review → status | below |
 | `voice_check.py` | Machine-prose tells; a reading aid, not a gate | below |
-| `_track.py`, `_unit_page_template.py` | Modules imported by the renderers; not run directly | — |
+| `check_decks.py` | Flashcard decks: no indented HTML that Docsify shows as a code block, and every ```` ```lnk-deck ```` fence well formed (CI) | `AGENTS.md` |
+| `check_dates.py` | Portland Desk months, seasons, weekdays, incident IDs and desk tenure match `PORTLAND_TIMELINE.md`; run before merge | `AGENTS.md` |
+| `check_cleanliness.py` | Strict lint: fails on any emoji or listed AI-slop marker in learner-facing files. Not in CI | — |
+| `_track.py`, `_unit_page_template.py`, `_deck.py` | Modules imported by the renderers (`_deck.py` parses `lnk-deck` fences for `render_unit.py`); not run directly | — |
 
 ### Generators (safe to rerun; they rebuild output from a source)
 
 | Script | Source → output |
 |---|---|
-| `generate_ep07_telnet_capture.py` | Drill table → `portland-desk/artifacts/jared-telnet-capture.pcap` (needs `pip install scapy`; deterministic). Then copy to `docs/portland-desk/` and run `check_ep07_capture.py`. |
+| `generate_ep07_telnet_capture.py` | Drill table → `docs/portland-desk/artifacts/jared-telnet-capture.pcap` (needs `pip install scapy`; deterministic). Then run `check_ep07_capture.py`. |
 | `generate_helpdesk_artifacts.py` | Built-in data → ticket queue, terminal dumps, event logs, email headers (`--generate`, `--verify`, `--out-dir`) |
-| `build_portland_glossary.py` | `portland-desk/assets/glossary.json` → `portland-desk/glossary.md` and `docs/portland-desk/glossary.md` |
-| `find_bad_tables.py` | Read-only: lists Markdown tables under `portland-desk/` with text directly above the header row (breaks GFM rendering). Run from the repo root. |
+| `build_portland_glossary.py` | `docs/portland-desk/assets/glossary.json` → `docs/portland-desk/glossary.md` |
+| `find_bad_tables.py` | Read-only: lists Markdown tables under `docs/portland-desk/` with text directly above the header row (breaks GFM rendering). Run from the repo root. |
 | `sync_agy_chats.py` | Not a content tool: exports/imports Antigravity chat history between machines. Root `sync_agy_chats.py` is a wrapper for it. |
 
 ### One-shot edits (history only; do not rerun)
@@ -51,6 +54,10 @@ These scripts each made one pass over Portland Desk content and are kept as a re
 | `clean_vocab_density.py` | Unmarked everyday terms (`[[id\|text]]` → `text`) in Portland narratives | no |
 | `fix_dummy_links.py` | Replaced placeholder `[text](#)` links with plain text in `portland-desk/` and `docs/portland-desk/` | no |
 | `update_index_glossary.py` | Patched the Portland Desk `index.html` pages so terms link to the Master Glossary | no |
+| `sprint1_fixes.py` | Sprint 1 text fixes in narratives 08–11 | yes |
+| `sprint1_workbench_fixes.py` | Sprint 1 fixes in workbenches 00, 01, 08, 10, 11 and `artifacts/powershell_event_4104.json` | yes |
+| `sprint2_fixes.py` | Sprint 2 terminal blocks in workbenches 02, 08, 10, 11, 12 and narrative 12 | yes |
+| `publish_mockup.py`, `publish_handcrafted.py` | Copied `scratch/comic_card_mockup.html` and `scratch/handcrafted_cards_mockup.html` into `docs/` for a Pages preview | yes |
 
 New one-off edit scripts are better kept out of `tools/` (run them, commit the content change, and describe the script in the commit message). If one is committed, add it to this table.
 
@@ -98,7 +105,7 @@ Markdown/YAML remain source of truth; never hand-edit generated HTML under `docs
 cd workshop/<job>/preview && python3 -m http.server 8000   # then open /<unit_id>/
 ```
 
-Local wrapper: `examples/secplus-ports-helpdesk/build_preview.py` calls this and also writes a gitignored scratch HTML next to the unit.
+The old local wrapper `build_preview.py` was archived with the Security+ shorts (`archive/examples/secplus-ports-helpdesk/`).
 
 ## `render_track.py`
 

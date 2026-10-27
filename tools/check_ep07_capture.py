@@ -2,13 +2,12 @@
 """Check that Episode 7, Drill 1 and its packet capture still agree.
 
 The drill prints frames 101-137 of a capture as a text table and gives the two
-passwords in its answer key. portland-desk/artifacts/jared-telnet-capture.pcap is
+passwords in its answer key. docs/portland-desk/artifacts/jared-telnet-capture.pcap is
 the real file behind that table. This script fails if any of these drift apart:
 
   1. the capture's Telnet session (TCP port 23) is not exactly frames 101-137
   2. a frame's source, destination, clock time or payload differs from the table
   3. the keystrokes in the capture do not spell the passwords in the answer key
-  4. the docs/portland-desk mirror differs from portland-desk (capture or workbench)
 
 No third-party packages and no tshark: it reads the classic .pcap format directly.
 
@@ -21,9 +20,8 @@ import struct
 import sys
 
 ROOT = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else pathlib.Path(__file__).resolve().parent.parent
-PCAP = "portland-desk/artifacts/jared-telnet-capture.pcap"
-WORKBENCH = "portland-desk/workbench/07-the-port-that-is-open.md"
-MIRRORED = [PCAP, WORKBENCH]
+PCAP = "docs/portland-desk/artifacts/jared-telnet-capture.pcap"
+WORKBENCH = "docs/portland-desk/workbench/07-the-port-that-is-open.md"
 
 
 def read_pcap(path):
@@ -115,18 +113,13 @@ def main():
             problems.append(f"answer key {key} password {m[1]!r} is not spelled by the capture's keystrokes")
 
     # 4. the published mirror is identical
-    for rel in MIRRORED:
-        a, b = ROOT / rel, ROOT / rel.replace("portland-desk/", "docs/portland-desk/", 1)
-        if not b.exists() or a.read_bytes() != b.read_bytes():
-            problems.append(f"{b.relative_to(ROOT)} differs from {rel}")
-
     if problems:
         print("Episode 7 capture check FAILED:")
         for p in problems:
             print("  -", p)
         return 1
     print(f"Episode 7 capture OK: {len(frames)} frames; Telnet frames {min(session)}-{max(session)} "
-          f"match the drill table ({len(table)} rows); answer-key passwords match the keystrokes; mirror identical.")
+          f"match the drill table ({len(table)} rows); answer-key passwords match the keystrokes.")
     return 0
 
 

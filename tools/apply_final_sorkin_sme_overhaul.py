@@ -5,7 +5,7 @@
 3. Episode 05: Fix TCP teardown terminology, cut Ethan answer-key lecture, and vary ending.
 4. Episode 07: Fix Cisco SSH privilege 15 / enable bypass, and vary ending.
 5. Episode 11: Clarify deauthentication vs disassociation frames.
-Mirrors all changes between portland-desk/ and docs/portland-desk/.
+Mirrors all changes between docs/portland-desk/ and docs/portland-desk/.
 """
 
 from pathlib import Path

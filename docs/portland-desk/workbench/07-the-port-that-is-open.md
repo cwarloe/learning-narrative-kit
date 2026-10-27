@@ -20,6 +20,20 @@
 
 ---
 
+## Worked Example: The open-port queue
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** A scan showed RDP, LDAP, FTP, Telnet, and SNMP `public` in use, and Sam, a contractor on the road, asked for 3389 to the internet.
+
+1. For each request, name the port and ask what it exposes in clear text.
+2. Show the risk with a capture. Jared's Telnet password scrolled past.
+3. Swap each protocol for its secure twin: VPN plus a jump host for RDP, LDAPS on 636, SFTP, SSH, and SNMPv3.
+4. Where a device cannot run the secure twin, isolate it on a management VLAN behind a jump host.
+5. Result: a narrow firewall rule, six old switches patched around instead of fixed, and a Saturday outage when the jump host rebooted.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,19 +45,14 @@ prompt: "Clean technical schematic of a corporate network perimeter under bright
 
 
 ### The Situation
-It is 08:30 on a rain-soaked Tuesday morning on the east side of Portland. You are three weeks into your role on the Portland service desk. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet slung over her monitor arm, sipping black coffee. On the edge of her screen is a faded yellow sticky note:
+It is a Tuesday in August, and Ethan has been on the Portland desk for a year. The queue is full of people carrying habits from somewhere else. Jared's switch script still speaks Telnet. Sam, a contractor traveling for a client, wants RDP on 3389 opened to the internet. Dale Okafor, a facilities vendor engineer, wants FTP on 21 for an appliance. Legal's tool binds to cleartext LDAP on 389. Leah Moreno at the Willamette River plant wants telemetry across the perimeter, and HR's benefits portal still loads over HTTP.
 
-$$\boxed{\textbf{Which decision?}}$$
-
-Ethan’s desk drawer is packed with port flashcards—`22`, `23`, `25`, `80`, `110`, `143`, `443`, `993`, `995`. But as Jules made clear before the first sip of coffee:
-> *"Memorizing the numbers gets you past a multiple-choice flashcard. It does not save you on the phone when an engineer wants port 23 opened, an accountant is locked out of her email on hotel Wi-Fi, or plant operations wants raw Modbus routed across a public WAN. On this desk, a port request is never just a number—it is a security decision."*
-
-The morning queue has 14 incoming tickets. Users and department heads are demanding quick firewall exceptions, legacy scripts are failing against hardened closet switches, and contractors want Remote Desktop open directly to the internet.
+This lab follows those requests. For each one, name the port, name what crosses the wire in clear text, and offer the secure twin.
 
 ### The Ground Truth Rules of the Desk
 1. **Ports are Doors, Protocols are Languages:** Opening a port allows traffic to reach a listening daemon. If that protocol speaks cleartext, any intermediary on the path (an attacker on guest Wi-Fi, a compromised switch span port, an ISP tap) can harvest passwords, session tokens, and business data without triggering alarms.
 2. **Never Open Management Ports to the Public Internet:** Raw management ports—RDP (3389), Telnet (23), SMB (445), SSH (22)—must never be reachable from the external WAN. Remote administrative access requires an encrypted tunnel (**VPN**) terminating at an internal concentrator, followed by access restricted to a hardened **Jump Host**.
-3. **Availability Never Excuses Cleartext in Transit:** When an appliance or remote facility (such as Leah Moreno's telemetry loggers in Portland plant operations) cannot establish a secure session natively, we do not downgrade the enterprise perimeter to cleartext. We encapsulate, proxy, or isolate on a dedicated staging network.
+3. **Availability Never Excuses Cleartext in Transit:** When an appliance or remote facility (such as Leah's telemetry loggers in Portland plant operations) cannot establish a secure session natively, we do not downgrade the enterprise perimeter to cleartext. We encapsulate, proxy, or isolate on a dedicated staging network.
 4. **Client Submission $\neq$ Server Relay:** Mail clients must never send mail on port 25. Port 25 is unauthenticated server-to-server relay. End-user mail submission must use **Submission (Port 587 with STARTTLS)** or **SMTPS (Port 465 with implicit TLS)**.
 
 
@@ -95,7 +104,7 @@ flowchart TD
 ### Drill 1: The Cleartext Telnet Trap (Packet Capture Analysis)
 
 #### The Scenario
-Jared Vance from Network Operations filed ticket **`INC-2026-1041`**. His legacy configuration script failed against switch `10.0.4.15` in Building C because port 23 was refused. He claims: *"I've used this script for ten years. Telnet is fine—it's inside our building on the wired management VLAN. Just open 23 for ten minutes so I can fix the trunk VLAN."*
+Jared from Network Operations filed ticket **`INC0063140`**. A switch in a Building C closet (`10.0.4.15`) has a VLAN set wrong, and his old configuration script expects Telnet. He says: *"I Telnet in, type the enable password, fix the VLAN, hang up. Ten minutes."*
 
 Before replying, you pull an actual packet capture ([`artifacts/jared-telnet-capture.pcap`](../artifacts/jared-telnet-capture.pcap)) taken from a span port on that management segment during Jared's previous run. The table below shows frames 101 to 137 of it, filtered to port 23. You can read the table here, or open the file in Wireshark:
 
@@ -178,7 +187,7 @@ No.   Time        Source          Destination     Proto  Info
 ### Drill 2: Mail Client Configuration Triage (Maya Lin)
 
 #### The Scenario
-Maya Lin from Accounting logged ticket **`INC-2026-1042`**. When she works from her desk dock, email syncs. When she works from home or tethered to her phone, Outlook errors out with:
+Maya Lin from Accounting logged ticket **`INC0063141`**. When she works from her desk dock, email syncs. When she works from home or tethered to her phone, Outlook errors out with:
 `Receiving reported error (0x8004210A): The operation timed out waiting for a response from the receiving (POP) server.`
 Her Outbox has 4 unsent vendor payment approvals.
 
@@ -239,49 +248,50 @@ TcpTestSucceeded : True
 Use the interactive console below to test commands, inspect telemetry, and verify your troubleshooting steps.
 
 ```lnk-terminal
-title: "CONSOLE: PERIMETER PORT SCAN & BANNER INSPECTION"
+title: "CONSOLE: BUILDING C CLOSET SWITCH (10.0.4.15)"
 shell: "cmd"
 prompt: "C:\Security> "
 replay: true
 objectives:
   - id: "obj-nmap"
-    label: "Scan open service ports on warehouse server"
-    trigger: "nmap -sS -p 21,22,23,80,443 192.168.10.50"
+    label: "Scan management ports on Jared's Building C switch"
+    trigger: "nmap -sS -p 22,23,80,443 10.0.4.15"
   - id: "obj-banner"
-    label: "Test cleartext Telnet banner response"
-    trigger: "telnet 192.168.10.50 23"
+    label: "See what a Telnet session to the switch exposes"
+    trigger: "telnet 10.0.4.15 23"
   - id: "obj-ssh"
-    label: "Verify encrypted SSH connectivity on Port 22"
-    trigger: "ssh admin@192.168.10.50"
+    label: "Verify encrypted SSH management on port 22"
+    trigger: "ssh jared@10.0.4.15"
 ---
-nmap -sS -p 21,22,23,80,443 192.168.10.50: |
-  Starting Nmap scan on 192.168.10.50...
+nmap -sS -p 22,23,80,443 10.0.4.15: |
+  Starting Nmap scan on 10.0.4.15...
   PORT     STATE SERVICE
-  21/tcp   OPEN  ftp (CLEAR TEXT)
-  22/tcp   OPEN  ssh (OpenSSH 8.9p1)
-  23/tcp   OPEN  telnet (CRITICAL: CLEARTEXT AUTH)
-  80/tcp   OPEN  http
-  443/tcp  OPEN  https
-  Warning: Port 23 is transmitting passwords in unencrypted ASCII frames.
+  22/tcp   OPEN    ssh (Cisco SSH 2.0)
+  23/tcp   OPEN    telnet (CLEARTEXT AUTH)
+  80/tcp   OPEN    http
+  443/tcp  OPEN    https
+  Warning: Port 23 sends passwords in plain ASCII frames.
 
-telnet 192.168.10.50 23: |
-  Connecting to 192.168.10.50...
-  Connected to Toledo Scale Controller.
-  Escape character is '^]'.
-  WARNING: Cleartext session active. Passwords visible to any packet capture on switch.
-  Action: Migrate to SSH (Port 22) immediately.
+telnet 10.0.4.15 23: |
+  Connecting to 10.0.4.15...
+  User Access Verification
+  Password:
+  WARNING: Cleartext session. Every keystroke is readable on the management span.
+  Action: Use SSH on port 22. This switch supports it.
 
-ssh admin@192.168.10.50: |
-  admin@192.168.10.50's password: 
-  Linux scale-controller-04 5.15.0-generic #42-Ubuntu SMP
-  Encrypted session established with AES-256-GCM cipher.
-  [OK] Port 23 disabled. Secure management active.
+ssh jared@10.0.4.15: |
+  (jared@10.0.4.15) Password:
+  Switch-Closet-C#
+  Encrypted session established with AES-256-GCM.
+  [OK] Jared can fix the VLAN over SSH. Port 23 can be closed.
 
 ```
 
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 > **The Rule of the Desk:** Before clicking "Approve" on a firewall ticket or giving advice to a department lead, you must write down your decision, the required ports, and the architectural defense. Commit your answer in your mind before clicking to expand.
 <div class="scratchpad-container">
@@ -299,7 +309,7 @@ ssh admin@192.168.10.50: |
 </div>
 
 
-#### Ticket 1: Dana Okafor (Facilities HVAC Vendor) — `INC-2026-1043`
+#### Ticket 1: Dale Okafor (Facilities HVAC Vendor) — `INC0063142`
 *Request:* "Open FTP (Port 21) inbound through the perimeter firewall to internal server `192.168.10.85` so our diagnostic laptop can push building HVAC controller firmware."
 
 * **Your Action:** [ Allow / Deny / Redirect ]
@@ -317,7 +327,7 @@ ssh admin@192.168.10.50: |
 
 ---
 
-#### Ticket 2: Sam Kelly (External Finance Contractor) — `INC-2026-1044`
+#### Ticket 2: Sam Kelly (External Finance Contractor) — `INC0063143`
 *Request:* "Traveling in Seattle. Open RDP (TCP 3389) on our external gateway IP directly to `192.168.10.14` for 72 hours so I can complete quarterly audit spreadsheets from my hotel room."
 
 * **Your Action:** [ Allow / Deny / Redirect ]
@@ -335,7 +345,7 @@ ssh admin@192.168.10.50: |
 
 ---
 
-#### Ticket 3: Lena Chen (Legal Dept Onboarding) — `INC-2026-1045`
+#### Ticket 3: Bettina Szabo (Legal Dept Onboarding) — `INC0063144`
 *Request:* "Connecting from Guest Wi-Fi in the lobby. Password reset portal reports `LDAP error 81 (Cannot contact directory server)`. Connecting to dock gives `Kerberos clock skew error`."
 
 * **Your Action:** [ Diagnostic & Configuration Changes ]
@@ -353,7 +363,7 @@ ssh admin@192.168.10.50: |
 
 ---
 
-#### Ticket 4: Dee Washington (Network Operations) — `INC-2026-1046`
+#### Ticket 4: Dee Washington (Network Operations) — `INC0063145`
 *Request:* "Access switches in Building B were provisioned with SNMP community string `public` on UDP 161. Monitoring needs graphs by tomorrow."
 
 * **Your Action:** [ Configuration Hardening ]
@@ -371,7 +381,7 @@ ssh admin@192.168.10.50: |
 
 ---
 
-#### Ticket 5: Leah Moreno (Portland Plant Operations) — `INC-2026-1049`
+#### Ticket 5: Leah Moreno (Portland Plant Operations) — `INC0063148`
 *Request:* "East Treatment Line telemetry gateway in Building 4 failed to stream pump and valve sensor metrics to central plant console. Field technician wants to route Modbus/TCP (port 502) and DNP3 (port 20000) directly over the inter-site WAN."
 
 * **Your Action:** [ Operational Technology Architecture Decision ]
@@ -383,7 +393,7 @@ ssh admin@192.168.10.50: |
 
 * **Action:** **DENY** unencrypted Modbus/DNP3 over WAN; **ESCALATE** to NetOps for **IPsec ESP Tunnel** termination.
 * **Target Protocol & Port:** Encapsulate Modbus (502) and DNP3 (20000) inside an **IPsec VPN Tunnel (UDP 500 / 4500, IP Protocol 50 ESP)**.
-* **Rationale:** Leah Moreno is managing physical plant infrastructure. Industrial protocols (Modbus, DNP3) have no built-in encryption or authentication; sending raw port 502 across an untrusted WAN allows malicious actors to issue unauthorized valve open/close commands or falsify sensor telemetry. The traffic must be strictly isolated on an industrial OT VLAN and encrypted across the link via IPsec tunnel.
+* **Rationale:** Leah is managing physical plant infrastructure. Industrial protocols (Modbus, DNP3) have no built-in encryption or authentication; sending raw port 502 across an untrusted WAN allows malicious actors to issue unauthorized valve open/close commands or falsify sensor telemetry. The traffic must be strictly isolated on an industrial OT VLAN and encrypted across the link via IPsec tunnel.
 </details>
 
 
@@ -409,17 +419,17 @@ ssh admin@192.168.10.50: |
 
 In enterprise support environments, your ticket documentation is a legal and security record. Below are the two mandatory templates you must master:
 
-#### Part A: Standard Ticket Resolution Note (Example: Maya Lin / INC-2026-1042)
+#### Part A: Standard Ticket Resolution Note (Example: Maya Lin / INC0063141)
 
 ```text
 ================================================================================
 TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1042
+Ticket ID:        INC0063141
 Requester:        Maya Lin (Accounting)
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks
-Date/Time:        2026-10-20 09:35:10 PST
+Date/Time:        2025-08-12 09:35:10 PDT
 Category:         Email & Collaboration / Client Configuration
 Status:           RESOLVED
 
@@ -448,18 +458,18 @@ Status:           RESOLVED
 ================================================================================
 ```
 
-#### Part B: Security Incident Escalation Note (Example: Leah Moreno / INC-2026-1049)
+#### Part B: Security Incident Escalation Note (Example: Leah Moreno / INC0063148)
 
 ```text
 ================================================================================
 SECURITY ESCALATION & ARCHITECTURAL REVIEW NOTE
 ================================================================================
-Ticket ID:        INC-2026-1049
+Ticket ID:        INC0063148
 Requester:        Leah Moreno (Portland Plant Operations Lead)
 Technician:       Ethan Mercer (Tier 1 Support)
 Escalated To:     Tier 2 Network Security & SOC Incident Desk
 Priority:         P2 - High / Operational Facility Impact
-Date/Time:        2026-10-20 15:25:12 PST
+Date/Time:        2025-08-12 15:25:12 PDT
 Classification:   OT/SCADA Perimeter Traversal Exception Request
 
 1. SITUATION DESCRIPTION:
@@ -508,31 +518,10 @@ Classification:   OT/SCADA Perimeter Traversal Exception Request
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 7.2: HARDENED PROTOCOL ARCHITECTURE"
-badge: "Shift Epilogue"
-caption: "Operations center: At 05:40 PM, the rain clears over the Willamette River. On Ethan's desk, index cards sit neatly paired in secure couples as external port 3389 and 445 scanners hit zero open sockets."
-prompt: "Clean graphic novel cutaway panel of an IT support technician desk at twilight. Rain streaks down the window behind the desk, showing twilight city lights over an industrial river. On the laminate desk, index cards are neatly stacked in pairs beside an empty coffee mug. A dual-monitor display shows green firewall access rule tables. Ligne Claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-With the security matrix completed, I called Sam back in Seattle. "We will get you onto the corporate VPN first, and from there you will remote into a dedicated jump host. We do not open raw port 3389 to the public internet, not even for an hour, for the same reason we do not expose SMB on port 445 off the outside of the building."
+This problem looks different from the open-port queue, but it works the same way. Use the worked example and your notes.
 
-Sam groaned over the line, then gave in. "I already have the VPN profile from the last gig. A jump box is fine if somebody sends me the hostname. It is honestly nicer than hoping the hotel Wi-Fi is friendly."
-
-The firewall rule we submitted was narrow on purpose: source the VPN client address pool, destination the hardened jump host, port 3389, TCP, allow—with all direct internet access to internal workstations blocked. Jules initialed the ticket on her way past.
-
-Across the rest of the queue, the legacy cleartext protocols fell into line. We moved the legal directory tool from LDAP on 389 to LDAPS on 636, synchronized Lena's skewed clock with internal NTP on UDP 123 to restore Kerberos ticket validation, and rejected unauthenticated SNMP `public` polling in favor of SNMPv3 with SHA authentication and AES encryption. When facilities tech Owen needed printer firmware, we restricted TFTP to a transient staging segment and closed the port behind him.
-
-By 5:40 PM the queue was down to noise. The index cards were still out on my desk, and I had been pairing them off all afternoon without meaning to: Telnet next to SSH, HTTP next to HTTPS, FTP next to SFTP and FTPS, POP and IMAP next to their TLS versions, LDAP next to LDAPS, SNMP next to SNMPv3, syslog next to 6514. None of the port numbers had changed.
-
-Jules stopped at my cube on her way out, raincoat on, bike lights already clipped to her pack strap.
-
-"How many ports did you memorize today, Ethan?"
-
-"None," I answered with a tired grin. "I collected some war stories and made a few swaps."
-
-"Keep the cards if they help you get started," Jules said, giving my desk partition a nod of approval. "Throw them out when the person on the phone already knows the number, and what they actually need from you is the other half."
-
-That was the one I wrote down in my technical notebook. I locked the drawer and went out into the rain to catch the MAX.
+A new badge-printer vendor asks you to open TCP 23 and UDP 161 with community `public` so their support can reach the printer. Name what each port is, what crosses the wire in clear text, and the secure alternative you would offer for each.

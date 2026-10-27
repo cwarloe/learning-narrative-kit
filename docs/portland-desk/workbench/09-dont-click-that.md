@@ -20,6 +20,21 @@
 
 ---
 
+## Worked Example: The CFO wire request
+
+This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
+
+**The incident.** An email that looked like the CFO asked AP to change a vendor's bank details.
+
+1. Pull the full headers and trace the Received chain to a server that has never sent you mail.
+2. Check SPF, DKIM, and DMARC. The domain fails DMARC alignment.
+3. Open the linked site in a sandbox. The certificate is valid, but for a look-alike domain, so the padlock proves nothing about who it is.
+4. Verify out of band: call the real person on a known number.
+5. Cancel the change and purge the attachment from the spool.
+6. Result: no money lost, two real vendor payments a day late, and indicators saved that never matched anything.
+
+---
+
 ## 1. The Situation & Ground Truth
 
 ```callout-panel
@@ -31,26 +46,14 @@ prompt: "Clean technical cutaway diagram of an email message header structure un
 
 
 ### The Situation
-It is 08:10 on a rain-lashed Wednesday morning on the east side of Portland. Low, charcoal-colored clouds hang heavy over the Hawthorne Bridge, and the service desk smells of damp wool coats, ozone from the server room exhaust, and dark roast coffee. Two cubes over sits Jules Brooks, desk lead for nine years, bike helmet clipped to her monitor arm, calmly triaging the morning ticket flood.
+It is a Wednesday in December. Ethan is sixteen months on the desk and still Tier 1. A message that appears to come from Avery Holloway, the CFO, asks accounts payable to change a vendor's banking details before the afternoon wire run. Marisol in AP has nine years of vendor history and does not like the look of it. Sam hovers over an archive attachment in the same campaign. Dev's phone is buzzing with MFA pushes he never started.
 
-On the corner of her primary display, the sticky note from yesterday's authentication shift (*which factor?*) has been stripped away. In its place sits a fresh neon-yellow square:
-
-$$\boxed{\textbf{Who benefits if I hurry?}}$$
-
-Ethan’s desk drawer still holds his port flashcards and Active Directory lockout guides, but this morning the red indicator light on the help desk dispatch console is blinking rapidly. Ticket **`INC-2026-1051`** has arrived from Nora Vasquez in Finance, marked with **Priority: High**:
-
-> **Ticket Subject:** URGENT — Direct Deposit Update for Maya Lin (CEO)  
-> **Requester:** Nora Vasquez (Payroll & Accounting)  
-> **Description:** *"I received an urgent email from Maya Lin asking to change her direct deposit banking routing information for tomorrow morning's payroll run before the 10:00 AM bank cutoff. Maya says she's in an executive retreat offsite in Hood River with no phone service, so she can't take voice calls and told me to update it immediately from the attached voided check. The email has our logo and says 'Confidential'. I was about to type it into ADP, but something felt fast. Can IT verify Maya's message is safe?"*
-
-Jules spins slowly in her chair, holding her ceramic mug. She gestures toward Ethan's terminal:
-
-> *"Memorizing that SPF is a DNS TXT record and DKIM uses RSA keys will earn you points on a multiple-choice exam, Ethan. It will not save you when an executive screams, when payroll is thirty seconds away from wiring eighty thousand dollars to a mule bank in Eastern Europe, or when a user waves a printed email insisting 'the logo is real.' On this desk, email headers are not trivia—they are the cryptographic and forensic crime scene of who touched the packet."*
+This lab follows the chapter. Pull the headers, trace the Received chain, check SPF, DKIM, and DMARC, read the certificate on the look-alike domain, and verify the request out of band.
 
 ### The Ground Truth Rules of the Desk
 
-1. **Display Names Lie; The Envelope and DNS Tell the Truth:** An email client's friendly `From:` display name (e.g., `"Maya Lin (CEO)"`) can be forged in any SMTP client with zero technical effort. Never make a security, access, or financial decision based on the visual header shown in an email client. Always inspect the RFC 5321 envelope sender (`Return-Path` / `MAIL FROM`), the `Received:` hops, and the cryptographic authentication headers (`Authentication-Results:`).
-2. **Urgency and Secrecy Are Attack Signatures, Not Executive Priorities:** Phishing attacks succeed by weaponizing cognitive biases—specifically **urgency** ("before the 10:00 AM banking cutoff"), **authority** ("Maya Lin, CEO"), and **secrecy** ("keep this strictly confidential until tomorrow"). Whenever an email demands that normal verification procedures be bypassed because the sender "cannot take calls," treat the message as hostile until proven otherwise.
+1. **Display Names Lie; The Envelope and DNS Tell the Truth:** An email client's friendly `From:` display name (e.g., `"Avery (CFO)"`) can be forged in any SMTP client with zero technical effort. Never make a security, access, or financial decision based on the visual header shown in an email client. Always inspect the RFC 5321 envelope sender (`Return-Path` / `MAIL FROM`), the `Received:` hops, and the cryptographic authentication headers (`Authentication-Results:`).
+2. **Urgency and Secrecy Are Attack Signatures, Not Executive Priorities:** Phishing attacks succeed by weaponizing cognitive biases—specifically **urgency** ("before the afternoon wire run"), **authority** ("Avery Holloway, CFO"), and **secrecy** ("keep this strictly confidential until tomorrow"). Whenever an email demands that normal verification procedures be bypassed because the sender "cannot take calls," treat the message as hostile until proven otherwise.
 3. **Visual Fidelity Has Zero Cryptographic Value:** High-resolution corporate logos, legal confidentiality footers, and crisp executive headshots can be copied from public websites in seconds. Visual polish is trivial to fabricate; only public-key cryptographic signatures (**DKIM**) and domain alignment (**DMARC**) prove that a message genuinely originated from the declared organization.
 4. **Out-of-Band (OOB) Verification is Mandatory for Financial Directives:** Never confirm wire instructions, vendor banking changes, or payroll updates using the communication channel that delivered the request. If an email requests a funds transfer or account modification, verify the directive using a pre-established, trusted telephone number from the corporate directory or through an in-person meeting—never via phone numbers, reply email addresses, or links contained within the suspect email.
 5. **Preserve and Report; Never Forward Raw Phishing Bait:** Forwarding a raw phishing email across internal distribution lists ("Hey team, is this real?") duplicates the attack payload, exposes colleagues to accidental clicks, and strips original SMTP transport headers. Train users to click the **Report Phish** button, or save the message as an RFC 822 `.eml` artifact so Tier 1 and SOC analysts can examine intact MIME headers safely in an isolated text viewer.
@@ -73,20 +76,20 @@ sequenceDiagram
     Note over Sender,Gateway: RFC 5321 SMTP Envelope Layer (Transport)
     Sender->>Gateway: HELO out-relay04.fake-bulletin-mailer.net
     Sender->>Gateway: MAIL FROM: <transition-exec@harrowrnere.com>
-    Sender->>Gateway: RCPT TO: <nora.vasquez@harrowmere.com>
+    Sender->>Gateway: RCPT TO: <nora.higgins@harrowmere.com>
     Sender->>Gateway: DATA
 
     Note over Sender,Gateway: RFC 5322 Message Header Layer (Display & Payload)
     Sender->>Gateway: Received: from out-relay04... by mail-gateway02...
-    Sender->>Gateway: From: "Maya Lin (CEO)" <mlin@harrowrnere.com>
-    Sender->>Gateway: Reply-To: <maya.lin.executive78@gmail.com>
-    Sender->>Gateway: To: nora.vasquez@harrowmere.com
+    Sender->>Gateway: From: "Avery Holloway (CFO)" <aholloway@harrowrnere.com>
+    Sender->>Gateway: Reply-To: <avery.holloway.cfo78@gmail.com>
+    Sender->>Gateway: To: nora.higgins@harrowmere.com
     Sender->>Gateway: Subject: URGENT: Off-cycle payroll direct deposit account update
     Sender->>Gateway: [MIME Message Body + Malware Attachment: VoidedCheck.pdf.exe]
     Sender->>Gateway: . (CRLF.CRLF)
 
     Gateway-->>Recipient: Delivers message to mailbox
-    Note over Recipient: User sees ONLY: "Maya Lin (CEO)" <mlin@harrowrnere.com><br/>The envelope sender and hop headers are hidden!
+    Note over Recipient: User sees ONLY: "Avery Holloway (CFO)" <aholloway@harrowrnere.com><br/>The envelope sender and hop headers are hidden!
 ```
 
 * **RFC 5321 Envelope (`MAIL FROM` / `Return-Path`):** Used by mail transfer agents (MTAs) for routing and non-delivery reports (bounces). This is the identity evaluated by basic **SPF**.
@@ -192,8 +195,8 @@ CompTIA Security+ SY0-701 categorizes social engineering attacks by transmission
 mindmap
   root((Email Threats))
     Social Engineering Principles
-      Urgency ("Process before 10 AM cutoff")
-      Authority ("CEO / Executive mandate")
+      Urgency ("Process before the afternoon wire run")
+      Authority ("CFO / Executive mandate")
       Scarcity ("Limited spots / funds")
       Confidentiality ("Keep between us")
     Domain & Identity Deception
@@ -222,7 +225,7 @@ mindmap
    * Attackers exploit the Internationalized Domain Name (IDN) standard by registering domains using Cyrillic, Greek, or Latin lookalike characters.
    * A browser or mail client translates Unicode into ASCII via the **Punycode** standard (prefixed with `xn--`). For example, the Cyrillic small letter "о" (U+043E) looks identical to Latin "o" (U+006F), but resolves to `xn--harrwmere-32h.com`.
 3. **Reply-To Discrepancy:**
-   * The visible `From:` address displays a legitimate internal executive (`mlin@harrowmere.com`), but the hidden `Reply-To:` header points to an external, attacker-controlled inbox (`maya.lin.executive78@gmail.com`). When the victim clicks "Reply," their client quietly addresses the attacker.
+   * The visible `From:` address displays a legitimate internal executive (`aholloway@harrowmere.com`), but the hidden `Reply-To:` header points to an external, attacker-controlled inbox (`avery.holloway.cfo78@gmail.com`). When the victim clicks "Reply," their client quietly addresses the attacker.
 4. **Malicious Attachments & Container Smuggling:**
    * **Double Extensions:** Exploiting default Windows file explorer settings that hide known extensions (e.g., `VoidedCheck.pdf.exe`).
    * **Container Archives:** Delivering `.iso`, `.vhd`, `.zip`, or `.img` files to evade email gateway static inspection and bypass Windows Mark of the Web (MOTW) security controls.
@@ -235,29 +238,31 @@ mindmap
 ### Drill 1: Raw MIME Header Trace
 
 #### The Incident Artifact
-Nora Vasquez in Finance forwarded the suspicious email headers from ticket **`INC-2026-1051`** ([`artifacts/eml_samples/sample_spoofed_ceo_payroll.eml`](../artifacts/eml_samples/sample_spoofed_ceo_payroll.eml)):
+> **Practice case.** This drill is invented for practice. It uses the chapter's ideas on a different message (a payroll lure, not the chapter's vendor wire) and is not an event from the chapter.
+
+Marisol in Accounts Payable forwarded these suspicious email headers, from a different message than the wire request, under ticket **`INC0068233`** ([`artifacts/eml_samples/sample_spoofed_cfo_payroll.eml`](../artifacts/eml_samples/sample_spoofed_cfo_payroll.eml)):
 
 ```email
-Delivered-To: nora.vasquez@harrowmere.com
+Delivered-To: nora.higgins@harrowmere.com
 Received: from mail-gateway02.harrowmere.com (mail-gateway02.harrowmere.com [198.51.100.25])
 	by imap-internal.harrowmere.com (Postfix) with ESMTPS id 4Y7kL901zZz982b
-	for <nora.vasquez@harrowmere.com>; Wed, 21 Oct 2026 08:12:14 -0700
+	for <nora.higgins@harrowmere.com>; Wed, 10 Dec 2025 08:12:14 -0800
 Received: from out-relay04.fake-bulletin-mailer.net (out-relay04.fake-bulletin-mailer.net [185.220.101.42])
 	by mail-gateway02.harrowmere.com (CipherMail) with ESMTP id 8F21A3011C
-	for <nora.vasquez@harrowmere.com>; Wed, 21 Oct 2026 08:12:12 -0700
+	for <nora.higgins@harrowmere.com>; Wed, 10 Dec 2025 08:12:12 -0800
 Authentication-Results: mail-gateway02.harrowmere.com;
 	dkim=fail reason="signature missing or invalid" header.i=@harrowrnere.com;
 	spf=softfail (mail-gateway02.harrowmere.com: domain of transition-exec@harrowrnere.com does not designate 185.220.101.42 as permitted sender) smtp.mailfrom=transition-exec@harrowrnere.com;
 	dmarc=fail (p=quarantine dis=quarantine) header.from=harrowrnere.com
 Received-SPF: softfail (mail-gateway02.harrowmere.com: domain of transition-exec@harrowrnere.com does not designate 185.220.101.42 as permitted sender) client-ip=185.220.101.42;
-From: "Maya Lin (CEO)" <mlin@harrowrnere.com>
-Reply-To: "Maya Lin (Personal Mobile)" <maya.lin.executive78@gmail.com>
-To: nora.vasquez@harrowmere.com
+From: "Avery Holloway (CFO)" <aholloway@harrowrnere.com>
+Reply-To: "Avery Holloway (Personal Mobile)" <avery.holloway.cfo78@gmail.com>
+To: nora.higgins@harrowmere.com
 Subject: URGENT: Off-cycle payroll direct deposit account update - Confidential
-Date: Wed, 21 Oct 2026 08:11:45 -0700
-Message-ID: <20261021081145.42918.transition-exec@harrowrnere.com>
+Date: Wed, 10 Dec 2025 08:11:45 -0800
+Message-ID: <20251210081145.42918.transition-exec@harrowrnere.com>
 X-Mailer: WebMail / PHP-Mailer v6.8.0
-Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
+Attachment: AveryHolloway_VoidedCheck_RoutingUpdate.pdf.exe
 ```
 
 #### Diagnostic Questions
@@ -265,7 +270,7 @@ Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 2. What IP address sent the email to the Portland perimeter gateway, and why did SPF return `softfail`?
 3. What domain is declared in the RFC 5322 `From:` header, and how does it deceive the recipient?
 4. What happens if Nora clicks "Reply" in her mail client?
-5. What is the security risk of the attached file `MayaLin_VoidedCheck_RoutingUpdate.pdf.exe`?
+5. What is the security risk of the attached file `AveryHolloway_VoidedCheck_RoutingUpdate.pdf.exe`?
 
 <details>
 <summary>Drill 1 Forensic Findings & Lead Review</summary>
@@ -276,11 +281,11 @@ Attachment: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
 * **SPF Failure:**
   The RFC 5321 envelope sender was `transition-exec@harrowrnere.com`. The gateway queried DNS for the SPF record of `harrowrnere.com`. That SPF record did not authorize IP `185.220.101.42`, resulting in `spf=softfail`.
 * **Domain Squatting / Typosquatting:**
-  The `From:` address is `<mlin@harrowrnere.com>`. Notice the two letters **`rn`** standing in for the letter **`m`** in `harrowmere`. The attacker kept the same **`.com`** top-level domain, so the swap only shows if you read the name letter by letter.
+  The `From:` address is `<aholloway@harrowrnere.com>`. Notice the two letters **`rn`** standing in for the letter **`m`** in `harrowmere`. The attacker kept the same **`.com`** top-level domain, so the swap only shows if you read the name letter by letter.
 * **Reply-To Hijack:**
-  The `Reply-To:` header is set to `maya.lin.executive78@gmail.com`. Even if Nora did not notice the typosquatted address, any reply sent from her client would route directly to an attacker-controlled Gmail account.
+  The `Reply-To:` header is set to `avery.holloway.cfo78@gmail.com`. Even if Nora did not notice the typosquatted address, any reply sent from her client would route directly to an attacker-controlled Gmail account.
 * **Malicious Executable Dropper:**
-  The attachment uses a **double extension** (`.pdf.exe`). On Windows systems with default explorer settings ("Hide extensions for known file types"), the `.exe` extension is hidden, displaying only `MayaLin_VoidedCheck_RoutingUpdate.pdf` with a PDF document icon. Opening this file executes binary shellcode (trojan/stealer) rather than displaying a document.
+  The attachment uses a **double extension** (`.pdf.exe`). On Windows systems with default explorer settings ("Hide extensions for known file types"), the `.exe` extension is hidden, displaying only `AveryHolloway_VoidedCheck_RoutingUpdate.pdf` with a PDF document icon. Opening this file executes binary shellcode (trojan/stealer) rather than displaying a document.
 </details>
 
 
@@ -348,7 +353,7 @@ findstr /i "Received: from" invoice.eml: |
   Received: from mail-relay.suspicious-host.net (198.51.100.77)
   Received: from client-smtp-relay (192.0.2.14)
   Originating IP: 198.51.100.77 (Bucharest, Romania)
-  Target: nora.finance@harrowmere.com
+  Target: marisol.ap@harrowmere.com
   Subject: URGENT: Wire Transfer Routing Change
 
 quarantine-sender --domain harrowrnere.com: |
@@ -361,6 +366,8 @@ quarantine-sender --domain harrowrnere.com: |
 ---
 
 ### Quick Check 3: Call Your Shot: Predict Before You Look
+
+> **Practice cases.** Unless a case names the chapter's incident, these are invented practice cases. They use the chapter's ideas on new machines and new people, and they are not events from the story.
 
 > **The Rule of the Desk:** Before clicking any button, moving a ticket, or responding to a department lead, write down your decision, the cryptographic indicator, and your operational rationale. Commit your answer before expanding the analysis.
 <div class="scratchpad-container">
@@ -378,9 +385,9 @@ quarantine-sender --domain harrowrnere.com: |
 </div>
 
 
-#### Case 1: Nora Vasquez (Finance) — `INC-2026-1051`
-* **Incoming Message:** "Urgent direct deposit bank update for CEO Maya Lin before 10:00 AM payroll cutoff."
-* **Header Metadata:** `From: "Maya Lin" <mlin@harrowrnere.com>`, `Return-Path: <transition-exec@harrowrnere.com>`, `Reply-To: <maya.lin.executive78@gmail.com>`. Attachment: `MayaLin_VoidedCheck_RoutingUpdate.pdf.exe`.
+#### Case 1: Marisol (Accounts Payable) — `INC0068233`
+* **Incoming Message:** "Urgent Vendor banking update for CFO Avery before the 2:00 PM wire run."
+* **Header Metadata:** `From: "Avery Holloway (CFO)" <aholloway@harrowrnere.com>`, `Return-Path: <transition-exec@harrowrnere.com>`, `Reply-To: <avery.holloway.cfo78@gmail.com>`. Attachment: `AveryHolloway_VoidedCheck_RoutingUpdate.pdf.exe`.
 * **Your Triage Action:** [ Allow / Quarantine / Drop / Escalate ]
 * **Authentication Status:** SPF, DKIM, DMARC?
 * **Security Rationale:**
@@ -396,7 +403,7 @@ quarantine-sender --domain harrowrnere.com: |
 
 ---
 
-#### Case 2: Sam Kelly (Contractor) — `INC-2026-1052`
+#### Case 2: Sam Kelly (Contractor) — `INC0068234`
 * **Incoming Message:** "Statement of Work (SOW) revision attached. Please review deliverables before tonight's change window."
 * **Header Metadata:** `From: "Sam Kelly (External)" <skelly@consulting-partner.com>`. `Received-SPF: pass`. `DKIM-Signature: pass (d=consulting-partner.com)`. Attachment: `SOW_Deliverables_Signed.iso.zip`.
 * **Your Triage Action:** [ Allow / Quarantine / Sandbox Detonation ]
@@ -414,7 +421,7 @@ quarantine-sender --domain harrowrnere.com: |
 
 ---
 
-#### Case 3: Ken in Sales — `INC-2026-1053`
+#### Case 3: Todd in Sales — `INC0068235`
 * **Incoming Message:** SMS text message to corporate mobile phone: *"IT Alert: Your Portland Ops cloud storage mailbox has reached 98% capacity. Re-validate credentials immediately at https://bit.ly/pdx-storage-quota to avoid account deactivation."*
 * **Your Triage Action:** [ Ignore / Delete / User Security Guidance / Carrier Report ]
 * **Threat Classification:**
@@ -431,7 +438,7 @@ quarantine-sender --domain harrowrnere.com: |
 
 ---
 
-#### Case 4: Dana Okafor (Facilities) — `INC-2026-1054`
+#### Case 4: Dale Okafor (Facilities) — `INC0068236`
 * **Incoming Message:** "Vendor HVAC Maintenance Invoice #8841 Past Due. Remit payment to our updated Citibank clearing account."
 * **Header Metadata:** `From: "Accounts Receivable" <ar@apex-hvac-services.com>`. `Reply-To: <apex-billing-desk@outlook.com>`. `Authentication-Results: dkim=pass d=apex-hvac-services.com; spf=pass; dmarc=pass`.
 * **Your Triage Action:** [ Approve Payment / Reject / Mandatory Out-of-Band Verification ]
@@ -443,13 +450,13 @@ quarantine-sender --domain harrowrnere.com: |
 
 * **Action:** **HOLD PAYMENT & ENFORCE OUT-OF-BAND (OOB) VERIFICATION**.
 * **Authentication Status:** SPF Pass, DKIM Pass, DMARC Pass, BUT glaring `Reply-To` discrepancy.
-* **Rationale:** This is an **Invoice Fraud / BEC Vendor Compromise** scenario. Even though the sender domain authenticated cleanly (suggesting the vendor's primary email system or compromised mailbox sent the message), the `Reply-To` header shifts communications to an unmonitored consumer webmail account (`@outlook.com`). Dana must place an out-of-band telephone call to the vendor's verified Accounts Receivable controller using the known phone number from the original contract—never using numbers listed on the new invoice.
+* **Rationale:** This is an **Invoice Fraud / BEC Vendor Compromise** scenario. Even though the sender domain authenticated cleanly (suggesting the vendor's primary email system or compromised mailbox sent the message), the `Reply-To` header shifts communications to an unmonitored consumer webmail account (`@outlook.com`). Marisol must place an out-of-band telephone call to the vendor's verified Accounts Receivable controller using the known phone number from the original contract—never using numbers listed on the new invoice.
 </details>
 
 
 ---
 
-#### Case 5: Dev in Engineering — `INC-2026-1055`
+#### Case 5: Dev in Engineering — `INC0068237`
 * **Incoming Message:** Dev reports his phone has buzzed 18 times in 20 minutes with Duo/Okta Push notifications prompting "Approve login from Moscow, Russia?" Dev has pressed "Deny" repeatedly, but his phone won't stop vibrating.
 * **Your Triage Action:** [ Tell him to keep pressing Deny / Clear Lockout / Immediate Session Revocation & Credential Reset ]
 * **Threat Classification:**
@@ -484,7 +491,7 @@ quarantine-sender --domain harrowrnere.com: |
 
 ### Tier 1 Phishing Incident Triage & Security Escalation Note
 
-In an enterprise service desk, your incident notes serve as legal documentation and the operational foundation for Tier 2 SOC investigations. Below are the two mandatory deliverables for ticket **`INC-2026-1051`**.
+In an enterprise service desk, your incident notes serve as legal documentation and the operational foundation for Tier 2 SOC investigations. Below are the two mandatory deliverables for ticket **`INC0068233`**.
 
 #### Part A: Tier 1 Ticket Triage & Resolution Note
 
@@ -492,36 +499,36 @@ In an enterprise service desk, your incident notes serve as legal documentation 
 ================================================================================
 TIER 1 INCIDENT RESOLUTION NOTE - PORTLAND SERVICE DESK
 ================================================================================
-Ticket ID:        INC-2026-1051
-Date / Time:      2026-10-21 08:35:22 PST
+Ticket ID:        INC0068233
+Date / Time:      2025-12-10 08:35:22 PST
 Technician:       Ethan Mercer (Tier 1 Support)
 Supervising Lead: Jules Brooks (Service Desk Lead)
-Requester:        Nora Vasquez (Payroll & Accounting - Ext. 4412)
+Requester:        Marisol (Accounts Payable - Ext. 4412)
 Category:         Security Incident / Email Phishing & Spoofing
 Severity:         P2 - High (Attempted Executive Payroll Fraud)
 Status:           RESOLVED / ESCALATED TO SOC
 
 1. INCIDENT DESCRIPTION:
-   User received an unsolicited email purportedly from CEO Maya Lin requesting 
-   an emergency off-cycle direct deposit routing change prior to the 10:00 AM 
-   banking cutoff. Message urged confidentiality and claimed executive was 
+   User received an unsolicited email purportedly from CFO Avery Holloway requesting 
+   an emergency off-cycle direct deposit routing change before the afternoon 
+   wire run. Message urged confidentiality and claimed executive was 
    traveling offsite with no voice telephone reception.
 
 2. FORENSIC HEADER & ARTIFACT TRIAGE:
-   - Header From:          "Maya Lin (CEO)" <mlin@harrowrnere.com>
+   - Header From:          "Avery Holloway (CFO)" <aholloway@harrowrnere.com>
    - Envelope Sender:      transition-exec@harrowrnere.com
    - Originating IP / ASN: 185.220.101.42 (AS44194 - Bulletproof VPS Hosting)
-   - Reply-To Discrepancy: maya.lin.executive78@gmail.com
+   - Reply-To Discrepancy: avery.holloway.cfo78@gmail.com
    - Authentication:       SPF: SoftFail | DKIM: Fail (Unsigned) | DMARC: Fail
-   - Attachment:           MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
+   - Attachment:           AveryHolloway_VoidedCheck_RoutingUpdate.pdf.exe
                            (SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
 
 3. CONTAINMENT & REMEDIATION ACTIONS:
    - Extracted RFC 5322 .eml artifact and isolated in secure repository.
-   - Purged malicious email from Nora Vasquez's mailbox via Exchange PowerShell.
+   - Purged malicious email from Marisol's mailbox via Exchange PowerShell.
    - Verified that user DID NOT execute attachment or enter bank data into ADP.
    - Performed out-of-band voice contact with executive assistant to confirm 
-     genuine CEO Maya Lin did not author message.
+     genuine CFO Avery Holloway did not author message.
    - Blocked originating IP (185.220.101.42) and domain (harrowrnere.com) at 
      perimeter mail gateway.
 
@@ -538,8 +545,8 @@ Status:           RESOLVED / ESCALATED TO SOC
 ================================================================================
 SECURITY ESCALATION & THREAT INTEL ADVISORY - TIER 2 SOC DESK
 ================================================================================
-Incident Tracking: SEC-PHISH-2026-1021
-Related Ticket:    INC-2026-1051
+Incident Tracking: ESC0006820
+Related Ticket:    INC0068233
 Reporter:          Ethan Mercer (Tier 1 Support)
 Lead Endorsement:  Jules Brooks (Desk Lead)
 Target Unit:       Harrowmere Equipment Group (harrowmere.com)
@@ -549,8 +556,8 @@ Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
 
 1. EXECUTIVE SUMMARY:
    A targeted Business Email Compromise (BEC) and spear-phishing campaign was 
-   intercepted targeting Finance personnel. The threat actor impersonated CEO 
-   Maya Lin utilizing a lookalike typosquatted domain (harrowrnere.com) to request 
+   intercepted targeting Finance personnel. The threat actor impersonated CFO 
+   Avery Holloway (CFO) using a lookalike typosquatted domain (harrowrnere.com) to request 
    unauthorized payroll routing modifications and deliver a double-extension 
    malware dropper (Win32 PE executable).
 
@@ -559,10 +566,10 @@ Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
                            login-micros0ft-secure.ru (Credential harvesting)
    - Originating IPs:      185.220.101.42 (Mailer relay - AS44194)
                            194.26.29.114 (Web hosting - AS209588)
-   - Discrepant Accounts:  maya.lin.executive78@gmail.com
+   - Discrepant Accounts:  avery.holloway.cfo78@gmail.com
                            transition-exec@harrowrnere.com
    - Malicious Hash:       SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-                           Filename: MayaLin_VoidedCheck_RoutingUpdate.pdf.exe
+                           Filename: AveryHolloway_VoidedCheck_RoutingUpdate.pdf.exe
 
 3. RECOMMENDED ENTERPRISE MITIGATIONS:
    1. Gateway Rule: Add 'harrowrnere.com' and the lookalike pattern 'harrow(rn|nn)ere' 
@@ -597,63 +604,10 @@ Threat Level:      HIGH - Active Targeted Whaling / BEC Campaign
 
 ---
 
-## 6. Shift Resolution Epilogue
+---
 
-```callout-panel
-title: "FIGURE 9.2: MAIL GATEWAY QUARANTINE & GATEWAY TELEMETRY"
-badge: "Shift Epilogue"
-caption: "Operations center: At 05:40 PM, the rain clears over the Willamette River. On the security monitor, the perimeter mail gateway displays zero accepted connections from the typosquatted domain as AP confirms the payment wire was frozen."
-prompt: "Clean graphic novel cutaway panel of an IT support technician desk at twilight. Outside the window, city lights reflect on rain-slicked asphalt. On the monitor, a secure email gateway console displays green accepted logs and bold red quarantined lines. Clean ligne claire style, sharp technical ink linework, no text, no words. 16:9 ratio."
-```
+## 6. Transfer Problem
 
-With the malicious header trace verified and the originating IP and typosquatted domain blocked at the perimeter gateway, AP confirmed that the fraudulent wire update had been cancelled. Maya Lin's real executive assistant confirmed the legitimate payroll routing was untouched, and Sam's double-extension zip dropper was safely purged from the mail spool.
+This problem looks different from the CFO wire request, but it works the same way. Use the worked example and your notes.
 
-Across the floor, the human layer kept moving.
-
-## Doors, shoulders, and the recycling bin
-
-Facilities walked a visitor past the badge reader. The visitor smiled, held a coffee tray for three, and waited for someone to beep in. Two people held the door because manners. One of them was me for half a second.
-
-Jules did not raise her voice. She still stopped the line.
-
-"Tailgating," she said to me, not as a lecture to the lobby. "Ask them to sign in. Be polite. Be annoying on purpose."
-
-The visitor signed in. The coffee still got delivered.
-
-At the standing desk near the printer, I caught a contractor reading over Lila's shoulder while she typed a temporary password into a shared screen. I angled my body and said, "Shoulder surfing works in offices too. Screens have sides." Lila turned the laptop. The contractor found somewhere else to be.
-
-Later Jordan from ops dumped a box of old printouts next to the open recycling — org chart with cellphone scribbles, a page with a VPN URL and a handwritten password scratched out but still readable under the scribble, a badge access list from a retired closet.
-
-Jules looked in the box. "Shredder for anything that still has a secret, even a dead one. Dumpster diving is that bin."
-
-Jordan took the box back. He left a sticky on the shredder that said *if you can still read it, it still counts.*
-
-## Quid pro quo and the watering hole rumor
-
-A caller offered me a "free security scan gift card" if I confirmed our external mail gateway brand and the name of our sandbox vendor. Helpful tone. Soft sell. He even offered to "credit the help desk team" in a write-up.
-
-"[[quid_pro_quo|Quid pro quo]]," I said after I hung up and typed the note. "Gift for a detail. We do not trade architecture for coupons. If he needs a vendor list, he can go through procurement like a person."
-
-Slack, meanwhile, was circulating a blog post from a niche local-devops forum everyone here actually reads. Commenters claimed a browser extension "everyone on the floor already installed" fixed a fake outage. The site looked familiar because it was familiar — until Security flagged the admin account takeover from last night.
-
-"[[watering_hole|Watering hole]]," Jules said. "Poison the place the herd already drinks. That is why 'I only click things from our forum' is not a strategy." She posted the official advisory and killed the extension rumor before it became policy by screenshot.
-
-Someone replied with a chain-letter PDF about "FBI mandatory password reset tonight or criminal liability." No ticket. No SOC banner. Just panic fuel.
-
-"Hoax," I wrote in the channel. "If it mattered, it would arrive on the reporting path we already trust — not a viral PDF."
-
-Jules pinned one more line: coordinated scare-posts and fake consensus threads are how light influence campaigns show up at desk scale. We are still a hallway where social engineering rumors try to become policy.
-
-## Quarantine, gateway, and the path that counts
-
-End of day we sat with a SOC analyst on a short bridge call. Not because I was becoming an investigator. Because the desk is where the humans land.
-
-"Mail gateway caught a sibling of Maya's message after her report," the analyst said. "We dropped the campaign into quarantine, detonated the zip in the sandbox, and tuned the rule. User-reported beat the first filter by twelve minutes. Filters are late sometimes. People who hover are early."
-
-I updated the wiki blurb the desk actually reads: hover the link, check the real host, never read codes to callers, never approve surprise MFA, never change wire instructions from a thread, badge your own door, shred the bin, and when something feels like borrowed manners, use the report button. That is the reporting path.
-
-At 5:40 I closed notes: Maya reported, Sam did not open the zip, Avery's wire frozen, Nora hung up on the pretext, Todd ignored the text, Dev denied the pushes, the lobby stopped a tailgate, Jordan shredded, the gift-card caller got nothing.
-
-Jules clipped her bike lights on. "Tomorrow someone will call a spoofed CFO probably real because the logo is crisp."
-
-I said I already had the line. I locked the drawer and went out into the rain.
+Payroll gets an email from "HR" asking an employee's direct deposit to change. The domain is one letter off, has a valid certificate, and passes SPF for its own domain. List what you check in the headers, why SPF passing does not help, and how you verify the request.

@@ -2,9 +2,11 @@
 
 *A CompTIA Network+ IP addressing and local delivery precursor • Hover over highlighted terms for technical definitions and triage mechanics.*
 
-By eight in the morning, the bullpen on the fourth floor of the Portland Regional Operations Center was already awake with the sound of ringing dispatch lines. Early squalls along the Willamette River corridor had knocked out utility power across the industrial district south of downtown. At the edge of our row, Jared Vance had both monitors filled with router syslog windows, tracking battery transfer cycles across the river facilities while nursing a cup of tea.
+By eight in the morning, the bullpen on the fourth floor of the Portland Regional Operations Center was already awake with the sound of ringing dispatch lines. Early squalls along the Willamette River corridor had knocked out utility power across the industrial district south of downtown. At the edge of our row, Jared Lindqvist had both monitors filled with router syslog windows, tracking battery transfer cycles across the river facilities while nursing a cup of tea.
 
 Jules Brooks had already hung her wet rain shell behind her desk and was working through her first mug of black coffee. Across from my station, the wall-mounted queue monitor blinked and shifted from dark green to bright amber. Fourteen priority incident tickets landed within three minutes, all tagged with the same origin: Building B at the logistics annex and water pump station two miles south.
+
+Two months on the desk had not erased my first week. Maya still copied Jules on every ticket she sent me, a quiet habit she had started the morning I suggested re-imaging her machine. I did not blame her. I answered her tickets faster than anyone else's and kept my notes long enough that Jules never had to ask what I had done.
 
 Both incoming telephone lines lit up at once. On line one, warehouse supervisor Ken was shouting over the clatter of a backed-up freight bay. On line two, facilities specialist Owen reported that automated pump loggers had dropped offline.
 
@@ -42,7 +44,7 @@ The numbers made me pause. "Look at the address on this adapter," I said, pointi
 
 "The client broadcast DHCP Discover frames during boot," I realized. "No server returned an Offer before the timer expired, so the DORA exchange failed and Windows fell back to an [[apipa_address|APIPA]] link-local address."
 
-Jared Vance swung his boots down from the packing box and strolled into our row. "The storm caused a transfer switch cycle in Building B during the generator test. The switch in closet B rebooted onto battery power. The startup configuration lost its saved state."
+Jared swung his boots down from the packing box and strolled into our row. "The storm caused a transfer switch cycle in Building B during the generator test. The switch in closet B rebooted onto battery power. The startup configuration lost its saved state."
 
 "The trunk link dropped its tagging configuration," Jules said, looking at Jared. "Without trunking, client Discover broadcasts remained trapped inside an isolated [[broadcast_domain|broadcast domain]]. The central DHCP server at our datacenter never saw the requests. Routers do not forward raw broadcasts without an IP helper address."
 
@@ -156,15 +158,23 @@ Vlan    Mac Address       Type        Ports
 
 "ARP proves two physical MACs are fighting over IP ten-dot-one-hundred-dot-four-dot-fifty-five," Jared said, tapping the terminal. "And the switch MAC address table tells us the ports: Frank's Dell desktop is patched into GigabitEthernet1/0/12, but someone plugged a Hewlett-Packard network card into GigabitEthernet1/0/28 with the exact same IP hardcoded."
 
-"Duplicate IP conflict," Jules said, leaning back. "Every time one of them talks, its gratuitous ARP announcement poisons the switch MAC table and the ARP cache on neighboring PCs. Traffic flips back and forth depending on who spoke last."
+"Duplicate IP conflict," Jules said, leaning back. "Every time one of them talks, its gratuitous ARP announcement poisons the ARP cache on the default gateway and neighboring PCs. Traffic flips back and forth between two different MAC addresses depending on who spoke last."
 
-Jared Vance checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here."
+Jared checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here."
 
-Jules looked at me, tapping her pen against the edge of the desk.
+## Port Twenty-Eight
 
-"Two physical machines fighting over one Layer 3 address, Ethan. One is halting freight, and the other is plugged into port twenty-eight somewhere out in that warehouse. How do you isolate the conflict, track down the rogue hardware, and lock down the DHCP pool before Ken has to shut down the dock?"
+I had Ken check the warehouse floor for anything that had been moved or plugged in since yesterday. He groaned over the radio. Owen had wheeled an old HP LaserJet 4050 into the breakroom the afternoon before and typed in the static settings from a faded label under its paper tray, `10.100.4.55`, the address DHCP had already leased to Frank.
 
-I pulled up the switch interface monitor and opened the passdown template. I had a flapping MAC to isolate, an unmanaged printer to hunt down, and a scope to reconfigure.
+While I walked the warehouse patch panel looking for port twenty-eight, Ken held dock door six closed for forty minutes so bad weights could not post into the freight system. Two Portland-bound trailers loaded late, and Ken said so on the phone in a voice I remembered from Line 4.
+
+"I'll put it in my notes that you found it," he said. "I'll also put in my notes that it took forty minutes."
+
+We unplugged the printer's drop, and the pings from Frank's machine settled into clean two-millisecond replies. I moved the printer to a DHCP reservation at `10.100.4.240`, outside the dynamic pool, so it could not collide again.
+
+Back upstairs, Jules opened a capture of Frank's browser reaching a logistics portal in Seattle and made me walk the packet. Frank's machine applied its mask, saw the destination was remote, and addressed the frame to the gateway's MAC while the IP header kept the real destination the whole way. "The gateway does not care how urgent your ticket feels," she said. "It cares whether you addressed the frame to it."
+
+Before I left, I ran a quick sweep of the warehouse network. Eleven more devices had hand-typed static addresses that nobody had written down. Jared added a line to his list: *Gresham static sprawl, owner unknown.* He did not say whose problem it was going to be. I stayed two hours past my shift tagging all eleven on the switch port descriptions. Jules had not approved overtime, so I did it off the clock, which she found out about and told me never to do again.
 
 ## Vocabulary & Concepts
 
@@ -177,7 +187,7 @@ I pulled up the switch interface monitor and opened the passdown template. I had
 | **[[default_gateway|Default Gateway]]** | A Layer 3 router interface on the local subnet to which a host forwards IP packets destined for remote networks outside its own broadcast domain. | The local exit door for traffic leaving the local subnet; without it, a computer cannot reach any server across the router or on the internet. |
 | **[[arp_cache|ARP Cache]]** | A volatile local operating system table that maps Layer 3 IPv4 addresses to their corresponding Layer 2 physical MAC addresses for hosts on the local network segment. | The computer temporary lookup table linking IP addresses to physical network cards; if corrupted or conflicting, traffic goes to the wrong machine. |
 
-## The Handoff Gate
+## Practice It in the Lab
 
 ```bridge-card
 title: Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
@@ -185,5 +195,5 @@ target: workbench/03-the-default-gateway-doesnt-care.md
 domain: CompTIA Network+ N10-008/009 • Domain 1.4 & 4.1
 badge: Hands-On Lab
 ---
-Take over Ethan's triage console. Isolate the Layer 2 MAC address flapping war between Frank's shipping PC and the rogue device, resolve the DHCP dynamic pool collision, audit the /26 subnet boundaries, and draft the Tier 1 Addressing Passdown Note.
+The lab walks through the incident from this chapter step by step, with the answer shown, and then gives you one new problem that works the same way.
 ```
