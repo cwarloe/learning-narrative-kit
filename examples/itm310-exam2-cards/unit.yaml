@@ -1,0 +1,27 @@
+unit_id: itm310-exam2-cards
+title: "ITM 310 Exam 2: Study Cards"
+audience: "ITM 310 student reviewing for Exam 2 (Bidgoli Modules 3, 9, 4, 5, 6; Knaflic Ch. 1; CRISP-DM and Power BI)"
+purpose: "Every key term on the Exam 2 study guide, sorted into the four rubber bands (red recall, green parts, yellow look-alikes, blue order and reasoning) and turned into flip cards: 3x5 for recall, 4x6 for concepts. This is a study tool beside the Tamarack chapters, not a story."
+estimated_minutes: 45
+generated_by: "build_cards.py from cards.yaml (narrative.md, glossary.yaml and review.yaml are generated; edit cards.yaml)"
+sources:
+  - "ITM 310 Exam 2 Study Guide (Fall 2026): topic lists and the Power BI screen labels A to Q"
+  - "ITM 310 Exam 2 Review deck (Fall 2026): sample questions, slide 45 formula anatomy, slides 46-47 view names"
+  - "MindTap course glossary export (MIS), modules 3, 4, 5, 6 and 9, as stored in examples/mis-*/glossary.yaml"
+  - "ITM 310 Week 7 slides, Intro to Power BI, as stored in examples/itm310-wk07-power-bi/glossary.yaml"
+  - "Knaflic Ch. 1 working definitions in examples/exam2-knaflic-board/glossary.yaml (status: proposed)"
+  - "docs/research/FOUR_RUBBER_BANDS_FRAMEWORK.md and docs/research/ATOMIC_CONCEPTUAL_FLASHCARD_STANDARD.md"
+glossary: glossary.yaml
+narrative: narrative.md
+mark_convention: "[[term_id|surface text]]"
+glossary_tiers:
+  exam: "Terms the Exam 2 study guide and review deck send students to"
+  support: "Power BI interface words the course uses without defining"
+source_notes:
+  - "Cards marked check: true in cards.yaml carry lists from the Bidgoli chapters that the course glossary export does not spell out (DBMS components, data warehouse components, the five Vs, the McCumber cube, GIS obstacles, the four Rs, copyright vs trademark vs patent, the three kinds of analytics). Each says so on its back."
+  - "Label C: the study guide's key says Data View; review slide 47 says Model View, slide 46 Relationships View; the class screenshot shows the Model view icon. The card gives Model view and states the conflict."
+  - "Review deck answer notes on slides 8-17 and 36-39 are mismatched and not used. Sample-question answers on the cards follow the glossary definitions."
+  - "Review deck slide 20 gives COPPA as 1988; the act is from 1998. No card asks for the year."
+constraints:
+  - "Every term in the source glossaries has exactly one home band; build_cards.py fails otherwise"
+  - "Definitions follow the course materials; do not invent rival definitions"

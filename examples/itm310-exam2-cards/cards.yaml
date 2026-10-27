@@ -1,0 +1,545 @@
+# ITM 310 Exam 2 study cards: the source for this unit.
+# build_cards.py turns this file into narrative.md, glossary.yaml and review.yaml.
+# Edit this file, then run:  python3 examples/itm310-exam2-cards/build_cards.py
+#
+# Scope: every key term the Exam 2 Study Guide and Review deck send students to
+# (Bidgoli Modules 3, 9, 4, 5 and 6; Knaflic Ch. 1; CRISP-DM and Power BI).
+# Definitions are not written here. They come from the glossaries listed under
+# `glossaries`, which follow the MindTap course glossary export and the ITM 310 slides.
+#
+# Every term gets ONE home band (docs/research/FOUR_RUBBER_BANDS_FRAMEWORK.md), read for
+# a business-systems course:
+#   red    - recall only. 3x5 cards: the definition with the term blanked, term on the back
+#            (the shape of the sample questions: "_____ are computer systems that...").
+#   green  - the parts of a system and what each part does. 4x6.
+#   yellow - telling look-alikes apart: which one is it, and what is the difference. 4x6.
+#   blue   - order and reasoning: put steps in order, or go from a situation to the answer. 4x6.
+# A term's home band is red if it is listed under `red`, otherwise the band of the first
+# concept card that lists it. The builder fails if any term has no home.
+#
+# `deck: screen` puts a card in the Power BI screen deck (labels A to Q) instead of its band's deck.
+# `check: true` marks a card whose list comes from the Bidgoli chapter, not from the course
+# glossary export or the slides. The card says so on its back.
+
+unit_id: itm310-exam2-cards
+
+glossaries:
+  - examples/mis-03-data-bi/glossary.yaml
+  - examples/mis-09-ai/glossary.yaml
+  - examples/mis-04-ethics-legal/glossary.yaml
+  - examples/mis-05-security/glossary.yaml
+  - examples/mis-06-global/glossary.yaml
+  - examples/exam2-knaflic-board/glossary.yaml
+  - examples/itm310-wk07-power-bi/glossary.yaml
+
+# Order here is the order on the page and in the study guide.
+modules:
+  mod-03: {label: "Bidgoli Module 3 · Data and BI", short: "MOD 3 · DATA & BI", glossary: examples/mis-03-data-bi/glossary.yaml}
+  mod-09: {label: "Bidgoli Module 9 · AI and Automation", short: "MOD 9 · AI", glossary: examples/mis-09-ai/glossary.yaml}
+  mod-04: {label: "Bidgoli Module 4 · Personal, Legal, and Organizational Issues", short: "MOD 4 · ETHICS & LAW", glossary: examples/mis-04-ethics-legal/glossary.yaml}
+  mod-05: {label: "Bidgoli Module 5 · Protecting Information Resources", short: "MOD 5 · SECURITY", glossary: examples/mis-05-security/glossary.yaml}
+  mod-06: {label: "Bidgoli Module 6 · Global IS", short: "MOD 6 · GLOBAL IS", glossary: examples/mis-06-global/glossary.yaml}
+  knaflic: {label: "Knaflic Ch. 1 · The importance of context", short: "KNAFLIC CH. 1", glossary: examples/exam2-knaflic-board/glossary.yaml}
+  pbi: {label: "CRISP-DM and Power BI", short: "CRISP-DM & POWER BI", glossary: examples/itm310-wk07-power-bi/glossary.yaml}
+
+# Terms that are recall only. Everything else lives on a concept card below.
+red:
+  mod-03: [big_data, data_encryption, normalization, data_driven_web_site, graph_database,
+           power_bi, tableau, database_marketing, data_model, class, object, encapsulation,
+           inheritance, query_by_example_qbe, structured_query_language_sql]
+  mod-09: [natural_language_processing_nlp, robots, soft_robot, intelligent_agents,
+           artificial_intelligence_ai]
+  mod-04: [spam, digital_divide, digital_citizenship, green_computing, acceptable_use_policies,
+           accountability, cybersquatting, general_data_protection_regulation_gdpr]
+  mod-05: [computer_fraud, nonrepudiation, cryptojacking, blended_threat, secure_sockets_layer_ssl,
+           transport_layer_security_tls, zero_trust_security, firewall, virtual_private_network_vpn,
+           access_controls, password, brain_password, dna_identification, zero_login,
+           authentication_tokens, callback_modem, fault_tolerant_systems, business_continuity_planning]
+  mod-06: [global_supply_chain_management, offshore_outsourcing, transborder_data_flow_tdf,
+           multinational_corporations_mncs]
+  knaflic: [big_idea, storyboarding]
+  pbi: [crisp_dm, kpi, delimiter, dax, power_bi_reports, aggregation]
+
+# Red cards whose generated front would give the answer away, or read badly, get a
+# hand-written front here. Text must still follow the glossary definition.
+red_fronts:
+  big_data: "Data so voluminous that conventional computing methods are not able to efficiently process and manage it."
+  dax: "A library of functions and operators used to build formulas in Power BI Desktop. Starts similar to Excel functions, but goes far beyond."
+  crisp_dm: "A non-proprietary, industry-neutral, tool-neutral methodology for BI and data mining projects, with a life cycle of six phases. (Spell out the name, too.)"
+  kpi: "A measurement a business uses to measure achievement of a specific goal. In Power BI, built from calculated measures."
+  power_bi_reports: "Power BI's interactive visual reports that let decision makers quickly and visually explore their data."
+  aggregation: "How Power BI combines a field's values in a visual: sum by default, or average, count, minimum, or maximum."
+  intelligent_agents: "Software capable of reasoning and following rule-based processes; becoming more popular, especially in e-commerce."
+  artificial_intelligence_ai: "Related technologies that try to simulate and reproduce human thought and behavior, including thinking, speaking, feeling, and reasoning."
+  secure_sockets_layer_ssl: "A commonly used encryption protocol that manages transmission security on the Internet. (The older of the two.)"
+  transport_layer_security_tls: "A cryptographic protocol that ensures data security and integrity over public networks, such as the Internet. (The newer of the two.)"
+  storyboarding: "Sketching the outline of a presentation, one note per slide, and rearranging it before building anything."
+  structured_query_language_sql: "A standard fourth-generation query language used by many DBMS packages, such as Oracle Database 12. It consists of several keywords that specify actions to take."
+  big_idea: "A single complete sentence that states your point of view and what is at stake."
+
+red_backs:
+  crisp_dm: "CRISP-DM: CRoss-Industry Standard Process for Data Mining"
+
+concept_cards:
+
+# ---------------------------------------------------------------- GREEN: parts of a system
+- band: green
+  module: mod-03
+  q: "Name the five components of a database management system (DBMS)."
+  a: "Database engine · data definition · data manipulation · application generation · data administration."
+  why: "The data dictionary sits in data definition; SQL and QBE are data manipulation; CRUD permissions are data administration."
+  check: true
+  terms: [database_management_system_dbms, data_dictionary, create_read_update_and_delete_crud]
+- band: green
+  module: mod-03
+  q: "What is the difference between a database and a DBMS?"
+  a: "The database is the collection of related data. The DBMS is the software for creating, storing, maintaining, and accessing it."
+  terms: [database, database_management_system_dbms]
+- band: green
+  module: mod-03
+  q: "Who designs and sets up the databases, sets security and recovery procedures, and tunes performance in a large organization?"
+  a: "The database administrator (DBA)."
+  terms: [database_administrator_dba]
+- band: green
+  module: mod-03
+  q: "Data hierarchy: put fields, files, and records in order from smallest to largest."
+  a: "Field → record → file."
+  why: "In the relational model a row is a record (tuple) and a column is a field (attribute)."
+  terms: [data_hierarchy]
+- band: green
+  module: mod-03
+  q: "Name the four major components of a data warehouse."
+  a: "Input (data sources) · ETL (extraction, transformation, and loading) · storage · output."
+  check: true
+  terms: [extraction_transformation_and_loading_et, etl]
+- band: green
+  module: mod-03
+  q: "Big data is usually described by five Vs. Which one is the sheer quantity, measured in petabytes or exabytes?"
+  a: "Volume. (The others: variety, velocity, veracity, value.)"
+  why: "Review deck slide 9 asks this as a fill-in-the-blank."
+  check: true
+  terms: [big_data]
+- band: green
+  module: mod-03
+  q: "In an object-oriented database, what does an object hold, and what does a class do?"
+  a: "An object holds both data and the procedures (methods) that act on it. A class defines the object's format and what it does."
+  why: "Encapsulation groups objects, attributes and methods into a class; inheritance creates new objects faster by reusing attributes."
+  terms: [object_oriented_databases, object, class, encapsulation, inheritance]
+- band: green
+  module: mod-09
+  q: "Name the parts of an expert system and what each one does."
+  a: "Knowledge acquisition facility (adds new rules and facts) · knowledge base (facts plus rules) · KBMS (keeps the knowledge base updated) · inference engine (applies the rules) · explanation facility (explains how it reached the answer) · user interface."
+  why: "The inference engine is like a DSS model base; the knowledge base is like a database that also stores rules."
+  terms: [expert_systems, knowledge_acquisition_facility, knowledge_base, knowledge_base_management_system_kbms, inference_engine, explanation_facility]
+- band: green
+  module: mod-05
+  q: "The McCumber cube has three dimensions. The first is the information characteristics. Name all three."
+  a: "Confidentiality, integrity, availability (the CIA triad)."
+  why: "The other two dimensions: information states (transmission, storage, processing) and security measures (technology, policies and practices, education and training)."
+  check: true
+  terms: [confidentiality, integrity, availability]
+- band: green
+  module: mod-05
+  q: "A security analyst wants to lock the server room and secure computers and peripherals from theft. Which kind of security measure is that?"
+  a: "Physical security measures."
+  why: "Review deck slide 33. Biometric measures use something about your body; nonbiometric ones include callback modems, firewalls, and intrusion detection systems."
+  terms: [physical_security_measures, biometric_security_measures]
+- band: green
+  module: mod-06
+  q: "What does a global information system (GIS) do that an ordinary information system doesn't?"
+  a: "It works across national borders, linking headquarters and subsidiaries in other countries to gather, store, manipulate, and transmit data across cultural and geographic boundaries."
+  why: "Not the geographic information system from MIS 8; the course abbreviates both as GIS."
+  terms: [global_information_system_gis]
+- band: green
+  module: mod-06
+  q: "Name the five obstacles to using global information systems."
+  a: "Lack of standardization (time zones, currency) · cultural differences · diverse regulatory practices · poor telecommunication infrastructure · lack of skilled analysts and programmers."
+  why: "Transborder data flow laws are one of the regulatory differences."
+  check: true
+  terms: [transborder_data_flow_tdf]
+- band: green
+  module: knaflic
+  q: "Presentation context: what three questions does Knaflic say to answer before building anything?"
+  a: "Who is the audience? What do you need them to know or do? How can the data help make your point?"
+  terms: [presentation_context]
+- band: green
+  module: pbi
+  q: "Total Sales = SUM(Sales[SalesAmount]). Name each part."
+  a: "Total Sales: the measure name · = : starts the formula · SUM: the DAX function · ( ): hold the argument · Sales: the table · [SalesAmount]: the field (column)."
+  why: "Read it as: for the measure named Total Sales, calculate the SUM of the SalesAmount column in the Sales table. (Review deck slide 45.)"
+  terms: [dax_function, argument]
+- band: green
+  module: pbi
+  q: "How many arguments does SUM(Sales[SalesAmount]) have?"
+  a: "One: Sales[SalesAmount]."
+  why: "Review deck slide 44. A function needs an argument to pass it a value."
+  terms: [argument]
+- band: green
+  module: pbi
+  q: "Star schema: what sits in the middle, and what surrounds it?"
+  a: "A fact table in the middle (one row per transaction, the numbers being measured, plus keys). Dimension tables around it (products, stores, dates), each connected directly to the fact table."
+  terms: [star_schema, fact_table, dimension_table]
+- band: green
+  module: pbi
+  q: "In a Power BI model, what is a relationship built on?"
+  a: "A primary key in one table and a matching foreign key in another (fields with the same range of values)."
+  terms: [relationship]
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, label A: the top icon on the left-hand navigation. What does it open?"
+  a: "Report view (it opens the report canvas, label P)."
+  terms: [report_canvas]
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, label B: the second icon on the left-hand navigation."
+  a: "Table view (older name: Data view). Shows the rows of each table."
+  why: "The study guide says Table View; review slides 46 and 47 say Data View. Same button, renamed by Microsoft."
+  terms: [data_view]
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, label C: the third icon on the left-hand navigation."
+  a: "Model view (older name: Relationships view). Shows the tables and the relationships between them."
+  why: "Heads up: the study guide's key says \"Data View\" here, while review slide 47 says Model View and slide 46 says Relationships View. The class screenshot shows the Model view icon. Ask your instructor which answer the exam accepts."
+  terms: []
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, label D: on the Home tab ribbon, in the Data group. It's the first thing you click in a blank file."
+  a: "Get data."
+  terms: [get_data]
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, label E: the ribbon button that opens the Power Query Editor."
+  a: "Transform data."
+  terms: [query_editor]
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, labels F and G: two ribbon buttons. One adds words to the canvas; the other starts a new DAX calculation."
+  a: "F: Text box. G: New measure."
+  terms: []
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, label H: the pane on the far right that lists your tables and their fields."
+  a: "The Fields pane."
+  why: "Newer versions of Power BI call it the Data pane; the class screenshot says Fields."
+  terms: []
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, labels I and J: the grid of buttons at the top of the Visualizations pane, and the button that shows that grid."
+  a: "I: the visualization type buttons (37 of them, for example clustered column chart). J: Build visual."
+  terms: []
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, labels K and L: the icon for formatting the selected visual, and the area under the visualization buttons where fields go."
+  a: "K: the Format icon (the study guide calls it Format Page). L: the Values area."
+  why: "The course calls the L area the visual details area: axes, legend, values, details."
+  terms: [visual_details]
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, label M: the pane to the left of Visualizations."
+  a: "The Filters pane."
+  terms: [filter_pane]
+- band: green
+  module: pbi
+  deck: screen
+  q: "Power BI screen, labels N, O, P and Q: the tab at the bottom, the + beside it, the big area in the middle, and the shortcuts printed on an empty canvas."
+  a: "N: the Page 1 tab · O: add a new page · P: the report canvas · Q: canvas watermarks (shortcuts to get data)."
+  terms: []
+
+# ---------------------------------------------------------------- YELLOW: telling look-alikes apart
+- band: yellow
+  module: mod-03
+  q: "Data warehouse, data mart, or data lake? Tell them apart."
+  a: "Warehouse: data from many sources, prepared for decision making. Mart: a smaller warehouse for one department or function. Lake: data kept in its original format, structured and unstructured."
+  terms: [data_warehouse, data_mart, data_lake]
+- band: yellow
+  module: mod-03
+  q: "Sentiment data pulled from Facebook, Twitter, and Instagram posts: structured or unstructured?"
+  a: "Unstructured."
+  why: "Review deck slide 8. Structured data fits rows and columns; posts, photos, and video don't. That is what a data lake can hold and a relational table can't."
+  terms: []
+- band: yellow
+  module: mod-03
+  q: "OLTP or OLAP? Which one runs the cash register and which one slices sales by time, product, and location?"
+  a: "OLTP runs transactions in real time (point of sale, data entry), mostly internal data. OLAP analyzes many sources in multiple dimensions to produce BI."
+  terms: [online_transaction_processing_oltp, online_analytical_processing_olap]
+- band: yellow
+  module: mod-03
+  q: "Business intelligence vs business analytics: what's the difference?"
+  a: "BI gives historical, current, and predictive views of operations. BA uses data and statistical methods to give decision makers insight they can act on."
+  terms: [business_intelligence_bi, business_analytics_ba]
+- band: yellow
+  module: mod-03
+  q: "Descriptive, predictive, or prescriptive analytics: which one reviews past events and reports what happened in a given period?"
+  a: "Descriptive. Predictive estimates what is likely to happen; prescriptive recommends what to do."
+  why: "Review deck slide 10."
+  check: true
+  terms: []
+- band: yellow
+  module: mod-03
+  q: "Data-mining analysis vs text-mining analysis: what does each look for?"
+  a: "Data mining discovers patterns and relationships in data. Text mining analyzes large amounts of text to capture key concepts, trends, and hidden relationships."
+  why: "Review deck slide 11: the discovery of patterns and relationships is data mining."
+  terms: [data_mining_analysis, text_mining_analysis]
+- band: yellow
+  module: mod-03
+  q: "Primary key vs foreign key?"
+  a: "A primary key uniquely identifies each record in its own table. A foreign key is a field that matches another table's primary key, so the tables can be cross-referenced."
+  terms: [primary_key, foreign_key]
+- band: yellow
+  module: mod-03
+  q: "Physical view vs logical view of data?"
+  a: "Physical: how data is stored on and retrieved from storage media. Logical: how information appears to users and how they can organize and retrieve it."
+  terms: [physical_view, logical_view]
+- band: yellow
+  module: mod-03
+  q: "Hierarchical, network, or relational model: how do records relate in each?"
+  a: "Hierarchical: a tree; every child has one parent. Network: a record can have many parents and children. Relational: two-dimensional tables of rows (records) and columns (fields)."
+  terms: [hierarchical_model, network_model, relational_model]
+- band: yellow
+  module: mod-03
+  q: "Sequential, random, or indexed sequential (ISAM) file access: which reads records in any order, and which switches between the two?"
+  a: "Random access reads in any order (fast for a few records). Sequential reads in stored order. ISAM does both: random for a few records, sequential for many."
+  terms: [sequential_access_file_structure, random_access_file_structure, indexed_sequential_access_method_isam]
+- band: yellow
+  module: mod-03
+  q: "A distributed DBMS can split data three ways. Fragmentation, replication, allocation: tell them apart."
+  a: "Fragmentation divides tables among locations (horizontal, vertical, mixed). Replication gives each site a full copy. Allocation combines both: each site stores the data it uses most."
+  terms: [distributed_database_management_system_d, fragmentation, replication, allocation]
+- band: yellow
+  module: mod-09
+  q: "Forward chaining vs backward chaining in an expert system?"
+  a: "Forward chaining runs a series of if-then-else condition pairs from the facts toward a conclusion. Backward chaining starts from the goal (the \"then\" part) and works back to find the solution."
+  terms: [forward_chaining, backward_chaining]
+- band: yellow
+  module: mod-09
+  q: "Four types of intelligent agents. Which one tracks equipment and networks to predict a crash?"
+  a: "Monitoring and surveillance agents. The others: shopping and information agents (search the Web), personal agents (fill in forms, finish e-mail addresses), data-mining agents (find trends in a data warehouse)."
+  terms: [monitoring_and_surveillance_agents, shopping_and_information_agents, personal_agents, data_mining_agents]
+- band: yellow
+  module: mod-09
+  q: "Machine learning, neural network, genetic algorithm, or fuzzy logic: which one mimics natural evolution with mutation, selection, and crossover?"
+  a: "A genetic algorithm. Machine learning: computers learn from experience without explicit programming. Neural networks: learn to recognize patterns (faces, spam). Fuzzy logic: degrees of membership instead of yes/no."
+  terms: [genetic_algorithms_gas, machine_learning, artificial_neural_networks_anns, fuzzy_logic]
+- band: yellow
+  module: mod-09
+  q: "Artificial intelligence vs augmented intelligence: what's the difference in goal?"
+  a: "AI tries to simulate human thought and behavior. Augmented intelligence aims to complement decision makers, not replace them."
+  terms: [augmented_intelligence]
+- band: yellow
+  module: mod-04
+  q: "Misinformation vs disinformation: what's the one difference?"
+  a: "Intent. Disinformation is knowingly distributed. Misinformation is distributed regardless of intent to mislead."
+  why: "Fake news is a story or hoax made to deceive on purpose."
+  terms: [misinformation, disinformation, fake_news]
+- band: yellow
+  module: mod-04
+  q: "Deepfake vs cheap fake?"
+  a: "A deepfake is a fake video or recording that looks and sounds just like a real event. A cheap fake is made with cheap, easy-to-get software and edited with tools like Photoshop."
+  terms: [deepfakes, cheap_fakes]
+- band: yellow
+  module: mod-04
+  q: "Cookies vs log files: which one is stored on your own computer?"
+  a: "Cookies: small text files with unique IDs, saved on the user's hard drive. Log files: kept by the Web server, recording what users do on the site."
+  why: "Review deck slide 23: cookies invade privacy because they collect information the user did not voluntarily share."
+  terms: [cookies, log_files]
+- band: yellow
+  module: mod-04
+  q: "Copyright, trademark, or patent: which one protects tangible material such as books?"
+  a: "Copyright. Trademarks protect product names and identifying marks such as logos; patents protect new processes. All three fall under intellectual property."
+  why: "Review deck slide 25. Cybersquatting is using a domain name to profit from someone else's trademark."
+  check: true
+  terms: [intellectual_property]
+- band: yellow
+  module: mod-04
+  q: "Jared copies antivirus software he bought and sells the copy. Ethical, legal, both, or neither?"
+  a: "Illegal and unethical."
+  why: "Review deck slide 24. Ethics and law overlap but are not the same: some acts are legal but unethical, others ethical but illegal."
+  terms: []
+- band: yellow
+  module: mod-04
+  q: "Privacy law: how does the U.S. approach differ from Europe's?"
+  a: "The U.S. has fragmented rules by sector (health care, education, finance, children). Europe has one comprehensive law, the GDPR, which covers every EU member state."
+  why: "Review deck slides 20 and 22. GDPR applies only to select EU states: False."
+  terms: []
+- band: yellow
+  module: mod-04
+  q: "Business networking ethics vs social media networking ethics?"
+  a: "Business networking: open, fair access for all authorized users, plus three types of networking (utilitarian, emotional, virtuous). Social media: open, fair access for all of its users."
+  terms: [business_networking_ethics, social_media_networking_ethics]
+- band: yellow
+  module: mod-05
+  q: "Virus, worm, or Trojan program: which spreads on its own without attaching to a host program?"
+  a: "A worm. A virus attaches itself to other files. A Trojan hides inside a popular program you choose to run."
+  terms: [worm, virus, trojan_programs]
+- band: yellow
+  module: mod-05
+  q: "Logic bomb vs macro virus?"
+  a: "A logic bomb is a Trojan set to go off at a certain time or event. A macro virus uses a program's own macro language to spread."
+  terms: [logic_bomb, macro_viruses]
+- band: yellow
+  module: mod-05
+  q: "Backdoor vs rootkit?"
+  a: "A backdoor is built into a system by its own designer to bypass security later. A rootkit is a set of tools that lets an unauthorized user in without being detected."
+  why: "Review deck slide 30 offers the backdoor definition as a wrong answer for spyware."
+  terms: [backdoor, rootkit]
+- band: yellow
+  module: mod-05
+  q: "Spyware, adware, or keystroke logger?"
+  a: "Spyware secretly gathers information while you browse. Adware is spyware that picks which ads to show you. A keystroke logger records every key you press."
+  why: "Review deck slide 30 asks for the spyware definition."
+  terms: [spyware, adware, keystroke_loggers]
+- band: yellow
+  module: mod-05
+  q: "Phishing vs pharming?"
+  a: "Phishing sends fraudulent e-mail that looks legitimate. Pharming hijacks an official Web site's address so even the correct URL takes you to the fake site."
+  terms: [phishing, pharming]
+- band: yellow
+  module: mod-05
+  q: "Baiting vs quid pro quo? Both are social engineering."
+  a: "Baiting is phishing plus a promise to the victim. Quid pro quo asks you to trade data or login information for a service or prize."
+  why: "Social engineering uses the human side of security to trick people into revealing private information."
+  terms: [baiting, quid_pro_quo, social_engineering]
+- band: yellow
+  module: mod-05
+  q: "Sniffing vs spoofing?"
+  a: "Sniffing captures and records network traffic. Spoofing poses as an authorized user to get in."
+  terms: [sniffing, spoofing]
+- band: yellow
+  module: mod-05
+  q: "Black hat, gray hat, white hat, or script kiddie: who uses programs other people wrote?"
+  a: "Script kiddies. Black hats break in for profit, fun, or a cause. White hats are ethical hackers who test security. Gray hats break in without permission or malicious intent, then may offer a fix for a fee."
+  terms: [script_kiddies, black_hats, white_hats, gray_hats]
+- band: yellow
+  module: mod-05
+  q: "Symmetric vs asymmetric encryption: how many keys?"
+  a: "Symmetric: one shared secret key encrypts and decrypts. Asymmetric: a public key everyone knows and a private key only the recipient has."
+  why: "PKI uses a key pair from a trusted authority so people can exchange data securely over the Internet."
+  terms: [symmetric_encryption, asymmetric_encryption, pki_public_key_infrastructure]
+- band: yellow
+  module: mod-05
+  q: "Confidentiality, integrity, or availability: a system must not disclose information to anyone not authorized to see it."
+  a: "Confidentiality."
+  why: "Review deck slide 32. Integrity is accuracy; availability is being up and reachable."
+  terms: []
+- band: yellow
+  module: mod-06
+  q: "Global, international, multinational, or transnational structure: which one has subsidiaries with almost no autonomy?"
+  a: "Global. International: like a multinational, but subsidiaries depend more on headquarters for process and production decisions. Multinational: production, sales, and marketing decentralized; finance stays with the parent. Transnational: parent and subsidiaries design policy together."
+  why: "Review deck slide 37 asks for the international structure."
+  terms: [global_structure, international_structure, multinational_structure, transnational_structure]
+- band: yellow
+  module: knaflic
+  q: "Exploratory vs explanatory analysis?"
+  a: "Exploratory: looking through data to find what might be worth telling (opening many oysters). Explanatory: communicating one finding to a specific audience (the pearl)."
+  terms: [exploratory_analysis, explanatory_analysis]
+- band: yellow
+  module: knaflic
+  q: "Present to the widest possible audience, or a specific one?"
+  a: "A specific one. A report built for everyone gives nobody what they need."
+  why: "Review deck slide 42."
+  terms: [audience]
+- band: yellow
+  module: knaflic
+  q: "Live presentation vs a document read alone: which one has to stand on its own?"
+  a: "The document. In a live talk the speaker carries part of the message, so the slides can hold less."
+  terms: [communication_method]
+- band: yellow
+  module: pbi
+  q: "Calculated column vs calculated measure?"
+  a: "Column: a new value in every row, computed at refresh; good when you slice or filter on it. Measure: belongs to the whole data set, computed on the fly, changes with the filters; use it for aggregates."
+  terms: [calculated_column, calculated_measure]
+- band: yellow
+  module: pbi
+  q: "Power BI Desktop, service, or Mobile: which one is strictly cloud based?"
+  a: "The service (through Office 365). Desktop runs on one machine, on premises. Mobile runs on phones and tablets."
+  terms: [power_bi_desktop, power_bi_service, power_bi_mobile]
+- band: yellow
+  module: pbi
+  q: "Slicer vs Filters pane?"
+  a: "Both filter. A slicer is a visual on the report canvas; the Filters pane does the same job without showing on the canvas."
+  terms: [slicer]
+
+# ---------------------------------------------------------------- BLUE: order and reasoning
+- band: blue
+  module: pbi
+  q: "Put the six CRISP-DM phases in order."
+  a: "1 Business understanding → 2 Data understanding → 3 Data preparation → 4 Modeling → 5 Evaluation → 6 Deployment."
+  why: "Data preparation can take 80 to 90 percent of a project's time, and modeling may send you back to it."
+  terms: [business_understanding, data_understanding, data_preparation, modeling_phase, evaluation_phase, deployment_phase]
+- band: blue
+  module: pbi
+  q: "CRISP-DM: the team is turning the business goal into a BI problem definition and a first plan. Which phase?"
+  a: "Business understanding (phase 1)."
+  terms: []
+- band: blue
+  module: pbi
+  q: "CRISP-DM: the team is checking whether the reporting met the business objectives. Which phase?"
+  a: "Evaluation (phase 5)."
+  terms: []
+- band: blue
+  module: pbi
+  q: "From a blank Power BI file to a finished report: put the steps in order."
+  a: "Get data → Transform data (Power Query Editor; every shaping step is listed in Applied Steps) → Close & Load → build relationships in the model → build visuals on the report canvas."
+  why: "Review deck slide 44: the first step in a blank file is Get data."
+  terms: [applied_steps, close_and_load]
+- band: blue
+  module: mod-09
+  q: "Case-based reasoning works in a cycle called the four Rs. Put them in order."
+  a: "Retrieve → reuse → revise → retain."
+  why: "Match the new case to a solved one, use its solution, adjust it, then store the new case. If nothing matches, a human expert solves it."
+  check: true
+  terms: [case_based_reasoning_cbr]
+- band: blue
+  module: mod-09
+  q: "Your photo gets tagged automatically on Facebook. Which AI technology did that?"
+  a: "Facial recognition."
+  why: "Review deck slide 14."
+  terms: []
+- band: blue
+  module: mod-09
+  q: "A Web site's chat bot accepts input typed the way a person talks. Which AI technology?"
+  a: "Natural-language processing."
+  why: "Review deck slide 15."
+  terms: []
+- band: blue
+  module: mod-09
+  q: "True or false: contextual computing cannot tailor a course of action to a user based on what it knows about the user's situation."
+  a: "False. Tailoring to the user's situation and surroundings is exactly what contextual computing does."
+  why: "Review deck slide 17."
+  terms: []
+- band: blue
+  module: mod-05
+  q: "An employee downloads a game, then files start disappearing on that one computer. Nobody else has the problem. Most likely culprit?"
+  a: "A Trojan program: malicious code hidden inside a program the user chose to run."
+  why: "Review deck slide 31. The slide gives no answer key; this follows the glossary definitions. A worm would spread to other computers on its own, and a rootkit hides an intruder rather than deleting files."
+  terms: []
+- band: blue
+  module: mod-05
+  q: "The firewall isn't catching suspicious activity, and the analyst wants an alert when certain patterns show up. Best fix?"
+  a: "An intrusion detection system (IDS)."
+  why: "Review deck slide 34. An IDS identifies attack signatures, traces patterns, and sounds alarms; it usually sits in front of the firewall."
+  terms: [intrusion_detection_system_ids]
+- band: blue
+  module: mod-05
+  q: "A server is flooded with service requests until legitimate users can't get in. What kind of attack?"
+  a: "Denial of service (DoS)."
+  terms: [denial_of_service_dos_attack]
+- band: blue
+  module: knaflic
+  q: "Planning a data talk: put these in order. Storyboard · answer the three context questions · write the Big Idea · build the visuals."
+  a: "Context questions → Big Idea → storyboard → visuals."
+  why: "Knaflic: settle who, what, and how before touching the data tool."
+  terms: []
+
+# Terms that belong to no card above get one here, so the sort sheet stays complete.
+# (Leave empty; the builder lists any orphans.)

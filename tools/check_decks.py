@@ -10,7 +10,9 @@
    happens to start with "Word:"; its text would be dropped from the card.
 
 Usage:
-  python3 tools/check_decks.py [paths...]     (default: docs/portland-desk)
+  python3 tools/check_decks.py [paths...]
+Default: the Portland Desk pages (docs/portland-desk/**/*.md) and every unit's
+examples/*/narrative.md, which tools/render_unit.py renders with the same fence.
 Exits 1 if any problem is found.
 """
 from __future__ import annotations
@@ -102,8 +104,11 @@ def check_file(path: Path) -> tuple[list[str], int]:
 
 
 def main(argv: list[str]) -> int:
-    roots = [Path(a) for a in argv] or [Path("docs/portland-desk")]
-    files = [f for r in roots for f in ([r] if r.is_file() else sorted(r.rglob("*.md")))]
+    if argv:
+        roots = [Path(a) for a in argv]
+        files = [f for r in roots for f in ([r] if r.is_file() else sorted(r.rglob("*.md")))]
+    else:
+        files = sorted(Path("docs/portland-desk").rglob("*.md")) + sorted(Path("examples").glob("*/narrative.md"))
     problems, decks = [], 0
     for f in files:
         p, d = check_file(f)

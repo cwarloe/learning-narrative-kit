@@ -23,6 +23,7 @@ import sys
 from pathlib import Path
 
 from _unit_page_template import render_html
+from _deck import deck_placeholder
 
 try:
     import yaml
@@ -514,6 +515,9 @@ def render_fence(kind: str, block: str, terms: dict, used_ids: list) -> str:
         return render_steps(fields, body, terms, used_ids)
     if ftype == "meter":
         return render_meter(fields, terms, used_ids)
+    if ftype == "lnk-deck":
+        # Flip-card deck; docs/lnk-deck.js builds it in the browser (spec section 4).
+        return deck_placeholder(block)
     if ftype == "table":
         lines = [ln for ln in body.splitlines() if ln.strip()]
         rows: list[list[str]] = []
@@ -668,8 +672,10 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
         nav_top, nav_bottom = nav_html(track, unit_id, kit_root)
         extra_css = NAV_CSS
 
+    has_deck = 'class="lnk-deck"' in body_html
     html_out = render_html(
-        page_title, subtitle, body_html, gloss_json, nav_top, nav_bottom, extra_css
+        page_title, subtitle, body_html, gloss_json, nav_top, nav_bottom, extra_css,
+        has_deck=has_deck,
     )
 
     if out_root is not None:
@@ -678,7 +684,7 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
             raise SystemExit("--out is for previews outside docs/; omit it to render into docs/")
         out_dir = out_root / unit_id
         out_dir.mkdir(parents=True, exist_ok=True)
-        for asset in ("unit.css", "unit.js"):
+        for asset in ("unit.css", "unit.js", "lnk-deck.css", "lnk-deck.js"):
             shutil.copyfile(kit_root / "docs" / asset, out_root / asset)
     else:
         out_dir = kit_root / "docs" / unit_id
