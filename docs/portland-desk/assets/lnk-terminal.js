@@ -24,6 +24,27 @@
       const screen = el.querySelector('.lnk-term-screen');
       const input = el.querySelector('.lnk-term-input');
       const promptText = config.prompt || (config.shell === 'powershell' ? 'PS C:\\Support> ' : (config.shell === 'serial' ? 'SCALE_04# ' : 'C:\\> '));
+      // Keep the input outside the live transcript so keystrokes are not re-announced.
+      screen.tabIndex = 0;
+      screen.setAttribute('role', 'region');
+      screen.setAttribute('aria-label', 'Terminal history for ' + (config.title || 'diagnostic terminal'));
+      const transcript = document.createElement('div');
+      transcript.className = 'lnk-term-transcript';
+      transcript.setAttribute('role', 'log');
+      transcript.setAttribute('aria-label', 'Terminal output');
+      transcript.setAttribute('aria-live', 'polite');
+      transcript.setAttribute('aria-relevant', 'additions');
+      const inputRow = el.querySelector('.lnk-term-input-row');
+      screen.insertBefore(transcript, inputRow);
+      screen.querySelectorAll('.lnk-term-line').forEach(function (line) { transcript.appendChild(line); });
+      const status = document.createElement('div');
+      status.className = 'lnk-term-status';
+      status.setAttribute('role', 'status');
+      status.setAttribute('aria-atomic', 'true');
+      el.appendChild(status);
+      input.setAttribute('aria-label', 'Command for ' + (config.title || 'diagnostic terminal'));
+      el.setAttribute('role', 'group');
+      el.setAttribute('aria-label', config.title || 'Diagnostic terminal');
       const history = [];
       let historyIdx = -1;
 
@@ -31,12 +52,7 @@
         const line = document.createElement('div');
         line.className = isOutput ? 'lnk-term-output-block' : 'lnk-term-line';
         line.innerHTML = html;
-        const row = el.querySelector('.lnk-term-input-row');
-        if (row && row.parentNode) {
-          row.parentNode.insertBefore(line, row);
-        } else {
-          screen.appendChild(line);
-        }
+        transcript.appendChild(line);
         screen.scrollTop = screen.scrollHeight;
       }
 
@@ -49,6 +65,8 @@
               pill.classList.add('completed');
               const check = pill.querySelector('.lnk-term-obj-check');
               if (check) check.textContent = '[OK]';
+              const completed = el.querySelectorAll('.lnk-term-obj-pill.completed').length;
+              status.textContent = 'Completed: ' + obj.label + '. ' + completed + ' of ' + objectives.length + ' objectives complete.';
             }
           }
         });
@@ -65,6 +83,7 @@
         if (cmd === 'clear' || cmd === 'cls') {
           screen.querySelectorAll('.lnk-term-line, .lnk-term-output-block').forEach(function (l) { l.remove(); });
           input.value = '';
+          status.textContent = 'Terminal cleared.';
           return;
         }
 
@@ -123,13 +142,15 @@
       if (replayBtn) {
         replayBtn.addEventListener('click', function () {
           const triggers = objectives.map(function (o) { return o.trigger; }).filter(Boolean);
-          if (triggers.length === 0 || replayBtn.disabled) return;
-          replayBtn.disabled = true;
+          if (triggers.length === 0 || replayBtn.getAttribute('aria-disabled') === 'true') return;
+          replayBtn.setAttribute('aria-disabled', 'true');
+          status.textContent = 'Replay started.';
           input.disabled = true;
           let currentTrigger = 0;
 
           function finishReplay() {
-            replayBtn.disabled = false;
+            replayBtn.setAttribute('aria-disabled', 'false');
+            if (el.isConnected) status.textContent = 'Replay finished. ' + el.querySelectorAll('.lnk-term-obj-pill.completed').length + ' of ' + objectives.length + ' objectives complete.';
             input.disabled = false;
           }
 

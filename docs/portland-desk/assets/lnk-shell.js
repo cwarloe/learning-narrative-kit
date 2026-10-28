@@ -252,6 +252,12 @@
     document.querySelectorAll('.scratchpad-body textarea').forEach(function (textarea) {
       const id = textarea.id;
       if (!id) return;
+      const container = textarea.closest('.scratchpad-container');
+      const title = container && container.querySelector('.scratchpad-title');
+      if (title) {
+        title.id = id + '-label';
+        textarea.setAttribute('aria-labelledby', title.id);
+      }
       const storageKey = 'lnk_scratchpad_' + id;
       const saved = localStorage.getItem(storageKey);
       if (saved && !textarea.value) {

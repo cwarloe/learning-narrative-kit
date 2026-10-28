@@ -1527,3 +1527,11 @@ details.cbyt-gate ul li strong,
 
 .pill-pass { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
 .pill-fail { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+/* Shared keyboard focus for workbench controls, including custom disclosure styles. */
+.markdown-section summary:focus-visible,
+.markdown-section button:focus-visible,
+.scratchpad-body textarea:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: -3px;
+}

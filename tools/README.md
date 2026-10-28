@@ -26,6 +26,7 @@ Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_to
 | `check_dates.py` | Portland Desk months, seasons, weekdays, incident IDs and desk tenure match `PORTLAND_TIMELINE.md`; CI and before merge | `AGENTS.md` |
 | `check_cleanliness.py` | Strict lint: fails on any emoji or listed AI-slop marker in learner-facing files. Not in CI | — |
 | `_track.py`, `_unit_page_template.py`, `_deck.py` | Modules imported by the renderers (`_deck.py` parses `lnk-deck` fences for `render_unit.py`); not run directly | — |
+| `_accessibility.py` | Browser assertions for accessible names, keyboard focus, card announcements, and contrast; not run directly | Browser flashcard checks |
 | `_workbench.py` | Browser assertions for terminal commands, answer reveals, and saved notes; imported by `check_decks_browser.py`, not run directly | Browser flashcard checks |
 
 ### Generators (safe to rerun; they rebuild output from a source)
@@ -212,3 +213,11 @@ source, command history, help, clear, error output, animated replay, keyboard
 answer reveals, and scratchpad persistence after reload. Episode 03 has no
 terminal fence, so its disclosures and notes are checked without requiring one.
 Tests use an isolated browser context; they never touch a learner's saved notes.
+
+Accessibility coverage checks descriptive field names, visible keyboard focus,
+keyboard disclosure and replay controls, focus retained during replay, polite
+terminal output/progress regions, and flashcard face announcements and contrast.
+These browser checks validate semantics and computed styles; they do not replace
+listening with a screen reader. A targeted axe-core 4.10.3 audit was also run on
+the shared widgets in Episodes 00 and 01 and the Exam 2 cards; external fonts
+were excluded as in the other browser checks.

@@ -72,7 +72,9 @@
     if (data.meta) titles.appendChild(el('span', 'lnk-deck__meta', data.meta));
     header.appendChild(titles);
     var counter = el('div', 'lnk-deck__counter');
-    counter.setAttribute('aria-live', 'polite');
+    var announcement = el('div', 'lnk-deck__announcement');
+    announcement.setAttribute('role', 'status');
+    announcement.setAttribute('aria-atomic', 'true');
     header.appendChild(counter);
 
     var stage = el('div', 'lnk-deck__stage');
@@ -103,6 +105,7 @@
     });
 
     root.textContent = '';
+    root.appendChild(announcement);
     root.appendChild(header);
     root.appendChild(stage);
     root.appendChild(nav);
@@ -111,7 +114,7 @@
     var idx = 0;
     var flipped = false;
 
-    function render() {
+    function render(announce) {
       var c = cards[idx];
       var n = 'Card ' + (idx + 1) + ' of ' + cards.length;
       card.setAttribute('data-band', BANDS[c.band] ? c.band : deckBand);
@@ -137,6 +140,8 @@
       front.setAttribute('aria-hidden', flipped ? 'true' : 'false');
       back.setAttribute('aria-hidden', flipped ? 'false' : 'true');
       counter.textContent = 'CARD ' + (idx + 1) + ' / ' + cards.length;
+      nav.querySelector('[data-act="flip"]').setAttribute('aria-pressed', String(flipped));
+      if (announce) inline(announcement, n + '. ' + (flipped ? 'Answer: ' + (c.a || '') + (c.why ? '. ' + c.why : '') : 'Question: ' + (c.q || '')));
       var all = dots.querySelectorAll('.lnk-deck__dot');
       for (var i = 0; i < all.length; i++) all[i].classList.toggle('is-active', i === idx);
     }
@@ -157,7 +162,7 @@
         }
         idx = 0; flipped = false;
       }
-      render();
+      render(true);
     }
 
     root.addEventListener('click', function (e) {

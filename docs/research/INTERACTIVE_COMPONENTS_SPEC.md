@@ -62,6 +62,24 @@ set-baud 9600: |
 
 ---
 
+### Keyboard and assistive technology
+
+Terminal command fields have descriptive accessible names. Tab reaches the replay
+button, the scrollable history region, and the command field, with visible focus.
+Output appears in a separate polite live log so typing is not announced as output.
+A status region announces completed objectives and replay state. During replay,
+the button remains focusable and is marked unavailable; repeated activation does
+not start another run. Scratchpads take their accessible names from their visible
+titles, and answer disclosure controls retain native keyboard behavior.
+
+The shared flashcard component announces the current question or answer, marks
+the flip button's state, and hides the inactive face from the accessibility tree.
+Its headings and band labels meet a text contrast ratio of at least 4.5:1.
+Browser checks cover names, keyboard focus and activation, announcement-region
+updates, and card-label contrast. Spoken output still needs a screen-reader check.
+
+---
+
 ## 3. Component Specification: `callout-panel`
 
 ### Markdown Authoring Syntax

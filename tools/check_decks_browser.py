@@ -19,6 +19,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 from _workbench import check_workbench
+from _accessibility import check_deck_accessibility, check_deck_contrast
 
 ROOT = Path(__file__).resolve().parent.parent
 failures = 0
@@ -90,6 +91,8 @@ with sync_playwright() as pw:
                     data = d.evaluate(
                         "(e)=>JSON.parse(decodeURIComponent(e.dataset.deck))"
                     )
+                    check_deck_accessibility(d)
+                    check_deck_contrast(d)
                     count = len(data["cards"])
                     cards += count
                     assert d.locator(".lnk-deck__q").text_content() == data["cards"][0][

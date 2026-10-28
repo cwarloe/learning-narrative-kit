@@ -3,6 +3,7 @@
 import re
 
 from playwright.sync_api import expect
+from _accessibility import check_focus
 
 
 def unquote(text):
@@ -60,12 +61,34 @@ def check_workbench(page, source, base):
         ), "Objective text was truncated or quoted incorrectly"
         assert actual == commands, "Commands or output differ from the source fence"
         inp = term.locator("input")
+        expect(inp).to_have_accessible_name("Command for " + config["title"])
+        check_focus(inp)
+        log = term.get_by_role("log", name="Terminal output")
+        expect(log).to_have_attribute("aria-live", "polite")
+        assert (
+            log.locator("input").count() == 0
+        ), "Typing must not be inside the live log"
+        expect(term.get_by_role("status")).to_have_attribute("aria-atomic", "true")
+        replay = term.locator(".lnk-term-replay-btn")
+        if replay.count():
+            check_focus(replay)
+            replay.press("Tab")
+            history = term.get_by_role(
+                "region", name="Terminal history for " + config["title"]
+            )
+            expect(history).to_be_focused()
+            check_focus(history)
+            history.press("Tab")
+            expect(inp).to_be_focused()
         for command, output in commands.items():
             inp.fill(command.upper())  # Dictionary matching is case insensitive.
             inp.press("Enter")
             assert (
                 term.locator(".lnk-term-output").last.text_content() == output
             ), command
+        expect(term.get_by_role("status")).to_contain_text(
+            f"{len(objectives)} of {len(objectives)} objectives complete"
+        )
         command_count += len(commands)
         assert term.locator(".lnk-term-obj-pill.completed").count() == len(objectives)
         inp.press("ArrowUp")
@@ -95,7 +118,7 @@ def check_workbench(page, source, base):
         item = details.nth(i)
         summary = item.locator("summary").first
         assert not item.evaluate("(e)=>e.open")
-        summary.focus()
+        check_focus(summary)
         summary.press("Enter")
         assert item.evaluate("(e)=>e.open")
         assert item.evaluate(
@@ -109,6 +132,13 @@ def check_workbench(page, source, base):
     saved = {}
     for i in range(notes.count()):
         note = notes.nth(i)
+        title = (
+            note.locator('xpath=ancestor::*[contains(@class,"scratchpad-container")]')
+            .locator(".scratchpad-title")
+            .inner_text()
+        )
+        expect(note).to_have_accessible_name(title)
+        check_focus(note)
         value = f'Browser check: {source.stem} / {note.get_attribute("id")}\nRetain this second line.'
         note.fill(value)
         saved[note.get_attribute("id")] = value
@@ -127,8 +157,13 @@ def check_workbench(page, source, base):
             expect(term).to_have_attribute("data-initialized", "true")
             replay = term.locator(".lnk-term-replay-btn")
             if replay.count():
-                replay.click()
+                check_focus(replay)
+                replay.press("Enter")
+                expect(replay).to_be_focused()
                 assert replay.is_disabled(), "Replay should prevent overlapping runs"
+                replay.press(
+                    "Enter"
+                )  # Repeated activation must not start a second replay.
                 assert term.locator("input").is_disabled()
                 duration = sum(len(o["trigger"]) * 45 + 1400 for o in objectives) + 2000
                 page.clock.run_for(duration)
@@ -136,6 +171,8 @@ def check_workbench(page, source, base):
                     objectives
                 ), "Replay failed"
                 assert replay.is_enabled() and term.locator("input").is_enabled()
+                expect(replay).to_be_focused()
+                expect(term.get_by_role("status")).to_contain_text("Replay finished.")
                 assert term.locator(".lnk-term-output-block").count() == len(
                     objectives
                 ), "Replay must run each objective once"

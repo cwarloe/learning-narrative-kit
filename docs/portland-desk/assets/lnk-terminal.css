@@ -186,3 +186,17 @@
 .lnk-term-obj-check {
   font-weight: bold;
 }
+
+/* Keyboard focus must remain visible inside the dark terminal. */
+.lnk-term-input:focus-visible, .lnk-term-btn:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+}
+.lnk-term-btn[aria-disabled="true"] { opacity: 0.7; cursor: wait; }
+.lnk-term-status {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; clip-path: inset(50%);
+  white-space: nowrap; border: 0;
+}
+
+.lnk-term-screen:focus-visible { outline: 2px solid #38bdf8; outline-offset: -3px; }
