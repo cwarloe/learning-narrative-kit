@@ -71,11 +71,11 @@ Wireless ops had a note on the bridge: bursts of spoofed [[disassociation|deauth
 
 Dev docked. The flapping stopped because copper does not care about deauth theater.
 
-## Owen and the bench in the lobby
+## Reggie and the bench in the lobby
 
-The evil twin was not in the air. It was in the lobby, a small battery-powered access point taped under a bench by the visitor sign-in tablet. I found Owen in the loading dock vestibule, where he was replacing a door closer, and he followed me back.
+The evil twin was not in the air. It was in the lobby, a small battery-powered access point taped under a bench by the visitor sign-in tablet. I found Reggie in the loading dock vestibule, where he was replacing a door closer, and he followed me back.
 
-Owen walked the lobby with me and pointed out what I had walked past for two years: the camera over the front desk did not cover the benches, the badge reader on the inner door was the only controlled boundary, and the cleaning crew propped the side door during evening rounds. He knew the cameras, locks, and doors, and he admitted right away that he did not know what the device under the bench was doing on the network.
+Reggie walked the lobby with me and pointed out what I had walked past for two years: the camera over the front desk did not cover the benches, the badge reader on the inner door was the only controlled boundary, and the cleaning crew propped the side door during evening rounds. He knew the cameras, locks, and doors, and he admitted right away that he did not know what the device under the bench was doing on the network.
 
 "Somebody sat here long enough to tape that up," he said. "Nobody stopped them because the lobby's public. That's on purpose. The question is where public stops." We wrote down the three places it stopped: the inner badge door, the server closet lock, and the camera blind spot that needed fixing.
 
@@ -83,7 +83,7 @@ Owen walked the lobby with me and pointed out what I had walked past for two yea
 
 We found the travel router under the credenza in 3B and shut its switch port. The barcode scanners reassociated with our access points, and Dev's laptop came back over 802.1X.
 
-Owen took the lobby personally. He had the side door re-keyed that week and put in for a second camera. The camera did not come that month.
+Reggie took the lobby personally. He had the side door re-keyed that week and put in for a second camera. The camera did not come that month.
 
 It still slowed the dock, and it cost me a Saturday. Re-enrolling the scanners onto 802.1X took most of the next morning, and Ken's crew scanned by hand at two doors until noon. He drove up from Gresham that afternoon and stood at my desk to tell me exactly how many pallets that had cost. It was the first time he had spoken to me since the laptop.
 

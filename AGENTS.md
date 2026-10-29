@@ -20,7 +20,7 @@ When two documents disagree, the higher one wins. Fix the lower one in the same 
 
 No document is "canonical" by its own say-so. Its place in this list decides.
 
-Canon that is settled: the employer is Harrowmere Equipment Group, the setting is Portland, and Ethan never relocates.
+Canon that is settled: Book 0's employer is Harrowmere Northwest Distribution & Services, a wholly owned subsidiary of Harrowmere Equipment Group (NADF's employer); the setting is Portland, and Ethan never relocates.
 
 ## Story and lab model (Charles, 2026-10-26)
 

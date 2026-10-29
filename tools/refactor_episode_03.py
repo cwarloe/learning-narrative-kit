@@ -19,7 +19,7 @@ By ten o'clock the morning storm had subsided into a light mist that clung to th
 
 I opened a remote desktop session to Frank's machine at `10.100.4.55`. I initiated a continuous ping toward the local default gateway at `10.100.4.1`. The terminal displayed an erratic pattern that defied ordinary hardware failure. Three successful replies appeared with two-millisecond round trips. Three request timeouts followed immediately. Four duplicate packets arrived next, followed by another burst of clean replies.
 
-"The physical link is flapping on the wall jack," I suggested. I wondered if storm moisture had entered an external junction conduit. "I should have Owen bring a cable tester to inspect the drop behind Frank's desk."
+"The physical link is flapping on the wall jack," I suggested. I wondered if storm moisture had entered an external junction conduit. "I should have Reggie bring a cable tester to inspect the drop behind Frank's desk."
 
 "Inspect your Layer 2 tables before you send a technician into a crawlspace, Ethan," Jules cautioned. She glanced up from her secondary monitor. "A damaged copper cable usually produces continuous frame check errors or drops carrier completely. Frank's machine maintains solid link carrier on the switch port. Inspect the [[arp_cache|ARP cache]] while pinging an adjacent workstation."
 
@@ -85,7 +85,7 @@ caption: "Dock view: At 11:20 AM, intake scales and barcode scanners in Building
 prompt: "Clean graphic novel cutaway panel of a bustling freight warehouse shipping dock in the Pacific Northwest. Pallet jacks and freight scales operate under bright industrial overhead lighting. A desktop monitor displays an active green logistics manifest. Outside open bay doors, rain has cleared over the river. Clean line art, technical precision, no text, no words. 16:9 ratio."
 ```
 
-Following the Layer 2 triage, I instructed Ken to check the warehouse floor for any newly relocated equipment. Ken groaned over the radio—facilities technician Owen had wheeled a legacy HP LaserJet 4050 into the breakroom yesterday afternoon, copying its static network settings from an outdated label beneath the paper tray.
+Following the Layer 2 triage, I instructed Ken to check the warehouse floor for any newly relocated equipment. Ken groaned over the radio—facilities technician Reggie had wheeled a legacy HP LaserJet 4050 into the breakroom yesterday afternoon, copying its static network settings from an outdated label beneath the paper tray.
 
 We unplugged the printer's network drop immediately. The ping replies on Frank's machine leveled out into an unbroken stream of clean two-millisecond responses. To prevent future scope collisions, I logged into the printer's web interface, shifted its addressing to dynamic DHCP reservation, and configured an explicit reservation in our Windows DHCP server at `10.100.4.240`, safely outside the dynamic client allocation pool.
 

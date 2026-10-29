@@ -117,7 +117,7 @@ Leah started before Nia did. "I found out my gateway was going dark from a phone
 
 "There was no plan," Jules said. "That's on us, not on Ethan."
 
-"Then whose is it?" Leah asked. Nobody answered quickly enough. Nia wrote *plant isolation playbook, owner TBD* at the top of the preparation list, and under it Owen's lobby camera, which was still on order.
+"Then whose is it?" Leah asked. Nobody answered quickly enough. Nia wrote *plant isolation playbook, owner TBD* at the top of the preparation list, and under it Reggie's lobby camera, which was still on order.
 
 Nia ran down the indicator list next. None of my saved hashes or domains from December or February had matched anything in this intrusion. "Keep saving them," she said. "Just don't expect them to be the thing that catches the next one." <!-- date-ok: back-reference to December and February incidents -->
 
@@ -127,7 +127,9 @@ Then she got to containment, and my name came up. I had isolated Todd's workstat
 
 ## The Posting
 
-The analyst opening on Harrowmere's security operations team posted the Monday after the review. It sat one floor up, in the same building.
+The analyst opening on Harrowmere's security operations team posted the Monday after the review. It sat one floor up, in the same building, but it was not our company's job. The badges upstairs said Harrowmere Equipment Group. Ours said Harrowmere Northwest.
+
+Jules stopped at my desk that afternoon with her coffee. "Nia called me this morning," she said. "She's running security operations now. She asked if I had anyone for the Portland seat." She set a printout of the posting on my keyboard. "I gave her your name. She still wants the application, and she wants the second capture in it." Then she went back to her desk, and I did not get to ask her why.
 
 I opened the application that night at the kitchen table and stared at the box that asked for a recent incident. I could have written about the indicators I had saved, or the binder, or the bridge with Chicago. I wrote about the second memory capture instead: what I had seen, why I had pulled the cable, and what I would need to see next time to wait sixty more seconds.
 

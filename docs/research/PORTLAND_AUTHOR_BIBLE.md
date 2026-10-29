@@ -16,22 +16,22 @@ In the Learning Narrative Kit (LNK) framework, the narrative is not decorative f
 When a character chooses between opening port 23 versus port 22, the learning objective is not simply the integers `23` and `22`. The learning objective is the consequence: cleartext administrative credentials traversing a shared network span versus encrypted SSH sessions with cryptographic key authentication. By embedding every CompTIA A+, Network+, and Security+ concept within an authentic workplace dilemma where someone has a train to catch, an accounting run to finish, or a wastewater pump to keep running, the technical concept becomes an indelible operational memory.
 
 ### 1.3 Continuity with NADF (Book 1)
-*Book 0* is the first part of Ethan's story. The Network Analyst Development Framework (NADF, *Book 1*) continues it. The employer in both books is **Harrowmere Equipment Group**, a mid-sized manufacturer and distributor of industrial equipment. Its Portland area is a logistics, distribution, and processing hub: the Gresham distribution warehouse, the Willamette River plant, the Rivergate parts & service center, and the Portland Regional Operations Center (PROC), the internal IT help desk that serves all of them and reports up to Central IT in Chicago. Ethan never relocates; he stays in the Portland area from Book 0 through NADF. The characters, environments, and tensions below are where it starts:
-- **Leah Moreno** appears as the Senior Plant Systems Specialist at Harrowmere's Willamette River plant, establishing the high-friction boundary between corporate enterprise IT and operational technology (OT/ICS). Leah continues into NADF as the Enterprise Applications Lead.
-- The **Chicago Central IT and Security Operations Center (SOC)** exists as an intimidating, distant corporate presence whose top-down policies frequently clash with regional operational realities.
-- **Nia Alvarez**, Senior Incident Response Lead at Chicago HQ, makes her pivotal first appearance in Episode 12, where Ethan’s meticulous Tier 1/2 escalation dossier catches her attention and earns him a seat at the enterprise security table. Nia continues into NADF as the Security Operations Manager.
+*Book 0* is the first part of Ethan's story. The Network Analyst Development Framework (NADF, *Book 1*) continues it. Both books are set inside **Harrowmere Equipment Group**, a mid-sized manufacturer and distributor of industrial equipment headquartered in Chicago. In Book 0, Ethan works for **Harrowmere Northwest Distribution & Services** ("Harrowmere Northwest"), the wholly owned subsidiary that runs the Portland area: the Gresham distribution warehouse, the Willamette River plant, the Rivergate parts & service center, and the Portland Regional Operations Center (PROC), the subsidiary's regional IT help desk that serves all of them. The subsidiary shares the parent's directory, email, and `harrowmere.com` domain. Central IT and Security Operations are parent-company shared services run from Chicago; Security Operations monitors every subsidiary and keeps a Portland pod one floor above PROC. In NADF, Ethan works for the parent. Ethan never relocates; he stays in the Portland area from Book 0 through NADF. The characters, environments, and tensions below are where it starts:
+- **Leah Moreno** appears as the Senior Plant Systems Specialist at Harrowmere Northwest's Willamette River plant, establishing the high-friction boundary between corporate enterprise IT and operational technology (OT/ICS). Between the books she moves up to the parent company as Enterprise Applications Lead, a few months ahead of Ethan.
+- The **Chicago Central IT and Security Operations Center (SOC)**, shared services of the parent company, exists as an intimidating, distant corporate presence whose top-down policies frequently clash with regional operational realities.
+- **Nia Alvarez**, Senior Incident Response Lead at Chicago HQ, makes her pivotal first appearance in Episode 12, where Ethan’s meticulous Tier 1/2 escalation dossier catches her attention and earns him a seat at the enterprise security table. She is promoted to Security Operations Manager right after Ep 12. Her first staffing call is to Jules, asking for a name for the Portland seat. Nia continues into NADF in that role.
 - Legacy architectural quirks—such as unsegmented field networks, unmanaged warehouse switches, and fragmented identity directories—provide the exact historical vulnerabilities that adversaries exploit in subsequent storylines.
 
 **Continuity with NADF.** Ethan Mercer, Jules Brooks, Nia Alvarez, and Leah Moreno are the same people in both stories. Names were reconciled on 2026-10-21: Ethan was "Ethan Brooks" here and is now Ethan Mercer, as in NADF; the desk lead was "Jules Mercer" and is now Jules Brooks; NADF's developer Marcus Vance became Marcus Whitlock so he no longer clashes with Jared Lindqvist here.
 
 **Still to reconcile (the integration pass):**
 1. ~~**Ethan's age and timeline.**~~ Resolved 2026-10-21: see §3.1 and `PORTLAND_TIMELINE.md` §4. He is 20 at Ep 00, 23 by Ep 12, and 23 turning 24 when NADF starts.
-2. ~~**Employer and place.**~~ Resolved 2026-10-21: everything is Harrowmere Equipment Group. The Gresham dock is Harrowmere's distribution warehouse; PROC is Harrowmere's Portland Regional Operations Center.
-3. **Nia's title.** Senior Incident Response Lead at Chicago HQ here. Security Operations Manager there.
-4. **Leah's role.** Senior Controls Tech at the Willamette plant here. Enterprise Applications Lead there.
+2. ~~**Employer and place.**~~ Resolved 2026-10-29 (Charles): subsidiary model. Book 0's employer is Harrowmere Northwest Distribution & Services, a wholly owned subsidiary of Harrowmere Equipment Group. The Gresham dock and PROC belong to the subsidiary; Chicago (parent HQ) runs Central IT and Security Operations as shared services. NADF is set at the parent.
+3. ~~**Nia's title.**~~ Resolved 2026-10-29: Senior Incident Response Lead through Ep 12, promoted to Security Operations Manager right after it.
+4. ~~**Leah's role.**~~ Resolved 2026-10-29: Senior Controls Tech at the subsidiary's Willamette plant in Book 0; she moves up to the parent's Enterprise Applications team between the books, to own the warehouse, plant, and finance sync.
 5. ~~**Dana.**~~ Resolved 2026-10-26: the name Dana is reserved for the NADF mentor Dana Shah. The Ep 07 and 08 vendor engineer is Dale Okafor, the Ep 09 AP specialist is Marisol, and the Ep 10 facilities lead is Rina Rostova.
 6. ~~**The validator.**~~ Resolved 2026-10-21: the ban on "Harrowmere" is lifted. "Priya" is still banned in Book 0 narrative.
-7. ~~**Leah's age.**~~ Resolved 2026-10-21: she is 36 in both stories.
+7. ~~**Leah's age.**~~ Resolved 2026-10-29: 35 in Book 0 (Ep 07 to 12); she turns 36 in July of Year 4, so she is 36 when NADF opens.
 8. ~~**Ep 00's day job.**~~ Resolved 2026-10-21: it is the same job. Ep 00 and Ep 01 both put Ethan on the dock at Harrowmere's Gresham distribution warehouse.
 
 ---
@@ -47,7 +47,7 @@ Ethan goes from a graveyard dock job and a failed exam to a seat on the help des
 On the desk, Ethan learns addressing, name resolution, transport, and switching under real deadlines. The act ends with the flood, where he earns Jules's trust for night work.
 
 ### Act III: Identity, Threats, and Escalation (Ep 07 to 12, Security+)
-Ethan moves from fixing things to protecting them. He misses the October Tier 2 round because of the Ep 08 tone complaint and is promoted in January, between Ep 09 and Ep 10. The act ends with an incident he contains at a real cost, and with Ethan applying for an analyst role on Harrowmere security operations in Portland. The offer opens Book 1. He never relocates.
+Ethan moves from fixing things to protecting them. He misses the October Tier 2 round because of the Ep 08 tone complaint and is promoted in January, between Ep 09 and Ep 10. The act ends with an incident he contains at a real cost, and with Ethan applying for an analyst role on the parent company's security operations in Portland, after Nia asks Jules for a name and Jules gives her his. The offer opens Book 1. He never relocates; the new job is one floor up.
 
 
 ---
@@ -63,7 +63,7 @@ graph LR
         Maya["Maya Lin<br/><i>Accounting Specialist (Business Pressure)</i>"]
         Leah["Leah Moreno<br/><i>Senior Controls Tech (Plant Operations)</i>"]
         Ken["Ken<br/><i>Warehouse Logistics Supervisor</i>"]
-        Owen["Owen<br/><i>Facilities Field Tech</i>"]
+        Reggie["Reggie<br/><i>Facilities Field Tech</i>"]
     end
 
     subgraph Chicago Central IT
@@ -76,7 +76,7 @@ graph LR
     Ethan <-->|Password & Account Urgency| Maya
     Ethan <-->|OT Availability vs. IT Security| Leah
     Ethan <-->|Shadow IT vs. Barcode Coverage| Ken
-    Ethan <-->|Staging Segments vs. Fast Firmware| Owen
+    Ethan <-->|Staging Segments vs. Fast Firmware| Reggie
     Ethan -->|Disciplined Escalation Dossier| Nia
     Nia -.->|Enterprise Security Oversight| CentralSOC
 ```
@@ -84,7 +84,7 @@ graph LR
 ### 3.1 Primary Characters
 
 #### Ethan Mercer — Protagonist & POV
-- **Role:** Graveyard dock worker (Ep 00 to 01), IT rotation (off-page), Tier 1 Support Technician (Ep 02 to 09), promoted to Tier 2 in January of Year 4 after missing the October round (Ep 10 to 12), then applies for an analyst role on Harrowmere security operations at the end of Ep 12. The offer opens Book 1 in August.
+- **Role:** Graveyard dock worker (Ep 00 to 01), IT rotation (off-page), Tier 1 Support Technician (Ep 02 to 09), promoted to Tier 2 in January of Year 4 after missing the October round (Ep 10 to 12), then, on Jules's referral, applies for an analyst role on the parent company's security operations at the end of Ep 12. The offer opens Book 1 in August. In NADF he is a partial outsider: new to the parent company and to security work, but in the same building and known to many of the people.
 - **Age:** 20 at Episode 0; 21 at Episodes 1–2; 23 by Episode 12; 23 turning 24 when NADF begins.
 - **Background:** Raised in East Portland / Gresham. His father, now retired, was a precision machinist at a metal fabrication shop who taught him how to respect physical tools. Ethan skipped the four-year university track due to financial constraints. He spent up to two years in a restaurant job, then about fourteen months on Harrowmere's graveyard dock in Gresham, studying by day. After the Line 4 fix, Ken's internal referral moved him into a six-month day-shift IT rotation at a slight pay cut, and then onto Jules's help desk. The certs are spaced out: A+ after about ten months of study, Network+ about thirteen months into IT, Security+ about twenty-six months into IT (after Book 0 ends). Full table: `PORTLAND_TIMELINE.md` §4.
 - **Psychological Profile:** Highly observant, earnest, and intrinsically motivated, but initially burdened by severe imposter syndrome. In the early episodes, he treats technical standards as moral dogma and clings to flashcard taxonomies like a security blanket. When faced with ambiguous failures, his instinct is to freeze or over-engineer theoretical solutions. Over Book 0 (about three years, about 22 months of it on the desk), he develops emotional resilience, learning that troubleshooting is an iterative discipline of hypothesis testing, root-cause isolation, and empathetic communication.
@@ -99,11 +99,11 @@ graph LR
 - **Visuals & Habits:** Daily bicycle commuter regardless of Pacific Northwest weather (rides a beat-up steel Kona Rove with fenders and waterproof panniers). Wears wool sweaters, rolled-up flannel sleeves, and durable canvas trousers. A yellow cycling rain jacket dries over the back of her chair; her bike helmet hangs perpetually from her secondary monitor arm. Keeps a ceramic mug of dark coffee on the corner partition of her cubicle.
 - **Signature Artifact:** A single faded yellow sticky note stuck to the lower bezel of her primary monitor: *Which decision?*
 - **Mentorship Philosophy:** Jules is not an academic lecturer, nor is she a fortune-cookie mystic who speaks only in cryptic aphorisms. Ninety percent of her dialogue consists of ordinary, functional enterprise communication (*"Did you check the switch port status?", "Who else is reporting this?", "I’m on the bridge with Chicago in ten minutes"*). She allows Ethan to struggle enough to encounter the boundary of his knowledge, stepping in only when he is about to cause catastrophic damage or lock himself into an unhelpful rabbit hole. When she does offer an architectural insight, Ethan explicitly registers it because it re-anchors his mental model.
-- **Flaws & Blind Spots:** Jules is cynical about corporate initiatives originating from Chicago Central IT. Her fierce loyalty to regional autonomy sometimes leads her to delay corporate compliance rollouts, preferring local operational stability over enterprise uniformity.
+- **Flaws & Blind Spots:** Jules is cynical about corporate initiatives originating from Chicago Central IT. Her fierce loyalty to regional autonomy sometimes leads her to delay corporate compliance rollouts, preferring local operational stability over enterprise uniformity. That is what makes her referral of Ethan to Chicago's security operations cost her something.
 
 #### Leah Moreno — Senior Controls Tech / Plant Systems Specialist
-- **Role:** Senior Controls & SCADA Technician, Harrowmere Willamette River Plant (Portland Operations).
-- **Age:** 36.
+- **Role:** Senior Controls & SCADA Technician, Harrowmere Northwest's Willamette River Plant (Portland Operations). Moves up to the parent's Enterprise Applications team between Book 0 and NADF.
+- **Age:** 35 in Book 0; 36 when NADF opens.
 - **Visuals & Habits:** Carries a scratched aluminum clipboard stuffed with piping and instrumentation diagrams (P&IDs). Wears a high-visibility ANSI Class 2 vest, steel-toed boots, and safety glasses with side shields. Carries an armored Panasonic Toughbook running specialized PLC ladder logic software.
 - **Why Leah matters:** Leah brings the plant-floor side of the story into the help desk. She represents the critical, unforgiving reality of Operational Technology (OT) and Industrial Control Systems (ICS). Her plant processes hundreds of thousands of gallons of liquid daily; an unexpected valve trip or network latency spike does not result in a 404 error—it results in physical effluent overflow, environmental fines, or blown pump seals.
 - **Relationship with Ethan:** Initially hostile toward "carpet-land IT" technicians who push Windows security patches that reboot telemetry servers mid-cycle. She first tests Ethan in Episode 07. When Ethan demonstrates that he respects her physical operational constraints and devises an encrypted site-to-site VPN solution that protects her sensors without touching the pumps, Leah becomes his staunchest operational ally. She teaches Ethan how to read physical industrial failure modes.
@@ -127,14 +127,14 @@ graph LR
 - **Marisol (Accounts Payable, works with Maya):** Nine years in AP and knows every vendor's real domain. She verifies the Ep 09 wire request by phone and pays for the save with an afternoon of callbacks.
 - **Dale Okafor (Facilities Vendor Engineer):** The appliance engineer from Ep 07 who calls from his truck, and again in Ep 08.
 - **Rina Rostova (Facilities Lead):** Her team folder is encrypted in Ep 10.
-- **Owen (Facilities Field Technician):** Practical, always on the move with a heavy tool belt. Manages building management systems (BMS), badge readers, HVAC controllers, and network printers. Pragmatic to a fault; frequently attempts to push unauthenticated firmware updates across user subnets to beat his transit schedule.
+- **Reggie (Facilities Field Technician):** Practical, always on the move with a heavy tool belt. Manages building management systems (BMS), badge readers, HVAC controllers, and network printers. Pragmatic to a fault; frequently attempts to push unauthenticated firmware updates across user subnets to beat his transit schedule.
 - **Dee (Network Monitoring Specialist):** Sits in the network bullpen. Obsessed with clean Grafana dashboards and switch interface telemetry. Prefers default SNMP templates because they "just graph without a fight," serving as Jared’s junior co-conspirator.
 - **Bettina Szabo (Legal & Compliance Junior Associate):** Detail-oriented, newly hired attorney who struggles through corporate onboarding. Her encounters with Active Directory domain joins, Kerberos ticket expiration, and document classification policies highlight the operational friction of enterprise compliance.
 - **Marco (Cabling & Closet Technician):** Junior field contractor responsible for physical patch panels, structured cabling, and telecommunications closets. Frequently creates unintentional Layer 2 switching loops and cleartext syslog diversions out of convenience.
 
 ### 3.3 The Chicago Presence
-- **Nia Alvarez (Senior Incident Response Lead, Chicago HQ):** Highly respected, rigorous security investigator at corporate headquarters. Nia deals with hundreds of careless, poorly documented escalation tickets from regional sites every week. She has zero patience for hand-waving, speculation, or missing timestamps. When Ethan submits a pristine, mathematically rigorous incident packet in Episode 12, Nia recognizes a rare analytical talent operating at the regional level.
-- **Chicago Central IT / SOC:** The faceless corporate entity that dictates enterprise group policies, mandatory software agents, and quarterly compliance mandates. Chicago represents the systemic tension between centralized governance and local regional survival.
+- **Nia Alvarez (Senior Incident Response Lead, Chicago HQ):** Highly respected, rigorous security investigator at the parent company's headquarters. Promoted to Security Operations Manager right after Ep 12. Nia deals with hundreds of careless, poorly documented escalation tickets from regional sites every week. She has zero patience for hand-waving, speculation, or missing timestamps. When Ethan submits a pristine, mathematically rigorous incident packet in Episode 12, Nia recognizes a rare analytical talent operating at the regional level.
+- **Chicago Central IT / SOC:** The parent company's shared services, and the faceless corporate entity that dictates enterprise group policies, mandatory software agents, and quarterly compliance mandates. Chicago represents the systemic tension between centralized governance and local regional survival.
 
 
 ### 3.4 Cast Registry (one surname per character)
@@ -159,7 +159,7 @@ graph LR
 | Avery | Holloway | Chief financial officer |
 | Dale | Okafor | Facilities vendor engineer |
 | Rina | Rostova | Facilities lead |
-| Owen | Castillo | Facilities field technician |
+| Reggie | Castillo | Facilities field technician |
 | Dee | Washington | Network monitoring specialist |
 | Marco | Reyes | Cabling and closet technician |
 | Nia | Alvarez | Chicago incident response lead |
@@ -277,7 +277,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 ### Card 03: The Default Gateway Doesn't Care
 
 - **Placement:** Act II, Phase 2. Year 2, October. 2 months on the desk. Ethan is 22.
-- **Setting and cast:** Portland ROC during a storm outage. Jules, Jared Lindqvist (network), Ken calling from Gresham, Owen (facilities).
+- **Setting and cast:** Portland ROC during a storm outage. Jules, Jared Lindqvist (network), Ken calling from Gresham, Reggie (facilities).
 - **Goal:** Restore a freight system that keeps dropping off the network.
 - **Complication:** Two machines claim the same static address; one halts freight, the other sits on an unknown warehouse port.
 - **Pivot:** Ethan reads subnet masks, gateways, and ARP to find the rogue host and lock down the DHCP pool.
@@ -299,7 +299,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 ### Card 05: The Wire Has Two Ends
 
 - **Placement:** Act II, Phase 2. Year 3, April. 8 months on the desk. Ethan is 22.
-- **Setting and cast:** Portland ROC. Jules, Jared, Ken, Owen.
+- **Setting and cast:** Portland ROC. Jules, Jared, Ken, Reggie.
 - **Goal:** Find why a management station's connections keep failing.
 - **Complication:** Nothing listens on the expected port, and the station is drowning in TIME_WAIT sockets.
 - **Pivot:** Ethan reads socket states and finds ephemeral port exhaustion on their own management station.
@@ -375,7 +375,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Cost:** Ken's dock scans by hand at two doors until noon while scanners are re-enrolled.
 - **Carries forward:** The baseline from this work helps flag the Ep 12 intrusion.
 - **Knowledge load:** Security+: rogue AP, evil twin, deauthentication, 802.1X, RADIUS, WPA-Enterprise, PSK, captive portal.
-- **Fold-in (written into the chapter 2026-10-26):** Fold in physical security: the evil twin hardware is found in the lobby, which leads to a short walk-through of badge areas, locks, and cameras with Owen. 
+- **Fold-in (written into the chapter 2026-10-26):** Fold in physical security: the evil twin hardware is found in the lobby, which leads to a short walk-through of badge areas, locks, and cameras with Reggie. 
 
 ### Card 12: When the Ticket Escalates
 
@@ -385,7 +385,7 @@ These cards describe the episodes as shipped in `docs/portland-desk/narrative/`.
 - **Complication:** A C2 beacon, lateral share enumeration, and plant gateway egress line up. Pulling plugs destroys evidence; leaving hosts up drains plant telemetry.
 - **Pivot:** Ethan isolates hosts, captures memory in order of volatility, hashes evidence, keeps chain of custody, and briefs Nia.
 - **Cost:** The plant loses a shift to manual override while the gateway is isolated. In the after-action review, one of Ethan's containment calls is second-guessed: he isolated a host before a second memory capture was done.
-- **Carries forward:** Ethan applies for the analyst opening on Harrowmere security operations, one floor up in Portland, and writes about the lost memory capture in his application. Book 0 ends with the application submitted. **The offer opens NADF Book 1** (August, Year 4), which makes it easy for Ethan to narrate the move from the new role. Ethan stays in Portland.
+- **Carries forward:** The parent's security operations opens a Portland analyst seat, one floor up. Nia, newly promoted, asks Jules for a name; Jules gives her Ethan's and tells him the application still has to stand on its own. He writes about the lost memory capture in it. Book 0 ends with the application submitted. **The offer opens NADF Book 1** (August, Year 4), which makes it easy for Ethan to narrate the move from the new role. Ethan stays in Portland.
 - **Knowledge load:** Security+: incident versus event, order of volatility, chain of custody, isolation, IoCs, CSIRT.
 - **Fold-in (written into the chapter 2026-10-26):** Fold in the IR lifecycle: the after-action review walks the six phases (preparation, identification, containment, eradication, recovery, lessons learned), and the second-guessed call is discussed as a containment-phase tradeoff. 
 

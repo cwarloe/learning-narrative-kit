@@ -6,7 +6,7 @@ An atmospheric river had stalled directly over the Willamette Valley since midda
 
 Jared's connection-pooling change was supposed to go in that Monday night. The flood ate the maintenance window before it started.
 
-Jules was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The municipal sewer line backed up through the floor drains immediately afterward. The facility houses the regional order desk, field-service dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
+Jules was already speaking on the bridge line when I answered. Her voice came through clear and measured against the faint background hum of the cellular connection. "Building C took on water in the basement telecommunications vault about forty minutes ago, Ethan," she told me. "The river breached the outer retaining wall. The city sewer line backed up through the floor drains immediately afterward. The facility houses the regional order desk, field-service dispatch, and plant telemetry loggers for the east district. You should put on your heaviest rain gear and meet Jared and me at the loading dock with your field kit."
 
 I pulled on my insulated coveralls and laced my rubber mud boots by the kitchen door. Nine months on the Portland desk had transformed my habits. The work had replaced my old panic with an instinct for preparation. I packed my punchdown tool, an optical fiber light tester, spare patch cords, and two rolls of hook-and-loop cable ties into my canvas bag. As I drove my beat-up truck across the Morrison Bridge through blinding sheets of rain, the dark river churned violently beneath the piers.
 
@@ -106,7 +106,7 @@ VLAN0010
 
 ## The morning stampede
 
-At seven-fifteen, the city electrical utility restored commercial grid power to the district. Outside our basement vault, the diesel generator cycled down with a heavy mechanical shudder. The campus transfer switch transferred the electrical load back to the municipal grid. Overhead fluorescent tubes flickered on throughout Building C, illuminating the wet stairwells and hallways.
+At seven-fifteen, the city electrical utility restored commercial grid power to the district. Outside our basement vault, the diesel generator cycled down with a heavy mechanical shudder. The campus transfer switch transferred the electrical load back to the utility grid. Overhead fluorescent tubes flickered on throughout Building C, illuminating the wet stairwells and hallways.
 
 Upstairs on the first and second floors, more than one hundred and fifty company devices powered on at the exact same moment. Desktop workstations in the order desk bullpen booted into their login screens. Wall-mounted logistics monitors reconnected their displays. Rows of VoIP handsets on dispatch desks initialized their operating firmware.
 

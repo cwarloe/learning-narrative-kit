@@ -8,7 +8,7 @@ Jules Brooks had already hung her wet rain shell behind her desk and was working
 
 Two months on the desk had not erased my first week. Maya still copied Jules on every ticket she sent me, a quiet habit she had started the morning I suggested re-imaging her machine. I did not blame her. I answered her tickets faster than anyone else's and kept my notes long enough that Jules never had to ask what I had done.
 
-Both incoming telephone lines lit up at once. On line one, warehouse supervisor Ken was shouting over the clatter of a backed-up freight bay. On line two, facilities specialist Owen reported that automated pump loggers had dropped offline.
+Both incoming telephone lines lit up at once. On line one, warehouse supervisor Ken was shouting over the clatter of a backed-up freight bay. On line two, facilities specialist Reggie reported that automated pump loggers had dropped offline.
 
 ## The ghost in the sixteen-hundred block
 
@@ -67,9 +67,9 @@ The terminal displayed normal settings. "The client completed the DORA handshake
 
 ## The boundary line on twenty-six
 
-The warehouse desks were returning to normal operations, but our dispatch telephone line chirped again before I could close the outage ticket. Facilities field specialist Owen was calling from the water pump annex adjacent to the warehouse, speaking loudly over the mechanical rumble of intake turbines.
+The warehouse desks were returning to normal operations, but our dispatch telephone line chirped again before I could close the outage ticket. Facilities field specialist Reggie was calling from the water pump annex adjacent to the warehouse, speaking loudly over the mechanical rumble of intake turbines.
 
-"The warehouse computers are working, but our water pressure telemetry logger cannot talk to the database," Owen reported through his headset. "Both industrial machines sit in the same cabinet inside the pump house. Both network cables plug into the same row of switch ports. The logger displays a red transmission fault light. The database server shows zero inbound sensor packets."
+"The warehouse computers are working, but our water pressure telemetry logger cannot talk to the database," Reggie reported through his headset. "Both industrial machines sit in the same cabinet inside the pump house. Both network cables plug into the same row of switch ports. The logger displays a red transmission fault light. The database server shows zero inbound sensor packets."
 
 I opened a remote PowerShell terminal on the new telemetry server, `PDX-PUMP-LOG02`. I needed to inspect its active network interface configuration. A contractor had mounted the hardware earlier in the week. He had configured its network parameters using a card taped to the rack door.
 
@@ -108,7 +108,7 @@ The numbers were clear on the pad. "Look at where the contractor placed those tw
 
 "Its configured gateway is `192.168.10.1`, back in the first subnet block," I answered, shaking my head at the contractor's card. "The logger sits in Subnet B, but its exit door was assigned in Subnet A. Because the gateway itself is off-link, the logger has no local route to reach it. That's why the ping returned destination host unreachable."
 
-I contacted Owen over the radio. I instructed him to remove the erroneous configuration card. I reconfigured `PDX-PUMP-LOG02` with static IP address `192.168.10.61`, keeping its mask at `255.255.255.192` and default gateway at `192.168.10.1`. The moment I clicked apply, the command prompt ping window sprang to life. It displayed four consecutive replies with latency under one millisecond. Owen confirmed over the radio that the red transmission light on the logger panel had switched to a steady green.
+I contacted Reggie over the radio. I instructed him to remove the erroneous configuration card. I reconfigured `PDX-PUMP-LOG02` with static IP address `192.168.10.61`, keeping its mask at `255.255.255.192` and default gateway at `192.168.10.1`. The moment I clicked apply, the command prompt ping window sprang to life. It displayed four consecutive replies with latency under one millisecond. Reggie confirmed over the radio that the red transmission light on the logger panel had switched to a steady green.
 
 ## The printer that stole a desk
 
@@ -118,7 +118,7 @@ By ten o'clock the morning storm had subsided into a light mist that clung to th
 
 I opened a remote desktop session to Frank's machine at `10.100.4.55`. I initiated a continuous ping toward the local default gateway at `10.100.4.1`. The terminal displayed an erratic pattern that defied ordinary hardware failure. Three successful replies appeared with two-millisecond round trips. Three request timeouts followed immediately. Four duplicate packets arrived next, followed by another burst of clean replies.
 
-"The physical link is flapping on the wall jack," I suggested. I wondered if storm moisture had entered an external junction conduit. "I should have Owen bring a cable tester to inspect the drop behind Frank's desk."
+"The physical link is flapping on the wall jack," I suggested. I wondered if storm moisture had entered an external junction conduit. "I should have Reggie bring a cable tester to inspect the drop behind Frank's desk."
 
 "Inspect your Layer 2 tables before you send a technician into a crawlspace, Ethan," Jules cautioned. She glanced up from her secondary monitor. "A damaged copper cable usually produces continuous frame check errors or drops carrier completely. Frank's machine maintains solid link carrier on the switch port. Inspect the [[arp_cache|ARP cache]] while pinging an adjacent workstation."
 
@@ -164,7 +164,7 @@ Jared checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` 
 
 ## Port Twenty-Eight
 
-I had Ken check the warehouse floor for anything that had been moved or plugged in since yesterday. He groaned over the radio. Owen had wheeled an old HP LaserJet 4050 into the breakroom the afternoon before and typed in the static settings from a faded label under its paper tray, `10.100.4.55`, the address DHCP had already leased to Frank.
+I had Ken check the warehouse floor for anything that had been moved or plugged in since yesterday. He groaned over the radio. Reggie had wheeled an old HP LaserJet 4050 into the breakroom the afternoon before and typed in the static settings from a faded label under its paper tray, `10.100.4.55`, the address DHCP had already leased to Frank.
 
 While I walked the warehouse patch panel looking for port twenty-eight, Ken held dock door six closed for forty minutes so bad weights could not post into the freight system. Two Portland-bound trailers loaded late, and Ken said so on the phone in a voice I remembered from Line 4.
 

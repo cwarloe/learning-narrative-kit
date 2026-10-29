@@ -1,9 +1,9 @@
 # Portland Desk Master Timeline & Canon Continuity Guide
 **Repository:** `learning-narrative-kit`  
 **Protagonist:** Ethan Mercer (20 at Ep 00; 23 by Ep 12)  
-**Lead Mentor:** Jules Brooks (Lead Support Specialist, Harrowmere Portland Regional Operations Center)  
-**Employer:** Harrowmere Equipment Group (the same company as NADF, Books 1–2)  
-**Setting:** East Portland, Harrowmere's Gresham distribution warehouse, & Harrowmere's Portland Regional Operations Center (Hawthorne Bridge overlook). Ethan never relocates; he stays in the Portland area through NADF.  
+**Lead Mentor:** Jules Brooks (Lead Support Specialist, Harrowmere Northwest's Portland Regional Operations Center)  
+**Employer:** Harrowmere Northwest Distribution & Services, a wholly owned subsidiary of Harrowmere Equipment Group (NADF's employer, Books 1–2)  
+**Setting:** East Portland, Harrowmere Northwest's Gresham distribution warehouse, & Harrowmere Northwest's Portland Regional Operations Center (Hawthorne Bridge overlook). Ethan never relocates; he stays in the Portland area through NADF.  
 **Purpose:** The top-ranked source for Portland Desk facts (see `AGENTS.md` precedence) and the chronological anchor for all authoring, editing, visual prompts, and lab environments across CompTIA A+, Network+, and Security+ modules.
 
 ---
@@ -101,24 +101,24 @@ $$\text{Laborer / Student} \longrightarrow \text{IT Rotation} \longrightarrow \t
 * **Quirk:** Carries 300 handmade flashcards bundled with four thick colored rubber bands (Red = trivia, Green = hardware anatomy, Yellow = network identity, Blue = diagnostic troubleshooting reflex). Started in a mug on his kitchen table; now lives in his top center desk drawer.
 
 ### Jules Brooks
-* **Identity:** 34-year-old female Lead Support Specialist, Harrowmere's Portland Regional Operations Center. Nine years at the operations center.
+* **Identity:** 34-year-old female Lead Support Specialist, Harrowmere Northwest's Portland Regional Operations Center. Nine years at the operations center.
 * **Voice:** Measured, wry, calm under fire. Acts as a diagnostic compass rather than a cheat sheet. Never commands panic; uses Socratic questions to teach binary search.
 * **Gear:** Commutes by bicycle regardless of weather (steel Kona Rove commuter bike locked to vertical bullpen pipe; matte silver commuter helmet clipped to secondary monitor arm; rain shell drying over chair). Worn ceramic coffee mug.
 * **Motto:** Yellow sticky note on the corner of her monitor bezel: *Which decision?*
 
 ### Supporting Characters
 * **Ethan's Father:** 61-year-old retired industrial machinist (East Portland tool-and-die). Stoic, observant, smells of cutting oil and flannel. Teaches Ethan that every machine on earth has the same anatomy.
-* **Ken:** 51-year-old frantic logistics shift supervisor at Harrowmere's Gresham distribution warehouse. Career measured in outbound trailer tonnage. Demands proof of paper certifications, but recognizes genuine competence and writes Ethan's internal referral to regional IT.
-* **Maya Lin:** Supervisor of regional accounting, Harrowmere Portland. Experienced financial administrator, under relentless biweekly payroll deadlines. Demanding but deeply grateful when technicians treat her time and system settings with respect.
+* **Ken:** 51-year-old frantic logistics shift supervisor at Harrowmere Northwest's Gresham distribution warehouse. Career measured in outbound trailer tonnage. Demands proof of paper certifications, but recognizes genuine competence and writes Ethan's internal referral to regional IT.
+* **Maya Lin:** Supervisor of regional accounting, Harrowmere Northwest. Experienced financial administrator, under relentless biweekly payroll deadlines. Demanding but deeply grateful when technicians treat her time and system settings with respect.
 * **Jared:** Senior Network Operations technician. Old-school network engineer who racks gear, writes automated shell scripts, and clings to habits formed in Hillsboro tech campuses a decade ago. Grumbles at modern security requirements, but respects anyone who proves a better way once.
 
 ---
 
 ## 3. Standing Rules of Continuity
 
-1. **The Employer is Always Harrowmere Equipment Group:**
-   * The desk is Harrowmere's Portland Regional Operations Center (PROC), the internal IT help desk for every Portland-area Harrowmere site: the Gresham distribution warehouse, the Willamette River plant, the Rivergate parts & service center, and the regional offices. It reports up to Central IT in Chicago. Never call it an MSP or a city agency.
-   * Ethan never relocates. Chicago is where central IT and the SOC leadership sit; Ethan works from Portland in Book 0 and in NADF.
+1. **The Employer is Always Harrowmere Northwest (a Harrowmere Equipment Group subsidiary):**
+   * The desk is Harrowmere Northwest's Portland Regional Operations Center (PROC), the subsidiary's regional IT help desk for every Portland-area site: the Gresham distribution warehouse, the Willamette River plant, the Rivergate parts & service center, and the regional offices. It follows policy from the parent's Central IT in Chicago, and the parent's Security Operations monitors it as a shared service. The subsidiary shares the parent's directory and `harrowmere.com` email. Never call it an MSP or a city agency.
+   * Ethan never relocates. Chicago is the parent's headquarters, where central IT and the SOC leadership sit. Ethan works from Portland in Book 0 and in NADF; his NADF job is in the parent's security pod, one floor above PROC.
 2. **The Internal Transfer Law:**
    * Ethan does **not** take live tickets solo as an unscreened walk-in candidate.
    * After Ken's internal referral (Ep 01), Ethan spends about six months in a day-shift IT rotation at a slight pay cut. In Episode 02, Jules runs the supervised practical that closes the rotation, using a dual-headset training bridge. He moves onto the desk the next Monday. No resignation and no notice: it is the same company.
@@ -150,8 +150,8 @@ Most of this is off the page. It exists so every episode and NADF agree on how E
 | ~6 months | 21 | IT rotation on day shift (imaging bench, deployments, desk-side, one overnight week). Quasi-apprenticeship, not a formal internship | Net+ study begins | ~$20–21/hr: a slight cut, traded for day shift | Covered at the start of Ep 02 |
 | Late August | 21 | Passes Jules's practical; joins the desk | — | ~$24/hr | Ep 02 |
 | ~22 months on the desk | 21–23 | Help desk (Tier 1, Ep 02 to 09), then Tier 2 from January of Year 4 (Ep 10 to 12). Overnight is a rotation | Net+ (~13 months into IT); Security+ (~29 months into IT, just after Ep 12) | ~$24 → ~$28/hr in steps | Ep 02–12 (Book 0 ends ~22 months into the desk) |
-| End of Ep 12 (late June, Year 4) | 23 | Applies for the analyst opening on Harrowmere security operations | — | — | Ep 12 |
-| August, Year 4 | 23, turning 24 | Offer and move upstairs to the analyst role, still in Portland. This is the opening of Book 1. | — | — | NADF Book 1 |
+| End of Ep 12 (late June, Year 4) | 23 | Nia, just promoted to Security Operations Manager, asks Jules for a name. Jules refers Ethan; he applies to the parent's security operations | — | — | Ep 12 |
+| August, Year 4 | 23, turning 24 | Offer from the parent company, Harrowmere Equipment Group; he moves one floor up to the analyst role, still in Portland. This is the opening of Book 1. | — | — | NADF Book 1 |
 
 Pay benchmarks: BLS OEWS, Portland-Vancouver-Hillsboro, May 2025. The rotation pay, night differential, and raise sizes are estimates, not sourced figures.
 
@@ -159,4 +159,4 @@ His father is a retired precision machinist (East Portland tool-and-die, 34 year
 
 ### Open questions (not decided)
 
-None right now. Leah's age (36) and Ep 00's job (the Harrowmere dock) were settled on 2026-10-21.
+None right now. Ep 00's job (the Harrowmere Northwest dock) was settled on 2026-10-21. The subsidiary model, Nia's promotion, Leah's move to the parent, and Leah's age (35 in Book 0, 36 in NADF) were settled on 2026-10-29.
