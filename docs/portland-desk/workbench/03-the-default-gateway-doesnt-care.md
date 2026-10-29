@@ -47,7 +47,7 @@ prompt: "Clear technical cutaway illustration of a network architecture schemati
 
 
 ### The Situation
-It is 08:00 on a damp Tuesday in October, and Ethan has been on the Portland service desk for two months. Early squalls along the Willamette have knocked out utility power across the industrial district, and fourteen priority tickets land within three minutes. Ken calls from the Gresham dock: three freight clerks in Building B have lost the network. Owen calls from facilities: the new pump telemetry loggers have dropped offline.
+It is 08:00 on a damp Tuesday in October, and Ethan has been on the Portland service desk for two months. Early squalls along the Willamette have knocked out utility power across the industrial district, and fourteen priority tickets land within three minutes. Ken calls from the Gresham dock: three freight clerks in Building B have lost the network. Reggie calls from facilities: the new pump telemetry loggers have dropped offline.
 
 This lab follows the same morning as the chapter. Building B's workstations show `169.254.x.x` addresses, which point at DHCP, not a fiber cut. The pump logger `PDX-PUMP-LOG02` sits on the wrong side of a `/26` boundary from its own gateway. Frank's desktop and a breakroom printer both claim `10.100.4.55`, and the printer is plugged into port twenty-eight.
 

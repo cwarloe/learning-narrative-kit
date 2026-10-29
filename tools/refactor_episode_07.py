@@ -62,7 +62,7 @@ Sam groaned over the line, then gave in. "I already have the VPN profile from th
 
 The firewall rule we submitted was narrow on purpose: source the VPN client address pool, destination the hardened jump host, port 3389, TCP, allow—with all direct internet access to internal workstations blocked. Jules initialed the ticket on her way past.
 
-Across the rest of the queue, the legacy cleartext protocols fell into line. We moved the legal directory tool from LDAP on 389 to LDAPS on 636, synchronized Lena's skewed clock with internal NTP on UDP 123 to restore Kerberos ticket validation, and rejected unauthenticated SNMP `public` polling in favor of SNMPv3 with SHA authentication and AES encryption. When facilities tech Owen needed printer firmware, we restricted TFTP to a transient staging segment and closed the port behind him.
+Across the rest of the queue, the legacy cleartext protocols fell into line. We moved the legal directory tool from LDAP on 389 to LDAPS on 636, synchronized Lena's skewed clock with internal NTP on UDP 123 to restore Kerberos ticket validation, and rejected unauthenticated SNMP `public` polling in favor of SNMPv3 with SHA authentication and AES encryption. When facilities tech Reggie needed printer firmware, we restricted TFTP to a transient staging segment and closed the port behind him.
 
 By 5:40 PM the queue was down to noise. The index cards were still out on my desk, and I had been pairing them off all afternoon without meaning to: Telnet next to SSH, HTTP next to HTTPS, FTP next to SFTP and FTPS, POP and IMAP next to their TLS versions, LDAP next to LDAPS, SNMP next to SNMPv3, syslog next to 6514. None of the port numbers had changed.
 

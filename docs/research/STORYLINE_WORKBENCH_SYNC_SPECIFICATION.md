@@ -109,7 +109,7 @@ To ground the learner in authentic operational tradecraft, **every single learni
 - **Operational Role:** Measures DC voltage rails on 24-pin ATX connectors, tests fuse continuity, checks PoE phantom power, and verifies ground reference. Hank teaches Ethan: *"The meter doesn't lie, but it only answers the exact question you ask it."*
 
 ### 2.6 Mentor Provenance: Jules Brooks & Hank
-- **Jules Brooks (Father, 61):** Retired precision toolmaker (34 years across East Portland machine shops; smells of cutting oil, wool, and sawdust). Imparts the foundational mental models:
+- **Frank Mercer (Father, 61):** Retired precision toolmaker (34 years across East Portland machine shops; smells of cutting oil, wool, and sawdust). Imparts the foundational mental models:
   - *"Don't memorize the McMaster-Carr parts catalog; understand what moves, what holds tension, and what carries work across the gap."*
   - *"A machine has no magic. If the power supply delivers dirty water, the processor cannot hold state."*
   - *"Always stone the burrs off your stock before measuring."* (Verify the physical foundation before debugging software).
@@ -367,7 +367,7 @@ Below is the master operational matrix governing every module across the Portlan
 │    │ Cleartext vs Encrypted Wire │ sniffing; credential capture. │ cleartext SNMPv1 string leak. │ downgrade    │
 │    │                             │ Slate: Protocol Crypto Map.   │ Slate: Protocol Crypto Map.   │ stripping.   │
 ├────┼─────────────────────────────┼───────────────────────────────┼───────────────────────────────┼──────────────┤
-│ 08 │ Prove Who You Are           │ Todd Miller account lockout;  │ Warehouse supervisor Owen     │ Kerberos     │
+│ 08 │ Prove Who You Are           │ Todd Miller account lockout;  │ Warehouse supervisor Reggie     │ Kerberos     │
 │    │ AD Event 4740 & Auth Policy │ Event 4740 cached credential. │ lockout via stale iPad VPN.   │ skew clock   │
 │    │                             │ Slate: Event 4740 Triage.     │ Slate: Event 4740 Triage.     │ auth freeze. │
 ├────┼─────────────────────────────┼───────────────────────────────┼───────────────────────────────┼──────────────┤
@@ -416,7 +416,7 @@ Below is the master operational matrix governing every module across the Portlan
 - **Beat 1 (Inciting Incident):** Inside Sales representative Todd Miller is locked out of his workstation (`TODD-SALES-14`) thirty minutes before a major client demo; unlocking his account in Active Directory immediately locks out again within 10 seconds.
 - **Beat 2 (Worked Example / Incident 08.1):** Active Directory `BadPwdCount` exceeds threshold. Ethan does **not** repeatedly unlock the account. He pulls **Slate 8 (Active Directory Event 4740 & Account Lockout Triage)**. Inspects Domain Controller Security Event 4740 XML data. Identifies `Caller Computer Name: IPAD-SALES-TODD`. Todd updated his domain password yesterday, but his personal iPad in his briefcase was still hammering the Wi-Fi with cached stale credentials. Remediates device before unlocking AD account.
 - **Beat 3 (Workbench Dissection):** Kerberos vs. NTLM authentication pathways. Event 4740 event schema decomposition. The danger of brute-force account lockout denial-of-service.
-- **Beat 4 (Symmetrical Challenge / Incident 08.2):** Facilities supervisor Owen has his Active Directory account repeatedly locked out. Learner parses Event 4740 on the Domain Controller, traces the caller machine to a retired service terminal with an old mapped network drive script holding expired credentials, removes the persistent credential, and unlocks the user.
+- **Beat 4 (Symmetrical Challenge / Incident 08.2):** Facilities supervisor Reggie has his Active Directory account repeatedly locked out. Learner parses Event 4740 on the Domain Controller, traces the caller machine to a retired service terminal with an old mapped network drive script holding expired credentials, removes the persistent credential, and unlocks the user.
 - **Beat 5 (Edge-Case Trap / Incident 08.3):** Workstation cannot authenticate against Active Directory domain; error reports "The system cannot contact a domain controller." Network pings succeed. Root cause is Kerberos time skew exceeding 5 minutes (RFC 4120) caused by a dead motherboard CMOS battery.
 
 #### Module 12: When the Ticket Escalates (Forensic Triage & CSIRT Handoff)
@@ -513,7 +513,7 @@ Our 4x6 Laminated Slates are designed using **faded cognitive scaffolding** that
 Before any module (00 to 12) is merged into the repository, it must pass this 8-point synchronization audit:
 
 - [ ] **1. Tool Provenance Check:** Does the narrative explicitly describe the physical origin, cost, and manufacturing method of any tool, slate, or test device Ethan uses?
-- [ ] **2. Character Lore Integrity:** Are characters cleanly distinguished with zero role conflation? (Ken Vance = Gresham cross-dock warehouse supervisor; Todd Miller = Inside Sales representative; Owen = Facilities technician; Maya Lin = Accounting supervisor; Jules Brooks = Retired toolmaker father).
+- [ ] **2. Character Lore Integrity:** Are characters cleanly distinguished with zero role conflation? (Ken Vance = Gresham cross-dock warehouse supervisor; Todd Miller = Inside Sales representative; Reggie = Facilities technician; Maya Lin = Accounting supervisor; Jules Brooks = Retired toolmaker father).
 - [ ] **3. Invariant Synchronization:** Does Workbench Ticket B share the **exact same physical/protocol invariant** as Narrative Incident A, while displaying completely different surface symptoms?
 - [ ] **4. Protocol & RFC Accuracy:** Has the Adversarial SME audited every technical claim against governing standards? (CAM vs ARP, BitLocker 48 digits [8x6], UART bit times, Kerberos 5-min clock skew, RFC 3227 order of volatility).
 - [ ] **5. Flashcard Isolation:** Are flashcards strictly limited to Red Band under-10-second atomic recall cards? Are multi-step troubleshooting sequences, scripts, and narrative plot lines 100% excluded from flashcards?
