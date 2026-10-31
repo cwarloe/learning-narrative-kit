@@ -73,8 +73,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Landing page matches builder; hub links resolve
-        run: python tools/check_hub_links.py
+      - name: Landing page matches builder; hub links resolve; every rendered page has a hub card
+        run: python tools/check_hub_links.py --strict
 
       - name: Every tools/ script is in the tools/README.md index (warning only)
         run: python tools/check_tools_index.py --warn
