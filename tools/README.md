@@ -144,7 +144,7 @@ python3 tools/build_hub_index.py    # rewrites docs/index.html
 python3 tools/check_hub_links.py    # landing-page drift check (CI runs this)
 ```
 
-`check_hub_links.py` fails if `docs/index.html` differs from the builder's output or if a relative link on it is broken. It also lists rendered `docs/<dir>/index.html` pages that cannot be reached from the landing page (a unit with no card); that is a warning unless you pass `--strict`.
+`check_hub_links.py` fails if `docs/index.html` differs from the builder's output or if a relative link on it is broken. It also lists rendered `docs/<dir>/index.html` pages that cannot be reached from the landing page (a unit with no card); that is a warning unless you pass `--strict`. CI runs it with `--strict`, so a new rendered page needs a card in `tools/build_hub_index.py` (or a link from the hub) before it can merge.
 
 ## Full LLM playbook
 
