@@ -26,12 +26,12 @@ This lab starts with the same incident Ethan worked in the chapter, with the ans
 
 **The incident.** Warehouse scanners and a laptop dropped and reconnected to the wrong network.
 
-1. Survey the air and compare it with the controller's list of known BSSIDs. There is no baseline yet.
-2. Find an SSID you do not own broadcasting on a channel you do not use.
-3. Locate it by signal strength: a travel router under the credenza in 3B.
-4. Shut its switch port.
-5. Move the scanners to 802.1X so they cannot join a look-alike network.
-6. Result: the dock scanned by hand until noon, and the baseline became a weekly job.
+1. Survey the air against the controller's known BSSIDs. The duplicate `CORP-EMPLOYEE` name does not make the unknown radio trusted. There is no baseline yet.
+2. Keep Maya and Dev on wired docks while wireless ops investigates. Do not bypass certificate warnings.
+3. Treat the two devices separately: unplug Rita's `FreeConfQuick` travel router in conference room 3B and disable its wall jack; trace the duplicate corporate BSSID to the battery-powered device under the lobby bench.
+4. Record the lobby device's BSSID and location. Security isolates it in a radio-shielding pouch for the incident team. The duplicate signal disappears.
+5. Find and replace legacy scanner profiles that do not enforce the approved RADIUS server names. Use managed 802.1X profiles validating both the trusted issuing authority and server identity, with no user bypass. Keep the affected scanners offline until re-enrollment.
+6. Result: re-enrollment costs Ethan a Saturday and leaves the dock scanning by hand until noon. The baseline becomes a weekly job; the requested lobby camera remains on order.
 
 ---
 
@@ -46,7 +46,7 @@ prompt: "Clean technical cutaway diagram of radio frequency spectrum channels un
 
 
 ### The Situation
-It is a Friday in April. Maya sends a ticket from the lobby: two networks named `CORP-EMPLOYEE` are on the air, and one has a stronger signal and a BSSID that is not ours. Todd calls from a hotel, proud of a workaround. Rita in marketing has plugged a travel router with an open SSID, `FreeConfQuick`, into a wall jack under the credenza in conference room 3B. Dev's laptop keeps getting knocked off Wi-Fi by deauthentication frames. Ken's barcode scanners in the warehouse are dropping and rejoining the wrong network.
+It is a Friday in April. Maya sends a ticket from the lobby: two networks named `CORP-EMPLOYEE` are on the air, and one has a stronger signal and a BSSID that is not ours. Todd calls from a hotel, proud of a workaround. Rita in marketing has plugged a travel router with an open SSID, `FreeConfQuick`, into a wall jack under the credenza in conference room 3B. Dev's laptop keeps getting knocked off Wi-Fi by deauthentication frames. The scanner check finds legacy profiles that do not enforce the approved RADIUS server names. Ken's affected scanners must stay off wireless until those profiles are replaced.
 
 This lab follows the chapter. There is no wireless baseline yet. Ethan builds the first one at the end of this episode, so the survey in this lab starts from the access point inventory and the controller's list of known BSSIDs.
 
@@ -58,7 +58,7 @@ This lab follows the chapter. There is no wireless baseline yet. Ethan builds th
    - A **Rogue Access Point** is an unauthorized physical access point connected directly to the corporate wired infrastructure (e.g., an unmanaged \$40 travel router plugged into a wall jack). It creates an unmonitored backdoor into the corporate LAN and often unleashes a rogue DHCP server that paralyzes legitimate devices.
    - An **Evil Twin** is an RF impersonation attack. An adversary configures a rogue radio with the *exact same SSID* or a deceptive typosquatted lookalike (e.g., `CORP-EMPLOYE`), broadcasting at higher signal strength or transmitting deauthentication frames to force clients off legitimate APs and trick them into connecting to the attacker's interception proxy.
 4. **Containment Precedes Investigation:** When an unauthorized access point is bridging untrusted wireless traffic onto the wired enterprise network, do not wander the hallways conducting interviews. Immediately locate the upstream switch port and **shut the interface down administratively** (`shutdown`), or physically yank the cable. Stop the breach and DHCP pollution first; interview the user second.
-5. **Certificate Validation Is Non-Negotiable:** When connecting to an 802.1X Enterprise network using PEAP or EAP-TLS, the client operating system must cryptographically validate the RADIUS server's X.509 certificate against the corporate Trusted Root Certification Authority. Clicking "Accept Untrusted Certificate" or bypassing validation surrenders user credentials directly to an evil twin running an EAP proxy.
+5. **Certificate Validation Is Non-Negotiable:** When connecting to an 802.1X Enterprise network using PEAP or EAP-TLS, the managed client profile must verify the approved RADIUS server names as well as cryptographically validate the RADIUS server's X.509 certificate against the corporate Trusted Root Certification Authority. Clicking "Accept Untrusted Certificate" or bypassing validation surrenders user credentials directly to an evil twin running an EAP proxy.
 
 
 ---

@@ -27,12 +27,12 @@ This lab starts with the same incident Ethan worked in the chapter, with the ans
 **The incident.** Quiet mailbox rules, a USB in the warehouse, and lateral movement toward the plant gateway.
 
 1. Recognize the pattern as an incident and declare it, which moves you from tickets into the IR lifecycle.
-2. Capture volatile evidence in order: memory first, then network state, then disk.
-3. Contain: isolate the compromised workstation and the plant gateway.
+2. Contain active spread immediately: isolate the compromised workstation and the plant gateway while keeping systems powered for evidence collection.
+3. Capture volatile evidence under isolation, using local collection or a tested retained collection channel; preserve the most changeable available state before disk imaging. Do not wait for a remote dump to finish while the host keeps spreading.
 4. Keep chain of custody on every artifact.
 5. Eradicate and recover with the owners of each system.
 6. Run the after-action review and write down what you would do differently.
-7. Result: contained, with a lost second memory capture, a plant on manual override, and a missing plant playbook.
+7. Result: contained, with the second remotely streamed dump incomplete, a plant on manual override, and a missing plant playbook. Powered RAM remains available for local capture, but the later dump cannot recreate the earlier moment.
 
 ---
 
@@ -50,6 +50,8 @@ prompt: "Clean technical cutaway illustration of a computer forensic examination
 It is a Wednesday in late June. Ethan has been on the desk for twenty-two months. At 08:30, Maya brings in a laptop that turns out to be quarantined adware. At 11:15, Nora Higgins in finance sends a quiet ticket: her wire confirmations are missing from Sent Items, and there is an Outlook rule she does not remember creating. In the early afternoon, Jared relays a call from Todd Miller in Inside Sales, who found an unbranded USB stick labeled *Client Deck Final* on the shipping office floor and plugged it into `TODD-SALES-14`. Then Nora's credentials authenticate to the staging jump host `SRV-STAGE-01`, which bridges into the Willamette River plant network.
 
 This lab follows the chapter from the moment Jules declares an incident: order of volatility, memory capture, hashes, containment, chain of custody, and the handoff to Nia Alvarez.
+
+The chapter also shows a collection failure: Todd's first remote memory dump arrives complete, but pulling his network cable during the second dump breaks its stream to the collection host. The incomplete file cannot reconstruct that earlier moment. His RAM is not erased; the powered host is captured again locally under isolation. The corrected workflow below prepares local capture or a tested collection channel that survives containment. Do not leave a host spreading across production shares merely to finish a dump.
 
 ### The Ground Truth Rules of the Desk
 
@@ -206,7 +208,7 @@ First responders must make split-second containment decisions. The wrong choice 
 
 | Scenario / Threat Pattern | Containment Action | Technical Mechanism | Why This Choice? (Exam & Desk Justification) |
 | :--- | :--- | :--- | :--- |
-| **Active C2 Beaconing or Worm Spread** (e.g., Nora's endpoint, Todd's share scanning) | **EDR Network Isolation or Physical Cable Disconnect** | Issue EDR network quarantine command; physically disconnect RJ-45 Ethernet; disable 802.11 Wi-Fi. Keep PC powered ON. | **Preserves RAM and process tree.** EDR retains a secure out-of-band management tunnel to collect live memory and process dumps while blocking all internal and external communication. |
+| **Active C2 Beaconing or Worm Spread** (e.g., Nora's endpoint, Todd's share scanning) | **EDR Network Isolation or Physical Cable Disconnect** | Issue EDR network quarantine command; physically disconnect RJ-45 Ethernet; disable 802.11 Wi-Fi. Keep PC powered ON. | **Preserves powered RAM and the process tree.** EDR containment may retain an explicitly allowed management/collection channel while blocking other traffic; verify that behavior. A physical cable disconnect does not retain that channel: collect locally after isolation. |
 | **Active Ransomware Encryption in Progress** (e.g., mass `.locked` file renames) | **Immediate Physical Power Sever (Pull the Plug)** | Yank AC power cable directly from desktop power supply; immediately strip laptop battery. | **Data preservation emergency.** Ransomware encrypts at gigabytes per second. Live memory capture takes 10–15 minutes, during which critical databases and network shares are permanently lost. Stopping encryption takes absolute precedence over memory forensics. |
 | **Suspected Rootkit or Kernel Evasion** (e.g., unsigned kernel driver hooking disk I/O) | **Hypervisor Snapshot / Live Memory Dump under Isolation** | Suspend VM or take live hypervisor snapshot; for bare-metal, isolate network and run hardware-based/live memory capture tool. | **Userland tools cannot be trusted.** If the kernel is compromised, userland executables (`tasklist`, `netstat`) return falsified data. Hypervisor-level or raw memory capture bypasses kernel hooks. |
 | **Unauthorized Cloud Mailbox Rule / Stolen Session Token** | **Revoke Active Tokens & Purge Mailbox Forwarding** | Execute `Revoke-AzureADUserAllRefreshToken`; delete malicious inbox rule via Exchange PowerShell; force password reset. | **Host isolation does not fix cloud exfiltration.** If the attacker possesses an OAuth token or session cookie, pulling the user's laptop cable accomplishes nothing. Remediation must occur at the identity provider (IdP) layer. |
@@ -471,7 +473,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 ---
 
 #### Case 4: Maya's "Possessed" Laptop vs. Nora's Stolen Mailbox — `INC0075923`
-*Telemetry & Symptoms:* Maya from Marketing sprints to the desk shouting that her laptop is "possessed by demons"—her browser is flashing coupon ads, the fan is whining, and she demands an immediate hard drive wipe before her executive meeting. Meanwhile, Nora's ticket sits in the queue marked "Low Priority: Sent folder empty."
+*Telemetry & Symptoms:* Maya from Marketing sprints to the desk shouting that her laptop is "possessed by demons"—her browser is flashing coupon ads, the fan is whining, and she demands an immediate hard drive wipe before her executive meeting. Meanwhile, Nora's ticket sits in the queue marked "Low Priority: Sent folder empty." The inbox rule redirects incoming messages; separate mailbox audit entries record the deletions from Sent Items under her compromised account.
 
 * **Your Action:**  
   [ A. Wipe Maya's Laptop First (Loudest User) / B. Treat Maya as an Event (Adware Quarantine) & Escalate Nora as a Security Incident / C. Reimage Both Workstations Simultaneously ]

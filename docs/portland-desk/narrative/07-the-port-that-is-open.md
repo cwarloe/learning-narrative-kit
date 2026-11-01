@@ -121,7 +121,7 @@ Jules reached over and tapped the edge of my monitor with her pen. "Read that re
 
 I called Sam back. "VPN first, then remote into a jump host. We don't open 3389 to the internet, not even for an hour." He grumbled and then admitted the jump box was nicer than trusting hotel Wi-Fi. The firewall rule was narrow on purpose: VPN pool to one hardened host on 3389, nothing else.
 
-The rest of the queue got the secure twin of whatever it had asked for. The legal tool moved from LDAP on 389 to LDAPS on 636. Dale's appliance moved from FTP to SFTP. SNMP `public` polling was replaced with SNMPv3.
+The rest of the queue got the secure twin of whatever it had asked for. The legal tool moved from LDAP on 389 to LDAPS on 636. Dale's appliance moved from plain FTP to explicit FTPS on twenty-one, with TLS required on both the control and data connections and a narrow passive data-port range on the jump host. SNMP `public` polling was replaced with SNMPv3.
 
 Jared did not argue once he watched his own password scroll past in the capture, but he did not thank me either. Six of his older switches could not run SSH without a firmware upgrade, so we wrapped them in a management VLAN behind a jump host instead of fixing them. It was a patch, and we both knew it.
 

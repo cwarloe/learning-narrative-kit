@@ -51,7 +51,7 @@ I didn't reach for the USB drawer. I remoted into the Exchange administrative ce
 
 I pulled Nora's mailbox audit log. At 02:13 AM Pacific time—while Nora was asleep in Sellwood—an interactive login had been validated against her Azure Active Directory account. The source IP was `198.51.100.77`, geolocating to a commercial hosting provider in Frankfurt, Germany. Nora had never left Oregon.
 
-Three minutes after that logon, an automated mailbox rule titled `InvoiceProcess` had been injected into her client ruleset. The rule condition was surgical: any incoming or outgoing message containing the words *wire, routing, invoice, statement,* or *payment* was automatically redirected to an external recipient at `exfil@pay-secure-audit.com`—and then immediately deleted from Nora's Sent Items and Inbox to hide the trail.
+Three minutes after that logon, a server-side inbox rule titled `InvoiceProcess` had been created on her mailbox. It redirected incoming messages containing *wire, routing, invoice, statement,* or *payment* to `exfil@pay-secure-audit.com` and deleted the incoming originals. That rule did not process mail she sent. Separate mailbox audit entries showed deletions from Sent Items under the same compromised account; the missing confirmations were another action, not a power hidden inside the forwarding rule.
 
 A cold weight settled into my stomach. This wasn't adware. This was an active, coordinated Business Email Compromise.
 
@@ -101,7 +101,7 @@ She set the red binder in front of my keyboard.
 
 She pointed to the anti-static evidence pouches on my desk.
 
-I started the memory capture on Todd's workstation while Jared pulled the port list for the jump host. Nia joined the bridge at 2:52 and asked for the hashes before she asked for anything else. I read them off the capture log while the second capture was still running.
+I started the memory capture on Todd's workstation while Jared pulled the port list for the jump host. The tool streamed the dump to our remote collection host; it did not keep a local copy. The first dump arrived complete and we hashed it. Nia joined the bridge at 2:52 and asked for the hashes before she asked for anything else. I read out the first hash while a second dump was still streaming.
 
 ## What It Cost
 
@@ -121,9 +121,9 @@ Leah started before Nia did. "I found out my gateway was going dark from a phone
 
 Nia ran down the indicator list next. None of my saved hashes or domains from December or February had matched anything in this intrusion. "Keep saving them," she said. "Just don't expect them to be the thing that catches the next one." <!-- date-ok: back-reference to December and February incidents -->
 
-Then she got to containment, and my name came up. I had isolated Todd's workstation before the second memory capture finished, because I saw it start enumerating shares and wanted it off the wire. The first capture was good. The second would have shown whether the attacker had moved a tool into memory after the first. We would never know.
+Then she got to containment, and my name came up. I had pulled Todd's network cable before the second memory dump finished, because I saw it start enumerating shares. That stopped the spread and also broke the stream to the collection host. The first dump was good; the second file was incomplete. Todd's machine stayed powered on, and the team took another dump locally under isolation. We had not erased its RAM by pulling a cable. We had lost the complete snapshot of that earlier moment, which the later capture could not recreate.
 
-"It was a defensible call," Nia said. "It was also a call that cost us evidence. Write down why you made it, and what you would need to see next time to wait sixty more seconds." I wrote it down. It went into the lessons-learned section with my name on it, next to the missing plant playbook.
+"Stopping the spread came first," Nia said. "The lost dump does not mean you should have left the shares exposed. It means we started remote collection without a way to keep collecting under isolation. Write down why you pulled the cable, and what we need ready next time: local capture, or a tested containment channel that keeps the collector reachable." I wrote it down. It went into the lessons-learned section with my name on it, next to the missing plant playbook.
 
 ## The Posting
 
@@ -131,7 +131,7 @@ The analyst opening on Harrowmere's security operations team posted the Monday a
 
 Jules stopped at my desk that afternoon with her coffee. "Nia called me this morning," she said. "She's running security operations now. She asked if I had anyone for the Portland seat." She set a printout of the posting on my keyboard. "I gave her your name. She still wants the application, and she wants the second capture in it." Then she went back to her desk, and I did not get to ask her why.
 
-I opened the application that night at the kitchen table and stared at the box that asked for a recent incident. I could have written about the indicators I had saved, or the binder, or the bridge with Chicago. I wrote about the second memory capture instead: what I had seen, why I had pulled the cable, and what I would need to see next time to wait sixty more seconds.
+I opened the application that night at the kitchen table and stared at the box that asked for a recent incident. I could have written about the indicators I had saved, or the binder, or the bridge with Chicago. I wrote about the second memory capture instead: what I had seen, why I had pulled the cable, and how to preserve collection next time without leaving a spreading host on the production network.
 
 Then I read it again, cut the sentence where I explained that it had been a defensible call, and clicked submit.
 

@@ -25,7 +25,7 @@ Maya from accounting was in the lobby with a loaner laptop.
 
 I walked out with a phone running our approved [[wifi_analyzer|Wi-Fi analyzer]] view. Official [[ssid|SSID]] was `CORP-EMPLOYEE`. Beside it appeared `CORP-EMPLOYEE_Guest` and a duplicate `CORP-EMPLOYEE` with an identical network name but an unrecognized BSSID transmitting at maximum signal strength near the street entrance.
 
-"That sticky note is the old guest [[psk|pre-shared key]], Maya," I said. "Connect to `CORP-EMPLOYEE` instead. That uses [[enterprise_wpa|WPA-Enterprise]]—authenticate with your normal badge username and password under [[ieee_8021x|802.1X]] against our [[radius|RADIUS]] server, and accept the company certificate. Don't touch the duplicate network."
+"That sticky note is the old guest [[psk|pre-shared key]], Maya," I said. "The company profile for `CORP-EMPLOYEE` uses [[enterprise_wpa|WPA-Enterprise]] and [[ieee_8021x|802.1X]] against our [[radius|RADIUS]] server. It must validate the server certificate against our trusted company authority and the approved server names before it sends your credentials. Don't accept an unexpected certificate prompt. Two radios can advertise exactly the same name; picking the right-looking name isn't enough."
 
 Maya squinted at the twin. "So the louder one is…?"
 
@@ -67,13 +67,13 @@ Dev called the help desk from the cafe seating near the lobby glass. His laptop 
 
 Wireless ops had a note on the bridge: bursts of spoofed [[disassociation|deauthentication frames]] aimed at lobby clients where 802.11w Protected Management Frames had not yet been enforced on the legacy WPA2 profile. Not full [[jamming|jamming]]—the air still worked—but enough kicks to make laptops frantic. Frantic laptops are how evil twins collect friends.
 
-"When you get kicked, do not reconnect on autopilot," I said. "Check the SSID character by character. Prefer the dock. If the air is being rude on purpose, escalate — that is a SOC and wireless hunt, not a forget-network ritual."
+"When you get kicked, do not reconnect on autopilot," I said. "Use the managed company profile with server certificate validation. A character-by-character SSID check won't distinguish an exact copy. Don't override a certificate warning. Prefer the dock while wireless ops checks the radio — this is a SOC and wireless hunt, not a forget-network ritual."
 
 Dev docked. The flapping stopped because copper does not care about deauth theater.
 
 ## Reggie and the bench in the lobby
 
-The evil twin was not in the air. It was in the lobby, a small battery-powered access point taped under a bench by the visitor sign-in tablet. I found Reggie in the loading dock vestibule, where he was replacing a door closer, and he followed me back.
+Wireless ops traced the duplicate BSSID to a small battery-powered access point taped under a lobby bench by the visitor sign-in tablet. It was separate from Rita's open travel router, which was already unplugged in conference room 3B. I found Reggie in the loading dock vestibule, where he was replacing a door closer, and he followed me back.
 
 Reggie walked the lobby with me and pointed out what I had walked past for two years: the camera over the front desk did not cover the benches, the badge reader on the inner door was the only controlled boundary, and the cleaning crew propped the side door during evening rounds. He knew the cameras, locks, and doors, and he admitted right away that he did not know what the device under the bench was doing on the network.
 
@@ -81,11 +81,13 @@ Reggie walked the lobby with me and pointed out what I had walked past for two y
 
 ## The Bench and the Barcode Guns
 
-We found the travel router under the credenza in 3B and shut its switch port. The barcode scanners reassociated with our access points, and Dev's laptop came back over 802.1X.
+Wireless ops recorded the lobby device's BSSID and location. Security brought a radio-shielding pouch and sealed the device inside for the incident team; the duplicate signal disappeared from the analyzer. Network disabled the conference-room jack Rita had used so nobody could reconnect her travel router. Dev's laptop returned to our access points using the managed 802.1X profile.
+
+The scanner check was less tidy. Wireless ops found legacy profiles that did not enforce the approved RADIUS server names. I called Ken before taking those scanners off wireless. Removing the lobby device would not fix a profile that could trust the next impostor; we kept the affected scanners offline until we could replace their profiles.
 
 Reggie took the lobby personally. He had the side door re-keyed that week and put in for a second camera. The camera did not come that month.
 
-It still slowed the dock, and it cost me a Saturday. Re-enrolling the scanners onto 802.1X took most of the next morning, and Ken's crew scanned by hand at two doors until noon. He drove up from Gresham that afternoon and stood at my desk to tell me exactly how many pallets that had cost. It was the first time he had spoken to me since the laptop.
+That profile change slowed the dock, and it cost me a Saturday. Re-enrolling the scanners with server certificate validation enforced took most of the next morning, and Ken's crew scanned by hand at two doors until noon. He drove up from Gresham that afternoon and stood at my desk to tell me exactly how many pallets that had cost. It was the first time he had spoken to me since the laptop.
 
 Jules had told me to keep the survey data. "Save what normal looks like," she said, "or you'll never know what weird is." I saved the wireless baseline to the shared drive with a note to her and added to it every week after that, mostly because she checked.
 
