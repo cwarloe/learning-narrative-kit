@@ -1,5 +1,13 @@
 # Story Grid pilot — Episode 11, The Air Is Shared
 
+**Historical pilot:** this records a review of revision `56c303d` made before the
+full article was supplied and before the subsequent story repairs. It is not a
+current review or a PDF-verified assessment. The reviewer now uses
+`tools/agents/references/story_grid_five_commandments.md`, verified against the
+supplied PDF. Re-read the current narrative and re-check line references before
+reusing these findings. In particular, useful scene fragments should not be
+mistaken for complete scenes meeting all five criteria.
+
 ## Scope and basis
 
 Reviewed narrative revision `56c303d` (before adding this reviewer):

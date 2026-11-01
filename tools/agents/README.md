@@ -19,7 +19,7 @@ This directory contains definitions for the project's specialized adversarial re
 ### 4. `story_grid_reviewer`
 - **Definition:** [`story_grid_reviewer.md`](story_grid_reviewer.md)
 - **Role:** Reviews causal story structure using the Five Commandments: inciting incident, progressive complications/turning point, crisis, climax, and resolution. Cites story evidence, distinguishes scenes from chapters, and recommends proportionate changes without rewriting.
-- **Reference:** [Story Grid article supplied by the author](https://storygrid.com/articles/five-commandments-of-storytelling). Current article text was blocked by the setup environment; the definition identifies its working paraphrases and requires honest source reporting.
+- **Reference:** [Story Grid article](https://storygrid.com/articles/five-commandments-of-storytelling), verified from the author-supplied full PDF. [Source notes](references/story_grid_five_commandments.md) preserve attributed paraphrases, PDF page references, and the source fingerprint for future reviews.
 
 ## How to Invoke in Antigravity
 
