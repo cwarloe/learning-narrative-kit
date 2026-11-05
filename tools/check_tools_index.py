@@ -6,8 +6,8 @@ tools/README.md (for example `refactor_episode_02.py`). The point is that each
 new script gets sorted into "use it", "generator" or "one-shot, do not rerun"
 when it is committed, so nobody has to open it to find out.
 
-    python3 tools/check_tools_index.py           # exit 1 if any script is unlisted
-    python3 tools/check_tools_index.py --warn    # report only (exit 0); CI uses this
+    python3 tools/check_tools_index.py           # exit 1 if any script is unlisted; CI uses this
+    python3 tools/check_tools_index.py --warn    # report only (exit 0)
 
 Standard library only.
 """

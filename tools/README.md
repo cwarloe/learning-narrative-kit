@@ -5,7 +5,7 @@ Setup (from repo root): `python3 -m venv .venv && .venv/bin/pip install -r requi
 
 ## Tool index
 
-Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_tools_index.py` checks that this list stays complete (CI runs it as a warning).
+Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_tools_index.py` checks that this list stays complete (CI fails if a script is missing or a listed one is gone).
 
 ### Use these (pipeline and checks)
 
@@ -18,7 +18,7 @@ Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_to
 | `build_hub_index.py` | Writes `docs/index.html` (the landing page) from `HTML_CONTENT` | below |
 | `check_hub_links.py` | Landing page matches builder; hub links resolve (CI) | below |
 | `check_ep07_capture.py` | Episode 7 Drill 1 table ↔ `jared-telnet-capture.pcap`, plus the `docs/` mirror (CI) | `AGENTS.md` |
-| `check_tools_index.py` | This index lists every script in `tools/` (CI, warning only) | this section |
+| `check_tools_index.py` | This index lists every script in `tools/` (CI, fails on a gap) | this section |
 | `author.py` | Authoring bookkeeping: brief → plan → review → status | below |
 | `voice_check.py` | Machine-prose tells; a reading aid, not a gate | below |
 | `check_decks.py` | Flashcard decks: no indented HTML that Docsify shows as a code block, and every ```` ```lnk-deck ```` fence well formed (CI) | `AGENTS.md` |

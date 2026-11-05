@@ -76,8 +76,8 @@ jobs:
       - name: Landing page matches builder; hub links resolve; every rendered page has a hub card
         run: python tools/check_hub_links.py --strict
 
-      - name: Every tools/ script is in the tools/README.md index (warning only)
-        run: python tools/check_tools_index.py --warn
+      - name: Every tools/ script is in the tools/README.md index
+        run: python tools/check_tools_index.py
 
   browser-decks:
     runs-on: ubuntu-latest
