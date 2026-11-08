@@ -13,7 +13,8 @@ Usage:
   python3 tools/check_decks.py [paths...]
 Default: the Portland Desk pages (docs/portland-desk/**/*.md) and every unit's
 examples/*/narrative.md, which tools/render_unit.py renders with the same fence.
-Exits 1 if any problem is found.
+The default paths resolve from the repo root, so it can run from any directory.
+Exits 1 if any problem is found, or if the default run finds no files to check.
 """
 from __future__ import annotations
 
@@ -26,6 +27,15 @@ CARD_KEYS = {"q", "a", "why", "tag", "back_tag", "band", "hint"}
 HEAD_KEYS = {"title", "meta", "size", "band"}
 SIZES = {"3x5", "4x6"}
 BANDS = {"red", "green", "yellow", "blue"}
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def shown(path: Path) -> Path:
+    """Path as printed in messages: relative to the repo root when it is inside it."""
+    try:
+        return path.resolve().relative_to(ROOT)
+    except ValueError:
+        return path
 
 
 def check_deck(path: Path, start: int, body: list[str]) -> list[str]:
@@ -76,6 +86,7 @@ def check_deck(path: Path, start: int, body: list[str]) -> list[str]:
 
 def check_file(path: Path) -> tuple[list[str], int]:
     lines = path.read_text(encoding="utf-8").splitlines()
+    path = shown(path)
     problems, decks = [], 0
     in_fence, fence_lang, fence_start, fence_body = False, "", 0, []
     prev_blank = True
@@ -108,7 +119,10 @@ def main(argv: list[str]) -> int:
         roots = [Path(a) for a in argv]
         files = [f for r in roots for f in ([r] if r.is_file() else sorted(r.rglob("*.md")))]
     else:
-        files = sorted(Path("docs/portland-desk").rglob("*.md")) + sorted(Path("examples").glob("*/narrative.md"))
+        files = sorted((ROOT / "docs/portland-desk").rglob("*.md")) + sorted((ROOT / "examples").glob("*/narrative.md"))
+        if not files:
+            print(f"FAIL no Portland Desk pages or unit narratives found under {ROOT}")
+            return 1
     problems, decks = [], 0
     for f in files:
         p, d = check_file(f)
