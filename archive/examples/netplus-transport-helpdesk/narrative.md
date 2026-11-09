@@ -170,7 +170,7 @@ I looked at the mountain of frozen TIME_WAIT sockets. The wire had two ends, and
 
 ```bridge-card
 title: Portland Desk Lab: TCP Sockets, Port States, & Handshake Diagnostics
-target: workbench/05-the-wire-has-two-ends.md
+target: workbench.md
 domain: CompTIA Network+ N10-008/009 • Domain 1.1, 1.4 & 4.1
 badge: Hands-on Lab
 ---

@@ -84,7 +84,7 @@ I looked at the eighteen checkboxes on Maya's screen, then at the clock blinking
 
 ```bridge-card
 title: Portland Desk Lab: OS Diagnostics, Event Log Triage, & Boot Recovery
-target: workbench/02-the-live-board.md
+target: workbench.md
 domain: CompTIA A+ Core 2 (220-1102) • Domain 1.0 & 3.0
 badge: Hands-On Lab
 ---

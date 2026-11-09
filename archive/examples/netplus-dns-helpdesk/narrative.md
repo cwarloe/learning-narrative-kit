@@ -70,7 +70,7 @@ I stared at the first two lines of the terminal response. "Look at the resolving
 
 "And what does his home router do when a client asks it to resolve an unfamiliar internal host?" Maya asked.
 
-"His home router forwards the query to its upstream [[recursive_resolver|recursive resolver]] at Comcast," I said. "RFC 6762 reserves `.local` for Multicast DNS on the local link. Comcast's public recursive resolvers don't know our private corporate namespace, so they drop an immediate NXDOMAIN non-existent domain code right back to his machine."
+"His home router forwards the request upstream to its configured [[recursive_resolver|recursive resolver]] at Comcast," I explained. I traced the query path mentally. "The public recursive servers walk the internet root servers and the top-level domain authorities looking for `.local`. But `.local` is a private, non-delegated internal namespace that does not exist in public root zone files. The public resolver immediately returns a non-existent domain code."
 
 "Now look at what happens when Greg tries to browse the public corporate domain name," Maya said.
 

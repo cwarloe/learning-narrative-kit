@@ -16,7 +16,7 @@ Maya from accounting forwarded a message with logos that looked expensive. The b
 
 I expanded the link without clicking. Display text said `login.microsoft.com`. The real host was `login-micros0ft-secure[.]ru` with a zero where an o should live. The browser status bar is honest when you let it finish talking.
 
-"That is a [[phishing_url|phishing URL]]," I said. "They are using [[typo_squatting|typosquatting]] with a zero instead of an 'o' to pull off [[brand_impersonation|brand impersonation]]. The destination is [[credential_harvesting|credential harvesting]]—a fake login that grabs your password and immediately prompts for your MFA code."
+"That is a [[phishing_url|phishing URL]]," I said. "[[typo_squatting|Typosquatting]] plus [[brand_impersonation|brand impersonation]]. The destination is [[credential_harvesting|credential harvesting]] — a fake login that eats your password and maybe your MFA code if you type one in because the page asked nicely."
 
 Maya exhaled. "So this is just… [[phishing|phishing]]?"
 

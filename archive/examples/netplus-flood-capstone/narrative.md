@@ -35,7 +35,7 @@ Jared and I sloshed through the standing water toward the equipment rack. Our ru
 
 I reached behind the first switch and unplugged the redundant power cords. I flipped the rear breaker switch back and forth several times. The internal cooling fans remained motionless, and the status LEDs stayed completely dark. "Hold the front power button thirty seconds to discharge the [[flea_power|flea power]]," Jared instructed. "If the logic gates locked on an over-voltage clamp, bleeding the capacitors might reset the controller." I held the switch down, but when I plugged the power lead back into the outlet, the status lights stayed completely dark.
 
-"The power supplies are fried on both lower switches," I reported, unhooking my ratcheting screwdriver from my belt. "The transient spike blew right through the primary transformer coils."
+"The power supplies are fried on both lower switches," I reported, unhooking my ratcheting screwdriver from my belt. "The transient spike breached the varistors and scorched the power distribution boards."
 
 "Then we unrack them and build fresh," Jules said, setting her lantern on an upper conduit bracket. "We have two spare forty-eight-port switches in Jared's truck bed. We are mounting them four rack units higher. That position puts them well above the reach of any future water intrusion."
 
@@ -158,7 +158,7 @@ I looked at the red warning icons multiplying across the monitoring board. Four 
 
 ```bridge-card
 title: Portland Desk Lab: The Campus Flood & Disaster Recovery Crucible
-target: workbench/06-the-portland-flood.md
+target: workbench.md
 domain: CompTIA Network+ N10-008/009 • Disaster Recovery & Layer 1-4 Rebuild
 badge: The Hands-On Lab
 ---

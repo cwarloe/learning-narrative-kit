@@ -8,7 +8,7 @@ My shift had ended four hours earlier at Harrowmere's distribution warehouse out
 
 Across the laminate tabletop, three hundred handmade three-by-five index cards were arranged in four crooked rows. I had spent two months copying definitions from the textbook during my fifteen-minute breaks, handwriting every obscure specification onto index stock. The cards recorded the exact pin counts of memory modules and the maximum lengths of fiber cables. Other cards detailed the operating voltages of parallel interfaces alongside the mechanical stages of a laser printing engine. I had convinced myself that passing this examination was a simple matter of memorizing every component number in the computing universe.
 
-That confidence evaporated when I clicked the final button on an online practice examination running on my secondhand laptop. The screen flashed bright crimson and reported an overall score of fifty-eight percent. The testing engine informed me that I had failed questions on laser printer separation pads, dynamic memory refresh cycles, and the theoretical sub-layers of the network stack. I sat staring at the red banner while the box fan sputtered against the doorway. A surge of exhausted panic tightened my throat. I shoved the cards away in disgust, sending two stacks tumbling off the laminate and scattering across the yellow linoleum floor. I dropped my forehead into both palms while the plastic fan blades rattled against the loose window frame.
+That confidence evaporated when I clicked the final button on an online practice examination running on my secondhand laptop. The screen flashed bright crimson and reported an overall score of fifty-eight percent. The testing engine informed me that I had failed questions on laser printer separation pads, dynamic memory refresh cycles, and the theoretical sub-layers of the network stack. I sat staring at the red banner while the box fan sputtered against the doorway. A surge of exhausted panic tightened my throat. In a sudden fit of disgust, I swept my right arm across the table, scattering all three hundred flashcards across the yellow linoleum floor. I dropped my forehead into both palms while the plastic fan blades rattled against the loose window frame.
 
 ## The Machinist's Water Glass
 
@@ -86,7 +86,7 @@ The following desk translation table contrasts textbook certification definition
 
 ```bridge-card
 title: Hands-On Lab: The Beginner's Mental Model of a Computer
-target: workbench/00-the-four-rubber-bands.md
+target: workbench.md
 domain: CompTIA A+ Core 1 (220-1101) & Core 2 (220-1102) Foundations
 badge: Hands-On Lab
 ---
