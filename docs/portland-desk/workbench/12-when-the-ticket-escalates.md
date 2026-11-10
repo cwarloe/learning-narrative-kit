@@ -1,7 +1,7 @@
 # Portland Desk Lab: The Incident Escalation & SOC Handoff Crucible
 
-> **The Situation:** Portland Operations Center Service Desk • Tier 1 CSIRT Incident Station  
-> **Your Role:** Tier 1 Support Specialist / Junior CSIRT Responder (Final Capstone under Jules Brooks)  
+> **The Situation:** Portland Operations Center Service Desk • CSIRT Incident Station  
+> **Your Role:** Tier 2 Support Technician / Junior CSIRT Responder (Final Capstone under Jules Brooks)  
 > **The Objective:** Correlate a multi-stage enterprise intrusion spanning finance phishing, USB dropper execution, lateral pivot, and industrial OT egress into a definitive CSIRT handoff dossier.  
 > **Estimated Time:** 60–75 minutes • Book 0 Final Capstone (Handoff to the SOC)  
 
@@ -47,7 +47,7 @@ prompt: "Clean technical cutaway illustration of a computer forensic examination
 
 
 ### The Situation
-It is a Wednesday in late June. Ethan has been on the desk for twenty-two months. At 08:30, Maya brings in a laptop that turns out to be quarantined adware. At 11:15, Nora Higgins in finance sends a quiet ticket: her wire confirmations are missing from Sent Items, and there is an Outlook rule she does not remember creating. In the early afternoon, Jared relays a call from Todd Miller in Inside Sales, who found an unbranded USB stick labeled *Client Deck Final* on the shipping office floor and plugged it into `TODD-SALES-14`. Then Nora's credentials authenticate to the staging jump host `SRV-STAGE-01`, which bridges into the Willamette River plant network.
+It is a Wednesday in late June. Ethan has been on the desk for twenty-two months. At 08:30, Maya brings in a laptop that turns out to be quarantined adware. At 11:15, Nora Higgins in finance sends a quiet ticket: her wire confirmations are missing from Sent Items, and there is an Outlook rule she does not remember creating. In the early afternoon, Jared relays a call from Todd Miller in Inside Sales, who found a USB stick marked *carrier rates* on the shipping office floor and plugged it into `TODD-SALES-14`. Then Nora's credentials authenticate to the staging jump host `SRV-STAGE-01`, which bridges into the Willamette River plant network.
 
 This lab follows the chapter from the moment Jules declares an incident: order of volatility, memory capture, hashes, containment, chain of custody, and the handoff to Nia Alvarez.
 
@@ -138,7 +138,7 @@ flowchart TD
 
 | Volatility Rank | Storage Mechanism | What Is Lost If System Is Powered Off / Rebooted | Typical Collection Method / Tool |
 | :---: | :--- | :--- | :--- |
-| **1** | **CPU Registers & Processor Cache (L1/L2/L3)** | Thread execution states, active instruction pointers, register contents, decrypted processor variables. | Specialized hardware debuggers / kernel crash dumps (rarely captured at Tier 1; preserved during memory dumping). |
+| **1** | **CPU Registers & Processor Cache (L1/L2/L3)** | Thread execution states, active instruction pointers, register contents, decrypted processor variables. | Specialized hardware debuggers / kernel crash dumps (rarely captured at the desk; preserved during memory dumping). |
 | **2** | **System RAM & Volatile Kernel State** | Unencrypted memory, injected DLLs, running process trees, plaintext passwords, open TCP/UDP sockets, ARP cache, routing table. | Live memory acquisition tools: `WinPmem`, `DumpIt`, `FTK Imager Lite`, `LiME` (Linux). Live CLI: `netstat -ano`, `arp -a`, `ip route`. |
 | **3** | **Temporary File Systems & Swap / Pagefile** | Virtual memory caches, active page swaps (`pagefile.sys`, `swapfile.sys`), temporary extraction directories (`%TEMP%`). | Live image capture of paging file; memory acquisition tools that extract swap alongside physical RAM. |
 | **4** | **Non-Volatile Mass Storage (SSDs / HDDs / Flash)** | Executable binaries, log files on disk, registry hives (`SAM`, `SYSTEM`, `SOFTWARE`), Master File Table (MFT), event viewer `.evtx` files. | Physical bit-stream disk acquisition via hardware write blocker; software tools: `dd`, `dc3dd`, FTK Imager (`.E01` raw format). |
@@ -303,11 +303,11 @@ input hash (sha256): a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef11928374
 output hash (sha256): a4f2c9901b34e57d890aa71b994e10f823cd456188902a3cdef1192837462b10
 
 # Step 3: Ethan mounts the raw image as a read-only loopback device to extract the dropper
-PS C:\Forensics> Get-FileHash -Path "D:\MountedEvidence\SOW_final.pdf.exe" -Algorithm SHA256
+PS C:\Forensics> Get-FileHash -Path "D:\MountedEvidence\rate_sheet_Q3.pdf.exe" -Algorithm SHA256
 
 Algorithm       Hash                                                               Path
 ---------       ----                                                               ----
-SHA256          9F2C8D1E3A4B5C6D7E8F0A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9BC41A   D:\MountedEvidence\SOW_final.pdf.exe
+SHA256          4B7E19C2A6D0F3581E9C47AB20D6F1E38A5C7B90D2E4F6A1830C5D7E9F2B6A14   D:\MountedEvidence\rate_sheet_Q3.pdf.exe
 ```
 
 #### Diagnostic Evaluation Questions
@@ -317,7 +317,7 @@ SHA256          9F2C8D1E3A4B5C6D7E8F0A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9BC41A
 
 ```text
 ITEM: EVD0007701-USB
-SEIZED: 2026-06-24 14:40 PDT by Ethan Mercer (Tier 1 Support)
+SEIZED: 2026-06-24 14:40 PDT by Ethan Mercer (Tier 2 Support)
 CUSTODY LOG:
 - 14:40 PDT: Seized from Todd Miller's desk (TODD-SALES-14) by Ethan Mercer. Placed in backpack.
 - 15:05 PDT: Ethan Mercer arrived at Operations Center; placed USB on desk beside coffee.
@@ -431,7 +431,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 ---
 
 #### Case 2: Todd Miller (Sales & Warehouse) — `INC0075921`
-*Telemetry & Symptoms:* Todd plugged in an unbranded USB drive. Antivirus quarantined `SOW_final.pdf.exe` on drive `E:\`. Todd unplugged the stick and wants his ticket closed. However, EDR process history indicates that before quarantine, the dropper spawned `powershell.exe -w hidden`, which executed `net view /all`, probed writable shares on `\\WH-PACK-02\share$`, and created a persistent scheduled task named `CacheCleanup` configured to execute at system startup.
+*Telemetry & Symptoms:* Todd plugged in a USB drive he found on the shipping office floor. Antivirus quarantined `rate_sheet_Q3.pdf.exe` on drive `E:\`. Todd unplugged the stick and wants his ticket closed. However, EDR process history indicates that before quarantine, the dropper spawned `powershell.exe -w hidden`, which executed `net view /all`, probed writable shares on `\\WH-PACK-02\share$`, and created a persistent scheduled task named `CacheCleanup` configured to execute at system startup.
 
 * **Your Action:**  
   [ A. Close Ticket with Warning / B. Delete Scheduled Task & Reconnect / C. Isolate Host Immediately, Confiscate USB Drive, Audit Target Network Shares ]
@@ -487,7 +487,7 @@ Get-FileHash -Algorithm SHA256 .\evidence_disk0.dd: |
 * **Threat Classification & IR Phase:** **Event vs. Incident Triage / Prioritization**; Lifecycle Phase: **Identification & Triage**.
 * **Jules' Critique:**  
   "This is the core test of a real technician: *the volume of the user does not equal the severity of the threat.*  
-  Maya has adware (`couponbar.dll`). The AV log showed quarantine completed at 07:41, no network beaconing, and no lateral spread. Maya’s issue is an **Event**—scary to an untrained human, but contained. Wiping her machine would have wasted two hours of desk time and destroyed her meeting.  
+  Maya has adware (`CouponBlast.exe`). The AV log showed quarantine completed at 07:41, no network beaconing, and no lateral spread. Maya’s issue is an **Event**—scary to an untrained human, but contained. Wiping her machine would have wasted two hours of desk time and destroyed her meeting.  
   Nora was quiet and polite, but her ticket represented an active **Security Incident**—an unauthorized foreign logon, automated exfiltration of financial wire transfers, and in-memory credential harvesting. Criteria must always beat adrenaline."
 </details>
 
@@ -541,14 +541,14 @@ INCIDENT TRACKING ID:  INC0075950
 INCIDENT SEVERITY:     P1 — CRITICAL (ACTIVE MULTI-STAGE INTRUSION & OT EXPOSURE)
 INITIAL CLASSIFICATION: Malicious Phishing / C2 Beaconing / Lateral Pivot / SCADA Exposure
 DATE & TIME INITIATED: 2026-06-24 14:15:00 PDT (21:15:00 UTC)
-FIRST RESPONDER:       Ethan Mercer (Tier 1 Support Specialist, Portland Desk)
+FIRST RESPONDER:       Ethan Mercer (Tier 2 Support Technician, Portland Desk)
 INCIDENT LEAD / QA:    Jules Brooks (Service Desk Lead & First Response Coordinator)
 TARGET ESCALATION:     Enterprise CSIRT / SOC Tier 2 Operations / Industrial IR Bridge
 ================================================================================
 
 1. EXECUTIVE SUMMARY & ATTACK PATH CORRELATION
 --------------------------------------------------------------------------------
-Between 08:30 and 14:15 PDT on 2026-06-24, Tier 1 triage correlated four 
+Between 08:30 and 14:15 PDT on 2026-06-24, desk triage correlated four
 superficially disparate help-desk events into an ongoing, coordinated, multi-stage
 enterprise intrusion campaign:
 
@@ -560,15 +560,15 @@ Attack Path Chronology:
 [Host C2 & Dumping]     Workstation FIN-NORA-02 establishes 300-second HTTPS beaconing 
                         to 185.22.112.14:443. Memory injection targets lsass.exe.
                                 |
-[Physical Vector]       Workstation TODD-SALES-14 infected via unbranded USB ('CLIENT DECK').
-                        Dropper SOW_final.pdf.exe initiates lateral SMB share enumeration
+[Physical Vector]       Workstation TODD-SALES-14 infected via found USB ('carrier rates').
+                        Dropper rate_sheet_Q3.pdf.exe initiates lateral SMB share enumeration
                         and establishes persistence task 'CacheCleanup' (SYSTEM).
                                 |
 [Internal Pivot]        Adversary leverages harvested credentials to access cross-zone staging 
                         jump box SRV-STAGE-01 spanning corporate IT and industrial OT subnets.
                                 |
-[Critical OT Egress]    Plant telemetry gateway GW-PLANT-04 at Willamette River Water 
-                        Treatment Facility displays unauthorized egress to 185.22.112.14:8443.
+[Critical OT Egress]    Plant telemetry gateway GW-PLANT-04 at the Willamette River plant
+                        displays unauthorized egress to 185.22.112.14:8443.
 
 2. AFFECTED ASSETS & IDENTITY SCOPE
 --------------------------------------------------------------------------------
@@ -592,8 +592,8 @@ Compromised Identities:
 3. COMPREHENSIVE INDICATORS OF COMPROMISE (IoCs)
 --------------------------------------------------------------------------------
 [Cryptographic File Hashes — SHA-256]
-• 9f2c8d1e3a4b5c6d7e8f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9bc41a
-  Filename: SOW_final.pdf.exe | Type: PE32+ Executable | Role: Initial USB Dropper
+• 4b7e19c2a6d0f3581e9c47ab20d6f1e38a5c7b90d2e4f6a1830c5d7e9f2b6a14
+  Filename: rate_sheet_Q3.pdf.exe | Type: PE32+ Executable | Role: Initial USB Dropper
 • e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
   Filename: update.ps1 | Type: PowerShell Script | Role: Internal SMB Replicator
 • d41d8cd98f00b204e9800998ecf8427e00000000000000000000000000000000
@@ -616,7 +616,7 @@ Compromised Identities:
 • Exchange Inbox Rule: 'InvoiceProcess'
   Condition: Subj/Body contains ['wire','invoice','payroll','confidential']
   Actions: ForwardTo 'exfil@pay-secure-audit.com'; MarkAsRead; MoveTo 'RSS Feeds'
-• Memory Injection Indicator: EDR Alert 2026-1022-991
+• Memory Injection Indicator: EDR Alert 0624-991
   Source PID: 6412 (powershell.exe) -> Target PID: 748 (lsass.exe) [PROCESS_VM_READ]
 
 4. CONTAINMENT & EVIDENCE PRESERVATION ACTIONS EXECUTED
@@ -657,7 +657,7 @@ Chain of Custody Transfer History:
 - 14:28 PDT: Seized by Ethan Mercer; sealed in Bag #EVD0007701-01.
 - 15:05 PDT: Transferred to PORT-IR-WK01 by Ethan Mercer for write-blocked imaging.
 - 15:35 PDT: Transferred to Jules Brooks (CSIRT Lead). 
-  Releasing Signature: Ethan Mercer, Tier 1 Support
+  Releasing Signature: Ethan Mercer, Tier 2 Support
   Receiving Signature: Jules Brooks, Desk Lead & CSIRT Coordinator
 
 Item Number:      EVD0007701-02
@@ -665,7 +665,7 @@ Item Description: Volatile Memory Dump (FIN-NORA-02-RAM.raw) — 16GB Physical D
 Source Hostname:  FIN-NORA-02 (Finance Specialist Workstation)
 Acquired Date:    2026-06-24 14:48:10 PDT via WinPmem (Remote EDR Live Capture)
 SHA-256 Digest:   5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
-Storage Location: Secure IR SAN Share: \\IR-SECURE-VAULT\Case-2026-1022\Memory\
+Storage Location: Secure IR SAN Share: \\IR-SECURE-VAULT\Case-INC0075950\Memory\
 
 6. RECOMMENDED CSIRT & ENGINEERING NEXT STEPS
 --------------------------------------------------------------------------------
@@ -704,7 +704,7 @@ Before Ethan closes the red folder and hands the physical binder to Jules, he ve
 * [x] **Operational Silence Maintained:** Need-to-know principles were strictly enforced; no notifications were posted to public Slack channels or email distribution lists that could alert the adversary.
 * [x] **Cryptographic Hash Verification:** Every physical and virtual artifact possesses an immutable pre-acquisition and post-acquisition SHA-256 checksum proving 100% mathematical integrity.
 * [x] **Continuous Chain of Custody:** The physical evidence log accounts for every minute of possession from the moment Todd's USB drive was picked up to the dual-signature transfer to Jules.
-* [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, testable IoCs (hashes, IP addresses, ports, task names) allowing Tier 2 analysts to hunt across enterprise telemetry immediately.
+* [x] **Actionable CSIRT Handoff:** The escalation dossier provides specific, testable IoCs (hashes, IP addresses, ports, task names) allowing SOC analysts to hunt across enterprise telemetry immediately.
 
 
 ---

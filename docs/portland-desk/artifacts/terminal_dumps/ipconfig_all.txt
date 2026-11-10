@@ -17,8 +17,8 @@ Ethernet adapter Local Area Connection 1:
    Link-local IPv6 Address . . . . . : fe80::49b2:9408:2f41:178a%12(Preferred)
    IPv4 Address. . . . . . . . . . . : 192.168.10.45(Preferred)
    Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Lease Obtained. . . . . . . . . . : Tuesday, October 20, 2026 7:45:10 AM
-   Lease Expires . . . . . . . . . . : Wednesday, October 21, 2026 7:45:10 AM
+   Lease Obtained. . . . . . . . . . : Tuesday, August 12, 2025 7:45:10 AM
+   Lease Expires . . . . . . . . . . : Wednesday, August 13, 2025 7:45:10 AM
    Default Gateway . . . . . . . . . : 192.168.10.1
    DHCP Server . . . . . . . . . . . : 192.168.10.254
    DHCPv6 IAID . . . . . . . . . . . : 201337447

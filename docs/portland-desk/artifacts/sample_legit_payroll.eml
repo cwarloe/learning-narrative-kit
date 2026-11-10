@@ -1,10 +1,10 @@
 Delivered-To: ethan@harrowmere.local
 Received: from mail-relay.harrowmere.local (mail-relay.harrowmere.local [192.168.10.50])
 	by imap.harrowmere.local with ESMTP id 11A89DC3
-	for <ethan@harrowmere.local>; Tue, 20 Oct 2026 09:10:00 +0000
+	for <ethan@harrowmere.local>; Tue, 12 Aug 2025 09:10:00 +0000
 Received: from hr-app01.harrowmere.local (hr-app01.harrowmere.local [192.168.10.72])
 	by mail-relay.harrowmere.local with ESMTP id 22F81B99
-	for <ethan@harrowmere.local>; Tue, 20 Oct 2026 09:09:58 +0000
+	for <ethan@harrowmere.local>; Tue, 12 Aug 2025 09:09:58 +0000
 Authentication-Results: mail-relay.harrowmere.local;
 	spf=pass (hr-app01.harrowmere.local: 192.168.10.72 is authorized sender) smtp.mailfrom=hr-benefits@harrowmere.local;
 	dkim=pass (signature verified for harrowmere.local);
@@ -13,8 +13,8 @@ From: "People Operations & Benefits" <hr-benefits@harrowmere.local>
 Reply-To: <hr-benefits@harrowmere.local>
 To: ethan@harrowmere.local
 Subject: Annual Open Enrollment 2027: Confirmation of Current Health Selections
-Date: Tue, 20 Oct 2026 09:09:50 +0000
-Message-ID: <20261020090950.771239@hr-app01.harrowmere.local>
+Date: Tue, 12 Aug 2025 09:09:50 +0000
+Message-ID: <20250812090950.771239@hr-app01.harrowmere.local>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit

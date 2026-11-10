@@ -48,7 +48,7 @@ prompt: "Clean technical illustration of a smartphone on an office desk next to 
 ### The Situation
 It is 08:00 on a Monday in October, and Ethan has been on the desk for fourteen months. Two dozen people locked themselves out between Friday night and Monday morning, after ninety-day password expiration notices went out over the weekend.
 
-This lab follows the chapter's queue. Nora in finance rotates seasonal passwords (`Spring2024!`, `Summer2024!`) and has hit the ninety-day expiry. Todd in sales insists that a password plus a PIN is multifactor. Dev's script is locking his account by retrying a stale secret forty times. Lila in HR asks whether Windows Hello counts as biometrics. Reggie brings a badge log that shows one swipe and two people at the east stairwell door.
+This lab follows the chapter's queue. Nora in finance rotates seasonal passwords (`Spring2025!`, `Summer2025!`) and has hit the ninety-day expiry. Todd in sales insists that a password plus a PIN is multifactor. Dev's script is locking his account by retrying a stale secret forty times. Lila in HR asks whether Windows Hello counts as biometrics. Reggie brings a badge log that shows one swipe and two people at the east stairwell door.
 
 ### The Ground Truth Rules of the Desk
 1. **Two Nouns Do Not Equal Two Factors:** Multifactor authentication requires **two or more distinct categories** of credentials: *Something you know* (knowledge), *Something you have* (possession), *Something you are* (inherence/biometrics), or *Somewhere you are* (location/context). A password plus a PIN is simply two things you know ($1 + 1 = 1$). It is single-factor authentication with extra typing.
@@ -102,7 +102,7 @@ flowchart LR
 | :--- | :--- | :--- | :--- |
 | **Minimum Length** | 8 characters | **15–16+ characters** (Minimum 8, Passphrases strongly encouraged) | Exponential increase in search space ($94^8 \approx 6 \times 10^{15}$ vs $26^{16} \approx 4.3 \times 10^{22}$). |
 | **Composition Rules** | Mandatory 3 of 4: Upper, Lower, Digit, Symbol | **Eliminated.** No arbitrary symbol mandates. | Eliminates predictable substitutions (`E` $\rightarrow$ `3`, `a` $\rightarrow$ `@`, ending in `!`). |
-| **Mandatory Rotation** | Forced 60–90 day expiration | **Removed.** Rotate only upon suspected breach or credential leak. | Stops the "Seasons and Years" pattern (`Spring2024!` $\rightarrow$ `Summer2024!`). |
+| **Mandatory Rotation** | Forced 60–90 day expiration | **Removed.** Rotate only upon suspected breach or credential leak. | Stops the "Seasons and Years" pattern (`Spring2025!` $\rightarrow$ `Summer2025!`). |
 | **Breach Filtering** | Basic dictionary check against `password` or username | **Mandatory check against breached password lists** (e.g., HaveIBeenPwned). | Prevents users from choosing passwords exposed in prior corporate breaches. |
 | **Hint Questions** | "Mother's maiden name", "First car" | **Prohibited.** | Knowledge-based authentication (KBA) answers are easily scraped from social media. |
 
@@ -511,7 +511,7 @@ Status:           OPEN (manager enrollment pending)
    - Domain policy: maximum password age 90 days. The password had expired over 
      the weekend, along with roughly two dozen other accounts on the same cycle.
    - Self-service reset requires a compliant new password before it will issue 
-     a reset path. The user's habitual pattern (Spring2024!, Summer2024!) failed 
+     a reset path. The user's habitual pattern (Spring2025!, Summer2025!) failed 
      the length requirement and the banned-pattern list.
    - No lockout source on the network: Event ID 4740 shows only the user's own 
      three attempts from PORT-WS-FIN02.

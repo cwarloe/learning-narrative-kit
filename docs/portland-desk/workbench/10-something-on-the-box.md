@@ -1,7 +1,7 @@
 # Portland Desk Lab: Host Malware Triage, Persistence Mechanisms, & EDR Analysis
 
 > **The Situation:** Level 1 Service Desk Terminal • Endpoint Detection (EDR) Console  
-> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Brooks)  
+> **Your Role:** Tier 2 Service Desk Technician (under Desk Lead Jules Brooks)  
 > **The Objective:** Investigate host malware infections, calculate cryptographic file hashes, decode Base64 living-off-the-land PowerShell commands, and isolate persistence mechanisms.  
 > **Estimated Time:** 45–55 minutes • Endpoint Security & Malware Persistence  
 
@@ -226,7 +226,7 @@ You open a PowerShell terminal on your management workstation to de-obfuscate th
     "System": {
       "Provider": { "Name": "Microsoft-Windows-PowerShell" },
       "EventID": 4104,
-      "TimeCreated": { "SystemTime": "2026-10-22T10:17:42.184912Z" },
+      "TimeCreated": { "SystemTime": "2026-02-12T10:17:42.184912Z" },
       "Execution": { "ProcessID": 6412 },
       "Computer": "TODD-SALES-14.harrowmere.local"
     },
@@ -539,7 +539,7 @@ TIER 1 INCIDENT CONTAINMENT NOTE - PORTLAND SERVICE DESK
 Ticket ID:        INC0070418
 Affected Host:    TODD-SALES-14 (IP: 192.168.10.45)
 User / Dept:      Todd Miller (Sales & Warehouse Operations)
-Technician:       Ethan Mercer (Tier 1 Support)
+Technician:       Ethan Mercer (Tier 2 Support)
 Lead Reviewer:    Jules Brooks (Service Desk Lead)
 Timestamp:        2026-02-12 10:35:12 PST
 Category:         Malware / Worm & Dropper Outbreak
@@ -602,7 +602,7 @@ CRITICAL SECURITY ESCALATION - ACTIVE RANSOMWARE OUTBREAK
 Ticket ID:        INC0070419
 Affected Host:    RINA-FAC-01 (IP: 192.168.30.12)
 User / Dept:      Rina Rostova (Facilities Operations)
-Technician:       Ethan Mercer (Tier 1 Support)
+Technician:       Ethan Mercer (Tier 2 Support)
 Lead Reviewer:    Jules Brooks (Service Desk Lead)
 Timestamp:        2026-02-12 12:44:00 PST
 Category:         Malware / Ransomware & Extortion

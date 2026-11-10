@@ -19,9 +19,9 @@ prompt: "Clean technical cutaway illustration of a computer forensic examination
 
 The day's first alarm was loud, messy, and harmless. 
 
-At 08:30, Maya from Accounting marched past the glass partition holding her Dell Latitude by the corner of the lid like a wet umbrella. Her eyes had the frantic intensity of someone who believed her machine had contracted a personal grudge.
+At 08:30, Maya from Accounting set her Dell Latitude on my staging mat with the lid shut and the power cord already wound around it. In February she had called the desk and narrated. This time she had walked the machine over without calling, and she had brought her own diagnosis. <!-- date-ok: back-reference to Maya's February adware call -->
 
-"It is possessed, Ethan," Maya said, dropping the machine onto my staging mat with a plastic clatter. "Pop-ups. Every time I open Chrome, five tabs try to sell me Caribbean cruises. The fan is screaming. My standup with the VP is in twelve minutes. Wipe it clean and image it from the thumb drive."
+"It is possessed, Ethan, and before you ask, I installed nothing," Maya said. "Portal only, ever since the coupons. It made no difference. Every time I open Chrome, five tabs try to sell me Caribbean cruises, and the fan is screaming. I present to the VP at nine. My spreadsheets are on the share, so you can't hold those over me. Wipe it clean and image it from the thumb drive."
 
 Twenty-two months ago, I would have reached straight into the drawer for the bootable USB. Back then, "possessed" meant fire, and fire meant formatting the disk. I took the laptop, reached for the Ethernet jack to pull the copper, and had my hand on the imaging drive when Jules said my name once, without turning around.
 
@@ -73,11 +73,13 @@ Every three hundred seconds—five minutes like clockwork—the beacon sent an o
 
 Before Jules could answer, I saw Jared coming down the aisle from the server room, walking faster than I had ever seen him walk. He wasn't carrying coffee.
 
-"Todd in Inside Sales just called from the dock," Jared said. "He found an unbranded USB stick on the floor of the shipping office labeled *Client Deck Final*. He plugged it into `TODD-SALES-14` to see whose presentation it was."
+"Todd in Inside Sales just called from the dock," Jared said. "He found a USB stick on the floor of the shipping office with *carrier rates* written on it in marker. He plugged it into `TODD-SALES-14` to see whose it was."
 
-"Tell me he didn't run the file," Jules said, her voice dropping an octave.
+"Sam got handed one in February and walked it to the counter," I said. <!-- date-ok: back-reference to Sam's USB in February -->
 
-"He clicked `SOW_final.pdf.exe`," Jared answered. "The file spawned a hidden PowerShell loop. I just checked our distribution core switch. Todd's machine is running automated SMB share sweeps across `10.100.0.0/16`, spraying harvested credentials across every administrative share it can find."
+"Sam wanted a sticker for it," Jules said. Her voice dropped an octave. "Tell me Todd didn't run the file."
+
+"He clicked `rate_sheet_Q3.pdf.exe`," Jared answered. "The file spawned a hidden PowerShell loop. I just checked our distribution core switch. Todd's machine is running automated SMB share sweeps across `10.100.0.0/16`, spraying harvested credentials across every administrative share it can find."
 
 Jared found the link first, in the switch logs. Todd's workstation had opened a session to the staging jump host four minutes after the USB went in. "Same jump host Nora's account just hit," he said. "This is one intrusion, not two."
 
@@ -101,13 +103,17 @@ She set the red binder in front of my keyboard.
 
 She pointed to the anti-static evidence pouches on my desk.
 
-I started the memory capture on Todd's workstation while Jared pulled the port list for the jump host. The tool streamed the dump to our remote collection host; it did not keep a local copy. The first dump arrived complete and we hashed it. Nia joined the bridge at 2:52 and asked for the hashes before she asked for anything else. I read out the first hash while a second dump was still streaming.
+"What about upstairs?" I asked. The parent company's security team had the floor above ours. I knew them as Equipment Group badges in the elevator and as one signature, *D. Shah*, on a one-line reply in December. I had never worked a ticket with any of them. <!-- date-ok: back-reference to the December escalation reply -->
+
+"They answer to Nia, not to me, and they work from their own consoles," Jules said. "They'll be on the bridge. Nobody is coming down the stairs to hold your hand, so start the capture."
+
+I started the memory capture on Todd's workstation while Jared pulled the port list for the jump host. The tool streamed the dump to our remote collection host; it did not keep a local copy. The first dump arrived complete and we hashed it. Nia joined the bridge at 2:52 and asked for the hashes before she asked for anything else. A man's voice I did not know said the Portland pod was on. He was one floor above my head, and it was the first time I had heard any of them speak. I read out the first hash while a second dump was still streaming.
 
 ## What It Cost
 
 By 4:30 the rain had eased to a mist over the Willamette. Jules signed the receiving line on Evidence Pouch `#EVD0007701-01` and slid the red binder into the CSIRT handoff rack.
 
-The intrusion was contained, but not cleanly. To cut the attacker's path into the plant, we had isolated the Willamette River gateway, and Leah's crew ran the treatment line on manual override for the rest of the shift. She called at six to say they had held it, and that three operators were working a double because of it. She did not sound angry. She sounded tired, and she wanted to know when the gateway was coming back. It came back nine days later, after Jared rebuilt it.
+The intrusion was contained, but not cleanly. To cut the attacker's path into the plant, we had isolated the Willamette River gateway, and Leah's crew ran the production line on manual override for the rest of the shift. She called at six to say they had held it, and that three operators were working a double because of it. She did not sound angry. She sounded tired, and she wanted to know when the gateway was coming back. It came back nine days later, after Jared rebuilt it.
 
 ## The After-Action Review
 
@@ -119,19 +125,25 @@ Leah started before Nia did. "I found out my gateway was going dark from a phone
 
 "Then whose is it?" Leah asked. Nobody answered quickly enough. Nia wrote *plant isolation playbook, owner TBD* at the top of the preparation list, and under it Reggie's lobby camera, which was still on order.
 
+"Not mine," Leah said. "I'm off the plant in three weeks. I took a job with Equipment Group's applications team. Whoever gets my crew gets a gateway they have never seen go dark and a playbook nobody has written." She looked at me when she said it, and then she looked at her clipboard.
+
 Nia ran down the indicator list next. None of my saved hashes or domains from December or February had matched anything in this intrusion. "Keep saving them," she said. "Just don't expect them to be the thing that catches the next one." <!-- date-ok: back-reference to December and February incidents -->
 
 Then she got to containment, and my name came up. I had pulled Todd's network cable before the second memory dump finished, because I saw it start enumerating shares. That stopped the spread and also broke the stream to the collection host. The first dump was good; the second file was incomplete. Todd's machine stayed powered on, and the team took another dump locally under isolation. We had not erased its RAM by pulling a cable. We had lost the complete snapshot of that earlier moment, which the later capture could not recreate.
 
-"Stopping the spread came first," Nia said. "The lost dump does not mean you should have left the shares exposed. It means we started remote collection without a way to keep collecting under isolation. Write down why you pulled the cable, and what we need ready next time: local capture, or a tested containment channel that keeps the collector reachable." I wrote it down. It went into the lessons-learned section with my name on it, next to the missing plant playbook.
+"Stopping the spread came first," Nia said. "The lost dump does not mean you should have left the shares exposed. It means we started remote collection without a way to keep collecting under isolation. Write down why you pulled the cable, and what we need ready next time: local capture, or a tested containment channel that keeps the collector reachable. And I am still short the one capture that would have shown me what that machine was doing when it found the shares. I don't get that one back." I wrote it down. It went into the lessons-learned section with my name on it, next to the missing plant playbook.
 
 ## The Posting
 
 The analyst opening on Harrowmere's security operations team posted the Monday after the review. It sat one floor up, in the same building, but it was not our company's job. The badges upstairs said Harrowmere Equipment Group. Ours said Harrowmere Northwest.
 
-Jules stopped at my desk that afternoon with her coffee. "Nia called me this morning," she said. "She's running security operations now. She asked if I had anyone for the Portland seat." She set a printout of the posting on my keyboard. "I gave her your name. She still wants the application, and she wants the second capture in it." Then she went back to her desk, and I did not get to ask her why.
+Jules stopped at my desk that afternoon with her coffee and two printouts. "Nia called me this morning," she said. "She's running security operations now. She asked if I had anyone for the Portland seat." She set the posting on my keyboard. "I gave her your name."
 
-I opened the application that night at the kitchen table and stared at the box that asked for a recent incident. I could have written about the indicators I had saved, or the binder, or the bridge with Chicago. I wrote about the second memory capture instead: what I had seen, why I had pulled the cable, and how to preserve collection next time without leaving a spreading host on the production network.
+"You don't give Chicago anything," I said.
+
+"She won't be Chicago much longer. She's moving out here to run it." Jules held up the second page. It was a backfill request for a Tier 2 seat, routed to Central IT, with her signature already on it. "These people are. They've waited two quarters for me to finish their agent rollout, and they'll sit on this until I do. If you get the job, your overnights are mine until they sign." She folded the page in half. "Nia still wants the application, and she wants the second capture in it." Then she went back to her desk, and I did not get to ask her why.
+
+I opened the application that night at the kitchen table. Under certifications I typed Security+ and then *scheduled*, because scheduled was all it was. Then I stared at the box that asked for a recent incident. I could have written about the indicators I had saved, or the binder, or the bridge with Chicago. I wrote about the second memory capture instead: what I had seen, why I had pulled the cable, and how to preserve collection next time without leaving a spreading host on the production network.
 
 Then I read it again, cut the sentence where I explained that it had been a defensible call, and clicked submit.
 
@@ -146,7 +158,7 @@ The following desk translation table contrasts textbook certification definition
 | **[[chain_of_custody|Chain of Custody]]** | The chronological documentation showing the custody, control, transfer, analysis, and disposition of physical and electronic evidence. | A legal paper trail proving who collected the artifact, the exact second it was acquired, where it was stored, and who had physical access, backed by immutable cryptographic hashes. |
 | **[[isolation|Network Isolation]]** | Severing an infected host's communication channels while maintaining electrical power to preserve volatile state. | Unplugging the Ethernet cable or asserting an EDR software isolation rule. Halts outbound C2 beaconing and lateral movement without terminating running processes in RAM. |
 | **[[ioc|Indicator of Compromise (IoC)]]** | Forensically identified artifact or telemetry signature that signals an active or historical computer intrusion. | Actionable operational data: exact SHA-256 file hashes, C2 IP addresses, unauthorized listening ports, and registry persistence keys that allow SOC analysts to hunt across enterprise telemetry. |
-| **[[csirt|CSIRT]]** | Computer Security Incident Response Team: dedicated multidisciplinary group responsible for handling enterprise security incidents. | The specialized incident command team that assumes operational authority during a confirmed breach. Tier 1 desk technicians triage, contain, preserve evidence, and hand off a verified dossier. |
+| **[[csirt|CSIRT]]** | Computer Security Incident Response Team: dedicated multidisciplinary group responsible for handling enterprise security incidents. | The specialized incident command team that assumes operational authority during a confirmed breach. Desk technicians triage, contain, preserve evidence, and hand off a verified dossier. |
 
 ```bridge-card
 title: Portland Desk Lab: The Incident Escalation & SOC Handoff Crucible

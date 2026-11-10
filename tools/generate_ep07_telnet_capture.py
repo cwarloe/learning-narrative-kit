@@ -22,7 +22,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else "docs/portland-desk/artifacts/jared-
 CLIENT, SWITCH = "192.168.10.45", "10.0.4.15"          # from the drill
 RESOLVER, NTPSRV, LOGHOST, PINGER, GATEWAY = ("192.168.10.2", "192.168.10.3",
                                               "192.168.10.5", "192.168.10.50", "192.168.10.1")
-T0 = dt.datetime(2026, 10, 13, 8, 44, 12, tzinfo=dt.timezone.utc)   # frame 101, per the drill
+T0 = dt.datetime(2025, 8, 12, 8, 44, 12, tzinfo=dt.timezone.utc)   # frame 101, per the drill
 rng = random.Random(7)
 
 
@@ -109,7 +109,7 @@ tcp("s", "SA", when=0.01)                                      # 102
 tcp("c", "A", when=0.02)                                       # 103
 tcp("s", "PA", b"User Access Verification\r\n", when=1.0)      # 104
 tcp("s", "PA", b"Password: ", when=1.1)                        # 105
-for i, ch in enumerate("C1sco_Sw!tch_2026"):                   # 106-122, one key per frame
+for i, ch in enumerate("C1sco_Sw!tch_2025"):                   # 106-122, one key per frame
     tcp("c", "PA", ch.encode(), when=2.0 + i * 0.03)
 tcp("c", "PA", b"\r\n", when=2.6)                              # 123
 tcp("s", "PA", b"Switch-Closet-C> enable", when=3.0)           # 124

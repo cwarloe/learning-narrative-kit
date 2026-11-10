@@ -1,7 +1,7 @@
 # Portland Desk Lab: Wireless Security, 802.1X Enterprise, & Rogue AP Triage
 
 > **The Situation:** Level 1 Service Desk Terminal & Wireless LAN Controller (WLC)  
-> **Your Role:** Tier 1 Service Desk Specialist (under Desk Lead Jules Brooks)  
+> **Your Role:** Tier 2 Service Desk Technician (under Desk Lead Jules Brooks)  
 > **The Objective:** Isolate unauthorized rogue wireless access points using RSSI signal triangulation and enforce WPA2/WPA3-Enterprise 802.1X with RADIUS and EAP-TLS certificate validation.  
 > **Estimated Time:** 45–55 minutes • Wireless Security & RF Diagnostics  
 
@@ -475,7 +475,7 @@ TIER 1 RESOLUTION SUMMARY - PORTLAND SERVICE DESK
 ================================================================================
 Ticket ID:        INC0073305
 Requester:        Rita (Marketing, Conference Room 3B)
-Technician:       Ethan Mercer (Tier 1 Support)
+Technician:       Ethan Mercer (Tier 2 Support)
 Supervising Lead: Jules Brooks (Service Desk Lead)
 Date/Time:        2026-04-17 09:15:44 PDT
 Category:         Wireless & Network Infrastructure / Rogue Device Containment
@@ -527,7 +527,7 @@ SECURITY ESCALATION & THREAT INTEL ADVISORY - TIER 2 SOC / WIRELESS OPS
 ================================================================================
 Incident Tracking: ESC0007312
 Related Tickets:   INC0073306, INC0073307
-Reporter:          Ethan Mercer (Tier 1 Support)
+Reporter:          Ethan Mercer (Tier 2 Support)
 Supervising Lead:  Jules Brooks (Desk Lead)
 Target Facility:   Portland Operations Center - East Lobby & Executive Courtyard
 Threat Level:      HIGH - Active RF Deauthentication & Credential Interception

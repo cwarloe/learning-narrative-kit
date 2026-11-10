@@ -92,8 +92,8 @@ flowchart TD
     end
 
     subgraph Segments["Building C Access Broadcast Domains"]
-        VLAN10["VLAN 10: CORP_WATER_BILLING<br/>Subnet: 10.20.10.0/24<br/>Workstations & SQL Terminals"]
-        VLAN20["VLAN 20: PLANT_TELEMETRY<br/>Subnet: 10.20.20.0/24<br/>River Intake Modbus Loggers"]
+        VLAN10["VLAN 10: CORP_ORDER_BILLING<br/>Subnet: 10.20.10.0/24<br/>Workstations & SQL Terminals"]
+        VLAN20["VLAN 20: PLANT_TELEMETRY<br/>Subnet: 10.20.20.0/24<br/>Plant Modbus Loggers"]
         VLAN30["VLAN 30: VOIP_DISPATCH<br/>Subnet: 10.20.30.0/24<br/>Emergency 911 Call Consoles"]
         VLAN99["VLAN 99: INFRA_MANAGEMENT<br/>Subnet: 10.20.99.0/24<br/>Switch Management (Native VLAN)"]
     end
@@ -108,8 +108,8 @@ flowchart TD
 
 | VLAN ID | Name | Subnet / CIDR | Default Gateway | Dynamic DHCP Pool | Lease Time | 802.1Q Trunk Status | Purpose / Device Types |
 | :---: | :--- | :--- | :--- | :--- | :---: | :---: | :--- |
-| **10** | `CORP_WATER_BILLING` | `10.20.10.0/24` | `10.20.10.1` | `10.20.10.50`–`.250` | 8 Hours | Tagged | Desktop PCs, receipt printers, billing database terminals. |
-| **20** | `PLANT_TELEMETRY` | `10.20.20.0/24` | `10.20.20.1` | `10.20.20.200`–`.240` | 24 Hours | Tagged | Industrial PLC gateways, river level sensors, SCADA loggers. |
+| **10** | `CORP_ORDER_BILLING` | `10.20.10.0/24` | `10.20.10.1` | `10.20.10.50`–`.250` | 8 Hours | Tagged | Desktop PCs, receipt printers, billing database terminals. |
+| **20** | `PLANT_TELEMETRY` | `10.20.20.0/24` | `10.20.20.1` | `10.20.20.200`–`.240` | 24 Hours | Tagged | Industrial PLC gateways, line sensors, SCADA loggers. |
 | **30** | `VOIP_DISPATCH` | `10.20.30.0/24` | `10.20.30.1` | `10.20.30.50`–`.200` | 12 Hours | Tagged | Cisco SIP phones, dispatch radio consoles, call managers. |
 | **99** | `INFRA_MANAGEMENT` | `10.20.99.0/24` | `10.20.99.1` | Static Only | N/A | **Native (Untagged)** | Switch SVIs, out-of-band PDU controllers, console servers. |
 
@@ -154,7 +154,7 @@ Technicians executing an emergency campus rebuild must apply standardized, repro
 ```console
 Switch-BuildingC# configure terminal
 Switch-BuildingC(config)# vlan 10
-Switch-BuildingC(config-vlan)# name CORP_WATER_BILLING
+Switch-BuildingC(config-vlan)# name CORP_ORDER_BILLING
 Switch-BuildingC(config-vlan)# vlan 20
 Switch-BuildingC(config-vlan)# name PLANT_TELEMETRY
 Switch-BuildingC(config-vlan)# vlan 30
@@ -258,7 +258,7 @@ switchport mode trunk: |
 **Objective:** Inspect damp horizontal cabling terminating on a 110-style patch panel, execute proper T568B pinout punchdown termination, and correctly map physical ports to their corresponding virtual broadcast domains.
 
 #### Scenario Background
-During the basement flooding, humidity in the telecommunications vault caused condensation to form across the front faceplate of the primary patch panel. When Ethan inspected the rear punchdown blocks, he found that vibration from the emergency diesel generator had vibrated two pairs loose on Port 14 (billing desk WS-BILL-09), while Port 28 (river telemetry sensor intake) was improperly terminated using T568A while the remainder of the campus standardizes on T568B.
+During the basement flooding, humidity in the telecommunications vault caused condensation to form across the front faceplate of the primary patch panel. When Ethan inspected the rear punchdown blocks, he found that vibration from the emergency diesel generator had vibrated two pairs loose on Port 14 (billing desk WS-BILL-09), while Port 28 (plant telemetry logger) was improperly terminated using T568A while the remainder of the campus standardizes on T568B.
 
 ```mermaid
 classDiagram
@@ -295,9 +295,9 @@ classDiagram
 | Patch Panel Jack | Destination Office / Desk | Required VLAN ID | Switch Hardware Port | Port Mode | Spanning Tree Feature |
 | :---: | :--- | :---: | :---: | :---: | :---: |
 | **Port 01–12** | Order Desk Workstations 1–12 | **VLAN 10** | `Fa0/1` – `Fa0/12` | Access | PortFast, BPDU Guard |
-| **Port 13–24** | Water Accounting & SQL Terminals | **VLAN 10** | `Fa0/13` – `Fa0/24` | Access | PortFast, BPDU Guard |
+| **Port 13–24** | Order Billing & SQL Terminals | **VLAN 10** | `Fa0/13` – `Fa0/24` | Access | PortFast, BPDU Guard |
 | **Port 25–32** | Plant Telemetry Sensor Gateways | **VLAN 20** | `Fa0/25` – `Fa0/32` | Access | PortFast |
-| **Port 33–36** | SCADA Intake Pressure Loggers | **VLAN 20** | `Fa0/33` – `Fa0/36` | Access | PortFast |
+| **Port 33–36** | SCADA Telemetry Loggers | **VLAN 20** | `Fa0/33` – `Fa0/36` | Access | PortFast |
 | **Port 37–48** | Field-Service Dispatch Consoles & VoIP | **VLAN 30** | `Fa0/37` – `Fa0/48` | Access + Voice | PortFast, Voice VLAN 30 |
 
 

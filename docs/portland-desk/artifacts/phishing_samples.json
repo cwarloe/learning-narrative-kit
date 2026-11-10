@@ -11,7 +11,7 @@
       "dkim": "none",
       "dmarc": "fail"
     },
-    "attachment_name": "INV_Oct2026_9942.pdf.iso",
+    "attachment_name": "INV_Aug2025_9942.pdf.iso",
     "is_phishing": true,
     "indicators": [
       "SPF failure: Sending IP not authorized by claimed domain",

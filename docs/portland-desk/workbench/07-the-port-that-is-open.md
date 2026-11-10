@@ -134,7 +134,7 @@ No.   Time        Source          Destination     Proto  Info
 119   08:44:14    192.168.10.45   10.0.4.15       TELNET Data: 2
 120   08:44:14    192.168.10.45   10.0.4.15       TELNET Data: 0
 121   08:44:14    192.168.10.45   10.0.4.15       TELNET Data: 2
-122   08:44:14    192.168.10.45   10.0.4.15       TELNET Data: 6
+122   08:44:14    192.168.10.45   10.0.4.15       TELNET Data: 5
 123   08:44:14    192.168.10.45   10.0.4.15       TELNET Data: \r\n
 124   08:44:15    10.0.4.15       192.168.10.45   TELNET Switch-Closet-C> enable
 125   08:44:15    10.0.4.15       192.168.10.45   TELNET Password: 
@@ -172,7 +172,7 @@ No.   Time        Source          Destination     Proto  Info
 <summary>Solution & Lead Tech Review</summary>
 
 **Jules' Analysis:**
-1. **Login Password:** `C1sco_Sw!tch_2026`
+1. **Login Password:** `C1sco_Sw!tch_2025`
 2. **Enable Password:** `Enable!247`
 3. **Transmission Mechanism:** Telnet operates in character-at-a-time mode (RFC 854), echoing every keystroke back from the server in separate TCP segments. In cleartext, this means anyone running `tcpdump` or Wireshark on the segment does not even need to crack a hash—the credentials stream across their console in real time.
 4. **Remediation:**
@@ -382,7 +382,7 @@ ssh jared@10.0.4.15: |
 ---
 
 #### Ticket 5: Leah Moreno (Portland Plant Operations) — `INC0063148`
-*Request:* "East Treatment Line telemetry gateway in Building 4 failed to stream pump and valve sensor metrics to central plant console. Field technician wants to route Modbus/TCP (port 502) and DNP3 (port 20000) directly over the inter-site WAN."
+*Request:* "East Production Line telemetry gateway in Building 4 failed to stream line sensor metrics to central plant console. Field technician wants to route Modbus/TCP (port 502) and DNP3 (port 20000) directly over the inter-site WAN."
 
 * **Your Action:** [ Operational Technology Architecture Decision ]
 * **Target Protocol & Port:**
@@ -393,7 +393,7 @@ ssh jared@10.0.4.15: |
 
 * **Action:** **DENY** unencrypted Modbus/DNP3 over WAN; **ESCALATE** to NetOps for **IPsec ESP Tunnel** termination.
 * **Target Protocol & Port:** Encapsulate Modbus (502) and DNP3 (20000) inside an **IPsec VPN Tunnel (UDP 500 / 4500, IP Protocol 50 ESP)**.
-* **Rationale:** Leah is managing physical plant infrastructure. Industrial protocols (Modbus, DNP3) have no built-in encryption or authentication; sending raw port 502 across an untrusted WAN allows malicious actors to issue unauthorized valve open/close commands or falsify sensor telemetry. The traffic must be strictly isolated on an industrial OT VLAN and encrypted across the link via IPsec tunnel.
+* **Rationale:** Leah is managing physical plant infrastructure. Industrial protocols (Modbus, DNP3) have no built-in encryption or authentication; sending raw port 502 across an untrusted WAN allows malicious actors to issue unauthorized commands to line equipment or falsify sensor telemetry. The traffic must be strictly isolated on an industrial OT VLAN and encrypted across the link via IPsec tunnel.
 </details>
 
 
@@ -474,7 +474,7 @@ Classification:   OT/SCADA Perimeter Traversal Exception Request
 
 1. SITUATION DESCRIPTION:
    Portland Plant Operations reported telemetry gateway connection failures 
-   monitoring East Treatment Line pump/valve controllers in Building 4. A field 
+   monitoring East Production Line controllers in Building 4. A field 
    contractor requested an emergency firewall rule opening raw Modbus/TCP (Port 502) 
    and DNP3 (Port 20000) over the inter-site WAN to the central monitoring console.
 
@@ -483,7 +483,7 @@ Classification:   OT/SCADA Perimeter Traversal Exception Request
      cryptographic authentication mechanisms.
    - Attack Surface: Exposing port 502/20000 across inter-site WAN links allows any 
      adversary on the path to inject malicious controller commands, alter setpoints, 
-     or spoof water level telemetry, posing an environmental and physical safety hazard.
+     or spoof sensor telemetry, posing a physical safety hazard on the plant floor.
    - Policy Violation: Violates SecOps Standard OT-SEC-04 (Mandatory Isolation of 
      Operational Technology Networks).
 
