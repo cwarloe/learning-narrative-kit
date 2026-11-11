@@ -488,7 +488,7 @@ Ethernet adapter Local Area Connection 1:
    Default Gateway . . . . . . . . . : 192.168.10.1
    DHCP Server . . . . . . . . . . . : 192.168.10.254
    DHCPv6 IAID . . . . . . . . . . . : 201337447
-   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-29-7B-9A-00-2B-67-14-99-4A
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-29-7B-9A-00-00-2B-67-14-99-4A
    DNS Servers . . . . . . . . . . . : 192.168.10.10
                                        192.168.10.11
    NetBIOS over Tcpip. . . . . . . . : Enabled

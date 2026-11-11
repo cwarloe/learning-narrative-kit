@@ -5,7 +5,8 @@ This folder preserves a research document Charles wrote in Google Drive on 2026-
 | File | What it is |
 |---|---|
 | [`cognitive-spatial-technical-learning-architecture.md`](cognitive-spatial-technical-learning-architecture.md) | The full source document, exported from Google Docs to Markdown and **not edited**. A header at the top gives the Drive title, link, and dates. |
-| [`sources.md`](sources.md) | Bibliography of the primary research behind the document: 58 sources with full citations, DOI or URL, and a one-line note on what each contributes. 57 were verified against Crossref, arXiv, ERIC, Open Library, or the publisher; 1 could not be verified and is marked. |
+| [`sources.md`](sources.md) | Bibliography of the primary research behind the document: 58 sources with full citations, DOI or URL, and a one-line note on what each contributes. All 58 were verified against Crossref, arXiv, ERIC, Open Library, ADS, or the publisher. |
+| [`errata.md`](errata.md) | Two protocol nits in the export (a TCP RST metaphor that implied a reset drops all sessions, and a TLS SNI metaphor that should be qualified for Encrypted Client Hello). The export itself is unchanged. |
 
 ## What this archive is, and is not
 

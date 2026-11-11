@@ -9,19 +9,21 @@ The source document has **no reference list**. It names two researchers (Sweller
 
 What "verified" means here:
 
-- **Verified** means the bibliographic record (authors, year, title, venue, volume, pages) was confirmed this session against Crossref, arXiv, ERIC, Open Library, or the publisher's own page, and the DOI or URL resolves. It does **not** mean the full text was read. Effect sizes quoted below come from published abstracts.
+- **Verified** means the bibliographic record (authors, year, title, venue, volume, pages) was confirmed this session against Crossref, arXiv, ERIC, Open Library, ADS, or the publisher's own page, and the DOI or URL resolves. It does **not** mean the full text was read. Effect sizes quoted below come from published abstracts.
 - **Unverified** means the record could not be confirmed this session and is given from memory. Check it before citing.
 
 The "Named in doc?" column says whether the document names the work or idea directly (**Named**), names the concept but not the source (**Concept**), or does not mention it and it is added because it tests or qualifies a claim (**Added**).
 
-**Totals: 58 sources. 57 verified, 1 unverified.**
+**Totals: 58 sources. 58 verified, 0 unverified.**
+
+Two protocol metaphors in the architecture document (TCP RST; TLS SNI) are qualified in [errata.md](errata.md). The unedited export is left as it is.
 
 ## A. Spatial memory and the method of loci
 
 | # | Citation | Link | Named in doc? | What it contributes | Status |
 |---|---|---|---|---|---|
 | 1 | Yates, F. A. (1966). *The Art of Memory*. Routledge & Kegan Paul. | [Open Library](https://openlibrary.org/works/OL14861574W) | Concept | Standard history of the memory palace from classical rhetoric onward. | Verified |
-| 2 | Bower, G. H. (1970). Analysis of a mnemonic device. *American Scientist*, 58(5), 496-510. | none confirmed | Concept | Early experimental analysis of why loci and imagery mnemonics work. | **Unverified** |
+| 2 | Bower, G. H. (1970). Analysis of a mnemonic device. *American Scientist*, 58(5), 496-510. | [ADS](https://ui.adsabs.harvard.edu/abs/1970AmSci..58..496B) | Concept | Early experimental analysis of why loci and imagery mnemonics work. | Verified (record confirmed; no DOI) |
 | 3 | Maguire, E. A., Valentine, E. R., Wilding, J. M., & Kapur, N. (2003). Routes to remembering: The brains behind superior memory. *Nature Neuroscience*, 6(1), 90-95. | [doi:10.1038/nn988](https://doi.org/10.1038/nn988) | Concept | World-class memorizers did not have unusual brains or intellect; most used the method of loci, which engaged spatial-navigation regions. | Verified |
 | 4 | Dresler, M., Shirer, W. R., Konrad, B. N., Müller, N. C. J., Wagner, I. C., Fernández, G., et al. (2017). Mnemonic training reshapes brain networks to support superior memory. *Neuron*, 93(5), 1227-1235.e6. | [doi:10.1016/j.neuron.2017.02.003](https://doi.org/10.1016/j.neuron.2017.02.003) | Concept | Six weeks of loci training in ordinary adults produced large word-list recall gains and network changes resembling memory athletes. | Verified |
 | 5 | Legge, E. L. G., Madan, C. R., Ng, E. T., & Caplan, J. B. (2012). Building a memory palace in minutes: Equivalent memory performance using virtual versus conventional environments with the method of loci. *Acta Psychologica*, 141(3), 380-390. | [doi:10.1016/j.actpsy.2012.09.002](https://doi.org/10.1016/j.actpsy.2012.09.002) | Added | A newly learned virtual environment worked as well as a familiar real one, which bears on using a workstation or diagram as the "palace." | Verified |
@@ -114,7 +116,7 @@ The "Named in doc?" column says whether the document names the work or idea dire
 | 52 | Klein, C., & Klein, R. (2025). The extended hollowed mind: Why foundational knowledge is indispensable in the age of AI. *Frontiers in Artificial Intelligence*, 8, 1719019. | [doi:10.3389/frai.2025.1719019](https://doi.org/10.3389/frai.2025.1719019) | **Named** ("Hollowed Mind," "Cognitive Sovereignty") | The apparent origin of both terms. A conceptual paper, not an experiment. | Verified |
 | 53 | Kosmyna, N., Hauptmann, E., Yuan, Y. T., Situ, J., et al. (2025). Your brain on ChatGPT: Accumulation of cognitive debt when using an AI assistant for essay writing task. arXiv:2506.08872. | [arXiv:2506.08872](https://arxiv.org/abs/2506.08872) | Added | EEG study (54 participants, 18 in the crossover) in which LLM users showed the weakest engagement and poorest recall of their own essays. A preprint, small sample. | Verified |
 | 54 | Gerlich, M. (2025). AI tools in society: Impacts on cognitive offloading and the future of critical thinking. *Societies*, 15(1), 6. | [doi:10.3390/soc15010006](https://doi.org/10.3390/soc15010006) | Added | Survey linking heavier AI use with lower self-reported critical thinking. Correlational. | Verified |
-| 55 | Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakcı, Ö., & Mariman, R. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. *PNAS*, 122(26), e2422633122. | [doi:10.1073/pnas.2422633122](https://doi.org/10.1073/pnas.2422633122) | Added | Field experiment with about 1,000 students: an unguarded GPT-4 raised practice scores 48% but lowered later unaided exam scores 17%; a tutor-style version with safeguards removed most of the harm. The strongest evidence behind the doc's AI concern. | Verified |
+| 55 | Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakcı, Ö., & Mariman, R. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. *PNAS*, 122(26), e2422633122. | [doi:10.1073/pnas.2422633122](https://doi.org/10.1073/pnas.2422633122) | Added | Field experiment, main analysis n = 839 (honors classes and survey non-respondents excluded from sessions that comprised nearly 1,000 students): an unguarded GPT-4 raised practice scores 48% but lowered later unaided exam scores 17%; a tutor-style version with safeguards removed most of the harm. The strongest evidence behind the doc's AI concern. | Verified |
 | 56 | Lee, H.-P., Sarkar, A., Tankelevitch, L., Drosos, I., Rintel, S., Banks, R., & Wilson, N. (2025). The impact of generative AI on critical thinking: Self-reported reductions in cognitive effort and confidence effects from a survey of knowledge workers. *Proceedings of CHI 2025*, 1-22. | [doi:10.1145/3706598.3713778](https://doi.org/10.1145/3706598.3713778) | Added | Knowledge workers who trusted AI more reported less critical thinking. Self-report. | Verified |
 
 ## J. Persistent maps and advance organizers

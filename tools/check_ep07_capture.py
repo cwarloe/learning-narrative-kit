@@ -35,6 +35,7 @@ TICKETS = "docs/portland-desk/artifacts/tickets.json"
 JARED_TICKET = "INC0063140"
 PDT = dt.timezone(dt.timedelta(hours=-7), "PDT")      # Portland in August
 LOCAL_NET = bytes([192, 168, 10])                     # the segment the capture was taken on
+GATEWAY_IP = bytes([192, 168, 10, 1])                 # the default gateway's own IPv4 address
 GATEWAY_MAC = bytes([0x02, 0x00, 192, 168, 10, 1])    # 192.168.10.1, as the generator builds it
 
 
@@ -85,13 +86,21 @@ def syslog_text(frame):
 
 
 def wrong_macs(frame):
-    """For an IPv4 frame, say which MAC address breaks the off-subnet rule, if any."""
+    """For an IPv4 frame, say which MAC address breaks the off-subnet rule, if any.
+
+    Off-subnet addresses must use the gateway MAC. Local addresses must use their
+    own MAC, except the gateway's own IP (192.168.10.1), which correctly wears the
+    gateway MAC.
+    """
     if len(frame) < 34 or frame[12:14] != b"\x08\x00":
         return []
     bad = []
     for side, mac_at, ip_at in (("source", 6, 26), ("destination", 0, 30)):
-        off_subnet = frame[ip_at:ip_at + 3] != LOCAL_NET
-        if off_subnet != (frame[mac_at:mac_at + 6] == GATEWAY_MAC):
+        ip = frame[ip_at:ip_at + 4]
+        uses_gw_mac = frame[mac_at:mac_at + 6] == GATEWAY_MAC
+        # Treat the gateway address like a routed hop: it must wear the gateway MAC.
+        routed = ip[:3] != LOCAL_NET or ip == GATEWAY_IP
+        if routed != uses_gw_mac:
             bad.append(side)
     return bad
 
