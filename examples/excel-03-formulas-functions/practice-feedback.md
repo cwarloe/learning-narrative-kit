@@ -23,6 +23,8 @@ The releasable total is **$100**. The unresolved amount is **$40**. The full cal
 
 Preserve the calculated amount separately from account status. Make missing accounts visible and list held claims. Ask the supplier-register owner to verify S30 through the approved process; do not copy an account from a similar ID. This policy permits separate release of verified claims, so holding the entire batch is not required.
 
+Excel treats an empty cell as 0 in arithmetic. If C02's units cell had been left blank instead of holding a typed 0, the sheet would show the same $0 with no error, so a blank cannot tell you whether the answer is zero or nobody knows yet.
+
 If you marked C02 as an error because it is zero, revisit the distinction between a known value and a failed lookup. If you rounded to $5, revisit which rules belong to which task. If you found $140 but would release all of it, revisit the account requirement.
 
 Name one decision you changed after feedback and the evidence that changed it. If none changed, explain how you checked your first answer.
