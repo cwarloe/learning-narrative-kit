@@ -78,6 +78,19 @@ Re-render + push updates the same unit URLs.
 
 Source: `docs/portland-desk/` (served at `/portland-desk/`). Canon: `docs/research/PORTLAND_TIMELINE.md` and `docs/research/PORTLAND_AUTHOR_BIBLE.md`. The earlier short Security+ units are archived in `archive/examples/` and are not a source.
 
+## Practice pilot
+
+[The Crew Bonus companion](examples/excel-03-formulas-functions/practice.md) builds
+on the existing worked-example workbook: follow the example, complete a small check,
+then solve one supplier-payment problem. A separate filter-ordering problem is saved
+for a later session. First attempts and feedback revisions stay separate.
+
+This is one runnable pilot, not a new requirement for every chapter. When adapting it,
+keep the chapter complete, use its existing worked example, and change the surface of
+the independent problem while keeping the underlying decision. An authorized workplace
+application needs its own opportunity and reviewer. Neither story comprehension nor a
+matching answer establishes workplace transfer.
+
 ## Research
 
 Background notes that shaped the contract live in `research/` (including the Sep 2026 Perplexity pass). When documents disagree, follow the precedence list in `AGENTS.md`.
