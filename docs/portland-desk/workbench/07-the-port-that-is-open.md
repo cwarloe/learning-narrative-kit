@@ -156,7 +156,7 @@ No.   Time        Source          Destination     Proto  Info
 
 <video controls width="100%" src="assets/video/wireshark-find-the-conversation.mp4">Video: Wireshark, find one conversation (2:08)</video>
 
-> **New to Wireshark?** Watch the two-minute primer first: [Wireshark: find one conversation](../assets/video/wireshark-find-the-conversation.mp4). It uses the same capture file but a different conversation, so it won't give away your answers. If you'd rather read the steps:
+> **New to Wireshark?** Watch the two-minute primer first: [Wireshark: find one conversation](../assets/video/wireshark-find-the-conversation.mp4). It uses the same capture file but a different conversation, so it won't give away your answers. The dates you see in the video are not the dates in your file, but the steps are the same. If you'd rather read the steps:
 >
 > 1. **File → Open** the capture. The **Protocol** column tells you what kind of traffic each packet is.
 > 2. Type a filter in the bar and press **Enter**. `dns` shows name lookups. `udp.port == 514` shows log messages. Hidden packets aren't deleted, and **Clear** brings them back.
