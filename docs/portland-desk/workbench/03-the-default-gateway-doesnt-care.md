@@ -1,6 +1,6 @@
 # Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
 
-> **The Situation:** East Portland Pump Station & Annex • Operations Service Desk  
+> **The Situation:** Gresham Logistics Annex • Operations Service Desk  
 > **Your Role:** Level 1 Network Support Specialist (under Jules Brooks & Jared Lindqvist)  
 > **The Objective:** Triage local IP addressing, APIPA 169.254.x.x link-local traps, subnet boundaries, and ARP resolution failures following a storm switch reboot.  
 > **Estimated Time:** 45–55 minutes • Local Network Addressing  
@@ -20,16 +20,16 @@
 
 ---
 
-## Worked Example: Frank's flapping connection in Gresham
+## Worked Example: Carlos's flapping connection in Gresham
 
 This lab starts with the same incident Ethan worked in the chapter, with the answer known. Read it as a demonstration, then use the sections below to practice each step. Section 6 gives you one new problem that works the same way.
 
-**The incident.** Frank's desktop and a breakroom printer were fighting over `10.100.4.55`.
+**The incident.** Carlos's desktop and a breakroom printer were fighting over `10.100.4.55`.
 
 1. Ping and watch the replies flap between good and dead.
 2. Run `arp -a` and see two MAC addresses claim the same IP over time.
-3. Check the switch MAC table to find the ports: Frank on Gi1/0/12, the unknown HP card on Gi1/0/28.
-4. Check DHCP: the server leased .55 to Frank, so the other device is a static address inside the pool.
+3. Check the switch MAC table to find the ports: Carlos on Gi1/0/12, the unknown HP card on Gi1/0/28.
+4. Check DHCP: the server leased .55 to Carlos, so the other device is a static address inside the pool.
 5. Walk to port 28, find the old LaserJet, and unplug it.
 6. Move the printer to a reservation at `10.100.4.240`, outside the pool.
 7. Result: clean replies, two late trailers while Ken held door six, and eleven more undocumented statics to clean up.
@@ -47,9 +47,9 @@ prompt: "Clear technical cutaway illustration of a network architecture schemati
 
 
 ### The Situation
-It is 08:00 on a damp Tuesday in October, and Ethan has been on the Portland service desk for two months. Early squalls along the Willamette have knocked out utility power across the industrial district, and fourteen priority tickets land within three minutes. Ken calls from the Gresham dock: three freight clerks in Building B have lost the network. Reggie calls from facilities: the new pump telemetry loggers have dropped offline.
+It is 08:00 on a damp Tuesday in October, and Ethan has been on the Portland service desk for two months. Early squalls along the Willamette have knocked out utility power across the industrial district, and fourteen priority tickets land within three minutes. Ken calls from the Gresham dock: three freight clerks in Building B have lost the network. Reggie calls from facilities: the new building-systems loggers have dropped offline.
 
-This lab follows the same morning as the chapter. Building B's workstations show `169.254.x.x` addresses, which point at DHCP, not a fiber cut. The pump logger `PDX-PUMP-LOG02` sits on the wrong side of a `/26` boundary from its own gateway. Frank's desktop and a breakroom printer both claim `10.100.4.55`, and the printer is plugged into port twenty-eight.
+This lab follows the same morning as the chapter. Building B's workstations show `169.254.x.x` addresses, which point at DHCP, not a fiber cut. The building-systems logger `PDX-BMS-LOG02` sits on the wrong side of a `/26` boundary from its own gateway. Carlos's desktop and a breakroom printer both claim `10.100.4.55`, and the printer is plugged into port twenty-eight.
 
 ### The Ground Truth Rules of IP Addressing & Local Delivery
 
@@ -258,9 +258,9 @@ Ethernet adapter Local Area Connection:
 
 ### Micro-Drill 2: CIDR Bitwise Subnet Boundary Math & Off-by-One Troubleshooting
 
-**Scenario:** Two newly racked company servers sit in the same equipment cabinet in the pump house next to the Gresham warehouse, plugged into adjacent ports on the same switch:
-- Server A (`PDX-PUMP-DB01`): `192.168.10.62` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
-- Server B (`PDX-PUMP-LOG02`): `192.168.10.65` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
+**Scenario:** Two newly racked company servers sit in the same equipment cabinet in the mechanical room next to the Gresham warehouse, plugged into adjacent ports on the same switch:
+- Server A (`PDX-BMS-DB01`): `192.168.10.62` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
+- Server B (`PDX-BMS-LOG02`): `192.168.10.65` with mask `255.255.255.192` (/26), Gateway `192.168.10.1`.
 
 Pinging from Server B to Server A fails with request timeouts. Pinging from Server B to `192.168.10.1` also fails.
 
@@ -351,7 +351,7 @@ Before executing any diagnostic command or changing a system setting, enforce th
   ```console
   # Executed from local broadcast domain (e.g. WS-BLDGB-04):
   C:\> arp -a | findstr 10.100.4.55
-  # First execution (Frank's Dell):
+  # First execution (Carlos's Dell):
   10.100.4.55           00-14-22-8a-41-ef     dynamic
   # Fifteen seconds later (Rogue HP Printer):
   10.100.4.55           00-25-b3-18-c2-90     dynamic
@@ -499,7 +499,7 @@ Status:           RESOLVED
       LaserJet 4050 printer (MAC: 00-25-B3-18-C2-90) moved into the breakroom by 
       facilities yesterday was manually configured with static IP 10.100.4.55. 
       Gratuitous ARPs from the printer repeatedly poisoned the switch CAM table 
-      and neighbor ARP caches, dropping Frank's TCP freight sessions.
+      and neighbor ARP caches, dropping Carlos's TCP freight sessions.
 
 3. REMEDIATION PERFORMED:
    a. Edge switch trunk port re-enabled for 802.1Q encapsulation with IP helper 
@@ -510,7 +510,7 @@ Status:           RESOLVED
    d. Created permanent DHCP MAC reservation for the printer at 10.100.4.240 
       (outside dynamic allocation pool 10.100.4.50 - 10.100.4.200).
    e. Cleared volatile ARP tables ('arp -d *') and reconnected printer.
-   f. Verified Frank's shipping portal remained stable for 30 minutes under load.
+   f. Verified Carlos's shipping portal remained stable for 30 minutes under load.
 
 4. USER EDUCATION & FOLLOW-UP:
    Briefed warehouse lead Ken on static IP policy: all networked peripherals 
@@ -542,9 +542,9 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
    untagged access port on VLAN 1. This severed DHCP relay traversal for VLANs 10, 
    20, and 30, driving 14 warehouse endpoints into APIPA link-local isolation.
 
-2. SUB-SURFACE DISCOVERY (PUMP ANNEX SUBNET MISMATCH):
-   During post-outage recovery, telemetry logger PDX-PUMP-LOG02 (192.168.10.65/26) 
-   was unable to transmit sensor data to database PDX-PUMP-DB01 (192.168.10.62/26). 
+2. SUB-SURFACE DISCOVERY (MECHANICAL ROOM SUBNET MISMATCH):
+   During post-outage recovery, telemetry logger PDX-BMS-LOG02 (192.168.10.65/26) 
+   was unable to transmit sensor data to database PDX-BMS-DB01 (192.168.10.62/26). 
    Triage revealed a CIDR boundary defect:
    - Subnet A (192.168.10.0/26): Valid hosts .1 to .62, Gateway .1.
    - Subnet B (192.168.10.64/26): Valid hosts .65 to .126, Gateway .65.
@@ -565,7 +565,7 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
       to flag unsaved running-configs ('write memory' discrepancy).
    b. Implement DHCP Snooping and ARP Inspection (DAI) on Building B access switches 
       to drop unauthorized static IP assignments that collide with active DHCP scopes.
-   c. Update industrial staging documentation in pump house to explicitly define /26 
+   c. Update staging documentation in the mechanical room to explicitly define /26 
       CIDR boundaries and prevent off-by-one addressing errors by third-party contractors.
 ================================================================================
 ```
@@ -595,6 +595,6 @@ Subject:          Building B Edge Switch Startup-Config Drift & Static IP Hygien
 
 ## 6. Transfer Problem
 
-This problem looks different from Frank's flapping connection in Gresham, but it works the same way. Use the worked example and your notes.
+This problem looks different from Carlos's flapping connection in Gresham, but it works the same way. Use the worked example and your notes.
 
 A conference room phone in Hillsboro keeps dropping calls, and a laptop in the same room loses its network every few minutes. `arp -a` on the router shows the phone's IP flipping between two MAC addresses. Write the steps to find the second device and the change that keeps it from happening again.

@@ -91,7 +91,7 @@ The header trace put the "CFO" message on a mail server that had never sent us m
 
 The save cost the afternoon. AP held the batch wire for three hours while Marisol called every vendor on the run to confirm their banking details, and two real payments went out a day late. The controller sent Jules a note asking why a phishing email had delayed legitimate vendors.
 
-I saved the typo domain, the certificate serial number, and the zip's hash into the SOC's indicator list. Nobody asked me to.
+I saved the typo domain, the certificate serial number, and the zip's hash into the SOC's indicator list. Nobody asked me to. The reply on my escalation came back two days later from the parent company's security team, the people with the Equipment Group badges one floor up. It was one line, *Received, blocked at the gateway*, signed *D. Shah*. I had shared an elevator with that team for more than a year and could not have picked D. Shah out of it.
 
 Nora's vishing call went to Jordan from ops, not me, because I was still on headers. I heard at standup that the caller had known her manager's name and the date of last Tuesday's change window, and that Jordan had made her hang up and call back on the directory number. Nora said she had nearly read him the code.
 

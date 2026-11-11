@@ -8,12 +8,21 @@ the real file behind that table. This script fails if any of these drift apart:
   1. the capture's Telnet session (TCP port 23) is not exactly frames 101-137
   2. a frame's source, destination, clock time or payload differs from the table
   3. the keystrokes in the capture do not spell the passwords in the answer key
+  4. the date and time written inside a syslog frame (UDP port 514) differs from
+     that frame's own timestamp, read as Portland local time
+  5. the capture is not dated before Jared's ticket INC0063140 (the drill calls it
+     his previous run)
+  6. a frame to or from another subnet does not carry the default gateway's MAC
+     address (the rule Episode 3 teaches)
+
+Clock times are Portland local time (PDT, UTC-7: the capture is dated in August).
 
 No third-party packages and no tshark: it reads the classic .pcap format directly.
 
     python3 tools/check_ep07_capture.py [repo_root]
 """
 import datetime as dt
+import json
 import pathlib
 import re
 import struct
@@ -22,6 +31,11 @@ import sys
 ROOT = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else pathlib.Path(__file__).resolve().parent.parent
 PCAP = "docs/portland-desk/artifacts/jared-telnet-capture.pcap"
 WORKBENCH = "docs/portland-desk/workbench/07-the-port-that-is-open.md"
+TICKETS = "docs/portland-desk/artifacts/tickets.json"
+JARED_TICKET = "INC0063140"
+PDT = dt.timezone(dt.timedelta(hours=-7), "PDT")      # Portland in August
+LOCAL_NET = bytes([192, 168, 10])                     # the segment the capture was taken on
+GATEWAY_MAC = bytes([0x02, 0x00, 192, 168, 10, 1])    # 192.168.10.1, as the generator builds it
 
 
 def read_pcap(path):
@@ -60,6 +74,28 @@ def tcp_port23(frame):
     return ip(26), ip(30), payload
 
 
+def syslog_text(frame):
+    """Return the message text if the frame is IPv4/UDP to port 514, else None."""
+    if len(frame) < 42 or frame[12:14] != b"\x08\x00" or frame[23] != 17:
+        return None
+    u = 14 + (frame[14] & 0x0F) * 4
+    if struct.unpack_from(">H", frame, u + 2)[0] != 514:
+        return None
+    return frame[u + 8:14 + struct.unpack_from(">H", frame, 16)[0]].decode("ascii", "replace")
+
+
+def wrong_macs(frame):
+    """For an IPv4 frame, say which MAC address breaks the off-subnet rule, if any."""
+    if len(frame) < 34 or frame[12:14] != b"\x08\x00":
+        return []
+    bad = []
+    for side, mac_at, ip_at in (("source", 6, 26), ("destination", 0, 30)):
+        off_subnet = frame[ip_at:ip_at + 3] != LOCAL_NET
+        if off_subnet != (frame[mac_at:mac_at + 6] == GATEWAY_MAC):
+            bad.append(side)
+    return bad
+
+
 def drill_table(md):
     block = md[md.index("caption: Wireshark / tcpdump Stream Reassembly"):]
     block = block[:block.index("```")]
@@ -83,12 +119,12 @@ def main():
         problems.append(f"port-23 frames are {min(session, default=None)}-{max(session, default=None)} "
                         f"({len(session)} frames) but the drill table lists {min(table)}-{max(table)} ({len(table)} rows)")
 
-    # 2. every row agrees: addresses, clock time (UTC), payload
+    # 2. every row agrees: addresses, clock time (Portland local), payload
     for n, row in sorted(table.items()):
         if n not in session:
             continue
         src, dst, payload = session[n]
-        clock = dt.datetime.fromtimestamp(frames[n - 1][0], dt.timezone.utc).strftime("%H:%M:%S")
+        clock = dt.datetime.fromtimestamp(frames[n - 1][0], PDT).strftime("%H:%M:%S")
         if (src, dst, clock) != (row["src"], row["dst"], row["time"]):
             problems.append(f"frame {n}: capture has {src} -> {dst} at {clock}; drill says "
                             f"{row['src']} -> {row['dst']} at {row['time']}")
@@ -112,14 +148,49 @@ def main():
         elif m[1] not in typed:
             problems.append(f"answer key {key} password {m[1]!r} is not spelled by the capture's keystrokes")
 
-    # 4. the published mirror is identical
+    # 4. the date and time inside each syslog message match the frame that carries it
+    syslog = 0
+    for n, (when, frame) in enumerate(frames, 1):
+        text = syslog_text(frame)
+        if text is None:
+            continue
+        syslog += 1
+        local = dt.datetime.fromtimestamp(when, PDT)
+        want = f"{local:%b} {local.day:2d} {local:%H:%M:%S}"
+        m = re.match(r"<\d+>(\w{3} [ \d]\d \d\d:\d\d:\d\d) ", text)
+        if not m:
+            problems.append(f"frame {n}: syslog message has no date at the front: {text[:40]!r}")
+        elif m[1] != want:
+            problems.append(f"frame {n}: syslog text says {m[1]!r} but the frame was captured at {want!r} (PDT)")
+    if not syslog:
+        problems.append("the capture has no syslog frames (UDP port 514); the primer video uses them")
+
+    # 5. "Jared's previous run" comes before the ticket he filed about it
+    tickets = json.loads((ROOT / TICKETS).read_text(encoding="utf-8"))
+    created = [t.get("created_at") for t in tickets if t.get("ticket_id") == JARED_TICKET]
+    if not created:
+        problems.append(f"{TICKETS} has no ticket {JARED_TICKET}")
+    else:
+        filed = dt.datetime.fromisoformat(created[0].replace("Z", "+00:00"))
+        last = dt.datetime.fromtimestamp(frames[-1][0], PDT)
+        if last.date() >= filed.astimezone(PDT).date():
+            problems.append(f"the capture ends {last:%Y-%m-%d %H:%M} PDT, which is not before the day "
+                            f"{JARED_TICKET} was filed ({created[0]}); the drill calls it his previous run")
+
+    # 6. frames that cross to another subnet go through the default gateway's MAC address
+    for n, (_, frame) in enumerate(frames, 1):
+        for side in wrong_macs(frame):
+            problems.append(f"frame {n}: the {side} MAC address breaks the gateway rule "
+                            "(off-subnet addresses must show the gateway's MAC, local ones their own)")
+
     if problems:
         print("Episode 7 capture check FAILED:")
         for p in problems:
             print("  -", p)
         return 1
     print(f"Episode 7 capture OK: {len(frames)} frames; Telnet frames {min(session)}-{max(session)} "
-          f"match the drill table ({len(table)} rows); answer-key passwords match the keystrokes.")
+          f"match the drill table ({len(table)} rows); answer-key passwords match the keystrokes; "
+          f"{syslog} syslog dates match their frames; off-subnet frames use the gateway's MAC address.")
     return 0
 
 

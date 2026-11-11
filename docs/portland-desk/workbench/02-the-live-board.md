@@ -222,7 +222,7 @@ Maya's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML event r
     <Provider Name="Application Error" />
     <EventID>1000</EventID>
     <Level>2</Level> <!-- Error -->
-    <TimeCreated SystemTime="2026-08-14T08:15:22.4182910Z" />
+    <TimeCreated SystemTime="2024-08-22T08:15:22.4182910-07:00" />
     <Computer>PORT-WS-0142.portland.local</Computer>
   </System>
   <EventData>
@@ -243,7 +243,7 @@ Maya's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML event r
     <Provider Name="Microsoft-Windows-Kernel-Power" />
     <EventID>41</EventID>
     <Level>1</Level> <!-- Critical -->
-    <TimeCreated SystemTime="2026-08-14T08:22:10.1049210Z" />
+    <TimeCreated SystemTime="2024-08-22T08:22:10.1049210-07:00" />
     <Computer>PORT-WS-0142.portland.local</Computer>
   </System>
   <EventData>
@@ -411,7 +411,7 @@ Set-Content -Path 'C:\Program Files\PDX-Pay\config.ini' -Value 'HardwareAccelera
 ---
 
 #### Case 3: Print Spooler Recurring Crash with Event ID 7001
-*Scenario:* At the Water Bureau service counter, printing halts across four customer windows. The Print Spooler service (`spoolsv.exe`) crashes every 90 seconds. Services console shows the service terminates automatically, and Event Viewer logs Event ID 7001.
+*Scenario:* At the Rivergate parts counter, printing halts across four customer windows. The Print Spooler service (`spoolsv.exe`) crashes every 90 seconds. Services console shows the service terminates automatically, and Event Viewer logs Event ID 7001.
 * **Your Action:** [ Reinstall Windows / Clear Spooler Directory / Edit Registry / Run SFC ]
 * **Diagnostic Tool & Path:**
 * **Remediation Plan:**

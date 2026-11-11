@@ -123,7 +123,7 @@ I opened my remote session to `PDX-ARCHIVE01` and inspected the server health. T
 I opened a PowerShell console on Jared's administrative workstation. I ran a count of active TCP sockets grouped by their connection state.
 
 ```console
-PS C:\Users\jvance> netstat -ano | findstr 8443 | measure-object -line
+PS C:\Users\jlindqvist> netstat -ano | findstr 8443 | measure-object -line
 
 Lines Words Characters Property
 ----- ----- ---------- --------
@@ -133,7 +133,7 @@ Lines Words Characters Property
 The terminal returned a count of over fifteen thousand socket records. When I inspected the detailed list, thousands of entries appeared with identical destination parameters. They differed only by their outbound client-side port numbers.
 
 ```console
-PS C:\Users\jvance> netstat -ano | findstr 8443
+PS C:\Users\jlindqvist> netstat -ano | findstr 8443
   TCP    10.100.1.50:49210      10.100.4.20:8443       TIME_WAIT       0
   TCP    10.100.1.50:49211      10.100.4.20:8443       TIME_WAIT       0
   TCP    10.100.1.50:49212      10.100.4.20:8443       TIME_WAIT       0

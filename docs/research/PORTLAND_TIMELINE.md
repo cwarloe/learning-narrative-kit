@@ -117,8 +117,8 @@ $$\text{Laborer / Student} \longrightarrow \text{IT Rotation} \longrightarrow \t
 ## 3. Standing Rules of Continuity
 
 1. **The Employer is Always Harrowmere Northwest (a Harrowmere Equipment Group subsidiary):**
-   * The desk is Harrowmere Northwest's Portland Regional Operations Center (PROC), the subsidiary's regional IT help desk for every Portland-area site: the Gresham distribution warehouse, the Willamette River plant, the Rivergate parts & service center, and the regional offices. It follows policy from the parent's Central IT in Chicago, and the parent's Security Operations monitors it as a shared service. The subsidiary shares the parent's directory and `harrowmere.com` email. Never call it an MSP or a city agency.
-   * Ethan never relocates. Chicago is the parent's headquarters, where central IT and the SOC leadership sit. Ethan works from Portland in Book 0 and in NADF; his NADF job is in the parent's security pod, one floor above PROC.
+   * The desk is Harrowmere Northwest's Portland Regional Operations Center (PROC), the subsidiary's regional IT help desk for every Portland-area site: the Gresham distribution warehouse, the Willamette River plant, the Rivergate parts & service center, and the regional offices. It follows policy from the parent's Central IT in Chicago, and the parent's Security Operations monitors it as a shared service. The subsidiary shares the parent's directory and `harrowmere.com` email. Never call it an MSP or a city agency. Harrowmere makes and distributes industrial equipment: write the Willamette River plant in plain plant language (production line, plant floor, assembly line, shipping dock) and never as a water or wastewater utility. What the plant makes is not specified; do not name a product until Charles does (decided 2026-11-10).
+   * Ethan never relocates. Chicago is the parent's headquarters, where central IT and the SOC leadership sit through Ep 12. One exception, approved by Charles on 2026-11-10: Nia Alvarez moves to Portland with her promotion to Security Operations Manager, right after Ep 12, and runs security operations from the Portland pod in NADF. In Ep 12 she is still in Chicago and appears only by bridge. Ethan works from Portland in Book 0 and in NADF; his NADF job is in the parent's security pod, one floor above PROC.
 2. **The Internal Transfer Law:**
    * Ethan does **not** take live tickets solo as an unscreened walk-in candidate.
    * After Ken's internal referral (Ep 01), Ethan spends about six months in a day-shift IT rotation at a slight pay cut. In Episode 02, Jules runs the supervised practical that closes the rotation, using a dual-headset training bridge. He moves onto the desk the next Monday. No resignation and no notice: it is the same company.
@@ -149,9 +149,9 @@ Most of this is off the page. It exists so every episode and NADF agree on how E
 | February | 21 | Line 4 sorting-line fix; Ken writes the internal referral | — | — | Ep 01 |
 | ~6 months | 21 | IT rotation on day shift (imaging bench, deployments, desk-side, one overnight week). Quasi-apprenticeship, not a formal internship | Net+ study begins | ~$20–21/hr: a slight cut, traded for day shift | Covered at the start of Ep 02 |
 | Late August | 21 | Passes Jules's practical; joins the desk | — | ~$24/hr | Ep 02 |
-| ~22 months on the desk | 21–23 | Help desk (Tier 1, Ep 02 to 09), then Tier 2 from January of Year 4 (Ep 10 to 12). Overnight is a rotation | Net+ (~13 months into IT); Security+ (~29 months into IT, just after Ep 12) | ~$24 → ~$28/hr in steps | Ep 02–12 (Book 0 ends ~22 months into the desk) |
-| End of Ep 12 (late June, Year 4) | 23 | Nia, just promoted to Security Operations Manager, asks Jules for a name. Jules refers Ethan; he applies to the parent's security operations | — | — | Ep 12 |
-| August, Year 4 | 23, turning 24 | Offer from the parent company, Harrowmere Equipment Group; he moves one floor up to the analyst role, still in Portland. This is the opening of Book 1. | — | — | NADF Book 1 |
+| ~22 months on the desk | 21–23 | Help desk (Tier 1, Ep 02 to 09), then Tier 2 from January of Year 4 (Ep 10 to 12). Overnight is a rotation | Net+ (~13 months into IT); Security+ (~29 months into IT, just after Ep 12; neither exam is taken on the page) | ~$24 → ~$28/hr in steps | Ep 02–12 (Book 0 ends ~22 months into the desk) |
+| End of Ep 12 (late June to early July, Year 4) | 23 | Nia, just promoted to Security Operations Manager and moving from Chicago to Portland with the job, asks Jules for a name. Jules refers Ethan; he applies to the parent's security operations | — | — | Ep 12 |
+| August, Year 4 | 23, turning 24 | Offer from the parent company, Harrowmere Equipment Group; he moves one floor up to the analyst role, still in Portland. This is the opening of Book 1. Leah Moreno made the same move to the parent's Enterprise Applications team a few weeks ahead of him. | — | Not stated | NADF Book 1 |
 
 Pay benchmarks: BLS OEWS, Portland-Vancouver-Hillsboro, May 2025. The rotation pay, night differential, and raise sizes are estimates, not sourced figures.
 
@@ -159,4 +159,6 @@ His father is a retired precision machinist (East Portland tool-and-die, 34 year
 
 ### Open questions (not decided)
 
-None right now. Ep 00's job (the Harrowmere Northwest dock) was settled on 2026-10-21. The subsidiary model, Nia's promotion, Leah's move to the parent, and Leah's age (35 in Book 0, 36 in NADF) were settled on 2026-10-29.
+Ep 00's job (the Harrowmere Northwest dock) was settled on 2026-10-21. The subsidiary model, Nia's promotion, Leah's move to the parent, and Leah's age (35 in Book 0, 36 in NADF) were settled on 2026-10-29. Settled on 2026-11-10: Nia moves to Portland with her promotion (section 3, rule 1); Leah moves a few weeks, not months, ahead of Ethan; the plant is an industrial equipment plant with no product named.
+
+Still open: what the Willamette River plant makes, and Ethan's pay in the analyst role (not stated in any source).

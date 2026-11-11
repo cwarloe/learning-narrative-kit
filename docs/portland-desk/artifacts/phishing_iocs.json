@@ -1,6 +1,6 @@
 {
-  "investigation_id": "SEC-PHISH-2026-1021",
-  "incident_date": "2026-10-21T08:12:12-07:00",
+  "investigation_id": "ESC0006820",
+  "incident_date": "2025-12-10T08:12:12-08:00",
   "target_organization": "Harrowmere Equipment Group (harrowmere.com)",
   "indicators_of_compromise": {
     "malicious_domains": [

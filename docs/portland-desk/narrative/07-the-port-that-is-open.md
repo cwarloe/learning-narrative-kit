@@ -79,19 +79,19 @@ Dale exhaled. "FTPS I can turn on. I got burned once when a firewall guy opened 
 
 "On a jump host we control."
 
-Before Dale's transfer finished, Leah Moreno from Portland plant operations called from the treatment facility down by the river. Leah ran plant ops with a steel clipboard and zero patience for corporate drift, and when plant operations called the desk, it was never about a jammed printer.
+Before Dale's transfer finished, Leah Moreno from Portland plant operations called from the Willamette River plant. Leah ran plant ops with a steel clipboard and zero patience for corporate drift, and when plant operations called the desk, it was never about a jammed printer.
 
-"Ethan," Leah said, industrial pumps humming through the handset. "Our telemetry gateway stopped feeding sensor metrics to the central plant board. A field contractor wants an emergency firewall rule opening Modbus and DNP3 across the inter-site WAN so the overflow alarms stop chirping. Can you just punch the ports through?"
+"Ethan," Leah said, the plant floor loud through the handset. "Our telemetry gateway stopped feeding sensor metrics to the central plant board. A field contractor wants an emergency firewall rule opening Modbus and DNP3 across the inter-site WAN so the line alarms stop chirping. Can you just punch the ports through?"
 
 I checked the protocol notes before answering. Port 502 for Modbus, 20000 for DNP3 — classic cleartext industrial protocols built for isolated control loops, not an open WAN span.
 
-"Those protocols have no encryption on the wire, Leah," I said. "If someone intercepts that WAN traffic, they aren't just reading tank levels — they could inject a malicious valve command."
+"Those protocols have no encryption on the wire, Leah," I said. "If someone intercepts that WAN traffic, they aren't just reading sensor values — they could send a command to a machine on your line."
 
 Jules leaned back from her monitor, listening with her coffee mug in hand. "Leah knows her plant," Jules murmured. "Give her the architecture, not just a no."
 
-"We can't open raw cleartext across the perimeter," I told Leah. "What we can do is drop the telemetry into an encrypted VPN tunnel between the plant gateway and our concentrator. Plant ops gets the telemetry stream, and nobody outside touches the pumps."
+"We can't open raw cleartext across the perimeter," I told Leah. "What we can do is drop the telemetry into an encrypted VPN tunnel between the plant gateway and our concentrator. Plant ops gets the telemetry stream, and nobody outside touches the line."
 
-Leah paused, the phone clicking as she made a sharp notation on her clipboard. "If the tunnel keeps the overflow alarms quiet without putting the treatment line at risk, build it. I'll hold the contractor at the gate."
+Leah paused, the phone clicking as she made a sharp notation on her clipboard. "If the tunnel keeps the line alarms quiet without putting the production line at risk, build it. I'll hold the contractor at the gate."
 
 I routed the request to network engineering, marked it operational priority, and Jules gave me a quick nod before turning back to her queue.
 

@@ -4,14 +4,16 @@ Read [The Crew Bonus](narrative.md) first. Allow about 30 minutes for this compa
 
 ## 1. Follow the worked example
 
-Use the existing [starting workbook](workbook/crew-bonus-start.xlsx) and [step-by-step walkthrough](workbook/RECORDING.md). Follow clips 5, 6, 9, and 10: exact ID lookup, tier lookup, rounding, the hidden error, and its correction. The other clips are available if you need them.
+Use the existing [starting workbook](workbook/crew-bonus-start.xlsx) and [step-by-step walkthrough](workbook/RECORDING.md). The starting workbook has no formulas yet, so follow clips 2, 5, 6, 8, 9 and 10, in that order. Clip 2 sets who is eligible. Clip 5 builds the exact ID lookup and the tier lookup. Clip 6 does the rounding. Clip 8 fills the rows down and builds the total. Clip 9 hides the error, and clip 10 corrects it. Clips 1, 3, 4 and 7 do not feed the total; they are there if you want them.
 
 Watch these two different outcomes in the same incident:
 
 - An exact lookup for Marco's ID, 1147, fails because HR contains 1174. Replacing the error with zero makes a missing record look like a legitimate zero payment.
-- Correcting the ID after checking the source restores the $415 payment. The visible total rises from $9,840 to $10,255. A conspicuous missing-ID message and an unresolved numeric error prevent a quiet repeat.
+- Correcting the ID after checking the source restores the $415 payment. The visible total rises from $9,840 to $10,255. A missing-ID message you can't miss, and a total that shows an error until the ID is fixed, prevent a quiet repeat.
 
 Explain in your own words why a clean-looking total was insufficient. Then close the walkthrough.
+
+Keep this page for later: [Zero or unknown? A one-page check](handout.md).
 
 ## 2. Complete a partly finished check
 

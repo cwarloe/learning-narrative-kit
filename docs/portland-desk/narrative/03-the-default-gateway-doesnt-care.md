@@ -4,11 +4,11 @@
 
 By eight in the morning, the bullpen on the fourth floor of the Portland Regional Operations Center was already awake with the sound of ringing dispatch lines. Early squalls along the Willamette River corridor had knocked out utility power across the industrial district south of downtown. At the edge of our row, Jared Lindqvist had both monitors filled with router syslog windows, tracking battery transfer cycles across the river facilities while nursing a cup of tea.
 
-Jules Brooks had already hung her wet rain shell behind her desk and was working through her first mug of black coffee. Across from my station, the wall-mounted queue monitor blinked and shifted from dark green to bright amber. Fourteen priority incident tickets landed within three minutes, all tagged with the same origin: Building B at the logistics annex and water pump station two miles south.
+Jules Brooks had already hung her wet rain shell behind her desk and was working through her first mug of black coffee. Across from my station, the wall-mounted queue monitor blinked and shifted from dark green to bright amber. Fourteen priority incident tickets landed within three minutes, all tagged with the same origin: Building B at the logistics annex, and the mechanical room beside it.
 
 Two months on the desk had not erased my first week. Maya still copied Jules on every ticket she sent me, a quiet habit she had started the morning I suggested re-imaging her machine. I did not blame her. I answered her tickets faster than anyone else's and kept my notes long enough that Jules never had to ask what I had done.
 
-Both incoming telephone lines lit up at once. On line one, warehouse supervisor Ken was shouting over the clatter of a backed-up freight bay. On line two, facilities specialist Reggie reported that automated pump loggers had dropped offline.
+Both incoming telephone lines lit up at once. On line one, warehouse supervisor Ken was shouting over the clatter of a backed-up freight bay. On line two, facilities specialist Reggie reported that the building-systems loggers had dropped offline.
 
 ## The ghost in the sixteen-hundred block
 
@@ -67,11 +67,11 @@ The terminal displayed normal settings. "The client completed the DORA handshake
 
 ## The boundary line on twenty-six
 
-The warehouse desks were returning to normal operations, but our dispatch telephone line chirped again before I could close the outage ticket. Facilities field specialist Reggie was calling from the water pump annex adjacent to the warehouse, speaking loudly over the mechanical rumble of intake turbines.
+The warehouse desks were returning to normal operations, but our dispatch telephone line chirped again before I could close the outage ticket. Facilities field specialist Reggie was calling from the mechanical room beside the warehouse, speaking loudly over the rumble of the air handlers.
 
-"The warehouse computers are working, but our water pressure telemetry logger cannot talk to the database," Reggie reported through his headset. "Both industrial machines sit in the same cabinet inside the pump house. Both network cables plug into the same row of switch ports. The logger displays a red transmission fault light. The database server shows zero inbound sensor packets."
+"The warehouse computers are working, but our building-systems logger cannot talk to the database," Reggie reported through his headset. "Both machines sit in the same cabinet inside the mechanical room. Both network cables plug into the same row of switch ports. The logger displays a red transmission fault light. The database server shows zero inbound sensor packets."
 
-I opened a remote PowerShell terminal on the new telemetry server, `PDX-PUMP-LOG02`. I needed to inspect its active network interface configuration. A contractor had mounted the hardware earlier in the week. He had configured its network parameters using a card taped to the rack door.
+I opened a remote PowerShell terminal on the new telemetry server, `PDX-BMS-LOG02`. I needed to inspect its active network interface configuration. A contractor had mounted the hardware earlier in the week. He had configured its network parameters using a card taped to the rack door.
 
 ```console
 PS C:\Users\administrator> Get-NetIPConfiguration
@@ -79,7 +79,7 @@ IPv4Address: 192.168.10.65
 IPv4DefaultGateway: 192.168.10.1
 ```
 
-The address was static. I checked the configuration of the companion database server, `PDX-PUMP-DB01`, which sat directly beneath the logger in the same equipment cabinet. The database server was configured with static IP address `192.168.10.62`, utilizing the exact same subnet mask of `255.255.255.192` and pointing to default gateway `192.168.10.1`.
+The address was static. I checked the configuration of the companion database server, `PDX-BMS-DB01`, which sat directly beneath the logger in the same equipment cabinet. The database server was configured with static IP address `192.168.10.62`, utilizing the exact same subnet mask of `255.255.255.192` and pointing to default gateway `192.168.10.1`.
 
 "These two servers can't talk, and neither can reach out," I said. I ran a continuous ping from the logger to the database server at `192.168.10.62`. Four consecutive request timeouts scrolled past. "Both IP addresses start with `192.168.10`, and both plug into the same switch. But when I ping the gateway at `192.168.10.1` from the logger, Windows throws *Destination host unreachable*."
 
@@ -108,23 +108,23 @@ The numbers were clear on the pad. "Look at where the contractor placed those tw
 
 "Its configured gateway is `192.168.10.1`, back in the first subnet block," I answered, shaking my head at the contractor's card. "The logger sits in Subnet B, but its exit door was assigned in Subnet A. Because the gateway itself is off-link, the logger has no local route to reach it. That's why the ping returned destination host unreachable."
 
-I contacted Reggie over the radio. I instructed him to remove the erroneous configuration card. I reconfigured `PDX-PUMP-LOG02` with static IP address `192.168.10.61`, keeping its mask at `255.255.255.192` and default gateway at `192.168.10.1`. The moment I clicked apply, the command prompt ping window sprang to life. It displayed four consecutive replies with latency under one millisecond. Reggie confirmed over the radio that the red transmission light on the logger panel had switched to a steady green.
+I contacted Reggie over the radio. I instructed him to remove the erroneous configuration card. I reconfigured `PDX-BMS-LOG02` with static IP address `192.168.10.61`, keeping its mask at `255.255.255.192` and default gateway at `192.168.10.1`. The moment I clicked apply, the command prompt ping window sprang to life. It displayed four consecutive replies with latency under one millisecond. Reggie confirmed over the radio that the red transmission light on the logger panel had switched to a steady green.
 
 ## The printer that stole a desk
 
 By ten o'clock the morning storm had subsided into a light mist that clung to the riverfront trees. I had cleared eight routine password tickets from my queue when Ken called back from the shipping desk in Building B, sounding thoroughly exasperated.
 
-"Frank's workstation has developed a phantom mind of its own," Ken reported. His voice competed with the clatter of shipping pallets. "His freight software works for thirty seconds, and then the screen locks up with network errors. Two minutes later it connects again, only to drop his session when he scans a barcode. It has been doing this dance since we renewed his IP address an hour ago."
+"Carlos's workstation has developed a phantom mind of its own," Ken reported. His voice competed with the clatter of shipping pallets. "His freight software works for thirty seconds, and then the screen locks up with network errors. Two minutes later it connects again, only to drop his session when he scans a barcode. It has been doing this dance since we renewed his IP address an hour ago."
 
-I opened a remote desktop session to Frank's machine at `10.100.4.55`. I initiated a continuous ping toward the local default gateway at `10.100.4.1`. The terminal displayed an erratic pattern that defied ordinary hardware failure. Three successful replies appeared with two-millisecond round trips. Three request timeouts followed immediately. Four duplicate packets arrived next, followed by another burst of clean replies.
+I opened a remote desktop session to Carlos's machine at `10.100.4.55`. I initiated a continuous ping toward the local default gateway at `10.100.4.1`. The terminal displayed an erratic pattern that defied ordinary hardware failure. Three successful replies appeared with two-millisecond round trips. Three request timeouts followed immediately. Four duplicate packets arrived next, followed by another burst of clean replies.
 
-"The physical link is flapping on the wall jack," I suggested. I wondered if storm moisture had entered an external junction conduit. "I should have Reggie bring a cable tester to inspect the drop behind Frank's desk."
+"The physical link is flapping on the wall jack," I suggested. I wondered if storm moisture had entered an external junction conduit. "I should have Reggie bring a cable tester to inspect the drop behind Carlos's desk."
 
-"Inspect your Layer 2 tables before you send a technician into a crawlspace, Ethan," Jules cautioned. She glanced up from her secondary monitor. "A damaged copper cable usually produces continuous frame check errors or drops carrier completely. Frank's machine maintains solid link carrier on the switch port. Inspect the [[arp_cache|ARP cache]] while pinging an adjacent workstation."
+"Inspect your Layer 2 tables before you send a technician into a crawlspace, Ethan," Jules cautioned. She glanced up from her secondary monitor. "A damaged copper cable usually produces continuous frame check errors or drops carrier completely. Carlos's machine maintains solid link carrier on the switch port. Inspect the [[arp_cache|ARP cache]] while pinging an adjacent workstation."
 
 "Check the Building B switch," Jules said. "Or check the ARP table on `WS-BLDGB-04` right next to him. You can't see his Layer 2 ARP table from our fourth-floor desk across a routed WAN. Check where the broadcast domain actually lives."
 
-I switched back to the remote shell on `WS-BLDGB-04` on Ken's dock, pinged Frank's IP at `10.100.4.55`, and inspected the local [[arp_cache|ARP cache]].
+I switched back to the remote shell on `WS-BLDGB-04` on Ken's dock, pinged Carlos's IP at `10.100.4.55`, and inspected the local [[arp_cache|ARP cache]].
 
 ```console
 C:\Users\shipping04> arp -a | findstr 10.100.4.55
@@ -156,23 +156,23 @@ Vlan    Mac Address       Type        Ports
    4    0025.b318.c290    DYNAMIC     Gi1/0/28
 ```
 
-"ARP proves two physical MACs are fighting over IP ten-dot-one-hundred-dot-four-dot-fifty-five," Jared said, tapping the terminal. "And the switch MAC address table tells us the ports: Frank's Dell desktop is patched into GigabitEthernet1/0/12, but someone plugged a Hewlett-Packard network card into GigabitEthernet1/0/28 with the exact same IP hardcoded."
+"ARP proves two physical MACs are fighting over IP ten-dot-one-hundred-dot-four-dot-fifty-five," Jared said, tapping the terminal. "And the switch MAC address table tells us the ports: Carlos's Dell desktop is patched into GigabitEthernet1/0/12, but someone plugged a Hewlett-Packard network card into GigabitEthernet1/0/28 with the exact same IP hardcoded."
 
 "Duplicate IP conflict," Jules said, leaning back. "Every time one of them talks, its gratuitous ARP announcement poisons the ARP cache on the default gateway and neighboring PCs. Traffic flips back and forth between two different MAC addresses depending on who spoke last."
 
-Jared checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Frank's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here."
+Jared checked the DHCP server scope logs. "Our DHCP server leased `10.100.4.55` to Carlos's Dell during the morning renewal. That means the second device has a hardcoded static IP sitting squarely inside our dynamic pool. If that rogue box keeps broadcasting, it will bounce the whole dock off the network before the noon freight trucks get here."
 
 ## Port Twenty-Eight
 
-I had Ken check the warehouse floor for anything that had been moved or plugged in since yesterday. He groaned over the radio. Reggie had wheeled an old HP LaserJet 4050 into the breakroom the afternoon before and typed in the static settings from a faded label under its paper tray, `10.100.4.55`, the address DHCP had already leased to Frank.
+I had Ken check the warehouse floor for anything that had been moved or plugged in since yesterday. He groaned over the radio. Reggie had wheeled an old HP LaserJet 4050 into the breakroom the afternoon before and typed in the static settings from a faded label under its paper tray, `10.100.4.55`, the address DHCP had already leased to Carlos.
 
 While I walked the warehouse patch panel looking for port twenty-eight, Ken held dock door six closed for forty minutes so bad weights could not post into the freight system. Two Portland-bound trailers loaded late, and Ken said so on the phone in a voice I remembered from Line 4.
 
 "I'll put it in my notes that you found it," he said. "I'll also put in my notes that it took forty minutes."
 
-We unplugged the printer's drop, and the pings from Frank's machine settled into clean two-millisecond replies. I moved the printer to a DHCP reservation at `10.100.4.240`, outside the dynamic pool, so it could not collide again.
+We unplugged the printer's drop, and the pings from Carlos's machine settled into clean two-millisecond replies. I moved the printer to a DHCP reservation at `10.100.4.240`, outside the dynamic pool, so it could not collide again.
 
-Back upstairs, Jules opened a capture of Frank's browser reaching a logistics portal in Seattle and made me walk the packet. Frank's machine applied its mask, saw the destination was remote, and addressed the frame to the gateway's MAC while the IP header kept the real destination the whole way. "The gateway does not care how urgent your ticket feels," she said. "It cares whether you addressed the frame to it."
+Back upstairs, Jules opened a capture of Carlos's browser reaching a logistics portal in Seattle and made me walk the packet. Carlos's machine applied its mask, saw the destination was remote, and addressed the frame to the gateway's MAC while the IP header kept the real destination the whole way. "The gateway does not care how urgent your ticket feels," she said. "It cares whether you addressed the frame to it."
 
 Before I left, I ran a quick sweep of the warehouse network. Eleven more devices had hand-typed static addresses that nobody had written down. Jared added a line to his list: *Gresham static sprawl, owner unknown.* He did not say whose problem it was going to be. I stayed two hours past my shift tagging all eleven on the switch port descriptions. Jules had not approved overtime, so I did it off the clock, which she found out about and told me never to do again.
 
