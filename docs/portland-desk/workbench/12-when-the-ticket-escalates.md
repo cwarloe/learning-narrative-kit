@@ -193,7 +193,7 @@ Every entry in a formal chain of custody log must contain:
 * **Item Tracking Number:** Unique alphanumeric identifier (e.g., `EVD0007701-01`).
 * **Item Description:** Exact make, model, capacity, serial number, and physical condition.
 * **Source / Seizure Location:** Workstation hostname, physical desk location, port, or user profile.
-* **Date & Time of Seizure:** Precise timestamp including local timezone (PDT/PDT) and UTC offset.
+* **Date & Time of Seizure:** Precise timestamp including local timezone (PST/PDT) and UTC offset.
 * **Seizing Official:** Full name, title, and badge/employee number of first responder.
 * **Custody Transfers:** Date, time, releasing party signature, receiving party signature, and specific purpose of transfer.
 * **Storage Location:** Secure evidence locker ID, safe combination holder, or chain-of-custody room rack.

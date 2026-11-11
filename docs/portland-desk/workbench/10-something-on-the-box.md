@@ -1,6 +1,6 @@
 # Portland Desk Lab: Host Malware Triage, Persistence Mechanisms, & EDR Analysis
 
-> **The Situation:** Level 1 Service Desk Terminal • Endpoint Detection (EDR) Console  
+> **The Situation:** Service Desk Terminal • Endpoint Detection (EDR) Console  
 > **Your Role:** Tier 2 Service Desk Technician (under Desk Lead Jules Brooks)  
 > **The Objective:** Investigate host malware infections, calculate cryptographic file hashes, decode Base64 living-off-the-land PowerShell commands, and isolate persistence mechanisms.  
 > **Estimated Time:** 45–55 minutes • Endpoint Security & Malware Persistence  
@@ -226,7 +226,7 @@ You open a PowerShell terminal on your management workstation to de-obfuscate th
     "System": {
       "Provider": { "Name": "Microsoft-Windows-PowerShell" },
       "EventID": 4104,
-      "TimeCreated": { "SystemTime": "2026-02-12T10:17:42.184912Z" },
+      "TimeCreated": { "SystemTime": "2026-02-12T10:17:42.184912-08:00" },
       "Execution": { "ProcessID": 6412 },
       "Computer": "TODD-SALES-14.harrowmere.local"
     },

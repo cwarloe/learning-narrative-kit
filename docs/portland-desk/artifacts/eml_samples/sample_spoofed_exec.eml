@@ -1,19 +1,19 @@
-Delivered-To: mlin@harrowmere.local
-Received: from mail-relay.harrowmere.local (mail-relay.harrowmere.local [192.168.10.50])
-	by imap.harrowmere.local with ESMTP id 77C12EF1
-	for <mlin@harrowmere.local>; Tue, 12 Aug 2025 16:15:10 +0000
+Delivered-To: mlin@harrowmere.com
+Received: from mail-relay.harrowmere.com (mail-relay.harrowmere.com [192.168.10.50])
+	by imap.harrowmere.com with ESMTP id 77C12EF1
+	for <mlin@harrowmere.com>; Tue, 12 Aug 2025 16:15:10 -0700
 Received: from out-relay-12.mailgun.org (out-relay-12.mailgun.org [159.135.225.12])
-	by mail-relay.harrowmere.local with ESMTP id 65B90AA2
-	for <mlin@harrowmere.local>; Tue, 12 Aug 2025 16:15:08 +0000
-Authentication-Results: mail-relay.harrowmere.local;
-	spf=softfail (harrowmere.local: domain of ceo-desk-office@gmail.com does not designate 159.135.225.12 as permitted sender);
+	by mail-relay.harrowmere.com with ESMTP id 65B90AA2
+	for <mlin@harrowmere.com>; Tue, 12 Aug 2025 16:15:08 -0700
+Authentication-Results: mail-relay.harrowmere.com;
+	spf=softfail (harrowmere.com: domain of cfo-desk-office@gmail.com does not designate 159.135.225.12 as permitted sender);
 	dkim=fail (signature does not match header payload);
-	dmarc=fail (p=quarantine dis=quarantine) header.from=harrowmere.local
-From: "Walt Brandvold" <walt@harrowmere.local>
-Reply-To: "Walt Brandvold (Mobile Office)" <walt.executive.desk77@gmail.com>
-To: mlin@harrowmere.local
+	dmarc=fail (p=quarantine dis=quarantine) header.from=harrowmere.com
+From: "Avery Holloway" <aholloway@harrowmere.com>
+Reply-To: "Avery Holloway (Mobile Office)" <avery.executive.desk77@gmail.com>
+To: mlin@harrowmere.com
 Subject: Confidential: Immediate vendor wire authorization required
-Date: Tue, 12 Aug 2025 16:14:50 +0000
+Date: Tue, 12 Aug 2025 16:14:50 -0700
 Message-ID: <CA+V=8A9184B1028@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -27,5 +27,5 @@ We need to finalize an emergency deposit for critical plant equipment before 5:0
 
 Reply here as soon as the wire tracking confirmation is issued.
 
-Walt Brandvold
-Chief Executive Officer
+Avery Holloway
+Chief Financial Officer

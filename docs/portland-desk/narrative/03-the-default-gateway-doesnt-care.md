@@ -4,7 +4,7 @@
 
 By eight in the morning, the bullpen on the fourth floor of the Portland Regional Operations Center was already awake with the sound of ringing dispatch lines. Early squalls along the Willamette River corridor had knocked out utility power across the industrial district south of downtown. At the edge of our row, Jared Lindqvist had both monitors filled with router syslog windows, tracking battery transfer cycles across the river facilities while nursing a cup of tea.
 
-Jules Brooks had already hung her wet rain shell behind her desk and was working through her first mug of black coffee. Across from my station, the wall-mounted queue monitor blinked and shifted from dark green to bright amber. Fourteen priority incident tickets landed within three minutes, all tagged with the same origin: Building B at the logistics annex two miles south, and the mechanical room beside it.
+Jules Brooks had already hung her wet rain shell behind her desk and was working through her first mug of black coffee. Across from my station, the wall-mounted queue monitor blinked and shifted from dark green to bright amber. Fourteen priority incident tickets landed within three minutes, all tagged with the same origin: Building B at the logistics annex, and the mechanical room beside it.
 
 Two months on the desk had not erased my first week. Maya still copied Jules on every ticket she sent me, a quiet habit she had started the morning I suggested re-imaging her machine. I did not blame her. I answered her tickets faster than anyone else's and kept my notes long enough that Jules never had to ask what I had done.
 

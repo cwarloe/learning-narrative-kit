@@ -1,32 +1,32 @@
-Delivered-To: ethan@harrowmere.local
-Received: from mail-relay.harrowmere.local (mail-relay.harrowmere.local [192.168.10.50])
-	by imap.harrowmere.local with ESMTP id 11A89DC3
-	for <ethan@harrowmere.local>; Tue, 12 Aug 2025 09:10:00 +0000
-Received: from hr-app01.harrowmere.local (hr-app01.harrowmere.local [192.168.10.72])
-	by mail-relay.harrowmere.local with ESMTP id 22F81B99
-	for <ethan@harrowmere.local>; Tue, 12 Aug 2025 09:09:58 +0000
-Authentication-Results: mail-relay.harrowmere.local;
-	spf=pass (hr-app01.harrowmere.local: 192.168.10.72 is authorized sender) smtp.mailfrom=hr-benefits@harrowmere.local;
-	dkim=pass (signature verified for harrowmere.local);
-	dmarc=pass (p=reject) header.from=harrowmere.local
-From: "People Operations & Benefits" <hr-benefits@harrowmere.local>
-Reply-To: <hr-benefits@harrowmere.local>
-To: ethan@harrowmere.local
-Subject: Annual Open Enrollment 2027: Confirmation of Current Health Selections
-Date: Tue, 12 Aug 2025 09:09:50 +0000
-Message-ID: <20250812090950.771239@hr-app01.harrowmere.local>
+Delivered-To: ethan@harrowmere.com
+Received: from mail-relay.harrowmere.com (mail-relay.harrowmere.com [192.168.10.50])
+	by imap.harrowmere.com with ESMTP id 11A89DC3
+	for <ethan@harrowmere.com>; Tue, 12 Aug 2025 09:10:00 -0700
+Received: from hr-app01.harrowmere.com (hr-app01.harrowmere.com [192.168.10.72])
+	by mail-relay.harrowmere.com with ESMTP id 22F81B99
+	for <ethan@harrowmere.com>; Tue, 12 Aug 2025 09:09:58 -0700
+Authentication-Results: mail-relay.harrowmere.com;
+	spf=pass (hr-app01.harrowmere.com: 192.168.10.72 is authorized sender) smtp.mailfrom=hr-benefits@harrowmere.com;
+	dkim=pass (signature verified for harrowmere.com);
+	dmarc=pass (p=reject) header.from=harrowmere.com
+From: "People Operations & Benefits" <hr-benefits@harrowmere.com>
+Reply-To: <hr-benefits@harrowmere.com>
+To: ethan@harrowmere.com
+Subject: Annual Open Enrollment 2026: Confirmation of Current Health Selections
+Date: Tue, 12 Aug 2025 09:09:50 -0700
+Message-ID: <20250812090950.771239@hr-app01.harrowmere.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 
 Hi Ethan,
 
-This is your automated confirmation statement regarding Open Enrollment for the 2027 plan year.
+This is your automated confirmation statement regarding Open Enrollment for the 2026 plan year.
 
 To review or modify your existing dental, medical, and retirement withholding contributions, navigate to the internal portal at:
 https://benefits.internal.corp:443/
 
-Open enrollment closes on Friday, November 13 at 5:00 PM PST.
+Open enrollment closes on Friday, November 14 at 5:00 PM PST.
 
 Best regards,
 People Operations Team

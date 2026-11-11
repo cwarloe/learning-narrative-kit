@@ -105,7 +105,7 @@ She pointed to the anti-static evidence pouches on my desk.
 
 "What about upstairs?" I asked. The parent company's security team had the floor above ours. I knew them as Equipment Group badges in the elevator and as one signature, *D. Shah*, on a one-line reply in December. I had never worked a ticket with any of them. <!-- date-ok: back-reference to the December escalation reply -->
 
-"They answer to Nia, not to me, and they work from their own consoles," Jules said. "They'll be on the bridge. Nobody is coming down the stairs to hold your hand, so start the capture."
+"They take their calls from Nia on the bridge, not from me, and they work from their own consoles," Jules said. "They'll be on the bridge. Nobody is coming down the stairs to hold your hand, so start the capture."
 
 I started the memory capture on Todd's workstation while Jared pulled the port list for the jump host. The tool streamed the dump to our remote collection host; it did not keep a local copy. The first dump arrived complete and we hashed it. Nia joined the bridge at 2:52 and asked for the hashes before she asked for anything else. A man's voice I did not know said the Portland pod was on. He was one floor above my head, and it was the first time I had heard any of them speak. I read out the first hash while a second dump was still streaming.
 

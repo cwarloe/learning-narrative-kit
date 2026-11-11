@@ -1,6 +1,6 @@
 # Portland Desk Lab: Wireless Security, 802.1X Enterprise, & Rogue AP Triage
 
-> **The Situation:** Level 1 Service Desk Terminal & Wireless LAN Controller (WLC)  
+> **The Situation:** Service Desk Terminal & Wireless LAN Controller (WLC)  
 > **Your Role:** Tier 2 Service Desk Technician (under Desk Lead Jules Brooks)  
 > **The Objective:** Isolate unauthorized rogue wireless access points using RSSI signal triangulation and enforce WPA2/WPA3-Enterprise 802.1X with RADIUS and EAP-TLS certificate validation.  
 > **Estimated Time:** 45–55 minutes • Wireless Security & RF Diagnostics  

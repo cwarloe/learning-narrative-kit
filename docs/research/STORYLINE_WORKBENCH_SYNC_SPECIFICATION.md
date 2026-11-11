@@ -347,7 +347,7 @@ Below is the master operational matrix governing every module across the Portlan
 │    │ OS Internals, BSOD, Drivers │ AMD driver amdkmdag.sys.      │ crash on Nvidia Quadro DLL.   │ DCOM timeout │
 │    │                             │ Slate: Event Viewer Crash.    │ Slate: Event Viewer Crash.    │ false alarm. │
 ├────┼─────────────────────────────┼───────────────────────────────┼───────────────────────────────┼──────────────┤
-│ 03 │ The Gateway Doesn't Care    │ Frank's shipping PC duplicate │ Warehouse barcode scanner IP  │ Proxy ARP    │
+│ 03 │ The Gateway Doesn't Care    │ Carlos's dock PC duplicate    │ Warehouse barcode scanner IP  │ Proxy ARP    │
 │    │ IPv4 Subnetting & ARP Cache │ IP conflict with HP printer.  │ conflict with HVAC controller.│ mask failure │
 │    │                             │ Slate: Subnet Base & ARP.     │ Slate: Subnet Base & ARP.     │ illusion.    │
 ├────┼─────────────────────────────┼───────────────────────────────┼───────────────────────────────┼──────────────┤
@@ -406,8 +406,8 @@ Below is the master operational matrix governing every module across the Portlan
 - **Beat 5 (Edge-Case Trap / Incident 02.3):** Workstation hangs on boot with Event ID 10016 DCOM error. Novices chase the DCOM red herring; root cause is a failing secondary SATA drive blocking Windows Volume Manager mounts.
 
 #### Module 03: The Default Gateway Doesn't Care (IPv4 Addressing & ARP)
-- **Beat 1 (Inciting Incident):** Frank in Shipping cannot scan outbound pallets; network drops every 45 seconds while trailer drivers wait at the manifest desk.
-- **Beat 2 (Worked Example / Incident 03.1):** Frank's Dell desktop (`10.100.4.55`, MAC `0014.228a.41ef`) is intermittent. Ethan runs `arp -a` and inspects gateway router telemetry. Observes an IP address conflict with an unmanaged HP JetDirect printer configured with the identical static IP (`10.100.4.55`, MAC `0025.b318.c290`). Uses **Slate 3 (IPv4 Subnet Base & ARP Cache Triage)**. Explains that the switch CAM table remains stable, but the router's **Layer 3 ARP cache** is constantly flapping between the two MAC addresses under RFC 826.
+- **Beat 1 (Inciting Incident):** Carlos in Shipping cannot scan outbound pallets; network drops every 45 seconds while trailer drivers wait at the manifest desk.
+- **Beat 2 (Worked Example / Incident 03.1):** Carlos's Dell desktop (`10.100.4.55`, MAC `0014.228a.41ef`) is intermittent. Ethan runs `arp -a` and inspects gateway router telemetry. Observes an IP address conflict with an unmanaged HP JetDirect printer configured with the identical static IP (`10.100.4.55`, MAC `0025.b318.c290`). Uses **Slate 3 (IPv4 Subnet Base & ARP Cache Triage)**. Explains that the switch CAM table remains stable, but the router's **Layer 3 ARP cache** is constantly flapping between the two MAC addresses under RFC 826.
 - **Beat 3 (Workbench Dissection):** RFC 826 Address Resolution Protocol mechanics. Disproves the persistent student myth that "IP conflicts poison switch CAM tables." Demonstrates that Layer 2 switches map MAC-to-Port and never track IPs; IP conflicts cause ARP cache oscillation on default gateways and neighboring hosts.
 - **Beat 4 (Symmetrical Challenge / Incident 03.2):** Warehouse handheld barcode scanner loses database connectivity intermittently. Learner inspects router ARP cache, discovers static IP conflict with a newly installed facility HVAC environmental sensor, and isolates the conflicting MAC address on the switch port.
 - **Beat 5 (Edge-Case Trap / Incident 03.3):** Workstation with netmask `255.255.255.0` communicates with host on `10.100.5.x` because upstream router has Proxy ARP enabled, masking an invalid local subnet mask configuration.

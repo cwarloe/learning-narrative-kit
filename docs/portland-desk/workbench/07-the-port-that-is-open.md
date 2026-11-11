@@ -106,7 +106,9 @@ flowchart TD
 #### The Scenario
 Jared from Network Operations filed ticket **`INC0063140`**. A switch in a Building C closet (`10.0.4.15`) has a VLAN set wrong, and his old configuration script expects Telnet. He says: *"I Telnet in, type the enable password, fix the VLAN, hang up. Ten minutes."*
 
-Before replying, you pull an actual packet capture ([`artifacts/jared-telnet-capture.pcap`](../artifacts/jared-telnet-capture.pcap)) taken from a span port on that management segment during Jared's previous run. The table below shows frames 101 to 137 of it, filtered to port 23. You can read the table here, or open the file in Wireshark:
+Before replying, you pull an actual packet capture ([`artifacts/jared-telnet-capture.pcap`](../artifacts/jared-telnet-capture.pcap)) taken from a span port on that management segment during Jared's previous run, a week before the ticket (Tuesday, August 5, 2025). The table below shows frames 101 to 137 of it, filtered to port 23. You can read the table here, or open the file in Wireshark:
+
+> **About this file.** The times in the table are Portland time (PDT). Wireshark shows times in your own computer's time zone, so your clock column may read a few hours off; the frame numbers and the data are the same. The file was built for this practice rep, and it is simpler than a live capture in two ways. It leaves out the switch's bare acknowledgment frames. And frame 124 shows the `enable` command arriving as one line, where a live session would show six typed characters, each one sent back by the switch. Jared's workstation and the switch sit on different subnets, so in the Ethernet layer every frame goes to or comes from the default gateway's MAC address, the rule from Episode 3.
 
 ```console
 caption: Wireshark / tcpdump Stream Reassembly · Filter: tcp.port == 23
@@ -174,7 +176,7 @@ No.   Time        Source          Destination     Proto  Info
 **Jules' Analysis:**
 1. **Login Password:** `C1sco_Sw!tch_2025`
 2. **Enable Password:** `Enable!247`
-3. **Transmission Mechanism:** Telnet operates in character-at-a-time mode (RFC 854), echoing every keystroke back from the server in separate TCP segments. In cleartext, this means anyone running `tcpdump` or Wireshark on the segment does not even need to crack a hash—the credentials stream across their console in real time.
+3. **Transmission Mechanism:** At the start of a session like this one, the Telnet client and the switch agree to work one character at a time. From then on the client sends each keystroke the moment it is typed, so each one travels in its own TCP segment. A switch sends ordinary commands back so they show on the screen, but it does not send password characters back. That is why frames 106 to 122 and 126 to 135 run from the workstation to the switch with nothing coming back between them. Jared's screen stayed blank while he typed, and it made no difference: every character still crossed the wire unencrypted. Anyone running `tcpdump` or Wireshark on the segment does not even need to crack a hash. The credentials stream across their console in real time.
 4. **Remediation:**
    - **Immediately rotate** both the console password and the privileged `enable secret` on all switches sharing this management template.
    - Reconfigure switch daemon: `crypto key generate rsa modulus 4096` and `transport input ssh` on line vty 0 15 (disabling Telnet entirely).
@@ -393,7 +395,7 @@ ssh jared@10.0.4.15: |
 
 * **Action:** **DENY** unencrypted Modbus/DNP3 over WAN; **ESCALATE** to NetOps for **IPsec ESP Tunnel** termination.
 * **Target Protocol & Port:** Encapsulate Modbus (502) and DNP3 (20000) inside an **IPsec VPN Tunnel (UDP 500 / 4500, IP Protocol 50 ESP)**.
-* **Rationale:** Leah is managing physical plant infrastructure. Industrial protocols (Modbus, DNP3) have no built-in encryption or authentication; sending raw port 502 across an untrusted WAN allows malicious actors to issue unauthorized commands to line equipment or falsify sensor telemetry. The traffic must be strictly isolated on an industrial OT VLAN and encrypted across the link via IPsec tunnel.
+* **Rationale:** Leah is managing physical plant infrastructure. Neither protocol encrypts its traffic. Modbus has no authentication at all, and DNP3's authentication is optional and often left off. Opening raw port 502 across an untrusted WAN means anyone who can reach that port can send commands to line equipment, and anyone on the path can read or falsify sensor telemetry. The traffic must be strictly isolated on an industrial OT VLAN and encrypted across the link via IPsec tunnel.
 </details>
 
 
@@ -479,11 +481,12 @@ Classification:   OT/SCADA Perimeter Traversal Exception Request
    and DNP3 (Port 20000) over the inter-site WAN to the central monitoring console.
 
 2. SECURITY RISK ASSESSMENT:
-   - Cleartext Transmission: Modbus/TCP and DNP3 contain zero native encryption or 
-     cryptographic authentication mechanisms.
-   - Attack Surface: Exposing port 502/20000 across inter-site WAN links allows any 
-     adversary on the path to inject malicious controller commands, alter setpoints, 
-     or spoof sensor telemetry, posing a physical safety hazard on the plant floor.
+   - Cleartext Transmission: Modbus/TCP and DNP3 have no native encryption. Modbus 
+     has no authentication; DNP3 authentication is optional and often left off.
+   - Attack Surface: Exposing port 502/20000 across inter-site WAN links allows 
+     anyone who can reach those ports to send controller commands or alter 
+     setpoints, and anyone on the path to read or spoof sensor telemetry, posing 
+     a physical safety hazard on the plant floor.
    - Policy Violation: Violates SecOps Standard OT-SEC-04 (Mandatory Isolation of 
      Operational Technology Networks).
 

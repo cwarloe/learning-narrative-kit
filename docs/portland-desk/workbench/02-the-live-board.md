@@ -222,7 +222,7 @@ Maya's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML event r
     <Provider Name="Application Error" />
     <EventID>1000</EventID>
     <Level>2</Level> <!-- Error -->
-    <TimeCreated SystemTime="2024-08-22T08:15:22.4182910Z" />
+    <TimeCreated SystemTime="2024-08-22T08:15:22.4182910-07:00" />
     <Computer>PORT-WS-0142.portland.local</Computer>
   </System>
   <EventData>
@@ -243,7 +243,7 @@ Maya's workstation (`PORT-WS-0142`) froze at 08:15. You pull the raw XML event r
     <Provider Name="Microsoft-Windows-Kernel-Power" />
     <EventID>41</EventID>
     <Level>1</Level> <!-- Critical -->
-    <TimeCreated SystemTime="2024-08-22T08:22:10.1049210Z" />
+    <TimeCreated SystemTime="2024-08-22T08:22:10.1049210-07:00" />
     <Computer>PORT-WS-0142.portland.local</Computer>
   </System>
   <EventData>
