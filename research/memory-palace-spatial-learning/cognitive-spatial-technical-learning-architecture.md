@@ -9,7 +9,7 @@ Exported: 2026-11-09 via the Google Drive Markdown export
 Note: Drive holds an older near-identical copy (1gmB_t6HxXq7IS6Ogjg_Uv5hZ2vMrjavQ9KrKQi8Pfdc, modified 2026-11-09 21:38 America/Boise). Its text is the same; only the formatting of the ASCII diagrams and the prompt block differs. This file uses the newer copy.
 -->
 
-> **Reference copy.** Unedited export of a Google Doc. It informs; it does not rule. See [README.md](README.md) for how to use it and [sources.md](sources.md) for the research behind it.
+> **Reference copy.** Unedited export of a Google Doc. It informs; it does not rule. See [README.md](README.md) for how to use it, [sources.md](sources.md) for the research behind it, and [errata.md](errata.md) for two protocol nits (TCP RST, SNI/ECH).
 
 ---
 
