@@ -105,7 +105,7 @@ The certification voucher buys an HR passport. But once you walk through the cor
   </div>
   <div class="aid-body">
     <div class="aid-face side-a active">
-      <div style="font-weight: 700; color: #f59e0b; margin-bottom: 0.75rem; font-size: 0.95rem;">THE 5-STEP CORE TRIAGE DECISION LADDER</div>
+      <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.75rem; font-size: 0.95rem;">THE 5-STEP CORE TRIAGE DECISION LADDER</div>
       <div class="triage-ladder-board">
         <div class="triage-step-card">
           <div class="triage-step-num">STEP 1</div>
@@ -133,23 +133,23 @@ The certification voucher buys an HR passport. But once you walk through the cor
           <div class="triage-step-route"><span class="triage-pill pill-fail">FAIL: Default Gateway Down / ARP Mismatch</span></div>
         </div>
       </div>
-      <div style="font-size: 0.82rem; color: #94a3b8; font-style: italic; margin-top: 0.5rem;">Rule of the Wire: Always test the midpoint (Default Gateway) before assuming internet or DNS failure.</div>
+      <div style="font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-top: 0.5rem;">Rule of the Wire: Always test the midpoint (Default Gateway) before assuming internet or DNS failure.</div>
     </div>
     <div class="aid-face side-b">
-      <div style="font-weight: 700; color: #f59e0b; margin-bottom: 0.75rem; font-size: 0.95rem;">SUBSYSTEM VOLATILITY & COMMAND PRIMITIVES</div>
+      <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.75rem; font-size: 0.95rem;">SUBSYSTEM VOLATILITY & COMMAND PRIMITIVES</div>
       <table style="margin-bottom: 1rem;">
         <thead>
           <tr><th>Subsystem</th><th>Medium</th><th>Volatility</th><th>Failure Tell</th><th>Primary CLI Telemetry</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>1. Compute (CPU)</strong></td><td>Silicon ALU / Registers</td><td><strong style="color: #f87171;">Volatile</strong></td><td>Thermal halt, POST 00/FF</td><td><code>wmic cpu get status</code></td></tr>
-          <tr><td><strong>2. Memory (RAM)</strong></td><td>DRAM Cells</td><td><strong style="color: #f87171;">Volatile</strong></td><td>BSOD MEMORY_MGMT, beeps</td><td><code>wmic memorychip get speed</code></td></tr>
-          <tr><td><strong>3. Storage (Disk)</strong></td><td>NAND Flash / HDD</td><td><strong style="color: #34d399;">Non-Volatile</strong></td><td>OS Not Found, SMART errors</td><td><code>diskmgmt.msc / chkdsk</code></td></tr>
-          <tr><td><strong>4. Network (NIC)</strong></td><td>Ethernet PHY / MAC</td><td><strong style="color: #fbbf24;">Mixed</strong></td><td>APIPA 169.254.x.x, dark LEDs</td><td><code>ipconfig /all & getmac</code></td></tr>
+          <tr><td><strong>1. Compute (CPU)</strong></td><td>Silicon ALU / Registers</td><td><strong style="color: var(--danger-glow);">Volatile</strong></td><td>Thermal halt, POST 00/FF</td><td><code>wmic cpu get status</code></td></tr>
+          <tr><td><strong>2. Memory (RAM)</strong></td><td>DRAM Cells</td><td><strong style="color: var(--danger-glow);">Volatile</strong></td><td>BSOD MEMORY_MGMT, beeps</td><td><code>wmic memorychip get speed</code></td></tr>
+          <tr><td><strong>3. Storage (Disk)</strong></td><td>NAND Flash / HDD</td><td><strong style="color: var(--success-soft);">Non-Volatile</strong></td><td>OS Not Found, SMART errors</td><td><code>diskmgmt.msc / chkdsk</code></td></tr>
+          <tr><td><strong>4. Network (NIC)</strong></td><td>Ethernet PHY / MAC</td><td><strong style="color: var(--accent-soft);">Mixed</strong></td><td>APIPA 169.254.x.x, dark LEDs</td><td><code>ipconfig /all & getmac</code></td></tr>
         </tbody>
       </table>
-      <div style="background: #0b1120; border: 1px solid #1e293b; border-radius: 6px; padding: 0.75rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">
-        <span style="color: #38bdf8; font-weight: 700;">THE 5-STEP PING LADDER:</span><br/>
+      <div style="background: var(--well); border: 1px solid var(--surface); border-radius: var(--radius-md); padding: 0.75rem 1rem; font-family: var(--font-code); font-size: 0.8rem;">
+        <span style="color: var(--primary); font-weight: 700;">THE 5-STEP PING LADDER:</span><br/>
         1. <code>ping 127.0.0.1</code> — Verifies local TCP/IP kernel stack (tcpip.sys)<br/>
         2. <code>ping &lt;Host_IP&gt;</code> — Verifies local NIC driver binding<br/>
         3. <code>ping &lt;Gateway_IP&gt;</code> — Verifies physical cable/switch link to local router<br/>

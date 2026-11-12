@@ -49,12 +49,12 @@ NAV_CSS = """
 .track-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;
   margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--surface-border); }
 .track-pager a { display: block; padding: 0.85rem 1rem; border: 1px solid var(--surface-border);
-  border-radius: 10px; text-decoration: none; color: var(--text-main); background: var(--bg); }
+  border-radius: var(--radius-xl); text-decoration: none; color: var(--text-main); background: var(--bg); }
 .track-pager a:hover { border-color: var(--primary); }
 .track-pager .dir { display: block; font-size: 0.72rem; text-transform: uppercase;
   letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.2rem; }
 .track-pager .next { text-align: right; grid-column: 2; }
-.track-pager .t { font-weight: 600; color: #fff; font-size: 0.95rem; }
+.track-pager .t { font-weight: 600; color: var(--text-strong); font-size: 0.95rem; }
 @media (max-width: 600px) { .track-pager { grid-template-columns: 1fr; }
   .track-pager .next { grid-column: 1; } .track-nav .pos { margin-left: 0; } }
 """

@@ -152,7 +152,7 @@
     termCount.textContent = `Showing ${filtered.length} of ${keys.length} entries`;
 
     if (filtered.length === 0) {
-      termList.innerHTML = '<div style="padding: 1.25rem; color: #94a3b8; font-size: 0.82rem; text-align: center;">No matching terms found.</div>';
+      termList.innerHTML = '<div style="padding: 1.25rem; color: var(--text-muted); font-size: 0.82rem; text-align: center;">No matching terms found.</div>';
       return;
     }
 

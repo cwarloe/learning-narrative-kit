@@ -4,18 +4,18 @@
    ========================================================================== */
 
 :root {
-  --aid-bg: #0f172a;
-  --aid-card-surface: #1e293b;
-  --aid-border: #334155;
-  --aid-grid-line: rgba(255, 255, 255, 0.04);
-  --aid-text-primary: #f8fafc;
-  --aid-text-muted: #94a3b8;
+  --aid-bg: var(--bg);
+  --aid-card-surface: var(--surface);
+  --aid-border: var(--surface-border);
+  --aid-grid-line: color-mix(in srgb, var(--glare) 4%, transparent);
+  --aid-text-primary: var(--text-bright);
+  --aid-text-muted: var(--text-muted);
   
   /* Band Accent Colors */
-  --aid-band-blue: #0284c7;    /* Network/OS Protocol (Triage Compass) */
-  --aid-band-green: #10b981;   /* Hardware / Physical Pinouts (Anatomy Slate) */
-  --aid-band-yellow: #f59e0b;  /* Identity Triad / Boundaries (Identity Slate) */
-  --aid-band-red: #ef4444;     /* Flashcards Only (The Passport Deck) */
+  --aid-band-blue: var(--primary-deep);    /* Network/OS Protocol (Triage Compass) */
+  --aid-band-green: var(--success);   /* Hardware / Physical Pinouts (Anatomy Slate) */
+  --aid-band-yellow: var(--accent);  /* Identity Triad / Boundaries (Identity Slate) */
+  --aid-band-red: var(--danger);     /* Flashcards Only (The Passport Deck) */
 }
 
 /* Base Job Aid Card Shell */
@@ -23,10 +23,10 @@
   position: relative;
   background: var(--aid-card-surface);
   border: 2px solid var(--aid-border);
-  border-radius: 8px;
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px -2px color-mix(in srgb, var(--shade) 50%, transparent), inset 0 1px 0 color-mix(in srgb, var(--glare) 10%, transparent);
   margin: 2rem 0;
-  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-family: var(--font-code);
   color: var(--aid-text-primary);
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -46,7 +46,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1rem 0.75rem 2.25rem;
-  background: rgba(15, 23, 42, 0.85);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
   border-bottom: 1px solid var(--aid-border);
   gap: 0.5rem;
 }
@@ -59,9 +59,9 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, #94a3b8, #334155 70%);
-  border: 1px solid #1e293b;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8), 0 1px 1px rgba(255, 255, 255, 0.2);
+  background: radial-gradient(circle at 40% 40%, var(--text-muted), var(--surface-raised) 70%);
+  border: 1px solid var(--surface);
+  box-shadow: inset 0 1px 2px color-mix(in srgb, var(--shade) 80%, transparent), 0 1px 1px color-mix(in srgb, var(--glare) 20%, transparent);
 }
 
 .aid-meta {
@@ -82,7 +82,7 @@
 .aid-title {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-strong);
   flex-grow: 1;
   margin: 0 0.5rem;
 }
@@ -95,28 +95,28 @@
 }
 
 .aid-tab-btn {
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--aid-border);
   color: var(--aid-text-muted);
   font-size: 0.75rem;
   font-family: inherit;
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.15s ease;
   font-weight: 600;
 }
 
 .aid-tab-btn:hover {
-  background: #334155;
-  color: #fff;
+  background: var(--surface-raised);
+  color: var(--text-strong);
 }
 
 .aid-tab-btn.active {
-  background: #38bdf8;
-  color: #0f172a;
+  background: var(--primary);
+  color: var(--paper-ink);
   font-weight: 700;
-  border-color: #38bdf8;
+  border-color: var(--primary);
 }
 
 /* Content Faces */
@@ -153,8 +153,8 @@
 }
 
 .aid-face th {
-  background: rgba(15, 23, 42, 0.9);
-  color: #38bdf8;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  color: var(--primary);
   text-align: left;
   padding: 8px 12px;
   border-bottom: 2px solid var(--aid-border);
@@ -165,23 +165,23 @@
 
 .aid-face td {
   padding: 8px 12px;
-  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+  border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 60%, transparent);
   font-size: 0.78rem;
-  color: #cbd5e1;
+  color: var(--text-soft);
 }
 
 .aid-face tr:hover td {
-  background: rgba(255, 255, 255, 0.02);
+  background: color-mix(in srgb, var(--glare) 2%, transparent);
 }
 
 .aid-face h3, .aid-face h4 {
-  color: #38bdf8;
+  color: var(--primary);
   margin-top: 0.25rem;
   margin-bottom: 0.75rem;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+  border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 60%, transparent);
   padding-bottom: 0.25rem;
 }
 
@@ -196,11 +196,11 @@
 }
 
 .aid-face code {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  color: #38bdf8;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  color: var(--primary);
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.8em;
 }
 
@@ -209,7 +209,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  background: rgba(15, 23, 42, 0.95);
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
   border-top: 1px solid var(--aid-border);
   font-size: 0.68rem;
   color: var(--aid-text-muted);
@@ -218,14 +218,14 @@
 .aid-scale-badge {
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #64748b;
+  color: var(--text-faint);
 }
 
 .aid-print-btn {
   background: transparent;
   border: 1px solid var(--aid-border);
   color: var(--aid-text-muted);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 2px 8px;
   cursor: pointer;
   font-size: 0.7rem;
@@ -233,8 +233,8 @@
 }
 
 .aid-print-btn:hover {
-  background: #334155;
-  color: #fff;
+  background: var(--surface-raised);
+  color: var(--text-strong);
 }
 
 /* ==========================================================================
@@ -244,9 +244,9 @@
 .passport-deck-container {
   margin: 2.5rem 0;
   padding: 1.5rem;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid #334155;
-  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-2xl);
 }
 
 .passport-deck-header {
@@ -264,7 +264,7 @@
   gap: 0.5rem;
   font-size: 0.75rem;
   font-weight: 800;
-  color: #ef4444;
+  color: var(--danger);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -275,13 +275,13 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #ef4444;
-  box-shadow: 0 0 8px #ef4444;
+  background: var(--danger);
+  box-shadow: 0 0 8px var(--danger);
 }
 
 .passport-deck-meta {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
@@ -302,10 +302,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  background: #fbf9f5;
-  border: 2.5px solid #0f172a;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.45);
+  border-radius: var(--radius-xl);
+  background: var(--paper-card);
+  border: 2.5px solid var(--paper-ink);
+  box-shadow: 4px 4px 0px color-mix(in srgb, var(--shade) 45%, transparent);
   pointer-events: none;
 }
 
@@ -332,7 +332,7 @@
   transform-style: preserve-3d;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: var(--radius-xl);
 }
 
 .passport-card.active {
@@ -344,13 +344,13 @@
 }
 
 .passport-deck-counter {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.82rem;
   font-weight: 700;
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid rgba(239, 68, 68, 0.35);
-  border-radius: 4px;
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger) 35%, transparent);
+  border-radius: var(--radius-sm);
   padding: 0.2rem 0.65rem;
 }
 
@@ -366,16 +366,16 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #334155;
+  background: var(--surface-raised);
   transition: all 0.25s ease;
   cursor: pointer;
 }
 
 .passport-progress-dots .dot.active {
-  background: #ef4444;
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+  background: var(--danger);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--danger) 70%, transparent);
   width: 22px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .passport-face {
@@ -386,13 +386,13 @@
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 10px;
-  background-color: #fdfbf7;
-  background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, #e2e8f0 28px);
+  border-radius: var(--radius-xl);
+  background-color: var(--paper-card);
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, var(--text-main) 28px);
   background-position: 0 45px;
-  color: #1e3a8a;
-  border: 3px solid #0f172a;
-  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85);
+  color: var(--info-darkest);
+  border: 3px solid var(--paper-ink);
+  box-shadow: 6px 6px 0px color-mix(in srgb, var(--shade) 85%, transparent);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -401,43 +401,43 @@
 
 .passport-face.face-back {
   transform: rotateY(180deg);
-  background: #f8fafc;
-  border-color: #dc2626;
+  background: var(--paper-cool);
+  border-color: var(--danger-deep);
 }
 
 /* Chisel Highlighter Strike */
 .passport-highlight-bar {
   display: inline-block;
-  background: #ef4444;
-  color: #fff;
+  background: var(--danger);
+  color: var(--text-strong);
   padding: 4px 12px;
-  font-family: 'Bangers', 'Impact', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.15rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   transform: rotate(-0.5deg);
   margin-bottom: 0.75rem;
   align-self: flex-start;
-  box-shadow: 2px 2px 0px #000;
+  box-shadow: 2px 2px 0px var(--shade);
 }
 
 .passport-prompt-text {
-  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-family: var(--font-hand);
   font-size: 1.45rem;
   font-weight: 700;
   line-height: 1.35;
-  color: #0f172a;
+  color: var(--paper-ink);
   flex-grow: 1;
   display: flex;
   align-items: center;
 }
 
 .passport-answer-text {
-  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-family: var(--font-hand);
   font-size: 1.35rem;
   font-weight: 700;
   line-height: 1.4;
-  color: #0f172a;
+  color: var(--paper-ink);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -446,17 +446,17 @@
 
 .passport-answer-rule {
   font-size: 1.25rem;
-  color: #991b1b;
+  color: var(--danger-dark);
   margin-bottom: 0.5rem;
-  border-left: 4px solid #ef4444;
+  border-left: 4px solid var(--danger);
   padding-left: 0.75rem;
 }
 
 .passport-why-text {
   font-size: 0.95rem;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-ui);
   font-weight: 500;
-  color: #475569;
+  color: var(--text-disabled);
   line-height: 1.45;
 }
 
@@ -466,9 +466,9 @@
   align-items: center;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #64748b;
+  color: var(--text-faint);
   text-transform: uppercase;
-  border-top: 2px dashed #cbd5e1;
+  border-top: 2px dashed var(--text-soft);
   padding-top: 0.5rem;
   margin-top: 0.5rem;
 }
@@ -481,11 +481,11 @@
 }
 
 .passport-btn {
-  background: #1e293b;
-  border: 1px solid #475569;
-  color: #f8fafc;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-bright);
   padding: 6px 16px;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
@@ -493,18 +493,18 @@
 }
 
 .passport-btn:hover {
-  background: #334155;
-  border-color: #38bdf8;
-  color: #38bdf8;
+  background: var(--surface-raised);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 /* Print Styles */
 @media print {
   .lnk-job-aid-card {
-    border: 1px solid #000 !important;
+    border: 1px solid var(--print-ink) !important;
     box-shadow: none !important;
-    background: #fff !important;
-    color: #000 !important;
+    background: var(--print-paper) !important;
+    color: var(--print-ink) !important;
     page-break-inside: avoid;
   }
   .aid-controls, .aid-print-btn, .passport-deck-nav {
@@ -523,12 +523,12 @@
 
 .kitchen-table-plate {
   position: relative;
-  background: #090e17;
-  border: 2px solid #1e293b;
-  border-radius: 12px;
+  background: var(--well-deep);
+  border: 2px solid var(--surface);
+  border-radius: var(--radius-2xl);
   padding: 1.5rem;
   margin: 3rem 0;
-  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 12px 36px -4px color-mix(in srgb, var(--shade) 70%, transparent);
 }
 
 .kitchen-plate-header {
@@ -536,36 +536,36 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid var(--surface);
   padding-bottom: 0.85rem;
   margin-bottom: 1.5rem;
   gap: 0.75rem;
 }
 
 .kitchen-plate-badge {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.75rem;
   font-weight: 700;
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  border-radius: 4px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: var(--radius-sm);
   padding: 3px 10px;
   letter-spacing: 0.05em;
 }
 
 .kitchen-plate-subtext {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.78rem;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .kitchen-plate-section-title {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #cbd5e1;
+  color: var(--text-soft);
   text-transform: uppercase;
   margin: 1.5rem 0 1rem;
   display: flex;
@@ -581,8 +581,8 @@
   border-radius: 50%;
 }
 
-.title-red::before { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.6); }
-.title-slate::before { background: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+.title-red::before { background: var(--danger); box-shadow: 0 0 8px color-mix(in srgb, var(--danger) 60%, transparent); }
+.title-slate::before { background: var(--primary); box-shadow: 0 0 8px color-mix(in srgb, var(--primary) 60%, transparent); }
 
 /* ==========================================================================
    The 4x6 Taped Field Slate (Green, Yellow, Blue Bands)
@@ -590,15 +590,15 @@
 
 .taped-field-slate {
   position: relative;
-  background: #fdfbf7;
-  color: #0f172a;
-  border: 3px solid #0f172a;
-  border-radius: 8px;
-  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85);
+  background: var(--paper-card);
+  color: var(--paper-ink);
+  border: 3px solid var(--paper-ink);
+  border-radius: var(--radius-lg);
+  box-shadow: 6px 6px 0px color-mix(in srgb, var(--shade) 85%, transparent);
   margin: 1.5rem auto;
   max-width: 740px;
   overflow: hidden;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-code);
 }
 
 /* Clear Scotch 2-inch tape overlays */
@@ -609,8 +609,8 @@
   left: 0;
   right: 0;
   height: 38px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 85%, transparent 100%);
-  border-bottom: 1px dashed rgba(100, 116, 139, 0.3);
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--glare) 45%, transparent) 0%, color-mix(in srgb, var(--glare) 15%, transparent) 85%, transparent 100%);
+  border-bottom: 1px dashed color-mix(in srgb, var(--text-faint) 30%, transparent);
   pointer-events: none;
   z-index: 5;
 }
@@ -622,8 +622,8 @@
   left: 0;
   right: 0;
   height: 38px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 85%, transparent 100%);
-  border-top: 1px dashed rgba(100, 116, 139, 0.3);
+  background: linear-gradient(to top, color-mix(in srgb, var(--glare) 45%, transparent) 0%, color-mix(in srgb, var(--glare) 15%, transparent) 85%, transparent 100%);
+  border-top: 1px dashed color-mix(in srgb, var(--text-faint) 30%, transparent);
   pointer-events: none;
   z-index: 5;
 }
@@ -634,8 +634,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1rem 0.75rem 2.5rem;
-  background: #f1f5f9;
-  border-bottom: 2px solid #0f172a;
+  background: var(--paper-cool);
+  border-bottom: 2px solid var(--paper-ink);
   position: relative;
   z-index: 6;
   gap: 0.5rem;
@@ -649,9 +649,9 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #cbd5e1, #64748b 60%, #334155 100%);
-  border: 1.5px solid #0f172a;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.4);
+  background: radial-gradient(circle at 35% 35%, var(--text-soft), var(--text-faint) 60%, var(--surface-raised) 100%);
+  border: 1.5px solid var(--paper-ink);
+  box-shadow: inset 0 1px 2px color-mix(in srgb, var(--shade) 80%, transparent), 0 1px 1px color-mix(in srgb, var(--glare) 40%, transparent);
 }
 
 .slate-selector-tabs {
@@ -660,20 +660,20 @@
 }
 
 .slate-tab-btn {
-  background: #e2e8f0;
-  border: 1.5px solid #0f172a;
-  color: #334155;
-  font-family: 'JetBrains Mono', monospace;
+  background: var(--paper-shade);
+  border: 1.5px solid var(--paper-ink);
+  color: var(--paper-muted);
+  font-family: var(--font-code);
   font-size: 0.72rem;
   font-weight: 700;
   padding: 3px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
 }
 
 .slate-tab-btn.active {
-  background: #0f172a;
-  color: #ffffff;
+  background: var(--bg);
+  color: var(--text-strong);
 }
 
 .slate-side-toggle {
@@ -682,20 +682,20 @@
 }
 
 .slate-side-btn {
-  background: #ffffff;
-  border: 1.5px solid #0f172a;
-  font-family: 'JetBrains Mono', monospace;
+  background: var(--paper);
+  border: 1.5px solid var(--paper-ink);
+  font-family: var(--font-code);
   font-size: 0.72rem;
   font-weight: 700;
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
 }
 
 .slate-side-btn.active {
-  background: #2563eb;
-  color: #ffffff;
-  border-color: #1d4ed8;
+  background: var(--info-deep);
+  color: var(--text-strong);
+  border-color: var(--info-dark);
 }
 
 .slate-content-body {
@@ -721,11 +721,11 @@
 }
 
 .slate-spec-card {
-  border: 1.5px solid #0f172a;
-  border-radius: 6px;
-  background: #ffffff;
+  border: 1.5px solid var(--paper-ink);
+  border-radius: var(--radius-md);
+  background: var(--paper);
   padding: 0.75rem 1rem;
-  box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+  box-shadow: 2px 2px 0px color-mix(in srgb, var(--shade) 15%, transparent);
 }
 
 .slate-spec-title {
@@ -740,19 +740,19 @@
 
 .slate-spec-desc {
   font-size: 0.76rem;
-  color: #334155;
+  color: var(--paper-muted);
   line-height: 1.45;
 }
 
 .slate-spec-cmd {
   font-size: 0.72rem;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
+  background: var(--paper-cool);
+  border: 1px solid var(--text-soft);
   padding: 2px 6px;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   margin-top: 0.4rem;
   display: inline-block;
-  color: #0f172a;
+  color: var(--paper-ink);
   font-weight: 600;
 }
 
@@ -802,12 +802,12 @@
     }
     .style-white:hover { transform: rotate(-0.5deg) scale(1.008); }
     .style-white .card-face {
-      background-color: #ffffff;
-      border: 3.5px solid #111827;
-      border-radius: 4px 16px 5px 14px / 14px 5px 16px 4px;
+      background-color: var(--paper);
+      border: 3.5px solid var(--well-bar);
+      border-radius: var(--radius-sm) var(--radius-4xl) var(--radius-snug) var(--radius-3xl) / var(--radius-3xl) var(--radius-snug) var(--radius-4xl) var(--radius-sm);
       box-shadow: 
-        7px 9px 0px #090d16,
-        0 20px 35px rgba(0, 0, 0, 0.55);
+        7px 9px 0px var(--well-deep),
+        0 20px 35px color-mix(in srgb, var(--shade) 55%, transparent);
     }
 
     .style-ruled {
@@ -816,13 +816,13 @@
     }
     .style-ruled:hover { transform: rotate(0deg) scale(1.008); }
     .style-ruled .card-face {
-      background-color: #fdfbf7;
+      background-color: var(--paper-card);
       background-image: 
-        linear-gradient(180deg, transparent 58px, #fca5a5 59px, #fca5a5 60px, transparent 61px),
-        repeating-linear-gradient(180deg, transparent, transparent 33px, #cbd5e1 34px);
-      border: 2px solid #cbd5e1;
-      border-radius: 6px;
-      box-shadow: 4px 6px 0px rgba(15, 23, 42, 0.6), 0 18px 30px rgba(0, 0, 0, 0.45);
+        linear-gradient(180deg, transparent 58px, var(--danger-soft) 59px, var(--danger-soft) 60px, transparent 61px),
+        repeating-linear-gradient(180deg, transparent, transparent 33px, var(--text-soft) 34px);
+      border: 2px solid var(--text-soft);
+      border-radius: var(--radius-md);
+      box-shadow: 4px 6px 0px color-mix(in srgb, var(--bg) 60%, transparent), 0 18px 30px color-mix(in srgb, var(--shade) 45%, transparent);
     }
 
     .style-quad {
@@ -831,14 +831,14 @@
     }
     .style-quad:hover { transform: rotate(0deg) scale(1.008); }
     .style-quad .card-face {
-      background-color: #f8fafc;
+      background-color: var(--paper-cool);
       background-image: 
-        linear-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.22) 1px, transparent 1px);
+        linear-gradient(color-mix(in srgb, var(--text-muted) 22%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--text-muted) 22%, transparent) 1px, transparent 1px);
       background-size: 20px 20px;
-      border: 3px solid #1e293b;
-      border-radius: 3px 8px 3px 7px;
-      box-shadow: 6px 6px 0px #0f172a, 0 18px 32px rgba(0, 0, 0, 0.45);
+      border: 3px solid var(--surface);
+      border-radius: var(--radius-xs) var(--radius-lg) var(--radius-xs) var(--radius-7);
+      box-shadow: 6px 6px 0px var(--bg), 0 18px 32px color-mix(in srgb, var(--shade) 45%, transparent);
     }
 
     .style-manila {
@@ -847,10 +847,10 @@
     }
     .style-manila:hover { transform: rotate(0deg) scale(1.008); }
     .style-manila .card-face {
-      background-color: #f6eedb;
-      border: 4px solid #18181b;
-      border-radius: 8px 3px 10px 4px / 4px 10px 3px 8px;
-      box-shadow: 9px 11px 0px #09090b, 0 24px 40px rgba(0, 0, 0, 0.6);
+      background-color: var(--paper-aged);
+      border: 4px solid var(--paper-edge);
+      border-radius: var(--radius-lg) var(--radius-xs) var(--radius-xl) var(--radius-sm) / var(--radius-sm) var(--radius-xl) var(--radius-xs) var(--radius-lg);
+      box-shadow: 9px 11px 0px var(--shade), 0 24px 40px color-mix(in srgb, var(--shade) 60%, transparent);
     }
 
     /* ==========================================================================
@@ -864,8 +864,8 @@
       height: 40px;
       padding: 4px 18px;
       transform: rotate(-0.8deg);
-      border-radius: 4px;
-      font-family: 'Bangers', cursive;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-comic);
       font-size: 1.65rem;
       letter-spacing: 0.08em;
       line-height: 1.1;
@@ -879,9 +879,9 @@
       position: absolute;
       top: 10px;
       right: 18px;
-      font-family: 'Bangers', cursive;
+      font-family: var(--font-comic);
       font-size: 1.8rem;
-      color: #334155;
+      color: var(--paper-muted);
       line-height: 1;
     }
 
@@ -905,9 +905,9 @@
       justify-content: center;
     }
     .drawing-note {
-      font-family: 'Rock Salt', cursive;
+      font-family: var(--font-scrawl);
       font-size: 1rem;
-      color: #64748b;
+      color: var(--text-faint);
       margin-top: 0.35rem;
       letter-spacing: 0.02em;
     }
@@ -925,7 +925,7 @@
     }
 
     .front-hint-scrawl {
-      font-family: 'Rock Salt', cursive;
+      font-family: var(--font-scrawl);
       font-size: 1.25rem;
       color: var(--pen-red);
       margin-top: 1rem;
@@ -957,17 +957,17 @@
     .back-trap-box {
       margin-top: 0.75rem;
       padding-top: 0.65rem;
-      border-top: 2.5px dashed #cbd5e1;
+      border-top: 2.5px dashed var(--text-soft);
       line-height: 1.25;
       color: var(--pen-red);
     }
 
     .tap-to-flip-guide {
       text-align: right;
-      font-family: 'Bangers', cursive;
+      font-family: var(--font-comic);
       font-size: 1.15rem;
       letter-spacing: 0.08em;
-      color: #94a3b8;
+      color: var(--text-muted);
     }
 
     
@@ -980,11 +980,11 @@
       justify-content: center;
     }
     .ctrl-btn {
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #f8fafc;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      color: var(--text-bright);
       padding: 0.65rem 1.4rem;
-      border-radius: 8px;
+      border-radius: var(--radius-lg);
       font-weight: 700;
       font-size: 0.92rem;
       cursor: pointer;
@@ -993,9 +993,9 @@
       align-items: center;
       gap: 0.5rem;
     }
-    .ctrl-btn:hover { background: #334155; color: #fff; }
-    .ctrl-btn.primary { background: #2563eb; border-color: #2563eb; }
-    .ctrl-btn.primary:hover { background: #1d4ed8; }
+    .ctrl-btn:hover { background: var(--surface-raised); color: var(--text-strong); }
+    .ctrl-btn.primary { background: var(--info-deep); border-color: var(--info-deep); }
+    .ctrl-btn.primary:hover { background: var(--info-dark); }
 
     @media (max-width: 760px) {
       .card-stage { height: 530px; }
@@ -1011,34 +1011,34 @@
 
 /* Default Font Sizes for Story Narrative Cards */
 .card-stage .front-big-question {
-  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-family: var(--font-hand);
   font-weight: 700;
   font-size: 2.15rem;
   line-height: 1.25;
-  color: #0f172a;
+  color: var(--paper-ink);
 }
 
 .card-stage .back-huge-answer {
-  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-family: var(--font-hand);
   font-weight: 700;
   font-size: 2.95rem;
   line-height: 1.05;
-  color: #15803d;
+  color: var(--success-deep);
 }
 
 .card-stage .back-bullet-point {
-  font-family: 'Comic Neue', 'Patrick Hand', sans-serif;
+  font-family: var(--font-hand);
   font-weight: 700;
   font-size: 1.45rem;
   line-height: 1.35;
-  color: #1e293b;
+  color: var(--paper-ink-soft);
 }
 
 .card-stage .back-trap-box {
-  font-family: 'Rock Salt', cursive;
+  font-family: var(--font-scrawl);
   font-size: 1.15rem;
   line-height: 1.3;
-  color: #b91c1c;
+  color: var(--danger-strong);
 }
 
 /* lnk-deck decks (```lnk-deck fences) are styled by the shared ../../lnk-deck.css. */

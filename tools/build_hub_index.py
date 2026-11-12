@@ -10,28 +10,13 @@ HTML_CONTENT = r'''<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Learning Narrative Kit (LNK) — Interactive Story-First Technical Courseware</title>
   <meta name="description" content="Story-first technical curricula combining workplace narratives with hands-on diagnostic labs. Portland Desk (CompTIA A+, Network+, Security+) to SOC Triage.">
+  <link rel="stylesheet" href="tokens.css">
   <style>
-    :root {
-      --bg: #0b1120;
-      --surface: #1e293b;
-      --surface-hover: #273549;
-      --surface-border: #334155;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --primary: #38bdf8;
-      --primary-dim: rgba(56, 189, 248, 0.15);
-      --accent: #f59e0b;
-      --accent-dim: rgba(245, 158, 11, 0.15);
-      --success: #10b981;
-      --success-dim: rgba(16, 185, 129, 0.15);
-      --purple: #a855f7;
-      --purple-dim: rgba(168, 85, 247, 0.15);
-    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
+      font-family: var(--font-body);
+      background: var(--well);
+      color: var(--text-bright);
       line-height: 1.6;
       min-height: 100vh;
       padding-bottom: 4rem;
@@ -42,7 +27,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(11, 17, 32, 0.92);
+      background: color-mix(in srgb, var(--well) 92%, transparent);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--surface-border);
       padding: 0.75rem 1.5rem;
@@ -63,17 +48,17 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     }
     .brand-badge {
       background: var(--primary);
-      color: #0b1120;
+      color: var(--primary-ink);
       font-weight: 800;
       font-size: 0.8rem;
       padding: 0.2rem 0.55rem;
-      border-radius: 6px;
+      border-radius: var(--radius-md);
       letter-spacing: 0.05em;
     }
     .brand-title {
       font-weight: 700;
       font-size: 1.05rem;
-      color: #fff;
+      color: var(--text-strong);
     }
 
     /* Breadcrumbs */
@@ -89,9 +74,9 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       text-decoration: none;
     }
     .breadcrumbs a:hover { text-decoration: underline; }
-    .breadcrumbs .sep { color: #64748b; }
+    .breadcrumbs .sep { color: var(--text-faint); }
     .breadcrumbs .active-crumb {
-      color: #fff;
+      color: var(--text-strong);
       font-weight: 600;
     }
 
@@ -99,9 +84,9 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     .search-input {
       background: var(--surface);
       border: 1px solid var(--surface-border);
-      border-radius: 8px;
+      border-radius: var(--radius-lg);
       padding: 0.45rem 0.85rem;
-      color: #fff;
+      color: var(--text-strong);
       font-size: 0.88rem;
       width: 240px;
       transition: border-color 0.15s;
@@ -120,10 +105,10 @@ HTML_CONTENT = r'''<!DOCTYPE html>
 
     /* Hero Banner for Flagship */
     .hero-banner {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 95%, transparent) 0%, color-mix(in srgb, var(--bg) 90%, transparent) 100%);
       border: 1px solid var(--surface-border);
       border-left: 4px solid var(--primary);
-      border-radius: 12px;
+      border-radius: var(--radius-2xl);
       padding: 1.75rem 2rem;
       margin-bottom: 2rem;
       display: flex;
@@ -134,7 +119,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     }
     .hero-info h1 {
       font-size: 1.85rem;
-      color: #fff;
+      color: var(--text-strong);
       margin-bottom: 0.4rem;
       letter-spacing: -0.02em;
     }
@@ -154,29 +139,29 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       font-size: 0.78rem;
       font-weight: 600;
       padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      background: rgba(56, 189, 248, 0.12);
+      border-radius: var(--radius-pill);
+      background: color-mix(in srgb, var(--primary) 12%, transparent);
       color: var(--primary);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
     }
     .launch-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       background: var(--primary);
-      color: #0b1120;
+      color: var(--primary-ink);
       font-weight: 700;
       font-size: 0.95rem;
       padding: 0.85rem 1.4rem;
-      border-radius: 8px;
+      border-radius: var(--radius-lg);
       text-decoration: none;
       transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
-      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+      box-shadow: 0 4px 14px color-mix(in srgb, var(--primary) 25%, transparent);
     }
     .launch-btn:hover {
-      background: #7dd3fc;
+      background: var(--primary-soft);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35);
+      box-shadow: 0 6px 20px color-mix(in srgb, var(--primary) 35%, transparent);
     }
 
     /* Track Filter Pills */
@@ -193,7 +178,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       border: 1px solid var(--surface-border);
       color: var(--text-muted);
       padding: 0.5rem 1.1rem;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       font-size: 0.88rem;
       font-weight: 600;
       cursor: pointer;
@@ -204,24 +189,24 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       transition: all 0.15s;
     }
     .tab-btn:hover {
-      border-color: #64748b;
-      color: var(--text-main);
+      border-color: var(--text-faint);
+      color: var(--text-bright);
     }
     .tab-btn.active {
       background: var(--primary);
-      color: #0b1120;
+      color: var(--primary-ink);
       border-color: var(--primary);
     }
     .tab-count {
       font-size: 0.75rem;
       opacity: 0.8;
-      background: rgba(0, 0, 0, 0.25);
+      background: color-mix(in srgb, var(--shade) 25%, transparent);
       padding: 0.1rem 0.4rem;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
     }
     .tab-btn.active .tab-count {
-      background: rgba(0, 0, 0, 0.3);
-      color: #fff;
+      background: color-mix(in srgb, var(--shade) 30%, transparent);
+      color: var(--text-strong);
     }
 
     /* Act / Category Headers */
@@ -245,16 +230,16 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       text-transform: uppercase;
       letter-spacing: 0.08em;
       padding: 0.2rem 0.55rem;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
     }
-    .act-badge.act-1 { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
-    .act-badge.act-2 { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .act-badge.act-3 { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
-    .act-badge.act-misc { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+    .act-badge.act-1 { background: color-mix(in srgb, var(--primary) 20%, transparent); color: var(--primary); border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent); }
+    .act-badge.act-2 { background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+    .act-badge.act-3 { background: color-mix(in srgb, var(--feature) 20%, transparent); color: var(--feature-soft); border: 1px solid color-mix(in srgb, var(--feature) 30%, transparent); }
+    .act-badge.act-misc { background: color-mix(in srgb, var(--text-muted) 20%, transparent); color: var(--text-soft); border: 1px solid color-mix(in srgb, var(--text-muted) 30%, transparent); }
     
     .act-title {
       font-size: 1.25rem;
-      color: #fff;
+      color: var(--text-strong);
       font-weight: 700;
     }
     .act-sub {
@@ -273,7 +258,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     .incident-card {
       background: var(--surface);
       border: 1px solid var(--surface-border);
-      border-radius: 10px;
+      border-radius: var(--radius-xl);
       padding: 1.25rem;
       display: flex;
       flex-direction: column;
@@ -286,8 +271,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       transform: translateY(-2px);
     }
     .incident-card.is-capstone {
-      border-color: rgba(168, 85, 247, 0.5);
-      background: linear-gradient(145deg, #1e293b 0%, rgba(168, 85, 247, 0.08) 100%);
+      border-color: color-mix(in srgb, var(--feature) 50%, transparent);
+      background: linear-gradient(145deg, var(--surface) 0%, color-mix(in srgb, var(--feature) 8%, transparent) 100%);
     }
 
     .card-top {
@@ -303,34 +288,34 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       gap: 0.5rem;
     }
     .incident-num {
-      font-family: Consolas, Monaco, monospace;
+      font-family: var(--font-mono);
       font-size: 0.9rem;
       font-weight: 700;
       color: var(--primary);
-      background: rgba(56, 189, 248, 0.1);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
       padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius-sm);
+      border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
     }
     .incident-card.is-capstone .incident-num {
-      color: #c084fc;
-      background: rgba(168, 85, 247, 0.15);
-      border-color: rgba(168, 85, 247, 0.35);
+      color: var(--feature-soft);
+      background: color-mix(in srgb, var(--feature) 15%, transparent);
+      border-color: color-mix(in srgb, var(--feature) 35%, transparent);
     }
     .cert-tag {
       font-size: 0.74rem;
       font-weight: 600;
       color: var(--text-muted);
-      background: #0f172a;
+      background: var(--bg);
       padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-sm);
+      border: 1px solid color-mix(in srgb, var(--glare) 6%, transparent);
     }
 
     .card-title {
       font-size: 1.1rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text-strong);
       margin-bottom: 0.45rem;
       line-height: 1.35;
     }
@@ -348,7 +333,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       grid-template-columns: 1fr 1fr;
       gap: 0.6rem;
       padding-top: 0.85rem;
-      border-top: 1px solid rgba(51, 65, 85, 0.5);
+      border-top: 1px solid color-mix(in srgb, var(--surface-border) 50%, transparent);
     }
     .action-btn {
       display: inline-flex;
@@ -356,7 +341,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       justify-content: center;
       gap: 0.35rem;
       padding: 0.5rem 0.6rem;
-      border-radius: 6px;
+      border-radius: var(--radius-md);
       font-size: 0.82rem;
       font-weight: 600;
       text-decoration: none;
@@ -364,42 +349,42 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       transition: all 0.15s;
     }
     .btn-story {
-      background: rgba(56, 189, 248, 0.12);
-      color: #38bdf8;
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: color-mix(in srgb, var(--primary) 12%, transparent);
+      color: var(--primary);
+      border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
     }
     .btn-story:hover {
-      background: rgba(56, 189, 248, 0.25);
-      color: #fff;
+      background: color-mix(in srgb, var(--primary) 25%, transparent);
+      color: var(--text-strong);
     }
     .btn-lab {
-      background: rgba(16, 185, 129, 0.12);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: color-mix(in srgb, var(--success) 12%, transparent);
+      color: var(--success-soft);
+      border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
     }
     .btn-lab:hover {
-      background: rgba(16, 185, 129, 0.25);
-      color: #fff;
+      background: color-mix(in srgb, var(--success) 25%, transparent);
+      color: var(--text-strong);
     }
     .btn-capstone {
-      background: rgba(168, 85, 247, 0.15);
-      color: #c084fc;
-      border: 1px solid rgba(168, 85, 247, 0.35);
+      background: color-mix(in srgb, var(--feature) 15%, transparent);
+      color: var(--feature-soft);
+      border: 1px solid color-mix(in srgb, var(--feature) 35%, transparent);
     }
     .btn-capstone:hover {
-      background: rgba(168, 85, 247, 0.3);
-      color: #fff;
+      background: color-mix(in srgb, var(--feature) 30%, transparent);
+      color: var(--text-strong);
     }
     .card-single-action {
       display: block;
       width: 100%;
     }
     .btn-single {
-      background: #0f172a;
-      color: var(--text-main);
+      background: var(--bg);
+      color: var(--text-bright);
       border: 1px solid var(--surface-border);
       padding: 0.55rem;
-      border-radius: 6px;
+      border-radius: var(--radius-md);
       font-size: 0.85rem;
       font-weight: 600;
       text-align: center;
@@ -410,7 +395,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     .btn-single:hover {
       border-color: var(--primary);
       color: var(--primary);
-      background: #141e30;
+      background: var(--well-raised);
     }
 
     /* Footer */
@@ -635,7 +620,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <div class="card-top">
               <div class="num-tag-wrap">
                 <span class="incident-num">EP 06</span>
-                <span class="cert-tag" style="color: #c084fc; border-color: rgba(168,85,247,0.3);">Midpoint Capstone</span>
+                <span class="cert-tag" style="color: var(--feature-soft); border-color: color-mix(in srgb, var(--feature) 30%, transparent);">Midpoint Capstone</span>
               </div>
             </div>
             <h3 class="card-title">The Portland Flood</h3>
@@ -756,7 +741,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <div class="card-top">
               <div class="num-tag-wrap">
                 <span class="incident-num">EP 12</span>
-                <span class="cert-tag" style="color: #c084fc; border-color: rgba(168,85,247,0.3);">Final Capstone</span>
+                <span class="cert-tag" style="color: var(--feature-soft); border-color: color-mix(in srgb, var(--feature) 30%, transparent);">Final Capstone</span>
               </div>
             </div>
             <h3 class="card-title">When the Ticket Escalates</h3>

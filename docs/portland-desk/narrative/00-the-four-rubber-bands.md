@@ -69,7 +69,7 @@ Into the Red Band went the raw, arbitrary exam passport trivia—the disposable 
 <div class="card-stage style-white" id="storyTriviaCardStage" style="margin: 2rem auto;">
 <div class="card-flipper" id="storyTriviaFlipper">
 <div class="card-face card-front">
-<div class="marker-slash" style="background: rgba(239, 68, 68, 0.45); color: #991b1b;">TRIVIA</div>
+<div class="marker-slash" style="background: color-mix(in srgb, var(--danger) 45%, transparent); color: var(--danger-dark);">TRIVIA</div>
 <div class="card-num-scrawl" id="storyCardNumFront">#01</div>
 <div class="front-layout" style="grid-template-columns: 1fr; margin-top: 2.2rem;">
 <div class="front-text-col">
@@ -80,7 +80,7 @@ Into the Red Band went the raw, arbitrary exam passport trivia—the disposable 
 <div class="tap-to-flip-guide" id="storyCardCounter">[ CLICK OR SPACEBAR TO FLIP ]</div>
 </div>
 <div class="card-face card-back">
-<div class="marker-slash" style="background: rgba(239, 68, 68, 0.45); color: #991b1b;">TRIVIA</div>
+<div class="marker-slash" style="background: color-mix(in srgb, var(--danger) 45%, transparent); color: var(--danger-dark);">TRIVIA</div>
 <div class="card-num-scrawl" id="storyCardNumBack">#01</div>
 <div class="back-layout" style="margin-top: 2.2rem;">
 <div class="back-huge-answer" id="storyCardA">Loading answer...</div>
@@ -126,8 +126,8 @@ I snapped the red rubber band around the forty trivia cards, banded the draft sh
 
 <div class="card-stage style-manila" id="storySlateCardStage" style="max-width: 840px; height: 520px; margin: 2rem auto;">
 <div class="card-flipper" id="storySlateFlipper">
-<div class="card-face card-front" style="background-color: #fdfbf7; border: 3.5px solid #0f172a; box-shadow: 7px 9px 0px #090d16; padding: 1.25rem 1.6rem;">
-<div class="marker-slash" id="slateMarkerFront" style="background: rgba(34, 197, 94, 0.45); color: #14532d; font-size: 1.45rem;">THE ANATOMY SLATE (GREEN BAND)</div>
+<div class="card-face card-front" style="background-color: var(--paper-card); border: 3.5px solid var(--paper-ink); box-shadow: 7px 9px 0px var(--well-deep); padding: 1.25rem 1.6rem;">
+<div class="marker-slash" id="slateMarkerFront" style="background: color-mix(in srgb, var(--success-bright) 45%, transparent); color: var(--success-dark); font-size: 1.45rem;">THE ANATOMY SLATE (GREEN BAND)</div>
 <div class="card-num-scrawl" id="slateNumFront" style="font-size: 1.4rem;">SIDE A</div>
 <div class="front-layout" style="grid-template-columns: 1fr; margin-top: 2.2rem;">
 <div class="front-text-col" id="slateFrontContent">
@@ -136,8 +136,8 @@ Loading Slate Front...
 </div>
 <div class="tap-to-flip-guide" id="slateCounter">[ CARD 1 OF 3 &bull; CLICK OR SPACEBAR TO FLIP TO SIDE B ]</div>
 </div>
-<div class="card-face card-back" style="background-color: #f8fafc; border: 3.5px solid #0f172a; box-shadow: 7px 9px 0px #090d16; padding: 1.25rem 1.6rem;">
-<div class="marker-slash" id="slateMarkerBack" style="background: rgba(34, 197, 94, 0.45); color: #14532d; font-size: 1.45rem;">THE ANATOMY SLATE (GREEN BAND)</div>
+<div class="card-face card-back" style="background-color: var(--paper-cool); border: 3.5px solid var(--paper-ink); box-shadow: 7px 9px 0px var(--well-deep); padding: 1.25rem 1.6rem;">
+<div class="marker-slash" id="slateMarkerBack" style="background: color-mix(in srgb, var(--success-bright) 45%, transparent); color: var(--success-dark); font-size: 1.45rem;">THE ANATOMY SLATE (GREEN BAND)</div>
 <div class="card-num-scrawl" id="slateNumBack" style="font-size: 1.4rem;">SIDE B</div>
 <div class="back-layout" style="margin-top: 2.2rem;" id="slateBackContent">
 Loading Slate Back...

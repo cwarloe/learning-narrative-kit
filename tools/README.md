@@ -23,6 +23,7 @@ Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_to
 | `voice_check.py` | Machine-prose tells; a reading aid, not a gate | below |
 | `check_decks.py` | Flashcard decks: no indented HTML that Docsify shows as a code block, and every ```` ```lnk-deck ```` fence well formed (CI) | `AGENTS.md` |
 | `check_decks_browser.py` | Chromium interactions and responsive layout across unit and Docsify decks (CI); setup below | below |
+| `check_theme.py` | Every color, font and corner on the site comes from `docs/tokens.css`; fails on a raw value in `docs/`, `template/`, the renderers, or a Portland Desk `style="..."` (CI) | `docs/THEMING.md` |
 | `check_dates.py` | Portland Desk months, seasons, weekdays, incident IDs and desk tenure match `PORTLAND_TIMELINE.md`; CI and before merge | `AGENTS.md` |
 | `check_cleanliness.py` | Strict lint: fails on any emoji or listed AI-slop marker in learner-facing files. Not in CI | — |
 | `_track.py`, `_unit_page_template.py`, `_deck.py` | Modules imported by the renderers (`_deck.py` parses `lnk-deck` fences for `render_unit.py`); not run directly | — |

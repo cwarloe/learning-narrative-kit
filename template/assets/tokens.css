@@ -1,0 +1,131 @@
+/* Design tokens for a course built from this template: the ONE place its colors, fonts and corners are
+   written down. assets/lnk-theme.css @imports this file; every other style uses var(--token).
+   This is a copy of the kit's docs/tokens.css (see docs/THEMING.md in the kit for the rule and how names
+   work). Change the values here to restyle your course; keep the names. */
+
+:root {
+  /* ---------- page and panels (dark) ---------- */
+  --bg: #0f172a;               /* page background */
+  --surface: #1e293b;          /* cards, main column, sidebar */
+  --surface-hover: #273549;    /* a card under the pointer */
+  --surface-raised: #334155;   /* selected rows, raised controls */
+  --surface-border: #334155;   /* borders and rules on dark panels */
+  --border-strong: #475569;    /* heavier rules, connector lines */
+  --well: #0b1220;             /* inset areas: inputs, consoles, landing page background */
+  --well-bar: #111827;         /* title bars on inset areas */
+  --well-deep: #090d16;        /* terminals and the darkest panels */
+  --well-raised: #141e30;      /* gradient stops between --well and --surface */
+
+  /* ---------- text on dark ---------- */
+  --text-main: #e2e8f0;        /* body text on unit pages */
+  --text-bright: #f8fafc;      /* body text on Portland Desk and the landing page */
+  --text-strong: #ffffff;      /* headings and emphasis */
+  --text-soft: #cbd5e1;        /* secondary copy */
+  --text-muted: #94a3b8;       /* captions, labels, quiet text */
+  --text-faint: #64748b;       /* comments, separators */
+  --text-disabled: #475569;    /* letters with no entries */
+
+  /* ---------- paper (light cards drawn on the dark page) ---------- */
+  --paper: #ffffff;            /* white card stock */
+  --paper-card: #fdfbf7;       /* index-card cream */
+  --paper-aged: #f6eedb;       /* older, yellowed card */
+  --paper-cool: #f8fafc;       /* cool white: flashcard backs, light panels */
+  --paper-shade: #e2e8f0;      /* light gray chips and strips on paper */
+  --paper-edge: #18181b;       /* heavy outline around a paper card */
+  --paper-ink: #0f172a;        /* text on paper */
+  --paper-ink-soft: #1e293b;
+  --paper-muted: #334155;      /* secondary text on paper */
+
+  /* ---------- main colors and their steps ---------- */
+  --primary: #38bdf8;          /* links, focus, the main highlight */
+  --primary-soft: #7dd3fc;
+  --primary-deep: #0284c7;
+  --primary-dark: #0c4a6e;
+  --primary-ink: #0b1220;      /* text on --primary */
+  --accent: #f59e0b;           /* second highlight: warnings, tags */
+  --accent-soft: #fbbf24;
+  --accent-pale: #fde68a;
+  --accent-deep: #d97706;
+  --accent-dark: #713f12;
+  --accent-ink: #111111;       /* text on --accent */
+  --warn: #eab308;
+  --info: #3b82f6;
+  --info-deep: #2563eb;
+  --info-dark: #1d4ed8;
+  --info-darkest: #1e3a8a;
+  --danger: #ef4444;
+  --danger-glow: #f87171;
+  --danger-soft: #fca5a5;
+  --danger-deep: #dc2626;
+  --danger-strong: #b91c1c;
+  --danger-dark: #991b1b;
+  --success: #10b981;
+  --success-soft: #34d399;
+  --success-pale: #6ee7b7;
+  --success-light: #86efac;
+  --success-wash: #d1fae5;     /* console output text */
+  --success-bright: #22c55e;
+  --success-mid: #16a34a;
+  --success-deep: #15803d;
+  --success-dark: #14532d;
+  --support: #a78bfa;          /* support-tier terms (violet) */
+  --support-soft: #c4b5fd;
+  --feature: #a855f7;          /* landing page: companion and workbench cards */
+  --feature-soft: #c084fc;
+  --shade: #000000;            /* shadows and dark overlays, used see-through */
+  --glare: #ffffff;            /* light overlays, used see-through */
+  --print-paper: #ffffff;      /* printed job aids: keep white */
+  --print-ink: #000000;        /* printed job aids: keep black */
+
+  /* ---------- term marks and the Four Rubber Bands ---------- */
+  --exam: var(--primary);
+  --exam-bg: color-mix(in srgb, var(--primary) 12%, transparent);
+  --support-bg: color-mix(in srgb, var(--support) 10%, transparent);
+  --flash: color-mix(in srgb, var(--accent) 45%, transparent);        /* a term the reader just jumped to */
+  --flash-strong: color-mix(in srgb, var(--accent) 55%, transparent); /* the same, on Portland Desk */
+  --primary-glow: color-mix(in srgb, var(--primary) 25%, transparent);
+  --term-telemetry: var(--primary);
+  --term-telemetry-bg: color-mix(in srgb, var(--primary) 12%, transparent);
+  --term-architecture: var(--support);
+  --term-architecture-bg: color-mix(in srgb, var(--support) 12%, transparent);
+  --term-analytical: var(--accent);
+  --term-analytical-bg: color-mix(in srgb, var(--accent) 12%, transparent);
+  --term-pedagogy: var(--success-soft);
+  --term-pedagogy-bg: color-mix(in srgb, var(--success-soft) 12%, transparent);
+  --term-transport: #ec4899;
+  --term-transport-bg: color-mix(in srgb, var(--term-transport) 12%, transparent);
+  /* Flashcard deck bands (lnk-deck.css): the edge color and the brighter badge color. */
+  --band-red: #dc2626;     --band-red-glow: #f87171;    --band-red-card: #dc2626;
+  --band-green: #16a34a;   --band-green-glow: #22c55e;  --band-green-card: #15803d;
+  --band-yellow: #ca8a04;  --band-yellow-glow: #eab308; --band-yellow-card: #a16207;
+  --band-blue: #2563eb;    --band-blue-glow: #3b82f6;   --band-blue-card: #2563eb;
+
+  /* ---------- fonts ---------- */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: Consolas, Monaco, "Courier New", monospace;          /* code, IDs, consoles on unit pages */
+  --font-code: 'JetBrains Mono', monospace;                         /* code on Portland Desk */
+  --font-terminal: ui-monospace, "Cascadia Code", "Fira Code", Menlo, Consolas, monospace;
+  --font-hand: 'Comic Neue', 'Patrick Hand', sans-serif;            /* handwritten job-aid cards */
+  --font-display: 'Bangers', 'Impact', sans-serif;                  /* comic headlines */
+  --font-comic: 'Bangers', cursive;                                 /* comic captions on job-aid cards */
+  --font-scrawl: 'Rock Salt', cursive;                              /* marker scrawl on job-aid cards */
+  --font-ui: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: Georgia, serif;
+  /* Optional flashcard fonts a unit can pick with deck_font (render_unit.py loads the font file). */
+  --font-deck-komika: 'Komika Text', sans-serif;
+  --font-deck-anime: 'Anime Ace', 'Comic Sans MS', sans-serif;
+
+  /* ---------- corners ---------- */
+  --radius-hairline: 2px;
+  --radius-xs: 3px;
+  --radius-sm: 4px;            /* badges, chips */
+  --radius-snug: 5px;
+  --radius-7: 7px;             /* one corner of the hand-cut job-aid card */
+  --radius-md: 6px;            /* buttons, inputs */
+  --radius-lg: 8px;            /* panels */
+  --radius-xl: 10px;
+  --radius-2xl: 12px;          /* main cards */
+  --radius-3xl: 14px;
+  --radius-4xl: 16px;
+  --radius-pill: 999px;
+}

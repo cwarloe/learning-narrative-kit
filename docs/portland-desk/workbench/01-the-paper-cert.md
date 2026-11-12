@@ -93,6 +93,7 @@ flowchart TD
     M -- Framing Errors / Garbage --> N["Inspect DB-9 connector for bent pins.<br/>Verify baud rate & parity settings on DIP switches."]
     M -- Clean Telemetry --> O["SYSTEM HEALTHY: Hand over to line dispatch."]
 
+    %% theme-ok: Mermaid style lines only accept literal colors (var() breaks the parser)
     style A fill:#2d3748,stroke:#4a5568,color:#fff
     style F fill:#742a2a,stroke:#e53e3e,color:#fff
     style O fill:#22543d,stroke:#38a169,color:#fff

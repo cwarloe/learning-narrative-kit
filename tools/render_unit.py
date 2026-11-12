@@ -626,11 +626,11 @@ def md_to_html(md: str, terms: dict):
 DECK_FONTS = {
     "komika-text": """
 @font-face { font-family: 'Komika Text'; src: url('../assets/fonts/komika-text.ttf') format('truetype'); font-weight: normal; font-style: normal; }
-.lnk-deck__q, .lnk-deck__a { font-family: 'Komika Text', sans-serif; font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
+.lnk-deck__q, .lnk-deck__a { font-family: var(--font-deck-komika); font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
 """,
     "anime-ace": """
 @font-face { font-family: 'Anime Ace'; src: url('../assets/fonts/anime-ace.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
-.lnk-deck__q, .lnk-deck__a { font-family: 'Anime Ace', 'Comic Sans MS', sans-serif; font-weight: normal; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.45; }
+.lnk-deck__q, .lnk-deck__a { font-family: var(--font-deck-anime); font-weight: normal; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.45; }
 """,
 }
 
@@ -703,7 +703,7 @@ def render_unit(unit_dir: Path, kit_root: Path | None = None, also_local: Path |
             raise SystemExit("--out is for previews outside docs/; omit it to render into docs/")
         out_dir = out_root / unit_id
         out_dir.mkdir(parents=True, exist_ok=True)
-        for asset in ("unit.css", "unit.js", "lnk-deck.css", "lnk-deck.js"):
+        for asset in ("tokens.css", "unit.css", "unit.js", "lnk-deck.css", "lnk-deck.js"):
             shutil.copyfile(kit_root / "docs" / asset, out_root / asset)
     else:
         out_dir = kit_root / "docs" / unit_id

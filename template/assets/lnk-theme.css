@@ -1,36 +1,9 @@
+@import url("tokens.css");
 /* ==========================================================================
    Learning Narrative Kit (LNK) — Universal Starter Theme
    Clean, Accessible, High-Contrast Dark Theme with Dual-Track Modes
    ========================================================================== */
 
-:root {
-  --bg: #0f172a;
-  --surface: #1e293b;
-  --surface-hover: #273549;
-  --surface-border: #334155;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --primary: #38bdf8;
-  --primary-glow: rgba(56, 189, 248, 0.25);
-  --accent: #f59e0b;
-  --accent-glow: rgba(245, 158, 11, 0.25);
-  --success: #10b981;
-  --danger: #ef4444;
-
-  /* Term Tint Colors */
-  --term-telemetry: #38bdf8;
-  --term-telemetry-bg: rgba(56, 189, 248, 0.12);
-  --term-architecture: #a78bfa;
-  --term-architecture-bg: rgba(167, 139, 250, 0.12);
-  --term-analytical: #f59e0b;
-  --term-analytical-bg: rgba(245, 158, 11, 0.12);
-  --term-pedagogy: #34d399;
-  --term-pedagogy-bg: rgba(52, 211, 153, 0.12);
-  --term-transport: #ec4899;
-  --term-transport-bg: rgba(236, 72, 153, 0.12);
-
-  --flash: rgba(245, 158, 11, 0.55);
-}
 
 /* Global Reset & Typography: Modern System Sans-Serif */
 * {
@@ -39,8 +12,8 @@
 
 html, body {
   background-color: var(--bg) !important;
-  color: var(--text-main) !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  color: var(--text-bright) !important;
+  font-family: var(--font-body) !important;
   font-size: 16px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -54,7 +27,7 @@ html, body {
    ========================================================================== */
 
 .sidebar {
-  background-color: #0b1220 !important;
+  background-color: var(--well) !important;
   border-right: 1px solid var(--surface-border) !important;
   color: var(--text-muted) !important;
   font-size: 0.90rem;
@@ -67,7 +40,7 @@ html, body {
 }
 
 .sidebar .app-name-link {
-  color: #ffffff !important;
+  color: var(--text-strong) !important;
   font-weight: 700;
   font-size: 1.15rem;
   letter-spacing: -0.02em;
@@ -78,9 +51,9 @@ html, body {
 .lnk-mode-switcher {
   margin: 0.75rem 1rem 1.25rem;
   padding: 0.35rem;
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--surface-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   display: flex;
   gap: 0.25rem;
 }
@@ -90,7 +63,7 @@ html, body {
   padding: 0.4rem 0.3rem;
   background: transparent;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--radius-snug);
   color: var(--text-muted);
   font-size: 0.72rem;
   font-weight: 600;
@@ -100,15 +73,15 @@ html, body {
 }
 
 .lnk-mode-btn:hover {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-bright);
+  background: color-mix(in srgb, var(--glare) 5%, transparent);
 }
 
 .lnk-mode-btn.active {
-  background: rgba(56, 189, 248, 0.18);
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
   color: var(--primary);
   font-weight: 700;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--shade) 20%, transparent);
 }
 
 .sidebar .search {
@@ -117,10 +90,10 @@ html, body {
 }
 
 .sidebar .search input {
-  background-color: #0f172a !important;
+  background-color: var(--bg) !important;
   border: 1px solid var(--surface-border) !important;
-  color: #ffffff !important;
-  border-radius: 6px !important;
+  color: var(--text-strong) !important;
+  border-radius: var(--radius-md) !important;
   font-size: 0.88rem !important;
   padding: 0.45rem 0.75rem !important;
   width: 100%;
@@ -153,20 +126,20 @@ html, body {
   font-weight: 400;
   padding: 0.3rem 0.75rem;
   display: block;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   transition: color 0.15s, background 0.15s;
   text-decoration: none !important;
 }
 
 .sidebar ul li a:hover {
   color: var(--primary) !important;
-  background: rgba(56, 189, 248, 0.08);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
 }
 
 .sidebar ul li.active > a {
   color: var(--primary) !important;
   font-weight: 600;
-  background: rgba(56, 189, 248, 0.12);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
   border-left: 3px solid var(--primary);
 }
 
@@ -213,17 +186,17 @@ html, body {
 .markdown-section {
   background: var(--surface) !important;
   border: 1px solid var(--surface-border) !important;
-  border-radius: 12px !important;
+  border-radius: var(--radius-2xl) !important;
   padding: 2.75rem 2.5rem !important;
   min-width: 0 !important;
-  color: var(--text-main) !important;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+  color: var(--text-bright) !important;
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--shade) 40%, transparent);
 }
 
 @media (max-width: 640px) {
   .markdown-section {
     padding: 1.75rem 1.25rem !important;
-    border-radius: 8px !important;
+    border-radius: var(--radius-lg) !important;
   }
 }
 
@@ -241,7 +214,7 @@ body.mode-reader .sidebar ul li[data-track="workbench"]:hover {
 }
 body.mode-reader .sidebar ul li[data-track="narrative"] > a {
   font-weight: 600;
-  color: #ffffff !important;
+  color: var(--text-strong) !important;
 }
 
 /* Workbench Mode: Streamlined for hands-on drills */
@@ -254,7 +227,7 @@ body.mode-workbench .sidebar ul li[data-track="narrative"]:hover {
 }
 body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
   font-weight: 600;
-  color: #ffffff !important;
+  color: var(--text-strong) !important;
 }
 
 /* ==========================================================================
@@ -264,7 +237,7 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 .markdown-section h1 {
   font-size: 2rem !important;
   font-weight: 700 !important;
-  color: #ffffff !important;
+  color: var(--text-strong) !important;
   letter-spacing: -0.025em;
   line-height: 1.25;
   margin-bottom: 0.6rem;
@@ -284,7 +257,7 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 .markdown-section h3 {
   font-size: 1.12rem !important;
   font-weight: 600 !important;
-  color: #ffffff !important;
+  color: var(--text-strong) !important;
   margin-top: 2rem;
   margin-bottom: 0.6rem;
 }
@@ -302,13 +275,13 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 .markdown-section li {
   font-size: 1.02rem;
   line-height: 1.75;
-  color: var(--text-main) !important;
+  color: var(--text-bright) !important;
   margin-bottom: 1.2rem;
 }
 
 .markdown-section strong {
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text-strong);
 }
 
 .markdown-section a {
@@ -329,10 +302,10 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 .markdown-section blockquote {
   font-style: normal;
   border-left: 3px solid var(--primary) !important;
-  background: rgba(15, 23, 42, 0.65) !important;
-  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--bg) 65%, transparent) !important;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
   padding: 0.85rem 1.25rem !important;
-  color: var(--text-main) !important;
+  color: var(--text-bright) !important;
   margin: 1.5rem 0 !important;
 }
 
@@ -343,7 +316,7 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 .term {
   cursor: pointer;
   font-weight: 500;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 1px 4px;
   border-bottom: none !important;
   text-decoration: none !important;
@@ -363,15 +336,15 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 }
 
 .term.flash, .story-highlight {
-  background: var(--flash) !important;
-  box-shadow: 0 0 0 3px var(--flash) !important;
-  border-radius: 4px;
+  background: var(--flash-strong) !important;
+  box-shadow: 0 0 0 3px var(--flash-strong) !important;
+  border-radius: var(--radius-sm);
   animation: flash-pulse 1.4s ease-out;
 }
 
 @keyframes flash-pulse {
-  0% { background-color: rgba(245, 158, 11, 0.7); box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.4); }
-  70% { background-color: rgba(245, 158, 11, 0.25); box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15); }
+  0% { background-color: color-mix(in srgb, var(--accent) 70%, transparent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 40%, transparent); }
+  70% { background-color: color-mix(in srgb, var(--accent) 25%, transparent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 15%, transparent); }
   100% { background-color: transparent; box-shadow: none; }
 }
 
@@ -379,10 +352,10 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 #lnk-tooltip {
   position: absolute;
   display: none;
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--primary);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8);
-  border-radius: 8px;
+  box-shadow: 0 12px 36px color-mix(in srgb, var(--shade) 80%, transparent);
+  border-radius: var(--radius-lg);
   padding: 0.95rem 1.1rem;
   width: 320px;
   max-width: calc(100vw - 24px);
@@ -390,7 +363,7 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
   pointer-events: none;
   font-size: 0.88rem;
   line-height: 1.5;
-  color: var(--text-main);
+  color: var(--text-bright);
 }
 
 #lnk-tooltip .tt-tier {
@@ -399,22 +372,22 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 2px 7px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   margin-bottom: 0.45rem;
   font-weight: 700;
-  background: rgba(56, 189, 248, 0.18);
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
   color: var(--primary);
 }
 
 #lnk-tooltip .tt-title {
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-strong);
   font-size: 0.98rem;
   margin-bottom: 0.35rem;
 }
 
 #lnk-tooltip .tt-body {
-  color: var(--text-main);
+  color: var(--text-bright);
 }
 
 #lnk-tooltip .tt-context {
@@ -433,12 +406,12 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 #lnk-glossary-aside {
   background: var(--surface);
   border: 1px solid var(--surface-border);
-  border-radius: 12px;
+  border-radius: var(--radius-2xl);
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   min-height: 0;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--shade) 35%, transparent);
 }
 
 @media (min-width: 1100px) {
@@ -463,7 +436,7 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 #lnk-glossary-aside h3 {
   font-size: 1.05rem;
   margin-bottom: 0.25rem;
-  color: #ffffff;
+  color: var(--text-strong);
 }
 
 .sidebar-meta {
@@ -482,9 +455,9 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 .filter-bar button {
   flex: 1 1 auto;
   padding: 0.4rem 0.55rem;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--surface-border);
-  background: #0f172a;
+  background: var(--bg);
   color: var(--text-muted);
   font-size: 0.76rem;
   font-weight: 600;
@@ -493,23 +466,23 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 }
 
 .filter-bar button:hover {
-  color: #ffffff;
+  color: var(--text-strong);
   border-color: var(--primary);
 }
 
 .filter-bar button.active {
   border-color: var(--primary);
-  color: #ffffff;
-  background: rgba(56, 189, 248, 0.18);
+  color: var(--text-strong);
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
 }
 
 #search-box {
   width: 100%;
   padding: 0.55rem 0.75rem;
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--surface-border);
-  border-radius: 6px;
-  color: #ffffff;
+  border-radius: var(--radius-md);
+  color: var(--text-strong);
   font-size: 0.86rem;
   margin-bottom: 0.75rem;
 }
@@ -534,7 +507,7 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 
 .term-item {
   padding: 0.45rem 0.55rem;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   font-size: 0.84rem;
   color: var(--text-muted);
@@ -547,8 +520,8 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 }
 
 .term-item:hover, .term-item.selected {
-  background: #334155;
-  color: #ffffff;
+  background: var(--surface-raised);
+  color: var(--text-strong);
 }
 
 .term-item .badge {
@@ -556,7 +529,7 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding: 1px 5px;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   font-weight: 600;
   flex-shrink: 0;
 }
@@ -585,7 +558,7 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 
 .detail-panel .d-title {
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-strong);
   font-size: 0.95rem;
   margin-bottom: 0.25rem;
 }
@@ -596,16 +569,16 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 1px 6px;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   margin-bottom: 0.45rem;
   font-weight: 600;
-  background: rgba(56, 189, 248, 0.18);
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
   color: var(--primary);
 }
 
 .detail-panel .d-def {
   font-size: 0.84rem;
-  color: var(--text-main);
+  color: var(--text-bright);
   line-height: 1.5;
   margin-bottom: 0.4rem;
 }
@@ -626,11 +599,11 @@ body.mode-workbench .sidebar ul li[data-track="workbench"] > a {
 .prediction-gate {
   margin: 2rem 0;
   padding: 1.25rem 1.45rem;
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--surface-border);
   border-left: 4px solid var(--accent);
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--shade) 30%, transparent);
 }
 
 .prediction-gate h4 {
@@ -665,20 +638,20 @@ details.reveal-gate summary:hover {
 details.reveal-gate .reveal-content {
   margin-top: 0.85rem;
   padding: 1.15rem 1.25rem;
-  background: rgba(30, 41, 59, 0.75);
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
   border: 1px solid var(--surface-border);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
 }
 
 /* Chapter Bridge Card (Story Track to Workbench Track) */
 .bridge-card {
   margin: 3rem 0 1.5rem;
   padding: 1.5rem 1.75rem;
-  background: linear-gradient(145deg, #131d31, #0f172a);
+  background: linear-gradient(145deg, var(--well-raised), var(--bg));
   border: 1px solid var(--surface-border);
   border-left: 4px solid var(--primary);
-  border-radius: 8px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--shade) 35%, transparent);
 }
 
 .bridge-label {
@@ -693,7 +666,7 @@ details.reveal-gate .reveal-content {
 .bridge-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-strong);
   margin-bottom: 0.45rem;
 }
 
@@ -710,11 +683,11 @@ details.reveal-gate .reveal-content {
   gap: 0.45rem;
   padding: 0.6rem 1.2rem;
   background: var(--primary);
-  color: #0b1220 !important;
+  color: var(--primary-ink) !important;
   text-decoration: none !important;
   font-size: 0.88rem;
   font-weight: 700;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   transition: transform 0.15s, opacity 0.15s;
 }
 
@@ -728,22 +701,22 @@ details.reveal-gate .reveal-content {
    ========================================================================== */
 
 code, pre {
-  font-family: Consolas, Monaco, "Courier New", monospace !important;
+  font-family: var(--font-mono) !important;
 }
 
 .markdown-section code {
-  background: rgba(0, 0, 0, 0.4) !important;
+  background: color-mix(in srgb, var(--shade) 40%, transparent) !important;
   padding: 2px 6px !important;
-  border-radius: 4px !important;
-  color: #f1f5f9 !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--text-bright) !important;
   font-size: 0.88em !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid color-mix(in srgb, var(--glare) 8%, transparent) !important;
 }
 
 .markdown-section pre {
-  background: #0b1220 !important;
+  background: var(--well) !important;
   border: 1px solid var(--surface-border) !important;
-  border-radius: 8px !important;
+  border-radius: var(--radius-lg) !important;
   padding: 1rem 1.25rem !important;
   overflow-x: auto !important;
 }
@@ -751,7 +724,7 @@ code, pre {
 .markdown-section pre > code {
   background: transparent !important;
   border: none !important;
-  color: #d1fae5 !important;
+  color: var(--success-wash) !important;
 }
 
 /* High-Contrast Tables */
@@ -760,14 +733,14 @@ code, pre {
   width: 100% !important;
   border-collapse: collapse !important;
   border: 1px solid var(--surface-border) !important;
-  border-radius: 6px !important;
+  border-radius: var(--radius-md) !important;
   margin: 1.75rem 0 !important;
-  background: #0f172a !important;
+  background: var(--bg) !important;
 }
 
 .markdown-section table th {
-  background-color: #111827 !important;
-  color: #ffffff !important;
+  background-color: var(--well-bar) !important;
+  color: var(--text-strong) !important;
   font-size: 0.78rem !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
@@ -781,39 +754,39 @@ code, pre {
   border-bottom: 1px solid var(--surface-border) !important;
   padding: 0.75rem 0.9rem !important;
   font-size: 0.90rem !important;
-  color: var(--text-main) !important;
+  color: var(--text-bright) !important;
 }
 
 .markdown-section table tr:nth-child(even) td {
-  background-color: #162032 !important;
+  background-color: var(--well-raised) !important;
 }
 
 /* Scene Artifact: Terminal / Console */
 .console-body {
   margin: 1.5rem 0;
   padding: 1rem 1.25rem;
-  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-family: var(--font-mono);
   font-size: 0.85rem;
   line-height: 1.6;
-  background: #0b1220;
-  color: #d1fae5;
-  border-radius: 8px;
+  background: var(--well);
+  color: var(--success-wash);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--surface-border);
   overflow-x: auto;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--shade) 35%, transparent);
 }
 
-.console-body .cmd { color: #fde68a; font-weight: 600; }
-.console-body .cmt { color: #64748b; font-style: italic; }
-.console-body .out { color: #cbd5e1; }
+.console-body .cmd { color: var(--accent-pale); font-weight: 600; }
+.console-body .cmt { color: var(--text-faint); font-style: italic; }
+.console-body .out { color: var(--text-soft); }
 
 /* Scene Artifact: Incident Ticket */
 .ticket-chrome {
   border: 1px solid var(--surface-border);
-  border-radius: 8px;
-  background: #0b1220;
+  border-radius: var(--radius-lg);
+  background: var(--well);
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--shade) 35%, transparent);
   margin: 1.75rem 0;
 }
 
@@ -822,13 +795,13 @@ code, pre {
   align-items: center;
   gap: 0.5rem;
   padding: 0.55rem 0.9rem;
-  background: #111827;
+  background: var(--well-bar);
   border-bottom: 1px solid var(--surface-border);
   font-size: 0.80rem;
 }
 
 .ticket-id {
-  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-family: var(--font-mono);
   color: var(--primary);
   font-weight: 700;
 }
@@ -845,31 +818,31 @@ code, pre {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 2px 7px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 }
 
 .sev.high, .sev.critical {
-  background: rgba(239, 68, 68, 0.2);
-  color: #fca5a5;
-  border: 1px solid rgba(239, 68, 68, 0.4);
+  background: color-mix(in srgb, var(--danger) 20%, transparent);
+  color: var(--danger-soft);
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
 }
 
 .sev.medium {
-  background: rgba(245, 158, 11, 0.2);
-  color: #fde68a;
-  border: 1px solid rgba(245, 158, 11, 0.4);
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  color: var(--accent-pale);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .sev.low {
-  background: rgba(16, 185, 129, 0.2);
-  color: #6ee7b7;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  background: color-mix(in srgb, var(--success) 20%, transparent);
+  color: var(--success-pale);
+  border: 1px solid color-mix(in srgb, var(--success) 40%, transparent);
 }
 
 .ticket-subject {
   padding: 0.8rem 1rem 0.2rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-strong);
   font-size: 1.05rem;
 }
 
@@ -890,7 +863,7 @@ code, pre {
 
 .ticket-meta dd {
   font-size: 0.90rem;
-  color: var(--text-main);
+  color: var(--text-bright);
   font-weight: 500;
   margin: 0;
 }

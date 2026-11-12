@@ -7,6 +7,7 @@
 This file exists so the playbook still loads in contexts where `AGENTS.md` isn't read directly — in particular, a Claude Code project that clones several repositories, where each clone is attached as an additional directory and only `CLAUDE.md` loads from it. Keep Claude-only instructions below this line.
 
 - **Portland Desk source:** Edit `docs/portland-desk/` directly; it is the single source and the published courseware. Do not recreate the archived root copy.
+- **Look comes from tokens:** every color, font and corner is a `var(--name)` from `docs/tokens.css`; never write a raw value in CSS, a renderer, or a `style="..."`. Rule and how-to: `docs/THEMING.md`. `tools/check_theme.py` must PASS.
 - **Validate before render, render before commit:** `validate_unit.py` and `template/tools/check-links.py` must PASS; a warn is not a pass-with-notes to argue past, it's a thing to fix or explain.
 - **Plain-English Standard (MANDATORY):** Adhere strictly to `docs/research/PLAIN_ENGLISH_STYLE_GUIDE.md`. Banned terms include "invariant/invariants", "falsifiable hypothesis", "rubric", "pedagogy", "heuristic" (in general prose), and "scaffolding". All courseware must read in natural spoken English accessible to a U.S. high school graduate.
 - **Story and lab:** Follow the approved model in `AGENTS.md` and `docs/research/PEDAGOGICAL_AGENCY_ARCHITECTURE.md`. Chapters may show the answer; labs open with worked examples and end with a transfer problem. Do not withhold story answers or put story resolutions in lab epilogues.

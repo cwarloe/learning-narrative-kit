@@ -56,7 +56,8 @@ template/
 ├── .nojekyll                  # Bypasses Jekyll on GitHub Pages
 │
 ├── assets/
-│   ├── lnk-theme.css          # High-contrast 2-column dark theme (#0f172a / #1e293b)
+│   ├── tokens.css             # Every color, font and corner. Change the look here, nowhere else
+│   ├── lnk-theme.css          # High-contrast 2-column dark theme; uses var(--token) from tokens.css
 │   ├── lnk-shell.js           # Mode switcher, docked glossary drawer, hover popovers
 │   └── glossary.json          # Starter domain vocabulary database
 │

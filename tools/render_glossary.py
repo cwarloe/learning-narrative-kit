@@ -75,22 +75,18 @@ PAGE = """<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} — Glossary</title>
+  <link rel="stylesheet" href="../../tokens.css">
   <style>
-    :root {{
-      --bg: #0f172a; --surface: #1e293b; --surface-border: #334155;
-      --text-main: #e2e8f0; --text-muted: #94a3b8; --primary: #38bdf8;
-      --exam: #38bdf8; --support: #a78bfa;
-    }}
     * {{ box-sizing: border-box; margin: 0; padding: 0; }}
     body {{
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: var(--font-body);
       background: var(--bg); color: var(--text-main); line-height: 1.55; padding: 2rem 1.25rem 4rem;
     }}
     .wrap {{ max-width: 820px; margin: 0 auto; }}
     a {{ color: var(--primary); }}
     .crumb {{ font-size: 0.82rem; margin-bottom: 1.1rem; }}
     .crumb a {{ text-decoration: none; }}
-    h1 {{ font-size: 1.75rem; color: #fff; letter-spacing: -0.02em; line-height: 1.25; }}
+    h1 {{ font-size: 1.75rem; color: var(--text-strong); letter-spacing: -0.02em; line-height: 1.25; }}
     .sub {{ color: var(--primary); font-weight: 600; margin: 0.2rem 0 0.6rem; }}
     .lede {{ color: var(--text-muted); font-size: 0.93rem; margin-bottom: 1.25rem; }}
     .tools {{
@@ -99,23 +95,23 @@ PAGE = """<!DOCTYPE html>
     }}
     .row {{ display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }}
     #q {{
-      flex: 1 1 240px; padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid var(--surface-border);
-      background: #0b1220; color: #fff; font-size: 0.95rem;
+      flex: 1 1 240px; padding: 0.6rem 0.75rem; border-radius: var(--radius-lg); border: 1px solid var(--surface-border);
+      background: var(--well); color: var(--text-strong); font-size: 0.95rem;
     }}
     #q:focus {{ outline: 2px solid var(--primary); outline-offset: 1px; }}
     .tier {{ display: flex; gap: 0.35rem; }}
     .tier button {{
-      padding: 0.5rem 0.7rem; border-radius: 8px; border: 1px solid var(--surface-border);
-      background: #0b1220; color: var(--text-muted); font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      padding: 0.5rem 0.7rem; border-radius: var(--radius-lg); border: 1px solid var(--surface-border);
+      background: var(--well); color: var(--text-muted); font-size: 0.82rem; font-weight: 600; cursor: pointer;
     }}
-    .tier button[aria-pressed="true"] {{ border-color: var(--primary); color: #fff; background: rgba(56,189,248,0.15); }}
+    .tier button[aria-pressed="true"] {{ border-color: var(--primary); color: var(--text-strong); background: color-mix(in srgb, var(--primary) 15%, transparent); }}
     .letters {{ display: flex; flex-wrap: wrap; gap: 0.15rem; margin-top: 0.6rem; }}
     .letters a {{
-      display: inline-block; min-width: 1.7rem; text-align: center; padding: 0.15rem 0.2rem; border-radius: 5px;
+      display: inline-block; min-width: 1.7rem; text-align: center; padding: 0.15rem 0.2rem; border-radius: var(--radius-snug);
       text-decoration: none; font-size: 0.82rem; font-weight: 600;
     }}
     .letters a:hover {{ background: var(--surface); }}
-    .letters span {{ display: inline-block; min-width: 1.7rem; text-align: center; font-size: 0.82rem; color: #475569; }}
+    .letters span {{ display: inline-block; min-width: 1.7rem; text-align: center; font-size: 0.82rem; color: var(--text-disabled); }}
     .count {{ font-size: 0.8rem; color: var(--text-muted); margin-top: 0.45rem; }}
     section {{ margin-bottom: 1.6rem; scroll-margin-top: 9.5rem; }}
     section > h2 {{
@@ -123,22 +119,22 @@ PAGE = """<!DOCTYPE html>
       padding-bottom: 0.25rem; margin-bottom: 0.4rem;
     }}
     dl {{ display: block; }}
-    .entry {{ padding: 0.7rem 0; border-bottom: 1px solid rgba(51,65,85,0.5); }}
+    .entry {{ padding: 0.7rem 0; border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 50%, transparent); }}
     .entry:last-child {{ border-bottom: none; }}
-    dt {{ font-weight: 650; color: #fff; font-size: 1rem; }}
+    dt {{ font-weight: 650; color: var(--text-strong); font-size: 1rem; }}
     .badge {{
       display: inline-block; margin-left: 0.4rem; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.05em;
-      text-transform: uppercase; padding: 1px 6px; border-radius: 4px; vertical-align: 2px;
+      text-transform: uppercase; padding: 1px 6px; border-radius: var(--radius-sm); vertical-align: 2px;
     }}
-    .badge.exam {{ color: var(--exam); background: rgba(56,189,248,0.12); }}
-    .badge.support {{ color: var(--support); background: rgba(167,139,250,0.12); }}
+    .badge.exam {{ color: var(--exam); background: color-mix(in srgb, var(--primary) 12%, transparent); }}
+    .badge.support {{ color: var(--support); background: color-mix(in srgb, var(--support) 12%, transparent); }}
     dd {{ margin: 0.25rem 0 0; font-size: 0.92rem; }}
     dd .ctx {{ color: var(--text-muted); font-size: 0.85rem; margin-top: 0.15rem; }}
     dd + dd {{ margin-top: 0.5rem; }}
     .def-from {{ font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }}
     .in {{ margin-top: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; font-size: 0.78rem; color: var(--text-muted); }}
     .in a {{
-      text-decoration: none; padding: 0.15rem 0.5rem; border-radius: 999px; border: 1px solid var(--surface-border);
+      text-decoration: none; padding: 0.15rem 0.5rem; border-radius: var(--radius-pill); border: 1px solid var(--surface-border);
       background: var(--surface); color: var(--text-main); font-size: 0.78rem;
     }}
     .in a:hover {{ border-color: var(--primary); }}

@@ -47,7 +47,8 @@ def check_deck_contrast(deck):
     # Badge/counter sit on the dark deck; card tags use the current band background.
     # Check every band's tag as the existing test cycles through all of its cards.
     assert deck.evaluate("""e => {
-        const rgb = s => s.match(/[\\d.]+/g).slice(0, 3).map(Number);
+        // Tokens mix see-through colors with color-mix(), which computes to color(srgb r g b / a) in 0-1 units.
+        const rgb = s => s.match(/[\\d.]+/g).slice(0, 3).map(Number).map(v => s.startsWith('color(') ? v * 255 : v);
         const lum = c => c.map(v => v/255).map(v => v <= .04045 ? v/12.92 : ((v+.055)/1.055)**2.4)
             .reduce((sum,v,i) => sum + v*[.2126,.7152,.0722][i], 0);
         const ratio = (a,b) => (Math.max(lum(a),lum(b))+.05)/(Math.min(lum(a),lum(b))+.05);

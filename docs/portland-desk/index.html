@@ -121,7 +121,7 @@
               } else {
                 visualHtml = `<div class="panel-placeholder">
                   <div class="panel-placeholder-icon">&#9638; [ GRAPHIC NOVEL SCHEMATIC PANEL ]</div>
-                  <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">Concept Art Prompt Ready for Grok Imagine</div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Concept Art Prompt Ready for Grok Imagine</div>
                   ${prompt ? `<div class="panel-placeholder-prompt"><strong>Prompt:</strong> ${prompt}</div>` : ''}
                 </div>`;
               }
@@ -206,7 +206,7 @@
                 }).join('') + '</div>';
               }
 
-              return `<div class="lnk-term-window lnk-terminal-instance" data-config="${configStr}" data-commands="${cmdStr}">\n  <div class="lnk-term-bar">\n    <div class="lnk-term-dots">\n      <span class="lnk-term-dot red"></span>\n      <span class="lnk-term-dot yellow"></span>\n      <span class="lnk-term-dot green"></span>\n    </div>\n    <div class="lnk-term-title">${title}</div>\n    <div class="lnk-term-actions">\n      ${replay ? '<button type="button" class="lnk-term-btn lnk-term-replay-btn">Replay Triage</button>' : ''}\n    </div>\n  </div>\n  <div class="lnk-term-screen">\n    <div class="lnk-term-line"><span style="color:#64748b;">// Type diagnostic commands or click 'Replay Triage'. Type 'help' for available commands.</span></div>\n    <div class="lnk-term-input-row">\n      <span class="lnk-term-prompt">${prompt}</span>\n      <input type="text" class="lnk-term-input" spellcheck="false" autocomplete="off" placeholder="...">\n    </div>\n  </div>\n  ${objPills}\n</div>`;
+              return `<div class="lnk-term-window lnk-terminal-instance" data-config="${configStr}" data-commands="${cmdStr}">\n  <div class="lnk-term-bar">\n    <div class="lnk-term-dots">\n      <span class="lnk-term-dot red"></span>\n      <span class="lnk-term-dot yellow"></span>\n      <span class="lnk-term-dot green"></span>\n    </div>\n    <div class="lnk-term-title">${title}</div>\n    <div class="lnk-term-actions">\n      ${replay ? '<button type="button" class="lnk-term-btn lnk-term-replay-btn">Replay Triage</button>' : ''}\n    </div>\n  </div>\n  <div class="lnk-term-screen">\n    <div class="lnk-term-line"><span style="color:var(--text-faint);">// Type diagnostic commands or click 'Replay Triage'. Type 'help' for available commands.</span></div>\n    <div class="lnk-term-input-row">\n      <span class="lnk-term-prompt">${prompt}</span>\n      <input type="text" class="lnk-term-input" spellcheck="false" autocomplete="off" placeholder="...">\n    </div>\n  </div>\n  ${objPills}\n</div>`;
             });
 
             return content;
@@ -364,16 +364,20 @@
     mermaid.initialize({
       startOnLoad: false,
       theme: 'dark',
-      themeVariables: {
-        darkMode: true,
-        background: '#0f172a',
-        primaryColor: '#1e293b',
-        primaryTextColor: '#f8fafc',
-        primaryBorderColor: '#38bdf8',
-        lineColor: '#38bdf8',
-        secondaryColor: '#334155',
-        tertiaryColor: '#1e293b'
-      }
+      // Mermaid needs real color values, so read them from tokens.css (loaded above).
+      themeVariables: (() => {
+        const t = getComputedStyle(document.documentElement), v = n => t.getPropertyValue(n).trim();
+        return {
+          darkMode: true,
+          background: v('--bg'),
+          primaryColor: v('--surface'),
+          primaryTextColor: v('--text-bright'),
+          primaryBorderColor: v('--primary'),
+          lineColor: v('--primary'),
+          secondaryColor: v('--surface-border'),
+          tertiaryColor: v('--surface')
+        };
+      })()
     });
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.js"></script>
