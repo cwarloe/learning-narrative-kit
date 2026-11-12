@@ -21,7 +21,7 @@ prompt: "Clean technical illustration of a smartphone on an office desk next to 
 
 Nora in finance could not reset. She had tried her old favorite three times. The portal said no.
 
-"I always rotate the season and the year," she said on the phone. "Spring2024!, Summer2024! — that used to work everywhere. Now it hates me. Also it wants sixteen characters. Who remembers sixteen?"
+"I always rotate the season and the year," she said on the phone. "Spring2025!, Summer2025! — that used to work everywhere. Now it hates me. Also it wants sixteen characters. Who remembers sixteen?"
 
 I pulled the account. Password age was ninety-one days. Policy max was ninety. Her last change had slid under the wire last quarter; today the portal was enforcing password expiration before it would talk about a reset path.
 

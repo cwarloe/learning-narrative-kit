@@ -81,7 +81,7 @@ Reggie walked the lobby with me and pointed out what I had walked past for two y
 
 ## The Bench and the Barcode Guns
 
-Wireless ops recorded the lobby device's BSSID and location. Security brought a radio-shielding pouch and sealed the device inside for the incident team; the duplicate signal disappeared from the analyzer. Network disabled the conference-room jack Rita had used so nobody could reconnect her travel router. Dev's laptop returned to our access points using the managed 802.1X profile.
+Wireless ops recorded the lobby device's BSSID and location. Security sent someone down from the floor above with a radio-shielding pouch. He wore an Equipment Group badge, sealed the device inside for the incident team, and left without asking who had found it; the duplicate signal disappeared from the analyzer. Network disabled the conference-room jack Rita had used so nobody could reconnect her travel router. Dev's laptop returned to our access points using the managed 802.1X profile.
 
 The scanner check was less tidy. Wireless ops found legacy profiles that did not enforce the approved RADIUS server names. I called Ken before taking those scanners off wireless. Removing the lobby device would not fix a profile that could trust the next impostor; we kept the affected scanners offline until we could replace their profiles.
 

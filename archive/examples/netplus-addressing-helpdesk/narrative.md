@@ -171,7 +171,7 @@ I pulled up the switch interface monitor and opened the passdown template. I had
 
 ```bridge-card
 title: Portland Desk Lab: IPv4 Addressing, Subnet Boundaries, & Local Delivery Triage
-target: workbench/03-the-default-gateway-doesnt-care.md
+target: workbench.md
 domain: CompTIA Network+ N10-008/009 • Domain 1.4 & 4.1
 badge: Hands-On Lab
 ---

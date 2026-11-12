@@ -1,10 +1,10 @@
 Delivered-To: ethan.mercer@harrowmere.com
 Received: from mail-gateway01.harrowmere.com (mail-gateway01.harrowmere.com [198.51.100.24])
 	by imap-internal.harrowmere.com (Postfix) with ESMTPS id 4K81920L01
-	for <ethan.mercer@harrowmere.com>; Wed, 21 Oct 2026 08:30:15 -0700
+	for <ethan.mercer@harrowmere.com>; Wed, 10 Dec 2025 08:30:15 -0800
 Received: from out-relay.mail.harrowmere.com (out-relay.mail.harrowmere.com [198.51.100.10])
 	by mail-gateway01.harrowmere.com (CipherMail) with ESMTPS id 2J99182C
-	for <ethan.mercer@harrowmere.com>; Wed, 21 Oct 2026 08:30:14 -0700
+	for <ethan.mercer@harrowmere.com>; Wed, 10 Dec 2025 08:30:14 -0800
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=harrowmere.com;
 	s=selector1; t=1697897414;
 	bh=9zE8x+W9kY5K1G0fC+6v3u2H1q0=;
@@ -17,8 +17,8 @@ Authentication-Results: mail-gateway01.harrowmere.com;
 From: "Jules Brooks" <jules.brooks@harrowmere.com>
 To: ethan.mercer@harrowmere.com
 Subject: Shift Handoff & Phishing Triage Protocol Review
-Date: Wed, 21 Oct 2026 08:30:00 -0700
-Message-ID: <handoff-20261021-0830@harrowmere.com>
+Date: Wed, 10 Dec 2025 08:30:00 -0800
+Message-ID: <handoff-20251210-0830@harrowmere.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 

@@ -17,7 +17,7 @@ Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_to
 | `render_glossary.py` | Track → one A-Z glossary page | below |
 | `build_hub_index.py` | Writes `docs/index.html` (the landing page) from `HTML_CONTENT` | below |
 | `check_hub_links.py` | Landing page matches builder; hub links resolve (CI) | below |
-| `check_ep07_capture.py` | Episode 7 Drill 1 table ↔ `jared-telnet-capture.pcap`, plus the `docs/` mirror (CI) | `AGENTS.md` |
+| `check_ep07_capture.py` | Episode 7 Drill 1 table ↔ `jared-telnet-capture.pcap`: frames, passwords, syslog dates against frame dates, capture dated before Jared's ticket, gateway MAC address on off-subnet frames (CI) | `AGENTS.md` |
 | `check_tools_index.py` | This index lists every script in `tools/` (CI, fails on a gap) | this section |
 | `author.py` | Authoring bookkeeping: brief → plan → review → status | below |
 | `voice_check.py` | Machine-prose tells; a reading aid, not a gate | below |

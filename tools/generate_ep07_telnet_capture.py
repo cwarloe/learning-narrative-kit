@@ -2,9 +2,16 @@
 """Build docs/portland-desk/artifacts/jared-telnet-capture.pcap for Episode 7, Drill 1.
 
 The drill prints frames 101-137 of a capture taken from a span port on the
-management VLAN. This script writes that capture as a real .pcap so learners can
+management segment (the 192.168.10.0/24 side, where Jared's workstation sits). This script writes that capture as a real .pcap so learners can
 open it in Wireshark: 100 frames of ordinary management traffic (frames 1-100),
 then Jared's Telnet session exactly as the drill table lists it (frames 101-137).
+
+The capture is dated a week before Jared's ticket INC0063140 (2025-08-12), because
+the drill calls it his previous run. Times are Portland local time (PDT, UTC-7):
+the frame timestamps, the drill table and the text inside the syslog frames all
+come from the one T0 below, so they cannot drift apart. The switch (10.0.4.15) is
+on another subnet, so every frame to or from it carries the default gateway's MAC
+address on this segment, as Episode 3 teaches.
 
 Needs scapy (not in requirements.txt: `pip install scapy`). The output is
 deterministic, so rerunning it gives the same file.
@@ -22,7 +29,9 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else "docs/portland-desk/artifacts/jared-
 CLIENT, SWITCH = "192.168.10.45", "10.0.4.15"          # from the drill
 RESOLVER, NTPSRV, LOGHOST, PINGER, GATEWAY = ("192.168.10.2", "192.168.10.3",
                                               "192.168.10.5", "192.168.10.50", "192.168.10.1")
-T0 = dt.datetime(2026, 10, 13, 8, 44, 12, tzinfo=dt.timezone.utc)   # frame 101, per the drill
+PDT = dt.timezone(dt.timedelta(hours=-7), "PDT")      # Portland in August
+T0 = dt.datetime(2025, 8, 5, 8, 44, 12, tzinfo=PDT)   # frame 101, per the drill (08:44:12 local)
+LOCAL_NET = "192.168.10."                             # the segment the span port sees
 rng = random.Random(7)
 
 
@@ -30,8 +39,13 @@ def mac(ip):
     return "02:00:" + ":".join(f"{int(o):02x}" for o in ip.split("."))
 
 
+def hop(ip):
+    """The MAC address seen on this segment for ip: its own if local, else the gateway's."""
+    return mac(ip if ip.startswith(LOCAL_NET) else GATEWAY)
+
+
 def eth(src, dst):
-    return Ether(src=mac(src), dst=mac(dst))
+    return Ether(src=hop(src), dst=hop(dst))
 
 
 def stamp(pkt, when):
@@ -73,7 +87,8 @@ logs = ["port Gi1/0/12 link up", "port Gi1/0/12 link down", "fan 1 speed normal"
         "NTP synchronized to 192.168.10.3", "port Gi1/0/7 link up"]
 for i in range(30):   # syslog from the switch to the log host, 30 frames
     off = rng.uniform(1, 40)
-    stamp_txt = (T0 - dt.timedelta(seconds=off)).strftime("Oct 13 %H:%M:%S")   # matches arrival time
+    sent = T0 - dt.timedelta(seconds=off)                       # the switch's clock, Portland local time
+    stamp_txt = f"{sent:%b} {sent.day:2d} {sent:%H:%M:%S}"      # classic syslog date, e.g. "Aug  5 08:43:32"
     groups.append((off, [
         (0, eth(SWITCH, LOGHOST) / IP(src=SWITCH, dst=LOGHOST) / UDP(sport=514, dport=514) /
          Raw(f"<189>{stamp_txt} Switch-Closet-C: {logs[i % len(logs)]}\n".encode()))]))
@@ -109,7 +124,7 @@ tcp("s", "SA", when=0.01)                                      # 102
 tcp("c", "A", when=0.02)                                       # 103
 tcp("s", "PA", b"User Access Verification\r\n", when=1.0)      # 104
 tcp("s", "PA", b"Password: ", when=1.1)                        # 105
-for i, ch in enumerate("C1sco_Sw!tch_2026"):                   # 106-122, one key per frame
+for i, ch in enumerate("C1sco_Sw!tch_2025"):                   # 106-122, one key per frame
     tcp("c", "PA", ch.encode(), when=2.0 + i * 0.03)
 tcp("c", "PA", b"\r\n", when=2.6)                              # 123
 tcp("s", "PA", b"Switch-Closet-C> enable", when=3.0)           # 124

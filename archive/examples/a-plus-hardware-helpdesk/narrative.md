@@ -88,7 +88,7 @@ The following desk translation table contrasts textbook certification definition
 
 ```bridge-card
 title: Hands-On Lab: Hardware Fault Isolation & Layer 1 Diagnostics
-target: workbench/01-the-paper-cert.md
+target: workbench.md
 domain: CompTIA A+ Core 1 (220-1101) • Domain 3.0 Hardware & Network Troubleshooting
 badge: Hands-On Lab
 ---

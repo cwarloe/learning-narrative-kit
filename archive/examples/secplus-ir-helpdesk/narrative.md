@@ -2,7 +2,9 @@
 
 *A Security+ incident response precursor • Hover over highlighted terms after they have earned their keep.*
 
-A gusting Wednesday rain swept across the Willamette as I stepped onto the fourth floor. Eleven months on the service desk had taught me that the quietest tickets are often the ones carrying the sharpest edges. On the bezel of her monitor, Jules's sticky note still asked *Which decision?* under the fluorescent lights.
+The rain came in sideways on Wednesday, hard enough that the lobby mat was already soaked when I sat down. I had a queue full of subject lines in all caps and a USB drawer I trusted too much.
+
+Jules's sticky still said *which decision?* I had not looked at it yet. I was looking at the first ticket.
 
 ## Maya and the laptop that must die
 

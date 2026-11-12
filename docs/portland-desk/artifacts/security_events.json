@@ -2,7 +2,7 @@
   {
     "event_id": 4624,
     "provider_name": "Microsoft-Windows-Security-Auditing",
-    "time_created": "2026-10-20T08:14:22.108421Z",
+    "time_created": "2025-10-20T08:14:22.108421-07:00",
     "computer": "dc01.harrowmere.local",
     "description": "An account was successfully logged on.",
     "data": {
@@ -21,7 +21,7 @@
   {
     "event_id": 4624,
     "provider_name": "Microsoft-Windows-Security-Auditing",
-    "time_created": "2026-10-20T08:35:40.412890Z",
+    "time_created": "2025-10-20T08:35:40.412890-07:00",
     "computer": "dc01.harrowmere.local",
     "description": "An account was successfully logged on.",
     "data": {
@@ -40,7 +40,7 @@
   {
     "event_id": 4625,
     "provider_name": "Microsoft-Windows-Security-Auditing",
-    "time_created": "2026-10-20T16:24:12.338210Z",
+    "time_created": "2025-10-20T16:24:12.338210-07:00",
     "computer": "dc01.harrowmere.local",
     "description": "An account failed to log on.",
     "data": {
@@ -60,7 +60,7 @@
   {
     "event_id": 4625,
     "provider_name": "Microsoft-Windows-Security-Auditing",
-    "time_created": "2026-10-20T16:26:05.109240Z",
+    "time_created": "2025-10-20T16:26:05.109240-07:00",
     "computer": "dc01.harrowmere.local",
     "description": "An account failed to log on.",
     "data": {
@@ -80,7 +80,7 @@
   {
     "event_id": 4740,
     "provider_name": "Microsoft-Windows-Security-Auditing",
-    "time_created": "2026-10-20T16:26:05.115400Z",
+    "time_created": "2025-10-20T16:26:05.115400-07:00",
     "computer": "dc01.harrowmere.local",
     "description": "A user account was locked out.",
     "data": {
@@ -95,7 +95,7 @@
   {
     "event_id": 7045,
     "provider_name": "Service Control Manager",
-    "time_created": "2026-10-20T17:15:30.984012Z",
+    "time_created": "2025-10-20T17:15:30.984012-07:00",
     "computer": "PORT-WS-1054.harrowmere.local",
     "description": "A service was installed in the system.",
     "data": {

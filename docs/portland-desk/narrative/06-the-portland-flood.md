@@ -49,14 +49,14 @@ The structural wiring of Building C terminated on a 48-port Cat6 modular [[patch
 
 By five-thirty in the morning, the physical installation was complete. Both replacement switches hummed quietly on clean generator power. Jared plugged a rollover console cable into the management port of the primary switch. He handed the serial adapter over to me. I sat on an overturned plastic equipment crate above the water line, balancing my laptop across my knees.
 
-"Three VLANs down here, Ethan," Jules said, shining her penlight on her clipboard schematic. "Ten for order desks and billing, twenty for intake telemetry, thirty for dispatch and plant safety phones. Keep them separated. If dispatch drops a safety call because an intake logger flooded the voice broadcast domain, we're all out of a job."
+"Three VLANs down here, Ethan," Jules said, shining her penlight on her clipboard schematic. "Ten for order desks and billing, twenty for plant telemetry, thirty for dispatch and plant safety phones. Keep them separated. If dispatch drops a safety call because a telemetry logger flooded the voice broadcast domain, we're all out of a job."
 
 I logged into the switch command line and initialized the baseline configuration. I created each virtual network in the local database. I named them carefully to match our campus inventory standards. Next, I mapped the physical patch connections from the [[patch_panel|patch panel]] into their designated access interfaces. I placed the billing desks on VLAN 10. I assigned the telemetry loggers to VLAN 20. I configured the dispatch handsets on VLAN 30.
 
 ```console
 Switch-BuildingC# configure terminal
 Switch-BuildingC(config)# vlan 10
-Switch-BuildingC(config-vlan)# name CORP_WATER_BILLING
+Switch-BuildingC(config-vlan)# name CORP_ORDER_BILLING
 Switch-BuildingC(config-vlan)# vlan 20
 Switch-BuildingC(config-vlan)# name PLANT_TELEMETRY
 Switch-BuildingC(config-vlan)# vlan 30

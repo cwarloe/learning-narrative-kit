@@ -1,7 +1,7 @@
 Microsoft (R) Windows (R) Operating System Group Policy Result tool v2.0
-c 2026 Microsoft Corporation. All rights reserved.
+c 2025 Microsoft Corporation. All rights reserved.
 
-Created on Tuesday, October 20, 2026 at 11:15:32 AM
+Created on Tuesday, August 12, 2025 at 11:15:32 AM
 
 RSOP data for HARROWMERE\ethan on PORT-WS-1042 : Logging Mode
 --------------------------------------------------------------
@@ -16,7 +16,7 @@ Connected over a slow link?: No
 USER SETTINGS
 --------------
     CN=Ethan Mercer,OU=HelpDesk,OU=Staff,DC=harrowmere,DC=local
-    Last time Group Policy was applied: 10/20/2026 at 10:45:12 AM
+    Last time Group Policy was applied: 8/12/2025 at 10:45:12 AM
     Group Policy was applied from:      dc01.harrowmere.local
     Group Policy slow link threshold:   500 kbps
     Domain Name:                        harrowmere
@@ -25,7 +25,7 @@ USER SETTINGS
     Applied Group Policy Objects
     -----------------------------
         Default Domain Policy
-        SecOps-Workstation-Hardening-2026
+        SecOps-Workstation-Hardening-2025
         BitLocker-Enforcement-GPO
         Edge-Browser-Enterprise-Baseline
 
