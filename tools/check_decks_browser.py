@@ -54,7 +54,9 @@ def route(r):
                     res.headers.get("Content-Type", "application/octet-stream"),
                 )
         body, mime = cache[u]
-        r.fulfill(status=200, body=body, content_type=mime)
+        # The CDN tags carry integrity + crossorigin, so the stand-in response needs the CDN's CORS header.
+        r.fulfill(status=200, body=body, content_type=mime,
+                  headers={"Access-Control-Allow-Origin": "*"})
     except Exception as e:
         external.append((u, str(e)))
         r.abort()

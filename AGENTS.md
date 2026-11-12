@@ -213,9 +213,11 @@ Run all of these. Each one caught something real on the Tamarack track.
   HTML in markdown: use a fence (`lnk-deck`, `lnk-terminal`, `callout-panel`) that
   `index.html` turns into one line of HTML. `tools/check_decks.py` catches the trap.
 - To test Docsify pages headlessly here, serve `docs/portland-desk` locally and answer
-  `cdn.jsdelivr.net` requests from `curl` over HTTPS (Playwright `page.route`): the pages
-  load Docsify with `//cdn...` URLs, which become `http://` on a local server, and the
-  sandbox proxy only serves HTTPS.
+  `cdn.jsdelivr.net` requests from `curl` over HTTPS (Playwright `page.route`): the sandbox
+  browser can't reach the CDN directly. The CDN tags are pinned to exact versions with
+  `integrity` and `crossorigin="anonymous"`, so the stand-in response must send
+  `Access-Control-Allow-Origin: *` (see `tools/check_decks_browser.py`). To upgrade a
+  library, change its version and recompute the sha384 hash of the exact file.
 
 ## Validate rules (mechanical)
 
