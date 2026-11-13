@@ -130,7 +130,7 @@ Two protocol metaphors in the architecture document (TCP RST; TLS SNI) are quali
 
 These are stated as rules in the document. No primary research supporting the specific claim was found this session. Treat them as practitioner heuristics.
 
-- The **10 / 25 / 15** block and its 7 / 8 / 10 sub-splits. The direction (short input, mostly practice) is supported by #44 to #46; the numbers are not.
+- The **10 / 25 / 15** block and its 7 / 8 / 10 sub-splits. Do not justify this with a 10-minute attention span; #44 and #45 find little support for that claim. Active learning beating lecture is supported by #46, but the exact minute counts are not. As of 2026-11-11, treat 10/25/15 as a per-hour guide based on task sizing (an explain-and-demonstrate opening small enough for a novice to try next, because experts underestimate novice time), not as a rule. See [errata.md](errata.md).
 - **"50-70% of the commands provided"** in faded completion.
 - The **45-second interaction limit** per workstation.
 - **"Never touch the student's keyboard."** Common practitioner guidance in hands-on technical teaching. Consistent with #47 and #48, but no study of the rule itself was found.
