@@ -7,7 +7,7 @@
 
 ## 1. Executive Mandate
 
-You are building authentic, grounded workplace operational fiction—not sci-fi, not an ARG murder-mystery game, and not an educational cartoon. Ethan Mercer is a tired twenty-year-old dock laborer in an East Portland duplex trying to survive on $14 an hour. He is not a superhero, he does not have innate genius, and he cannot download skills like Neo in *The Matrix*.
+You are building authentic, grounded workplace operational fiction—not sci-fi, not an ARG murder-mystery game, and not an educational cartoon. Ethan Mercer is a tired twenty-year-old dock laborer in an East Portland duplex working graveyard on the dock for about $22 an hour plus a night differential. He is not a superhero, he does not have innate genius, and he cannot download skills like Neo in *The Matrix*.
 
 The following non-negotiable laws govern all narrative drafting, workbench design, and agent reviews.
 

@@ -3,8 +3,9 @@
 
 The ledger (docs/research/PORTLAND_KNOWLEDGE_LEDGER.yaml) records, for each marked
 term, the episode where Ethan picks it up and where it came from: a named person,
-a document he read, something he saw, or what he knew before the story starts.
-Contract: schema/KNOWLEDGE_LEDGER.md.
+his own cert study (A+, Network+, Security+), a document he read, something he saw,
+or what he knew before the story starts.
+Contract: docs/research/KNOWLEDGE_LEDGER_STANDARD.md.
 
 Two kinds of finding, kept apart as AGENTS.md asks:
 
@@ -15,6 +16,8 @@ FAIL (automated, exit 1):
     gives a surname that disagrees with the bible's cast registry (section 3.4)
   - a document source lacks a title, or has a url but no retrieved date
   - a prior source has no note pointing at the timeline backstory
+  - a study source names a cert other than A+, Network+ or Security+, or dates
+    Network+ study before Ep 02 (the timeline starts it during the IT rotation)
   - duplicate entries, unknown episode numbers, unknown status or kind values
 
 FLAG (a person looks; exit 0 unless --strict):
@@ -44,7 +47,14 @@ NARRATIVE = ROOT / "docs/portland-desk/narrative"
 BIBLE = ROOT / "docs/research/PORTLAND_AUTHOR_BIBLE.md"
 
 MARK = re.compile(r"\[\[([a-z0-9_]+)\|")
-KINDS = {"person", "document", "observed", "prior"}
+KINDS = {"person", "study", "document", "observed", "prior"}
+# Off-page kinds: Ethan can pick these up between scenes, so the pickup episode
+# need not mark the term.
+OFF_PAGE = {"prior", "study"}
+CERTS = {"A+", "Network+", "Security+"}
+# PORTLAND_TIMELINE.md section 4: Net+ study begins during the IT rotation,
+# which is covered at the start of Ep 02. Security+ study has no stated start.
+CERT_EARLIEST = {"Network+": "02"}
 STATUSES = {"proposed", "confirmed"}
 SPEECH_VERBS = (
     "said|says|answered|asked|added|explained|replied|told|realized|admitted|"
@@ -144,7 +154,7 @@ def main() -> int:
         ep = str(entry.get("acquired", "")).zfill(2)
         if ep not in eps:
             fails.append(f"{where}: acquired '{entry.get('acquired')}' is not an episode number (00-12)")
-        elif entry.get("source", {}).get("kind") != "prior" and term not in eps[ep]["marked"]:
+        elif (entry.get("source") or {}).get("kind") not in OFF_PAGE and term not in eps[ep]["marked"]:
             fails.append(f"{where}: Ethan picks it up in Ep {ep}, but {eps[ep]['file']} never marks it")
         if entry.get("status") not in STATUSES:
             fails.append(f"{where}: status must be one of {sorted(STATUSES)}")
@@ -167,6 +177,12 @@ def main() -> int:
                 fails.append(f"{where}: document source needs a title")
             if src.get("url") and not src.get("retrieved"):
                 fails.append(f"{where}: document has a url but no retrieved date")
+        elif kind == "study":
+            cert = src.get("cert")
+            if cert not in CERTS:
+                fails.append(f"{where}: study source needs cert: one of {sorted(CERTS)}")
+            elif cert in CERT_EARLIEST and ep < CERT_EARLIEST[cert]:
+                fails.append(f"{where}: {cert} study starts in Ep {CERT_EARLIEST[cert]} per the timeline, not Ep {ep}")
         elif kind == "prior" and not src.get("note"):
             fails.append(f"{where}: prior knowledge needs a note pointing at the timeline backstory")
 

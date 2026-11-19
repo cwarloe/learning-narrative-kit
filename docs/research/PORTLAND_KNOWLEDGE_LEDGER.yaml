@@ -1,8 +1,9 @@
 # Portland Desk knowledge ledger: when Ethan picks up each term, and where it came from.
-# Contract: schema/KNOWLEDGE_LEDGER.md. Check: python3 tools/check_knowledge.py
+# Contract: docs/research/KNOWLEDGE_LEDGER_STANDARD.md. Check: python3 tools/check_knowledge.py
 #
 # Seed only. These entries cover Episode 3 and were read off the shipped text.
-# All are `proposed` until Charles confirms them; a proposed entry is not canon.
+# default_gateway confirmed by Charles on 2026-11-18. The rest stay `proposed`
+# until he confirms them; a proposed entry is not canon.
 
 track: portland-desk
 character: Ethan Mercer
@@ -11,9 +12,11 @@ entries:
   - term: default_gateway
     acquired: "00"
     source:
-      kind: prior
+      kind: study
+      cert: A+
+      material: flashcards
       note: "A+ Core 1 passed late July of Year 1 (PORTLAND_TIMELINE.md section 4). In Ep 03 he reads a blank gateway entry without being told what it is."
-    status: proposed
+    status: confirmed
 
   - term: apipa_address
     acquired: "03"
