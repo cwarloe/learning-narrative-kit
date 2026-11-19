@@ -3,7 +3,7 @@
 > **Document Type:** Foundational Learning Architecture & Cognitive Science Specification  
 > **Target Audience:** Curriculum Architects, Technical Authors, Instructors, Self-Directed Certification Candidates  
 > **Applicable Domains:** CompTIA (A+, Network+, Security+, Linux+), AWS/Cloud, Cisco (CCNA), and Complex Technical Curricula  
-> **Narrative Origin:** First introduced in *Portland Desk* (Module 00: The Four Rubber Bands, Ethan Brooks)  
+> **Narrative Origin:** First introduced in *Portland Desk* (Module 00: The Four Rubber Bands, Ethan Mercer)  
 
 ---
 

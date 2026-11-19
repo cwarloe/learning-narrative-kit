@@ -15,7 +15,7 @@ A comprehensive fact-check was conducted across all research files in both repos
 * **Zero Hallucinated Citations:** Every single named academic researcher, published study, statistical metric, and theoretical framework referenced in both projects is an **authentic, real-world peer-reviewed publication or formal industry standard**.
 * **Provenance Distinction:**
   * **Empirical Research:** Studies like Dunlosky et al. (2013), Sundaramurthy et al. (2015), Roediger & Karpicke (2006), and Sweller (1988) are verified empirical studies with exact DOIs provided below.
-  * **Original Narrative Inventions Grounded in Research:** The *specific fictional metaphor* of "The Four Rubber Bands" (red, green, yellow, blue pulled from a cracked mug by Ethan Brooks) was an original creation for *Portland Desk* (Module 00), designed as a grounded workplace expression of van Merriënboer's 4C/ID model and Sweller's cognitive load triage.
+  * **Original Narrative Inventions Grounded in Research:** The *specific fictional metaphor* of "The Four Rubber Bands" (red, green, yellow, blue pulled from a cracked mug by Ethan Mercer) was an original creation for *Portland Desk* (Module 00), designed as a grounded workplace expression of van Merriënboer's 4C/ID model and Sweller's cognitive load triage.
   * **Industry Standards:** NIST SP 800-181 (NICE Framework) and CompTIA objective standards are verified against official published documents.
 
 ---
