@@ -1,9 +1,11 @@
 # Portland Desk knowledge ledger: when Ethan picks up each term, and where it came from.
 # Contract: docs/research/KNOWLEDGE_LEDGER_STANDARD.md. Check: python3 tools/check_knowledge.py
 #
-# Seed only. These entries cover Episode 3 and were read off the shipped text.
-# default_gateway confirmed by Charles on 2026-11-18. The rest stay `proposed`
-# until he confirms them; a proposed entry is not canon.
+# Episode 3 entries were read off the shipped text; default_gateway was confirmed by
+# Charles on 2026-11-18. Every other entry was set by Claude on 2026-11-18, under
+# Charles's go-ahead to use judgment for plausible career progress: A+ through Ep 02,
+# Network+ from the IT rotation, Security+ from Ep 05 after he passes Network+.
+# Change any entry you disagree with; the check reruns in seconds.
 
 track: portland-desk
 character: Ethan Mercer
@@ -24,7 +26,7 @@ entries:
       kind: person
       name: Jules Brooks
       note: "Names the 169.254 address on WS-BLDGB-04 and explains the DHCP fallback."
-    status: proposed
+    status: confirmed
 
   - term: broadcast_domain
     acquired: "03"
@@ -32,7 +34,7 @@ entries:
       kind: person
       name: Jules Brooks
       note: "Explains why Discover broadcasts stayed trapped once the trunk dropped its tagging."
-    status: proposed
+    status: confirmed
 
   - term: subnet_mask
     acquired: "03"
@@ -40,7 +42,7 @@ entries:
       kind: person
       name: Jules Brooks
       note: "Works what a /26 mask does to the last octet with him on paper. He knew masks existed; the /26 boundary is what he picks up here."
-    status: proposed
+    status: confirmed
 
   - term: arp_cache
     acquired: "03"
@@ -48,4 +50,734 @@ entries:
       kind: person
       name: Jules Brooks
       note: "Tells him to inspect the ARP cache before sending anyone into the crawlspace."
-    status: proposed
+    status: confirmed
+
+  # --- Set by Claude, 2026-11-18 (see header) ---
+  - term: ip_address
+    acquired: '00'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 1 study, passed in Ep 00 (timeline section 4).
+    status: confirmed
+
+  - term: mac_address
+    acquired: '00'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 1 study, passed in Ep 00 (timeline section 4).
+    status: confirmed
+
+  - term: network_interface_card
+    acquired: '00'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 1 study, passed in Ep 00 (timeline section 4).
+    status: confirmed
+
+  - term: non_volatile_storage
+    acquired: '00'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 1 study, passed in Ep 00 (timeline section 4).
+    status: confirmed
+
+  - term: post_routine
+    acquired: '00'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 1 study, passed in Ep 00 (timeline section 4).
+    status: confirmed
+
+  - term: ram_memory
+    acquired: '00'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 1 study, passed in Ep 00 (timeline section 4).
+    status: confirmed
+
+  - term: continuity_test
+    acquired: '01'
+    source:
+      kind: person
+      name: Rosa
+      note: Showed him the beeper setting on a forklift harness months before Ep 01.
+    status: confirmed
+
+  - term: multimeter
+    acquired: '01'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 1 study, passed in Ep 00 (timeline section 4).
+    status: confirmed
+
+  - term: post_code
+    acquired: '01'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 1 study, passed in Ep 00 (timeline section 4).
+    status: confirmed
+
+  - term: rs232_serial
+    acquired: '01'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 1 study, passed in Ep 00 (timeline section 4).
+    status: confirmed
+
+  - term: bitlocker_recovery
+    acquired: '02'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 2 study, passed before Ep 01 (timeline section 4).
+    status: confirmed
+
+  - term: clean_boot
+    acquired: '02'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 2 study, passed before Ep 01 (timeline section 4).
+    status: confirmed
+
+  - term: device_driver
+    acquired: '02'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 2 study, passed before Ep 01 (timeline section 4).
+    status: confirmed
+
+  - term: safe_mode
+    acquired: '02'
+    source:
+      kind: study
+      cert: A+
+      material: flashcards
+      note: A+ Core 2 study, passed before Ep 01 (timeline section 4).
+    status: confirmed
+
+  - term: cname_record
+    acquired: '04'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: hosts_file
+    acquired: '04'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: recursive_resolver
+    acquired: '04'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: ephemeral_port
+    acquired: '05'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: reset_packet
+    acquired: '05'
+    source:
+      kind: person
+      name: Jules Brooks
+      note: Explains that a reset in under two milliseconds means the far end refused the connection, not
+        a firewall drop.
+    status: confirmed
+
+  - term: socket_state
+    acquired: '05'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: tcp_handshake
+    acquired: '05'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: dhcp_exhaustion
+    acquired: '06'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: link_aggregation
+    acquired: '06'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: patch_panel
+    acquired: '06'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: spanning_tree
+    acquired: '06'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: vlan_trunking
+    acquired: '06'
+    source:
+      kind: study
+      cert: Network+
+      material: flashcards
+      note: Network+ study, begun in the IT rotation and passed about 13 months into IT (timeline section
+        4).
+    status: confirmed
+
+  - term: enable_password
+    acquired: '07'
+    source:
+      kind: person
+      name: Jared Lindqvist
+      note: Names it while describing his Telnet routine for the Building C switch.
+    status: confirmed
+
+  - term: ftp
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: ftps
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: imaps
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: implicit_tls
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: key_auth
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: pop3
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: pop3s
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: sftp
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: smtp
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: smtp_submission
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: smtps
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: starttls
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: telnet
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: tls
+    acquired: '07'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: account_lockout
+    acquired: 08
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: identity_provider
+    acquired: 08
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: mfa
+    acquired: 08
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: mfa_fatigue
+    acquired: 08
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: something_you_have
+    acquired: 08
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: something_you_know
+    acquired: 08
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: totp
+    acquired: 08
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: bec
+    acquired: 09
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: brand_impersonation
+    acquired: 09
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: credential_harvesting
+    acquired: 09
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: mfa_fatigue_attack
+    acquired: 09
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: smishing
+    acquired: 09
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: spear_phishing
+    acquired: 09
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: typo_squatting
+    acquired: 09
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: whaling
+    acquired: 09
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: adware
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: antivirus
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: crypto_malware
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: dropper
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: edr
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: ioc
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: payload
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: pups
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: spyware
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: trojan
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: virus
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: worm
+    acquired: '10'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: captive_portal
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: disassociation
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: eavesdropping
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: enterprise_wpa
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: evil_twin
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: ieee_8021x
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: jamming
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: psk
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: radius
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: rogue_ap
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: ssid
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed
+
+  - term: wifi_analyzer
+    acquired: '11'
+    source:
+      kind: study
+      cert: Security+
+      material: flashcards
+      note: Security+ study, begun in Ep 05 after he passed Network+.
+    status: confirmed

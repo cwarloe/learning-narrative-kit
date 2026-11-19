@@ -46,7 +46,7 @@ entries:
 | Kind | Use it when | Required fields |
 |---|---|---|
 | `person` | Someone tells or shows him (Jules, Jared, Hank on the dock) | `name`; a surname, if given, must match the bible's cast registry (3.4); the first name must appear in that episode |
-| `study` | His normal A+, Network+ or Security+ study: flashcards, slates, practice exams. This is the usual source and needs no scene on the page | `cert` (`A+`, `Network+` or `Security+`); optional `material` (flashcards, slate, job aid) and `note`. Network+ study can't start before Ep 02, because the timeline begins it during the IT rotation |
+| `study` | His normal A+, Network+ or Security+ study: flashcards, slates, practice exams. This is the usual source and needs no scene on the page | `cert` (`A+`, `Network+` or `Security+`); optional `material` (flashcards, slate, job aid) and `note`. Network+ study can't start before Ep 02 (the timeline begins it during the IT rotation); Security+ study can't start before Ep 05 |
 | `document` | He reads it: a manual, a forum thread, a NIST guide, an encyclopedia entry | `title`; if there is a `url`, also `retrieved` (date). Add `license` when the text is shown on the page |
 | `observed` | He works it out from what is in front of him, on the page | `note` saying what he saw |
 | `prior` | He knew it before the story starts | `note` pointing at the backstory in `PORTLAND_TIMELINE.md` section 4 |
@@ -54,6 +54,13 @@ entries:
 Most terms will be `study`: Ethan is working through A+ and Network+ (later Security+)
 the whole time, and his flashcards and slates are a complete source on their own. He
 does not need to look anything up for it to count.
+
+**When each cert's study starts** (decided 2026-11-18, Charles's go-ahead to use judgment):
+A+ is passed by Ep 01 (Core 1 in Ep 00, Core 2 before Ep 01). Network+ study begins in the
+IT rotation and he passes about 13 months into IT, between Ep 04 (March) and Ep 05 (April)
+of Year 3. Security+ study begins right after, in Ep 05, and runs about 15 months to the
+pass just after Ep 12: slow, steady study alongside a full-time desk job. Terms Ethan first
+uses in Act III before he could have studied them need a person, document or on-page source.
 
 A `document` source is the reading shelf, for the times a scene has him read something
 specific. When a character looks something up, the
@@ -81,7 +88,7 @@ picked by hand: a fixed list per track, read once by the author when added.
 
 | Finding | Meaning | Exit |
 |---|---|---|
-| FAIL | The ledger is wrong on its face: the term is never marked; a person, document or observed pickup happens in an episode that never marks it (study and prior pickups can happen off the page); a study source names an unknown cert or starts Network+ before Ep 02; a surname disagrees with the cast registry; a person is not named in that episode; a document has no title, or a url with no date; a prior entry has no backstory note; duplicates; bad values | 1 |
+| FAIL | The ledger is wrong on its face: the term is never marked; a person, document or observed pickup happens in an episode that never marks it (study and prior pickups can happen off the page); a study source names an unknown cert, or starts Network+ before Ep 02 or Security+ before Ep 05; a surname disagrees with the cast registry; a person is not named in that episode; a document has no title, or a url with no date; a prior entry has no backstory note; duplicates; bad values | 1 |
 | FLAG | Ethan uses the term, in narration or his own speech, before his pickup episode | 0 (1 with `--strict`) |
 | REPORT | How many terms Ethan uses still have no entry (`--list` names them) | 0 |
 
@@ -101,11 +108,9 @@ is a prompt to read the passage, not a verdict.
 
 ## Rolling it out
 
-1. Charles confirms or corrects the Episode 3 seed entries (`default_gateway` confirmed
-   2026-11-18 as A+ study).
-2. Fill the rest of the track episode by episode (`--list` shows what is missing), all
-   `proposed` until confirmed. Expect most to be `study`.
-3. When every used term has an entry, run it with `--strict` before merge, then add it to CI.
+1. Done 2026-11-18: every term Ethan uses has an entry (most are `study`).
+2. Keep it current: a new marked term in a new episode gets an entry in the same change.
+3. Next step: run it with `--strict` before merge, then add it to CI.
 
 ## Other tracks
 

@@ -17,7 +17,8 @@ FAIL (automated, exit 1):
   - a document source lacks a title, or has a url but no retrieved date
   - a prior source has no note pointing at the timeline backstory
   - a study source names a cert other than A+, Network+ or Security+, or dates
-    Network+ study before Ep 02 (the timeline starts it during the IT rotation)
+    Network+ study before Ep 02 (the timeline starts it during the IT rotation) or
+    Security+ study before Ep 05 (after he passes Network+)
   - duplicate entries, unknown episode numbers, unknown status or kind values
 
 FLAG (a person looks; exit 0 unless --strict):
@@ -53,8 +54,9 @@ KINDS = {"person", "study", "document", "observed", "prior"}
 OFF_PAGE = {"prior", "study"}
 CERTS = {"A+", "Network+", "Security+"}
 # PORTLAND_TIMELINE.md section 4: Net+ study begins during the IT rotation,
-# which is covered at the start of Ep 02. Security+ study has no stated start.
-CERT_EARLIEST = {"Network+": "02"}
+# which is covered at the start of Ep 02. Security+ study starts in Ep 05, after he
+# passes Network+ about 13 months into IT (decided 2026-11-18; see the standard).
+CERT_EARLIEST = {"Network+": "02", "Security+": "05"}
 STATUSES = {"proposed", "confirmed"}
 SPEECH_VERBS = (
     "said|says|answered|asked|added|explained|replied|told|realized|admitted|"
