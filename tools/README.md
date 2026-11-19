@@ -25,6 +25,7 @@ Every `.py` file in `tools/`, sorted by how to treat it. `python3 tools/check_to
 | `check_decks_browser.py` | Chromium interactions and responsive layout across unit and Docsify decks (CI); setup below | below |
 | `check_theme.py` | Every color, font and corner on the site comes from `docs/tokens.css`; fails on a raw value in `docs/`, `template/`, the renderers, or a Portland Desk `style="..."` (CI) | `docs/THEMING.md` |
 | `check_dates.py` | Portland Desk months, seasons, weekdays, incident IDs and desk tenure match `PORTLAND_TIMELINE.md`; CI and before merge | `AGENTS.md` |
+| `check_knowledge.py` | Portland Desk knowledge ledger: each term's pickup episode is on the page, sources agree with the cast registry, and flags terms Ethan uses before he picks them up. Proposed; not in CI | `schema/KNOWLEDGE_LEDGER.md` |
 | `check_cleanliness.py` | Strict lint: fails on any emoji or listed AI-slop marker in learner-facing files. Not in CI | — |
 | `_track.py`, `_unit_page_template.py`, `_deck.py` | Modules imported by the renderers (`_deck.py` parses `lnk-deck` fences for `render_unit.py`); not run directly | — |
 | `_accessibility.py` | Browser assertions for accessible names, keyboard focus, card announcements, and contrast; not run directly | Browser flashcard checks |

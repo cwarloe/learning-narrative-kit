@@ -1,0 +1,48 @@
+# Portland Desk knowledge ledger: when Ethan picks up each term, and where it came from.
+# Contract: schema/KNOWLEDGE_LEDGER.md. Check: python3 tools/check_knowledge.py
+#
+# Seed only. These entries cover Episode 3 and were read off the shipped text.
+# All are `proposed` until Charles confirms them; a proposed entry is not canon.
+
+track: portland-desk
+character: Ethan Mercer
+
+entries:
+  - term: default_gateway
+    acquired: "00"
+    source:
+      kind: prior
+      note: "A+ Core 1 passed late July of Year 1 (PORTLAND_TIMELINE.md section 4). In Ep 03 he reads a blank gateway entry without being told what it is."
+    status: proposed
+
+  - term: apipa_address
+    acquired: "03"
+    source:
+      kind: person
+      name: Jules Brooks
+      note: "Names the 169.254 address on WS-BLDGB-04 and explains the DHCP fallback."
+    status: proposed
+
+  - term: broadcast_domain
+    acquired: "03"
+    source:
+      kind: person
+      name: Jules Brooks
+      note: "Explains why Discover broadcasts stayed trapped once the trunk dropped its tagging."
+    status: proposed
+
+  - term: subnet_mask
+    acquired: "03"
+    source:
+      kind: person
+      name: Jules Brooks
+      note: "Works what a /26 mask does to the last octet with him on paper. He knew masks existed; the /26 boundary is what he picks up here."
+    status: proposed
+
+  - term: arp_cache
+    acquired: "03"
+    source:
+      kind: person
+      name: Jules Brooks
+      note: "Tells him to inspect the ARP cache before sending anyone into the crawlspace."
+    status: proposed
