@@ -1,0 +1,9 @@
+{
+  "name": "learning-narrative-kit",
+  "private": true,
+  "description": "Static hosting commands for the already-rendered Learning Narrative Kit docs",
+  "scripts": {
+    "cloudflare:dry-run": "npx --yes cf@1.0.0-rc.6 deploy ./docs --dry-run",
+    "cloudflare:deploy": "npx --yes cf@1.0.0-rc.6 deploy ./docs"
+  }
+}

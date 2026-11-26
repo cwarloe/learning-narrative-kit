@@ -57,6 +57,16 @@ Landing: https://cwarloe.github.io/learning-narrative-kit/
 
 Re-render + push updates the same unit URLs.
 
+### Cloudflare migration preparation
+
+The move from GitHub Pages to Cloudflare hosting is being staged without changing the current public site. The rendered `docs/` tree has passed a local Cloudflare Workers Static Assets deployment dry-run:
+
+```bash
+npm run cloudflare:dry-run
+```
+
+`npm run cloudflare:deploy` is the corresponding authenticated deployment command, **not** a completed publication. Do not disable GitHub Pages or replace links until the Cloudflare URL is provisioned and verified. See [`research/cloudflare-hosting-handoff.md`](research/cloudflare-hosting-handoff.md) for access, deployment, validation, and cutover gates.
+
 ## Generation order (story-first)
 
 1. Collect the term set that belongs together (slides, notes, flashcards, lesson vocab).
